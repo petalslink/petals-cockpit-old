@@ -1,0 +1,15 @@
+{  
+    "Forgot password ?": "Mot de passe perdu ?",
+    "Error": "Erreur",
+    "My Account": "Mon compte",
+    "Not Found": "Inexistant",
+    "Login": "Se connecter",
+    "Logout": "Déconnexion",
+    "Please sign in": "Identifiez-vous",
+    "Sign In": "S'identifier",
+    "Username": "Utilisateur",
+    "Password": "Mot de passe",
+    "Remember me": "Se souvenir de moi",
+    "Please wait": "Un instant",
+    "Bad username or password": "Utilisateur ou mot de passe erroné"
+}

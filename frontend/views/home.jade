@@ -1,0 +1,92 @@
+doctype html
+html
+head
+    title Petals-Cockpit
+    meta(charset='utf8')
+    base(href='/')
+    title #{title} - Super-Chat
+    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap-theme.min.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/css/style.css', media='screen')
+    link(rel='stylesheet', href='/css/style.less', media='screen')
+    link(rel='stylesheet', href='/css/style.setup-wizard.less', media='screen')
+    link(rel='stylesheet', type='text/css', href='/css/font-awesome.min.css', media='screen')
+    script(src='/components/jquery/dist/jquery.min.js')
+    script(src='/components/angular/angular.min.js')
+    script(src='/components/angular-bootstrap/ui-bootstrap.min.js')
+    script(src='/components/angular-route/angular-route.min.js')
+    script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+    script(src="/components/recaptcha_ajax/index.js")
+    script(src='/components/angular-recaptcha/release/angular-recaptcha.js')
+    script(src='/js/app.js')
+    
+body(ng-app='cockpit-app')
+    .navbar.navbar-default
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav
+            li.active
+                a(href='#')
+                    span.glyphicon.glyphicon-home
+                    |  Tableau de bord
+            li
+              a(href='about')
+                span.glyphicon.glyphicon-book
+                |  A propos du projet
+            | 
+            li
+              a(href='guide')
+                span.glyphicon.glyphicon-book
+                |  Guide Utilisateur
+            | 
+            li
+              a(href='./#/login')
+                span.glyphicon.glyphicon-user
+                |  S'identifier
+            | 
+            li
+              a(href='contact')
+                span.glyphicon.glyphicon-envelope
+                |  Contact
+            | 
+      //
+         Navigation Bar          
+    div(ng-view)
+
+    .jumbotron
+      p
+        a(href='#')
+            img(src='../img/logo.png')
+            
+      h1 Petals-Cockpit
+      p
+        | Venez découvrir et expérimenter notre nouvel outil.
+
+    .container
+        .row
+            .float-grid-columns
+                .col-lg-4
+                  .panel.panel-default
+                    .panel-heading
+                      h4 Qu'est ce que c'est ? 
+                    .panel-body
+                      | Exemple de texte : on pourrait mettre pas mal de chose.
+                .col-lg-4
+                  .panel.panel-default
+                    .panel-heading
+                      h4 Quel est le but ?
+                    .panel-body
+                      | Exemple de texte : on pourrait mettre pas mal de chose.
+                .col-lg-4
+                  .panel.panel-default
+                    .panel-heading
+                      h4 Qui sommes-nous? 
+                    .panel-body
+                      | Exemple de texte : on pourrait mettre pas mal de chose.
+    footer
+    include ./footer.jade
