@@ -49,6 +49,7 @@ h1 {
     line-height:34px;
     text-align:center;
 }
+
 [class*="col-"] {
     padding-top:25px;
     padding-bottom:5px;
@@ -206,22 +207,16 @@ hr.soften {
 /* Base class
 ------------------------- */
 .jumbotron {
+  padding: 20px 0px;
+  height: 75%;
   position: relative;
-  height: 70%;
-  color: #fff;
   text-align: center;
-  text-shadow: 0px 3px 9px rgba(6, 6, 6, 0.8), 0px 0px 30px;
-  background: #F2F2F2; /* Old browsers */
-  background: -moz-linear-gradient(45deg,  #F2F2F2 0%, #F2F2F2 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#F2F2F2), color-stop(100%,#F2F2F2)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(45deg,  #F2F2F2 0%,#F2F2F2 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(45deg,  #F2F2F2 0%,#F2F2F2 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(45deg,  #F2F2F2 0%,#F2F2F2 100%); /* IE10+ */
-  background: linear-gradient(45deg,  #F2F2F2 0%,#F2F2F2 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F2F2F2', endColorstr='#F2F2F2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.65), inset 0 -90px 70px rgba(0,0,0,.65);
-     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.65), inset 0 -90px 70px rgba(0,0,0,.65);
-          box-shadow: inset 0 3px 7px rgba(0,0,0,.65), inset 0 -90px 70px rgba(0,0,0,.65);
+  background: linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
+  background: -moz-linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
+  background: -webkit-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
+  background: -webkit-linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
+  background: -o-linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
+  background: -ms-linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
 }
 .junbotron a.btn.btn-primary.btn-lg {
     background-image: linear-gradient(to bottom, #222 0px, #999 100%);
@@ -233,12 +228,26 @@ hr.soften {
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 1;
+  color: #fff;
+  text-align: center;
+  text-shadow: 10px 3px 9px rgba(6, 6, 6, 1), 0px 0px 30px;
+}
+.jumbotron h2 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  text-shadow: 10px 3px 9px rgba(6, 6, 6, 1), 0px 0px 30px;
 }
 .jumbotron p {
   font-size: 24px;
   font-weight: 300;
   line-height: 1.25;
   margin-bottom: 30px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 10px 3px 9px rgba(6, 6, 6, 1), 0px 0px 30px;
 }
 
 /* Link styles (used on .masthead-links as well) */
@@ -248,6 +257,8 @@ hr.soften {
   -webkit-transition: all .2s ease-in-out;
      -moz-transition: all .2s ease-in-out;
           transition: all .2s ease-in-out;
+  text-align: center;
+  text-shadow: 0px 3px 9px rgba(6, 6, 6, 0.8), 0px 0px 30px;
 }
 .jumbotron a:hover {
   color: #fff;
@@ -291,13 +302,12 @@ hr.soften {
 }
 .jumbotron:after {
   content: '';
-  display: block;
   position: absolute;
-  top: 8%;
+  top: 0;
   right: 0;
-  bottom: 20%;
+  bottom: 0;
   left: 0;
-  background: url(../img/slide__innovation.jpg)  no-repeat center center;
+  background: url(../img/slide__innovation.jpg)  no-repeat center center transparent;
   background-attachment: fixed;
   background-size: cover;
   opacity: .7;

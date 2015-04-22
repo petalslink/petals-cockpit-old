@@ -9,9 +9,9 @@ var app = require('express')(),
     ent = require('ent'), // Permet de bloquer les caractères HTML
     fs = require('fs'),
     //home = require('./frontend/routes/home'),
-    about = require('./frontend/routes/about'),
-    guide = require('./frontend/routes/guide'),   
-    contact = require('./frontend/routes/contact'),
+//    about = require('./frontend/routes/about'),
+//    guide = require('./frontend/routes/guide'),   
+//    contact = require('./frontend/routes/contact'),
     path = require('path'),
 //    favicon = require('static-favicon'),
     logger = require('morgan'),
@@ -21,6 +21,15 @@ var app = require('express')(),
 
 var home = function(req,res){
     res.render('home')
+}
+var about = function(req,res){
+    res.render('about')
+}
+var guide = function(req,res){
+    res.render('guide')
+}
+var contact = function(req,res){
+    res.render('contact')
 }
 
 //i18n.configure({
@@ -57,9 +66,9 @@ app.use(i18n.init);
 
 app.get('/', home);
 app.get('/home', home);
-app.get('/about', about.about);
-app.get('/guide', guide.guide);
-app.get('/contact', contact.contact);
+//app.get('/about', about.about);
+//app.get('/guide', guide.guide);
+//app.get('/contact', contact.contact);
 
 app.get('/views/*', function(req, res, next) {
   var templateName = req.params[0].replace(/\.html$/, '');

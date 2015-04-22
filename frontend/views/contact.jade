@@ -1,79 +1,12 @@
-doctype html
-html
-head
-    title Petals-Cockpit
-    meta(charset='utf8')
-    base(href='/')
-    title #{title} - Super-Chat
-    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap.css', media='screen')
-    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap-theme.min.css', media='screen')
-    link(rel='stylesheet', type='text/css', href='/css/style.css', media='screen')
-    link(rel='stylesheet', href='/css/style.less', media='screen')
-    link(rel='stylesheet', href='/css/style.setup-wizard.less', media='screen')
-    link(rel='stylesheet', type='text/css', href='/css/font-awesome.min.css', media='screen')
-    script(src='/components/jquery/dist/jquery.min.js')
-    script(src='/components/angular/angular.min.js')
-    script(src='/components/angular-bootstrap/ui-bootstrap.min.js')
-    script(src='/components/angular-route/angular-route.min.js')
-    script(src='/components/bootstrap/dist/js/bootstrap.min.js')
-    script(src="/components/recaptcha_ajax/index.js")
-    script(src='/components/angular-recaptcha/release/angular-recaptcha.js')
-    script(src='/js/app.js')
-    
-body
-    .section
-      .navbar.navbar-default
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-            
-        .navbar-collapse.collapse.navbar-responsive-collapse
-          ul.nav.navbar-nav
-            li
-                a(href='#')
-                    span.glyphicon.glyphicon-home
-                    |  Tableau de bord
-            li
-              a(href='about')
-                span.glyphicon.glyphicon-book
-                |  A propos du projet
-            | 
-            li
-              a(href='guide')
-                span.glyphicon.glyphicon-book
-                |  Guide Utilisateur
-            | 
-            li
-              a(href='./#/login')
-                span.glyphicon.glyphicon-user
-                |  S'identifier
-            | 
-            li.active
-              a(href='contact')
-                span.glyphicon.glyphicon-envelope
-                |  Contact
-            | 
-      //
-         Navigation Bar 
-    .jumbotron
-      p
-        a(href='#')
-            img(src='../img/logo.png')
-      h1 Petals-Cockpit
-      p
-        | Un soucis de pilotage ? Contactez le support pour plus d'informations.
-
+.jumbotron
+    h2 Ask your questions directly to our technical team !
     .container
         .row
             .row-centered
-            .col-xs-12.col-centered
-                  .panel.panel-default
-                    .panel-heading
-                      h4 Vous Souhaitez Nous Contacter ? 
-                    .panel-body
-                      | Formulaire de Contact.        
-
-
-    include ./footer.jade
+                .col-xs-12.col-centered
+                    .panel.panel-default
+                        .panel-heading
+                            h4 Need To Contact Us 
+                        .panel-body
+                            | First Rule : This is my new project 2015
+                            | Let's talk about ... 
