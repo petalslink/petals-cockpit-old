@@ -5,163 +5,6 @@
   Special styles for presenting Bootstrap's documentation and examples
 */
 
-/* ANIMATIONS
-============================================================================= */
-
-/* BASE STYLES
-============================================================================= */
-
-.page h1 	{ font-size:60px; }
-.page a     { margin-top:50px; }
-#about      { color:#333; position:absolute; text-align:center; top:50px; width:100%; }
-
-/* PAGES
-============================================================================= */
-.home 		{ background:#00D0BC; color:#00907c; }
-.about 	{ background:#E59400; color:#a55400; }
-.contact 	{ background:#ffa6bb; color:#9e0000; }
-
-/* ANIMATIONS
-============================================================================= */
-
-.jumbotron.ng-leave 	{ z-index:9999; }
-.jumbotron.ng-enter 	{ z-index:8888; }
-
-/* page specific animations ------------------------ */
-
-/* home -------------------------- */
-.home.ng-leave         {
-    -webkit-transform-origin: 0% 0%;
-	-webkit-animation: rotateFall 1s both ease-in;
-	-moz-transform-origin: 0% 0%;
-	-moz-animation: rotateFall 1s both ease-in;
-	transform-origin: 0% 0%;
-	animation: rotateFall 1s both ease-in;
-}
-.home.ng-enter 		{  
-    -webkit-animation:scaleUp 0.5s both ease-in;
-	-moz-animation:scaleUp 0.5s both ease-in;
-	animation:scaleUp 0.5s both ease-in;    
-}
-
-/* about ------------------------ */
-.about.ng-leave        {
-    -webkit-animation:slideOutLeft 0.5s both ease-in;
-	-moz-animation:slideOutLeft 0.5s both ease-in;
-	animation:slideOutLeft 0.5s both ease-in;   
-}
-.about.ng-enter 		{  
-    -webkit-animation:slideInRight 0.5s both ease-in;
-	-moz-animation:slideInRight 0.5s both ease-in;
-	animation:slideInRight 0.5s both ease-in;    
-}
-
-/* contact ---------------------- */
-.contact.ng-leave      {
-    -webkit-transform-origin: 50% 50%;
-	-webkit-animation: rotateOutNewspaper .5s both ease-in;
-	-moz-transform-origin: 50% 50%;
-	-moz-animation: rotateOutNewspaper .5s both ease-in;
-	transform-origin: 50% 50%;
-	animation: rotateOutNewspaper .5s both ease-in;
-}
-.contact.ng-enter 		{ 
-    -webkit-animation:slideInUp 0.5s both ease-in;
-	-moz-animation:slideInUp 0.5s both ease-in;
-	animation:slideInUp 0.5s both ease-in;  
-}
-
-/* rotate and fall */
-@-webkit-keyframes rotateFall {
-	0% { -webkit-transform: rotateZ(0deg); }
-	20% { -webkit-transform: rotateZ(10deg); -webkit-animation-timing-function: ease-out; }
-	40% { -webkit-transform: rotateZ(17deg); }
-	60% { -webkit-transform: rotateZ(16deg); }
-	100% { -webkit-transform: translateY(100%) rotateZ(17deg); }
-}
-@-moz-keyframes rotateFall {
-	0% { -moz-transform: rotateZ(0deg); }
-	20% { -moz-transform: rotateZ(10deg); -moz-animation-timing-function: ease-out; }
-	40% { -moz-transform: rotateZ(17deg); }
-	60% { -moz-transform: rotateZ(16deg); }
-	100% { -moz-transform: translateY(100%) rotateZ(17deg); }
-}
-@keyframes rotateFall {
-	0% { transform: rotateZ(0deg); }
-	20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
-	40% { transform: rotateZ(17deg); }
-	60% { transform: rotateZ(16deg); }
-	100% { transform: translateY(100%) rotateZ(17deg); }
-}
-
-/* scale up */
-@keyframes scaleUp {
-	from 		{ opacity: 0.3; transform: scale(0.8); }
-}
-@-moz-keyframes scaleUp {
-	from 		{ opacity: 0.3; -moz-transform: scale(0.8); }
-}
-@-webkit-keyframes scaleUp {
-	from 		{ opacity: 0.3; -webkit-transform: scale(0.8); }
-}
-
-/* slide in from the right */
-@keyframes slideInRight {
-	from 	{ transform:translateX(100%); }
-	to 		{ transform: translateX(0); }
-}
-@-moz-keyframes slideInRight {
-	from 	{ -moz-transform:translateX(100%); }
-	to 		{ -moz-transform: translateX(0); }
-}
-@-webkit-keyframes slideInRight {
-	from 	{ -webkit-transform:translateX(100%); }
-	to 		{ -webkit-transform: translateX(0); }
-}
-
-/* slide in from the bottom */
-@keyframes slideInUp {
-	from 	{ transform:translateY(100%); }
-	to 		{ transform: translateY(0); }
-}
-@-moz-keyframes slideInUp {
-	from 	{ -moz-transform:translateY(100%); }
-	to 		{ -moz-transform: translateY(0); }
-}
-@-webkit-keyframes slideInUp {
-	from 	{ -webkit-transform:translateY(100%); }
-	to 		{ -webkit-transform: translateY(0); }
-}
-
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-	to 		{ transform: translateX(-100%); }
-}
-@-moz-keyframes slideOutLeft {	
-	to 		{ -moz-transform: translateX(-100%); }
-}
-@-webkit-keyframes slideOutLeft {
-	to 		{ -webkit-transform: translateX(-100%); }
-}
-
-/* rotate out newspaper */
-@-webkit-keyframes rotateOutNewspaper {
-	to { -webkit-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-@-moz-keyframes rotateOutNewspaper {
-	to { -moz-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-@keyframes rotateOutNewspaper {
-	to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-
-.shadowWallpaper {
-    margin: 0px;
-    background: none no-repeat fixed 0% 0% / cover rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 1px rgba(255, 255, 255, 0.15);
-    width: 100%;
-}
-
 /* centered columns styles */
 .row-centered {
     text-align:center;
@@ -201,8 +44,9 @@ h1 {
 }
 
 [class*="col-"] {
-    padding-top:15px;
-    padding-bottom:5px;
+  padding-top: 6px;
+  padding-bottom: 8px;
+  margin-bottom: 5px;
   text-align: center;
   background: #F2F2F2; /* Old browsers */
   background: -moz-linear-gradient(45deg,  #F2F2F2 0%, #F2F2F2 100%); /* FF3.6+ */
@@ -271,8 +115,6 @@ h3 code {
   font-weight: normal;
 }
 
-
-
 /* Jumbotrons
 -------------------------------------------------- */
 
@@ -280,6 +122,7 @@ h3 code {
 ------------------------- */
 .jumbotron {
   padding: 20px 0px;
+  margin: 40px;
   position: relative;
   text-align: center;
   background: linear-gradient(45deg, rgba(104, 131, 177, 0.67) 0%, rgba(45, 134, 96, 0.09) 100%) repeat scroll 0% 0% transparent;
@@ -364,7 +207,6 @@ h3 code {
           box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
 }
 
-
 /* Pattern overlay
 ------------------------- */
 .jumbotron .container {
@@ -383,7 +225,6 @@ h3 code {
   background-size: cover;
   opacity: .7;
 }
-
 
 /* Masthead (docs home)
 ------------------------- */
@@ -457,8 +298,6 @@ h3 code {
   display: none;
 }
 
-
-
 /* Marketing section of Overview
 -------------------------------------------------- */
 
@@ -494,15 +333,13 @@ h3 code {
   max-height: 145px;
 }
 
-
-
 /* Footer
 -------------------------------------------------- */
 
 .footer {
   text-align: center;
   padding: 10px 0;
-  margin-top: 70px;
+/*  margin-top: 70px;*/
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   background: #F2F2F2; /* Old browsers */
@@ -532,7 +369,6 @@ h3 code {
 .footer-links li:first-child {
   padding-left: 0;
 }
-
 
 /* Special grid styles
 -------------------------------------------------- */
@@ -566,8 +402,6 @@ h3 code {
 .show-grid [class*="span"] [class*="span"] [class*="span"] {
   background-color: #999;
 }
-
-
 
 /* Mini layout previews
 -------------------------------------------------- */
@@ -612,8 +446,6 @@ h3 code {
   width: 77.5%;
   margin-left: 2.5%;
 }
-
-
 
 /* Download page
 -------------------------------------------------- */
@@ -701,8 +533,6 @@ h3 code {
           border-radius: 6px;
 }
 
-
-
 /* Misc
 -------------------------------------------------- */
 
@@ -771,8 +601,6 @@ h2 + .row {
   margin-bottom: 9px;
   background-color: #fff;
 }
-
-
 
 /* Bootstrap code examples
 -------------------------------------------------- */
@@ -846,6 +674,7 @@ h2 + .row {
     box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5) inset;
     font-weight: normal;
     border: none;
+    margin-bottom: 0px;
 }
 .navbar-default .navbar-nav > li > a {
     color: #111111;
@@ -910,8 +739,6 @@ form.bs-docs-example {
   margin-bottom: 5px;
   *width: 180px;
 }
-
-
 
 /* Responsive docs
 -------------------------------------------------- */
@@ -979,8 +806,6 @@ form.bs-docs-example {
   background-color: #dff0d8;
   border: 1px solid #d6e9c6;
 }
-
-
 
 /* Sidenav for Docs
 -------------------------------------------------- */
@@ -1050,9 +875,6 @@ form.bs-docs-example {
   top: auto;
   bottom: 270px;
 }
-
-
-
 
 /* Responsive
 -------------------------------------------------- */
@@ -1132,6 +954,7 @@ form.bs-docs-example {
     margin-top:   0px; /* Offset bottom margin on .navbar */
     margin-right: -20px;
     margin-left:  -20px;
+    margin-bottom: 0px;
   }
   .masthead h1 {
     font-size: 90px;
@@ -1271,5 +1094,3 @@ form.bs-docs-example {
     padding-bottom: 20px;
   }
 }
-
-

@@ -1,6 +1,6 @@
 {
   "name": "Linagora App",
-  "version": "0.1.0",
+  "version": "0.0.3",
   "authors": [
     "Linagora Project"
   ],
@@ -10,7 +10,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "frontend/components",
+    "app/public/components",
     "test",
     "tests"
   ],
@@ -23,7 +23,6 @@
     "angular-recaptcha": "~0.0.7",
     "angular-animate": "~1.4.0",
     "font-awesome-animation": "~0.0.6",
-    "recaptcha_ajax": "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js",
     "font-awesome": "~4.3.0"
   }
 }

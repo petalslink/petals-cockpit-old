@@ -1,0 +1,24 @@
+{
+  "name": "vc-angular-recaptcha",
+  "version": "0.0.7",
+  "keywords": "angular captcha recaptcha vividcortex human form validation signup security login",
+  "main": "release/angular-recaptcha.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "1.*"
+  },
+  "homepage": "https://github.com/VividCortex/angular-recaptcha",
+  "_release": "0.0.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.7",
+    "commit": "45999a6d97f9a5ce6082562986633fa7aa7a3e99"
+  },
+  "_source": "git://github.com/VividCortex/angular-recaptcha.git",
+  "_target": "~0.0.7",
+  "_originalSource": "angular-recaptcha"
+}

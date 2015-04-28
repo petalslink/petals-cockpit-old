@@ -1,0 +1,25 @@
+
+extends layout
+
+block content
+	div.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container-fluid
+				ul#global-nav.nav.pull-left
+					a(href='#').brand Control Panel
+				button#btn-logout.btn.btn-primary
+					i.icon-lock.icon-white
+					| Sign Out
+    include ./esn/default
+	include ./account
+	include ./modals/alert
+	include ./modals/confirm
+
+block scripts
+	script(src='/public/components/jquery/dist/jquery.min.js')
+    script(src='/public/components/bootstrap/js/transition.js')
+    script(src='/public/components/bootstrap/js/modal.js')
+	script(src='/public/js/views/home.js')
+	script(src='/public/js/controllers/homeController.js')
+	script(src='/public/js/form-validators/accountValidator.js')
+    
