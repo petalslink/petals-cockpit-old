@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    include ./partials/logo
+    .jumbotron
+        .container
+            form( method="post")
+                .row-centered
+                    h1 Petals-Cockpit
+                    p
+                        | Come And Experience Our New Tool.
+                .col-md-12.col-sm-12.col-xs-12
+                    |  AUTHENTIFICATION REQUIRED  
+                    i.fa.fa-lock(ng-hide='loginTask.running')
+                    
+                .col-md-6.col-sm-12.col-xs-12
+                    |  Login 
+                    input(type="text", name="user", id='user-tf').span4.required
+                    |  
+                    i.fa.fa-linux(ng-hide='loginTask.running')
+                    
+                .col-md-6.col-sm-12.col-xs-12
+                    |  Password 
+                    input(type="password", name="pass", id='pass-tf').span4.required
+                    | 
+                    i.fa.fa-key(ng-hide='loginTask.running')
+                                    
+                .col-md-12.col-sm-12.col-xs-12                
+                    button.btn.btn-primary(type='submit', ng-click='autofill(); login()', ng-disabled='loginTask.running')
+                        i.fa.fa-sign-in(ng-hide='loginTask.running') 
+                        
+                .col-md-12.col-sm-12.col-xs-12
+                    input(type='checkbox', checked='checked')
+                    |  &nbsp; Remember Me 
+                    
+                .col-md-6.col-sm-12.col-xs-12
+                    a.esn-pull-right-md(href='/#')
+                        |  Forgot Password  
+                    i.fa.fa-question-circle(ng-hide='loginTask.running')
+                        
+                .col-md-6.col-sm-12.col-xs-12
+                    a.esn-pull-right-md(href='/#')
+                        |  Ask a New Account  
+                    i.fa.fa-envelope(ng-hide='loginTask.running')  
+        
+
+                 

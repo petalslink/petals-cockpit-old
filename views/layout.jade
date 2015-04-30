@@ -1,0 +1,19 @@
+html(ng-app="cockpit-app")
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title Petals-Cockpit
+    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/components/bootstrap/dist/css/bootstrap-theme.min.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/css/style.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/components/font-awesome/css/font-awesome.min.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/components/font-awesome-animation/dist/font-awesome-animation.min.css', media='screen')  
+    link(rel='stylesheet', type='text/css', href='/components/quantumui/dist/css/addon/effect-light.min.css', media='screen')
+    link(rel='stylesheet', type='text/css', href='/components/quantumui/dist/css/quantumui.min.css', media='screen')
+body
+block body
+    .container.row-centered
+        block content
+//    include ./default
+block scripts
+    

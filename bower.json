@@ -10,7 +10,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "app/public/components",
+    "public/components",
     "test",
     "tests"
   ],

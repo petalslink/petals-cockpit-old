@@ -1,8 +1,8 @@
-/*
-**
-    L'application Node.js côté serveur qui gère les interactions avec les différents clients
-**
-*/
+
+/**
+ * Module dependencies
+ */
+
 'use strict'
 
 var app = require('express')();
@@ -15,6 +15,7 @@ var ent = require('ent');
 var i18n = require('i18n');
 var path = require('path');
 var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
@@ -24,10 +25,11 @@ var notifier = require('node-notifier');
 var mongo = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var userSchema = require('./backend/dbModels/user');
+var routes = require('./routes');
+var api = require('./routes/api');
 
-var home = function(req,res){
-    res.render('home')
-}
+var app = module.exports = express();
+
 var about = function(req,res){
     res.render('about')
 }
@@ -37,6 +39,59 @@ var guide = function(req,res){
 var contact = function(req,res){
     res.render('contact')
 }
+
+/**
+ * Configuration
+ */
+
+// all environments
+app.set('port', process.env.PORT || 8080);
+//app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, '/views'));
+app.set('view engine', 'jade');
+
+app.use(morgan('dev'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
+app.use(session({ secret: 'secret password' }));
+app.use(methodOverride());
+app.use(require('stylus').middleware({ src: __dirname + 'public' }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+if (process.env.NODE_ENV === 'development') {
+  // only use in development
+  app.use(errorhandler({log: errorNotification}))
+}
+
+function errorNotification(err, str, req) {
+  var title = 'Error in ' + req.method + ' ' + req.url
+
+  notifier.notify({
+    title: title,
+    message: str
+  })
+}
+
+/**
+ * Routes
+ */
+
+app.get('/views/*', function(req, res, next) {
+  var templateName = req.params[0].replace(/\.html$/, '');
+  res.render(templateName);
+});
+
+// serve index and view partials
+app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
+
+// JSON API
+app.get('/api/name', api.name);
+
+// redirect all others to the index (HTML5 history)
+app.get('*', routes.index);
 
 // create a new user called chris
 var chris = new userSchema({
@@ -68,56 +123,12 @@ i18n.configure({
     cookie: 'locale'
 });
 
-// all environments
-app.set('views', path.join(__dirname, 'frontend/public/views'));
-app.set('view engine', 'jade');
+require('./router')(app);
 
-app.set('port', 8080);
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(session({ secret: 'secret password' }));
-app.use(methodOverride());
-app.use(require('stylus').middleware({ src: __dirname + '/frontend/public' }));
-app.use(express.static(path.join(__dirname, '/frontend/public')));
-app.use('/js', express.static( __dirname + '/frontend/js'));
-app.use('/components', express.static( __dirname + '/frontend/public/components'));
-app.use('/img', express.static( __dirname + '/frontend/public/img'));
-app.use('/assets', express.static( __dirname + '/frontend/public/assets'));
-app.use('/css', express.static( __dirname + '/frontend/public/css'));
-app.use(i18n.init);
+/**
+ * Start Server
+ */
 
-if (process.env.NODE_ENV === 'development') {
-  // only use in development
-  app.use(errorhandler({log: errorNotification}))
-}
-
-function errorNotification(err, str, req) {
-  var title = 'Error in ' + req.method + ' ' + req.url
-
-  notifier.notify({
-    title: title,
-    message: str
-  })
-}
-
-app.get('/', home);
-app.get('/home', home);
-
-app.get('/views/*', function(req, res, next) {
-  var templateName = req.params[0].replace(/\.html$/, '');
-  res.render(templateName);
+http.createServer(app).listen(app.get('port'), function () {
+  console.log('Express server listening on port ' + app.get('port'));
 });
-
-//app.get('/users', function(req, res) {
-//  mongoose.model('users').find(function(err, users) {
-//    res.send(users);
-//  });
-//});
-
-http.createServer(app).listen(app.get('port'), function(){
-	console.log("Express server listening on port " + app.get('port'));
-})
-
-module.exports = app;
