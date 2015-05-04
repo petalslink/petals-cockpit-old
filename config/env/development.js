@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://SuperAdmin:linagora2015@dogen.mongohq.com:10066/petals-database',
 	app: {
-		title: 'petalsCockpitApp - Development Environment'
+		title: 'Petals COCKPIT - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

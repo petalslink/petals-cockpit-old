@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'petalsCockpitApp',
+		title: 'Petals COCKPIT',
 		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
