@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://SuperAdmin:linagora2015@dogen.mongohq.com:10066/petals-database',
+	db: 'mongodb://Linagora_Admin:linagora2015@dogen.mongohq.com:10066/petals-database',
 	app: {
 		title: 'Petals COCKPIT - Development Environment'
 	},
