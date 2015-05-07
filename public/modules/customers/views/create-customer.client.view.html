@@ -1,10 +1,11 @@
-<section data-ng-controller="CustomersController">
-    <div class="page-header">
-        <h1>New User</h1>
+<section data-ng-controller="CustomersCreateController as customerCtrl">
+
+    <div class="modal-header">
+        <h3 class="modal-title">New User</h3>
     </div>
-    <div class="col-md-12">
-        <form class="" data-ng-submit="create()" novalidate>
-            <fieldset>            
+    <div class="modal-body">
+        <form name="createCustomerForm">
+            <fieldset>
                 <div class="row">
                     <div class="form-group">
                         <div data-ng-show="error" class="text-center text-danger">
@@ -44,7 +45,6 @@
                         </div>
                     </div>                        
                 </div>
-                
                 <div class="row">
                     <div class="col-sm-6 col-sm-push-6">
                         <div class="form-group">
@@ -75,7 +75,6 @@
                         </div>                                 
                     </div>                                                   
                 </div>
-                
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -84,16 +83,14 @@
                                 <input type="text" data-ng-model="industry" id="industry" class="form-control">
                             </div>
                         </div>                                   
-                    </div> 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-success">
-                                Save & Close                                
-                            </button>
-                        </div>                             
-                    </div>                       
-                </div>        
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-lg" ng-click="customerCtrl.create(); ok()" ng-disabled="createCustomerForm.$invalid">Save & Close</button>
+        <button class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
+    </div>
+
 </section>

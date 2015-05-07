@@ -2,28 +2,58 @@
 
 // Customers controller
 
-var customerApp = angular.module('customers');
+var customersApp = angular.module('customers');
 
-customerApp.controller('CustomersController', ['$scope', '$stateParams', 'Authentication', 'Customers', '$modal', '$log',
+customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authentication', 'Customers', '$modal', '$log',
 	function($scope, $stateParams, Authentication, Customers, $modal, $log) {
 
 		this.authentication = Authentication;
 
 		// Find a list of Customers
 		this.customers = Customers.query();
-        
+
+		// Open a modal window to Create a single customer record
+		this.modalCreate = function (size) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/customers/views/create-customer.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+
+						if (createCustomerForm.valid) {
+							$modalInstance.close();
+						}
+
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
+
+
+
         // Open a modal window to Update a single customer record
         this.modalUpdate = function (size, selectedCustomer) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'modules/customers/views/edit-customer.client.view.html',
+                templateUrl: '/modules/customers/views/edit-customer.client.view.html',
                 controller: function ($scope, $modalInstance, customer) {
                     $scope.customer = customer;
-                    
+
                     $scope.ok = function () {
-                        
-                        if (updateCustomerForm.valid){
-                            $modalInstance.close($scope.customer);                            
+
+                        if (updateCustomerForm.valid) {
+                            $modalInstance.close($scope.customer);
                         }
 
                     };
@@ -49,13 +79,45 @@ customerApp.controller('CustomersController', ['$scope', '$stateParams', 'Authen
 	}
 ]);
 
-customerApp.controller('CustomersCreateController', ['$scope', 'Customers',
+customersApp.controller('CustomersCreateController', ['$scope', 'Customers',
 	function($scope, Customers) {
+		// Create new Customer
+		this.create = function() {
+		// Create new Customer object
+		var customer = new Customers ({
+		firstName: this.firstName,
+		surname: this.surname,
+		suburb: this.suburb,
+		country: this.country,
+		industry: this.industry,
+		email: this.email,
+		phone: this.phone,
+		referred: this.referred,
+		channel: this.channel
+		});
 
+		// Redirect after save
+		customer.$save(function(response) {
+
+		// Clear form fields
+		$scope.firstName = '';
+		$scope.surname = '';
+		$scope.suburb = '';
+		$scope.country = '';
+		$scope.industry = '';
+		$scope.email = '';
+		$scope.phone = '';
+		$scope.referred = '';
+		$scope.channel = '';
+
+		}, function(errorResponse) {
+			$scope.error = errorResponse.data.message;
+		});
+		};
 	}
 ]);
 
-customerApp.controller('CustomersUpdateController', ['$scope', 'Customers',
+customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 	function($scope, Customers) {
         
 		// Update existing Customer
@@ -70,6 +132,17 @@ customerApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 		};
 	}
 ]);
+
+customersApp.directive('customerList', [function() {
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: '/modules/customers/views/customer-list-template.html',
+		link: function(scope, element, attrs){
+
+		}
+	};
+}]);
 
 
 

@@ -1,10 +1,10 @@
-<section data-ng-controller="CustomersController" as customersCtrl>
-    <div class="page-header">
+<section data-ng-controller="CustomersController as customersCtrl">
+    <div class="page-header text-color-white">
         <h1>Users</h1>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-8">
-            <div class="input-group">
+            <div class="input-group input-group-lg">
                 <input type="text" class="form-control" ng-model="searchText" placeholder="Search...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Go!</button>
@@ -12,7 +12,7 @@
             </div><!-- /input-group -->        
         </div>
         <div class="col-xs-12 col-sm-4 text-center">
-            <button type="button" class="btn btn-success text-center">
+            <button type="button" class="btn btn-success text-center" ng-click="customersCtrl.modalCreate('lg')">
                 <i class="glyphicon glyphicon-user"></i> </br>
                 New User
             </button>
@@ -20,24 +20,6 @@
     </div>
     </br>
     </br>
-    <div class="list-group">
-        <div class="col-xs-6 col-sm-4" data-ng-repeat="customer in customersCtrl.customers | filter:searchText">
-            <a ng-click="customersCtrl.modalUpdate('lg', customer)" class="list-group-item">
-                <h4 class="cust-list text-center">
-                    <i class="glyphicon glyphicon-user"></i>                    
-                </h4>
-                <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <h4>{{customer.firstName}} {{customer.surname}}</h4>
-                        <small class="list-group-item-text text-muted">
-                            <span data-ng-bind="customer.created | date:'medium'"></span>
-                        </small>                        
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!customers.$resolved || customers.length">
-    	No Users yet, why don't you <a href="/#!/customers/create">create one</a>?
-    </div>
+    <customer-list></customer-list>
+
 </section>

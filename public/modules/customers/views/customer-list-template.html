@@ -1,0 +1,43 @@
+<div class="list-group">
+	<div class="col-xs-6 col-sm-4" data-ng-repeat="customer in customersCtrl.customers | filter:searchText">
+		<a ng-click="customersCtrl.modalUpdate('lg', customer)" class="list-group-item">
+			<h4 class="cust-list text-center">
+				<i class="glyphicon glyphicon-user"></i>
+			</h4>
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+					<h4>{{customer.firstName}} {{customer.surname}} </h4>
+					<small class="list-group-item-text text-muted">
+						<span data-ng-bind="customer.created | date:'medium'"></span>
+					</small>
+				</div>
+			</div>
+
+		</a>
+	</div>
+</div>
+<div class="alert alert-warning text-center" data-ng-hide="!customers.$resolved || customers.length">
+	No Users yet, why don't you <a href="/#!/customers/create">create one</a>?
+</div>
+
+<!--<section data-ng-controller="CustomersController" data-ng-init="findOne()">
+	<div class="page-header text-color-white">
+		<h1 data-ng-bind="customer.name"></h1>
+	</div>
+	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == customer.user._id))">
+		<a class="btn btn-primary" href="/#!/customers/{{customer._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="customer.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="customer.user.displayName"></span>
+		</em>
+	</small>
+</section>-->
