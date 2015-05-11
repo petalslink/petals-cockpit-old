@@ -9,6 +9,14 @@
 					<h4>{{customer.firstName}} {{customer.surname}} </h4>
 					<small class="list-group-item-text text-muted">
 						<span data-ng-bind="customer.created | date:'medium'"></span>
+
+						<span class="pull-right">
+							<button class="btn btn-default" ng-click="customersCtrl.remove(customer)">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</span>
+
+
 					</small>
 				</div>
 			</div>

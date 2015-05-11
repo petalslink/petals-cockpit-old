@@ -15,14 +15,13 @@
                         </div>
                     </div>
                     <div class="col-sm-6 text-center">
-                        <i class="glyphicon glyphicon-user cust-profile"
-                            ng-class="{'text-primary': customer.referred, 'text-pink': !customer.referred}"></i>
+                        <i class="glyphicon glyphicon-user cust-profile" ng-class="{'text-primary': customer.referred, 'text-pink': !customer.referred}"></i>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="firstname">First Name</label>
+                            <label class="control-label" for="firstName">First Name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control">
+                                <input type="text" data-ng-model="customer.firstName" id="firstName" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,7 +88,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer); ok()" ng-disabled="updateCustomerForm.$invalid">Update & Close</button>
+        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer);ok()" ng-disabled="updateCustomerForm.$invalid">Update & Close</button>
         <button class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
     </div>
 
