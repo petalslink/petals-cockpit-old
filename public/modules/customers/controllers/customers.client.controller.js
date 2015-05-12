@@ -41,7 +41,7 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 		//*******************************************************************************************************************************************
         // Open a modal window to Update a single customer record
-        this.modalUpdate = function (size, selectedCustomer) {
+        this.modalUpdate = function (size, selectedCustomer, updateCustomerForm) {
 
             var modalInstance = $modal.open({
                 templateUrl: '/modules/customers/views/edit-customer.client.view.html',
@@ -130,6 +130,12 @@ customersApp.controller('CustomersCreateController', ['$scope', 'Customers', 'No
 // UPDATE CONTROLLER
 customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 	function($scope, Customers) {
+
+		$scope.channelOptions = [
+			{id: 1, item: 'Facebook'},
+			{id: 2, item: 'Twitter'},
+			{id: 3, item: 'Email'},
+		];
         
 		// Update existing Customer
 		this.update = function(updatedCustomer) {

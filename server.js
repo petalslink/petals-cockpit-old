@@ -6,6 +6,8 @@ var init = require('./config/init')(),
 	config = require('./config/config'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk');
+/*	UserSchema = require('./app/models/user.server.model'),
+	CustomerSchema = require('./app/models/customer.server.model');*/
 
 /**
  * Main application entry file.
@@ -28,6 +30,20 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
+
+/*// USERS DB
+app.get('/users.server.model', function(req, res) {
+  mongoose.model('users').find(function(err, users) {
+    res.send(users);
+  });
+});
+
+// CUSTOMERS DB
+app.get('/customers.server.model', function(req, res) {
+	mongoose.model('customers').find(function(err, customers) {
+		res.send(customers);
+	});
+});*/
 
 // Expose app
 exports = module.exports = app;
