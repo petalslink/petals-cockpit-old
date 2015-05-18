@@ -10,7 +10,7 @@ module.exports = {
         database: 'petals-database',
         url: 'mongodb://localhost,localhost:27017/petals-database',
         username: 'SuperAdmin',
-        password: 'SuperAdmin2015',
+        password: 'stage2015',
         port: 27017
     }
 };

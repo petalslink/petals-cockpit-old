@@ -1,6 +1,6 @@
 {
 	"name": "petalsCockpitApp",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
 	"dependencies": {
 		"bootstrap": "~3.3.4",

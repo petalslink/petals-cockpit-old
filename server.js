@@ -5,14 +5,16 @@
 var init = require('./config/init')(),
 	config = require('./config/config'),
 	mongoose = require('mongoose'),
-	chalk = require('chalk');
-/*	UserSchema = require('./app/models/user.server.model'),
-	CustomerSchema = require('./app/models/customer.server.model');*/
+	chalk = require('chalk'),
+	express = require('express'),
+	users = require('./app/models/user.server.model');
 
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
  */
+
+
 
 // Bootstrap db connection
 var db = mongoose.connect(config.database.url, function(err) {
@@ -25,25 +27,26 @@ var db = mongoose.connect(config.database.url, function(err) {
 // Init the express application
 var app = require('./config/express')(db);
 
+/*
+// Say Hello
+app.get('/', function(req, res) {
+	res.send('Hello Word from server.js')
+});
+*/
+
 // Bootstrap passport config
 require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
 
-/*// USERS DB
-app.get('/users.server.model', function(req, res) {
-  mongoose.model('users').find(function(err, users) {
-    res.send(users);
+// USERS DB
+app.get('./app/models/user.server.model', function(req, res) {
+  mongoose.model('users').find(function(err, UserDefault) {
+    res.send(UserDefault);
   });
 });
 
-// CUSTOMERS DB
-app.get('/customers.server.model', function(req, res) {
-	mongoose.model('customers').find(function(err, customers) {
-		res.send(customers);
-	});
-});*/
 
 // Expose app
 exports = module.exports = app;

@@ -5,7 +5,11 @@
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
+	//db = mongoose.createConnection('UserDefault'),
+	//UserDefault = db.model('UserDefault'),
 	crypto = require('crypto');
+
+//db.model('UserDefault', new Schema);
 
 /**
  * A Validation function for local strategy properties
@@ -62,10 +66,10 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-	provider: {
+/*	provider: {
 		type: String,
 		required: 'Provider is required'
-	},
+	},*/
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {
@@ -76,7 +80,8 @@ var UserSchema = new Schema({
 		default: ['user']
 	},
 	updated: {
-		type: Date
+		type: Date,
+		default: Date.now
 	},
 	created: {
 		type: Date,
@@ -159,6 +164,30 @@ UserSchema.pre('save', function(next) {
 });*/
 
 var User = mongoose.model('User', UserSchema);
+
+// create a new user when start app in the first time called UserDefault
+var UserDefault = new User({
+	firstName: 'Admin',
+	lastName: 'Admin',
+	displayName: 'Admin Admin',
+	email: 'admin@linagora.com',
+	username: 'SuperAdmin',
+	password: 'stage2015',
+	roles: 'admin'
+});
+
+// call the built-in save method to save to the database
+UserDefault.update(function(err, saved){
+	if(err){
+		console.log('User Default is already saved !', err);
+	}
+	if(saved){
+		console.log('User Default saved successfully !');
+	}
+	if(!saved){
+		console.log('This is an automated message !');
+	}
+});
 
 // make this available to our users in our Node applications
 module.exports = User;

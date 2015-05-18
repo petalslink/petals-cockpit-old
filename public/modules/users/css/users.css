@@ -13,17 +13,11 @@
 	position: absolute;
 }
 .login-form-bg {
-    border: 20px solid;
+    border: 10px solid #333;
     border-radius: 15px;
-    border-color: #333;
     margin-top: 30px;
     background: #d9e7e9; /* Old browsers */
-    background: -moz-linear-gradient(45deg,  #666 0%, #d9e7e9 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#666), color-stop(100%,#d9e7e9)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(45deg,  #666 0%,#d9e7e9 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(45deg,  #666 0%,#d9e7e9 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(45deg,  #666 0%,#d9e7e9 100%); /* IE10+ */
-    background: linear-gradient(45deg,  #666 0%,#d9e7e9 100%); /* W3C */
+    background: linear-gradient(45deg,  #111 0%,#d9e7e9 100%); /* W3C */
 }
 .bandeau-login-bg {
     text-align: center;

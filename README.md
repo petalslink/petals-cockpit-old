@@ -44,3 +44,10 @@ After the install process is over, you'll be able to run your application using 
 ```
 $ grunt
 ```
+
+### Log in with User Default Admin
+After run app, Log in with :
+```
+Username : 'SuperAdmin'
+Password : 'stage2015'
+```
