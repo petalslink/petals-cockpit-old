@@ -7,14 +7,12 @@ var init = require('./config/init')(),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),
 	express = require('express'),
-	users = require('./app/models/user.server.model');
+	users = require('./app/models/user.server.model'); // connect to database with user
 
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
  */
-
-
 
 // Bootstrap db connection
 var db = mongoose.connect(config.database.url, function(err) {
@@ -39,14 +37,6 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
-
-// USERS DB
-app.get('./app/models/user.server.model', function(req, res) {
-  mongoose.model('users').find(function(err, UserDefault) {
-    res.send(UserDefault);
-  });
-});
-
 
 // Expose app
 exports = module.exports = app;

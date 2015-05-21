@@ -9,8 +9,8 @@ module.exports = {
         collection: 'sessions',
         database: 'petals-database',
         url: 'mongodb://localhost,localhost:27017/petals-database',
-        username: 'SuperAdmin',
-        password: 'stage2015',
+/*        username: 'SuperAdmin',
+        password: 'stage2015',*/
         port: 27017
     }
 };

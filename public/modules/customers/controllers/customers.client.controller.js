@@ -14,16 +14,25 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 		//*******************************************************************************************************************************************
 		// Open a modal window to Create a single customer record
-		this.modalCreate = function (size) {
+		this.modalCreate = function (size, createCustomerForm) {
 
 			var modalInstance = $modal.open({
 				templateUrl: '/modules/customers/views/create-customer.client.view.html',
 				controller: function ($scope, $modalInstance) {
 
-					$scope.ok = function () {
-						$modalInstance.close();
+					$scope.ok = function(){
+						if(createCustomerForm.$valid){
+							$log.info('Form is valid');
+							$modalInstance.close();
 
+						} else {
+							$log.error('Form is not valid');
+						}
 					};
+/*					$scope.ok = function () {
+							$modalInstance.close();
+
+					};*/
 
 					$scope.cancel = function () {
 						$modalInstance.dismiss('cancel');
@@ -48,12 +57,14 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
                 controller: function ($scope, $modalInstance, customer) {
                     $scope.customer = customer;
 
-                    $scope.ok = function() {
+					$scope.ok = function(){
+						if(updateCustomerForm.$valid){
+							$log.info('Form is valid');
+							$modalInstance.close($scope.customer);
 
-                        if (updateCustomerForm.valid) {
-                            $modalInstance.close($scope.customer);
-                        }
-
+						} else {
+							$log.error('Form is not valid');
+						}
                     };
 
                     $scope.cancel = function() {
@@ -99,12 +110,20 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 customersApp.controller('CustomersCreateController', ['$scope', 'Customers', 'Notify',
 	function($scope, Customers, Notify) {
 
+		$scope.channelOptions = [
+			{id: 1, item: 'Admin Bus'},
+			{id: 2, item: 'Developer'},
+			{id: 3, item: 'Technical Monitoring'},
+			{id: 4, item: 'Buisness Monitoring'}
+		];
+
 		// Create new Customer
 		this.create = function() {
 			// Create new Customer object
 			var customer = new Customers ({
 			firstName: this.firstName,
 			surname: this.surname,
+			username: this.username,
 			suburb: this.suburb,
 			country: this.country,
 			industry: this.industry,
@@ -132,9 +151,10 @@ customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 	function($scope, Customers) {
 
 		$scope.channelOptions = [
-			{id: 1, item: 'Facebook'},
-			{id: 2, item: 'Twitter'},
-			{id: 3, item: 'Email'},
+			{id: 1, item: 'Admin Bus'},
+			{id: 2, item: 'Developer'},
+			{id: 3, item: 'Technical Monitoring'},
+			{id: 4, item: 'Buisness Monitoring'}
 		];
         
 		// Update existing Customer
@@ -149,27 +169,6 @@ customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 		};
 	}
 ]);
-
-// Transclusion for integration customer list template html
-customersApp.directive('customerList', ['Customers', 'Notify', function(Customers, Notify) {
-	return {
-		restrict: 'E',
-		transclude: true,
-		templateUrl: '/modules/customers/views/customer-list-template.html',
-		link: function(scope, element, attrs){
-
-			//when a new customer is added, update the customer list
-
-			Notify.getMsg('NewCustomer', function(event, data) {
-
-				scope.customersCtrl.customers = Customers.query();
-
-			});
-		}
-	};
-}]);
-
-
 
 /*		// Create new Customer
 		$scope.create = function() {

@@ -13,7 +13,7 @@ var CustomerSchema = new Schema({
 	firstName: {
 		type: String,
 		default: '',
-		trim: true,
+		trim: true
 	},
 	surname: {
 		type: String,
@@ -28,6 +28,12 @@ var CustomerSchema = new Schema({
 	country: {
 		type: String,
 		default: '',
+		trim: true
+	},
+	username: {
+		type: String,
+		unique: 'testing error message',
+		required: 'Please fill in a username',
 		trim: true
 	},
 	industry: {
@@ -57,11 +63,16 @@ var CustomerSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	updated: {
+		type: Date,
+		default: Date.now
+	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	}
 });
+
 
 /*// on every save, add the date
 CustomerSchema.pre('save', function(next) {

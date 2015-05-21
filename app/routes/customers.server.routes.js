@@ -4,6 +4,7 @@ module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var customers = require('../../app/controllers/customers.server.controller');
 
+
 	// Customers Routes
 	app.route('/customers')
 		.get(customers.list)
@@ -11,8 +12,8 @@ module.exports = function(app) {
 
 	app.route('/customers/:customerId')
 		.get(customers.read)
-		.put(users.requiresLogin, customers.hasAuthorization, customers.update)
-		.delete(users.requiresLogin, customers.hasAuthorization, customers.delete);
+		.put(users.requiresLogin, customers.update)
+		.delete(users.requiresLogin, customers.delete);
 
 	// Finish by binding the Customer middleware
 	app.param('customerId', customers.customerByID);

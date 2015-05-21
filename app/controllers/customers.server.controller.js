@@ -72,7 +72,7 @@ exports.delete = function(req, res) {
 /**
  * List of Customers
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
 	Customer.find().sort('-created').populate('user', 'displayName').exec(function(err, customers) {
 		if (err) {
 			return res.status(400).send({
@@ -87,7 +87,7 @@ exports.list = function(req, res) {
 /**
  * Customer middleware
  */
-exports.customerByID = function(req, res, next, id) { 
+exports.customerByID = function(req, res, next, id) {
 	Customer.findById(id).populate('user', 'displayName').exec(function(err, customer) {
 		if (err) return next(err);
 		if (! customer) return next(new Error('Failed to load Customer ' + id));
@@ -100,7 +100,7 @@ exports.customerByID = function(req, res, next, id) {
  * Customer authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.customer.user.id !== req.user.id) {
+	if (req.customer.user.customerId !== req.user.userId) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

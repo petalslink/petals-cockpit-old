@@ -66,10 +66,10 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-/*	provider: {
+	provider: {
 		type: String,
 		required: 'Provider is required'
-	},*/
+	},
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {
@@ -185,7 +185,7 @@ UserDefault.update(function(err, saved){
 		console.log('User Default saved successfully !');
 	}
 	if(!saved){
-		console.log('This is an automated message !');
+		console.log('GO');
 	}
 });
 

@@ -4,7 +4,7 @@
         <h3 class="modal-title">Update: {{customer.firstName}} {{customer.surname}}</h3>
     </div>
     <div class="modal-body">
-        <form name="updateCustomerForm">
+        <form name="updateCustomerForm" ng-submit="ok()" novalidate>
             <fieldset>
                 <div class="row">
                     <div class="form-group">
@@ -19,15 +19,21 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="firstname">First Name</label>
+                            <label class="control-label" for="firstName">First Name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control">
+                                <input type="text" data-ng-model="customer.firstName" id="firstName" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="surname">Surname</label>
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.surname" id="surname" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="username">Username</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="customer.username" id="username" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,7 +75,7 @@
                         <div class="form-group">
                             <label class="control-label" for="channel">Channel</label>
                             <div class="controls">
-                                <select data-ng-model="customer.channel" id="channel" class="form-control" ng-options="channelItem.item for channelItem in channelOptions">
+                                <select data-ng-model="customer.channel" id="channel" class="form-control" required ng-options="channelItem.item for channelItem in channelOptions">
                                     <option value="">--Choose Channel--</option>
                                 </select>
                             </div>
@@ -90,7 +96,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer);ok()" ng-disabled="updateCustomerForm.$invalid">Update & Close</button>
+        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer)">Update & Close</button>
         <button class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
     </div>
 
