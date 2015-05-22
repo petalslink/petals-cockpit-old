@@ -3,10 +3,10 @@
 module.exports = {
 	port: 443,
 	db: {
-		uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/petalscockpitapp',
+		uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/petals-database',
 		options: {
 			user: 'SuperAdmin',
-			pass: 'linagora2015'
+			pass: 'stage2015'
 		}
 	},
 	log: {

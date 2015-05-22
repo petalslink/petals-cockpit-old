@@ -66,10 +66,10 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-	provider: {
+/*	provider: {
 		type: String,
 		required: 'Provider is required'
-	},
+	},*/
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {

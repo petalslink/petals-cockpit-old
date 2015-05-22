@@ -4,38 +4,46 @@
 
 angular.module('customers')
 
-	.factory('Customers', ['$resource',
-		function($resource) {
-			return $resource('customers/:customerId', { customerId: '@_id'
-			}, {
-				update: {
-					method: 'PUT'
-				}
-			});
-		}
-	])
+    .factory('Customers', ['$resource', function ($resource) {
 
-	.factory('Notify', ['$rootScope',	function($rootScope) {
+        var resource = $resource('customers/:customerId', {
+                customerId: '@_id'
+            },
+            {
+                update: {
+                    method: 'PUT'
+                }
+            });
 
-		var notify = {};
+        return {
+            postCustomer: resource.save,
+            updateCustomer: resource.update,
+            deleteCustomer: resource.delete,
+            getCustomers: resource.query
+        };
+    }])
 
-		notify.sendMsg = function(msg, data) {
-			data = data || {};
-			$rootScope.$emit(msg.data);
+    .factory('Notify', ['$rootScope', function ($rootScope) {
 
-			console.log('message sent !');
-		};
+        var notify = {};
 
-		notify.getMsg = function(msg, func, scope) {
-			var unbind = $rootScope.$on(msg, func);
+        notify.sendMsg = function (msg, data) {
+            data = data || {};
+            $rootScope.$emit(msg.data);
 
-			if (scope) {
-				scope.$on('destroy', unbind);
-			}
-		};
+            console.log('message sent !');
+        };
 
-		return notify;
+        notify.getMsg = function (msg, func, scope) {
+            var unbind = $rootScope.$on(msg, func);
 
-	}
+            if (scope) {
+                scope.$on('destroy', unbind);
+            }
+        };
 
-	]);
+        return notify;
+
+    }
+
+    ]);

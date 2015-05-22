@@ -15,35 +15,44 @@
                         </div>
                     </div>
                     <div class="col-sm-6 text-center">
-                        <i class="glyphicon glyphicon-user cust-profile" ng-class="{'text-primary': customer.referred, 'text-pink': !customer.referred}"></i>
+                        <i class="glyphicon glyphicon-user cust-profile"
+                           ng-class="{'text-primary': customer.referred, 'text-pink': !customer.referred}"></i>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="firstName">First Name</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="customer.firstName" id="firstName" class="form-control">
+                                <input type="text" data-ng-model="customer.firstName" id="firstName"
+                                       class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="surname">Surname</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="customer.surname" id="surname" class="form-control" required>
+                                <input type="text" data-ng-model="customer.surname" id="surname" class="form-control"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="username">Username</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="customer.username" id="username" class="form-control" required>
+                                <input type="text" data-ng-model="customer.username" id="username" class="form-control"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="suburb">Suburb</label>
+
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.suburb" id="suburb" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="country">Country</label>
+
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.country" id="country" class="form-control">
                             </div>
@@ -54,12 +63,14 @@
                     <div class="col-sm-6 col-sm-push-6">
                         <div class="form-group">
                             <label class="control-label" for="phone">Phone</label>
+
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.phone" id="phone" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="email">Email</label>
+
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.email" id="email" class="form-control">
                             </div>
@@ -68,14 +79,18 @@
                     <div class="col-sm-6 col-sm-pull-6">
                         <div class="form-group">
                             <label class="control-label" for="referred">Referred</label>
+
                             <div class="controls">
-                                <input type="checkbox" data-ng-model="customer.referred" id="referred" class="form-control checkbox-left">
+                                <input type="checkbox" data-ng-model="customer.referred" id="referred"
+                                       class="form-control checkbox-left">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="channel">Channel</label>
+
                             <div class="controls">
-                                <select data-ng-model="customer.channel" id="channel" class="form-control" required ng-options="channelItem.item for channelItem in channelOptions">
+                                <select data-ng-model="customer.channel" id="channel" class="form-control" required
+                                        ng-options="channelItem.item for channelItem in channelOptions">
                                     <option value="">--Choose Channel--</option>
                                 </select>
                             </div>
@@ -86,6 +101,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="industry">Industry</label>
+
                             <div class="controls">
                                 <input type="text" data-ng-model="customer.industry" id="industry" class="form-control">
                             </div>
