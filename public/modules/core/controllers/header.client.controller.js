@@ -2,9 +2,9 @@
 
 // Header controller
 
-var customersApp = angular.module('core');
+var usersApp = angular.module('core');
 
-customersApp.controller('HeaderController', ['$scope', 'Authentication', 'Menus',
+usersApp.controller('HeaderController', ['$scope', 'Authentication', 'Menus',
 	function($scope, Authentication, Menus) {
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;

@@ -9,10 +9,29 @@ module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
 
+/*	// Customers Routes
+	app.route('/users')
+		.get(users.list)
+		.post(users.requiresLogin, users.create);
+
+	app.route('/users/:userId')
+		.get(users.read)
+		.put(users.requiresLogin, users.update)
+		.delete(users.requiresLogin, users.delete);
+
+	// Finish by binding the Customer middleware
+	app.param('userId', users.userByID);*/
+
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
-	app.route('/users').put(users.update);
+	app.route('/users').put(users.update)
+		.get(users.list)
+		.post(users.requiresLogin, users.create);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
+	app.route('/users/:userId')
+		.get(users.read)
+		.put(users.requiresLogin, users.hasAuthorization, users.update)
+		.delete(users.requiresLogin, users.hasAuthorization, users.delete);
 
 	// Setting up the users password api
 	app.route('/users/password').post(users.changePassword);

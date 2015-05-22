@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://Linagora_Admin:linagora2015@dogen.mongohq.com:10066/petals-database',
+	db: 'mongodb://localhost,localhost:27017/petals-database',
 	port: 3001,
 	app: {
 		title: 'Petals COCKPIT - Test Environment'

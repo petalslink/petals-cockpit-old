@@ -5,11 +5,7 @@
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	//db = mongoose.createConnection('UserDefault'),
-	//UserDefault = db.model('UserDefault'),
 	crypto = require('crypto');
-
-//db.model('UserDefault', new Schema);
 
 /**
  * A Validation function for local strategy properties
@@ -66,10 +62,10 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-/*	provider: {
+	provider: {
 		type: String,
 		required: 'Provider is required'
-	},*/
+	},
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {
@@ -93,7 +89,40 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	}
+	},
+	surname: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	suburb: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	country: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	industry: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	phone: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	referred: {
+		type: Boolean
+	},
+	channel: {
+		type: String,
+		default: '',
+		trim: true
+	},
 });
 
 /**
@@ -177,7 +206,7 @@ var UserDefault = new User({
 });
 
 // call the built-in save method to save to the database
-UserDefault.update(function(err, saved){
+UserDefault.save(function(err, saved){
 	if(err){
 		console.log('User Default is already saved !', err);
 	}
