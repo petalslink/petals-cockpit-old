@@ -2,17 +2,17 @@
 
 //Users service used to communicate Users REST endpoints
 
-angular.module('users')
+var usersApp = angular.module('users');
 
-    .factory('Users', ['$resource', function ($resource) {
+/********************************************************* OK *********************************************************/
+usersApp.factory('Users', ['$resource',
+    function ($resource) {
 
         var resource = $resource('users/:userId', {
                 userId: '@_id'
             },
             {
-                update: {
-                    method: 'PUT'
-                }
+                'update': {method: 'PUT'}
             });
 
         return {
@@ -21,9 +21,10 @@ angular.module('users')
             deleteUser: resource.delete,
             getUsers: resource.query
         };
-    }])
-
-    .factory('Notify', ['$rootScope', function ($rootScope) {
+    }]);
+/********************************************************* OK *********************************************************/
+usersApp.factory('Notify', ['$rootScope',
+    function ($rootScope) {
 
         var notify = {};
 
@@ -43,7 +44,5 @@ angular.module('users')
         };
 
         return notify;
-
     }
-
-    ]);
+]);

@@ -7,27 +7,17 @@ var passport = require('passport');
 
 module.exports = function(app) {
 	// User Routes
-	var users = require('../../app/controllers/users.server.controller');
-
-/*	// Customers Routes
-	app.route('/users')
-		.get(users.list)
-		.post(users.requiresLogin, users.create);
-
-	app.route('/users/:userId')
-		.get(users.read)
-		.put(users.requiresLogin, users.update)
-		.delete(users.requiresLogin, users.delete);
-
-	// Finish by binding the Customer middleware
-	app.param('userId', users.userByID);*/
+	var users = require('../controllers/users.server.controller');
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
-	app.route('/users').put(users.update)
-		.get(users.list)
-		.post(users.requiresLogin, users.create);
+
+	app.route('/users').put(users.requiresLogin, users.hasAuthorization, users.update)
+		.post(users.requiresLogin, users.hasAuthorization, users.create)
+		.get(users.list);
+
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
+
 	app.route('/users/:userId')
 		.get(users.read)
 		.put(users.requiresLogin, users.hasAuthorization, users.update)
@@ -44,7 +34,7 @@ module.exports = function(app) {
 	app.route('/auth/signin').post(users.signin);
 	app.route('/auth/signout').get(users.signout);
 
-	// Setting the facebook oauth routes
+/*	// Setting the facebook oauth routes
 	app.route('/auth/facebook').get(passport.authenticate('facebook', {
 		scope: ['email']
 	}));
@@ -69,7 +59,7 @@ module.exports = function(app) {
 
 	// Setting the github oauth routes
 	app.route('/auth/github').get(passport.authenticate('github'));
-	app.route('/auth/github/callback').get(users.oauthCallback('github'));
+	app.route('/auth/github/callback').get(users.oauthCallback('github'));*/
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

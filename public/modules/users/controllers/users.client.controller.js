@@ -12,7 +12,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
         // Find a list of Users
         this.users = Users.getUsers();
 
-        //*******************************************************************************************************************************************
+        /********************************************************* OK *********************************************************/
         // Open a modal window to Create a single user record
         this.modalCreate = function (size, createUserForm) {
 
@@ -20,7 +20,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                 templateUrl: '/modules/users/views/create-user.client.view.html',
                 controller: function ($scope, $modalInstance) {
 
-                    /*                    $scope.ok = function () {
+                $scope.ok = function () {
                      if (createUserForm.$valid) {
                      $log.info('Form is valid');
                      $modalInstance.close();
@@ -28,7 +28,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                      } else {
                      $log.error('Form is not valid');
                      }
-                     };*/
+                     };
 
                     $scope.cancel = function () {
                         $modalInstance.dismiss('cancel');
@@ -43,8 +43,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
             });
         };
 
-
-        //*******************************************************************************************************************************************
+        /********************************************************* OK *********************************************************/
         // Open a modal window to Update a single user record
         this.modalUpdate = function (size, selectedUser, updateUserForm) {
 
@@ -85,7 +84,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
         // Remove existing User
         this.remove = function (user) {
             if (user) {
-                user.$remove();
+                user.remove();
 
                 for (var i in this.users) {
                     if (this.users [i] === user) {
@@ -93,18 +92,16 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                     }
                 }
             } else {
-                this.user.$remove(function () {
+                this.user.remove(function () {
                 });
             }
         };
-
-
     }
 ]);
-
+/********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
-    function ($scope, UsersService, Notify) {
+    function ($scope, UsersServiceCreate, Notify) {
 
         $scope.channelOptions = [
             {id: 1, item: 'Admin Bus'},
@@ -117,22 +114,10 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
 
         // Create new User
         $scope.create = function () {
-            // Create new User object
-            /*            var user = {
-             firstName: this.firstName,
-             surname: this.surname,
-             username: this.username,
-             suburb: this.suburb,
-             country: this.country,
-             industry: this.industry,
-             email: this.email,
-             phone: this.phone,
-             referred: this.referred,
-             channel: this.channel
-             };*/
-            console.log('CHECK', $scope.user);
+
+            console.log('CHECK CREATE', $scope.user);
             // Redirect after save
-            UsersService.postUser($scope.user, function (response) {
+            UsersServiceCreate.postUser($scope.user, function (response) {
 
                 Notify.sendMsg('NewUser', {'id': response._id});
 
@@ -143,10 +128,10 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
         };
     }
 ]);
-
+/********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
-usersApp.controller('UsersUpdateController', ['$scope', 'Users',
-    function ($scope, Users) {
+usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
+    function ($scope, UsersServiceUpdate, Notify) {
 
         $scope.channelOptions = [
             {id: 1, item: 'Admin Bus'},
@@ -156,85 +141,16 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users',
         ];
 
         // Update existing Customer
-        this.update = function (updatedUser) {
+        this.update = function(updatedUser) {
             var user = updatedUser;
 
-            user.$update(function () {
+            UsersServiceUpdate.updateUser($scope.user, function(response) {
 
-            }, function (errorResponse) {
+                Notify.sendMsg('UpdateUser', {'id': response._id});
+
+            }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
     }
 ]);
-
-/*		// Create new User
- $scope.create = function() {
- // Create new User object
- var user = new Users ({
- firstName: this.firstName,
- surname: this.surname,
- suburb: this.suburb,
- country: this.country,
- industry: this.industry,
- email: this.email,
- phone: this.phone,
- referred: this.referred,
- channel: this.channel
- });
-
- // Redirect after save
- user.$save(function(response) {
- $location.path('users/' + response._id);
-
- // Clear form fields
- $scope.firstName = '';
- $scope.surname = '';
- $scope.suburb = '';
- $scope.country = '';
- $scope.industry = '';
- $scope.email = '';
- $scope.phone = '';
- $scope.referred = '';
- $scope.channel = '';
-
- }, function(errorResponse) {
- $scope.error = errorResponse.data.message;
- });
- };
-
- // Remove existing User
- $scope.remove = function(user) {
- if ( user ) {
- user.$remove();
-
- for (var i in $scope.users) {
- if ($scope.users [i] === user) {
- $scope.users.splice(i, 1);
- }
- }
- } else {
- $scope.user.$remove(function() {
- $location.path('users');
- });
- }
- };
-
- // Update existing User
- $scope.update = function() {
- var user = $scope.user;
-
- user.$update(function() {
- $location.path('users/' + user._id);
- }, function(errorResponse) {
- $scope.error = errorResponse.data.message;
- });
- };
-
-
- // Find existing User
- $scope.findOne = function() {
- $scope.user = Users.get({
- userId: $stateParams.userId
- });
- };*/

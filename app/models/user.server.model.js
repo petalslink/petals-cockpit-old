@@ -62,10 +62,10 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-	provider: {
+/*	provider: {
 		type: String,
 		required: 'Provider is required'
-	},
+	},*/
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {
@@ -89,11 +89,6 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	},
-	surname: {
-		type: String,
-		default: '',
-		trim: true
 	},
 	suburb: {
 		type: String,
@@ -176,21 +171,6 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
-
-/*// on every save, add the date
-UserSchema.pre('save', function(next) {
-	// get the current date
-	var currentDate = new Date();
-
-	// change the updated_at field to current date
-	this.updated_at = currentDate;
-
-	// if created_at doesn't exist, add to that field
-	if (!this.created_at)
-		this.created_at = currentDate;
-
-	next();
-});*/
 
 var User = mongoose.model('User', UserSchema);
 
