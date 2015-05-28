@@ -17,15 +17,19 @@ angular.module('users').config(['$stateProvider',
 			url: '/user/:userId',
 			templateUrl: 'modules/users/views/user-list-template.html'
 		}).
-		state('editUser', {
+/*		state('editUser', {
 			url: '/users/:userId/edit',
 			templateUrl: 'modules/users/views/edit-user.client.view.html'
-		}).
+		}).*/
 		state('profile', {
 			url: '/settings/profile',
-			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
+			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
+			controller: function($scope, Authentication) {
+				/*Retrieve Object User*/
+				$scope.user = Authentication.user;
+			}
 		}).
-		state('password', {
+/*		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
 		}).
@@ -36,12 +40,12 @@ angular.module('users').config(['$stateProvider',
 		state('signup', {
 			url: '/signup',
 			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
-		}).
+		}).*/
 		state('signin', {
 			url: '/signin',
 			templateUrl: 'modules/users/views/authentication/signin.client.view.html'
-		}).
-		state('forgot', {
+		});
+/*		state('forgot', {
 			url: '/password/forgot',
 			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
 		}).
@@ -56,6 +60,6 @@ angular.module('users').config(['$stateProvider',
 		state('reset', {
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
-		});
+		});*/
 	}
 ]);

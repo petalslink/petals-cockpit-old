@@ -12,7 +12,8 @@ usersApp.directive('dirUserList', ['Users', 'Notify',
         return {
             restrict: 'E',
             scope: {
-                usersList: '=info'
+                usersList: '=info',
+                searchText: '=filter'
             },
             transclude: true,
             templateUrl: '/modules/users/views/user-list-template.html',
@@ -31,12 +32,11 @@ usersApp.directive('dirSupUser', ['Users', 'Notify',
             scope: {
                 user: '='
             },
-            transclude: true,
             template: '<button class="btn btn-default" ng-click="removeUser()"><i class="glyphicon glyphicon-trash"></i></button>',
             link: function ($scope, element, attrs) {
                 $scope.removeUser = function() {
                     Users.deleteUser({userId: $scope.user._id}, function() {
-                        console.log('tata');
+                        console.log($scope.user.firstName, $scope.user.lastName, $scope.user._id, 'has been deleted ! AFTER REQUEST');
                     });
                 };
             }

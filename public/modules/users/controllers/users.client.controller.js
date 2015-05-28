@@ -82,9 +82,9 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
         };
 
         // Remove existing User
-        this.remove = function (user) {
+        this.delete = function (user) {
             if (user) {
-                user.remove();
+                user.delete();
 
                 for (var i in this.users) {
                     if (this.users [i] === user) {
@@ -92,7 +92,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                     }
                 }
             } else {
-                this.user.remove(function () {
+                this.user.delete(function () {
                 });
             }
         };
@@ -140,7 +140,7 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
             {id: 4, item: 'Buisness Monitoring'}
         ];
 
-        // Update existing Customer
+        // Update existing User
         this.update = function(updatedUser) {
             var user = updatedUser;
 
