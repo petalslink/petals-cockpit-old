@@ -1,0 +1,14 @@
+<section data-ng-controller="BusesController as busesCtrl">
+    <div class="page-header text-color-white">
+        <h1>Bus</h1>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-success text-center" ng-click="busesCtrl.modalCreate('lg',size,createUserForm)">
+            <i class="glyphicon glyphicon-wrench"></i>
+            Create New Bus
+        </button>
+    </div>
+    </br>
+    </br>
+    <dir-bus-list info="busesCtrl.buses" filter="searchText"></dir-bus-list>
+</section>

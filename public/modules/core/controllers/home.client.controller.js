@@ -44,6 +44,5 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                 description: 'REFERRALS TO MODERATE'
             }
         ];
-        
 	}
 ]);

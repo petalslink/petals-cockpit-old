@@ -4,7 +4,7 @@
 
 var usersApp = angular.module('users');
 
-// Transclusion for integration customer list template html
+// Transclusion for integration bus list template html
 
 usersApp.directive('dirUserList', ['Users', 'Notify',
     function (Users, Notify) {
@@ -36,7 +36,7 @@ usersApp.directive('dirSupUser', ['Users', 'Notify',
             link: function ($scope, element, attrs) {
                 $scope.removeUser = function() {
                     Users.deleteUser({userId: $scope.user._id}, function() {
-                        console.log($scope.user.firstName, $scope.user.lastName, $scope.user._id, 'has been deleted ! AFTER REQUEST');
+                        console.log($scope.user.firstName, $scope.user.lastName, $scope.user._id, 'has been deleted !');
                     });
                 };
             }

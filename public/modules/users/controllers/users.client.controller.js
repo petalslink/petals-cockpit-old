@@ -103,11 +103,40 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
 usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
     function ($scope, UsersServiceCreate, Notify) {
 
-        $scope.channelOptions = [
-            {id: 1, item: 'Admin Bus'},
-            {id: 2, item: 'Developer'},
-            {id: 3, item: 'Technical Monitoring'},
-            {id: 4, item: 'Buisness Monitoring'}
+        $scope.channelCountry = [
+            {id: 1, item: 'Austria'},
+            {id: 2, item: 'Belgium'},
+            {id: 3, item: 'Bulgaria'},
+            {id: 4, item: 'Croatia'},
+            {id: 5, item: 'Cyprus'},
+            {id: 6, item: 'Czech Republic'},
+            {id: 7, item: 'Denmark'},
+            {id: 8, item: 'Estonia'},
+            {id: 9, item: 'Finland'},
+            {id: 10, item: 'France'},
+            {id: 11, item: 'Germany'},
+            {id: 12, item: 'Greece'},
+            {id: 13, item: 'Hungary'},
+            {id: 14, item: 'Ireland'},
+            {id: 15, item: 'Italy'},
+            {id: 16, item: 'Latvia'},
+            {id: 17, item: 'Lithuania'},
+            {id: 18, item: 'Luxembourg'},
+            {id: 19, item: 'Malta'},
+            {id: 20, item: 'Netherlands'},
+            {id: 21, item: 'Poland'},
+            {id: 22, item: 'Portugal'},
+            {id: 23, item: 'Romania'},
+            {id: 24, item: 'Slovakia'},
+            {id: 25, item: 'Slovenia'},
+            {id: 26, item: 'Spain'},
+            {id: 27, item: 'Sweden'},
+            {id: 28, item: 'United Kingdom'}
+        ];
+
+        $scope.channelGender = [
+            {id: 1, item: 'Male'},
+            {id: 2, item: 'Female'}
         ];
 
         $scope.user = {};
@@ -133,11 +162,40 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
 usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
     function ($scope, UsersServiceUpdate, Notify) {
 
-        $scope.channelOptions = [
-            {id: 1, item: 'Admin Bus'},
-            {id: 2, item: 'Developer'},
-            {id: 3, item: 'Technical Monitoring'},
-            {id: 4, item: 'Buisness Monitoring'}
+        $scope.channelCountry = [
+            {id: 1, item: 'Austria'},
+            {id: 2, item: 'Belgium'},
+            {id: 3, item: 'Bulgaria'},
+            {id: 4, item: 'Croatia'},
+            {id: 5, item: 'Cyprus'},
+            {id: 6, item: 'Czech Republic'},
+            {id: 7, item: 'Denmark'},
+            {id: 8, item: 'Estonia'},
+            {id: 9, item: 'Finland'},
+            {id: 10, item: 'France'},
+            {id: 11, item: 'Germany'},
+            {id: 12, item: 'Greece'},
+            {id: 13, item: 'Hungary'},
+            {id: 14, item: 'Ireland'},
+            {id: 15, item: 'Italy'},
+            {id: 16, item: 'Latvia'},
+            {id: 17, item: 'Lithuania'},
+            {id: 18, item: 'Luxembourg'},
+            {id: 19, item: 'Malta'},
+            {id: 20, item: 'Netherlands'},
+            {id: 21, item: 'Poland'},
+            {id: 22, item: 'Portugal'},
+            {id: 23, item: 'Romania'},
+            {id: 24, item: 'Slovakia'},
+            {id: 25, item: 'Slovenia'},
+            {id: 26, item: 'Spain'},
+            {id: 27, item: 'Sweden'},
+            {id: 28, item: 'United Kingdom'}
+        ];
+
+        $scope.channelGender = [
+            {id: 1, item: 'Male'},
+            {id: 2, item: 'Female'}
         ];
 
         // Update existing User

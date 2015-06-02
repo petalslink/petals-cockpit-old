@@ -1,7 +1,7 @@
 <section data-ng-controller="UsersCreateController as userCtrl">
 
     <div class="modal-header">
-        <h3 class="modal-title">New User</h3>
+        <h3 class="modal-title">Create New User</h3>
     </div>
     <div class="modal-body">
         <form name="createUserForm" ng-submit="ok()" novalidate>
@@ -14,100 +14,168 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 text-center">
-                        <i class="glyphicon glyphicon-user cust-profile"
-                           ng-class="{'text-primary': user.referred, 'text-pink': !user.referred}"></i>
+                    <div class="form-group">
+                        <div data-ng-show="close" class="text-center text-success">
+                            <div class="alert alert-success" role="alert">
+                                <strong data-ng-bind="close"></strong>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4 text-center">
+                        <i class="glyphicon glyphicon-user cust-profile"
+                           ng-class="{
+                           'text-primary': user.capacities.admin, 'text-green': user.capacities.adminBus, 'text-orange': user.capacities.developer,
+                           'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}" ></i>
+                        <br/><br/>
+
                         <div class="form-group">
-                            <label class="control-label" for="firstname">First Name</label>
+                            <label class="control-label" for="admin">Admin Petals COCKPIT</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="user.firstName" id="firstname"
-                                       class="form-control">
+                                <input type="checkbox" data-ng-model="user.capacities.admin" id="admin"
+                                       class="form-control checkbox-center">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="adminBus">Admin Bus</label>
+
+                            <div class="controls">
+                                <input type="checkbox" data-ng-model="user.capacities.adminBus" id="adminBus"
+                                       class="form-control checkbox-center">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="developer">Developer</label>
+
+                            <div class="controls">
+                                <input type="checkbox" data-ng-model="user.capacities.developer" id="developer"
+                                       class="form-control checkbox-center">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="technicalMonitoring">Technical Monitoring</label>
+
+                            <div class="controls">
+                                <input type="checkbox" data-ng-model="user.capacities.technicalMonitoring"
+                                       id="technicalMonitoring"
+                                       class="form-control checkbox-center">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="buisnessMonitoring">Buisness Monitoring</label>
+
+                            <div class="controls">
+                                <input type="checkbox" data-ng-model="user.capacities.buisnessMonitoring"
+                                       id="buisnessMonitoring"
+                                       class="form-control checkbox-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="firstName">First Name</label>
+
+                            <div class="controls">
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.firstName" id="firstName"
+                                           class="form-control">
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="lastName">Last Name</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="user.lastName" id="lastName"
-                                       class="form-control" required>
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.lastName" id="lastName" class="form-control"
+                                           required>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="username">Username</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="user.username" id="username"
-                                       class="form-control" required>
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.username" id="username" class="form-control"
+                                           required>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="password">Password</label>
 
                             <div class="controls">
-                                <input type="password" data-ng-model="user.password" id="password" class="form-control"
-                                       required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="country">Country</label>
-
-                            <div class="controls">
-                                <input type="text" data-ng-model="user.country" id="country"
-                                       class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-sm-push-6">
-                        <div class="form-group">
-                            <label class="control-label" for="displayName">Pseudo Console</label>
-
-                            <div class="controls">
-                                <input type="text" data-ng-model="user.displayName" id="displayName" class="form-control">
+                                <span class="input-group-addon">
+                                    <input type="password" data-ng-model="user.password" id="password"
+                                           class="form-control"
+                                           required>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="email">Email</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="user.email" id="email" class="form-control"
-                                       required>
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.email" id="email" class="form-control"
+                                           required>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-sm-pull-6">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="referred">Referred</label>
+                            <label class="control-label" for="country">Gender</label>
 
                             <div class="controls">
-                                <input type="checkbox" data-ng-model="user.referred" id="referred"
-                                       class="form-control checkbox-left">
+                                <span class="input-group-addon">
+                                    <select data-ng-model="user.gender" id="gender" class="form-control" required
+                                            ng-options="channelItem.item for channelItem in channelGender">
+                                        <option value="">--Choose your Sexe--</option>
+                                    </select>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="channel">Channel</label>
+                            <label class="control-label" for="displayName">Pseudo Console</label>
 
                             <div class="controls">
-                                <select data-ng-model="user.channel" id="channel" class="form-control" required
-                                        ng-options="channelItem.item for channelItem in channelOptions">
-                                    <option value="">--Choose Channel--</option>
-                                </select>
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.displayName" id="displayName"
+                                           class="form-control">
+                                </span>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="industry">Industry</label>
+                            <label class="control-label" for="country">Country</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="user.industry" id="industry"
-                                       class="form-control">
+                                <span class="input-group-addon">
+                                    <select data-ng-model="user.country" id="country" class="form-control" required
+                                            ng-options="channelItem.item for channelItem in channelCountry">
+                                        <option value="">--Choose your Country--</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="phone">Phone</label>
+
+                            <div class="controls">
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.phone" id="phone" class="form-control">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="location">Location</label>
+
+                            <div class="controls">
+                                <span class="input-group-addon">
+                                    <input type="text" data-ng-model="user.location" id="location"
+                                           class="form-control">
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -118,10 +186,12 @@
     <div class="modal-footer">
         <button class="btn btn-success btn-lg" ng-click="create()">
             <i class="glyphicon glyphicon-save"></i>
-            Save New User </button>
+            Save New User
+        </button>
         <button class="btn btn-warning btn-lg" ng-click="cancel()">
             <i class="glyphicon glyphicon-remove"></i>
-            Close </button>
+            Close
+        </button>
     </div>
 
 </section>

@@ -14,7 +14,7 @@
 	border-color: #78FA89;
 }
 body {
-	background: #d9e7e9 url("/modules/core/img/all/slide__innovation.jpg") no-repeat fixed center;
+	background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
 	background-size: cover;
 	margin: 0;
 	padding: 0;

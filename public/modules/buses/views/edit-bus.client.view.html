@@ -1,0 +1,84 @@
+<section data-ng-controller="BusesUpdateController as busUpCtrl">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Update: {{bus.name}}</h3>
+    </div>
+    <div class="modal-body">
+        <form name="updateBusForm" ng-submit="ok()" novalidate>
+            <fieldset>
+                <div class="row">
+                    <div class="form-group">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div class="alert alert-danger" role="alert">
+                                <strong data-ng-bind="error"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div data-ng-show="close" class="text-center text-success">
+                            <div class="alert alert-success" role="alert">
+                                <strong data-ng-bind="close"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <i class="glyphicon glyphicon-flash cust-profile"></i>
+                        <br/><br/>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="control-label" for="version">Version</label>
+
+                            <div class="controls">
+                                <span class="input-group-addon">
+                                    <select data-ng-model="bus.version" id="version" class="form-control"
+                                            ng-options="channelItem.item for channelItem in channelVersion">
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="name">Name</label>
+
+                            <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="bus.name" id="name"
+                                               class="form-control">
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ip">Petals Node Ip</label>
+
+                            <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="bus.ip" id="ip" class="form-control">
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="port">Port</label>
+
+                            <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="bus.port" id="port" class="form-control">
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-lg" ng-click="busUpCtrl.update(bus)">
+            <i class="glyphicon glyphicon-refresh"></i>
+            Update Bus
+        </button>
+        <button class="btn btn-warning btn-lg" ng-click="cancel()">
+            <i class="glyphicon glyphicon-remove"></i>
+            Close
+        </button>
+    </div>
+
+</section>

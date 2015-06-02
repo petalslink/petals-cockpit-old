@@ -1,0 +1,154 @@
+'use strict';
+
+// Buses controller
+
+var busesApp = angular.module('buses');
+
+busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authentication', 'Buses', '$modal', '$log',
+	function ($scope, $stateParams, Authentication, Buses, $modal, $log) {
+
+		this.authentication = Authentication;
+
+		// Find a list of Bus
+		this.buses = Buses.getBuses();
+
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Create a single bus record
+		this.modalCreate = function (size, createBusForm) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/buses/views/create-bus.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+						if (createBusForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close();
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
+
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Update a single bus record
+		this.modalUpdate = function (size, selectedBus, updateBusForm) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/buses/views/edit-bus.client.view.html',
+				controller: function ($scope, $modalInstance, bus) {
+					$scope.bus = bus;
+
+					$scope.ok = function () {
+						if (updateBusForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close($scope.bus);
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					bus: function () {
+						return selectedBus;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
+
+		// Remove existing Bus
+		this.delete = function (bus) {
+			if (bus) {
+				bus.delete();
+
+				for (var i in this.buses) {
+					if (this.buses [i] === bus) {
+						this.buses.splice(i, 1);
+					}
+				}
+			} else {
+				this.bus.delete(function () {
+				});
+			}
+		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// CREATE CONTROLLER
+busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify',
+	function ($scope, BusesServiceCreate, Notify) {
+
+		$scope.channelVersion = [
+			{id: 1, item: 'Petals1'},
+			{id: 2, item: 'Petals2'},
+			{id: 3, item: 'Petals3'}
+		];
+
+		$scope.bus = {};
+
+		// Create new Bus
+		$scope.create = function () {
+
+			console.log('CHECK CREATE', $scope.bus);
+			// Redirect after save
+			BusesServiceCreate.postBus($scope.bus, function (response) {
+
+				Notify.sendMsg('NewBus', {'id': response._id});
+
+			}, function (errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
+		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// UPDATE CONTROLLER
+busesApp.controller('BusesUpdateController', ['$scope', 'Buses', 'Notify',
+	function ($scope, BusesServiceUpdate, Notify) {
+
+		$scope.channelVersion = [
+			{id: 1, item: 'Petals 1'},
+			{id: 2, item: 'Petals 2'},
+			{id: 3, item: 'Petals 3'}
+		];
+
+		// Update existing Bus
+		this.update = function(updatedBus) {
+			var bus = updatedBus;
+
+			BusesServiceUpdate.updateBus($scope.bus, function(response) {
+
+				Notify.sendMsg('UpdateBus', {'id': response._id});
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+	}
+]);
