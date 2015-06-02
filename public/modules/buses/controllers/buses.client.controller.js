@@ -4,13 +4,19 @@
 
 var busesApp = angular.module('buses');
 
-busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authentication', 'Buses', '$modal', '$log',
-	function ($scope, $stateParams, Authentication, Buses, $modal, $log) {
+busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authentication', 'Buses', '$modal', '$log', '$rootScope',
+	function ($scope, $stateParams, Authentication, Buses, $modal, $log, $rootScope) {
 
 		this.authentication = Authentication;
 
 		// Find a list of Bus
 		this.buses = Buses.getBuses();
+
+		// Recieve Event
+		var self = this;
+		$rootScope.$on('BusCreate', function(eventName, bus) {
+			self.buses.push(bus);
+		});
 
 		/********************************************************* OK *********************************************************/
 			// Open a modal window to Create a single bus record
@@ -80,28 +86,12 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
-
-		// Remove existing Bus
-		this.delete = function (bus) {
-			if (bus) {
-				bus.delete();
-
-				for (var i in this.buses) {
-					if (this.buses [i] === bus) {
-						this.buses.splice(i, 1);
-					}
-				}
-			} else {
-				this.bus.delete(function () {
-				});
-			}
-		};
 	}
 ]);
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify',
-	function ($scope, BusesServiceCreate, Notify) {
+busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope',
+	function ($scope, BusesServiceCreate, Notify, $rootScope) {
 
 		$scope.channelVersion = [
 			{id: 1, item: 'Petals1'},
@@ -116,9 +106,11 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify',
 
 			console.log('CHECK CREATE', $scope.bus);
 			// Redirect after save
-			BusesServiceCreate.postBus($scope.bus, function (response) {
+			BusesServiceCreate.postBus($scope.bus, function (bus) {
 
-				Notify.sendMsg('NewBus', {'id': response._id});
+				Notify.sendMsg('NewBus', {'id': bus._id});
+				$rootScope.$emit('BusCreate', bus);
+
 
 			}, function (errorResponse) {
 				$scope.error = errorResponse.data.message;

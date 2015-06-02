@@ -3,9 +3,6 @@
         <div class="panel-heading">
             <h3 class="panel-title">Petals List Bus</h3>
         </div>
-        <div class="pull-right">
-            <button class="btn btn-primary" ng-click="create()"><i class="glyphicon glyphicon-refresh"></i></button>
-        </div>
         <table class="table">
             <thead>
             <div class="input-group">
@@ -27,13 +24,13 @@
             </tr>
             </thead>
             <tbody data-ng-repeat="bus in busesList | filter:searchText | orderBy:'-Name'" >
-            <tr ng-click="busesCtrl.modalUpdate('lg', bus)">
+            <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{bus.name}}</td>
                 <td>{{bus.channelVersion}}</td>
                 <td>{{bus.ip}}</td>
                 <td>{{bus.port}}</td>
-                <td>
+                <td ng-click="busesCtrl.modalUpdate('lg', bus)">
                     <dir-up-bus bus="bus"></dir-up-bus>
                 </td>
                 <td>

@@ -4,13 +4,19 @@
 
 var usersApp = angular.module('users');
 
-usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authentication', 'Users', '$modal', '$log',
-    function ($scope, $stateParams, Authentication, Users, $modal, $log) {
+usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authentication', 'Users', '$modal', '$log', '$rootScope',
+    function ($scope, $stateParams, Authentication, Users, $modal, $log, $rootScope) {
 
         this.authentication = Authentication;
 
         // Find a list of Users
         this.users = Users.getUsers();
+
+        // Recieve Event
+        var self = this;
+        $rootScope.$on('UserCreate', function(eventName, user) {
+            self.users.push(user);
+        });
 
         /********************************************************* OK *********************************************************/
         // Open a modal window to Create a single user record
@@ -80,28 +86,12 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
-
-        // Remove existing User
-        this.delete = function (user) {
-            if (user) {
-                user.delete();
-
-                for (var i in this.users) {
-                    if (this.users [i] === user) {
-                        this.users.splice(i, 1);
-                    }
-                }
-            } else {
-                this.user.delete(function () {
-                });
-            }
-        };
     }
 ]);
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
-    function ($scope, UsersServiceCreate, Notify) {
+usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$rootScope',
+    function ($scope, UsersServiceCreate, Notify, $rootScope) {
 
         $scope.channelCountry = [
             {id: 1, item: 'Austria'},
@@ -146,9 +136,10 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify',
 
             console.log('CHECK CREATE', $scope.user);
             // Redirect after save
-            UsersServiceCreate.postUser($scope.user, function (response) {
+            UsersServiceCreate.postUser($scope.user, function (user) {
 
-                Notify.sendMsg('NewUser', {'id': response._id});
+                Notify.sendMsg('NewUser', {'id': user._id});
+                $rootScope.$emit('UserCreate', user);
 
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;

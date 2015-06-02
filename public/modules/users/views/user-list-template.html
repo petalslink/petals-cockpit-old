@@ -14,7 +14,12 @@
                     <small class="list-group-item-text text-muted">
                         <span data-ng-bind="user.created | date:'medium'"></span>
 						<span class="pull-right">
-							<dir-sup-user user="user"></dir-sup-user>
+                            <div ng-click="usersCtrl.modalUpdate('lg', user)">
+                                <dir-up-user bus="user"></dir-up-user>
+                            </div>
+                            <div>
+                                <dir-sup-user user="user"></dir-sup-user>
+                            </div>
 						</span>
                     </small>
                 </div>

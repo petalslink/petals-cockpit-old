@@ -55,9 +55,7 @@ busesApp.directive('dirUpBus', ['Buses',
             template: '<button class="btn btn-success" type="button" ng-click="updBus()"><i class="glyphicon glyphicon-pencil"></i></button>',
             link: function ($scope, element, attrs) {
                 $scope.updBus = function() {
-                    Buses.updateBus({busId: $scope.bus._id}, function() {
-                        console.log($scope.bus.name, $scope.bus.version, $scope.bus._id, 'has been updated !');
-                    });
+
                 };
             }
         };
