@@ -8,40 +8,28 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         
         $scope.alerts = [
             {
-                icon: 'glyphicon-user',
-                colour: 'btn-success',
-                total: '20.408',
-                description: 'TOTAL CUSTOMERS'
+                icon: 'glyphicon-globe',
+                colour: 'btn',
+                total: '5',
+                description: 'TOTAL USERS'
             },
             {
-                icon: 'glyphicon-calendar',
-                colour: 'btn-primary',
-                total: '8,382',
-                description: 'UPCOMING EVENTS'
+                icon: 'glyphicon-pencil',
+                colour: 'btn',
+                total: '1',
+                description: 'NEW USERS IN 24H'
+            },
+            {
+                icon: 'glyphicon-flash',
+                colour: 'btn',
+                total: '1',
+                description: 'TOTAL BUS'
             },
             {
                 icon: 'glyphicon-edit',
-                colour: 'btn-success',
-                total: '527',
-                description: 'NEW CUSTOMERS IN 24H'
-            },
-            {
-                icon: 'glyphicon-record',
-                colour: 'btn-info',
-                total: '85.000',
-                description: 'EMAIL SENT'
-            },
-            {
-                icon: 'glyphicon-eye-open',
-                colour: 'btn-warning',
-                total: '268',
-                description: 'FOLLOW UP REQUIRED'
-            },
-            {
-                icon: 'glyphicon-flag',
-                colour: 'btn-danger',
-                total: '348',
-                description: 'REFERRALS TO MODERATE'
+                colour: 'btn',
+                total: '0',
+                description: 'NEW BUS IN 24H'
             }
         ];
 	}

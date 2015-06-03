@@ -27,11 +27,6 @@ The MEAN.js generator is the MEAN based code that will be used by Yo to help you
 $ cd C:\Users\Name\NameProject
 ```
 
-### For Install Dependencies
-```
-$ npm install
-```
-
 ### First step
 ```
 $ npm cache clean

@@ -1,0 +1,19 @@
+<section data-ng-controller="NodesController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Nodes</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="node in nodes" data-ng-href="#!/nodes/{{node._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="node.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="node.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="node.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!nodes.$resolved || nodes.length">
+    	No Nodes yet, why don't you <a href="/#!/nodes/create">create one</a>?
+    </div>
+</section>
