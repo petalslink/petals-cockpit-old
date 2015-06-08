@@ -20,10 +20,35 @@ var ComponentSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	updated: {
+		type: Date,
+		default: Date.now
+	},
+	serviceUnits: [
+		{
+			type: Schema.ObjectId,
+			ref: 'Serviceunit'
+		}
+	]
+});
+
+var Component = mongoose.model('Component', ComponentSchema);
+
+var ComponentDefault = new Component({
+	name: 'start-facturation'
+});
+
+ComponentDefault.save(function (err, saved) {
+	if (err) {
+		console.log('Component Default is already saved !', err);
+	}
+	if (saved) {
+		console.log('Component Default saved successfully !');
+	}
+	if (!saved) {
+		console.log('GO Component');
 	}
 });
 
-mongoose.model('Component', ComponentSchema);
+// make this available to our users in our Node applications
+module.exports = Component;

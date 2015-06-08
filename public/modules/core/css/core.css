@@ -1,3 +1,10 @@
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{
+	display:none !important;
+}
+
+ng\:form{
+	display:block;
+}
 .content {
 	margin-top: 50px;
 }
@@ -29,11 +36,107 @@ body {
 	position: relative;
 	background: linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 	background: -moz-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 	background: -webkit-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 	background: -o-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 	background: -ms-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 }
 .text-color-white {
 	color: #ffffff;
 }
+
+.tabs-nav {padding: 20px 0 0; list-style: none;}
+.tabs-nav li {display: inline;}
+.tabs-nav a {
+	display:inline-block;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	padding: 15px;
+	cursor: pointer;
+	border-radius: 5px 5px 0 0;
+	font-size: 14px;
+	color: #fff;
+	background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+}
+
+.tabs-nav .active {
+	background: #F0F0F0;
+	color: #149040;
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+}
+
+.tab-content {
+	border: 1px solid #ddd;
+	padding: 20px;
+}
+.marg5 { margin-left: 5px;}
+.glyphicon { margin-right:0; }
+.panel-body { padding:0;}
+.panel-body table tr td { padding: 0; }
+.panel-body .table {margin: 0;color: #FF0000;}
+
+.btnMenuBus {
+	background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+	background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+}
+
+.textMenuBus, .textMenuBus:visited {
+	color: #F0F0F0;
+}
+.textMenuBus, .textMenuBus:focus {
+	color: #149040;
+}
+.textMenuBus:hover {
+	color: #149040;
+}
+
+
+.slide-animate-container {
+	position:relative;
+	background:white;
+	border:1px solid black;
+	height:40px;
+	overflow:hidden;
+}
+
+.slide-animate {
+	padding:10px;
+}
+
+.slide-animate.ng-enter, .slide-animate.ng-leave {
+	-webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	display:block;
+	padding:10px;
+}
+
+.slide-animate.ng-enter {
+	top:-50px;
+}
+.slide-animate.ng-enter.ng-enter-active {
+	top:0;
+}
+
+.slide-animate.ng-leave {
+	top:0;
+}
+.slide-animate.ng-leave.ng-leave-active {
+	top:50px;
+}
+

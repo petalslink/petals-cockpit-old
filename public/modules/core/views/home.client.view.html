@@ -1,22 +1,136 @@
 <section data-ng-controller="HomeController">
-    <div class="row">
-        <!-- This is alert collection -->
-        <div class="col-sm-6" ng-repeat="alert in alerts">
-            <div class="row">
-                <div class="col-xs-2">
-                    <h1>
-                        <button type="button" class="btn" ng-class="alert.colour">
-                            <i class="glyphicon" ng-class="alert.icon"></i>
-                        </button>
-                    </h1>
-                </div>
-                <div class="col-xs-10 text-color-white">
-                    <h1>{{alert.total}}</h1>
-                </div>
-                <div class="col-xs-10">
-                    <span class="text-color-white">{{alert.description}}</span>
+    <!--    <div class="row">
+            &lt;!&ndash; This is alert collection &ndash;&gt;
+            <div class="col-sm-6" ng-repeat="alert in alerts">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <h1>
+                            <button type="button" class="btn" ng-class="alert.colour">
+                                <i class="glyphicon" ng-class="alert.icon"></i>
+                            </button>
+                        </h1>
+                    </div>
+                    <div class="col-xs-10 text-color-white">
+                        <h1>{{alert.total}}</h1>
+                    </div>
+                    <div class="col-xs-10">
+                        <span class="text-color-white">{{alert.description}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+    <br/><br/>
+
+    <div class="container" data-ng-controller="SampleController">
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <script type="text/ng-template" id="treeLevel.html">
+                    <div>
+                        <div ng-repeat="item in items">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btnMenuBus">
+                                            <input id="someCheckbox" type="checkbox" ng-model="open">
+                                        </button>
+
+                                            <a href="#" class="textMenuBus check-element animate-show" ng-hide="open">
+                                                <i class="glyphicon marg5" ng-class="item.icon1"></i>
+                                                {{item.file1}}
+                                            </a>
+
+                                            <a href="#" class="textMenuBus" ng-hide="open">
+                                                <i class="glyphicon marg5" ng-class="item.icon2"></i>
+                                                {{item.file2}}
+                                            </a>
+
+                                            <a href="#" class="textMenuBus" ng-hide="open">
+                                                <i class="glyphicon marg5" ng-class="item.icon3"></i>
+                                                {{item.file3}}
+                                            </a>
+
+                                            <a href="#" class="textMenuBus" ng-hide="open">
+                                                <i class="glyphicon marg5" ng-class="item.icon4"></i>
+                                                {{item.file4}}
+                                            </a>
+
+                                            <a href="#" class="textMenuBus" ng-hide="open">
+                                                <i class="glyphicon marg5" ng-class="item.icon5"></i>
+                                                {{item.file5}}
+                                            </a>
+
+                                        <div ng-include=" 'treeLevel.html'"
+                                             onload="items = item.children1+item.children2+item.children3+item.children4">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </script>
+                <div ng-include=" 'treeLevel.html' " onload="items = sourceItems"></div>
+            </div>
+
+
+            <div class="col-sm-9 col-md-9" ng-controller="MenuTemplateController">
+                <div>
+                    <div>
+                        <ul class="tabs-nav" ng-app ng-init="tab=1">
+                            <li><a ng-click="tab=1" ng-class="{'active':tab==1}">Overview</a></li>
+                            <li><a ng-click="tab=2" ng-class="{'active':tab==2}">Admin</a></li>
+                            <li><a ng-click="tab=3" ng-class="{'active':tab==3}">Monitor</a></li>
+                            <li><a ng-click="tab=4" ng-class="{'active':tab==4}">Configure</a></li>
+                            <li><a ng-click="tab=5" ng-class="{'active':tab==5}">Log</a></li>
+                            <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Flow</a></li>
+                            <li><a ng-click="tab=7" ng-class="{'active':tab==7}">User</a></li>
+                        </ul>
+
+                        <div class="tabs-container">
+                            <select ng-model="template" ng-options="t.name for t in templates">
+                                <option value=""> --Select your tab--</option>
+                            </select>
+                            <div class="tab-content" ng-show="tab==1" ng-model="template">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==2">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==3">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==4">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==5">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==6">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="tab-content" ng-show="tab==7">
+                                <h2>You are in: <code>{{template.url}}</code></h2>
+                            </div>
+                            <div class="slide-animate-container">
+                                <div class="slide-animate" ng-include="template.url"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--           <div ng-controller="MenuTemplateController">
+                           <select ng-model="template" ng-options="t.name for t in templates">
+                               <option value=""> --Select your tab--</option>
+                           </select>
+                           You are in: <code>{{template.url}}</code>
+                           <hr/>
+                           <div class="slide-animate-container">
+                               <div class="slide-animate" ng-include="template.url"></div>
+                           </div>
+            </div>
+
+        </div>-->
     </div>
+    </div>
+
 </section>

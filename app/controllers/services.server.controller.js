@@ -87,13 +87,14 @@ exports.list = function(req, res) {
 /**
  * Service middleware
  */
-exports.serviceByID = function(req, res, next, id) { 
-	Service.findById(id).populate('service', 'name').exec(function(err, service) {
-		if (err) return next(err);
-		if (! service) return next(new Error('Failed to load Service ' + id));
-		req.service = service ;
-		next();
-	});
+exports.serviceByID = function(req, res, next, id) {
+	Service.findById(id).populate('service', 'name')
+		.exec(function(err, service) {
+			if (err) return next(err);
+			if (! service) return next(new Error('Failed to load Service ' + id));
+			req.service = service ;
+			next();
+		});
 };
 
 /**

@@ -5,7 +5,7 @@ var should = require('should'),
 	app = require('../../server'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Node = mongoose.model('Node'),
+	_Node = mongoose.model('_Node'),
 	agent = request.agent(app);
 
 /**
@@ -262,7 +262,7 @@ describe('Node CRUD tests', function() {
 
 	afterEach(function(done) {
 		User.remove().exec();
-		Node.remove().exec();
+		_Node.remove().exec();
 		done();
 	});
 });

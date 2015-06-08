@@ -5,14 +5,14 @@ module.exports = function(app) {
 	var serviceunits = require('../../app/controllers/serviceunits.server.controller');
 
 	// Serviceunits Routes
-	app.route('/serviceunits')
+	app.route('/serviceunits').put(users.requiresLogin, serviceunits.update)
 		.get(serviceunits.list)
 		.post(users.requiresLogin, serviceunits.create);
 
 	app.route('/serviceunits/:serviceunitId')
 		.get(serviceunits.read)
-		.put(users.requiresLogin, serviceunits.hasAuthorization, serviceunits.update)
-		.delete(users.requiresLogin, serviceunits.hasAuthorization, serviceunits.delete);
+		.put(users.requiresLogin, serviceunits.update)
+		.delete(users.requiresLogin, serviceunits.delete);
 
 	// Finish by binding the Serviceunit middleware
 	app.param('serviceunitId', serviceunits.serviceunitByID);

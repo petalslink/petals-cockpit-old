@@ -6,7 +6,7 @@
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Node = mongoose.model('Node');
+	_Node = mongoose.model('_Node');
 
 /**
  * Globals
@@ -28,7 +28,7 @@ describe('Node Model Unit Tests:', function() {
 		});
 
 		user.save(function() { 
-			node = new Node({
+			node = new _Node({
 				name: 'Node Name',
 				user: user
 			});
@@ -56,7 +56,7 @@ describe('Node Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) { 
-		Node.remove().exec();
+		_Node.remove().exec();
 		User.remove().exec();
 
 		done();

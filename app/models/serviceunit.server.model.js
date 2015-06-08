@@ -31,10 +31,35 @@ var ServiceunitSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	updated: {
+		type: Date,
+		default: Date.now
+	},
+	services: [
+		{
+			type: Schema.ObjectId,
+			ref: 'Service'
+		}
+	]
+});
+
+var Serviceunit = mongoose.model('Serviceunit', ServiceunitSchema);
+
+var ServiceUnitDefault = new Serviceunit({
+	name: 'su-process-facturation'
+});
+
+ServiceUnitDefault.save(function (err, saved) {
+	if (err) {
+		console.log('Service Unit Default is already saved !', err);
+	}
+	if (saved) {
+		console.log('Service Unit Default saved successfully !');
+	}
+	if (!saved) {
+		console.log('GO Service Unit');
 	}
 });
 
-mongoose.model('Serviceunit', ServiceunitSchema);
+// make this available to our users in our Node applications
+module.exports = Serviceunit;

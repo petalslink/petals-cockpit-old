@@ -5,14 +5,14 @@ module.exports = function(app) {
 	var services = require('../../app/controllers/services.server.controller');
 
 	// Services Routes
-	app.route('/services')
+	app.route('/services').put(users.requiresLogin, services.update)
 		.get(services.list)
 		.post(users.requiresLogin, services.create);
 
 	app.route('/services/:serviceId')
 		.get(services.read)
-		.put(users.requiresLogin, services.hasAuthorization, services.update)
-		.delete(users.requiresLogin, services.hasAuthorization, services.delete);
+		.put(users.requiresLogin, services.update)
+		.delete(users.requiresLogin, services.delete);
 
 	// Finish by binding the Service middleware
 	app.param('serviceId', services.serviceByID);

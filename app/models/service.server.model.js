@@ -20,10 +20,29 @@ var ServiceSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	updated: {
+		type: Date,
+		default: Date.now
 	}
 });
 
-mongoose.model('Service', ServiceSchema);
+var Service = mongoose.model('Service', ServiceSchema);
+
+var ServiceDefault = new Service({
+	name: 'start-facturation'
+});
+
+ServiceDefault.save(function (err, saved) {
+	if (err) {
+		console.log('Service Default is already saved !', err);
+	}
+	if (saved) {
+		console.log('Service Default saved successfully !');
+	}
+	if (!saved) {
+		console.log('GO Service');
+	}
+});
+
+// make this available to our users in our Node applications
+module.exports = Service;

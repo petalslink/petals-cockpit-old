@@ -38,13 +38,34 @@ var BusSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
-	}
+	nodes: [
+		{
+			type: Schema.ObjectId,
+			ref: 'Node'
+		}
+	]
 });
 
 var Bus = mongoose.model('Bus', BusSchema);
+
+var BusDefault = new Bus({
+	name: 'Facturation',
+	version: 'Petals 3',
+	ip: '192.168.168.10',
+	port: '2024'
+});
+
+BusDefault.save(function (err, saved) {
+	if (err) {
+		console.log('Bus Default is already saved !', err);
+	}
+	if (saved) {
+		console.log('Bus Default saved successfully !');
+	}
+	if (!saved) {
+		console.log('GO Bus');
+	}
+});
 
 // make this available to our users in our Node applications
 module.exports = Bus;

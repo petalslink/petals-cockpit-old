@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('buses')
+angular.module('services')
 	// Config HTTP Error Handling
 	.config(['$httpProvider', function ($httpProvider) {
 		// Set the httpProvider "not authorized" interceptor
@@ -26,14 +26,5 @@ angular.module('buses')
 				};
 			}
 		]);
-	}
-	])
-
-	// Configuring the Articles module
-	.run(['Menus', function (Menus) {
-		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Bus', 'buses', 'dropdown', '/buses(/create)?');
-		Menus.addSubMenuItem('topbar', 'buses', 'List Bus', 'buses');
-		/*Menus.addSubMenuItem('topbar', 'buses', 'New Bus', 'buses/create');*/
 	}
 	]);

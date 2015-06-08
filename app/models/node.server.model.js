@@ -25,10 +25,36 @@ var NodeSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	updated: {
+		type: Date,
+		default: Date.now
+	},
+	components: [
+		{
+			type: Schema.ObjectId,
+			ref: 'Component'
+		}
+	]
+});
+
+var _Node = mongoose.model('_Node', NodeSchema);
+
+var NodeDefault = new _Node({
+	name: 'start-facturation',
+	ip: '10.3.44.5'
+});
+
+NodeDefault.save(function (err, saved) {
+	if (err) {
+		console.log('Node Default is already saved !', err);
+	}
+	if (saved) {
+		console.log('Node Default saved successfully !');
+	}
+	if (!saved) {
+		console.log('GO Node');
 	}
 });
 
-mongoose.model('Node', NodeSchema);
+// make this available to our users in our Node applications
+module.exports = _Node;
