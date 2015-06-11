@@ -1,0 +1,34 @@
+<ul class="tabs-nav" ng-init="tab=1">
+    <li><a ng-click="tab=1" ng-class="{'active':tab==1}">Overview</a></li>
+    <li><a ng-click="tab=2" ng-class="{'active':tab==2}">Admin</a></li>
+    <li><a ng-click="tab=3" ng-class="{'active':tab==3}">Monitor</a></li>
+    <li><a ng-click="tab=4" ng-class="{'active':tab==4}">Configure</a></li>
+    <li><a ng-click="tab=5" ng-class="{'active':tab==5}">Log</a></li>
+    <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Flow</a></li>
+    <li><a ng-click="tab=7" ng-class="{'active':tab==7}">User</a></li>
+</ul>
+
+<div class="tabs-container">
+
+    <div ng-show="tab==1">
+        <h2>You are in: <code>Overview</code></h2>
+    </div>
+    <div ng-show="tab==2">
+        <h2>You are in: <code>Admin</code></h2>
+    </div>
+    <div ng-show="tab==3">
+        <h2>You are in: <code>Monitor</code></h2>
+    </div>
+    <div ng-show="tab==4">
+        <h2>You are in: <code>Configure</code></h2>
+    </div>
+    <div ng-show="tab==5">
+        <h2>You are in: <code>Log</code></h2>
+    </div>
+    <div ng-show="tab==6">
+        <h2>You are in: <code>Flow</code></h2>
+    </div>
+    <div ng-show="tab==7">
+        <h2>You are in: <code>User</code></h2>
+    </div>
+</div>
