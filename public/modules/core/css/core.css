@@ -76,7 +76,7 @@ body {
 	padding: 20px;
 	margin-top: 20px;
 }
-.marg5 { margin-left: 5px;}
+.marg5 { margin-top: -10px;}
 .glyphicon { margin-right:0; }
 .panel-body { padding:0;}
 .panel-body table tr td { padding: 0; }

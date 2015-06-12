@@ -18,3 +18,20 @@ app.directive('dirComponentDisplay',
         };
     }
 );
+
+app.directive('dirComponentTree',
+    function () {
+
+        return {
+            restrict: 'E',
+            scope: {
+                component: '='
+            },
+            transclude: true,
+            templateUrl: '/modules/core/views/component-tree.client.view.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+);
