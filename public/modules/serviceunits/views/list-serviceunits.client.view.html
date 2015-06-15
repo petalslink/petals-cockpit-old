@@ -1,19 +1,14 @@
-<section data-ng-controller="ServiceunitsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Serviceunits</h1>
+<section data-ng-controller="ServiceunitsController as serviceunitsCtrl">
+    <div class="page-header text-color-white">
+        <h1>Service Unit</h1>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="serviceunit in serviceunits" data-ng-href="#!/serviceunits/{{serviceunit._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="serviceunit.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="serviceunit.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="serviceunit.name"></h4>
-        </a>
+    <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-success text-center" ng-click="serviceunitsCtrl.modalCreate('lg',size,createServiceunitForm)">
+            <i class="glyphicon glyphicon-wrench"></i>
+            Create New Service Unit
+        </button>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!serviceunits.$resolved || serviceunits.length">
-    	No Serviceunits yet, why don't you <a href="/#!/serviceunits/create">create one</a>?
-    </div>
+    </br>
+    </br>
+    <dir-serviceunit-list info="serviceunitsCtrl.serviceunits" filter="searchText"></dir-serviceunit-list>
 </section>

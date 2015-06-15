@@ -1,0 +1,29 @@
+<div class="row" data-ng-controller="ServiceunitsController as serviceunitsCtrl">
+    <div class="panel-success filterable">
+        <div class="panel-heading">
+            <h2 class="text-center">Info Service Unit</h2>
+        </div>
+        <table class="table">
+            <thead>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="serviceunit in serviceunitUnique">
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{serviceunit.name}}</td>
+                <td ng-click="serviceunitsCtrl.modalUpdate('lg', serviceunit)">
+                    <dir-up-serviceunit serviceunit="serviceunit"></dir-up-serviceunit>
+                </td>
+                <td>
+                    <dir-sup-serviceunit serviceunit="serviceunit"></dir-sup-serviceunit>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

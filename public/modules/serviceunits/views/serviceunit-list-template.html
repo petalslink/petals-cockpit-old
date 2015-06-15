@@ -1,0 +1,42 @@
+<div class="row" data-ng-controller="ServiceunitsController as serviceunitsCtrl">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Petals List Service Unit</h3>
+        </div>
+        <table class="table">
+            <thead>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Search Service Unit...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+            </div>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="serviceunit in serviceunitsList | filter:searchText | orderBy:'-Name'" >
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{serviceunit.name}}</td>
+                <td ng-click="serviceunitsCtrl.modalUpdate('lg', serviceunit)">
+                    <dir-up-serviceunit serviceunit="serviceunit"></dir-up-serviceunit>
+                </td>
+                <td>
+                    <dir-sup-serviceunit serviceunit="serviceunit"></dir-sup-serviceunit>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- If no service unit in list, write a msg -->
+    <div class="alert alert-warning text-center" data-ng-hide="!serviceunits.$resolved || serviceunits.length">
+        No Service Unit yet, why don't you <a href="/#!/serviceunits/create">create one</a>?
+    </div>
+</div>

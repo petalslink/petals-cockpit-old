@@ -15,11 +15,11 @@ angular.module('nodes').config(['$stateProvider',
 		}).
 		state('viewNode', {
 			url: '/nodes/:nodeId',
-			templateUrl: 'modules/nodes/views/view-node.client.view.html'
-		}).
-		state('editNode', {
+			templateUrl: 'modules/nodes/views/node-list.template.html'
+		});
+/*		state('editNode', {
 			url: '/nodes/:nodeId/edit',
 			templateUrl: 'modules/nodes/views/edit-node.client.view.html'
-		});
+		});*/
 	}
 ]);

@@ -1,19 +1,14 @@
-<section data-ng-controller="NodesController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Nodes</h1>
+<section data-ng-controller="NodesController as nodesCtrl">
+    <div class="page-header text-color-white">
+        <h1>Node</h1>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="node in nodes" data-ng-href="#!/nodes/{{node._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="node.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="node.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="node.name"></h4>
-        </a>
+    <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-success text-center" ng-click="nodesCtrl.modalCreate('lg',size,createNodeForm)">
+            <i class="glyphicon glyphicon-wrench"></i>
+            Create New Node
+        </button>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!nodes.$resolved || nodes.length">
-    	No Nodes yet, why don't you <a href="/#!/nodes/create">create one</a>?
-    </div>
+    </br>
+    </br>
+    <dir-node-list info="nodesCtrl.nodes" filter="searchText"></dir-node-list>
 </section>

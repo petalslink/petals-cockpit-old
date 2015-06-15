@@ -41,8 +41,6 @@ app.controller('HomeController', ['$scope', 'Authentication',
 
 app.controller('treeCtrl', ['$scope', '$TreeDnDConvert', function ($scope, $TreeDnDConvert) {
 
-        var node_selected, component_selected, serviceUnit_selected, service_selected;
-
         $scope.my_tree = {};
         $scope.tree_data = {};
         $scope._filter = {};
@@ -56,20 +54,15 @@ app.controller('treeCtrl', ['$scope', '$TreeDnDConvert', function ($scope, $Tree
 
         $scope.select_handler = function (node) {
 
-            $scope.output = "You selected: " + node.title;
         };
 
         $scope.click_handler = function (node) {
 
         };
 
-        node_selected = function (node) {
-            return $scope.output = "NODE : " + node.title;
-        };
-
         var components = [
             {'id':'1','title':'Bus','parent':null},
-            {'id':'2','title':'Node','parent':1,'onSelect': node_selected},
+            {'id':'2','title':'Node','parent':1},
             {'id':'3','title':'Component','parent':2},
             {'id':'4','title':'Service Unit','parent':3},
             {'id':'5','title':'Service','parent':4}

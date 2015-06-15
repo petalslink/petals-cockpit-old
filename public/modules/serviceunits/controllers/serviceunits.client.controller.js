@@ -1,65 +1,133 @@
 'use strict';
 
-// Serviceunits controller
-angular.module('serviceunits').controller('ServiceunitsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Serviceunits',
-	function($scope, $stateParams, $location, Authentication, Serviceunits) {
-		$scope.authentication = Authentication;
+// service units controller
 
-		// Create new Serviceunit
-		$scope.create = function() {
-			// Create new Serviceunit object
-			var serviceunit = new Serviceunits ({
-				name: this.name
+var serviceunitsApp = angular.module('serviceunits');
+
+serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 'Authentication', 'Serviceunits', '$modal', '$log', '$rootScope',
+	function ($scope, $stateParams, Authentication, Serviceunits, $modal, $log, $rootScope) {
+
+		this.authentication = Authentication;
+
+		// Find a list of service unit
+		this.serviceunits = Serviceunits.getServiceunits();
+
+		// Recieve Event
+		var self = this;
+		$rootScope.$on('ServiceunitCreate', function(eventName, serviceunit) {
+			self.serviceunits.push(serviceunit);
+		});
+
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Create a single service unit record
+		this.modalCreate = function (size, createServiceunitForm) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/serviceunits/views/create-serviceunit.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+						if (createServiceunitForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close();
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size
 			});
 
-			// Redirect after save
-			serviceunit.$save(function(response) {
-				$location.path('serviceunits/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
 
-		// Remove existing Serviceunit
-		$scope.remove = function(serviceunit) {
-			if ( serviceunit ) { 
-				serviceunit.$remove();
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Update a single service unit record
+		this.modalUpdate = function (size, selectedServiceunit, updateServiceunitForm) {
 
-				for (var i in $scope.serviceunits) {
-					if ($scope.serviceunits [i] === serviceunit) {
-						$scope.serviceunits.splice(i, 1);
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/serviceunits/views/edit-serviceunit.client.view.html',
+				controller: function ($scope, $modalInstance, serviceunit) {
+					$scope.serviceunit = serviceunit;
+
+					$scope.ok = function () {
+						if (updateServiceunitForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close($scope.serviceunit);
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					serviceunit: function () {
+						return selectedServiceunit;
 					}
 				}
-			} else {
-				$scope.serviceunit.$remove(function() {
-					$location.path('serviceunits');
-				});
-			}
-		};
+			});
 
-		// Update existing Serviceunit
-		$scope.update = function() {
-			var serviceunit = $scope.serviceunit;
-
-			serviceunit.$update(function() {
-				$location.path('serviceunits/' + serviceunit._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// CREATE CONTROLLER
+serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceunits', 'Notify', '$rootScope',
+	function ($scope, ServiceunitsServiceCreate, Notify, $rootScope) {
 
-		// Find a list of Serviceunits
-		$scope.find = function() {
-			$scope.serviceunits = Serviceunits.query();
+		$scope.serviceunit = {};
+
+		// Create new Service Unit
+		$scope.create = function () {
+
+			console.log('CHECK CREATE', $scope.serviceunit);
+			// Redirect after save
+			ServiceunitsServiceCreate.postServiceunit($scope.serviceunit, function (serviceunit) {
+
+				Notify.sendMsg('NewServiceunit', {'id': serviceunit._id});
+				$rootScope.$emit('ServiceunitCreate', serviceunit);
+
+
+			}, function (errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// UPDATE CONTROLLER
+serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceunits', 'Notify',
+	function ($scope, ServiceunitsServiceUpdate, Notify) {
 
-		// Find existing Serviceunit
-		$scope.findOne = function() {
-			$scope.serviceunit = Serviceunits.get({ 
-				serviceunitId: $stateParams.serviceunitId
+		// Update existing Service Unit
+		this.update = function(updatedServiceunit) {
+			var serviceunit = updatedServiceunit;
+
+			ServiceunitsServiceUpdate.updateServiceunit($scope.serviceunit, function(response) {
+
+				Notify.sendMsg('UpdateServiceunit', {'id': response._id});
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
 			});
 		};
 	}

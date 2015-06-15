@@ -1,0 +1,44 @@
+<div class="row" data-ng-controller="NodesController as nodesCtrl">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Petals List Node</h3>
+        </div>
+        <table class="table">
+            <thead>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Search Node...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+            </div>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="node in nodesList | filter:searchText | orderBy:'-Name'" >
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{node.name}}</td>
+                <td>{{node.ip}}</td>
+                <td ng-click="nodesCtrl.modalUpdate('lg', node)">
+                    <dir-up-node node="node"></dir-up-node>
+                </td>
+                <td>
+                    <dir-sup-node node="node"></dir-sup-node>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- If no node in list, write a msg -->
+    <div class="alert alert-warning text-center" data-ng-hide="!nodes.$resolved || nodes.length">
+        No Node yet, why don't you <a href="/#!/nodes/create">create one</a>?
+    </div>
+</div>

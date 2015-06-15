@@ -2,12 +2,12 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
-	var serviceunits = require('../../app/controllers/serviceunits.server.controller');
+	var serviceunits = require('../controllers/serviceunits.server.controller');
 
 	// Serviceunits Routes
 	app.route('/serviceunits').put(users.requiresLogin, serviceunits.update)
-		.get(serviceunits.list)
-		.post(users.requiresLogin, serviceunits.create);
+		.post(users.requiresLogin, serviceunits.create)
+		.get(serviceunits.list);
 
 	app.route('/serviceunits/:serviceunitId')
 		.get(serviceunits.read)

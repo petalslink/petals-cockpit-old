@@ -2,12 +2,12 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
-	var nodes = require('../../app/controllers/nodes.server.controller');
+	var nodes = require('../controllers/nodes.server.controller');
 
 	// Nodes Routes
 	app.route('/nodes').put(users.requiresLogin, nodes.update)
-		.get(nodes.list)
-		.post(users.requiresLogin, nodes.create);
+		.post(users.requiresLogin, nodes.create)
+		.get(nodes.list);
 
 	app.route('/nodes/:nodeId')
 		.get(nodes.read)

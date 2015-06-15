@@ -37,14 +37,14 @@ var NodeSchema = new Schema({
 	]
 });
 
-var _Node = mongoose.model('_Node', NodeSchema);
+var Node = mongoose.model('Node', NodeSchema);
 
-var NodeDefault = new _Node({
+var NodeDefault = new Node({
 	name: 'start-facturation',
 	ip: '10.3.44.5'
 });
 
-NodeDefault.save(function (err, saved) {
+NodeDefault.update(function (err, saved) {
 	if (err) {
 		console.log('Node Default is already saved !', err);
 	}
@@ -57,4 +57,4 @@ NodeDefault.save(function (err, saved) {
 });
 
 // make this available to our users in our Node applications
-module.exports = _Node;
+module.exports = Node;

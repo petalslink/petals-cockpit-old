@@ -88,7 +88,8 @@ exports.list = function(req, res) {
  * Serviceunit middleware
  */
 exports.serviceunitByID = function(req, res, next, id) { 
-	Serviceunit.findById(id).populate('serviceunit', 'name').exec(function(err, serviceunit) {
+	Serviceunit.findById(id).populate('serviceunit', 'name')
+		.exec(function(err, serviceunit) {
 		if (err) return next(err);
 		if (! serviceunit) return next(new Error('Failed to load Service Unit ' + id));
 		req.serviceunit = serviceunit ;

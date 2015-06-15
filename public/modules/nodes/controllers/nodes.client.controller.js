@@ -1,65 +1,133 @@
 'use strict';
 
 // Nodes controller
-angular.module('nodes').controller('NodesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Nodes',
-	function($scope, $stateParams, $location, Authentication, Nodes) {
-		$scope.authentication = Authentication;
 
-		// Create new Node
-		$scope.create = function() {
-			// Create new Node object
-			var node = new Nodes ({
-				name: this.name
+var nodesApp = angular.module('nodes');
+
+nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authentication', 'Nodes', '$modal', '$log', '$rootScope',
+	function ($scope, $stateParams, Authentication, Nodes, $modal, $log, $rootScope) {
+
+		this.authentication = Authentication;
+
+		// Find a list of Node
+		this.nodes = Nodes.getNodes();
+
+		// Recieve Event
+		var self = this;
+		$rootScope.$on('NodeCreate', function(eventName, node) {
+			self.nodes.push(node);
+		});
+
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Create a single node record
+		this.modalCreate = function (size, createNodeForm) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/nodes/views/create-node.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+						if (createNodeForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close();
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size
 			});
 
-			// Redirect after save
-			node.$save(function(response) {
-				$location.path('nodes/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
 
-		// Remove existing Node
-		$scope.remove = function(node) {
-			if ( node ) { 
-				node.$remove();
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Update a single node record
+		this.modalUpdate = function (size, selectedNode, updateNodeForm) {
 
-				for (var i in $scope.nodes) {
-					if ($scope.nodes [i] === node) {
-						$scope.nodes.splice(i, 1);
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/nodes/views/edit-node.client.view.html',
+				controller: function ($scope, $modalInstance, node) {
+					$scope.node = node;
+
+					$scope.ok = function () {
+						if (updateNodeForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close($scope.node);
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					node: function () {
+						return selectedNode;
 					}
 				}
-			} else {
-				$scope.node.$remove(function() {
-					$location.path('nodes');
-				});
-			}
-		};
+			});
 
-		// Update existing Node
-		$scope.update = function() {
-			var node = $scope.node;
-
-			node.$update(function() {
-				$location.path('nodes/' + node._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// CREATE CONTROLLER
+nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', '$rootScope',
+	function ($scope, NodesServiceCreate, Notify, $rootScope) {
 
-		// Find a list of Nodes
-		$scope.find = function() {
-			$scope.nodes = Nodes.query();
+		$scope.node = {};
+
+		// Create new Node
+		$scope.create = function () {
+
+			console.log('CHECK CREATE', $scope._node);
+			// Redirect after save
+			NodesServiceCreate.postNode($scope.node, function (node) {
+
+				Notify.sendMsg('NewNode', {'id': node._id});
+				$rootScope.$emit('NodeCreate', node);
+
+
+			}, function (errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// UPDATE CONTROLLER
+nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify',
+	function ($scope, NodesServiceUpdate, Notify) {
 
-		// Find existing Node
-		$scope.findOne = function() {
-			$scope.node = Nodes.get({ 
-				nodeId: $stateParams.nodeId
+		// Update existing Node
+		this.update = function(updatedNode) {
+			var _node = updatedNode;
+
+			NodesServiceUpdate.updateNode($scope.node, function(response) {
+
+				Notify.sendMsg('UpdateNode', {'id': response._id});
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
 			});
 		};
 	}

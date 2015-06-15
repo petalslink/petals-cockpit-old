@@ -55,7 +55,7 @@ var BusDefault = new Bus({
 	port: '2024'
 });
 
-BusDefault.save(function (err, saved) {
+BusDefault.update(function (err, saved) {
 	if (err) {
 		console.log('Bus Default is already saved !', err);
 	}

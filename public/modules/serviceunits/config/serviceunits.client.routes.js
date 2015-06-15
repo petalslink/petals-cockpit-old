@@ -15,11 +15,11 @@ angular.module('serviceunits').config(['$stateProvider',
 		}).
 		state('viewServiceunit', {
 			url: '/serviceunits/:serviceunitId',
-			templateUrl: 'modules/serviceunits/views/view-serviceunit.client.view.html'
-		}).
-		state('editServiceunit', {
+			templateUrl: 'modules/serviceunits/views/serviceunit-list-template.html'
+		});
+/*		state('editServiceunit', {
 			url: '/serviceunits/:serviceunitId/edit',
 			templateUrl: 'modules/serviceunits/views/edit-serviceunit.client.view.html'
-		});
+		});*/
 	}
 ]);

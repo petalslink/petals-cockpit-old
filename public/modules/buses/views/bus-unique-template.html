@@ -1,0 +1,35 @@
+<div class="row" data-ng-controller="BusesController as busesCtrl">
+    <div class="panel-success filterable">
+        <div class="panel-heading">
+            <h2 class="text-center">Info Bus</h2>
+        </div>
+        <table class="table">
+            <thead>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Version" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Port" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="bus in busUnique">
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{bus.name}}</td>
+                <td>{{bus.channelVersion}}</td>
+                <td>{{bus.ip}}</td>
+                <td>{{bus.port}}</td>
+                <td ng-click="busesCtrl.modalUpdate('lg', bus)">
+                    <dir-up-bus bus="bus"></dir-up-bus>
+                </td>
+                <td>
+                    <dir-sup-bus bus="bus"></dir-sup-bus>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

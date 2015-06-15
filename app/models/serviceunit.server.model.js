@@ -13,7 +13,6 @@ var ServiceunitSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Service Unit name',
 		trim: true
 	},
 	states: {
@@ -49,7 +48,7 @@ var ServiceUnitDefault = new Serviceunit({
 	name: 'su-process-facturation'
 });
 
-ServiceUnitDefault.save(function (err, saved) {
+ServiceUnitDefault.update(function (err, saved) {
 	if (err) {
 		console.log('Service Unit Default is already saved !', err);
 	}
