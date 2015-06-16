@@ -1,17 +1,14 @@
 <div ng-controller="treeCtrl as ctrl">
     <div class="tabs-nav">
-        <a>WorkSpace <span class="caret"></span></a>
+        <li><a>{{expanding_property.displayName}} <span class="caret"></span></a></li>
+        <li><a>
+            <input type="text" class="text-color-black ng-valid ng-dirty" ng-model="_filter.title"
+                   placeholder="Search...">
+            <i class="glyphicon glyphicon-search"></i></a>
     </div>
 
-    <div class="list-group-item">
-        <div class="input-group">
-            <input type="text" class="form-control ng-valid ng-dirty" ng-model="_filter.title" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-        </div>
+    <div class="marg5 list-group-item backgroundStartMenu">
+        <p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>
 
         <tree-dnd tree-data="tree_data"
                   tree-class="table table-bordered table-hover table-striped"
@@ -30,9 +27,6 @@
             <table ng-class="$tree_class">
                 <thead>
                 <tr>
-                    <th ng-class="expandingProperty.titleClass" ng-style="expandingProperty.titleStyle">
-                        {{expandingProperty.displayName || expandingProperty.field || expandingProperty}}
-                    </th>
                     <th ng-repeat="col in colDefinitions" ng-class="col.titleClass"
                         ng-style="col.titleStyle">
                         {{col.displayName || col.field}}

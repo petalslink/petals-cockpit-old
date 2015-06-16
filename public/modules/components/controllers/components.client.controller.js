@@ -1,65 +1,133 @@
 'use strict';
 
 // Components controller
-angular.module('components').controller('ComponentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Components',
-	function($scope, $stateParams, $location, Authentication, Components) {
-		$scope.authentication = Authentication;
 
-		// Create new Component
-		$scope.create = function() {
-			// Create new Component object
-			var component = new Components ({
-				name: this.name
+var componentsApp = angular.module('components');
+
+componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Authentication', 'Components', '$modal', '$log', '$rootScope',
+	function ($scope, $stateParams, Authentication, Components, $modal, $log, $rootScope) {
+
+		this.authentication = Authentication;
+
+		// Find a list of Component
+		this.components = Components.getComponents();
+
+		// Recieve Event
+		var self = this;
+		$rootScope.$on('ComponentCreate', function(eventName, component) {
+			self.components.push(component);
+		});
+
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Create a single component record
+		this.modalCreate = function (size, createComponentForm) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/components/views/create-component.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+						if (createComponentForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close();
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size
 			});
 
-			// Redirect after save
-			component.$save(function(response) {
-				$location.path('components/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
 
-		// Remove existing Component
-		$scope.remove = function(component) {
-			if ( component ) { 
-				component.$remove();
+		/********************************************************* OK *********************************************************/
+			// Open a modal window to Update a single component record
+		this.modalUpdate = function (size, selectedComponent, updateComponentForm) {
 
-				for (var i in $scope.components) {
-					if ($scope.components [i] === component) {
-						$scope.components.splice(i, 1);
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/components/views/edit-component.client.view.html',
+				controller: function ($scope, $modalInstance, component) {
+					$scope.component = component;
+
+					$scope.ok = function () {
+						if (updateComponentForm.$valid) {
+							$log.info('Form is valid');
+							$modalInstance.close($scope.component);
+
+						} else {
+							$log.error('Form is not valid');
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					component: function () {
+						return selectedComponent;
 					}
 				}
-			} else {
-				$scope.component.$remove(function() {
-					$location.path('components');
-				});
-			}
-		};
+			});
 
-		// Update existing Component
-		$scope.update = function() {
-			var component = $scope.component;
-
-			component.$update(function() {
-				$location.path('components/' + component._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// CREATE CONTROLLER
+componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', '$rootScope',
+	function ($scope, ComponentsServiceCreate, Notify, $rootScope) {
 
-		// Find a list of Components
-		$scope.find = function() {
-			$scope.components = Components.query();
+		$scope.component = {};
+
+		// Create new Component
+		$scope.create = function () {
+
+			console.log('CHECK CREATE', $scope.component);
+			// Redirect after save
+			ComponentsServiceCreate.postComponent($scope.component, function (component) {
+
+				Notify.sendMsg('NewComponent', {'id': component._id});
+				$rootScope.$emit('ComponentCreate', component);
+
+
+			}, function (errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
 		};
+	}
+]);
+/********************************************************* OK *********************************************************/
+// UPDATE CONTROLLER
+componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 'Notify',
+	function ($scope, ComponentsServiceUpdate, Notify) {
 
-		// Find existing Component
-		$scope.findOne = function() {
-			$scope.component = Components.get({ 
-				componentId: $stateParams.componentId
+		// Update existing Component
+		this.update = function(updatedComponent) {
+			var component = updatedComponent;
+
+			ComponentsServiceUpdate.updateComponent($scope.component, function(response) {
+
+				Notify.sendMsg('UpdateComponent', {'id': response._id});
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
 			});
 		};
 	}

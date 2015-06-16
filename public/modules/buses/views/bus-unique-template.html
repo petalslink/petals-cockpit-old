@@ -1,8 +1,10 @@
-<div class="row" data-ng-controller="BusesController as busesCtrl">
-    <div class="panel-success filterable">
-        <div class="panel-heading">
-            <h2 class="text-center">Info Bus</h2>
+<div class="panel-pricing" data-ng-controller="BusesController as busesCtrl">
+    <div class="panel-green">
+        <div class="panel-heading padZero text-center">
+            <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Bus Settings</h4>
         </div>
+    </div>
+    <div class="table-responsive">
         <table class="table">
             <thead>
             <tr class="filters">
@@ -19,7 +21,7 @@
             <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{bus.name}}</td>
-                <td>{{bus.channelVersion}}</td>
+                <td>{{bus.version}}</td>
                 <td>{{bus.ip}}</td>
                 <td>{{bus.port}}</td>
                 <td ng-click="busesCtrl.modalUpdate('lg', bus)">

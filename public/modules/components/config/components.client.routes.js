@@ -15,11 +15,11 @@ angular.module('components').config(['$stateProvider',
 		}).
 		state('viewComponent', {
 			url: '/components/:componentId',
-			templateUrl: 'modules/components/views/view-component.client.view.html'
-		}).
-		state('editComponent', {
+			templateUrl: 'modules/components/views/component.list.template.html'
+		});
+/*		state('editComponent', {
 			url: '/components/:componentId/edit',
 			templateUrl: 'modules/components/views/edit-component.client.view.html'
-		});
+		});*/
 	}
 ]);

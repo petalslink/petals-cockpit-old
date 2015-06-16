@@ -88,7 +88,8 @@ exports.list = function(req, res) {
  * Component middleware
  */
 exports.componentByID = function(req, res, next, id) { 
-	Component.findById(id).populate('component', 'name').exec(function(err, component) {
+	Component.findById(id).populate('component', 'name')
+		.exec(function(err, component) {
 		if (err) return next(err);
 		if (! component) return next(new Error('Failed to load Component ' + id));
 		req.component = component ;

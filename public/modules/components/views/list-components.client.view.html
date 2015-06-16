@@ -1,19 +1,14 @@
-<section data-ng-controller="ComponentsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Components</h1>
+<section data-ng-controller="ComponentsController as componentsCtrl">
+    <div class="page-header text-color-white">
+        <h1>Component</h1>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="component in components" data-ng-href="#!/components/{{component._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="component.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="component.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="component.name"></h4>
-        </a>
+    <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-success text-center" ng-click="componentsCtrl.modalCreate('lg',size,createComponentForm)">
+            <i class="glyphicon glyphicon-wrench"></i>
+            Create New Component
+        </button>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!components.$resolved || components.length">
-    	No Components yet, why don't you <a href="/#!/components/create">create one</a>?
-    </div>
+    </br>
+    </br>
+    <dir-component-list info="componentsCtrl.components" filter="searchText"></dir-component-list>
 </section>

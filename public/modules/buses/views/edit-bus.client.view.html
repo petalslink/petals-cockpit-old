@@ -30,11 +30,10 @@
                             <label class="control-label" for="version">Version</label>
 
                             <div class="controls">
-                                <span class="input-group-addon">
-                                    <select data-ng-model="bus.version" id="version" class="form-control"
-                                            ng-options="channelItem.item for channelItem in channelVersion">
-                                    </select>
-                                </span>
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="bus.version" id="version"
+                                               class="form-control">
+                                    </span>
                             </div>
                         </div>
                         <div class="form-group">

@@ -1,4 +1,4 @@
-<div class="panel filterable">
+<div class="filterable">
     <!--    <h1>DEFAULT OVERVIEW PAGE</h1>-->
     <div data-ng-controller="BusesController as busesCtrl">
         <dir-bus-unique info="busesCtrl.buses"></dir-bus-unique>
@@ -8,9 +8,9 @@
         <dir-node-unique info="nodesCtrl.nodes"></dir-node-unique>
     </div>
 
-    <!--     <div data-ng-controller="ComponentsController as componentsCtrl">
-            <dir-component-unique info="componentsCtrl.components"></dir-component-unique>
-        </div>-->
+    <div data-ng-controller="ComponentsController as componentsCtrl">
+        <dir-component-unique info="componentsCtrl.components"></dir-component-unique>
+    </div>
 
     <div data-ng-controller="ServiceunitsController as serviceunitsCtrl">
         <dir-serviceunit-unique info="serviceunitsCtrl.serviceunits"></dir-serviceunit-unique>

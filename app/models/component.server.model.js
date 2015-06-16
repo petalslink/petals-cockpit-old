@@ -38,7 +38,7 @@ var ComponentDefault = new Component({
 	name: 'start-facturation'
 });
 
-ComponentDefault.save(function (err, saved) {
+ComponentDefault.update(function (err, saved) {
 	if (err) {
 		console.log('Component Default is already saved !', err);
 	}

@@ -8,12 +8,12 @@
 		</button>
 		<a href="/#!/" class="navbar-brand"><i class="glyphicon glyphicon-cloud"></i> Petals COCKPIT</a>
 	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+	<nav class="collapse navbar-collapse navbar-right" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
 			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
 				<a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle>
 					<i class="glyphicon glyphicon-cog"></i>
-					<span data-ng-bind="item.title"></span>
+					Configure
 					<b class="caret"></b>
 				</a>
 				<ul ng-switch-when="dropdown" class="dropdown-menu">
@@ -24,7 +24,7 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+		<ul class="nav navbar-nav" data-ng-hide="authentication.user">
 <!--			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
 			</li>-->

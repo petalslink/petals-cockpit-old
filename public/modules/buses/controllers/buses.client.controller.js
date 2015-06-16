@@ -93,12 +93,6 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope',
 	function ($scope, BusesServiceCreate, Notify, $rootScope) {
 
-		$scope.channelVersion = [
-			{id: 1, item: 'Petals1'},
-			{id: 2, item: 'Petals2'},
-			{id: 3, item: 'Petals3'}
-		];
-
 		$scope.bus = {};
 
 		// Create new Bus
@@ -123,12 +117,6 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$roo
 // UPDATE CONTROLLER
 busesApp.controller('BusesUpdateController', ['$scope', 'Buses', 'Notify',
 	function ($scope, BusesServiceUpdate, Notify) {
-
-		$scope.channelVersion = [
-			{id: 1, item: 'Petals 1'},
-			{id: 2, item: 'Petals 2'},
-			{id: 3, item: 'Petals 3'}
-		];
 
 		// Update existing Bus
 		this.update = function(updatedBus) {

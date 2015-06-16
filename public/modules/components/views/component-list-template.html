@@ -1,0 +1,42 @@
+<div class="row" data-ng-controller="ComponentsController as componentsCtrl">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Petals List Component</h3>
+        </div>
+        <table class="table">
+            <thead>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Search Component...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+            </div>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="component in componentsList | filter:searchText | orderBy:'-Name'" >
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{component.name}}</td>
+                <td ng-click="componentsCtrl.modalUpdate('lg', component)">
+                    <dir-up-component component="component"></dir-up-component>
+                </td>
+                <td>
+                    <dir-sup-component component="component"></dir-sup-component>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- If no component in list, write a msg -->
+    <div class="alert alert-warning text-center" data-ng-hide="!components.$resolved || components.length">
+        No Bus yet, why don't you <a href="/#!/components/create">create one</a>?
+    </div>
+</div>

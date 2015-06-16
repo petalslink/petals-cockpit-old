@@ -53,7 +53,7 @@ serviceunitsApp.directive('dirSupServiceunit', ['Serviceunits',
             link: function ($scope, element, attrs) {
                 $scope.removeServiceunit = function() {
                     Serviceunits.deleteServiceunit({serviceunitId: $scope.serviceunit._id}, function() {
-                        console.log($scope.serviceunit.name, $scope.serviceunit.version, $scope.serviceunit._id, 'has been deleted !');
+                        console.log($scope.serviceunit.name, $scope.serviceunit.states, 'has been deleted !');
                     });
                 };
             }
