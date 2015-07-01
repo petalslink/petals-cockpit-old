@@ -41,6 +41,24 @@ serviceunitsApp.directive('dirServiceunitUnique', ['Serviceunits',
     }
 ]);
 
+serviceunitsApp.directive('dirServiceunitTree', ['Serviceunits',
+    function (Serviceunits) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                serviceunitName: '=info'
+            },
+            transclude: true,
+            templateUrl: '/modules/serviceunits/views/serviceunit-name-tree.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+
+
 serviceunitsApp.directive('dirSupServiceunit', ['Serviceunits',
     function (Serviceunits) {
 

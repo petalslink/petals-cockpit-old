@@ -3,7 +3,7 @@
     <div class="page-header text-color-white">
         <h1>Edit Profile: {{user.username}}</h1>
     </div>
-    <div class="text-color-white">
+    <div class="text-color-black panel">
         <form name="updateUserForm" ng-submit="ok()" novalidate>
             <fieldset>
                 <div class="row">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <i class="glyphicon glyphicon-user cust-profile"
+                        <i class="glyphicon glyphicon-user cust-profile text-color-black"
                            ng-class="{
                            'text-primary': user.capacities.admin, 'text-green': user.capacities.adminBus, 'text-orange': user.capacities.developer,
                            'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}" ></i>

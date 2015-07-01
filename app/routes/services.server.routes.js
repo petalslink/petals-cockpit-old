@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
-	var services = require('../../app/controllers/services.server.controller');
+	var services = require('../controllers/services.server.controller');
 
 	// Services Routes
 	app.route('/services').put(users.requiresLogin, services.update)

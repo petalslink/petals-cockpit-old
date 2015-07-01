@@ -27,14 +27,13 @@ angular.module('buses')
 			}
 		]);
 	}
-	]);
+	])
 
-/*
 	// Configuring the Articles module
 	.run(['Menus', function (Menus) {
 		// Set top bar menu items
 		Menus.addMenuItem('topbar', 'Bus', 'buses', 'dropdown', '/buses(/create)?');
 		Menus.addSubMenuItem('topbar', 'buses', 'List Bus', 'buses');
-		/!*Menus.addSubMenuItem('topbar', 'buses', 'New Bus', 'buses/create');*!/
+		/*Menus.addSubMenuItem('topbar', 'buses', 'New Bus', 'buses/create');*/
 	}
-	]);*/
+	]);

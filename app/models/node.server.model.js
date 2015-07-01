@@ -40,7 +40,7 @@ var NodeSchema = new Schema({
 var Node = mongoose.model('Node', NodeSchema);
 
 var NodeDefault = new Node({
-	name: 'start-facturation',
+	name: 'N-Toulouse1',
 	ip: '10.3.44.5'
 });
 

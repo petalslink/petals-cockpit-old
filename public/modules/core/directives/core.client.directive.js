@@ -8,7 +8,7 @@ app.directive('dirComponentDisplay',
         return {
             restrict: 'E',
             scope: {
-                component: '='
+                object: '='
             },
             transclude: true,
             templateUrl: '/modules/core/views/component-display.client.view.html',
@@ -25,7 +25,7 @@ app.directive('dirComponentTree',
         return {
             restrict: 'E',
             scope: {
-                component: '='
+                object: '='
             },
             transclude: true,
             templateUrl: '/modules/core/views/component-tree.client.view.html',
@@ -35,3 +35,21 @@ app.directive('dirComponentTree',
         };
     }
 );
+
+app.directive('dirObjectTree',
+    function () {
+
+        return {
+            restrict: 'E',
+            scope: {
+                object: '='
+            },
+            transclude: true,
+            templateUrl: '/modules/core/views/object-name-tree.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+);
+

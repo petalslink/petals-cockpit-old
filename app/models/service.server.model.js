@@ -29,10 +29,10 @@ var ServiceSchema = new Schema({
 var Service = mongoose.model('Service', ServiceSchema);
 
 var ServiceDefault = new Service({
-	name: 'start-facturation'
+	name: 'S-Tools'
 });
 
-ServiceDefault.save(function (err, saved) {
+ServiceDefault.update(function (err, saved) {
 	if (err) {
 		console.log('Service Default is already saved !', err);
 	}

@@ -12,7 +12,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
         // Find a list of Users
         this.users = Users.getUsers();
 
-        // Recieve Event
+        // Retrieve Event
         var self = this;
         $rootScope.$on('UserCreate', function(eventName, user) {
             self.users.push(user);

@@ -1,184 +1,283 @@
-[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{
-	display:none !important;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+    display: none !important;
 }
 
-ng\:form{
-	display:block;
+ng\:form {
+    display: block;
 }
+
 .content {
-	margin-top: 50px;
+    margin-top: 50px;
 }
+
 .undecorated-link:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
+
 .ng-invalid.ng-dirty {
-	border-color: #FA787E;
+    border-color: #FA787E;
 }
+
 .ng-valid.ng-dirty {
-	border-color: #78FA89;
+    border-color: #78FA89;
 }
+
 body {
-	margin: 0;
-	padding: 0;
-	background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-	background-size: cover;
-	color: inherit;
+    margin: 0;
+    padding: 0;
+    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
+    background-size: cover;
+    color: inherit;
 }
+
 .backgroundStartMenu {
-	background: #FFFFFF;
-	padding: 0;
+    background: #FFFFFF;
+    padding: 0;
 }
 
 .backgroundTabHome:after {
-	width:100%;
-	height:100%;
-	background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
 }
 
 .backgroundTabHome {
-	background: #FFFFFF;
-	height: 800px;
-	padding: 0;
+    background: #FFFFFF;
+    height: 800px;
+    padding: 0;
 }
 
 .backgroundHome:after {
-	width:100%;
-	height:100%;
-	background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
 }
+
 .backgroundHome {
-	position: relative;
-	background: linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -moz-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -o-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -ms-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    position: relative;
+    background: linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 }
 
-#section .backgroundBertrand {
-	background: #FFFFFF;
-}
 .text-color-white {
-	color: #ffffff;
-}
-.text-color-black {
-	color: #000000;
+    color: #ffffff;
 }
 
-.tabs-nav {padding: 20px 0 0; list-style: none;}
-.tabs-nav li {display: inline;}
+.text-color-black {
+    color: #000000;
+}
+
+.tabs-nav {
+    padding: 20px 0 0;
+    list-style: none;
+}
+
+.tabs-nav li {
+    display: inline;
+}
+
 .tabs-nav a {
-	display:inline-block;
-	border: 1px solid #ddd;
-	border-bottom: none;
-	padding: 15px;
-	cursor: pointer;
-	border-radius: 5px 5px 0 0;
-	font-size: 14px;
-	color: #fff;
-	background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	text-decoration: none;
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    text-decoration: none;
 }
 
 .tabs-nav .active {
-	background: #ffffff;
-	color: #149040;
-	border-bottom: 1px solid #ffffff;
-	margin-bottom: -1px;
+    background: #ffffff;
+    color: #149040;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
 }
 
 .tab-content {
-	border: 1px solid #ddd;
-	padding: 20px;
-	margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
 }
-.marg5 { margin-top: -10px;}
-.glyphicon { margin-right:0; }
-.panel-body { padding:0;}
-.panel-body table tr td { padding: 0; }
-.panel-body .table {margin: 0;color: #FF0000;}
+
+.marg5 {
+    margin-top: -10px;
+}
+
+.glyphicon {
+    margin-right: 0;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+.panel-body table tr td {
+    padding: 0;
+}
+
+.panel-body .table {
+    margin: 0;
+    color: #FF0000;
+}
+
 .padZero {
-	padding: 0;
+    padding: 0;
 }
+
 .panel-green {
-	padding: 0;
-	border-color: #149040;
-	background: linear-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
-	background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
-	background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
-	background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.99) 0%, rgba(0, 0, 0, 0.20) 100%) repeat scroll 0 0 transparent;
+    color: #fff;
+    text-shadow: #000 0 1px;
+    box-shadow: 5px;
+    padding: 5px;
+    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-gradient(linear, left top, right top,
+    color-stop(0, rgb(0, 0, 0)),
+    color-stop(0.50, rgb(79, 79, 79)),
+    color-stop(1, rgb(21, 21, 21)));
+    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    border-bottom: 1px solid #ddd;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -ms-border-top-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
 }
+
 .btnMenuBus {
-	background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-	background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
 }
 
 .textMenuBus, .textMenuBus:visited {
-	color: #FFF;
+    color: #FFF;
 }
+
 .textMenuBus, .textMenuBus:focus {
-	color: #149040;
+    color: #149040;
 }
+
 .textMenuBus:hover {
-	color: #149040;
+    color: #149040;
 }
 
 .cust-overview {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 .slide-animate-container {
-	position:relative;
-	background:white;
-	border:1px solid black;
-	height:40px;
-	overflow:hidden;
+    position: relative;
+    background: white;
+    border: 1px solid black;
+    height: 40px;
+    overflow: hidden;
 }
 
 .slide-animate {
-	padding:10px;
+    padding: 10px;
 }
 
 .slide-animate.ng-enter, .slide-animate.ng-leave {
-	-webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-	-moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-	-o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	display:block;
-	padding:10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    padding: 10px;
 }
 
 .slide-animate.ng-enter {
-	top:-50px;
+    top: -50px;
 }
+
 .slide-animate.ng-enter.ng-enter-active {
-	top:0;
+    top: 0;
 }
 
 .slide-animate.ng-leave {
-	top:0;
+    top: 0;
 }
+
 .slide-animate.ng-leave.ng-leave-active {
-	top:50px;
+    top: 50px;
+}
+
+.colorTreeSelect {
+    color: #111111;
+}
+
+.colorTreeSelect:hover {
+    color: #149040;
+    border: 2px solid #149040;
+}
+.colorLinkTree {
+    text-decoration: none;
+}
+
+.colorLinkTree:hover {
+    color: #149040;
+    text-decoration: none;
+}
+
+/*.colorTreeSelect:focus, .colorTreeSelect:active {
+    color: #149040;
+    border: 2px solid #149040;
+}*/
+
+.tree-dnd-node > td:hover {
+    position: relative;
+    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+    background: -webkit-gradient(linear, left top, right top,
+    color-stop(0, rgb(0, 0, 0)),
+    color-stop(0.50, rgb(79, 79, 79)),
+    color-stop(1, rgb(21, 21, 21))) !important;
+    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+}
+
+.tree-dnd-node > tr:active {
+    position: relative;
+    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+    background: -webkit-gradient(linear, left top, right top,
+    color-stop(0, rgb(0, 0, 0)),
+    color-stop(0.50, rgb(79, 79, 79)),
+    color-stop(1, rgb(21, 21, 21))) !important;
+    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+}
+
+.tree-dnd-node{
+    border-radius: 4px !important;
+}
+.tree-dnd-nodes .tree-dnd-node {
+    border-radius: 4px !important;
 }

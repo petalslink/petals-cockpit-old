@@ -41,6 +41,23 @@ componentsApp.directive('dirComponentUnique', ['Components',
     }
 ]);
 
+componentsApp.directive('dirCompoTree', ['Components',
+    function (Components) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                componentName: '=info'
+            },
+            transclude: true,
+            templateUrl: '/modules/components/views/component-name-tree.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+
 componentsApp.directive('dirSupComponent', ['Components',
     function (Components) {
 

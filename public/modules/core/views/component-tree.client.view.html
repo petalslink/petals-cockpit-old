@@ -1,18 +1,24 @@
-<div ng-controller="treeCtrl as ctrl">
+<div ng-controller="treeCtrl as myCtrl">
     <div class="tabs-nav">
         <li><a>{{expanding_property.displayName}} <span class="caret"></span></a></li>
-        <li><a>
-            <input type="text" class="text-color-black ng-valid ng-dirty" ng-model="_filter.title"
-                   placeholder="Search...">
-            <i class="glyphicon glyphicon-search"></i></a>
+        <li>
+            <a>
+                <input type="search" class="text-color-black" ng-model="_filter.title"
+                       placeholder="Search...">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </li>
     </div>
 
     <div class="marg5 list-group-item backgroundStartMenu">
         <p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>
 
-        <tree-dnd tree-data="tree_data"
-                  tree-class="table table-bordered table-hover table-striped"
+        <tree-dnd class="tree-dnd dnd dnd-hover b-b b-light"
+                  tree-data="tree_data"
+                  tree-class="table table-bordered table-hover"
+                  callbacks="callbacks"
                   tree-control="my_tree"
+                  primary-key="parentId"
                   column-defs="col_defs"
                   filter="_filter"
                   expand-on="expanding_property"
@@ -22,38 +28,76 @@
                   icon-leaf="none"
                   icon-expand="glyphicon glyphicon-chevron-down"
                   icon-collapse="glyphicon glyphicon-chevron-right"
+                  template-url="user.template.html"
                 >
 
             <table ng-class="$tree_class">
                 <thead>
                 <tr>
-                    <th ng-repeat="col in colDefinitions" ng-class="col.titleClass"
-                        ng-style="col.titleStyle">
-                        {{col.displayName || col.field}}
+                    <th>
+                        {{col.displayName}}
                     </th>
                 </tr>
                 </thead>
-                <tbody tree-dnd-nodes="tree_nodes">
-                <tr tree-dnd-node="node" ng-repeat="node in nodes track by node.__hashKey__ "
+<!--                <tbody tree-dnd-nodes="tree_nodes">
+                &lt;!&ndash;
+                    tree-dnd-node-handle = Drag & Drop Branch
+                    ng-click="toggleExpand(node)" = Open & Close Branch
+                    __icon_class__ or $icon_class
+                &ndash;&gt;
+                <tr class="active"
+                    tree-dnd-node="node"
+                    ng-repeat="node in nodes track by node.__hashKey__ "
                     ng-show="enabledFilter ? node.__filtered_visible__ === true && node.__visible__ : node.__visible__"
-                    ng-class="enabledFilter ? (node.__filtered__ === true? 'success': '') : (node.__selected__ ? ' active':'')"
-                    ng-click="onSelect(node)">
-                    <td ng-if="!expandingProperty.template" tree-dnd-node-handle
+                    ng-class="(node.__selected__ ? ' active':'')"
+                    ng-click="select_handler(node)"
+                        >
+                    <td class="colorTreeSelect active"
                         ng-style="expandingProperty.cellStyle ? expandingProperty.cellStyle : {'padding-left': $callbacks.calsIndent(node.__level__)}"
-                        ng-class="expandingProperty.cellClass" compile="expandingProperty.cellTemplate">
-                        <a data-nodrag> <i ng-class="$icon_class" ng-click="toggleExpand(node)"
-                                           class="tree-icon"></i>
-                        </a> {{node[expandingProperty.field] || node[expandingProperty]}}
-                    </td>
-                    <td ng-if="expandingProperty.template" compile="expandingProperty.template"></td>
-                    <td ng-repeat="col in colDefinitions" ng-class="col.cellClass" ng-style="col.cellStyle"
-                        compile="col.cellTemplate">
-                        {{node[col.field]}}
+                        ng-class="expandingProperty.cellClass"
+                        compile="expandingProperty.cellTemplate">
+                        <a data-nodrag>
+                            <i ng-class="$icon_class"
+                               ng-click="toggleExpand(node)"
+                               class="tree-icon glyphicon glyphicon-file"></i>
+                        </a>
+                        {{node[expandingProperty.field]}}{{node[expandingProperty]}}
                     </td>
                 </tr>
+                </tbody>-->
+
+                <tbody class="tree-dnd-nodes" tree-dnd-nodes="tree_nodes">
+
+                    <tr class="ng-scope tree-dnd-node active"
+                        tree-dnd-node="node"
+                        ng-repeat="node in tree_nodes track by node.__hashKey__"
+                        ng-show="enabledFilter ? node.__filtered_visible__ === true && node.__visible__ : node.__visible__"
+                        ng-class="enabledFilter ? (node.__filtered__ === true? 'success': '') : (node.__selected__ ? ' active':'')"
+                        ng-click="onSelect(node)"
+                        >
+                        <td class="colorTreeSelect ng-binding tree-dnd-handle v-middle"
+
+                            ng-style="expandingProperty.cellStyle ? expandingProperty.cellStyle : {'padding-left': $callbacks.calsIndent(node.__level__)}"
+                            ng-class="expandingProperty.cellClass"
+                            compile="expandingProperty.cellTemplate">
+                            <a data-nodrag="" class="colorLinkTree">
+                                <i ng-class="$icon_class"
+                                   ng-click="toggleExpand(node)"
+                                   class="tree-icon glyphicon glyphicon-chevron-right">
+                                </i>
+
+                                <!--{{node[expandingProperty.field]}}{{node[expandingProperty]}}-->
+                                {{node.title[0].name}}
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
+
+
             </table>
+
         </tree-dnd>
 
     </div>
+
 </div>

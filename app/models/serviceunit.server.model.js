@@ -45,7 +45,7 @@ var ServiceunitSchema = new Schema({
 var Serviceunit = mongoose.model('Serviceunit', ServiceunitSchema);
 
 var ServiceUnitDefault = new Serviceunit({
-	name: 'su-process-facturation'
+	name: 'SU-Achat'
 });
 
 ServiceUnitDefault.update(function (err, saved) {

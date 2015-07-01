@@ -1,0 +1,31 @@
+<div class="panel-pricing panel-primary" data-ng-controller="ServicesController as servicesCtrl">
+    <div class="panel-green">
+        <div class="panel-heading padZero text-center">
+            <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Service Settings</h4>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table panel">
+            <thead>
+            <tr class="filters">
+                <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="service in serviceUnique">
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{service.name}}</td>
+                <td ng-click="servicesCtrl.modalUpdate('lg', service)">
+                    <dir-up-service service="service"></dir-up-service>
+                </td>
+                <td>
+                    <dir-sup-service service="service"></dir-sup-service>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

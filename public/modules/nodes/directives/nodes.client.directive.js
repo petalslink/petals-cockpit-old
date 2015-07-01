@@ -41,6 +41,23 @@ nodesApp.directive('dirNodeUnique', ['Nodes',
     }
 ]);
 
+nodesApp.directive('dirNodeTree', ['Nodes',
+    function (Nodes) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                nodeName: '=info'
+            },
+            transclude: true,
+            templateUrl: '/modules/nodes/views/node-name-tree.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+
 nodesApp.directive('dirSupNode', ['Nodes',
     function (Nodes) {
 

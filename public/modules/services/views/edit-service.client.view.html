@@ -1,23 +1,55 @@
-<section data-ng-controller="ServicesController" data-ng-init="findOne()">
-    <div class="page-header">
-        <h1>Edit Service</h1>
+<section data-ng-controller="ServicesUpdateController as serviceUpCtrl">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Update: {{service.name}}</h3>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+    <div class="modal-body">
+        <form name="updateServiceForm" ng-submit="ok()" novalidate>
             <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="service.name" id="name" class="form-control" placeholder="Name" required>
+                <div class="row">
+                    <div class="form-group">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div class="alert alert-danger" role="alert">
+                                <strong data-ng-bind="error"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div data-ng-show="close" class="text-center text-success">
+                            <div class="alert alert-success" role="alert">
+                                <strong data-ng-bind="close"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <i class="glyphicon glyphicon-flash cust-profile"></i>
+                        <br/><br/>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="control-label" for="name">Name</label>
+
+                            <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="service.name" id="name"
+                                               class="form-control">
+                                    </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
             </fieldset>
         </form>
     </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-lg" ng-click="serviceUpCtrl.update(service)">
+            <i class="glyphicon glyphicon-refresh"></i>
+            Update Service
+        </button>
+        <button class="btn btn-warning btn-lg" ng-click="cancel()">
+            <i class="glyphicon glyphicon-remove"></i>
+            Close
+        </button>
+    </div>
+
 </section>

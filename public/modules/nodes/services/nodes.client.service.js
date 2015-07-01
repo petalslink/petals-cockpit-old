@@ -1,6 +1,6 @@
 'use strict';
 
-//Buses service used to communicate Bus REST endpoints
+//Services service used to communicate Service REST endpoints
 
 var nodesApp = angular.module('nodes');
 

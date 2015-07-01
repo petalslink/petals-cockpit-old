@@ -98,7 +98,7 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', '$roo
 		// Create new Node
 		$scope.create = function () {
 
-			console.log('CHECK CREATE', $scope._node);
+			console.log('CHECK CREATE', $scope.node);
 			// Redirect after save
 			NodesServiceCreate.postNode($scope.node, function (node) {
 
@@ -120,7 +120,7 @@ nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify',
 
 		// Update existing Node
 		this.update = function(updatedNode) {
-			var _node = updatedNode;
+			var node = updatedNode;
 
 			NodesServiceUpdate.updateNode($scope.node, function(response) {
 

@@ -35,7 +35,7 @@ var ComponentSchema = new Schema({
 var Component = mongoose.model('Component', ComponentSchema);
 
 var ComponentDefault = new Component({
-	name: 'start-facturation'
+	name: 'SE-ACTIVITI'
 });
 
 ComponentDefault.update(function (err, saved) {

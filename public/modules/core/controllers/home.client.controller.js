@@ -39,114 +39,114 @@ app.controller('HomeController', ['$scope', 'Authentication',
     }
 ]);
 
-app.controller('treeCtrl', ['$scope', '$TreeDnDConvert', function ($scope, $TreeDnDConvert) {
+app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
+        function ($scope, $timeout, $TreeDnDConvert, Buses, Nodes, Components, Serviceunits, Services) {
 
-        $scope.my_tree = {};
-        $scope.tree_data = {};
-        $scope._filter = {};
-        $scope.expanding_property = {
-            field:       'title',
-            titleClass:  'text-left',
-            cellClass:   'v-middle',
-            displayName: 'Name WorkSpace'
-        };
-        $scope.col_defs = [];
+            $scope.my_tree = {};
+            $scope._filter = {};
+            $scope.tree_nodes = [];
+            /*$scope.tree_data = {};*/
+            $scope.expanding_property = {
+                field: 'title',
+                titleClass: 'text-left',
+                cellClass: 'v-middle',
+                displayName: 'Name WorkSpace'
+            };
+            $scope.col_defs = [];
+            $scope.select_handler = function (node) {
+            };
+            $scope.click_handler = function (node) {
+            };
 
-        $scope.select_handler = function (node) {
+            this.buses = Buses.getBuses();
+            this.nodes = Nodes.getNodes();
+            this.components = Components.getComponents();
+            this.serviceunits = Serviceunits.getServiceunits();
+            this.services = Services.getServices();
 
-        };
 
-        $scope.click_handler = function (node) {
+            $scope.dataComponents = [
+                {
+                    'parentId':'1',
+                    'title':this.buses,
+                    'parent':null,
+                    '__children__': [
+                        {
+                            'parentId':'2',
+                            'title':this.nodes,
+                            'parent':1,
+                            '__children__': [
+                                {
+                                    'parentId':'3',
+                                    'title':this.components,
+                                    'parent':2,
+                                    '__children__': [
+                                        {
+                                            'parentId':'4',
+                                            'title':this.serviceunits,
+                                            'parent':3,
+                                            '__children__': [
+                                                {
+                                                    'parentId':'5',
+                                                    'title':this.services,
+                                                    'parent':4,
+                                                    '__children__': []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
 
-        };
+                }
+            ];
+            $scope.tree_data = $TreeDnDConvert.line2tree($scope.dataComponents, 'parentId', 'parent');
 
-        var components = [
-            {'id':'1','title':'Bus','parent':null},
-            {'id':'2','title':'Node','parent':1},
-            {'id':'3','title':'Component','parent':2},
-            {'id':'4','title':'Service Unit','parent':3},
-            {'id':'5','title':'Service','parent':4}
-        ];
 
-        $scope.tree_data = $TreeDnDConvert.line2tree(components, 'id', 'parent');
-    }]
+
+/*            $TreeDnDConvert.line2tree(function(response) {
+                // Assign the response INSIDE the callback
+                $scope.data.components = response;
+            });*/
+
+
+            /*
+             var components = [
+             {
+             'id':'1',
+             'title':'Bus',
+             'name': 'BUS-RH Domain',
+             'parent':null
+
+             },
+             {
+             'id':'2',
+             'title':'Node',
+             'parent':1
+             },
+             {
+             'id':'3',
+             'title':'Component',
+             'parent':2
+
+             },
+             {
+             'id':'4',
+             'title':'Service Unit',
+             'parent':3
+             },
+             {
+             'id':'5',
+             'title':'Service',
+             'parent':4
+             }
+             ];*/
+            /*
+             $scope.tree_data = $TreeDnDConvert.line2tree(components, buses, 'id', 'parent');*/
+        }]
 );
-
-
-/*
-app.controller('NavTreeCtrl', ['$scope',
-
-    function ($scope) {
-
-        var node_selected, component_selected, serviceUnit_selected, service_selected;
-
-        $scope.my_select_handler = function (branch) {
-            var ref;
-            $scope.output = "You selected: " + branch.label;
-            if ((ref = branch.data) != null ? ref.description : void 0) {
-                return $scope.output += '(' + branch.data.description + ')';
-            }
-        };
-
-        node_selected = function (branch) {
-            return $scope.output = "NODE : " + branch.label;
-        };
-
-        component_selected = function (branch) {
-            return $scope.output = "COMPONENT : " + branch.label;
-        };
-
-        serviceUnit_selected = function (branch) {
-            return $scope.output = "SERVICE UNIT : " + branch.label;
-        };
-
-        service_selected = function (branch) {
-            return $scope.output = "SERVICE : " + branch.label;
-        };
-
-
-        $scope.data = [
-            {
-                label: 'Bus',
-                data: {
-                    definition: "Bus Test",
-                    data_can_contain_anything: true
-                },
-                onSelect: function (branch) {
-                    return $scope.output = "BUS : " + branch.data.definition;
-                },
-                children: [
-                    {
-                        label: 'Node',
-                        onSelect: node_selected,
-                        children: [
-                            {
-                                label: 'Component',
-                                onSelect: component_selected,
-                                children: [
-                                    {
-                                        label: 'Service Unit',
-                                        onSelect: serviceUnit_selected,
-                                        children: [
-                                            {
-                                                label: 'Service',
-                                                onSelect: service_selected
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
-    }
-
-]);
-
-*/
-
 
 
 

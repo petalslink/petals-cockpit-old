@@ -49,7 +49,7 @@ var BusSchema = new Schema({
 var Bus = mongoose.model('Bus', BusSchema);
 
 var BusDefault = new Bus({
-	name: 'Facturation',
+	name: 'BUS-RH Domain',
 	version: 'Petals 3',
 	ip: '192.168.168.10',
 	port: '2024'

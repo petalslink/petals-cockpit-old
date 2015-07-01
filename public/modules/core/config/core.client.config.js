@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nodes')
+angular.module('core')
 	// Config HTTP Error Handling
 	.config(['$httpProvider', function ($httpProvider) {
 		// Set the httpProvider "not authorized" interceptor
@@ -26,14 +26,5 @@ angular.module('nodes')
 				};
 			}
 		]);
-	}
-	])
-
-	// Configuring the Articles module
-	.run(['Menus', function (Menus) {
-		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Node', 'nodes', 'dropdown', '/nodes(/create)?');
-		Menus.addSubMenuItem('topbar', 'nodes', 'List Node', 'nodes');
-		/*Menus.addSubMenuItem('topbar', 'nodes', 'New Node', 'nodes/create');*/
 	}
 	]);
