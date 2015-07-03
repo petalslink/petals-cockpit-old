@@ -1,14 +1,17 @@
 <section data-ng-controller="ServicesController as servicesCtrl">
-    <div class="page-header text-color-white">
-        <h1>Service</h1>
+    <div class="container">
+        <div class="page-header text-color-white">
+            <h1>Service</h1>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <button type="button" class="btn btn-success text-center"
+                    ng-click="servicesCtrl.modalCreate('lg',size,createServiceForm)">
+                <i class="glyphicon glyphicon-wrench"></i>
+                Create New Service
+            </button>
+        </div>
+        </br>
+        </br>
+        <dir-service-list info="servicesCtrl.services" filter="searchText"></dir-service-list>
     </div>
-    <div class="col-xs-12 col-sm-4">
-        <button type="button" class="btn btn-success text-center" ng-click="servicesCtrl.modalCreate('lg',size,createServiceForm)">
-            <i class="glyphicon glyphicon-wrench"></i>
-            Create New Service
-        </button>
-    </div>
-    </br>
-    </br>
-    <dir-service-list info="servicesCtrl.services" filter="searchText"></dir-service-list>
 </section>

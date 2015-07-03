@@ -27,15 +27,14 @@ angular.module('services')
             }
         ]);
     }
-    ]);
+    ])
 
-/*
 // Configuring the Articles module
 .
 run(['Menus', function (Menus) {
     // Set top bar menu items
     Menus.addMenuItem('topbar', 'Service', 'services', 'dropdown', '/services(/create)?');
     Menus.addSubMenuItem('topbar', 'services', 'List Service', 'services');
-    /!*Menus.addSubMenuItem('topbar', 'services', 'New Service', 'services/create');*!/
+    /*Menus.addSubMenuItem('topbar', 'services', 'New Service', 'services/create');*/
 }
-]);*/
+]);

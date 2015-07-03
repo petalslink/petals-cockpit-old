@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Component = mongoose.model('Component'),
+	Node = mongoose.model('Node'),
 	_ = require('lodash');
 
 /**
@@ -15,13 +16,25 @@ exports.create = function(req, res) {
 	var component = new Component(req.body);
 	component.user = req.user;
 
-	component.save(function(err) {
+	component.save(function(err, savedComponent) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(component);
+			Node.findById(component.parentServer).exec(function(err, node) {
+				if (err || !node) {
+					return res.status(400).send({
+						message: 'Could not findById parentServer' + err
+					});
+				} else {
+					savedComponent = savedComponent.toJSON();
+					savedComponent.parentNode = node;
+					console.log('Key_Value', node, savedComponent);
+					res.jsonp(savedComponent);
+				}
+			});
+
 		}
 	});
 };
@@ -73,7 +86,7 @@ exports.delete = function(req, res) {
  * List of Components
  */
 exports.list = function(req, res) { 
-	Component.find().sort('-created').populate('component', 'name').exec(function(err, components) {
+	Component.find().sort('-created').populate('parentServer').exec(function(err, components) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +101,7 @@ exports.list = function(req, res) {
  * Component middleware
  */
 exports.componentByID = function(req, res, next, id) { 
-	Component.findById(id).populate('component', 'name')
+	Component.findById(id).populate('parentServer')
 		.exec(function(err, component) {
 		if (err) return next(err);
 		if (! component) return next(new Error('Failed to load Component ' + id));

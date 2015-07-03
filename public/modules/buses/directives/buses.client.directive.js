@@ -41,24 +41,6 @@ busesApp.directive('dirBusUnique', ['Buses',
     }
 ]);
 
-busesApp.directive('dirBusTree', ['Buses',
-    function (Buses) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                busName: '=info'
-            },
-            transclude: true,
-            templateUrl: '/modules/buses/views/bus-name-tree.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
-
 busesApp.directive('dirSupBus', ['Buses',
     function (Buses) {
 

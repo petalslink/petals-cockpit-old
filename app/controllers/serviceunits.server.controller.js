@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Serviceunit = mongoose.model('Serviceunit'),
+	Component = mongoose.model('Component'),
 	_ = require('lodash');
 
 /**
@@ -15,13 +16,25 @@ exports.create = function(req, res) {
 	var serviceunit = new Serviceunit(req.body);
 	serviceunit.user = req.user;
 
-	serviceunit.save(function(err) {
+	serviceunit.save(function(err, savedServiceunit) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(serviceunit);
+			Component.findById(serviceunit.parentComponent).exec(function(err, component) {
+				if (err || !component) {
+					return res.status(400).send({
+						message: 'Could not findById parentComponent' + err
+					});
+				} else {
+					savedServiceunit = savedServiceunit.toJSON();
+					savedServiceunit.parentComponent = component;
+					console.log('Key_Value', component, savedServiceunit);
+					res.jsonp(savedServiceunit);
+				}
+			});
+
 		}
 	});
 };
@@ -73,7 +86,7 @@ exports.delete = function(req, res) {
  * List of Serviceunits
  */
 exports.list = function(req, res) { 
-	Serviceunit.find().sort('-created').populate('serviceunit', 'name').exec(function(err, serviceunits) {
+	Serviceunit.find().sort('-created').populate('parentComponent').exec(function(err, serviceunits) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +101,7 @@ exports.list = function(req, res) {
  * Serviceunit middleware
  */
 exports.serviceunitByID = function(req, res, next, id) { 
-	Serviceunit.findById(id).populate('serviceunit', 'name')
+	Serviceunit.findById(id).populate('parentComponent')
 		.exec(function(err, serviceunit) {
 		if (err) return next(err);
 		if (! serviceunit) return next(new Error('Failed to load Service Unit ' + id));

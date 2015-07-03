@@ -26,6 +26,10 @@ var ServiceunitSchema = new Schema({
 		}],
 		default: ['unknown']
 	},
+	parentComponent: {
+		type: Schema.Types.ObjectId,
+		ref: 'Component'
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -36,7 +40,7 @@ var ServiceunitSchema = new Schema({
 	},
 	services: [
 		{
-			type: Schema.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: 'Service'
 		}
 	]

@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Buses
  */
 exports.list = function(req, res) { 
-	Bus.find().sort('-created').populate('bus', 'name').exec(function(err, buses) {
+	Bus.find().sort('-created').populate('bus').exec(function(err, buses) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +88,7 @@ exports.list = function(req, res) {
  * Bus middleware
  */
 exports.busByID = function(req, res, next, id) {
-	Bus.findById(id).populate('bus', 'name')
+	Bus.findById(id).populate('bus')
 		.exec(function(err, bus) {
 		if (err) return next(err);
 		if (! bus) return next(new Error('Failed to load Bus ' + id));
@@ -96,16 +96,6 @@ exports.busByID = function(req, res, next, id) {
 		next();
 	});
 };
-/*exports.busByID = function(req, res, next, id) {
-	Bus.findOne({
-		_id: id
-	}).exec(function(err, bus) {
-		if (err) return next(err);
-		if (!bus) return next(new Error('Failed to load Bus ' + id));
-		req.bus = bus;
-		next();
-	});
-};*/
 
 /**
  * Bus authorization middleware

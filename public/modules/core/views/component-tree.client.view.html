@@ -11,7 +11,7 @@
     </div>
 
     <div class="marg5 list-group-item backgroundStartMenu">
-        <p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>
+        <!--<p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>-->
 
         <tree-dnd class="tree-dnd dnd dnd-hover b-b b-light"
                   tree-data="tree_data"
@@ -75,7 +75,7 @@
                         ng-class="enabledFilter ? (node.__filtered__ === true? 'success': '') : (node.__selected__ ? ' active':'')"
                         ng-click="onSelect(node)"
                         >
-                        <td class="colorTreeSelect ng-binding tree-dnd-handle v-middle"
+                        <td class="colorTreeSelect ng-binding v-middle"
 
                             ng-style="expandingProperty.cellStyle ? expandingProperty.cellStyle : {'padding-left': $callbacks.calsIndent(node.__level__)}"
                             ng-class="expandingProperty.cellClass"

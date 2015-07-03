@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Node = mongoose.model('Node'),
+	Bus = mongoose.model('Bus'),
 	_ = require('lodash');
 
 /**
@@ -15,13 +16,25 @@ exports.create = function(req, res) {
 	var node = new Node(req.body);
 	node.user = req.user;
 
-	node.save(function(err) {
+	node.save(function(err, savedNode) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(node);
+			Bus.findById(node.parentBus).exec(function(err, bus) {
+				if (err || !bus) {
+					return res.status(400).send({
+						message: 'Could not findById ParentBus' + err
+					});
+				} else {
+					savedNode = savedNode.toJSON();
+					savedNode.parentBus = bus;
+					console.log('Key_Value', bus, savedNode);
+					res.jsonp(savedNode);
+				}
+			});
+
 		}
 	});
 };
@@ -58,13 +71,13 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 	var node = req.node ;
 
-	node.remove(function(err) {
+	node.remove(function(err, deletedNode) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(node);
+			res.jsonp(deletedNode);
 		}
 	});
 };
@@ -72,8 +85,8 @@ exports.delete = function(req, res) {
 /**
  * List of Nodes
  */
-exports.list = function(req, res) { 
-	Node.find().sort('-created').populate('node', 'name').exec(function(err, nodes) {
+exports.list = function(req, res) {
+	Node.find().sort('-created').populate('parentBus').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +101,7 @@ exports.list = function(req, res) {
  * Node middleware
  */
 exports.nodeByID = function(req, res, next, id) { 
-	Node.findById(id).populate('node', 'name')
+	Node.findById(id).populate('parentBus')
 		.exec(function(err, node) {
 		if (err) return next(err);
 		if (! node) return next(new Error('Failed to load Node ' + id));

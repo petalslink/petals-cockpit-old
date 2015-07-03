@@ -15,6 +15,7 @@
             </div>
             <tr class="filters">
                 <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Parent Bus Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
@@ -24,6 +25,7 @@
             <tbody data-ng-repeat="node in nodesList | filter:searchText | orderBy:'-Name'" >
             <tr>
                 <td>{{$index + 1}}</td>
+                <td>{{node.parentBus.name}}</td>
                 <td>{{node.name}}</td>
                 <td>{{node.ip}}</td>
                 <td ng-click="nodesCtrl.modalUpdate('lg', node)">
@@ -37,8 +39,8 @@
         </table>
     </div>
 
-    <!-- If no node in list, write a msg -->
+<!--    &lt;!&ndash; If no node in list, write a msg &ndash;&gt;
     <div class="alert alert-warning text-center" data-ng-hide="!nodes.$resolved || nodes.length">
         No Node yet, why don't you <a href="/#!/nodes/create">create one</a>?
-    </div>
+    </div>-->
 </div>

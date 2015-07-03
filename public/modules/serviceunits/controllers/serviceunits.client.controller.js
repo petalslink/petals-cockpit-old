@@ -90,8 +90,11 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 ]);
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceunits', 'Notify', '$rootScope',
-	function ($scope, ServiceunitsServiceCreate, Notify, $rootScope) {
+serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceunits', 'Notify', 'Components', '$rootScope',
+	function ($scope, ServiceunitsServiceCreate, Notify, Components, $rootScope) {
+
+		// Find a list of Component
+		$scope.components = Components.getComponents();
 
 		$scope.serviceunit = {};
 
@@ -115,12 +118,16 @@ serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceun
 ]);
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
-serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceunits', 'Notify',
-	function ($scope, ServiceunitsServiceUpdate, Notify) {
+serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceunits', 'Notify', 'Components', '$rootScope',
+	function ($scope, ServiceunitsServiceUpdate, Notify, Components, $rootScope) {
+
+		// Find a list of Component
+		$scope.components = Components.getComponents();
 
 		// Update existing Service Unit
 		this.update = function(updatedServiceunit) {
 			var serviceunit = updatedServiceunit;
+			console.log('CHECK UPDATE', $scope.serviceunit);
 
 			ServiceunitsServiceUpdate.updateServiceunit($scope.serviceunit, function(response) {
 

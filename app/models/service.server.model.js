@@ -16,6 +16,10 @@ var ServiceSchema = new Schema({
 		required: 'Please fill Service name',
 		trim: true
 	},
+	parentServiceunit: {
+		type: Schema.Types.ObjectId,
+		ref: 'Serviceunit'
+	},
 	created: {
 		type: Date,
 		default: Date.now

@@ -116,11 +116,12 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$roo
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 busesApp.controller('BusesUpdateController', ['$scope', 'Buses', 'Notify',
-	function ($scope, BusesServiceUpdate, Notify) {
+	function ($scope, Buses, Notify, BusesServiceUpdate) {
 
 		// Update existing Bus
 		this.update = function(updatedBus) {
 			var bus = updatedBus;
+			console.log('CHECK UPDATE', $scope.bus);
 
 			BusesServiceUpdate.updateBus($scope.bus, function(response) {
 

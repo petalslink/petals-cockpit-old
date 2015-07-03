@@ -16,6 +16,10 @@ var ComponentSchema = new Schema({
 		required: 'Please fill Component name',
 		trim: true
 	},
+	parentServer: {
+		type: Schema.Types.ObjectId,
+		ref: 'Node'
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -26,7 +30,7 @@ var ComponentSchema = new Schema({
 	},
 	serviceUnits: [
 		{
-			type: Schema.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: 'Serviceunit'
 		}
 	]

@@ -26,12 +26,36 @@
                         <br/><br/>
                     </div>
                     <div class="col-sm-8">
+                        <div class="panel-pricing">
+                            <div class="panel-green">
+                                <div class="panel-heading padZero text-center">
+                                    <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Service Parent
+                                    </h4>
+
+                                    <div class="form-group text-center">
+                                        <select data-ng-model="service.parentServiceunit" id="parentServiceunit" class="form-control">
+                                            <option value="">-- Please Select Parent --</option>
+                                            <option value="{{serviceunit._id}}" data-ng-repeat="serviceunit in serviceunits">{{serviceunit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                        </div>
+
+                        <div class="panel-green">
+                            <div class="panel-heading padZero text-center">
+                                <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Service Settings</h4>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label" for="name">Name</label>
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.name" id="name"
+                                        <input type="text" data-ng-model="service.name" id="name"
                                                class="form-control">
                                     </span>
                             </div>

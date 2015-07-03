@@ -6,8 +6,9 @@ module.exports = function(app) {
 
 	// Components Routes
 	app.route('/components').put(users.requiresLogin, components.update)
-		.get(components.list)
-		.post(users.requiresLogin, components.create);
+		.post(users.requiresLogin, components.create)
+		.get(components.list);
+
 
 	app.route('/components/:componentId')
 		.get(components.read)

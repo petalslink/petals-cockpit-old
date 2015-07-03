@@ -90,8 +90,11 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 ]);
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', '$rootScope',
-	function ($scope, NodesServiceCreate, Notify, $rootScope) {
+nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope',
+	function ($scope, NodesServiceCreate, Notify, Buses, $rootScope) {
+
+		// Find a list of Bus
+		$scope.buses = Buses.getBuses();
 
 		$scope.node = {};
 
@@ -115,12 +118,16 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', '$roo
 ]);
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
-nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify',
-	function ($scope, NodesServiceUpdate, Notify) {
+nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope',
+	function ($scope, NodesServiceUpdate, Notify, Buses, $rootScope) {
+
+		// Find a list of Bus
+		$scope.buses = Buses.getBuses();
 
 		// Update existing Node
 		this.update = function(updatedNode) {
 			var node = updatedNode;
+			console.log('CHECK UPDATE', $scope.node);
 
 			NodesServiceUpdate.updateNode($scope.node, function(response) {
 

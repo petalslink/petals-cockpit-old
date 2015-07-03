@@ -90,8 +90,11 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 ]);
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', '$rootScope',
-	function ($scope, ComponentsServiceCreate, Notify, $rootScope) {
+componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope',
+	function ($scope, ComponentsServiceCreate, Notify, Nodes, $rootScope) {
+
+		// Find a list of Node
+		$scope.nodes = Nodes.getNodes();
 
 		$scope.component = {};
 
@@ -115,12 +118,17 @@ componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 
 ]);
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
-componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 'Notify',
-	function ($scope, ComponentsServiceUpdate, Notify) {
+componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope',
+	function ($scope, ComponentsServiceUpdate, Notify, Nodes, $rootScope) {
+
+		// Find a list of Node
+		$scope.nodes = Nodes.getNodes();
+
 
 		// Update existing Component
 		this.update = function(updatedComponent) {
 			var component = updatedComponent;
+			console.log('CHECK UPDATE', $scope.component);
 
 			ComponentsServiceUpdate.updateComponent($scope.component, function(response) {
 

@@ -15,6 +15,7 @@
             </div>
             <tr class="filters">
                 <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Parent Node Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
@@ -23,6 +24,7 @@
             <tbody data-ng-repeat="component in componentsList | filter:searchText | orderBy:'-Name'" >
             <tr>
                 <td>{{$index + 1}}</td>
+                <td>{{component.parentServer.name}}</td>
                 <td>{{component.name}}</td>
                 <td ng-click="componentsCtrl.modalUpdate('lg', component)">
                     <dir-up-component component="component"></dir-up-component>
@@ -35,8 +37,8 @@
         </table>
     </div>
 
-    <!-- If no component in list, write a msg -->
+<!--    &lt;!&ndash; If no component in list, write a msg &ndash;&gt;
     <div class="alert alert-warning text-center" data-ng-hide="!components.$resolved || components.length">
         No Bus yet, why don't you <a href="/#!/components/create">create one</a>?
-    </div>
+    </div>-->
 </div>

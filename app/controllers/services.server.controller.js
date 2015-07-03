@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Service = mongoose.model('Service'),
+	Serviceunit = mongoose.model('Serviceunit'),
 	_ = require('lodash');
 
 /**
@@ -15,13 +16,25 @@ exports.create = function(req, res) {
 	var service = new Service(req.body);
 	service.user = req.user;
 
-	service.save(function(err) {
+	service.save(function(err, savedService) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(service);
+			Serviceunit.findById(service.parentServiceunit).exec(function(err, serviceunit) {
+				if (err || !serviceunit) {
+					return res.status(400).send({
+						message: 'Could not findById parentServiceunit' + err
+					});
+				} else {
+					savedService = savedService.toJSON();
+					savedService.parentServiceunit = serviceunit;
+					console.log('Key_Value', serviceunit, savedService);
+					res.jsonp(savedService);
+				}
+			});
+
 		}
 	});
 };
@@ -73,7 +86,7 @@ exports.delete = function(req, res) {
  * List of Services
  */
 exports.list = function(req, res) { 
-	Service.find().sort('-created').populate('service', 'name').exec(function(err, services) {
+	Service.find().sort('-created').populate('parentServiceunit').exec(function(err, services) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +101,7 @@ exports.list = function(req, res) {
  * Service middleware
  */
 exports.serviceByID = function(req, res, next, id) {
-	Service.findById(id).populate('service', 'name')
+	Service.findById(id).populate('parentServiceunit')
 		.exec(function(err, service) {
 			if (err) return next(err);
 			if (! service) return next(new Error('Failed to load Service ' + id));

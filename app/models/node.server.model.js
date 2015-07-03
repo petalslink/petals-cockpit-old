@@ -21,6 +21,10 @@ var NodeSchema = new Schema({
 		default: '',
 		trim: true
 	},
+	parentBus: {
+		type: Schema.Types.ObjectId,
+		ref: 'Bus'
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -31,7 +35,7 @@ var NodeSchema = new Schema({
 	},
 	components: [
 		{
-			type: Schema.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: 'Component'
 		}
 	]

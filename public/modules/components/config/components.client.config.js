@@ -27,14 +27,13 @@ angular.module('components')
             }
         ]);
     }
-    ]);
+    ])
 
-/*
     // Configuring the Articles module
     .run(['Menus', function (Menus) {
         // Set top bar menu items
         Menus.addMenuItem('topbar', 'Component', 'components', 'dropdown', '/components(/create)?');
         Menus.addSubMenuItem('topbar', 'components', 'List Component', 'components');
-        /!*Menus.addSubMenuItem('topbar', 'components', 'New Component', 'components/create');*!/
+        /*Menus.addSubMenuItem('topbar', 'components', 'New Component', 'components/create');*/
     }
-    ]);*/
+    ]);
