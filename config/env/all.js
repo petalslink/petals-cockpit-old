@@ -15,9 +15,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				'public/lib/angularBootstrapNavTree/dist/abn_tree.css',
-				'public/lib/angular-tree-control/css/tree-control.css',
-				'public/lib/angular-tree-dnd/dist/ng-tree-dnd.min.css'
+				'public/lib/angular-tree-dnd/dist/ng-tree-dnd.min.css',
+				'public/lib/angular-material/angular-material.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -29,8 +28,10 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angularBootstrapNavTree/dist/abn_tree_directive.js',
-				'public/lib/angular-tree-dnd/dist/ng-tree-dnd.min.js'
+				'public/lib/angular-tree-dnd/dist/ng-tree-dnd.min.js',
+				'public/lib/angular-aria/angular-aria.js',
+				'public/lib/angular-material/angular-material.js'
+
 			]
 		},
 		css: [

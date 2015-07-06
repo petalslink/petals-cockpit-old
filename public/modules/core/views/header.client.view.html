@@ -6,14 +6,20 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-brand"><i class="glyphicon glyphicon-cloud"></i> Petals COCKPIT</a>
+		<a href="/#!/" class="navbar-header cust-brand"><img src="/modules/core/img/brand/petals_cockpit.png" class="logoPetals"/></a>
 	</div>
 	<nav class="collapse navbar-collapse navbar-right" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+<!--		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
+			<li data-ng-repeat="item in menu.items | orderBy: 'position'"
+				data-ng-if="item.shouldRender(authentication.user);"
+				ng-switch="item.menuItemType"
+				ui-route="{{item.uiRoute}}"
+				class="{{item.menuItemClass}}"
+				ng-class="{active: ($uiRoute)}"
+				dropdown="item.menuItemType === 'dropdown'">
 				<a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle>
 					<i class="glyphicon glyphicon-cog"></i>
-					Configure
+					<span data-ng-bind="item.title"></span>
 					<b class="caret"></b>
 				</a>
 				<ul ng-switch-when="dropdown" class="dropdown-menu">
@@ -23,27 +29,80 @@
 				</ul>
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
+		</ul>-->
+
+		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
+			<li class="dropdown cust-config" dropdown>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
+					<i class="glyphicon glyphicon-cog cust-cog"></i>
+					<span>Configure</span> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li class="cust-config">
+						<a href="/#!/buses">
+							<i class="glyphicon glyphicon-flash"></i>
+							<span>Bus</span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="cust-config">
+						<a href="/#!/nodes">
+							<i class="glyphicon glyphicon-wrench"></i>
+							<span>Nodes</span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="cust-config">
+						<a href="/#!/components">
+							<i class="glyphicon glyphicon-tasks"></i>
+							<span>Components</span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="cust-config">
+						<a href="/#!/serviceunits">
+							<i class="glyphicon glyphicon-pushpin"></i>
+							<span>Service Units</span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="cust-config">
+						<a href="/#!/services">
+							<i class="glyphicon glyphicon-sort"></i>
+							<span>Services</span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="cust-config">
+						<a href="/#!/users">
+							<i class="glyphicon glyphicon-user"></i>
+							<span>Users</span>
+						</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
-		<ul class="nav navbar-nav" data-ng-hide="authentication.user">
+
+
+		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 <!--			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
 			</li>-->
-			<li class="divider-vertical"></li>
-			<li ui-route="/signin" ng-class="{active: $uiRoute}">
+			<li class="cust-config" ui-route="/signin" ng-class="{active: $uiRoute}">
 				<a href="/#!/signin">
-					<i class="glyphicon glyphicon-off"></i>
+					<i class="glyphicon glyphicon-off cust-cog"></i>
 					Log In
 				</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown" dropdown>
+			<li class="dropdown cust-config" dropdown>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<i class="glyphicon glyphicon-user"></i>
+					<i class="glyphicon glyphicon-user cust-user"></i>
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li>
+					<li class="cust-config">
 						<a href="/#!/settings/profile">
 							<i class="glyphicon glyphicon-edit"></i>
 							Edit Profile
@@ -52,11 +111,11 @@
 <!--					<li>
 						<a href="/#!/settings/accounts">Manage Social Accounts</a>
 					</li>-->
-					<li data-ng-show="authentication.user.provider === 'local'">
+<!--					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Change Password</a>
-					</li>
+					</li>-->
 					<li class="divider"></li>
-					<li>
+					<li class="cust-config">
 						<a href="/auth/signout">
 							<i class="glyphicon glyphicon-off"></i>
 							Log out

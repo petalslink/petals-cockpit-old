@@ -25,10 +25,49 @@ ng\:form {
 .ng-valid.ng-dirty {
     border-color: #78FA89;
 }
-
+.cust-cog {
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    line-height: 100%;
+}
+.cust-brand {
+    padding: 10px;
+    display: block;
+    line-height: 100%;
+}
+.cust-user {
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    line-height: 100%;
+}
+.cust-config {
+    text-align: center;
+    line-height: 0%;
+}
+.logoPetals {
+    width: 12%;
+}
+.logo-container {
+    display: inline-block;
+    padding: 10px 5px;
+}
 body {
     margin: 0;
     padding: 0;
+    background-color: #F5F5F5;
+/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
+    background-size: cover;
+    opacity: 0.7;*/
+    color: inherit;
+}
+.backTest {
+    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
+    background-size: cover;
+    color: inherit;
+}
+.backHome {
     background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
     background-size: cover;
     color: inherit;
@@ -46,8 +85,8 @@ body {
 }
 
 .backgroundTabHome {
-    background: #FFFFFF;
-    height: 1200px;
+/*    background: #FFFFFF;
+    height: 1200px;*/
     padding: 0;
 }
 
@@ -93,12 +132,14 @@ body {
     border-radius: 5px 5px 0 0;
     font-size: 14px;
     color: #fff;
-    background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-gradient(linear, left top, right top,
+    color-stop(0, rgb(0, 0, 0)),
+    color-stop(0.50, rgb(79, 79, 79)),
+    color-stop(1, rgb(21, 21, 21)));
+    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
     text-decoration: none;
 }
 
@@ -164,12 +205,14 @@ body {
 }
 
 .btnMenuBus {
-    background: linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -o-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -ms-linear-gradient(90deg, rgba(20, 144, 64, 0.7) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-gradient(linear, left top, right top,
+    color-stop(0, rgb(0, 0, 0)),
+    color-stop(0.50, rgb(79, 79, 79)),
+    color-stop(1, rgb(21, 21, 21)));
+    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
 }
 
 .textMenuBus, .textMenuBus:visited {
