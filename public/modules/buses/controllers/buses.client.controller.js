@@ -91,7 +91,7 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope',
-	function ($scope, BusesServiceCreate, Notify, $rootScope) {
+	function ($scope, Buses, Notify, $rootScope) {
 
 		$scope.bus = {};
 
@@ -100,7 +100,7 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$roo
 
 			console.log('CHECK CREATE', $scope.bus);
 			// Redirect after save
-			BusesServiceCreate.postBus($scope.bus, function (bus) {
+			Buses.postBus($scope.bus, function (bus) {
 
 				Notify.sendMsg('NewBus', {'id': bus._id});
 				$rootScope.$emit('BusCreate', bus);
@@ -116,19 +116,19 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$roo
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 busesApp.controller('BusesUpdateController', ['$scope', 'Buses', 'Notify',
-	function ($scope, Buses, Notify, BusesServiceUpdate) {
+	function ($scope, Buses, Notify) {
 
 		// Update existing Bus
 		this.update = function(updatedBus) {
 			var bus = updatedBus;
 			console.log('CHECK UPDATE', $scope.bus);
 
-			BusesServiceUpdate.updateBus($scope.bus, function(response) {
+			Buses.updateBus($scope.bus, function(response) {
 
 				Notify.sendMsg('UpdateBus', {'id': response._id});
 
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+					$scope.error = 'Could not Update Bus !';
 			});
 		};
 	}

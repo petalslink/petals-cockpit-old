@@ -63,13 +63,14 @@ body {
     color: inherit;
 }
 .backTest {
-    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-    background-size: cover;
+    background-color: #F5F5F5;
+/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
+    background-size: cover;*/
     color: inherit;
 }
 .backHome {
-    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-    background-size: cover;
+/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
+    background-size: cover;*/
     color: inherit;
 }
 

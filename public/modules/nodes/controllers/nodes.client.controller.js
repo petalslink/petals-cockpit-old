@@ -91,7 +91,7 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope',
-	function ($scope, NodesServiceCreate, Notify, Buses, $rootScope) {
+	function ($scope, Nodes, Notify, Buses, $rootScope) {
 
 		// Find a list of Bus
 		$scope.buses = Buses.getBuses();
@@ -103,14 +103,14 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buse
 
 			console.log('CHECK CREATE', $scope.node);
 			// Redirect after save
-			NodesServiceCreate.postNode($scope.node, function (node) {
+			Nodes.postNode($scope.node, function (node) {
 
 				Notify.sendMsg('NewNode', {'id': node._id});
 				$rootScope.$emit('NodeCreate', node);
 
 
 			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Create Node !';
 			});
 
 		};
@@ -119,7 +119,7 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buse
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope',
-	function ($scope, NodesServiceUpdate, Notify, Buses, $rootScope) {
+	function ($scope, Nodes, Notify, Buses, $rootScope) {
 
 		// Find a list of Bus
 		$scope.buses = Buses.getBuses();
@@ -129,12 +129,12 @@ nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify', 'Buse
 			var node = updatedNode;
 			console.log('CHECK UPDATE', $scope.node);
 
-			NodesServiceUpdate.updateNode($scope.node, function(response) {
+			Nodes.updateNode($scope.node, function(response) {
 
 				Notify.sendMsg('UpdateNode', {'id': response._id});
 
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Update Node !';
 			});
 		};
 	}

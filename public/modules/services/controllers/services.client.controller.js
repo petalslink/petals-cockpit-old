@@ -91,7 +91,7 @@ servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authent
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notify', 'Serviceunits', '$rootScope',
-	function ($scope, ServicesServiceCreate, Notify, Serviceunits, $rootScope) {
+	function ($scope, Services, Notify, Serviceunits, $rootScope) {
 
 		// Find a list of Component
 		$scope.serviceunits = Serviceunits.getServiceunits();
@@ -103,14 +103,14 @@ servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notif
 
 			console.log('CHECK CREATE', $scope.service);
 			// Redirect after save
-			ServicesServiceCreate.postService($scope.service, function (service) {
+			Services.postService($scope.service, function (service) {
 
 				Notify.sendMsg('NewService', {'id': service._id});
 				$rootScope.$emit('ServiceCreate', service);
 
 
 			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Create Service !';
 			});
 
 		};
@@ -119,7 +119,7 @@ servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notif
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 servicesApp.controller('ServicesUpdateController', ['$scope', 'Services', 'Notify', 'Serviceunits', '$rootScope',
-	function ($scope, ServicesServiceUpdate, Notify, Serviceunits, $rootScope) {
+	function ($scope, Services, Notify, Serviceunits, $rootScope) {
 
 		// Find a list of Component
 		$scope.serviceunits = Serviceunits.getServiceunits();
@@ -129,12 +129,12 @@ servicesApp.controller('ServicesUpdateController', ['$scope', 'Services', 'Notif
 			var service = updatedService;
 			console.log('CHECK UPDATE', $scope.service);
 
-			ServicesServiceUpdate.updateService($scope.service, function(response) {
+			Services.updateService($scope.service, function(response) {
 
 				Notify.sendMsg('UpdateService', {'id': response._id});
 
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Update Service !';
 			});
 		};
 	}

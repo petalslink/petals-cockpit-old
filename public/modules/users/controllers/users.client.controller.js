@@ -91,7 +91,7 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$rootScope',
-    function ($scope, UsersServiceCreate, Notify, $rootScope) {
+    function ($scope, Users, Notify, $rootScope) {
 
         $scope.channelCountry = [
             {id: 1, item: 'Austria'},
@@ -136,13 +136,13 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$roo
 
             console.log('CHECK CREATE', $scope.user);
             // Redirect after save
-            UsersServiceCreate.postUser($scope.user, function (user) {
+            Users.postUser($scope.user, function (user) {
 
                 Notify.sendMsg('NewUser', {'id': user._id});
                 $rootScope.$emit('UserCreate', user);
 
             }, function (errorResponse) {
-                $scope.error = errorResponse.data.message;
+                $scope.error = 'Could not Create User !';
             });
 
         };
@@ -151,7 +151,7 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$roo
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
-    function ($scope, UsersServiceUpdate, Notify) {
+    function ($scope, Users, Notify) {
 
         $scope.channelCountry = [
             {id: 1, item: 'Austria'},
@@ -193,12 +193,12 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
         this.update = function(updatedUser) {
             var user = updatedUser;
 
-            UsersServiceUpdate.updateUser($scope.user, function(response) {
+            Users.updateUser($scope.user, function(response) {
 
                 Notify.sendMsg('UpdateUser', {'id': response._id});
 
             }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+                $scope.error = 'Could not Update User !';
             });
         };
     }

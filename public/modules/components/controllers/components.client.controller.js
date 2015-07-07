@@ -91,7 +91,7 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope',
-	function ($scope, ComponentsServiceCreate, Notify, Nodes, $rootScope) {
+	function ($scope, Components, Notify, Nodes, $rootScope) {
 
 		// Find a list of Node
 		$scope.nodes = Nodes.getNodes();
@@ -103,14 +103,14 @@ componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 
 
 			console.log('CHECK CREATE', $scope.component);
 			// Redirect after save
-			ComponentsServiceCreate.postComponent($scope.component, function (component) {
+			Components.postComponent($scope.component, function (component) {
 
 				Notify.sendMsg('NewComponent', {'id': component._id});
 				$rootScope.$emit('ComponentCreate', component);
 
 
 			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Create Component !';
 			});
 
 		};
@@ -119,7 +119,7 @@ componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope',
-	function ($scope, ComponentsServiceUpdate, Notify, Nodes, $rootScope) {
+	function ($scope, Components, Notify, Nodes, $rootScope) {
 
 		// Find a list of Node
 		$scope.nodes = Nodes.getNodes();
@@ -130,12 +130,12 @@ componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 
 			var component = updatedComponent;
 			console.log('CHECK UPDATE', $scope.component);
 
-			ComponentsServiceUpdate.updateComponent($scope.component, function(response) {
+			Components.updateComponent($scope.component, function(response) {
 
 				Notify.sendMsg('UpdateComponent', {'id': response._id});
 
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Update Component !';
 			});
 		};
 	}

@@ -91,7 +91,7 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceunits', 'Notify', 'Components', '$rootScope',
-	function ($scope, ServiceunitsServiceCreate, Notify, Components, $rootScope) {
+	function ($scope, Serviceunits, Notify, Components, $rootScope) {
 
 		// Find a list of Component
 		$scope.components = Components.getComponents();
@@ -103,14 +103,14 @@ serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceun
 
 			console.log('CHECK CREATE', $scope.serviceunit);
 			// Redirect after save
-			ServiceunitsServiceCreate.postServiceunit($scope.serviceunit, function (serviceunit) {
+			Serviceunits.postServiceunit($scope.serviceunit, function (serviceunit) {
 
 				Notify.sendMsg('NewServiceunit', {'id': serviceunit._id});
 				$rootScope.$emit('ServiceunitCreate', serviceunit);
 
 
 			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Create Service Unit !';
 			});
 
 		};
@@ -119,7 +119,7 @@ serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceun
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
 serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceunits', 'Notify', 'Components', '$rootScope',
-	function ($scope, ServiceunitsServiceUpdate, Notify, Components, $rootScope) {
+	function ($scope, Serviceunits, Notify, Components, $rootScope) {
 
 		// Find a list of Component
 		$scope.components = Components.getComponents();
@@ -129,12 +129,12 @@ serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceun
 			var serviceunit = updatedServiceunit;
 			console.log('CHECK UPDATE', $scope.serviceunit);
 
-			ServiceunitsServiceUpdate.updateServiceunit($scope.serviceunit, function(response) {
+			Serviceunits.updateServiceunit($scope.serviceunit, function(response) {
 
 				Notify.sendMsg('UpdateServiceunit', {'id': response._id});
 
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				$scope.error = 'Could not Update Service Unit !';
 			});
 		};
 	}
