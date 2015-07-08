@@ -43,16 +43,28 @@ app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'N
         function ($scope, $timeout, $TreeDnDConvert, Buses, Nodes, Components, Serviceunits, Services) {
 
             $scope.my_tree = {};
+
+            $scope.my_tree.addFunction = function(b){
+                console.log(b);
+                alert('Function added in Controller "App.js"');
+            };
+            $scope.$callbacks = {};
             $scope._filter = {};
             $scope.tree_nodes = [];
-            /*$scope.tree_data = {};*/
+            $scope.tree_data = {};
             $scope.expanding_property = {
                 field: 'title',
                 titleClass: 'text-left',
                 cellClass: 'v-middle',
                 displayName: 'Name WorkSpace'
             };
-            $scope.col_defs = [];
+/*            $scope.col_defs = [
+                {
+                    field: "Description"
+                }, {
+                    displayName:  'Function',
+                    cellTemplate: '<button ng-click="tree.addFunction(node)" class="btn btn-default btn-sm">Added Controller!</button>'
+                }];*/
             $scope.select_handler = function (node) {
             };
             $scope.click_handler = function (node) {
@@ -64,8 +76,16 @@ app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'N
             this.serviceunits = Serviceunits.getServiceunits();
             this.services = Services.getServices();
 
+/*            var elementsLength = elements.length;
+            for (var i = 0 ; i < elementsLength ; i ++) {
+                if (elements[i].code === code) {
+                    return elements[i];
+                }
+            }
 
-            $scope.dataComponents = [
+            return null;*/
+
+            var dataComponents = [
                 {
                     'parentId':'1',
                     'title':this.buses,
@@ -102,7 +122,7 @@ app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'N
 
                 }
             ];
-            $scope.tree_data = $TreeDnDConvert.line2tree($scope.dataComponents, 'parentId', 'parent');
+            $scope.tree_data = $TreeDnDConvert.line2tree(dataComponents, 'parentId', 'parent');
 
 
 

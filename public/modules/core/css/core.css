@@ -325,3 +325,10 @@ body {
 .tree-dnd-nodes .tree-dnd-node {
     border-radius: 4px !important;
 }
+.col_content_tree {
+    padding-right: -1px;
+}
+.col_content_console {
+    border-left: 1px solid #eee;
+    padding-right: 1px;
+}

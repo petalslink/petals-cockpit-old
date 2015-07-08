@@ -10,3 +10,8 @@ exports.index = function(req, res) {
 	});
 };
 
+// Send an email when the contact from is submitted
+exports.sendMail = function(req, res) {
+
+};
+
