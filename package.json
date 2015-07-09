@@ -1,6 +1,6 @@
 {
 	"name": "petalscockpitapp",
-	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS and Node.js",
 	"version": "0.0.2",
 	"author": "QantumLeap",
 	"engines": {
