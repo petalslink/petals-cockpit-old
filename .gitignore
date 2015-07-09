@@ -16,3 +16,4 @@ app/tests/coverage/
 
 .idea/
 Thumbs.db
+.project
