@@ -16,6 +16,20 @@
                     </span>
             </div>
         </div>
+
+		<!-- A dynamic template to build a tree with AngularJS -->
+		<script type="text/ng-template" id="my-tmpl">
+			<a href="">{{ node.name }}</a>
+   		 	<ul>
+        		<li ng-repeat="node in node.children" ng-include="'my-tmpl'"></li>
+    		</ul>
+		</script>
+
+		<ul>
+        	<li ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
+        </ul>
+        
+        <!-- 
         <tree-dnd class="tree-dnd dnd dnd-hover b-b b-light"
                   tree-data="tree_data"
                   tree-class="table"
@@ -65,7 +79,7 @@
 
                             <!--{{node[expandingProperty.field]}}{{node[expandingProperty]}}-->
                             <!--{{node.title[0].name}}-->
-
+<!-- 
                                 {{title.name}}
 
                         </a>
@@ -77,6 +91,8 @@
             </table>
 
         </tree-dnd>
+        
+         -->
 
     </div>
 

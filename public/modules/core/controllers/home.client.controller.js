@@ -39,8 +39,8 @@ app.controller('HomeController', ['$scope', 'Authentication',
     }
 ]);
 
-app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
-        function ($scope, $timeout, $TreeDnDConvert, Buses, Nodes, Components, Serviceunits, Services) {
+app.controller('treeCtrl', ['$q', '$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
+        function ($q, $scope, $timeout, $TreeDnDConvert, Buses, Nodes, Components, Serviceunits, Services) {
 
             $scope.my_tree = {};
 
@@ -70,112 +70,69 @@ app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'N
             $scope.click_handler = function (node) {
             };
 
-            this.buses = Buses.getBuses();
-            this.nodes = Nodes.getNodes();
-            this.components = Components.getComponents();
-            this.serviceunits = Serviceunits.getServiceunits();
-            this.services = Services.getServices();
+            
+            // VZ
+            
+            $q.all([
+                Buses.getBuses().$promise,
+                Nodes.getNodes().$promise,
+                Components.getComponents().$promise,
+                Serviceunits.getServiceunits().$promise,
+                Services.getServices().$promise
+            ]).then( buildTree );
+            
+            
+            function buildTree( data ) {
+              
+              var roots = [];
 
-/*            var elementsLength = elements.length;
-            for (var i = 0 ; i < elementsLength ; i ++) {
-                if (elements[i].code === code) {
-                    return elements[i];
-                }
+              // Deal with buses
+              var bindex = {};
+              data[0].forEach( function(val, index, arr) {
+                var bus = {
+                  _id: val._id,
+                  name: val.name,
+                  children: []
+                };
+                
+                bindex[val._id] = bus;
+                roots.push(bus);
+              });
+
+              // Deal with nodes
+              var nindex = {};
+              console.log(data[1]);
+              data[1].forEach( function(val, index, arr) {
+                var node = {
+                  _id: val._id,
+                  name: val.name,
+                  children: [],
+                  parent: bus
+                };
+                
+                nindex[val._id] = node;
+                var bus = bindex[val.parentBus._id];
+                bus.children.push(node);
+              });
+
+              // Deal with components
+              var cindex = {};
+              data[2].forEach( function(val, index, arr) {
+                var component = {
+                  _id: val._id,
+                  name: val.name,
+                  children: [],
+                  parent: node
+                };
+                
+                cindex[val._id] = val;
+                var node = nindex[val.parentServer._id];
+                node.children.push(component);
+              });
+              
+              // Register the tree in the scope
+              $scope.rootNodes = roots;
             }
-
-            return null;*/
-
-            var dataComponents = [
-                {
-                    'parentId':'1',
-                    'title':this.buses,
-                    'parent':null,
-                    '__children__': [
-                        {
-                            'parentId':'2',
-                            'title':this.nodes,
-                            'parent':1,
-                            '__children__': [
-                                {
-                                    'parentId':'3',
-                                    'title':this.components,
-                                    'parent':2,
-                                    '__children__': [
-                                        {
-                                            'parentId':'4',
-                                            'title':this.serviceunits,
-                                            'parent':3,
-                                            '__children__': [
-                                                {
-                                                    'parentId':'5',
-                                                    'title':this.services,
-                                                    'parent':4,
-                                                    '__children__': []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-
-                }
-            ];
-            $scope.tree_data = $TreeDnDConvert.line2tree(dataComponents, 'parentId', 'parent');
-
-
-
-/*            $TreeDnDConvert.line2tree(function(response) {
-                // Assign the response INSIDE the callback
-                $scope.data.components = response;
-            });*/
-
-
-            /*
-             var components = [
-             {
-             'id':'1',
-             'title':'Bus',
-             'name': 'BUS-RH Domain',
-             'parent':null
-
-             },
-             {
-             'id':'2',
-             'title':'Node',
-             'parent':1
-             },
-             {
-             'id':'3',
-             'title':'Component',
-             'parent':2
-
-             },
-             {
-             'id':'4',
-             'title':'Service Unit',
-             'parent':3
-             },
-             {
-             'id':'5',
-             'title':'Service',
-             'parent':4
-             }
-             ];*/
-            /*
-             $scope.tree_data = $TreeDnDConvert.line2tree(components, buses, 'id', 'parent');*/
+            
         }]
 );
-
-
-
-
-
-
-
-
-
-
-
-
