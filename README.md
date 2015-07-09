@@ -64,7 +64,11 @@ grunt
 
 ### Logging in as an Admin
 
-After running the application, log in with the following credentials.
+After running the application, open your web browser to...
+
+	http://localhost:3000
+
+... and log in with the following credentials.
 
 ```
 Username : 'SuperAdmin'
