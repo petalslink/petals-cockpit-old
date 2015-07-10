@@ -4,12 +4,17 @@
 
 var usersApp = angular.module('core');
 
-usersApp.controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
+usersApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', '$mdSidenav',
+	function($scope, $state, Authentication, Menus, $mdSidenav) {
+		//Expose view variables
+		$scope.$state = $state;
 		$scope.authentication = Authentication;
-		$scope.isCollapsed = false;
+
+		// Get the topbar menu
 		$scope.menu = Menus.getMenu('topbar');
 
+		// Toggle the menu items
+		$scope.isCollapsed = false;
 		$scope.toggleCollapsibleMenu = function() {
 			$scope.isCollapsed = !$scope.isCollapsed;
 		};
@@ -18,5 +23,9 @@ usersApp.controller('HeaderController', ['$scope', 'Authentication', 'Menus',
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+
+		$scope.openLeftMenu = function() {
+			$mdSidenav('left').toggle();
+		};
 	}
 ]);

@@ -8,8 +8,6 @@ app.controller('HomeController', ['$scope', 'Authentication',
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
-        $scope.components = {};
-
         /*        $scope.alerts = [
          {
          icon: 'glyphicon-globe',
@@ -39,123 +37,105 @@ app.controller('HomeController', ['$scope', 'Authentication',
     }
 ]);
 
-app.controller('treeCtrl', ['$scope', '$timeout', '$TreeDnDConvert', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
-        function ($scope, $timeout, $TreeDnDConvert, Buses, Nodes, Components, Serviceunits, Services) {
+app.controller('treeCtrl', ['$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
+        function ($q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services) {
 
-            $scope.my_tree = {};
-            $scope._filter = {};
-            $scope.tree_nodes = [];
-            /*$scope.tree_data = {};*/
-            $scope.expanding_property = {
-                field: 'title',
-                titleClass: 'text-left',
-                cellClass: 'v-middle',
-                displayName: 'Name WorkSpace'
-            };
-            $scope.col_defs = [];
-            $scope.select_handler = function (node) {
-            };
-            $scope.click_handler = function (node) {
-            };
+            // VZ
 
-            this.buses = Buses.getBuses();
-            this.nodes = Nodes.getNodes();
-            this.components = Components.getComponents();
-            this.serviceunits = Serviceunits.getServiceunits();
-            this.services = Services.getServices();
+            $q.all([
+                Buses.getBuses().$promise,
+                Nodes.getNodes().$promise,
+                Components.getComponents().$promise,
+                Serviceunits.getServiceunits().$promise,
+                Services.getServices().$promise
+            ]).then(buildTree);
 
 
-            $scope.dataComponents = [
-                {
-                    'parentId':'1',
-                    'title':this.buses,
-                    'parent':null,
-                    '__children__': [
-                        {
-                            'parentId':'2',
-                            'title':this.nodes,
-                            'parent':1,
-                            '__children__': [
-                                {
-                                    'parentId':'3',
-                                    'title':this.components,
-                                    'parent':2,
-                                    '__children__': [
-                                        {
-                                            'parentId':'4',
-                                            'title':this.serviceunits,
-                                            'parent':3,
-                                            '__children__': [
-                                                {
-                                                    'parentId':'5',
-                                                    'title':this.services,
-                                                    'parent':4,
-                                                    '__children__': []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+            function buildTree(data) {
 
-                }
-            ];
-            $scope.tree_data = $TreeDnDConvert.line2tree($scope.dataComponents, 'parentId', 'parent');
+                var roots = [];
 
+                // Deal with buses
+                var bindex = {};
+                data[0].forEach(function (val, index, arr) {
+                    var bus = {
+                        _id: val._id,
+                        name: val.name,
+                        children: [],
+                        icon: 'glyphicon-flash'
+                    };
 
+                    bindex[val._id] = bus;
+                    roots.push(bus);
+                });
 
-/*            $TreeDnDConvert.line2tree(function(response) {
-                // Assign the response INSIDE the callback
-                $scope.data.components = response;
-            });*/
+                // Deal with nodes -> console.log(data[1]);
+                var nindex = {};
+                data[1].forEach(function (val, index, arr) {
+                    var node = {
+                        _id: val._id,
+                        name: val.name,
+                        children: [],
+                        icon: 'glyphicon-wrench',
+                        parent: bus
+                    };
 
+                    nindex[val._id] = node;
+                    var bus = bindex[val.parentBus._id];
+                    bus.children.push(node);
+                });
 
-            /*
-             var components = [
-             {
-             'id':'1',
-             'title':'Bus',
-             'name': 'BUS-RH Domain',
-             'parent':null
+                // Deal with components
+                var cindex = {};
+                data[2].forEach(function (val, index, arr) {
+                    var component = {
+                        _id: val._id,
+                        name: val.name,
+                        children: [],
+                        icon: 'glyphicon-tasks',
+                        parent: node
+                    };
 
-             },
-             {
-             'id':'2',
-             'title':'Node',
-             'parent':1
-             },
-             {
-             'id':'3',
-             'title':'Component',
-             'parent':2
+                    cindex[val._id] = component;
+                    var node = nindex[val.parentServer._id];
+                    node.children.push(component);
+                });
 
-             },
-             {
-             'id':'4',
-             'title':'Service Unit',
-             'parent':3
-             },
-             {
-             'id':'5',
-             'title':'Service',
-             'parent':4
-             }
-             ];*/
-            /*
-             $scope.tree_data = $TreeDnDConvert.line2tree(components, buses, 'id', 'parent');*/
+                // Deal with serviceunits
+                var suindex = {};
+                data[3].forEach(function (val, index, arr) {
+                    var serviceunit = {
+                        _id: val._id,
+                        name: val.name,
+                        children: [],
+                        icon: 'glyphicon-pushpin',
+                        parent: component
+                    };
+
+                    suindex[val._id] = serviceunit;
+                    var component = cindex[val.parentComponent._id];
+                    component.children.push(serviceunit);
+                });
+
+                // Deal with services
+                var sindex = {};
+                data[4].forEach(function (val, index, arr) {
+                    var service = {
+                        _id: val._id,
+                        name: val.name,
+                        children: [],
+                        icon: 'glyphicon-sort',
+                        parent: serviceunit
+                    };
+
+                    sindex[val._id] = service;
+                    var serviceunit = suindex[val.parentServiceunit._id];
+                    serviceunit.children.push(service);
+                });
+
+                // Register the tree in the scope
+                $scope.rootNodes = roots;
+            }
+
         }]
 );
-
-
-
-
-
-
-
-
-
-
-
-

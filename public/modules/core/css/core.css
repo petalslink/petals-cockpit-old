@@ -232,54 +232,15 @@ body {
     font-size: 30px;
 }
 
-.slide-animate-container {
-    position: relative;
-    background: white;
-    border: 1px solid black;
-    height: 40px;
-    overflow: hidden;
-}
-
-.slide-animate {
-    padding: 10px;
-}
-
-.slide-animate.ng-enter, .slide-animate.ng-leave {
-    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: block;
-    padding: 10px;
-}
-
-.slide-animate.ng-enter {
-    top: -50px;
-}
-
-.slide-animate.ng-enter.ng-enter-active {
-    top: 0;
-}
-
-.slide-animate.ng-leave {
-    top: 0;
-}
-
-.slide-animate.ng-leave.ng-leave-active {
-    top: 50px;
-}
-
 .colorTreeSelect {
     color: #111111;
 }
 
 .colorTreeSelect:hover {
+    color: #149040;
+    border: 2px solid #149040;
+}
+.colorTreeSelect:active a {
     color: #149040;
     border: 2px solid #149040;
 }
@@ -292,36 +253,58 @@ body {
     text-decoration: none;
 }
 
-/*.colorTreeSelect:focus, .colorTreeSelect:active {
+.col_content_tree {
+    padding-right: -1px;
+}
+.col_content_console {
+    border-left: 1px solid #eee;
+    padding-right: 1px;
+}
+
+.inputdemoIcons .inputIconDemo {
+    min-height: 48px; }
+.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.node {
+    color: green; }
+
+
+.petals-tree li {
+    position: relative;
+    background-color: #FFFFFF;
+}
+.petals-tree li:active {
+    position: relative;
+    color: white;
+}
+.petals-tree-size {
+    font-size: 20px;
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+}
+.petals-tree ul {
+    list-style: none;
+    line-height: 30px;
+    padding-top: 1px;
+    transition: 0.09s all linear;
+    background-color: #eeeeee;
+}
+.petals-tree ul:hover {
+    position: relative;
+}
+.petals-tree ul:active {
+    position: relative;
+}
+.petals-tree a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid ;
     color: #149040;
-    border: 2px solid #149040;
-}*/
-
-.tree-dnd-node > td:hover {
-    position: relative;
-    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
-    background: -webkit-gradient(linear, left top, right top,
-    color-stop(0, rgb(0, 0, 0)),
-    color-stop(0.50, rgb(79, 79, 79)),
-    color-stop(1, rgb(21, 21, 21))) !important;
-    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
-    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
 }
-
-.tree-dnd-node > tr:active {
-    position: relative;
-    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
-    background: -webkit-gradient(linear, left top, right top,
-    color-stop(0, rgb(0, 0, 0)),
-    color-stop(0.50, rgb(79, 79, 79)),
-    color-stop(1, rgb(21, 21, 21))) !important;
-    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
-    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21)) !important;
+.petals-tree a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 300;
 }
-
-.tree-dnd-node{
-    border-radius: 4px !important;
-}
-.tree-dnd-nodes .tree-dnd-node {
-    border-radius: 4px !important;
+.text-color-grey {
+    color: #777;
+    font-weight: 100;
 }

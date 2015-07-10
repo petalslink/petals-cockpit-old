@@ -1,102 +1,47 @@
 <div ng-controller="treeCtrl as myCtrl">
-    <div class="tabs-nav">
-        <li><a>{{expanding_property.displayName}} <span class="caret"></span></a></li>
-        <li>
-            <a>
-                <input type="search" class="text-color-black" ng-model="_filter.title"
-                       placeholder="Search...">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </li>
-    </div>
 
-    <div class="marg5 list-group-item backgroundStartMenu">
+    <div class="tab-pane">
         <!--<p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>-->
+        <div class="tabs-nav">
+            <div>
+                <a>WORKSPACE<span class="caret"></span></a>
+            </div>
+<!--            <div class="input-group">
+                <input type="text" class="form-control text-color-black" ng-model="_filter.title"
+                       placeholder=" Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+            </div>-->
+        </div>
 
-        <tree-dnd class="tree-dnd dnd dnd-hover b-b b-light"
-                  tree-data="tree_data"
-                  tree-class="table table-bordered table-hover"
-                  callbacks="callbacks"
-                  tree-control="my_tree"
-                  primary-key="parentId"
-                  column-defs="col_defs"
-                  filter="_filter"
-                  expand-on="expanding_property"
-                  on-select="select_handler(node)"
-                  on-click="click_handler(node)"
-                  expand-level="5"
-                  icon-leaf="none"
-                  icon-expand="glyphicon glyphicon-chevron-down"
-                  icon-collapse="glyphicon glyphicon-chevron-right"
-                  template-url="user.template.html"
-                >
+        <md-content layout-padding class="autoScroll">
+            <md-input-container class="md-icon-float" >
+                <label>Search</label>
+                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="node"></md-icon>
+                <input ng-model="node.children" type="text">
+            </md-input-container>
+        </md-content>
 
-            <table ng-class="$tree_class">
-                <thead>
-                <tr>
-                    <th>
-                        {{col.displayName}}
-                    </th>
-                </tr>
-                </thead>
-<!--                <tbody tree-dnd-nodes="tree_nodes">
-                &lt;!&ndash;
-                    tree-dnd-node-handle = Drag & Drop Branch
-                    ng-click="toggleExpand(node)" = Open & Close Branch
-                    __icon_class__ or $icon_class
-                &ndash;&gt;
-                <tr class="active"
-                    tree-dnd-node="node"
-                    ng-repeat="node in nodes track by node.__hashKey__ "
-                    ng-show="enabledFilter ? node.__filtered_visible__ === true && node.__visible__ : node.__visible__"
-                    ng-class="(node.__selected__ ? ' active':'')"
-                    ng-click="select_handler(node)"
-                        >
-                    <td class="colorTreeSelect active"
-                        ng-style="expandingProperty.cellStyle ? expandingProperty.cellStyle : {'padding-left': $callbacks.calsIndent(node.__level__)}"
-                        ng-class="expandingProperty.cellClass"
-                        compile="expandingProperty.cellTemplate">
-                        <a data-nodrag>
-                            <i ng-class="$icon_class"
-                               ng-click="toggleExpand(node)"
-                               class="tree-icon glyphicon glyphicon-file"></i>
-                        </a>
-                        {{node[expandingProperty.field]}}{{node[expandingProperty]}}
-                    </td>
-                </tr>
-                </tbody>-->
+        <!-- A dynamic template to build a tree with AngularJS -->
+        <script type="text/ng-template" id="my-tmpl">
+            <span class="petals-tree-size" ng-if="node.children.length > 0 && ! node.showChildren" ng-click="node.showChildren = true">+</span>
+            <span class="petals-tree-size" ng-if="node.children.length === 0 || node.showChildren" ng-click="node.showChildren = false">-</span>
 
-                <tbody class="tree-dnd-nodes" tree-dnd-nodes="tree_nodes">
+            <span class="text-color-grey" ng-class="'glyphicon ' + node.icon"></span>
+            <a class="petals-tree" href="" ng-click="">{{ node.name }}</a>
+            <ul ng-if="node.showChildren">
+                <li class="" ng-repeat="node in node.children" ng-include="'my-tmpl'"></li>
+            </ul>
+        </script>
 
-                    <tr class="ng-scope tree-dnd-node active"
-                        tree-dnd-node="node"
-                        ng-repeat="node in tree_nodes track by node.__hashKey__"
-                        ng-show="enabledFilter ? node.__filtered_visible__ === true && node.__visible__ : node.__visible__"
-                        ng-class="enabledFilter ? (node.__filtered__ === true? 'success': '') : (node.__selected__ ? ' active':'')"
-                        ng-click="onSelect(node)"
-                        >
-                        <td class="colorTreeSelect ng-binding v-middle"
-
-                            ng-style="expandingProperty.cellStyle ? expandingProperty.cellStyle : {'padding-left': $callbacks.calsIndent(node.__level__)}"
-                            ng-class="expandingProperty.cellClass"
-                            compile="expandingProperty.cellTemplate">
-                            <a data-nodrag="" class="colorLinkTree">
-                                <i ng-class="$icon_class"
-                                   ng-click="toggleExpand(node)"
-                                   class="tree-icon glyphicon glyphicon-chevron-right">
-                                </i>
-
-                                <!--{{node[expandingProperty.field]}}{{node[expandingProperty]}}-->
-                                {{node.title[0].name}}
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-
-
-            </table>
-
-        </tree-dnd>
+            <div class="panel">
+                <ul class="list-group petals-tree">
+                    <li class="list-group-item petals-tree" ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
+                </ul>
+            </div>
 
     </div>
 
