@@ -127,9 +127,9 @@ servicesApp.controller('ServicesUpdateController', ['$scope', 'Services', 'Notif
 		// Update existing Service
 		this.update = function(updatedService) {
 			var service = updatedService;
-			console.log('CHECK UPDATE', $scope.service);
+			console.log('CHECK UPDATE', $scope.service, $scope.sItem);
 
-			Services.updateService($scope.service, function(response) {
+			Services.updateService($scope.service, $scope.sItem, function(response) {
 
 				Notify.sendMsg('UpdateService', {'id': response._id});
 

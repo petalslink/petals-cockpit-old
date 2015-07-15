@@ -1,40 +1,14 @@
 <section data-ng-controller="HomeController">
-    <!--        <div class="row">
-                &lt;!&ndash; This is alert collection &ndash;&gt;
-                <div class="col-sm-6" ng-repeat="alert in alerts">
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <h1>
-                                <button type="button" class="btn" ng-class="alert.colour">
-                                    <i class="glyphicon" ng-class="alert.icon"></i>
-                                </button>
-                            </h1>
-                        </div>
-                        <div class="col-xs-10 text-color-white">
-                            <h1>{{alert.total}}</h1>
-                        </div>
-                        <div class="col-xs-10">
-                            <span class="text-color-white">{{alert.description}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
     <br>
-    <div ng-controller="treeCtrl as ctrl">
-        <div class="page-header"><p>Prototype Version 0.0.1</p></div>
-        <div class="col-sm-4 col-md-4 col_content_tree">
-            <div class="">
-                <dir-component-tree components="component"></dir-component-tree>
-            </div>
+    <div class="page-header"><p>Prototype Version 0.0.1</p></div>
+    <div class="col-sm-4 col-md-4 col_content_tree">
+        <div class="">
+            <dir-component-tree components="component"></dir-component-tree>
         </div>
-
-        <div class="col-sm-8 col-md-8 col_content_console">
-            <div class="">
-                <dir-component-display components="component"></dir-component-display>
-            </div>
-        </div>
-
     </div>
-
-
+    <div class="col-sm-8 col-md-8 col_content_console">
+        <div class="">
+            <dir-component-display components="component"></dir-component-display>
+        </div>
+    </div>
 </section>

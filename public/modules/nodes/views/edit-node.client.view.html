@@ -56,11 +56,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="ip">Petals Node Ip</label>
+                            <label class="control-label" for="ip">Ip</label>
 
                             <div class="controls">
                                     <span class="input-group-addon">
                                         <input type="text" data-ng-model="node.ip" id="ip" class="form-control">
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="port">Port</label>
+
+                            <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="node.port" id="port" class="form-control">
                                     </span>
                             </div>
                         </div>
@@ -70,7 +79,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="nodeUpCtrl.update(node)">
+        <button class="btn btn-success btn-lg" ng-click="nodeUpCtrl.update(node); cancel()">
             <i class="glyphicon glyphicon-refresh"></i>
             Update Node
         </button>

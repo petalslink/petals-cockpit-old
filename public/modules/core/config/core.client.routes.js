@@ -2,9 +2,7 @@
 
 // Setting up route
 
-var dependencies = ['ntt.TreeDnD'];
-
-angular.module('core', dependencies).config(['$stateProvider', '$urlRouterProvider',
+angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
         // Redirect to home view when route not found
         $urlRouterProvider.otherwise('/');

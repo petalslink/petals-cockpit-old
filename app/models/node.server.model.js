@@ -21,6 +21,11 @@ var NodeSchema = new Schema({
 		default: '',
 		trim: true
 	},
+	port: {
+		type: String,
+		default: '',
+		trim: true
+	},
 	parentBus: {
 		type: Schema.Types.ObjectId,
 		ref: 'Bus'
@@ -45,7 +50,8 @@ var Node = mongoose.model('Node', NodeSchema);
 
 var NodeDefault = new Node({
 	name: 'N-Toulouse1',
-	ip: '10.3.44.5'
+	ip: '10.3.44.5',
+	port: '45'
 });
 
 NodeDefault.update(function (err, saved) {

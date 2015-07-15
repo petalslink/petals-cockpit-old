@@ -121,9 +121,9 @@ busesApp.controller('BusesUpdateController', ['$scope', 'Buses', 'Notify',
 		// Update existing Bus
 		this.update = function(updatedBus) {
 			var bus = updatedBus;
-			console.log('CHECK UPDATE', $scope.bus);
+			console.log('CHECK UPDATE', $scope.bus, $scope.sItem);
 
-			Buses.updateBus($scope.bus, function(response) {
+			Buses.updateBus($scope.bus, $scope.sItem, function(response) {
 
 				Notify.sendMsg('UpdateBus', {'id': response._id});
 

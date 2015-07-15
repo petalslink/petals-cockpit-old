@@ -1,0 +1,19 @@
+<div class="filterable" ng-init="bus">
+    <div ng-switch="template">
+        <div ng-switch-when="bus">
+            <div ng-include="'modules/buses/views/configuration-edit-bus.html'"></div>
+        </div>
+        <div ng-switch-when="node">
+            <div ng-include="'modules/nodes/views/configuration-edit-node.html'"></div>
+        </div>
+        <div ng-switch-when="component">
+            <div ng-include="'modules/components/views/configuration-edit-component.html'"></div>
+        </div>
+        <div ng-switch-when="su">
+            <div ng-include="'modules/serviceunits/views/configuration-edit-su.html'"></div>
+        </div>
+        <div ng-switch-when="service">
+            <div ng-include="'modules/services/views/configuration-edit-service.html'"></div>
+        </div>
+    </div>
+</div>

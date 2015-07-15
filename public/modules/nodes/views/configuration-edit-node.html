@@ -1,0 +1,90 @@
+<section data-ng-controller="NodesUpdateController as nodeUpCtrl">
+
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+            <h1><i class="glyphicon glyphicon-wrench cust-overview"></i> {{sItem.name}}</h1>
+        </div>
+        <div class="text-color-black panel">
+            <form name="updateNodeForm" ng-submit="ok()" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group">
+                            <div data-ng-show="error" class="text-center text-danger">
+                                <div class="alert alert-danger" role="alert">
+                                    <strong data-ng-bind="error"></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div data-ng-show="close" class="text-center text-success">
+                                <div class="alert alert-success" role="alert">
+                                    <strong data-ng-bind="close"></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        <div class="col-sm-4 text-center">
+                                                    <i class="glyphicon glyphicon-flash cust-profile"></i>
+                                                    <br/><br/>
+                                                </div>-->
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name</label>
+
+                                <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="sItem.name" id="name"
+                                               class="form-control">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ip">Ip</label>
+
+                                <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="sItem.ip" id="ip" class="form-control">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="port">Port</label>
+
+                                <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="sItem.port" id="port" class="form-control">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-center">
+                                <button class="btn btn-success" ng-click="nodeUpCtrl.update(sItem)">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                    Update Node
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section data-ng-controller="ComponentsController as componentsCtrl">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+            <h1><i class="glyphicon glyphicon-tasks cust-overview"></i> Component</h1>
+        </div>
+        <div class="col-xs-12 text-right">
+            <button type="button" class="btn btn-success text-center"
+                    ng-click="componentsCtrl.modalCreate('lg',size,createComponentForm)">
+                <i class="glyphicon glyphicon-plus"></i>
+                Create New Component
+            </button>
+        </div>
+        </br>
+        </br>
+        <dir-component-list info="componentsCtrl.components" filter="searchText"></dir-component-list>
+    </div>
+
+</section>

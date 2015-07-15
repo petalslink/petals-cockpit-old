@@ -29,9 +29,6 @@ componentsApp.directive('dirComponentUnique', ['Components',
 
         return {
             restrict: 'E',
-            scope: {
-                componentUnique: '=info'
-            },
             transclude: true,
             templateUrl: '/modules/components/views/component-unique-template.html',
             link: function ($scope, element, attrs) {

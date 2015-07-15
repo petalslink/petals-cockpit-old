@@ -127,9 +127,9 @@ serviceunitsApp.controller('ServiceunitsUpdateController', ['$scope', 'Serviceun
 		// Update existing Service Unit
 		this.update = function(updatedServiceunit) {
 			var serviceunit = updatedServiceunit;
-			console.log('CHECK UPDATE', $scope.serviceunit);
+			console.log('CHECK UPDATE', $scope.serviceunit, $scope.sItem);
 
-			Serviceunits.updateServiceunit($scope.serviceunit, function(response) {
+			Serviceunits.updateServiceunit($scope.serviceunit, $scope.sItem, function(response) {
 
 				Notify.sendMsg('UpdateServiceunit', {'id': response._id});
 

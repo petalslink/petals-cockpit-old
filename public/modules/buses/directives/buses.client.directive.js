@@ -29,9 +29,6 @@ busesApp.directive('dirBusUnique', ['Buses',
 
         return {
             restrict: 'E',
-            scope: {
-                busUnique: '=info'
-            },
             transclude: true,
             templateUrl: '/modules/buses/views/bus-unique-template.html',
             link: function ($scope, element, attrs) {

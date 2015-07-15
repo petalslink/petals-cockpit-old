@@ -127,9 +127,9 @@ nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify', 'Buse
 		// Update existing Node
 		this.update = function(updatedNode) {
 			var node = updatedNode;
-			console.log('CHECK UPDATE', $scope.node);
+			console.log('CHECK UPDATE', $scope.node, $scope.sItem);
 
-			Nodes.updateNode($scope.node, function(response) {
+			Nodes.updateNode($scope.node, $scope.sItem, function(response) {
 
 				Notify.sendMsg('UpdateNode', {'id': response._id});
 

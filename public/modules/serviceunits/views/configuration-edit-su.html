@@ -1,0 +1,82 @@
+<section data-ng-controller="ServiceunitsUpdateController as serviceunitUpCtrl">
+
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+            <h1><i class="glyphicon glyphicon-pushpin cust-overview"></i> {{sItem.name}}</h1>
+        </div>
+        <div class="text-color-black panel">
+            <form name="updateServiceunitForm" ng-submit="ok()" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group">
+                            <div data-ng-show="error" class="text-center text-danger">
+                                <div class="alert alert-danger" role="alert">
+                                    <strong data-ng-bind="error"></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div data-ng-show="close" class="text-center text-success">
+                                <div class="alert alert-success" role="alert">
+                                    <strong data-ng-bind="close"></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        <div class="col-sm-4 text-center">
+                                                    <i class="glyphicon glyphicon-flash cust-profile"></i>
+                                                    <br/><br/>
+                                                </div>-->
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name</label>
+
+                                <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="sItem.name" id="name"
+                                               class="form-control">
+                                    </span>
+                                </div>
+                            </div>
+<!--                            <div class="form-group">
+                                <label class="control-label" for="name">State</label>
+
+                                <div class="controls">
+                                    <span class="input-group-addon">
+                                        <input type="text" data-ng-model="sItem.states" id="state"
+                                               class="form-control">
+                                    </span>
+                                </div>
+                            </div>-->
+                            <div class="col-sm-6 text-center">
+                                <button class="btn btn-success" ng-click="serviceunitUpCtrl.update(sItem)">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                    Update Service Unit
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section data-ng-controller="ServicesController as servicesCtrl">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+            <h1><i class="glyphicon glyphicon-sort cust-overview"></i> Service</h1>
+        </div>
+        <div class="col-xs-12 text-right">
+            <button type="button" class="btn btn-success text-center"
+                    ng-click="servicesCtrl.modalCreate('lg',size,createServiceForm)">
+                <i class="glyphicon glyphicon-plus"></i>
+                Create New Service
+            </button>
+        </div>
+        </br>
+        </br>
+        <dir-service-list info="servicesCtrl.services" filter="searchText"></dir-service-list>
+    </div>
+
+</section>

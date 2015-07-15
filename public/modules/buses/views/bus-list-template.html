@@ -17,8 +17,6 @@
                 <th><input type="text" class="form-control" placeholder="#" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Version" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Port" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
             </tr>
@@ -28,8 +26,6 @@
                 <td>{{$index + 1}}</td>
                 <td>{{bus.name}}</td>
                 <td>{{bus.version}}</td>
-                <td>{{bus.ip}}</td>
-                <td>{{bus.port}}</td>
                 <td ng-click="busesCtrl.modalUpdate('lg', bus)">
                     <dir-up-bus bus="bus"></dir-up-bus>
                 </td>

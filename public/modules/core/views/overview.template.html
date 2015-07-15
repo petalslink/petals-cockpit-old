@@ -1,6 +1,30 @@
-<div class="filterable">
+<div class="filterable" ng-init="bus">
+    <div ng-switch="template">
+        <div ng-switch-when="bus">
+            <dir-bus-unique></dir-bus-unique>
+        </div>
+        <div ng-switch-when="node">
+            <dir-node-unique></dir-node-unique>
+        </div>
+        <div ng-switch-when="component">
+            <dir-component-unique></dir-component-unique>
+        </div>
+        <div ng-switch-when="su">
+            <dir-serviceunit-unique></dir-serviceunit-unique>
+        </div>
+        <div ng-switch-when="service">
+            <dir-service-unique></dir-service-unique>
+        </div>
+    </div>
+
+
+
+<!--    <div data-ng-controller="BusesController as busesCtrl">
+        <dir-bus-unique info="busesCtrl.buses"></dir-bus-unique>
+    </div>-->
+
     <!--    <h1>DEFAULT OVERVIEW PAGE</h1>-->
-    <div data-ng-controller="BusesController as busesCtrl">
+<!--    <div data-ng-controller="BusesController as busesCtrl">
         <dir-bus-unique info="busesCtrl.buses"></dir-bus-unique>
     </div>
 
@@ -18,6 +42,6 @@
 
     <div data-ng-controller="ServicesController as servicesCtrl">
         <dir-service-unique info="servicesCtrl.services"></dir-service-unique>
-    </div>
+    </div>-->
 
 </div>

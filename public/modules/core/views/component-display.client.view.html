@@ -1,43 +1,49 @@
-<ul class="tabs-nav" ng-init="tab=1">
-    <li><a ng-click="tab=1" ng-class="{'active':tab==1}">Overview</a></li>
-    <li><a ng-click="tab=2" ng-class="{'active':tab==2}">Admin</a></li>
-    <li><a ng-click="tab=3" ng-class="{'active':tab==3}">Monitor</a></li>
-    <li><a ng-click="tab=4" ng-class="{'active':tab==4}">Configure</a></li>
-    <li><a ng-click="tab=5" ng-class="{'active':tab==5}">Log</a></li>
-    <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Flow</a></li>
-    <li><a ng-click="tab=7" ng-class="{'active':tab==7}">User</a></li>
-</ul>
+<div>
+    <ul class="tabs-nav" ng-init="tab=1">
+        <li><a ng-click="tab=1" ng-class="{'active':tab==1}">Overview</a></li>
+        <li><a ng-click="tab=2" ng-class="{'active':tab==2}">Admin</a></li>
+        <li><a ng-click="tab=3" ng-class="{'active':tab==3}">Monitor</a></li>
+        <li><a ng-click="tab=4" ng-class="{'active':tab==4}">Configuration</a></li>
+        <li><a ng-click="tab=5" ng-class="{'active':tab==5}">Log</a></li>
+        <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Flow</a></li>
+        <li><a ng-click="tab=7" ng-class="{'active':tab==7}">User</a></li>
+    </ul>
+    <div class="backgroundTabHome marg5">
+        <div ng-show="tab==1">
+            <div ng-include="'modules/core/views/overview.template.html'"></div>
+        </div>
+        <div ng-show="tab==4">
+            <div ng-include="'modules/core/views/configuration.template.html'"></div>
+        </div>
 
-<div class="backgroundTabHome marg5">
+    <!--
+            <p class="text-right">You are in: <code>Overview</code></p>
+    -->
 
-    <div ng-show="tab==1">
-<!--
-        <p class="text-right">You are in: <code>Overview</code></p>
--->
-        <div class="" ng-include="'modules/core/views/overview.template.html'"></div>
+
+    <!--    <div ng-show="tab==2">
+            <p class="text-right">You are in: <code>Admin</code></p>
+            <div class="" ng-include="'modules/core/views/admin.template.html'"></div>
+        </div>
+        <div ng-show="tab==3">
+            <p class="text-right">You are in: <code>Monitor</code></p>
+            <div class="" ng-include="'modules/core/views/monitor.template.html'"></div>
+        </div>
+        <div ng-show="tab==4">
+            <p class="text-right">You are in: <code>Configure</code></p>
+            <div class="" ng-include="'modules/core/views/configuration.template.html'"></div>
+        </div>
+        <div ng-show="tab==5">
+            <p class="text-right">You are in: <code>Log</code></p>
+            <div class="" ng-include="'modules/core/views/log.template.html'"></div>
+        </div>
+        <div ng-show="tab==6">
+            <p class="text-right">You are in: <code>Flow</code></p>
+            <div class="" ng-include="'modules/core/views/flow.template.html'"></div>
+        </div>
+        <div ng-show="tab==7">
+            <p class="text-right">You are in: <code>User</code></p>
+            <div class="" ng-include="'modules/core/views/user.template.html'"></div>
+        </div>-->
     </div>
-<!--    <div ng-show="tab==2">
-        <p class="text-right">You are in: <code>Admin</code></p>
-        <div class="" ng-include="'modules/core/views/admin.template.html'"></div>
-    </div>
-    <div ng-show="tab==3">
-        <p class="text-right">You are in: <code>Monitor</code></p>
-        <div class="" ng-include="'modules/core/views/monitor.template.html'"></div>
-    </div>
-    <div ng-show="tab==4">
-        <p class="text-right">You are in: <code>Configure</code></p>
-        <div class="" ng-include="'modules/core/views/configure.template.html'"></div>
-    </div>
-    <div ng-show="tab==5">
-        <p class="text-right">You are in: <code>Log</code></p>
-        <div class="" ng-include="'modules/core/views/log.template.html'"></div>
-    </div>
-    <div ng-show="tab==6">
-        <p class="text-right">You are in: <code>Flow</code></p>
-        <div class="" ng-include="'modules/core/views/flow.template.html'"></div>
-    </div>
-    <div ng-show="tab==7">
-        <p class="text-right">You are in: <code>User</code></p>
-        <div class="" ng-include="'modules/core/views/user.template.html'"></div>
-    </div>-->
 </div>

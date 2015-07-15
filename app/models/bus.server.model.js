@@ -20,16 +20,6 @@ var BusSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	ip: {
-		type: String,
-		default: '',
-		trim: true
-	},
-	port: {
-		type: Number,
-		default: '',
-		trim: true
-	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -50,9 +40,7 @@ var Bus = mongoose.model('Bus', BusSchema);
 
 var BusDefault = new Bus({
 	name: 'BUS-RH Domain',
-	version: 'Petals 3',
-	ip: '192.168.168.10',
-	port: '2024'
+	version: 'Petals 3'
 });
 
 BusDefault.update(function (err, saved) {

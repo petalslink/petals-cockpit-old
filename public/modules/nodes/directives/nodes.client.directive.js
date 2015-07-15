@@ -29,9 +29,6 @@ nodesApp.directive('dirNodeUnique', ['Nodes',
 
         return {
             restrict: 'E',
-            scope: {
-                nodeUnique: '=info'
-            },
             transclude: true,
             templateUrl: '/modules/nodes/views/node-unique-template.html',
             link: function ($scope, element, attrs) {

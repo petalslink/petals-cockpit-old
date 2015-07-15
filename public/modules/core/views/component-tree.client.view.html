@@ -1,47 +1,63 @@
-<div ng-controller="treeCtrl as myCtrl">
+<div data-ng-controller="BusesController as busesCtrl">
 
     <div class="tab-pane">
         <!--<p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>-->
         <div class="tabs-nav">
             <div>
                 <a>WORKSPACE<span class="caret"></span></a>
+                <button type="button" class="btn btn-success text-right"
+                        ng-click="busesCtrl.modalCreate('lg',size,createBusForm)">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Create New Bus
+                </button>
             </div>
-<!--            <div class="input-group">
-                <input type="text" class="form-control text-color-black" ng-model="_filter.title"
-                       placeholder=" Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-            </div>-->
+            <!--            <div class="input-group">
+                            <input type="text" class="form-control text-color-black" ng-model="_filter.title"
+                                   placeholder=" Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                        </div>-->
         </div>
 
         <md-content layout-padding class="autoScroll">
-            <md-input-container class="md-icon-float" >
+            <md-input-container class="md-icon-float">
                 <label>Search</label>
-                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="node"></md-icon>
+                <md-icon class="node"></md-icon>
                 <input ng-model="node.children" type="text">
             </md-input-container>
         </md-content>
 
         <!-- A dynamic template to build a tree with AngularJS -->
         <script type="text/ng-template" id="my-tmpl">
-            <span class="petals-tree-size" ng-if="node.children.length > 0 && ! node.showChildren" ng-click="node.showChildren = true">+</span>
-            <span class="petals-tree-size" ng-if="node.children.length === 0 || node.showChildren" ng-click="node.showChildren = false">-</span>
 
-            <span class="text-color-grey" ng-class="'glyphicon ' + node.icon"></span>
-            <a class="petals-tree" href="" ng-click="">{{ node.name }}</a>
+            <!-- <span class="text-color-grey" ng-class="'glyphicon ' + node.icon"></span> -->
+            <p class="petals-tree-items"
+               ng-model="nodeType"
+               ng-click="selectItem(node)"
+               ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
+
+                <span class="petals-tree-size" ng-if="node.children.length > 0 && ! node.showChildren"
+                      ng-click="node.showChildren = true">+</span>
+                <span class="petals-tree-size" ng-if="node.children.length === 0 || node.showChildren"
+                      ng-click="node.showChildren = false">-</span>
+
+                &nbsp;
+                {{ node.name }}
+            </p>
+
             <ul ng-if="node.showChildren">
                 <li class="" ng-repeat="node in node.children" ng-include="'my-tmpl'"></li>
             </ul>
         </script>
 
-            <div class="panel">
-                <ul class="list-group petals-tree">
-                    <li class="list-group-item petals-tree" ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
-                </ul>
-            </div>
+        <div class="panel">
+            <ul class="list-group petals-tree">
+                <li class="list-group-item petals-tree" ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
+            </ul>
+        </div>
 
     </div>
 

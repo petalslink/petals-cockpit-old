@@ -1,4 +1,4 @@
-<div class="panel-pricing panel-primary" data-ng-controller="NodesController as nodesCtrl">
+<div class="panel-pricing panel-primary">
     <div class="panel-green">
         <div class="panel-heading padZero text-center">
             <h4 class=""><i class="glyphicon glyphicon-wrench cust-overview"></i> Node Settings</h4>
@@ -8,26 +8,18 @@
         <table class="table panel">
             <thead>
             <tr class="filters">
-                <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Parent Bus Name" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="* Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Parent" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Port" disabled></th>
             </tr>
             </thead>
-            <tbody data-ng-repeat="node in nodeUnique">
+            <tbody>
             <tr>
-                <td>{{$index + 1}}</td>
-                <td>{{node.parentBus.name}}</td>
-                <td>{{node.name}}</td>
-                <td>{{node.ip}}</td>
-                <td ng-click="nodesCtrl.modalUpdate('lg', node)">
-                    <dir-up-node node="node"></dir-up-node>
-                </td>
-                <td>
-                    <dir-sup-node node="node"></dir-sup-node>
-                </td>
+                <td>{{sItem.name}}</td>
+                <td>{{sItem.parentBus.name}}</td>
+                <td>{{sItem.ip}}</td>
+                <td>{{sItem.port}}</td>
             </tr>
             </tbody>
         </table>

@@ -1,4 +1,4 @@
-<div class="panel-pricing" data-ng-controller="BusesController as busesCtrl">
+<div class="panel-pricing">
     <div class="panel-green">
         <div class="panel-heading padZero text-center">
             <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Bus Settings</h4>
@@ -8,28 +8,14 @@
         <table class="table panel">
             <thead>
             <tr class="filters">
-                <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="* Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Version" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Port" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
             </tr>
             </thead>
-            <tbody data-ng-repeat="bus in busUnique">
+            <tbody>
             <tr>
-                <td>{{$index + 1}}</td>
-                <td>{{bus.name}}</td>
-                <td>{{bus.version}}</td>
-                <td>{{bus.ip}}</td>
-                <td>{{bus.port}}</td>
-                <td ng-click="busesCtrl.modalUpdate('lg', bus)">
-                    <dir-up-bus bus="bus"></dir-up-bus>
-                </td>
-                <td>
-                    <dir-sup-bus bus="bus"></dir-sup-bus>
-                </td>
+                <td>{{sItem.name}}</td>
+                <td>{{sItem.version}}</td>
             </tr>
             </tbody>
         </table>

@@ -1,4 +1,4 @@
-<div class="panel-pricing" data-ng-controller="ComponentsController as componentsCtrl">
+<div class="panel-pricing">
     <div class="panel-green">
         <div class="panel-heading padZero text-center">
             <h4 class=""><i class="glyphicon glyphicon-tasks cust-overview"></i> Component Settings</h4>
@@ -8,24 +8,14 @@
         <table class="table panel">
             <thead>
             <tr class="filters">
-                <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Parent Node Name" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
+                <th><input type="text" class="form-control" placeholder="* Name" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Parent" disabled></th>
             </tr>
             </thead>
-            <tbody data-ng-repeat="component in componentUnique">
+            <tbody>
             <tr>
-                <td>{{$index + 1}}</td>
-                <td>{{component.parentServer.name}}</td>
-                <td>{{component.name}}</td>
-                <td ng-click="componentsCtrl.modalUpdate('lg', component)">
-                    <dir-up-component component="component"></dir-up-component>
-                </td>
-                <td>
-                    <dir-sup-component component="component"></dir-sup-component>
-                </td>
+                <td>{{sItem.name}}</td>
+                <td>{{sItem.parentServer.name}}</td>
             </tr>
             </tbody>
         </table>

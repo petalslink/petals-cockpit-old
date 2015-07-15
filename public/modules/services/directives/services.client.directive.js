@@ -29,9 +29,6 @@ servicesApp.directive('dirServiceUnique', ['Services',
 
         return {
             restrict: 'E',
-            scope: {
-                serviceUnique: '=info'
-            },
             transclude: true,
             templateUrl: '/modules/services/views/service-unique-template.html',
             link: function ($scope, element, attrs) {

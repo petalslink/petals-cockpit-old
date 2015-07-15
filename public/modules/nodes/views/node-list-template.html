@@ -15,9 +15,10 @@
             </div>
             <tr class="filters">
                 <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Parent Bus Name" disabled></th>
+<!--                <th><input type="text" class="form-control" placeholder="Parent Bus Name" disabled></th>-->
                 <th><input type="text" class="form-control" placeholder="Name" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Ip" disabled></th>
+                <th><input type="text" class="form-control" placeholder="Port" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
                 <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
             </tr>
@@ -25,9 +26,10 @@
             <tbody data-ng-repeat="node in nodesList | filter:searchText | orderBy:'-Name'" >
             <tr>
                 <td>{{$index + 1}}</td>
-                <td>{{node.parentBus.name}}</td>
+<!--                <td>{{node.parentBus.name}}</td>-->
                 <td>{{node.name}}</td>
                 <td>{{node.ip}}</td>
+                <td>{{node.port}}</td>
                 <td ng-click="nodesCtrl.modalUpdate('lg', node)">
                     <dir-up-node node="node"></dir-up-node>
                 </td>

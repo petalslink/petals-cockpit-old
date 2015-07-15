@@ -128,9 +128,9 @@ componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 
 		// Update existing Component
 		this.update = function(updatedComponent) {
 			var component = updatedComponent;
-			console.log('CHECK UPDATE', $scope.component);
+			console.log('CHECK UPDATE', $scope.component, $scope.sItem);
 
-			Components.updateComponent($scope.component, function(response) {
+			Components.updateComponent($scope.component, $scope.sItem, function(response) {
 
 				Notify.sendMsg('UpdateComponent', {'id': response._id});
 

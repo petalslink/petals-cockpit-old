@@ -29,9 +29,6 @@ serviceunitsApp.directive('dirServiceunitUnique', ['Serviceunits',
 
         return {
             restrict: 'E',
-            scope: {
-                serviceunitUnique: '=info'
-            },
             transclude: true,
             templateUrl: '/modules/serviceunits/views/serviceunit-unique-template.html',
             link: function ($scope, element, attrs) {

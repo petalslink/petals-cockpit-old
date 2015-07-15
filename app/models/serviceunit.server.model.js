@@ -49,7 +49,8 @@ var ServiceunitSchema = new Schema({
 var Serviceunit = mongoose.model('Serviceunit', ServiceunitSchema);
 
 var ServiceUnitDefault = new Serviceunit({
-	name: 'SU-Achat'
+	name: 'SU-Achat',
+	states: 'started'
 });
 
 ServiceUnitDefault.update(function (err, saved) {
