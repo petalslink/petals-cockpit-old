@@ -9,6 +9,13 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
         $scope.authentication = Authentication;
         $scope.template = '';
 
+        $scope.isOpen = false;
+        $scope.demo = {
+            isOpen: false,
+            count: 0,
+            selectedAlignment: 'md-right'
+        };
+
         // Declare scope functions
         $scope.selectItem = selectItem;
 
@@ -131,3 +138,8 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 
     }]);
 
+app.config(function($mdIconProvider) {
+    $mdIconProvider
+        .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
+        .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+});

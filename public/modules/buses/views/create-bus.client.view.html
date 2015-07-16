@@ -31,7 +31,7 @@
 
                             <div class="controls">
                                         <span class="input-group-addon">
-                                            <input type="text" data-ng-model="bus.version" id="version"
+                                            <input type="text" data-ng-model="bus.version" required id="version"
                                                    class="form-control">
                                         </span>
                             </div>
@@ -41,7 +41,7 @@
 
                                 <div class="controls">
                                         <span class="input-group-addon">
-                                            <input type="text" data-ng-model="bus.name" id="name"
+                                            <input type="text" data-ng-model="bus.name" required id="name"
                                                    class="form-control">
                                         </span>
                                 </div>
@@ -52,7 +52,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="create(); cancel()">
+        <button class="btn btn-success btn-lg" ng-click="create(); cancel(); ok()">
             <i class="glyphicon glyphicon-save"></i>
             Save New Bus
         </button>

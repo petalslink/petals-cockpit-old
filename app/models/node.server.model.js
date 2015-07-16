@@ -19,16 +19,19 @@ var NodeSchema = new Schema({
 	ip: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: 'Please fill Node ip'
 	},
 	port: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: 'Please fill Node port'
 	},
 	parentBus: {
 		type: Schema.Types.ObjectId,
-		ref: 'Bus'
+		ref: 'Bus',
+		required: 'Please fill parentBus name'
 	},
 	created: {
 		type: Date,

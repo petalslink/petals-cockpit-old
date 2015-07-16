@@ -13,12 +13,14 @@ var BusSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: 'Please fill bus name'
 	},
 	version: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: 'Please fill bus version'
 	},
 	created: {
 		type: Date,

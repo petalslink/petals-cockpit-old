@@ -46,7 +46,7 @@
                                     <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Select Bus - Parent</h4>
 
                                     <div class="form-group text-center">
-                                        <select data-ng-model="node.parentBus" id="parentBus" class="form-control">
+                                        <select data-ng-model="node.parentBus" required id="parentBus" class="form-control">
                                             <option value="">-- Please Select Parent --</option>
                                             <option value="{{bus._id}}" data-ng-repeat="bus in buses">{{bus.name}}</option>
                                         </select>
@@ -67,7 +67,7 @@
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.name" id="name"
+                                        <input type="text" data-ng-model="node.name" required id="name"
                                                class="form-control">
                                     </span>
                             </div>
@@ -77,7 +77,7 @@
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.ip" id="ip" class="form-control"
+                                        <input type="text" data-ng-model="node.ip" required id="ip" class="form-control"
                                                 >
                                     </span>
                             </div>
@@ -87,7 +87,7 @@
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.port" id="port" class="form-control"
+                                        <input type="text" data-ng-model="node.port" required id="port" class="form-control"
                                                 >
                                     </span>
                             </div>

@@ -1,6 +1,21 @@
 <section data-ng-controller="HomeController">
-    <br>
-    <div class="page-header"><p>Prototype Version 0.0.1</p></div>
+<!--    <div class="row contentBandeau">
+        <h5 class="page-header bandeauPrototype"><p>>|< Prototype Version 0.0.1 - Qantum Leap</p></h5>
+    </div>-->
+    <br><br>
+    <div class="protoNav">
+
+        <md-fab-toolbar md-open="demo.isOpen" count="demo.count" ng-class="demo.selectedAlignment">
+            <md-toolbar>
+                <md-fab-actions class="md-toolbar-tools">
+                    <md-button class="md-accent md-raised md-hue-1">
+                        Prototype - Version 0.0.1
+                    </md-button>
+                    <i class="material-icons md-24">face</i>
+                </md-fab-actions>
+            </md-toolbar>
+        </md-fab-toolbar>
+    </div>
     <div class="col-sm-4 col-md-4 col_content_tree">
         <div class="">
             <dir-component-tree components="component"></dir-component-tree>

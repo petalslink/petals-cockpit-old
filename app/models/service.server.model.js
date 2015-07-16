@@ -14,11 +14,12 @@ var ServiceSchema = new Schema({
 		type: String,
 		default: '',
 		required: 'Please fill Service name',
-		trim: true
+		trim: true,
 	},
 	parentServiceunit: {
 		type: Schema.Types.ObjectId,
-		ref: 'Serviceunit'
+		ref: 'Serviceunit',
+		required: 'Please fill Parent Service Unit name'
 	},
 	created: {
 		type: Date,

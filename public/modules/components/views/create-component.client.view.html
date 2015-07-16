@@ -34,7 +34,7 @@
                                     </h4>
 
                                     <div class="form-group text-center">
-                                        <select data-ng-model="component.parentServer" id="parentServer" class="form-control">
+                                        <select data-ng-model="component.parentServer" required id="parentServer" class="form-control">
                                             <option value="">-- Please Select Parent --</option>
                                             <option value="{{node._id}}" data-ng-repeat="node in nodes">{{node.name}}
                                             </option>
@@ -56,7 +56,7 @@
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="component.name" id="name"
+                                        <input type="text" data-ng-model="component.name" required id="name"
                                                class="form-control">
                                     </span>
                             </div>

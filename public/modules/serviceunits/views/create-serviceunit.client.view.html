@@ -33,7 +33,7 @@
                                     </h4>
 
                                     <div class="form-group text-center">
-                                        <select data-ng-model="serviceunit.parentComponent" id="parentComponent" class="form-control">
+                                        <select data-ng-model="serviceunit.parentComponent" required id="parentComponent" class="form-control">
                                             <option value="">-- Please Select Parent --</option>
                                             <option value="{{component._id}}" data-ng-repeat="component in components">{{component.name}}
                                             </option>
@@ -55,7 +55,7 @@
 
                             <div class="controls">
                                     <span class="input-group-addon">
-                                        <input type="text" data-ng-model="serviceunit.name" id="name"
+                                        <input type="text" data-ng-model="serviceunit.name" required id="name"
                                                class="form-control">
                                     </span>
                             </div>

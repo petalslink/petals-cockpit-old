@@ -14,11 +14,12 @@ var ComponentSchema = new Schema({
 		type: String,
 		default: '',
 		required: 'Please fill Component name',
-		trim: true
+		trim: true,
 	},
 	parentServer: {
 		type: Schema.Types.ObjectId,
-		ref: 'Node'
+		ref: 'Node',
+		required: 'Please fill ParentServer name'
 	},
 	created: {
 		type: Date,

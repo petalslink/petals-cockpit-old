@@ -146,7 +146,7 @@ body {
 
 .tabs-nav .active {
     background: #ffffff;
-    color: #149040;
+    color: #3294CC;
     border-bottom: 1px solid #ffffff;
     margin-bottom: -1px;
 }
@@ -270,7 +270,8 @@ body {
     display: block;
 }
 .petals-tree-items:hover {
-    background-color: #E26312;
+    background-color: #f5f5f5;
+    color: black;
 }
 .petals-tree li {
     position: relative;
@@ -310,15 +311,23 @@ body {
     color: #777;
     font-weight: 100;
 }
-
 .normal {
     color: black;
+    background-color: #3294CC;
 }
-
 .faded {
     color: #666666;
 }
-
+.bandeauPrototype {
+    background-color: #772E87;
+    padding: 10px;
+    border-bottom:10px solid #3294CC;
+    color: white;
+    text-align: right;
+}
+.contentBandeau {
+    padding-top: 18px;
+}
 
 .animate-switch-container {
     position:relative;
@@ -351,4 +360,6 @@ body {
 .animate-switch.ng-enter.ng-enter-active {
     top:0;
 }
+.protoNav md-fab-toolbar.md-right md-fab-trigger.align-with-text {
+    right: 7px; }
 

@@ -13,7 +13,8 @@ var ServiceunitSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: 'Please fill Service Unit name'
 	},
 	states: {
 		type: [{
@@ -28,7 +29,8 @@ var ServiceunitSchema = new Schema({
 	},
 	parentComponent: {
 		type: Schema.Types.ObjectId,
-		ref: 'Component'
+		ref: 'Component',
+		required: 'Please fill Parent Component name'
 	},
 	created: {
 		type: Date,
