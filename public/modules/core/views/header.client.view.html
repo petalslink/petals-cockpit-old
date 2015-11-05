@@ -69,28 +69,14 @@
 
 			<!-- When User is not Logged -->
 
-			<div data-ng-hide="authentication.user" layout="row" layout-wrap>
-				<md-menu-item class="md-primary">
-					<md-menu class="md-primary" md-position-mode="target-right target">
-						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()" ui-route="/signin">
-							<a href="/#!/signin">
-								<md-button class="md-primary md-hue-1">
-									<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
-									<label class="faded">Sign In</label>
-								</md-button>
-							</a>
+			<div data-ng-hide="authentication.user" layout="row" layout-align="end center">
+				<md-menu-item class="md-primary md-hue-1" ui-route="/signin">
+					<a href="/#!/signin">
+						<md-button class="md-primary md-raised md-hue-1">
+							<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
+							<label class="normal">Sign In</label>
 						</md-button>
-						<md-menu-content width="4">
-							<md-menu-item class="md-primary md-hue-1" ui-route="/signin">
-								<a href="/#!/signin">
-									<md-button class="md-primary md-hue-1">
-										<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
-										<label class="faded">Sign In</label>
-									</md-button>
-								</a>
-							</md-menu-item>
-						</md-menu-content>
-					</md-menu>
+					</a>
 				</md-menu-item>
 			</div>
 

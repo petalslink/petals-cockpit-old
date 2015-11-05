@@ -7,10 +7,10 @@ module.exports = function(app) {
 	// Serviceunits Routes
 	app.route('/serviceunits').put(users.requiresLogin, serviceunits.update)
 		.post(users.requiresLogin, serviceunits.create)
-		.get(serviceunits.list);
+		.get(users.requiresLogin, serviceunits.list);
 
 	app.route('/serviceunits/:serviceunitId')
-		.get(serviceunits.read)
+		.get(users.requiresLogin, serviceunits.read)
 		.put(users.requiresLogin, serviceunits.update)
 		.delete(users.requiresLogin, serviceunits.delete);
 

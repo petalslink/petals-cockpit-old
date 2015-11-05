@@ -1,62 +1,36 @@
 <section class="row" data-ng-controller="AuthenticationController">
-	<br><br>
-	<div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 login-form-bg">
-	    <h3 class="bandeau-login-bg">Login</h3>
-<!--
-	<div class="col-md-12 text-center">
-		<a href="/auth/facebook" class="undecorated-link">
-			<img src="/modules/users/img/buttons/facebook.png">
-		</a>
-		<a href="/auth/twitter" class="undecorated-link">
-			<img src="/modules/users/img/buttons/twitter.png">
-		</a>
-		<a href="/auth/google" class="undecorated-link">
-			<img src="/modules/users/img/buttons/google.png">
-		</a>
-		<a href="/auth/linkedin" class="undecorated-link">
-			<img src="/modules/users/img/buttons/linkedin.png">
-		</a>
-		<a href="/auth/github" class="undecorated-link">
-			<img src="/modules/users/img/buttons/github.png">
-		</a>
-	</div>
--->
-<!--	<h3 class="col-md-12 text-center">Or with your account</h3>-->
 
-		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
-			<fieldset>
-			    <div class="form-group">
-                    <div data-ng-show="error" class="text-center text-danger">
-                        <div class="alert alert-danger" role="alert">
-                            <strong data-ng-bind="error"></strong>				        
-                        </div>
-                    </div>
+    <md-toolbar md-theme="core-theme" class="md-primary md-hue-3">
+        <div class="md-toolbar-tools" layout-align="center">
+            <i class="material-icons md-48 md-primary">vpn_key</i>
+        </div>
+    </md-toolbar>
+    <md-content layout="column" layout-sm="column" layout-align="center center">
+        <form name="loginForm" data-ng-submit="signin()">
+
+            <md-input-container class="md-raised md-primary md-hue-1" data-ng-show="error">
+                <div class="alert alert-danger" role="alert">
+                    <h3 data-ng-bind="error"></h3>
                 </div>
-				<div class="form-group">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon">
-                            <i class="text-muted glyphicon glyphicon-user"></i>
-                        </span>
-                        <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-                    </div>
-				</div>
-				<div class="form-group">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon">
-                            <i class="text-muted glyphicon glyphicon-asterisk"></i>
-                        </span>
-                        <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-                    </div>
-				</div>
-                </br>
-				<div class="text-center form-group">
-					<button type="submit" class="btn btn-success btn-lg btn-block">Sign in</button>
-				</div>
-<!--				<div class="forgot-password">
-					<a href="/#!/password/forgot">Forgot your password?</a> &nbsp; Or &nbsp;
-					<a href="/#!/signup">Sign up</a>
-				</div>-->
-			</fieldset>
-		</form>
-	</div>
+            </md-input-container>
+
+            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Username">
+                <label>Username</label>
+                <input type="text" id="username" name="username"
+                       data-ng-model="credentials.username" placeholder="SuperAdmin">
+            </md-input-container>
+
+            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Password">
+                <label>Password</label>
+                <input type="password" id="password" name="password"
+                       data-ng-model="credentials.password" placeholder="stage2015">
+            </md-input-container>
+
+            <md-input-container class="md-raised md-primary md-hue-1" aria-label="Signin">
+                <md-button type="submit" class="md-raised md-primary md-hue-1">Sign in</md-button>
+            </md-input-container>
+
+        </form>
+    </md-content>
+
 </section>

@@ -7,11 +7,11 @@ module.exports = function(app) {
 	// Components Routes
 	app.route('/components').put(users.requiresLogin, components.update)
 		.post(users.requiresLogin, components.create)
-		.get(components.list);
+		.get(users.requiresLogin, components.list);
 
 
 	app.route('/components/:componentId')
-		.get(components.read)
+		.get(users.requiresLogin, components.read)
 		.put(users.requiresLogin, components.update)
 		.delete(users.requiresLogin, components.delete);
 

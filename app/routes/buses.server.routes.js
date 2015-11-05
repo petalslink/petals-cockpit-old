@@ -7,10 +7,10 @@ module.exports = function(app) {
 	// Buses Routes
 	app.route('/buses').put(users.requiresLogin, buses.update)
 		.post(users.requiresLogin, buses.create)
-		.get(buses.list);
+		.get(users.requiresLogin, buses.list);
 
 	app.route('/buses/:busId')
-		.get(buses.read)
+		.get(users.requiresLogin, buses.read)
 		.put(users.requiresLogin, buses.update)
 		.delete(users.requiresLogin, buses.delete);
 

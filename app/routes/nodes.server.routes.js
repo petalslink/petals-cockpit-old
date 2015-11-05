@@ -7,10 +7,10 @@ module.exports = function(app) {
 	// Nodes Routes
 	app.route('/nodes').put(users.requiresLogin, nodes.update)
 		.post(users.requiresLogin, nodes.create)
-		.get(nodes.list);
+		.get(users.requiresLogin, nodes.list);
 
 	app.route('/nodes/:nodeId')
-		.get(nodes.read)
+		.get(users.requiresLogin, nodes.read)
 		.put(users.requiresLogin, nodes.update)
 		.delete(users.requiresLogin, nodes.delete);
 
