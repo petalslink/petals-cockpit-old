@@ -46,7 +46,7 @@ busesApp.directive('dirSupBus', ['Buses',
             scope: {
                 bus: '='
             },
-            template: '<button class="btn btn-danger" type="button" ng-click="removeBus()"><i class="glyphicon glyphicon-trash"></i></button>',
+            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="removeBus()"><md-tooltip>Remove {{bus.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeBus = function() {
                     Buses.deleteBus({busId: $scope.bus._id}, function() {
@@ -66,7 +66,7 @@ busesApp.directive('dirUpBus', ['Buses',
             scope: {
                 bus: '='
             },
-            template: '<button class="btn btn-success" type="button" ng-click="updBus()"><i class="glyphicon glyphicon-pencil"></i></button>',
+            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="updBus()"><md-tooltip>Edit {{bus.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updBus = function() {
 

@@ -14,7 +14,7 @@ var ServiceSchema = new Schema({
 		type: String,
 		default: '',
 		required: 'Please fill Service name',
-		trim: true,
+		trim: true
 	},
 	parentServiceunit: {
 		type: Schema.Types.ObjectId,
@@ -34,7 +34,8 @@ var ServiceSchema = new Schema({
 var Service = mongoose.model('Service', ServiceSchema);
 
 var ServiceDefault = new Service({
-	name: 'S-Tools'
+	name: 'S-Tools',
+	parentServiceunit:'5638c914c9053e4422f6c203'
 });
 
 ServiceDefault.update(function (err, saved) {

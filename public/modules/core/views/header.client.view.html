@@ -1,29 +1,104 @@
-<!--<div data-ng-controller="HeaderController" flex>
-&lt;!&ndash;	<md-toolbar layout="row" data-ng-controller="HomeController as ul">
-		<md-button class="menu" hide-gt-sm ng-click="ul.toggleList()"
-				   aria-label="Show User List">
-			<md-icon md-svg-icon="menu" ></md-icon>
-		</md-button>
-		<h1>Prototype Petals COCKPIT</h1>
-	</md-toolbar>&ndash;&gt;
+<section ng-controller="HeaderController" md-theme="core-theme">
+	<md-toolbar class="md-padding md-accent md-hue-2">
+		<md-menu-bar class="md-accent md-hue-2">
+			<div layout="row" layout-wrap layout-align="start center">
+				<a href="/#!/">
+					<md-icon><img ng-src="/modules/core/img/brand/petals_cockpit.png"
+								  class="logoPetals"
+								  aria-label="Home"/>
+					</md-icon>
+				</a>
+			</div>
+			<!-- When User is Logged -->
 
+			<div data-ng-show="authentication.user" layout="row" layout-align="end center">
+				<md-menu-item class="md-primary">
+					<md-menu class="md-primary" md-position-mode="target-right target">
+						<md-button class="md-primary md-raised md-hue-1" ng-click="$mdOpenMenu()">
+							<a href="#" class="md-primary">
+								<md-icon class="material-icons md-36 md-primary">settings_application</md-icon>
+								<label class="normal">Config</label>
+							</a>
+						</md-button>
+						<md-menu-content width="3">
+							<md-menu-item class="md-primary">
+								<a href="/#!/users">
+									<md-button class="md-primary md-hue-1">
+										<md-icon class="material-icons md-24 md-primary">edit</md-icon>
+										<label class="faded">List User</label>
+									</md-button>
+								</a>
+							</md-menu-item>
+						</md-menu-content>
+					</md-menu>
+				</md-menu-item>
 
+				<md-menu-item class="md-primary md-hue-1">
+					<md-menu class="md-primary md-hue-1" md-position-mode="target-right target">
+						<md-button class="md-primary md-raised md-hue-1" ng-click="$mdOpenMenu()">
+							<a href="#" class="md-primary md-hue-1">
+								<md-icon class="material-icons md-36 md-primary">assignment_ind</md-icon>
+								<label class="normal"><span data-ng-bind="authentication.user.displayName"></span></label>
+							</a>
+						</md-button>
 
-	<md-toolbar layout="column" layout-align="center end" class="md-tall">
-		<div flex flex-sm="100" flex-gt-sm="95" flex-gt-md="80" layout="column">
-			<h2 class="md-toolbar-tools"> The Simple Toolbar </h2>
-		</div>
-		&lt;!&ndash;top&ndash;&gt;
-		<span flex></span>
-		&lt;!&ndash;bottom&ndash;&gt;
-		<span layout="row" layout-padding>
+						<md-menu-content width="3">
+							<md-menu-item class="md-primary md-hue-1" ui-route="/settings/profile">
+								<a href="/#!/settings/profile">
+									<md-button class="md-primary md-hue-1">
+										<md-icon class="material-icons md-24 md-primary">edit</md-icon>
+										<label class="faded">Edit Profile</label>
+									</md-button>
+								</a>
+							</md-menu-item>
 
-			<md-button aria-label="The Button"> The Button</md-button>
-		</span>
+							<md-menu-divider></md-menu-divider>
+
+							<md-menu-item class="md-primary md-hue-1" ui-route="/auth/signout">
+								<a href="/auth/signout">
+									<md-button class="md-primary md-hue-1">
+										<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
+										<label class="faded">Signout</label>
+									</md-button>
+								</a>
+							</md-menu-item>
+						</md-menu-content>
+					</md-menu>
+				</md-menu-item>
+			</div>
+
+			<!-- When User is not Logged -->
+
+			<div data-ng-hide="authentication.user" layout="row" layout-wrap>
+				<md-menu-item class="md-primary">
+					<md-menu class="md-primary" md-position-mode="target-right target">
+						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()" ui-route="/signin">
+							<a href="/#!/signin">
+								<md-button class="md-primary md-hue-1">
+									<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
+									<label class="faded">Sign In</label>
+								</md-button>
+							</a>
+						</md-button>
+						<md-menu-content width="4">
+							<md-menu-item class="md-primary md-hue-1" ui-route="/signin">
+								<a href="/#!/signin">
+									<md-button class="md-primary md-hue-1">
+										<md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
+										<label class="faded">Sign In</label>
+									</md-button>
+								</a>
+							</md-menu-item>
+						</md-menu-content>
+					</md-menu>
+				</md-menu-item>
+			</div>
+
+		</md-menu-bar>
 	</md-toolbar>
-</div>-->
+</section>
 
-<div class="container" data-ng-controller="HeaderController">
+<!--<div class="container" data-ng-controller="HeaderController">
 	<div class="navbar-header">
 		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
 			<span class="sr-only">Toggle navigation</span>
@@ -31,19 +106,12 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-header cust-brand"><img src="/modules/core/img/brand/petals_cockpit.png" class="logoPetals"/></a>
+		<a href="/#!/" class="navbar-brand">petals-cockpit-reloaded</a>
 	</div>
-	<nav class="collapse navbar-collapse navbar-right" collapse="!isCollapsed" role="navigation">
-<!--		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'"
-				data-ng-if="item.shouldRender(authentication.user);"
-				ng-switch="item.menuItemType"
-				ui-route="{{item.uiRoute}}"
-				class="{{item.menuItemClass}}"
-				ng-class="{active: ($uiRoute)}"
-				dropdown="item.menuItemType === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle>
-					<i class="glyphicon glyphicon-cog"></i>
+	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
+			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+				<a ng-switch-when="dropdown" class="dropdown-toggle">
 					<span data-ng-bind="item.title"></span>
 					<b class="caret"></b>
 				</a>
@@ -54,100 +122,37 @@
 				</ul>
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
-		</ul>-->
-
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li class="dropdown cust-config" dropdown>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<i class="glyphicon glyphicon-cog cust-cog"></i>
-					<span>Configure</span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-<!--					<li class="cust-config">
-						<a href="/#!/buses">
-							<i class="glyphicon glyphicon-flash"></i>
-							<span>Bus</span>
-						</a>
-					</li>
-					<li class="divider"></li>
-					<li class="cust-config">
-						<a href="/#!/nodes">
-							<i class="glyphicon glyphicon-wrench"></i>
-							<span>Nodes</span>
-						</a>
-					</li>
-					<li class="divider"></li>
-					<li class="cust-config">
-						<a href="/#!/components">
-							<i class="glyphicon glyphicon-tasks"></i>
-							<span>Components</span>
-						</a>
-					</li>
-					<li class="divider"></li>
-					<li class="cust-config">
-						<a href="/#!/serviceunits">
-							<i class="glyphicon glyphicon-pushpin"></i>
-							<span>Service Units</span>
-						</a>
-					</li>
-					<li class="divider"></li>
-					<li class="cust-config">
-						<a href="/#!/services">
-							<i class="glyphicon glyphicon-sort"></i>
-							<span>Services</span>
-						</a>
-					</li>
-					<li class="divider"></li>-->
-					<li class="cust-config">
-						<a href="/#!/users">
-							<i class="glyphicon glyphicon-user"></i>
-							<span>Users</span>
-						</a>
-					</li>
-				</ul>
-			</li>
 		</ul>
-
-
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-<!--			<li ui-route="/signup" ng-class="{active: $uiRoute}">
+			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
-			</li>-->
-			<li class="cust-config" ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">
-					<i class="glyphicon glyphicon-off cust-cog"></i>
-					Log In
-				</a>
+			</li>
+			<li class="divider-vertical"></li>
+			<li ui-route="/signin" ng-class="{active: $uiRoute}">
+				<a href="/#!/signin">Sign In</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown cust-config" dropdown>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<i class="glyphicon glyphicon-user cust-user"></i>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li class="cust-config">
-						<a href="/#!/settings/profile">
-							<i class="glyphicon glyphicon-edit"></i>
-							Edit Profile
-						</a>
+					<li>
+						<a href="/#!/settings/profile">Edit Profile</a>
 					</li>
-<!--					<li>
+					<li>
 						<a href="/#!/settings/accounts">Manage Social Accounts</a>
-					</li>-->
-<!--					<li data-ng-show="authentication.user.provider === 'local'">
+					</li>
+					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Change Password</a>
-					</li>-->
+					</li>
 					<li class="divider"></li>
-					<li class="cust-config">
-						<a href="/auth/signout">
-							<i class="glyphicon glyphicon-off"></i>
-							Log out
-						</a>
+					<li>
+						<a href="/auth/signout">Signout</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 	</nav>
-</div>
+</div>-->

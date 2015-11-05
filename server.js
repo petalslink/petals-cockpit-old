@@ -26,11 +26,11 @@ var db = mongoose.connect(config.database.url, function(err) {
 var app = require('./config/express')(db);
 
 /*
-// Say Hello
-app.get('/', function(req, res) {
-	res.send('Hello Word from server.js')
-});
-*/
+ // Say Hello
+ app.get('/', function(req, res) {
+ res.send('Hello Word from server.js')
+ });
+ */
 
 // Bootstrap passport config
 require('./config/passport')();

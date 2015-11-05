@@ -88,6 +88,24 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 		};
 	}
 ]);
+
+busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
+	$mdThemingProvider.theme('overview-theme', 'default')
+		.primaryPalette('deep-purple', {
+			'default': '300',
+			'hue-1': '200',
+			'hue-2': '100',
+			'hue-3': '50'
+		})
+		.accentPalette('amber', {
+			'default': '300',
+			'hue-1': '200',
+			'hue-2': '100',
+			'hue-3': '50'
+		});
+}]);
+
+
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope',

@@ -1,47 +1,23 @@
-<div class="filterable" ng-init="bus">
+<md-content ng-init="bus">
     <div ng-switch="template">
-        <div ng-switch-when="bus">
+        <md-content ng-switch-when="bus">
             <dir-bus-unique></dir-bus-unique>
-        </div>
-        <div ng-switch-when="node">
+        </md-content>
+        <md-content ng-switch-when="node">
             <dir-node-unique></dir-node-unique>
-        </div>
-        <div ng-switch-when="component">
+        </md-content>
+        <md-content ng-switch-when="component">
             <dir-component-unique></dir-component-unique>
-        </div>
-        <div ng-switch-when="su">
+        </md-content>
+        <md-content ng-switch-when="su">
             <dir-serviceunit-unique></dir-serviceunit-unique>
-        </div>
-        <div ng-switch-when="service">
+        </md-content>
+        <md-content ng-switch-when="service">
             <dir-service-unique></dir-service-unique>
-        </div>
+        </md-content>
     </div>
+</md-content>
 
-
-
-<!--    <div data-ng-controller="BusesController as busesCtrl">
-        <dir-bus-unique info="busesCtrl.buses"></dir-bus-unique>
-    </div>-->
-
-    <!--    <h1>DEFAULT OVERVIEW PAGE</h1>-->
-<!--    <div data-ng-controller="BusesController as busesCtrl">
-        <dir-bus-unique info="busesCtrl.buses"></dir-bus-unique>
-    </div>
-
-    <div data-ng-controller="NodesController as nodesCtrl">
-        <dir-node-unique info="nodesCtrl.nodes"></dir-node-unique>
-    </div>
-
-    <div data-ng-controller="ComponentsController as componentsCtrl">
-        <dir-component-unique info="componentsCtrl.components"></dir-component-unique>
-    </div>
-
-    <div data-ng-controller="ServiceunitsController as serviceunitsCtrl">
-        <dir-serviceunit-unique info="serviceunitsCtrl.serviceunits"></dir-serviceunit-unique>
-    </div>
-
-    <div data-ng-controller="ServicesController as servicesCtrl">
-        <dir-service-unique info="servicesCtrl.services"></dir-service-unique>
-    </div>-->
-
-</div>
+<!--<div class="md-padding">
+    <h3>You are in page <code>Overview</code></h3>
+</div>-->

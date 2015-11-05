@@ -1,365 +1,205 @@
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
-    display: none !important;
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../../../lib/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: local('Material Icons'),
+	local('MaterialIcons-Regular'),
+	url(../../../lib/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+	url(../../../lib/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+	url(../../../lib/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-ng\:form {
-    display: block;
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;  /* Preferred icon size */
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
 }
 
-.content {
-    margin-top: 50px;
+/*Rules for sizing the icon*/
+.material-icons.md-18 {
+	font-size: 18px;
 }
 
+.material-icons.md-24 {
+	font-size: 24px;
+}
+
+.material-icons.md-36 {
+	font-size: 36px;
+}
+
+.material-icons.md-48 {
+	font-size: 48px;
+}
+
+/*Rules for using icons as black on a light background*/
+.material-icons.md-dark {
+	color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+	color: rgba(0, 0, 0, 0.26);
+}
+
+/*Rules for using icons as white on a dark background*/
+.material-icons.md-light {
+	color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+	color: rgba(255, 255, 255, 0.3);
+}
+
+body {
+	font-family: Roboto,"Helvetica Neue",sans-serif !important;
+}
 .undecorated-link:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
-
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
-
+/*[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}*/
 .ng-invalid.ng-dirty {
-    border-color: #FA787E;
+	border-color: #FA787E;
 }
-
 .ng-valid.ng-dirty {
-    border-color: #78FA89;
-}
-.cust-cog {
-    font-size: 20px;
-    text-align: center;
-    display: block;
-    line-height: 100%;
-}
-.cust-brand {
-    padding: 10px;
-    display: block;
-    line-height: 100%;
-}
-.cust-user {
-    font-size: 20px;
-    text-align: center;
-    display: block;
-    line-height: 100%;
-}
-.cust-config {
-    text-align: center;
-    line-height: 0%;
+	border-color: #78FA89;
 }
 .logoPetals {
-    width: 12%;
+	width: 75px;
+	top:0;
 }
-.logo-container {
-    display: inline-block;
-    padding: 10px 5px;
+.navSideLeft {
+	top: 0;
+/*	margin-left: -40px;*/
+	width: 100%;
+	min-width: 380px;
+	height: 100%;
+/*	min-height: 100%;*/
+/*	color: rgba(44, 65, 164, 0.96);*/
+	position: fixed;
+	padding: 0;
+	background: #f2f2f2;
 }
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #F5F5F5;
-/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-    background-size: cover;
-    opacity: 0.7;*/
-    color: inherit;
+md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+	min-height: 500px !important;
 }
-.backTest {
-    background-color: #F5F5F5;
-/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-    background-size: cover;*/
-    color: inherit;
+/*md-tab:not([disabled]):hover {
+	background-color: rgba(140, 158, 255, 0.96);
+	color: rgba(44, 65, 164, 0.96);
+	transition: 0.3s;
 }
-.backHome {
-/*    background: #d9e7e9 url("../img/all/slide__innovation.jpg") no-repeat fixed center;
-    background-size: cover;*/
-    color: inherit;
-}
-
-.backgroundStartMenu {
-    background: #FFFFFF;
-    padding: 0;
-}
-
-.backgroundTabHome:after {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+md-button:not([disabled]):hover {
+	background-color: rgba(193, 193, 193, 0.96);
+	color: rgba(44, 65, 164, 0.96);
+	transition: 0.3s;
+}*/
+.md-inline-list-icon-label {
+	display: inline-block;
+	color: #c5cae9;
+	vertical-align: middle;
 }
 
-.backgroundTabHome {
-/*    background: #FFFFFF;
-    height: 1200px;*/
-    padding: 0;
+.md-list-item, .md-list-item .md-list-item-inner {
+	min-height: 48px;
 }
 
-.backgroundHome:after {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-}
 
-.backgroundHome {
-    position: relative;
-    background: linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -o-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-    background: -ms-linear-gradient(90deg, rgba(104, 131, 177, 0.67) 0%, rgba(0, 0, 0, 0.09) 100%) repeat scroll 0 0 transparent;
-}
-
-.text-color-white {
-    color: #ffffff;
-}
-
-.text-color-black {
-    color: #000000;
-}
-
-.tabs-nav {
-    padding: 20px 0 0;
-    list-style: none;
-}
-
-.tabs-nav li {
-    display: inline;
-}
-
-.tabs-nav a {
-    display: inline-block;
-    border: 1px solid #ddd;
-    border-bottom: none;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    font-size: 14px;
-    color: #fff;
-    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-gradient(linear, left top, right top,
-    color-stop(0, rgb(0, 0, 0)),
-    color-stop(0.50, rgb(79, 79, 79)),
-    color-stop(1, rgb(21, 21, 21)));
-    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    text-decoration: none;
-}
-
-.tabs-nav .active {
-    background: #ffffff;
-    color: #3294CC;
-    border-bottom: 1px solid #ffffff;
-    margin-bottom: -1px;
-}
-
-.tab-content {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.marg5 {
-    margin-top: -10px;
-}
-
-.glyphicon {
-    margin-right: 0;
-}
-
-.panel-body {
-    padding: 0;
-}
-
-.panel-body table tr td {
-    padding: 0;
-}
-
-.panel-body .table {
-    margin: 0;
-    color: #FF0000;
-}
-
-.padZero {
-    padding: 0;
-}
-
-.panel-green {
-    color: #fff;
-    text-shadow: #000 0 1px;
-    box-shadow: 5px;
-    padding: 5px;
-    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-gradient(linear, left top, right top,
-    color-stop(0, rgb(0, 0, 0)),
-    color-stop(0.50, rgb(79, 79, 79)),
-    color-stop(1, rgb(21, 21, 21)));
-    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    border-bottom: 1px solid #ddd;
-    -webkit-border-top-left-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    border-top-left-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -ms-border-top-right-radius: 10px;
-    -moz-border-radius-topright: 10px;
-    border-top-right-radius: 10px;
-}
-
-.btnMenuBus {
-    background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-gradient(linear, left top, right top,
-    color-stop(0, rgb(0, 0, 0)),
-    color-stop(0.50, rgb(79, 79, 79)),
-    color-stop(1, rgb(21, 21, 21)));
-    background: -o-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-    background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
-}
-
-.textMenuBus, .textMenuBus:visited {
-    color: #FFF;
-}
-
-.textMenuBus, .textMenuBus:focus {
-    color: #149040;
-}
-
-.textMenuBus:hover {
-    color: #149040;
-}
-
-.cust-overview {
-    font-size: 30px;
-}
-
-.colorTreeSelect {
-    color: #111111;
-}
-
-.colorTreeSelect:hover {
-    color: #149040;
-    border: 2px solid #149040;
-}
-.colorTreeSelect:active a {
-    color: #149040;
-    border: 2px solid #149040;
-}
-.colorLinkTree {
-    text-decoration: none;
-}
-
-.colorLinkTree:hover {
-    color: #149040;
-    text-decoration: none;
-}
-
-.col_content_tree {
-    padding-right: -1px;
-}
-.col_content_console {
-    border-left: 1px solid #eee;
-    padding-right: 1px;
-}
-
-.inputdemoIcons .inputIconDemo {
-    min-height: 48px; }
-.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.node {
-    color: green; }
-
+/********************************************* OLD CSS NAV TREE *********************************************/
+/*
 .petals-tree-items {
-    display: block;
+	display: block;
 }
 .petals-tree-items:hover {
-    background-color: #f5f5f5;
-    color: black;
+	background-color: #f5f5f5;
+	color: black;
 }
 .petals-tree li {
-    position: relative;
+	position: relative;
 }
 .petals-tree li:active {
 
 }
 .petals-tree-size {
-    font-size: 20px;
-    text-decoration: none;
-    color: #111;
-    font-weight: bold;
+	font-size: 20px;
+	text-decoration: none;
+	color: #111;
+	font-weight: bold;
 }
 .petals-tree ul {
-    list-style: none;
-    line-height: 30px;
-    padding-top: 1px;
-    transition: 0.09s all linear;
+	list-style: none;
+	line-height: 30px;
+	padding-top: 1px;
+	transition: 0.09s all linear;
 }
 .petals-tree ul:hover {
-    position: relative;
+	position: relative;
 }
 .petals-tree ul:active {
-    position: relative;
+	position: relative;
 }
 .petals-tree a:hover {
-    text-decoration: none;
-    border-bottom: 1px solid ;
-    color: #149040;
+	text-decoration: none;
+	border-bottom: 1px solid ;
+	color: #149040;
 }
 .petals-tree a {
-    text-decoration: none;
-    color: #111;
-    font-weight: 300;
-}
-.text-color-grey {
-    color: #777;
-    font-weight: 100;
+	text-decoration: none;
+	color: #111;
+	font-weight: 300;
+}*/
+.text-color-icon-nav {
+	color: #4527a0;
+	font-weight: bold;
+
 }
 .normal {
-    color: black;
-    background-color: #3294CC;
+	color: white;
+/*	background-color: #b39ddb;*/
 }
 .faded {
-    color: #666666;
+	color: #666666;
+/*	background-color: #f2f2f2;*/
 }
-.bandeauPrototype {
-    background-color: #772E87;
-    padding: 10px;
-    border-bottom:10px solid #3294CC;
-    color: white;
-    text-align: right;
-}
-.contentBandeau {
-    padding-top: 18px;
+.navTree {
+	padding: 0;
+	display: inline-block;
+	margin-left: -40px;
 }
 
-.animate-switch-container {
-    position:relative;
-    background:white;
-    border:1px solid black;
-    height:40px;
-    overflow:hidden;
-}
+/*
+.menu-prod {
+	background:#181015 url(../img/all/bg_header-1.jpg) no-repeat;
+	background-size:cover;
+	padding: 0;
+	margin: 0;
+	max-height: 400px;
+}*/
 
-.animate-switch {
-    padding:10px;
-}
-
-.animate-switch.ng-animate {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-}
-
-.animate-switch.ng-leave.ng-leave-active,
-.animate-switch.ng-enter {
-    top:-50px;
-}
-.animate-switch.ng-leave,
-.animate-switch.ng-enter.ng-enter-active {
-    top:0;
-}
-.protoNav md-fab-toolbar.md-right md-fab-trigger.align-with-text {
-    right: 7px; }
-
+/*
+.md-bottom-sheet-wallpaper {
+	background:#181015 url(../img/all/slide__innovation.jpg) 50% 50% no-repeat;
+	background-size:cover;
+}*/

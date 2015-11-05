@@ -14,7 +14,7 @@ var ComponentSchema = new Schema({
 		type: String,
 		default: '',
 		required: 'Please fill Component name',
-		trim: true,
+		trim: true
 	},
 	parentServer: {
 		type: Schema.Types.ObjectId,
@@ -40,7 +40,8 @@ var ComponentSchema = new Schema({
 var Component = mongoose.model('Component', ComponentSchema);
 
 var ComponentDefault = new Component({
-	name: 'SE-ACTIVITI'
+	name: 'SE-ACTIVITI',
+	parentServer: '5638c835379e96f815ea4298'
 });
 
 ComponentDefault.update(function (err, saved) {

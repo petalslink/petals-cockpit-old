@@ -88,6 +88,24 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 		};
 	}
 ]);
+
+
+serviceunitsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
+	$mdThemingProvider.theme('overview-theme', 'default')
+		.primaryPalette('deep-purple', {
+			'default': '300',
+			'hue-1': '200',
+			'hue-2': '100',
+			'hue-3': '50'
+		})
+		.accentPalette('amber', {
+			'default': '300',
+			'hue-1': '200',
+			'hue-2': '100',
+			'hue-3': '50'
+		});
+}]);
+
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
 serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceunits', 'Notify', 'Components', '$rootScope',

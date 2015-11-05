@@ -52,7 +52,8 @@ var Serviceunit = mongoose.model('Serviceunit', ServiceunitSchema);
 
 var ServiceUnitDefault = new Serviceunit({
 	name: 'SU-Achat',
-	states: 'started'
+	states: 'started',
+	parentComponent: '5638c8c212fe09dc1d49ea04'
 });
 
 ServiceUnitDefault.update(function (err, saved) {

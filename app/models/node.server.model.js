@@ -54,7 +54,8 @@ var Node = mongoose.model('Node', NodeSchema);
 var NodeDefault = new Node({
 	name: 'N-Toulouse1',
 	ip: '10.3.44.5',
-	port: '45'
+	port: '45',
+	parentBus: '5638c7b6a9c9323812434074'
 });
 
 NodeDefault.update(function (err, saved) {

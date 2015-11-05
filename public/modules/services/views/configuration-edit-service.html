@@ -1,63 +1,23 @@
-<section data-ng-controller="ServicesUpdateController as serviceUpCtrl">
-
-    <div class="col-sm-12 col-md-12">
-        <div class="page-header">
-            <h1><i class="glyphicon glyphicon-sort cust-overview"></i> {{sItem.name}}</h1>
+<div data-ng-controller="ServicesUpdateController as serviceUpCtrl">
+    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
+        <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
+            <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
         </div>
-        <div class="text-color-black panel">
-            <form name="updateServiceForm" ng-submit="ok()" novalidate>
-                <fieldset>
-                    <div class="row">
-                        <div class="form-group">
-                            <div data-ng-show="error" class="text-center text-danger">
-                                <div class="alert alert-danger" role="alert">
-                                    <strong data-ng-bind="error"></strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div data-ng-show="close" class="text-center text-success">
-                                <div class="alert alert-success" role="alert">
-                                    <strong data-ng-bind="close"></strong>
-                                </div>
-                            </div>
-                        </div>
-                        <!--                        <div class="col-sm-4 text-center">
-                                                    <i class="glyphicon glyphicon-flash cust-profile"></i>
-                                                    <br/><br/>
-                                                </div>-->
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
+    </md-toolbar>
 
-                                <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="sItem.name" id="name"
-                                               class="form-control">
-                                    </span>
-                                </div>
-                            </div>
-<!--                            <div class="form-group">
-                                <label class="control-label" for="name">State</label>
+    <form name="updateServiceunitForm" ng-submit="ok()" novalidate>
+        <md-content layout-padding layout="row" layout-sm="column">
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" ng-model="sItem.name" placeholder="Name">
+            </md-input-container>
 
-                                <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="sItem.states" id="state"
-                                               class="form-control">
-                                    </span>
-                                </div>
-                            </div>-->
-                            <div class="col-sm-6 text-center">
-                                <button class="btn btn-success" ng-click="serviceUpCtrl.update(sItem)">
-                                    <i class="glyphicon glyphicon-refresh"></i>
-                                    Update Service
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</section>
+            <md-button class="md-fab md-accent md-hue-1" aria-label="Refresh" ng-click="serviceUpCtrl.update(sItem)">
+                <md-tooltip>
+                    Update Service
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
+            </md-button>
+        </md-content>
+    </form>
+</div>

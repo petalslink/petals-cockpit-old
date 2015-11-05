@@ -1,44 +1,60 @@
-<div class="row" data-ng-controller="BusesController as busesCtrl">
-    <div class="panel panel-default filterable">
-        <div class="panel-heading">
-            <h3 class="panel-title">Petals List Bus</h3>
+<div data-ng-controller="BusesController as busesCtrl" ng-cloak>
+    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
+        <div class="md-toolbar-tools" layout-align="center">Petals List Bus
+            <i class="material-icons md-48 md-primary"></i>
         </div>
-        <table class="table panel">
-            <thead>
-            <div class="input-group">
-                <input type="text" class="form-control" ng-model="searchText" placeholder="Search Bus...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-            </div>
-            <tr class="filters">
-                <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Version" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
-            </tr>
-            </thead>
-            <tbody data-ng-repeat="bus in busesList | filter:searchText | orderBy:'-Name'" >
-            <tr>
-                <td>{{$index + 1}}</td>
-                <td>{{bus.name}}</td>
-                <td>{{bus.version}}</td>
-                <td ng-click="busesCtrl.modalUpdate('lg', bus)">
-                    <dir-up-bus bus="bus"></dir-up-bus>
-                </td>
-                <td>
-                    <dir-sup-bus bus="bus"></dir-sup-bus>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    </md-toolbar>
 
-<!--    &lt;!&ndash; If no bus in list, write a msg &ndash;&gt;
-    <div class="alert alert-warning text-center" data-ng-hide="!buses.$resolved || buses.length">
-        No Bus yet, why don't you <a href="/#!/buses/create">create one</a>?
-    </div>-->
+    <md-content layout-padding layout="row" layout-sm="column" hide-sm>
+
+        <md-input-container>
+            <label>Name</label>
+            <input type="text" disabled>
+        </md-input-container>
+
+        <md-input-container>
+            <label>Version</label>
+            <input type="text" disabled>
+        </md-input-container>
+
+    </md-content>
+
+    <md-content layout-padding layout="row" layout-sm="column"
+                data-ng-repeat="bus in busesList | filter:searchText | orderBy:'-Name'">
+
+        <md-input-container>
+            <input type="text" ng-model="bus.name">
+        </md-input-container>
+
+        <md-input-container>
+            <input type="text" ng-model="bus.version">
+        </md-input-container>
+
+        <md-input-container ng-click="busesCtrl.modalUpdate('lg', bus)">
+            <dir-up-bus bus="bus"></dir-up-bus>
+        </md-input-container>
+
+        <md-input-container>
+            <dir-sup-bus bus="bus"></dir-sup-bus>
+        </md-input-container>
+    </md-content>
+
+    <md-content layout-padding layout="column" layout-sm="column">
+        <form name="searchForm">
+            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Search">
+
+
+                <label for="searchInput">
+                    <md-icon class="material-icons md-48 md-primary">search</md-icon>
+                </label>
+
+                <input id="searchInput" placeholder="Enter a search term..." type="text" ng-model="searchText"
+                       md-autofocus type="text">
+            </md-input-container>
+            <!--            <div ng-messages="searchForm.searchText.$error">
+                            <div ng-message="required">This is a search bar for node list ..</div>
+                        </div>-->
+
+        </form>
+    </md-content>
 </div>

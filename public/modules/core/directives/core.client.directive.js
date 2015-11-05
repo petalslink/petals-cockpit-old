@@ -9,9 +9,9 @@ app.directive('dirComponentDisplay',
             restrict: 'E',
             transclude: true,
             templateUrl: '/modules/core/views/component-display.client.view.html',
-/*            link: function ($scope, element, attrs) {
+            link: function ($scope, element, attrs) {
 
-            }*/
+            }
         };
     }
 );
@@ -23,9 +23,9 @@ app.directive('dirComponentTree',
             restrict: 'E',
             transclude: true,
             templateUrl: '/modules/core/views/component-tree.client.view.html',
-/*            link: function ($scope, element, attrs) {
+            link: function ($scope, element, attrs) {
 
-            }*/
+            }
         };
     }
 );

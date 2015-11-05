@@ -1,19 +1,23 @@
-<div class="filterable" ng-init="bus">
+<md-content ng-init="bus">
     <div ng-switch="template">
-        <div ng-switch-when="bus">
+        <md-content ng-switch-when="bus">
             <div ng-include="'modules/buses/views/configuration-edit-bus.html'"></div>
-        </div>
-        <div ng-switch-when="node">
+        </md-content>
+        <md-content ng-switch-when="node">
             <div ng-include="'modules/nodes/views/configuration-edit-node.html'"></div>
-        </div>
-        <div ng-switch-when="component">
+        </md-content>
+        <md-content ng-switch-when="component">
             <div ng-include="'modules/components/views/configuration-edit-component.html'"></div>
-        </div>
-        <div ng-switch-when="su">
+        </md-content>
+        <md-content ng-switch-when="su">
             <div ng-include="'modules/serviceunits/views/configuration-edit-su.html'"></div>
-        </div>
-        <div ng-switch-when="service">
+        </md-content>
+        <md-content ng-switch-when="service">
             <div ng-include="'modules/services/views/configuration-edit-service.html'"></div>
-        </div>
+        </md-content>
     </div>
-</div>
+</md-content>
+
+<!--<div class="md-padding">
+    <h3>You are in page <code>Configuration</code></h3>
+</div>-->

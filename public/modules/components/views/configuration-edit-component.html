@@ -1,72 +1,35 @@
-<section data-ng-controller="ComponentsUpdateController as componentUpCtrl">
-
-    <div class="col-sm-12 col-md-12">
-        <div class="page-header">
-            <h1><i class="glyphicon glyphicon-tasks cust-overview"></i> {{sItem.name}}</h1>
+<div data-ng-controller="ComponentsUpdateController as componentUpCtrl">
+    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
+        <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
+            <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
         </div>
-        <div class="text-color-black panel">
-            <form name="updateComponentForm" ng-submit="ok()" novalidate>
-                <fieldset>
-                    <div class="row">
-                        <div class="form-group">
-                            <div data-ng-show="error" class="text-center text-danger">
-                                <div class="alert alert-danger" role="alert">
-                                    <strong data-ng-bind="error"></strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div data-ng-show="close" class="text-center text-success">
-                                <div class="alert alert-success" role="alert">
-                                    <strong data-ng-bind="close"></strong>
-                                </div>
-                            </div>
-                        </div>
-                        <!--                        <div class="col-sm-4 text-center">
-                                                    <i class="glyphicon glyphicon-flash cust-profile"></i>
-                                                    <br/><br/>
-                                                </div>-->
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
+    </md-toolbar>
 
-                                <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="sItem.name" id="name"
-                                               class="form-control">
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <button class="btn btn-success" ng-click="componentUpCtrl.update(sItem)">
-                                    <i class="glyphicon glyphicon-refresh"></i>
-                                    Update Component
-                                </button>
-                            </div>
-                        </div>
+    <form name="updateComponentForm" ng-submit="ok()" novalidate>
+        <md-content layout-padding layout="row" layout-sm="column">
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" ng-model="sItem.name" placeholder="Name">
+            </md-input-container>
 
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</section>
+            <md-button class="md-fab md-accent md-hue-1" aria-label="Refresh" ng-click="componentUpCtrl.update(sItem)">
+                <md-tooltip>
+                    Update Component
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
+            </md-button>
 
-<section data-ng-controller="ServiceunitsController as serviceunitsCtrl">
-    <div class="col-sm-12 col-md-12">
-        <div class="page-header">
-            <h1><i class="glyphicon glyphicon-pushpin cust-overview"></i> Service Unit</h1>
-        </div>
-        <div class="col-xs-12 text-right">
-            <button type="button" class="btn btn-success text-center"
-                    ng-click="serviceunitsCtrl.modalCreate('lg',size,createServiceunitForm)">
-                <i class="glyphicon glyphicon-plus"></i>
-                Create New Service Unit
-            </button>
-        </div>
-        </br>
-        </br>
-        <dir-serviceunit-list info="serviceunitsCtrl.serviceunits" filter="searchText"></dir-serviceunit-list>
-    </div>
+            <md-button data-ng-controller="ServiceunitsController as serviceunitsCtrl" class="md-fab md-accent md-hue-1"
+                       aria-label="Refresh" ng-click="serviceunitsCtrl.modalCreate(createServiceunitForm)">
+                <md-tooltip>
+                    Create New Service Unit
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary">add</md-icon>
+            </md-button>
+        </md-content>
+    </form>
+</div>
 
-</section>
+<div data-ng-controller="ServiceunitsController as serviceunitsCtrl">
+    <dir-serviceunit-list info="serviceunitsCtrl.serviceunits" filter="searchText"></dir-serviceunit-list>
+</div>

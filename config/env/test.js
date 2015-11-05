@@ -4,7 +4,7 @@ module.exports = {
 	db: 'mongodb://localhost,localhost:27017/petals-database',
 	port: 3001,
 	app: {
-		title: 'Petals COCKPIT - Test Environment'
+		title: 'petals-cockpit - Test Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

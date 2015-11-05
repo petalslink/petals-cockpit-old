@@ -1,29 +1,52 @@
-<section data-ng-controller="HomeController">
-<!--    <div class="row contentBandeau">
-        <h5 class="page-header bandeauPrototype"><p>>|< Prototype Version 0.0.1 - Qantum Leap</p></h5>
-    </div>-->
-    <br><br>
-    <div class="protoNav">
+<section ng-controller="HeaderController">
+    <div layout="row" layout-wrap data-ng-controller="HomeController">
 
-        <md-fab-toolbar md-open="demo.isOpen" count="demo.count" ng-class="demo.selectedAlignment">
-            <md-toolbar>
-                <md-fab-actions class="md-toolbar-tools">
-                    <md-button class="md-accent md-raised md-hue-1">
-                        Prototype - Version 0.0.1
+        <div flex-sm="50" ng-controller="MenuProdCtrl" md-theme="core-theme">
+            <div layout-align="center">
+                <md-content>
+                    <md-tooltip md-direction="bottom">
+                        Prod
+                    </md-tooltip>
+                    <md-button class="md-raised md-primary md-hue-1" ng-click="showListMenuProd($event)">
+                        <md-icon class="material-icons md-24 md-primary">work</md-icon>
                     </md-button>
-                    <i class="material-icons md-24">face</i>
-                </md-fab-actions>
-            </md-toolbar>
-        </md-fab-toolbar>
-    </div>
-    <div class="col-sm-4 col-md-4 col_content_tree">
-        <div class="">
-            <dir-component-tree components="component"></dir-component-tree>
+                </md-content>
+            </div>
+            <div ng-if="alert" class="md-padding">
+                <b layout="row" layout-align="center center" class="md-padding">
+                    {{alert}}
+                </b>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-8 col-md-8 col_content_console">
-        <div class="">
-            <dir-component-display components="component"></dir-component-display>
+
+        <div flex-sm="50" md-theme="core-theme">
+            <div layout-align="center" class="md-primary md-hue-1">
+                <md-content>
+                    <md-tooltip md-direction="bottom">
+                        Menu
+                    </md-tooltip>
+                    <md-button ng-click="openLeftMenu()" class="md-raised md-primary md-hue-1">
+                        <md-icon class="material-icons md-24 md-primary">navigation</md-icon>
+                    </md-button>
+                </md-content>
+                <md-sidenav md-component-id="left" class="navSideLeft md-whiteframe-z2 md-sidenav-left">
+                    <md-toolbar class="md-padding md-primary md-hue-1" layout="row" layout-align="center center">
+                        <h3 class="md-primary md-inline-list-icon-label" layout-align="start center">MENU NAVIGATION
+                            <md-button ng-click="close()" class="md-primary md-hue-1 material-icons">close
+                            </md-button>
+                        </h3>
+
+                    </md-toolbar>
+                    <dir-component-tree components="component"></dir-component-tree>
+                </md-sidenav>
+            </div>
         </div>
+
+        <div flex md-theme="core-theme">
+            <md-content class="md-primary md-hue-2">
+                <dir-component-display components="component"></dir-component-display>
+            </md-content>
+        </div>
+
     </div>
 </section>

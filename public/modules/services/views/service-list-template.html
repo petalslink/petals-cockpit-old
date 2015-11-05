@@ -1,44 +1,60 @@
-<div class="row" data-ng-controller="ServicesController as servicesCtrl">
-    <div class="panel panel-default filterable">
-        <div class="panel-heading">
-            <h3 class="panel-title">Petals List Service</h3>
+<div data-ng-controller="ServicesController as servicesCtrl" ng-cloak>
+    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
+        <div class="md-toolbar-tools" layout-align="center">Petals List Services
+            <i class="material-icons md-48 md-primary"></i>
         </div>
-        <table class="table">
-            <thead>
-            <div class="input-group">
-                <input type="text" class="form-control" ng-model="searchText" placeholder="Search Service...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-            </div>
-            <tr class="filters">
-                <th><input type="text" class="form-control" placeholder="#" disabled></th>
-<!--                <th><input type="text" class="form-control" placeholder="Parent Service Unit Name" disabled></th>-->
-                <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Edit" disabled></th>
-                <th><input type="text" class="form-control" placeholder="Delete" disabled></th>
-            </tr>
-            </thead>
-            <tbody data-ng-repeat="service in servicesList | filter:searchText | orderBy:'-Name'" >
-            <tr>
-                <td>{{$index + 1}}</td>
-<!--                <td>{{service.parentServiceunit.name}}</td>-->
-                <td>{{service.name}}</td>
-                <td ng-click="servicesCtrl.modalUpdate('lg', service)">
-                    <dir-up-service service="service"></dir-up-service>
-                </td>
-                <td>
-                    <dir-sup-service service="service"></dir-sup-service>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    </md-toolbar>
 
-    <!-- If no service in list, write a msg -->
-    <div class="alert alert-warning text-center" data-ng-hide="!services.$resolved || services.length">
-        No Service yet, why don't you <a href="/#!/services/create">create one</a>?
-    </div>
+    <md-content layout-padding layout="row" layout-sm="column" hide-sm>
+
+        <md-input-container>
+            <label>Name</label>
+            <input type="text" disabled>
+        </md-input-container>
+
+        <md-input-container>
+            <label>Parent</label>
+            <input type="text" disabled>
+        </md-input-container>
+
+    </md-content>
+
+    <md-content layout-padding layout="row" layout-sm="column"
+                data-ng-repeat="service in servicesList | filter:searchText | orderBy:'-Name'">
+
+        <md-input-container>
+            <input type="text" ng-model="service.name">
+        </md-input-container>
+
+        <md-input-container>
+            <input type="text" ng-model="service.parentServiceunit.name">
+        </md-input-container>
+
+        <md-input-container ng-click="servicesCtrl.modalUpdate('lg', service)">
+            <dir-up-service service="service"></dir-up-service>
+        </md-input-container>
+
+        <md-input-container>
+            <dir-sup-service service="service"></dir-sup-service>
+        </md-input-container>
+    </md-content>
+
+    <md-content layout-padding layout="column" layout-sm="column">
+        <form name="searchForm">
+            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Search">
+
+
+                <label for="searchInput">
+                    <md-icon class="material-icons md-48 md-primary">search</md-icon>
+                </label>
+
+                <input id="searchInput" placeholder="Enter a search term..." type="text" ng-model="searchText"
+                       md-autofocus type="text">
+            </md-input-container>
+            <!--            <div ng-messages="searchForm.searchText.$error">
+                            <div ng-message="required">This is a search bar for component list ..</div>
+                        </div>-->
+
+        </form>
+    </md-content>
 </div>

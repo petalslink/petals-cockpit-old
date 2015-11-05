@@ -1,64 +1,61 @@
 <div data-ng-controller="BusesController as busesCtrl">
+    <md-content layout-padding layout="column" layout-sm="column">
+        <form name="searchForm">
+            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Search">
 
-    <div class="tab-pane">
-        <!--<p class="text-right">You are in: <code>{{expanding_property.displayName}}</code></p>-->
-        <div class="tabs-nav">
-            <div>
-                <a>WORKSPACE<span class="caret"></span></a>
-                <button type="button" class="btn btn-success text-right"
-                        ng-click="busesCtrl.modalCreate('lg',size,createBusForm)">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    Create New Bus
-                </button>
-            </div>
-            <!--            <div class="input-group">
-                            <input type="text" class="form-control text-color-black" ng-model="_filter.title"
-                                   placeholder=" Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </span>
-                        </div>-->
-        </div>
 
-        <md-content layout-padding class="autoScroll">
-            <md-input-container class="md-icon-float">
-                <label>Search</label>
-                <md-icon class="node"></md-icon>
-                <input ng-model="node.children" type="text">
+                <label for="searchInput">
+                    <md-icon class="material-icons md-48 md-primary">search</md-icon>
+                </label>
+
+                <input id="searchInput" placeholder="Enter a search term..." type="search" ng-model="searchText"
+                       md-autofocus type="text">
             </md-input-container>
-        </md-content>
+            <!--            <div ng-messages="searchForm.searchText.$error">
+                            <div ng-message="required">This is a search bar for node list ..</div>
+                        </div>-->
+        </form>
+    </md-content>
 
-        <!-- A dynamic template to build a tree with AngularJS -->
-        <script type="text/ng-template" id="my-tmpl">
+    <!-- A dynamic template to build a tree with AngularJS -->
+    <script type="text/ng-template" id="my-tmpl">
+        <md-list class="navTree"
+                 ng-model="nodeType"
+                 ng-click="selectItem(node)"
+                 ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
 
-            <!-- <span class="text-color-grey" ng-class="'glyphicon ' + node.icon"></span> -->
-            <p class="petals-tree-items"
-               ng-model="nodeType"
-               ng-click="selectItem(node)"
-               ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
-
-                <span class="petals-tree-size" ng-if="node.children.length > 0 && ! node.showChildren"
-                      ng-click="node.showChildren = true">+</span>
-                <span class="petals-tree-size" ng-if="node.children.length === 0 || node.showChildren"
-                      ng-click="node.showChildren = false">-</span>
-
-                &nbsp;
+            <md-button class="md-raised" ng-click="switchChildrenVisibility(node)">
+                <md-icon class="material-icons md-primary" ng-show="node.childrenWereVisible">keyboard_arrow_right
+                </md-icon>
+                <md-icon class="material-icons md-primary" ng-show="! node.childrenWereVisible">keyboard_arrow_down
+                </md-icon>
                 {{ node.name }}
-            </p>
+                <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
+            </md-button>
 
-            <ul ng-if="node.showChildren">
-                <li class="" ng-repeat="node in node.children" ng-include="'my-tmpl'"></li>
-            </ul>
-        </script>
+        </md-list>
+
+        <!-- Show node & children nodes -->
+        <ul>
+            <li ng-show="node.visible || searchText.length > 0" ng-repeat="node in node.children | filter:searchText"
+                ng-include="'my-tmpl'"></li>
+        </ul>
+    </script>
 
 
-            <ul class="list-group petals-tree">
-                <li class="list-group-item petals-tree" ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
-            </ul>
-
-
-    </div>
-
+    <ul ng-cloak>
+        <li ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
+    </ul>
 </div>
+
+
+
+<!--
+<md-button class="md-raised"
+           ng-click="setChildrenVisibility(node, true)"><md-icon class="material-icons md-primary">keyboard_arrow_right
+</md-icon> {{ node.name }} <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
+</md-button>&lt;!&ndash;ng-if="node.children.length === 0 || node.showChildren"&ndash;&gt;
+<md-button class="md-raised"
+           ng-click="setChildrenVisibility(node, false)"><md-icon class="material-icons md-primary">keyboard_arrow_down
+</md-icon> {{ node.name }} <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
+</md-button>-->

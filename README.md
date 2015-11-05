@@ -51,7 +51,7 @@ bower update
 
 ### Running your Application
 
-Once the install process is over, you will be able to run your application with Grunt.  
+Once the install process is over, you will be able to run your application with Grunt.
 Run Grunt's default task.
 
 ```properties
