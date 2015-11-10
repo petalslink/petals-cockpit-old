@@ -32,7 +32,7 @@ usersApp.directive('dirSupUser', ['Users', 'Notify',
             scope: {
                 user: '='
             },
-            template: '<button class="btn btn-danger" ng-click="removeUser()"><i class="glyphicon glyphicon-trash"></i></button>',
+            template: '<md-button class="md-fab md-mini md-primary md-hue-1" aria-label="Edit" ng-click="removeUser()"><md-tooltip md-direction="bottom">Remove {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeUser = function() {
                     Users.deleteUser({userId: $scope.user._id}, function() {
@@ -52,7 +52,7 @@ usersApp.directive('dirUpUser', ['Users',
             scope: {
                 user: '='
             },
-            template: '<button class="btn btn-success" type="button" ng-click="updUser()"><i class="glyphicon glyphicon-pencil"></i></button>',
+            template: '<md-button class="md-fab md-mini md-primary md-hue-1" flex-sm="100" flex-md="100" flex-gt-md="auto" aria-label="Edit" ng-click="updUser()"><md-tooltip md-direction="bottom">Edit {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updUser = function() {
 

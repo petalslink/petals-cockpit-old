@@ -1,13 +1,11 @@
-<md-bottom-sheet class="md-bottom-sheet-wallpaper" ng-controller="MenuProdCtrl" md-theme="core-theme">
-    <md-toolbar class="md-padding md-primary md-hue-1" layout="row" layout-align="center center">
+<md-bottom-sheet class="md-primary md-hue-1" ng-controller="MenuProdCtrl" md-theme="core-theme">
+    <md-toolbar class="md-primary md-hue-1" layout="row" layout-align="center center">
         <h3 class="md-primary md-inline-list-icon-label" layout-align="start center">MENU PROD
             <md-button ng-click="hideListMenuProd($event)" class="md-primary md-hue-1 material-icons">close
             </md-button>
         </h3>
-
     </md-toolbar>
-
-    <md-list class="">
+    <md-list>
         <md-list-item ng-repeat="item in items">
             <md-button
                     ng-click="listItemClick($index)" class="md-primary">

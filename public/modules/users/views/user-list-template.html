@@ -1,33 +1,39 @@
-<div class="list-group" data-ng-controller="UsersController as usersCtrl">
-    <div class="col-xs-6 col-sm-4 extra-space" data-ng-repeat="user in usersList | filter:searchText">
-        <a ng-click="usersCtrl.modalUpdate('lg', user)" class="list-group-item petals-reloaded-list-group">
-            <h4 class="cust-list text-center">
-                <i class="glyphicon glyphicon-user"
-                   ng-class="{
-                           'text-primary': user.capacities.admin, 'text-green': user.capacities.adminBus, 'text-orange': user.capacities.developer,
-                           'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}"></i>
-            </h4>
+<div data-ng-controller="UsersController as usersCtrl" ng-cloak md-theme="user-theme">
+    <md-content class="md-padding" layout-padding>
+        <md-grid-list
+                md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5"
+                md-row-height-gt-md="2:2" md-row-height="2:2"
+                md-gutter="12px" md-gutter-gt-sm="16px">
 
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                    <h4>{{user.firstName}} {{user.lastName}} </h4>
-                    <small class="list-group-item-text text-muted">
-                        <span data-ng-bind="user.created | date:'medium'"></span>
-						<span class="pull-right">
-                            <div ng-click="usersCtrl.modalUpdate('lg', user)">
-                                <dir-up-user bus="user"></dir-up-user>
-                            </div>
-                            <div>
-                                <dir-sup-user user="user"></dir-sup-user>
-                            </div>
-						</span>
-                    </small>
-                </div>
-            </div>
-        </a>
-    </div>
-</div>
-<!-- If no user in list, write a msg -->
-<div class="alert alert-warning text-center" data-ng-hide="!users.$resolved || users.length">
-    No Users yet, why don't you <a href="/#!/users/create">create one</a>?
+            <md-grid-tile class="md-primary md-whiteframe-4dp"
+                          md-rowspan="1" md-colspan="1" md-colspan-sm="1"
+                          data-ng-repeat="user in usersList | filter:searchText">
+
+                <md-grid-tile-header>
+                    <md-list>
+                        <md-list-item layout="row" layout-align="center center">
+                            <img class="md-avatar" ng-src="modules/users/img/avatars/profile.png"/>
+
+                            <h3>{{user.firstName}} {{user.lastName}}</h3>
+                        </md-list-item>
+                    </md-list>
+                </md-grid-tile-header>
+                <md-list>
+
+                    <md-list-item layout="row" layout-align="center center">
+                        <p data-ng-bind="user.created | date:'medium'" layout="row" layout-align="center center"></p>
+                    </md-list-item>
+                    <br>
+                    <md-divider></md-divider>
+                    <br>
+                    <md-list-item layout="row" layout-align="center center">
+                        <dir-up-user ng-click="showModalUser($event, user)" bus="user"></dir-up-user>
+                        <dir-sup-user user="user"></dir-sup-user>
+                    </md-list-item>
+
+                </md-list>
+            </md-grid-tile>
+
+        </md-grid-list>
+    </md-content>
 </div>

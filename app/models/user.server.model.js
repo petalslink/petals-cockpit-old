@@ -209,7 +209,7 @@ var UserDefault = new User({
 });
 
 // call the built-in save method to save to the database
-UserDefault.save(function (err, saved) {
+UserDefault.update(function (err, saved) {
     if (err) {
         console.log('User Default is already saved !', err);
     }

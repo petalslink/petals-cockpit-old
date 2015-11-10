@@ -4,8 +4,8 @@
 
 var usersApp = angular.module('users');
 
-usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authentication', 'Users', '$modal', '$log', '$rootScope',
-    function ($scope, $stateParams, Authentication, Users, $modal, $log, $rootScope) {
+usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authentication', 'Users', '$modal', '$log', '$rootScope', '$mdDialog',
+    function ($scope, $stateParams, Authentication, Users, $modal, $log, $rootScope, $mdDialog) {
 
         this.authentication = Authentication;
 
@@ -17,6 +17,85 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
         $rootScope.$on('UserCreate', function(eventName, user) {
             self.users.push(user);
         });
+
+        $scope.data = {
+            group1 : 'Banana',
+            group2 : '2',
+            group3 : 'avatar-1'
+        };
+        $scope.avatarData = [{
+            id: "lib/material-design-icons/avatars:svg-1",
+            title: 'avatar 1',
+            value: 'avatar-1'
+        },{
+            id: "avatars:svg-2",
+            title: 'avatar 2',
+            value: 'avatar-2'
+        },{
+            id: "avatars:svg-3",
+            title: 'avatar 3',
+            value: 'avatar-3'
+        }];
+        $scope.radioData = [
+            { label: '1', value: 1 },
+            { label: '2', value: 2 },
+            { label: '3', value: '3', isDisabled: true },
+            { label: '4', value: '4' }
+        ];
+        $scope.submit = function() {
+            alert('submit');
+        };
+        $scope.addItem = function() {
+            var r = Math.ceil(Math.random() * 1000);
+            $scope.radioData.push({ label: r, value: r });
+        };
+        $scope.removeItem = function() {
+            $scope.radioData.pop();
+        };
+
+        $scope.showModalUser = function(ev, selectedUser) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: '/modules/users/views/update-user.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                resolve: {
+                    user: function () {
+                        return selectedUser;
+                    }
+                }
+            })
+                .then(function(answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function DialogController($scope, $mdDialog, user) {
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function(answer) {
+                $mdDialog.hide(answer);
+            };
+            $scope.user = user;
+/*            $scope.user = user;
+
+            $scope.ok = function () {
+                if (updateUserForm.$valid) {
+                    $log.info('Form is valid');
+                    $modalInstance.close($scope.user);
+
+                } else {
+                    $log.error('Form is not valid');
+                }
+            };*/
+        }
 
         /********************************************************* OK *********************************************************/
         // Open a modal window to Create a single user record
@@ -48,8 +127,9 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
-
-        /********************************************************* OK *********************************************************/
+    }
+]);
+/*        /!********************************************************* OK *********************************************************!/
         // Open a modal window to Update a single user record
         this.modalUpdate = function (size, selectedUser, updateUserForm) {
 
@@ -85,9 +165,18 @@ usersApp.controller('UsersController', ['$scope', '$stateParams', 'Authenticatio
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-        };
-    }
-]);
+        };*/
+
+
+
+usersApp.config(['$mdIconProvider', function($mdIconProvider) {
+    $mdIconProvider
+        .iconSet('avatars', 'img/icons/sets/avatar-icons.svg', 128)
+        .defaultIconSet('img/icons/sets/avatar-icons.svg', 128);
+
+    $mdIconProvider.iconSet('avatars', 'icons/avatar-icons.svg',128);
+}]);
+
 
 usersApp.config(['$mdThemingProvider', function($mdThemingProvider) {
     $mdThemingProvider.theme('overview-theme', 'default')
@@ -221,3 +310,19 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
         };
     }
 ]);
+
+usersApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
+    $mdThemingProvider.theme('user-theme', 'default')
+        .primaryPalette('deep-purple', {
+            'default': '800',
+            'hue-1': '800',
+            'hue-2': '300',
+            'hue-3': '50'
+        })
+        .accentPalette('amber', {
+            'default': '700',
+            'hue-1': '400',
+            'hue-2': '300',
+            'hue-3': '200'
+        });
+}]);

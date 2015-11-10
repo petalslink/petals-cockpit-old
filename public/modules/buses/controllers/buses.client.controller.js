@@ -92,16 +92,16 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('overview-theme', 'default')
 		.primaryPalette('deep-purple', {
-			'default': '300',
-			'hue-1': '200',
-			'hue-2': '100',
+			'default': '600',
+			'hue-1': '400',
+			'hue-2': '300',
 			'hue-3': '50'
 		})
 		.accentPalette('amber', {
-			'default': '300',
-			'hue-1': '200',
-			'hue-2': '100',
-			'hue-3': '50'
+			'default': '700',
+			'hue-1': '400',
+			'hue-2': '300',
+			'hue-3': '200'
 		});
 }]);
 

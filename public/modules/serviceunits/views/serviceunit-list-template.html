@@ -1,8 +1,28 @@
 <div data-ng-controller="ServiceunitsController as serviceunitsCtrl" ng-cloak>
-    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
-        <div class="md-toolbar-tools" layout-align="center">Petals List Service Unit
-            <i class="material-icons md-48 md-primary"></i>
+
+    <md-toolbar class="md-primary" layout="row" layout-align="start start">
+
+        <div layout-padding>
+            <div class="md-toolbar-tools" layout-align="center">
+                <p>Services Unit</p>
+                <i class="material-icons md-48 md-primary"></i>
+            </div>
         </div>
+
+        <div layout-padding>
+            <form name="searchForm" layout-padding>
+
+                <md-input-container class="md-primary md-hue-1" aria-label="Search" layout="row"
+                                    layout-align="center center">
+                    <i class="material-icons md-36 md-primary">search</i>
+                    <label for="searchInput"></label>
+                    <input id="searchInput" placeholder="Search.." type="text" ng-model="searchText"
+                           md-autofocus>
+                </md-input-container>
+
+            </form>
+        </div>
+
     </md-toolbar>
 
     <md-content layout-padding layout="row" layout-sm="column" hide-sm>
@@ -39,22 +59,4 @@
         </md-input-container>
     </md-content>
 
-    <md-content layout-padding layout="column" layout-sm="column">
-        <form name="searchForm">
-            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Search">
-
-
-                <label for="searchInput">
-                    <md-icon class="material-icons md-48 md-primary">search</md-icon>
-                </label>
-
-                <input id="searchInput" placeholder="Enter a search term..." type="text" ng-model="searchText"
-                       md-autofocus type="text">
-            </md-input-container>
-            <!--            <div ng-messages="searchForm.searchText.$error">
-                            <div ng-message="required">This is a search bar for component list ..</div>
-                        </div>-->
-
-        </form>
-    </md-content>
 </div>

@@ -105,7 +105,8 @@ coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdBottomSheet) {
 });
 coreApp.controller('ListBottomSheetCtrl', function ($scope, $mdBottomSheet) {
     $scope.items = [
-        {name: 'New ESB', icon: 'device_hub'},
+        {name: 'New ESB', icon: 'device_hub' +
+        ''},
         {name: 'New Registry', icon: 'folder'},
         {name: 'New Log', icon: 'vpn_key'},
         {name: 'Workspace', icon: 'cloud'},

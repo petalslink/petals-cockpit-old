@@ -64,7 +64,7 @@ serviceunitsApp.directive('dirSupServiceunit', ['Serviceunits',
             scope: {
                 serviceunit: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="removeServiceunit()"><md-tooltip>Remove {{serviceunit.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="removeServiceunit()"><md-tooltip>Remove {{serviceunit.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeServiceunit = function() {
                     Serviceunits.deleteServiceunit({serviceunitId: $scope.serviceunit._id}, function() {
@@ -84,7 +84,7 @@ serviceunitsApp.directive('dirUpServiceunit', ['Serviceunits',
             scope: {
                 serviceunit: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="updServiceunit()"><md-tooltip>Edit {{serviceunit.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="updServiceunit()"><md-tooltip>Edit {{serviceunit.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updServiceunit = function() {
 

@@ -63,7 +63,7 @@ componentsApp.directive('dirSupComponent', ['Components',
             scope: {
                 component: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="removeComponent()"><md-tooltip>Remove {{component.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="removeComponent()"><md-tooltip>Remove {{component.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeComponent = function() {
                     Components.deleteComponent({componentId: $scope.component._id}, function() {
@@ -83,7 +83,7 @@ componentsApp.directive('dirUpComponent', ['Components',
             scope: {
                 component: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="updComponent()"><md-tooltip>Edit {{component.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="updComponent()"><md-tooltip>Edit {{component.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updComponent = function() {
 

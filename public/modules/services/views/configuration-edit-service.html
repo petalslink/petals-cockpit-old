@@ -1,5 +1,5 @@
-<div data-ng-controller="ServicesUpdateController as serviceUpCtrl">
-    <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
+<div data-ng-controller="ServicesUpdateController as serviceUpCtrl" md-theme="overview-theme">
+    <md-toolbar class="md-primary md-hue-3">
         <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
             <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
         </div>
@@ -12,7 +12,7 @@
                 <input type="text" ng-model="sItem.name" placeholder="Name">
             </md-input-container>
 
-            <md-button class="md-fab md-accent md-hue-1" aria-label="Refresh" ng-click="serviceUpCtrl.update(sItem)">
+            <md-button class="md-fab md-mini md-accent" aria-label="Refresh" ng-click="serviceUpCtrl.update(sItem)">
                 <md-tooltip>
                     Update Service
                 </md-tooltip>

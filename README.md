@@ -74,3 +74,15 @@ After running the application, open your web browser to...
 Username : 'SuperAdmin'
 Password : 'stage2015'
 ```
+
+
+### After 1st connexion
+
+Go to the file in the path :
+
+"../app/controllers/users.server.controller.js"
+
+... then go on the line 212 and change "save" by "update".
+
+You can restart server & you connect to the app with login
+...

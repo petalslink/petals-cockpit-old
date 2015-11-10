@@ -89,6 +89,22 @@ servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authent
 	}
 ]);
 
+servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
+	$mdThemingProvider.theme('overview-theme', 'default')
+		.primaryPalette('deep-purple', {
+			'default': '600',
+			'hue-1': '400',
+			'hue-2': '300',
+			'hue-3': '50'
+		})
+		.accentPalette('amber', {
+			'default': '700',
+			'hue-1': '400',
+			'hue-2': '300',
+			'hue-3': '200'
+		});
+}]);
+
 
 servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('overview-theme', 'default')

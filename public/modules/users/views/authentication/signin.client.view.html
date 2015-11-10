@@ -5,6 +5,7 @@
             <i class="material-icons md-48 md-primary">vpn_key</i>
         </div>
     </md-toolbar>
+
     <md-content layout="column" layout-sm="column" layout-align="center center">
         <form name="loginForm" data-ng-submit="signin()">
 
@@ -17,13 +18,13 @@
             <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Username">
                 <label>Username</label>
                 <input type="text" id="username" name="username"
-                       data-ng-model="credentials.username" placeholder="SuperAdmin">
+                       data-ng-model="credentials.username" placeholder="SuperAdmin" required>
             </md-input-container>
 
             <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Password">
                 <label>Password</label>
                 <input type="password" id="password" name="password"
-                       data-ng-model="credentials.password" placeholder="stage2015">
+                       data-ng-model="credentials.password" placeholder="stage2015" required>
             </md-input-container>
 
             <md-input-container class="md-raised md-primary md-hue-1" aria-label="Signin">

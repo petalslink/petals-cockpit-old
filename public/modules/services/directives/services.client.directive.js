@@ -63,7 +63,7 @@ servicesApp.directive('dirSupService', ['Services',
             scope: {
                 service: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="removeService()"><md-tooltip>Remove {{service.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="removeService()"><md-tooltip>Remove {{service.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeService = function() {
                     Services.deleteService({serviceId: $scope.service._id}, function() {
@@ -83,7 +83,7 @@ servicesApp.directive('dirUpService', ['Services',
             scope: {
                 service: '='
             },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="updService()"><md-tooltip>Edit {{service.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="updService()"><md-tooltip>Edit {{service.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updService = function() {
 

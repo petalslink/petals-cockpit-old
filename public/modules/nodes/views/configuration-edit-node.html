@@ -1,4 +1,4 @@
-<div data-ng-controller="NodesUpdateController as nodeUpCtrl">
+<div data-ng-controller="NodesUpdateController as nodeUpCtrl" md-theme="overview-theme">
     <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
         <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
             <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
@@ -22,14 +22,14 @@
                 <input type="text" ng-model="sItem.port" placeholder="Port">
             </md-input-container>
 
-            <md-button class="md-fab md-accent md-hue-1" aria-label="Refresh" ng-click="nodeUpCtrl.update(sItem)">
+            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="nodeUpCtrl.update(sItem)">
                 <md-tooltip>
                     Update Node
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
             </md-button>
 
-            <md-button data-ng-controller="ComponentsController as componentsCtrl" class="md-fab md-accent md-hue-1"
+            <md-button data-ng-controller="ComponentsController as componentsCtrl" class="md-fab md-mini md-accent md-hue-1"
                        aria-label="Refresh" ng-click="componentsCtrl.modalCreate(createComponentForm)">
                 <md-tooltip>
                     Create New Component

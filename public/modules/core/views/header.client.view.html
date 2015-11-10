@@ -1,7 +1,7 @@
 <section ng-controller="HeaderController" md-theme="core-theme">
-	<md-toolbar class="md-padding md-accent md-hue-2">
-		<md-menu-bar class="md-accent md-hue-2">
-			<div layout="row" layout-wrap layout-align="start center">
+	<md-toolbar class="md-padding md-accent md-hue-2" >
+		<md-menu-bar class="md-accent md-hue-2" layout-align="end end">
+			<div layout="row" layout-align="start start" layout-sm="column">
 				<a href="/#!/">
 					<md-icon><img ng-src="/modules/core/img/brand/petals_cockpit.png"
 								  class="logoPetals"
@@ -11,10 +11,10 @@
 			</div>
 			<!-- When User is Logged -->
 
-			<div data-ng-show="authentication.user" layout="row" layout-align="end center">
+			<div data-ng-show="authentication.user" layout="row" layout-align="end end" layout-md="row" layout-sm="column">
 				<md-menu-item class="md-primary">
 					<md-menu class="md-primary" md-position-mode="target-right target">
-						<md-button class="md-primary md-raised md-hue-1" ng-click="$mdOpenMenu()">
+						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
 							<a href="#" class="md-primary">
 								<md-icon class="material-icons md-36 md-primary">settings_application</md-icon>
 								<label class="normal">Config</label>
@@ -35,9 +35,9 @@
 
 				<md-menu-item class="md-primary md-hue-1">
 					<md-menu class="md-primary md-hue-1" md-position-mode="target-right target">
-						<md-button class="md-primary md-raised md-hue-1" ng-click="$mdOpenMenu()">
+						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
 							<a href="#" class="md-primary md-hue-1">
-								<md-icon class="material-icons md-36 md-primary">assignment_ind</md-icon>
+								<md-icon class="material-icons md-36 md-primary">portrait</md-icon>
 								<label class="normal"><span data-ng-bind="authentication.user.displayName"></span></label>
 							</a>
 						</md-button>

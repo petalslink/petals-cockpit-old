@@ -1,4 +1,4 @@
-<div data-ng-controller="BusesUpdateController as busUpCtrl">
+<div data-ng-controller="BusesUpdateController as busUpCtrl" md-theme="overview-theme">
     <md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
         <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
             <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
@@ -17,14 +17,14 @@
                 <input type="text" ng-model="sItem.version" placeholder="Version">
             </md-input-container>
 
-            <md-button class="md-fab md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
+            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
                 <md-tooltip>
                     Update Bus
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
             </md-button>
 
-            <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-accent md-hue-1"
+            <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
                        aria-label="Refresh" ng-click="nodesCtrl.modalCreate(createNodeForm)">
                 <md-tooltip>
                     Create New Node
