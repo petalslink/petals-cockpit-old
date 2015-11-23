@@ -171,6 +171,19 @@ md-button:not([disabled]):hover {
 	display: inline-block;
 	margin-left: -40px;
 }
+.margButtonNav {
+	margin-right: 160px;
+	top: 30px;
+}
+.paddingToolBar {
+	min-height: 100px;
+}
+.ajustWindow {
+	margin-top: -120px;
+}
+.ajustWindowSignin {
+	margin-top: -70px;
+}
 
 /*
 .menu-prod {

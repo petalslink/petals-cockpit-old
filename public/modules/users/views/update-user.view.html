@@ -1,5 +1,5 @@
 <md-dialog data-ng-controller="UsersUpdateController as userUpCtrl" aria-label="Pop Up User" ng-cloak
-           md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
+                       md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
     <form name="updateUserForm" ng-submit="ok()" novalidate>
 
         <md-toolbar>
@@ -8,18 +8,18 @@
                     Back To The List
                 </md-tooltip>
                 <md-button class="md-icon-button"
-                           ng-click="userUpCtrl.update(user); cancel(); answer('not useful')">
+                           ng-click="cancel(); answer('not useful')">
                     <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back</md-icon>
                 </md-button>
             </div>
             <div layout-padding>
-            <md-tooltip md-direction="center">
-                Update User
-            </md-tooltip>
-            <md-button ng-click="userUpCtrl.update(user); cancel(); answer('useful')"
-                       class="md-icon-button md-fab md-accent">
-                <md-icon class="material-icons md-24 md-accent">refresh</md-icon>
-            </md-button>
+                <md-tooltip md-direction="center">
+                    Update User
+                </md-tooltip>
+                <md-button ng-click="userUpCtrl.update(user); cancel(); answer('useful')"
+                           class="md-icon-button md-fab md-accent" ng-disabled="updateUserForm.$invalid">
+                    <md-icon class="material-icons md-24 md-accent">refresh</md-icon>
+                </md-button>
             </div>
         </md-toolbar>
 
@@ -28,10 +28,10 @@
             <div layout-gt-sm="row">
 
                 <div class="md-dialog-content" layout-align="center start" flex>
-<!--                    <div layout-padding>
-                        <h2>{{user.firstName}} {{user.lastName}}</h2>
-                    </div>
-                    -->
+                    <!--                    <div layout-padding>
+                                            <h2>{{user.firstName}} {{user.lastName}}</h2>
+                                        </div>
+                                        -->
                     <div layout-padding>
                         <md-list>
                             <md-list-item>
@@ -47,16 +47,44 @@
                             <md-list-item>
                                 <p>
                                     Please , fill all the text fields before saving !
+
                                 </p>
                             </md-list-item>
                         </md-list>
                     </div>
+
+<!--                    <md-input-container class="md-primary md-hue-1" aria-label="Country">
+                        <div class="md-primary md-hue-1" layout-align="center center">
+                            <md-icon class="material-icons md-24 md-primary">terrain</md-icon>
+                            <label>Country</label>
+                            <md-select name="myModel" data-ng-model="user.country" required>
+                                <md-option ng-repeat="country in countries" value="{{country}}">{{country}}</md-option>
+                            </md-select>
+                        </div>
+
+                    </md-input-container>-->
+
+                    <md-input-container class="md-input-has-value" aria-label="Country">
+                        <div class="md-primary md-hue-1" layout-align="center center">
+                            <md-icon class="material-icons md-36 md-primary">terrain</md-icon>
+                            <!-- Return Name Country Select for Update -->
+                            <label>{{user.country}}</label>
+                            <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()" layout-align="center center" required>
+                                <!-- Name of Group List -->
+                                <md-select-label class="md-primary md-hue-1">Country</md-select-label>
+                                <!-- Name of List Countries -->
+                                <md-option class="md-primary md-hue-1" ng-repeat="country in countries" ng-value="country.name" ng-init="user.country = countries.name">{{country.name}}</md-option>
+                            </md-select>
+                        </div>
+
+                    </md-input-container>
+
                 </div>
 
 
                 <div class="md-dialog-content" layout-align="center center" flex>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="firstName" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="firstName">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
                             <label>Firstname</label>
@@ -66,7 +94,7 @@
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="lastName" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="lastName">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
                             <label>Lastname</label>
@@ -76,7 +104,7 @@
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="username" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="username">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-36 md-primary">accessibility</md-icon>
                             <label>Username</label>
@@ -86,20 +114,20 @@
 
                     </md-input-container>
 
-<!--                    <md-input-container class="md-primary md-hue-1" aria-label="password" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-36 md-primary">vpn_keys</md-icon>
-                            <label>Password</label>
-                            <input type="password" id="password" name="password"
-                                   data-ng-model="user.password" required>
-                        </div>
+                    <!--                    <md-input-container class="md-primary md-hue-1" aria-label="password" layout-align="center center">
+                                            <div class="md-primary md-hue-1">
+                                                <md-icon class="material-icons md-36 md-primary">vpn_keys</md-icon>
+                                                <label>Password</label>
+                                                <input type="password" id="password" name="password"
+                                                       data-ng-model="user.password" required>
+                                            </div>
 
-                    </md-input-container>-->
+                                        </md-input-container>-->
                 </div>
 
                 <div class="md-dialog-content" layout-align="center end" flex>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="email" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="email">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-24 md-primary">email</md-icon>
                             <label>Email</label>
@@ -109,7 +137,7 @@
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="pseudo" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="pseudo">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-24 md-primary">portrait</md-icon>
                             <label>Pseudo</label>
@@ -119,25 +147,17 @@
 
                     </md-input-container>
 
-                    <!--                <md-input-container class="md-primary md-hue-1" aria-label="Country">
-                                        <label>Country</label>
-                                        <md-select data-ng-model="user.country" id="country" class="form-control"
-                                                   ng-options="channelItem.item for channelItem in channelCountry">
-                                            <md-option value="">&#45;&#45;Choose your Country&#45;&#45;</md-option>
-                                        </md-select>
-                                    </md-input-container>-->
-
-                    <md-input-container class="md-primary md-hue-1" aria-label="phone" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="phone">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-24 md-primary">phone</md-icon>
                             <label>Phone</label>
                             <input type="text" id="phone" name="phone"
-                                   data-ng-model="user.phone" required>
+                                   data-ng-model="user.phone">
                         </div>
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="location" layout-align="center center">
+                    <md-input-container class="md-primary md-hue-1" aria-label="location">
                         <div class="md-primary md-hue-1">
                             <md-icon class="material-icons md-24 md-primary">my_location</md-icon>
                             <label>Location</label>

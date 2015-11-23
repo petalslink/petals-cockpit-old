@@ -128,9 +128,39 @@ var UserSchema = new Schema({
         type: Boolean
     },
     country: {
-        type: String,
-        default: 'France',
-        trim: true
+            type: String,
+            enum: [
+                'Austria',
+                'Belgium',
+                'Bulgaria',
+                'Croatia',
+                'Cyprus',
+                'Czech Republic',
+                'Denmark',
+                'Estonia',
+                'Finland',
+                'France',
+                'Germany',
+                'Greece',
+                'Hungary',
+                'Ireland',
+                'Italy',
+                'Latvia',
+                'Lithuania',
+                'Luxembourg',
+                'Malta',
+                'Netherlands',
+                'Poland',
+                'Portugal',
+                'Romania',
+                'Slovakia',
+                'Slovenia',
+                'Spain',
+                'Sweden',
+                'United Kingdom'
+            ],
+        required: 'Please Select a Country',
+        default: 'France'
     }
 });
 
@@ -205,11 +235,12 @@ var UserDefault = new User({
                 'buisnessMonitoring'
     ],
     country: 'France',
+    location: 'Toulouse',
     gender: 'Male'
 });
 
 // call the built-in save method to save to the database
-UserDefault.update(function (err, saved) {
+UserDefault.save(function (err, saved) {
     if (err) {
         console.log('User Default is already saved !', err);
     }

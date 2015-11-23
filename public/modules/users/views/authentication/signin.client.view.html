@@ -1,9 +1,9 @@
 <section class="row" data-ng-controller="AuthenticationController">
 
-    <md-toolbar md-theme="core-theme" class="md-primary md-hue-3">
-        <div class="md-toolbar-tools" layout-align="center">
+    <md-toolbar md-theme="core-theme" class="md-accent md-hue-3">
+<!--        <div class="md-toolbar-tools" layout-align="center center">
             <i class="material-icons md-48 md-primary">vpn_key</i>
-        </div>
+        </div>-->
     </md-toolbar>
 
     <md-content layout="column" layout-sm="column" layout-align="center center">
@@ -28,7 +28,9 @@
             </md-input-container>
 
             <md-input-container class="md-raised md-primary md-hue-1" aria-label="Signin">
-                <md-button type="submit" class="md-raised md-primary md-hue-1">Sign in</md-button>
+                <md-button type="submit" class="md-raised md-primary md-hue-1">Sign in
+                    <md-icon class="material-icons md-24 md-primary" aria-label="add">vpn_key</md-icon>
+                </md-button>
             </md-input-container>
 
         </form>

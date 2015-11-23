@@ -1,4 +1,4 @@
-<section data-ng-controller="UsersCreateController as userCtrl">
+<!--<section data-ng-controller="UsersCreateController as userCtrl">
 
     <div class="modal-header">
         <h3 class="modal-title">Create New User</h3>
@@ -25,7 +25,7 @@
                         <i class="glyphicon glyphicon-user cust-profile"
                            ng-class="{
                            'text-primary': user.capacities.admin, 'text-green': user.capacities.adminBus, 'text-orange': user.capacities.developer,
-                           'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}" ></i>
+                           'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}"></i>
                         <br/><br/>
 
                         <div class="form-group">
@@ -132,7 +132,7 @@
                                 <span class="input-group-addon">
                                     <select data-ng-model="user.gender" id="gender" class="form-control" required
                                             ng-options="channelItem.item for channelItem in channelGender">
-                                        <option value="">--Choose your Sexe--</option>
+                                        <option value="">&#45;&#45;Choose your Sexe&#45;&#45;</option>
                                     </select>
                                 </span>
                             </div>
@@ -154,7 +154,7 @@
                                 <span class="input-group-addon">
                                     <select data-ng-model="user.country" id="country" class="form-control" required
                                             ng-options="channelItem.item for channelItem in channelCountry">
-                                        <option value="">--Choose your Country--</option>
+                                        <option value="">&#45;&#45;Choose your Country&#45;&#45;</option>
                                     </select>
                                 </span>
                             </div>
@@ -194,4 +194,184 @@
         </button>
     </div>
 
-</section>
+</section>-->
+
+
+<md-dialog data-ng-controller="UsersCreateController as userCtrl" aria-label="Pop Up User" ng-cloak
+           md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
+    <form name="createUserForm" ng-submit="ok()" novalidate>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools md-primary md-hue-2">
+                <md-tooltip md-direction="right">
+                    Back To The List
+                </md-tooltip>
+                <md-button class="md-icon-button"
+                           ng-click="cancel(); answer('not useful')">
+                    <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back</md-icon>
+                </md-button>
+            </div>
+            <div layout="row">
+                <div layout-padding>
+                    <md-tooltip md-direction="right">
+                        Save
+                    </md-tooltip>
+                    <md-button ng-click="create(); cancel(); answer('useful')"
+                               class="md-icon-button md-fab md-accent" ng-disabled="createUserForm.$invalid">
+                        <md-icon class="material-icons md-24 md-accent">save</md-icon>
+                    </md-button>
+                </div>
+                <div layout-padding>
+                    <md-tooltip md-direction="right">
+                        Clear All
+                    </md-tooltip>
+                    <md-button ng-click="clearValue()"
+                               class="md-icon-button md-fab md-accent">
+                        <md-icon class="material-icons md-24 md-accent">clear</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content>
+            <div layout-gt-sm="row">
+
+                <div class="md-dialog-content" layout-align="center start" flex>
+                    <!--                    <div layout-padding>
+                                            <h2>{{user.firstName}} {{user.lastName}}</h2>
+                                        </div>
+                                        -->
+                    <div layout-padding>
+                        <md-list>
+                            <md-list-item>
+                                <img class="md-avatar" ng-src="modules/users/img/avatars/profile.png"/>
+
+                                <h2> New User</h2>
+                            </md-list-item>
+                        </md-list>
+
+                        <md-divider></md-divider>
+
+                        <md-list>
+                            <md-list-item>
+                                <p>
+                                    Please , fill all the text fields before saving !
+                                </p>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="Country">
+                        <div class="md-primary md-hue-1" layout-align="center center">
+                            <md-icon class="material-icons md-24 md-primary">terrain</md-icon>
+
+                            <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()"
+                                       required>
+                                <md-select-label>{{user.country}}</md-select-label>
+                                <md-option ng-repeat="country in countries" ng-value="country.name"> {{country.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
+
+                    </md-input-container>
+
+                </div>
+
+
+                <div class="md-dialog-content" layout-align="center center" flex>
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="firstName" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                            <label>Firstname</label>
+                            <input type="text" id="firstName" name="myFirstName"
+                                   data-ng-model="user.firstName" required>
+                        </div>
+
+                    </md-input-container>
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="lastName" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                            <label>Lastname</label>
+                            <input type="text" id="lastName" name="myLastName"
+                                   data-ng-model="user.lastName" required>
+                        </div>
+
+                    </md-input-container>
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="username" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-36 md-primary">accessibility</md-icon>
+                            <label>Username</label>
+                            <input type="text" id="username" name="myUsername"
+                                   data-ng-model="user.username" required>
+                        </div>
+
+                    </md-input-container>
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="password" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-36 md-primary">vpn_keys</md-icon>
+                            <label>Password</label>
+                            <input type="password" id="password" name="myPassword"
+                                   data-ng-model="user.password" required>
+                        </div>
+
+                    </md-input-container>
+
+                </div>
+
+                <div class="md-dialog-content" layout-align="center end" flex>
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="email" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-24 md-primary">email</md-icon>
+                            <label>Email</label>
+                            <input type="text" id="email" name="myEmail"
+                                   data-ng-model="user.email" required>
+                        </div>
+
+                    </md-input-container>
+
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="pseudo" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-24 md-primary">portrait</md-icon>
+                            <label>Pseudo</label>
+                            <input type="text" id="displayName" name="myDisplayName"
+                                   data-ng-model="user.displayName" required>
+                        </div>
+
+                    </md-input-container>
+
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="phone" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-24 md-primary">phone</md-icon>
+                            <label>Phone</label>
+                            <input type="text" id="phone" name="myPhone"
+                                   data-ng-model="user.phone" required>
+                        </div>
+
+                    </md-input-container>
+
+
+                    <md-input-container class="md-primary md-hue-1" aria-label="location" layout-align="center center">
+                        <div class="md-primary md-hue-1">
+                            <md-icon class="material-icons md-24 md-primary">my_location</md-icon>
+                            <label>Location</label>
+                            <input type="text" id="location" name="myLocation"
+                                   data-ng-model="user.location" required>
+                        </div>
+
+                    </md-input-container>
+
+                </div>
+            </div>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

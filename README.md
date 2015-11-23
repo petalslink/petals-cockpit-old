@@ -80,7 +80,7 @@ Password : 'stage2015'
 
 Go to the file in the path :
 
-"../app/controllers/users.server.controller.js"
+"../app/models/users.server.model.js"
 
 ... then go on the line 212 and change "save" by "update".
 

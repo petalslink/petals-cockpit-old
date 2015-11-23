@@ -1,7 +1,9 @@
 <section ng-controller="HeaderController" md-theme="core-theme">
-	<md-toolbar class="md-padding md-accent md-hue-2" >
+	<md-toolbar class="md-padding md-accent md-hue-2 paddingToolBar" layout="row">
 		<md-menu-bar class="md-accent md-hue-2" layout-align="end end">
-			<div layout="row" layout-align="start start" layout-sm="column">
+
+
+			<div layout="row" layout-align="start start" layout-sm="column" layout-padding>
 				<a href="/#!/">
 					<md-icon><img ng-src="/modules/core/img/brand/petals_cockpit.png"
 								  class="logoPetals"
@@ -9,9 +11,84 @@
 					</md-icon>
 				</a>
 			</div>
-			<!-- When User is Logged -->
 
-			<div data-ng-show="authentication.user" layout="row" layout-align="end end" layout-md="row" layout-sm="column">
+
+		</md-menu-bar>
+	</md-toolbar>
+
+			<!-- When User is Logged -->
+			<div data-ng-show="authentication.user" layout="row" layout-align="end end" layout-md="row"
+				 layout-sm="column" class="ajustWindow">
+
+
+
+					<md-fab-speed-dial md-direction="up" class="md-scale margButtonNav">
+						<md-fab-trigger>
+							<a href="#" class="md-primary">
+								<md-button aria-label="Config" class="md-fab md-primary md-whiteframe-2dp">
+									<md-tooltip md-direction="left" md-visible="tooltipVisible">Config</md-tooltip>
+									<md-icon class="material-icons md-36 md-primary md-raised" aria-label="add">settings
+									</md-icon>
+									<!--<label>CONFIG</label>-->
+								</md-button>
+							</a>
+						</md-fab-trigger>
+						<md-fab-actions>
+							<a href="/#!/users">
+								<md-button class="md-primary md-fab md-mini md-whiteframe-4dp" aria-label="List Users">
+									<md-tooltip md-direction="left" md-visible="tooltipVisible">List Users</md-tooltip>
+									<md-icon class="material-icons md-24 md-primary" aria-label="add">group</md-icon>
+								</md-button>
+							</a>
+						</md-fab-actions>
+					</md-fab-speed-dial>
+
+					<md-fab-speed-dial md-direction="down" class="md-scale md-fab-top-right">
+						<md-fab-trigger>
+							<a href="#" class="md-primary md-hue-1">
+								<md-button aria-label="menu" class="md-primary md-whiteframe-1dp">
+									<md-icon class="material-icons md-24 md-primary md-raised" aria-label="add">person
+									</md-icon>
+									<label><span data-ng-bind="authentication.user.displayName"></span></label>
+								</md-button>
+							</a>
+						</md-fab-trigger>
+						<md-fab-actions>
+							<a href="/#!/settings/profile">
+								<md-button class="md-primary md-whiteframe-2dp md-raised" aria-label="Edit Profile">
+									<md-icon class="material-icons md-24 md-primary" aria-label="add">edit</md-icon>
+									<label>EDIT PROFILE</label>
+								</md-button>
+							</a>
+							<a href="/auth/signout">
+								<md-button class="md-primary md-whiteframe-2dp md-raised" aria-label="Signout">
+									<md-icon class="material-icons md-24 md-primary" aria-label="add">power_settings_new
+									</md-icon>
+									<label>SIGNOUT</label>
+								</md-button>
+							</a>
+						</md-fab-actions>
+					</md-fab-speed-dial>
+
+			</div>
+
+			<div data-ng-hide="authentication.user" layout="row" layout-align="end center" class="ajustWindowSignin">
+
+				<md-fab-speed-dial md-direction="down" class="md-scale margButtonNav">
+					<md-fab-trigger>
+						<a href="/#!/signin">
+							<md-button aria-label="menu" class="md-fab md-primary">
+								<md-tooltip md-direction="left" md-visible="tooltipVisible">Signin</md-tooltip>
+								<md-icon class="material-icons md-24 md-primary md-raised" aria-label="add">
+									power_settings_new
+								</md-icon>
+							</md-button>
+						</a>
+					</md-fab-trigger>
+				</md-fab-speed-dial>
+
+			</div>
+<!--
 				<md-menu-item class="md-primary">
 					<md-menu class="md-primary" md-position-mode="target-right target">
 						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
@@ -31,9 +108,9 @@
 							</md-menu-item>
 						</md-menu-content>
 					</md-menu>
-				</md-menu-item>
+				</md-menu-item>-->
 
-				<md-menu-item class="md-primary md-hue-1">
+<!--				<md-menu-item class="md-primary md-hue-1">
 					<md-menu class="md-primary md-hue-1" md-position-mode="target-right target">
 						<md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
 							<a href="#" class="md-primary md-hue-1">
@@ -64,12 +141,12 @@
 							</md-menu-item>
 						</md-menu-content>
 					</md-menu>
-				</md-menu-item>
-			</div>
+				</md-menu-item>-->
+
 
 			<!-- When User is not Logged -->
 
-			<div data-ng-hide="authentication.user" layout="row" layout-align="end center">
+<!--			<div data-ng-hide="authentication.user" layout="row" layout-align="end center">
 				<md-menu-item class="md-primary md-hue-1" ui-route="/signin">
 					<a href="/#!/signin">
 						<md-button class="md-primary md-raised md-hue-1">
@@ -78,10 +155,8 @@
 						</md-button>
 					</a>
 				</md-menu-item>
-			</div>
+			</div>-->
 
-		</md-menu-bar>
-	</md-toolbar>
 </section>
 
 <!--<div class="container" data-ng-controller="HeaderController">
