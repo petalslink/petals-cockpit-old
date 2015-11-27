@@ -120,7 +120,7 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
 
     }]);
 
-coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+/*coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.alert = '';
     $scope.hideListMenuProd = function ($event) {
         $scope.alert = '';
@@ -163,7 +163,7 @@ coreApp.controller('ListWorkspaceCtrl', function ($scope, $mdSidenav) {
         var clickedItem = $scope.items[$index];
         $mdSidenav.hide(clickedItem);
     };
-});
+});*/
 
 coreApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('core-theme', 'default')
@@ -200,7 +200,7 @@ coreApp.controller('NavWorkspaceCtrl', function ($scope, $timeout, $mdSidenav, $
 });
 
 coreApp.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.items = [
+/*    $scope.items = [
         {name: 'New ESB', icon: 'device_hub' +
         ''},
         {name: 'New Registry', icon: 'folder'},
@@ -208,7 +208,7 @@ coreApp.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
         {name: 'Workspace', icon: 'cloud'},
         {name: 'Export', icon: 'file_upload'},
         {name: 'Import', icon: 'file_download'}
-    ];
+    ];*/
     $scope.close = function () {
         $mdSidenav('right').close()
             .then(function () {

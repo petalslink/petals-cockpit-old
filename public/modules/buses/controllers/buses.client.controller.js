@@ -4,8 +4,8 @@
 
 var busesApp = angular.module('buses');
 
-busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authentication', 'Buses', '$modal', '$log', '$rootScope',
-	function ($scope, $stateParams, Authentication, Buses, $modal, $log, $rootScope) {
+busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authentication', 'Buses', '$modal', '$log', '$rootScope', '$mdDialog',
+	function ($scope, $stateParams, Authentication, Buses, $modal, $log, $rootScope,$mdDialog) {
 
 		this.authentication = Authentication;
 
@@ -17,6 +17,39 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 		$rootScope.$on('BusCreate', function(eventName, bus) {
 			self.buses.push(bus);
 		});
+
+		/* Window for Create New BUS */
+		$scope.showModalCreateBus = function (ev, selectedBus) {
+			$mdDialog.show({
+				controller: DialogController,
+				templateUrl: '/modules/buses/views/create-bus.client.view.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				resolve: {
+					bus: function () {
+						return selectedBus;
+					}
+				}
+			})
+				.then(function (answer) {
+					$scope.status = 'You said the information was "' + answer + '".';
+				}, function () {
+					$scope.status = 'You cancelled the dialog.';
+				});
+		};
+
+		function DialogController($scope, $mdDialog, bus) {
+			$scope.hide = function () {
+				$mdDialog.hide();
+			};
+			$scope.cancel = function () {
+				$mdDialog.cancel();
+			};
+			$scope.answer = function (answer) {
+				$mdDialog.hide(answer);
+			};
+		}
 
 		/********************************************************* OK *********************************************************/
 			// Open a modal window to Create a single bus record
@@ -97,9 +130,9 @@ busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 			'hue-2': '300',
 			'hue-3': '100'
 		})
-		.accentPalette('orange', {
-			'default': '700',
-			'hue-1': '400',
+		.accentPalette('deep-purple', {
+			'default': '800',
+			'hue-1': '800',
 			'hue-2': '300',
 			'hue-3': '200'
 		});

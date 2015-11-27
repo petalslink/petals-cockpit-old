@@ -1,17 +1,27 @@
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme" ng-controller="MenuProdCtrl">
-    <md-toolbar class="md-primary md-hue-1" layout="row" layout-align="center center">
+<!--
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme" ng-controller="BusesController">
+&lt;!&ndash;    <md-toolbar class="md-primary md-hue-1" layout="row" layout-align="center center">
         <h3 class="md-primary md-inline-list-icon-label" layout-align="start center">MENU PROD
             <md-button ng-click="hideListMenuProd($event)" class="md-primary md-hue-1 material-icons">close
             </md-button>
         </h3>
-    </md-toolbar>
+    </md-toolbar>&ndash;&gt;
     <md-list>
-        <md-list-item ng-repeat="item in items">
-            <md-button
+        <md-list-item >
+            <md-button class="md-fab md-fab-bottom-left md-accent md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp"
+                       ng-click="showModalCreateBus($event, bus)">
+                <md-tooltip md-direction="right">
+                    New ESB
+                </md-tooltip>
+                <md-icon class="material-icons md-36" aria-label="add">device_hub</md-icon>
+            </md-button>
+
+&lt;!&ndash;            <md-button ng-repeat="item in items"
                     ng-click="listItemClick($index)" class="md-primary">
                 <md-icon class="md-primary material-icons md-24"> {{item.icon}}</md-icon>
                 <span class="md-inline-list-icon-label md-primary faded"> &nbsp {{item.name}}</span>
-            </md-button>
+            </md-button>&ndash;&gt;
         </md-list-item>
     </md-list>
 </md-sidenav>
+-->

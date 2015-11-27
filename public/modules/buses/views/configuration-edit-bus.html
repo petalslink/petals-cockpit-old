@@ -1,8 +1,33 @@
 <div data-ng-controller="BusesUpdateController as busUpCtrl" md-theme="bus-theme">
     <md-toolbar class="md-primary md-hue-3">
-        <div class="md-toolbar-tools md-primary md-hue-3" layout-align="center">{{sItem.name}}
-            <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
+
+        <div class="md-toolbar-tools md-primary md-hue-2">
+            <a href="/#!/">
+                <md-button class="md-icon-button"
+                           ng-click="cancel(); answer('not useful');previous()">
+                    <md-tooltip md-direction="right">
+                        Previous
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+                </md-button>
+            </a>
+
+            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">{{sItem.name}}
+                <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
+            </div>
+
+            <a href="/#!/">
+                <md-button class="md-icon-button"
+                           ng-click="cancel(); answer('not useful');next()">
+                    <md-tooltip md-direction="left">
+                        Next
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary" aria-label="Next">arrow_forward</md-icon>
+                </md-button>
+            </a>
         </div>
+
+
     </md-toolbar>
 
     <form name="updateBusForm" ng-submit="ok()" novalidate>

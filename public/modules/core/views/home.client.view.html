@@ -1,4 +1,4 @@
-<section ng-controller="HeaderController">
+<section ng-controller="HeaderController" layout="column" style="min-height: 500px;" ng-cloak>
     <div layout="row" flex data-ng-controller="HomeController">
 <!--
         <div flex-sm="50" ng-controller="MenuProdCtrl" md-theme="core-theme">
@@ -43,11 +43,11 @@
             </md-toolbar>
 
             <!-- Nav Tree Components -->
-            <md-content class="md-accent md-hue-1" flex layout-padding ng-controller="NavTreeCtrl">
+            <md-content class="md-accent md-hue-1" flex ng-controller="NavTreeCtrl">
 
                 <dir-component-tree components="component"></dir-component-tree>
 
-                <p hide-sm show-gt-md>
+                <p hide-sm show-gt-md layout-padding>
                     <i class="zmdi zmdi-comment-text zmdi-hc-2x zmdi-hc-fw"></i>
                     This sidenav is locked open on your device. To go back to the default behavior,
                     narrow your display.
@@ -56,7 +56,7 @@
 
 
             <!-- Nav Menu Workspace -->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z4" md-component-id="right" md-theme="core-theme">
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="core-theme">
                     <md-toolbar class="md-accent" ng-controller="RightCtrl">
                         <h2 class="md-toolbar-tools"> <span flex>MENU</span>
                             <i class="zmdi zmdi-collection-folder-image zmdi-hc-1x zmdi-hc-fw"></i>
@@ -71,12 +71,16 @@
 
                     </md-toolbar>
 
-                    <md-content class="md-accent" ng-controller="RightCtrl" layout-padding>
+                    <md-content class="md-accent" ng-controller="BusesController">
                         <md-list>
-                            <md-list-item ng-repeat="item in items">
-                                <md-button class="md-primary">
-                                    <md-icon class="md-primary material-icons md-24"> {{item.icon}}</md-icon>
-                                    <span class="md-inline-list-icon-label md-primary faded"> &nbsp {{item.name}}</span>
+                            <md-list-item>
+                                <md-button class="md-primary"
+                                           ng-click="showModalCreateBus($event, bus)">
+                                    <md-tooltip md-direction="right">
+                                        Create
+                                    </md-tooltip>
+                                    <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub</md-icon>
+                                    <span class="md-inline-list-icon-label md-primary faded">&nbsp New ESB</span>
                                 </md-button>
                             </md-list-item>
                         </md-list>
@@ -86,7 +90,7 @@
 
 <!--        <md-toolbar class="md-primary">-->
 
-        <md-content class="md-accent md-hue-1" flex layout-padding>
+        <md-content class="md-accent md-hue-1" flex >
 
 
             <md-content class="md-primary">

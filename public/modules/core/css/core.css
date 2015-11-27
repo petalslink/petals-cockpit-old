@@ -135,6 +135,10 @@ md-button:not([disabled]):hover {
     top: 30px !important;
 }
 
+.margButtonMiniFloat {
+    top: 35px !important;
+}
+
 .paddingToolBar {
     min-height: 100px;
 }

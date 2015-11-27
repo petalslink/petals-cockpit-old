@@ -1,6 +1,85 @@
-<section data-ng-controller="BusesCreateController as busCtrl">
+<section data-ng-controller="BusesCreateController as busCtrl" md-theme="bus-theme" md-whiteframe-32dp>
+    <md-toolbar layout="row" class="md-primary md-hue-3">
 
-    <div class="modal-header">
+        <md-button class="md-icon-button md-accent"
+                   ng-click="cancel(); answer('not useful')">
+            <md-tooltip md-direction="bottom">
+                Back
+            </md-tooltip>
+            <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
+        </md-button>
+
+
+        <md-button ng-click="create(); cancel()" class="md-fab md-mini md-accent md-fab-bottom-left margButtonMiniFloat md-whiteframe-z3 md-whiteframe-6dp"
+                   ng-disabled="updateUserForm.$invalid">
+            <md-tooltip md-direction="bottom">
+                Create New Bus
+            </md-tooltip>
+            <md-icon class="material-icons md-24">done</md-icon>
+        </md-button>
+
+        <h1 class="md-toolbar-tools md-primary md-hue-1" layout-align="center center">
+            NEW ESB
+            <md-button class="md-icon-button md-accent md-24">
+                <md-tooltip md-direction="bottom">
+                    Bus
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-accent" aria-label="add">device_hub</md-icon>
+            </md-button>
+        </h1>
+
+
+    </md-toolbar>
+
+<!--
+    <md-toolbar class="md-primary md-hue-3">
+
+        <div class="md-toolbar-tools md-primary md-hue-2">
+            <a href="/#!/">
+                <md-button class="md-icon-button"
+                           ng-click="cancel(); answer('not useful');">
+                    <md-tooltip md-direction="right">
+                        Previous
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+                </md-button>
+            </a>
+
+            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Create" ng-click="create(); cancel()">
+                <md-tooltip>
+                    Create New Bus
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary">done</md-icon>
+            </md-button>
+
+            <h1 class="md-toolbar-tools md-hue-1" layout-align="center">
+                NEW ESB
+            </h1>
+            <md-icon class="material-icons md-24 md-primary" aria-label="add">device_hub</md-icon>
+
+        </div>
+
+
+    </md-toolbar>-->
+
+    <form name="createBusForm" ng-submit="ok()" novalidate>
+        <md-content layout-padding layout="row" layout-sm="column" class="md-accent">
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" ng-model="sItem.name" placeholder="Name">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Version</label>
+                <input type="text" ng-model="sItem.version" placeholder="Version">
+            </md-input-container>
+
+        </md-content>
+    </form>
+
+
+
+<!--    <div class="modal-header">
         <h3 class="modal-title">Create New Bus</h3>
     </div>
     <div class="modal-body">
@@ -60,6 +139,6 @@
             <i class="glyphicon glyphicon-remove"></i>
             Close
         </button>
-    </div>
+    </div>-->
 
 </section>
