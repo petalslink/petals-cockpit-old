@@ -1,7 +1,29 @@
-<md-toolbar md-theme="overview-theme" class="md-primary md-hue-3">
-    <h1 class="md-toolbar-tools" layout-align="center">
-        Bus Settings
-    </h1>
+<md-toolbar md-theme="bus-theme" class="md-primary md-hue-3">
+    <div class="md-toolbar-tools md-primary md-hue-2">
+        <a href="/#!/">
+            <md-button class="md-icon-button"
+                       ng-click="cancel(); answer('not useful')">
+                <md-tooltip md-direction="right">
+                    Previous
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+            </md-button>
+        </a>
+
+        <h1 class="md-toolbar-tools md-hue-1" layout-align="center">
+            Bus Settings
+        </h1>
+
+        <a href="/#!/">
+            <md-button class="md-icon-button"
+                       ng-click="cancel(); answer('not useful')">
+                <md-tooltip md-direction="left">
+                    Next
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Next">arrow_forward</md-icon>
+            </md-button>
+        </a>
+    </div>
 </md-toolbar>
 
 <md-content layout-padding layout="row" layout-sm="column">

@@ -16,7 +16,8 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-material/angular-material.layouts.css',
-				'public/lib/angular-material/angular-material.css'
+				'public/lib/angular-material/angular-material.css',
+				'public/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',

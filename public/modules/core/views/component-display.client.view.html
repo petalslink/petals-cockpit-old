@@ -1,15 +1,18 @@
 <md-content md-theme="core-theme">
-    <md-tabs class="" md-selected="datas.selectedIndex"
+
+    <md-tabs class="md-accent" md-selected="datas.selectedIndex"
              md-align-tabs="{{datas.bottom ? 'bottom' : 'top'}}">
 
 
         <md-tab id="tab1" ng-disabled="datas.overviewLocked">
-            <md-tab-label>
+            <md-tab-label class="md-primary">
                 <md-tooltip md-direction="bottom">
                     Overview
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.overviewIcon}}</md-icon>
-                {{datas.overviewLabel}}
+                <label hide-sm>
+                    {{datas.overviewLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==1">
                 <div ng-include="'modules/core/views/overview.template.html'"></div>
@@ -23,7 +26,9 @@
                     Admin
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.adminIcon}}</md-icon>
-                {{datas.adminLabel}}
+                <label hide-sm>
+                    {{ datas.adminLabel }}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==2">
                 <div ng-include="'modules/core/views/admin.template.html'"></div>
@@ -37,7 +42,9 @@
                     Monitor
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.monitorIcon}}</md-icon>
-                {{datas.monitorLabel}}
+                <label hide-sm>
+                    {{datas.monitorLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==3">
                 <div ng-include="'modules/core/views/monitor.template.html'"></div>
@@ -51,7 +58,9 @@
                     Config
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.configIcon}}</md-icon>
-                {{datas.configLabel}}
+                <label hide-sm>
+                    {{datas.configLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==4">
                 <div ng-include="'modules/core/views/configuration.template.html'"></div>
@@ -65,7 +74,9 @@
                     Log
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.logIcon}}</md-icon>
-                {{datas.logLabel}}
+                <label hide-sm>
+                    {{datas.logLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==5">
                 <div ng-include="'modules/core/views/log.template.html'"></div>
@@ -79,7 +90,9 @@
                     Flow
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.flowIcon}}</md-icon>
-                {{datas.flowLabel}}
+                <label hide-sm>
+                    {{datas.flowLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==6">
                 <div ng-include="'modules/core/views/flow.template.html'"></div>
@@ -93,7 +106,9 @@
                     User
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{datas.userIcon}}</md-icon>
-                {{datas.userLabel}}
+                <label hide-sm>
+                    {{datas.userLabel}}
+                </label>
             </md-tab-label>
             <md-tab-body ng-show="tab==7">
                 <div ng-include="'modules/core/views/user.template.html'"></div>

@@ -91,14 +91,14 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 
 
 serviceunitsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
-	$mdThemingProvider.theme('overview-theme', 'default')
-		.primaryPalette('deep-purple', {
-			'default': '600',
-			'hue-1': '400',
+	$mdThemingProvider.theme('serviceunit-theme', 'default')
+		.primaryPalette('light-blue', {
+			'default': '500',
+			'hue-1': '500',
 			'hue-2': '300',
-			'hue-3': '50'
+			'hue-3': '100'
 		})
-		.accentPalette('amber', {
+		.accentPalette('orange', {
 			'default': '700',
 			'hue-1': '400',
 			'hue-2': '300',

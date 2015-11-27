@@ -147,8 +147,8 @@ usersApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$rootScope',
-    function ($scope, Users, Notify, $rootScope) {
+usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$rootScope', '$mdBottomSheet',
+    function ($scope, Users, Notify, $rootScope, $mdBottomSheet) {
 
         /* Loading Country List */
         $scope.country = null;
@@ -205,6 +205,12 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$roo
 
         $scope.user = {};
 
+        $scope.openBottomSheet = function() {
+            $mdBottomSheet.show({
+                template: '<md-bottom-sheet><h3 align="center">Create is Worked !</h3></md-bottom-sheet>'
+            });
+        };
+
         // Create new User
         $scope.create = function () {
 
@@ -224,8 +230,8 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$roo
 ]);
 /********************************************************* OK *********************************************************/
 // UPDATE CONTROLLER
-usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
-    function ($scope, Users, Notify) {
+usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify', '$mdBottomSheet',
+    function ($scope, Users, Notify, $mdBottomSheet) {
 
         $scope.clearValue = function() {
             $scope.myCountry = undefined;
@@ -282,6 +288,11 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
             {id: 2, item: 'Female'}
         ];
 
+        $scope.openBottomSheet = function() {
+            $mdBottomSheet.show({
+                template: '<md-bottom-sheet><h3 align="center">Update is Worked !</h3></md-bottom-sheet>'
+            });
+        };
 
         // Update existing User
         this.update = function (updatedUser) {
@@ -301,15 +312,15 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify',
 
 usersApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('user-theme', 'default')
-        .primaryPalette('deep-purple', {
+        .primaryPalette('light-blue', {
+            'default': '500',
+            'hue-1': '500',
+            'hue-2': '300',
+            'hue-3': '100'
+        })
+        .accentPalette('deep-purple', {
             'default': '800',
             'hue-1': '800',
-            'hue-2': '300',
-            'hue-3': '50'
-        })
-        .accentPalette('amber', {
-            'default': '700',
-            'hue-1': '400',
             'hue-2': '300',
             'hue-3': '200'
         });

@@ -23,14 +23,18 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             $scope.isCollapsed = false;
         });
 
-        $scope.openLeftMenu = function () {
-            $mdSidenav('left').toggle();
+        $scope.toggleLeft = buildDelayedToggler('left');
+        $scope.toggleNavLeft = buildToggler('left');
+        $scope.toggleRight = buildToggler('right');
+        $scope.isOpenLeft = function(){
+            return $mdSidenav('left').isOpen();
         };
-        $scope.close = function () {
-            $mdSidenav('left').close()
-                .then(function () {
-                    $log.debug("close LEFT is done");
-                });
+        $scope.isOpenRight = function(){
+            return $mdSidenav('right').isOpen();
+        };
+
+        $scope.isOpenNavWorkspaceLeft = function(){
+            return $mdSidenav('left').isOpen();
         };
 
         $scope.datas = {
@@ -38,7 +42,7 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             selectedIndex: 0,
             overviewLocked: false,
             overviewLabel: 'Overview',
-            overviewIcon: 'pageview',
+            overviewIcon: 'remove_red_eye',
 
             adminLocked: false,
             adminLabel: 'Admin',
@@ -72,38 +76,80 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
         $scope.previous = function () {
             $scope.datas.selectedIndex = Math.max($scope.datas.selectedIndex - 1, 0);
         };
+
+        /**
+         * Supplies a function that will continue to operate until the
+         * time is up.
+         */
+        function debounce(func, wait, context) {
+            var timer;
+            return function debounced() {
+                var context = $scope,
+                    args = Array.prototype.slice.call(arguments);
+                $timeout.cancel(timer);
+                timer = $timeout(function() {
+                    timer = undefined;
+                    func.apply(context, args);
+                }, wait || 10);
+            };
+        }
+
+        /**
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
+        function buildDelayedToggler(navID) {
+            return debounce(function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
+            }, 200);
+        }
+
+        function buildToggler(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
+            }
+        }
+
     }]);
 
-coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdBottomSheet) {
+coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.alert = '';
     $scope.hideListMenuProd = function ($event) {
         $scope.alert = '';
-        $mdBottomSheet.hide({
+        $mdSidenav.hide({
             templateUrl: '/modules/core/views/prod-list-template.html',
-            controller: 'ListBottomSheetCtrl',
+            controller: 'ListWorkspaceCtrl',
             targetEvent: $event
         }).then(function (close) {
             $scope.close = function () {
-                $mdBottomSheet.close()
+                $mdSidenav('left').close()
                     .then(function () {
-                        $log.debug("close BOTTOM is done");
+                        $log.debug("close LEFT is done");
                     });
-            };
+            }
         })
     };
 
     $scope.showListMenuProd = function ($event) {
         $scope.alert = '';
-        $mdBottomSheet.show({
+        $mdSidenav.show({
             templateUrl: '/modules/core/views/prod-list-template.html',
-            controller: 'ListBottomSheetCtrl',
+            controller: 'ListWorkspaceCtrl',
             targetEvent: $event
         }).then(function (clickedItem) {
             $scope.alert = clickedItem['name'] + ' selected!';
         });
     };
 });
-coreApp.controller('ListBottomSheetCtrl', function ($scope, $mdBottomSheet) {
+coreApp.controller('ListWorkspaceCtrl', function ($scope, $mdSidenav) {
     $scope.items = [
         {name: 'New ESB', icon: 'device_hub' +
         ''},
@@ -115,22 +161,58 @@ coreApp.controller('ListBottomSheetCtrl', function ($scope, $mdBottomSheet) {
     ];
     $scope.listItemClick = function ($index) {
         var clickedItem = $scope.items[$index];
-        $mdBottomSheet.hide(clickedItem);
+        $mdSidenav.hide(clickedItem);
     };
 });
 
 coreApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('core-theme', 'default')
-        .primaryPalette('deep-purple', {
-            'default': '600',
-            'hue-1': '400',
+        .primaryPalette('light-blue', {
+            'default': '500',
+            'hue-1': '500',
             'hue-2': '300',
-            'hue-3': '50'
+            'hue-3': '100'
         })
-        .accentPalette('amber', {
-            'default': '700',
-            'hue-1': '400',
+        .accentPalette('deep-purple', {
+            'default': '800',
+            'hue-1': '800',
             'hue-2': '300',
             'hue-3': '200'
         });
 }]);
+
+coreApp.controller('NavTreeCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function () {
+            $mdSidenav('left').close()
+                .then(function () {
+                    $log.debug("close LEFT is done");
+                });
+        }
+    });
+
+coreApp.controller('NavWorkspaceCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+        $mdSidenav('left').close()
+            .then(function () {
+                $log.debug("close LEFT is done");
+            });
+    }
+});
+
+coreApp.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.items = [
+        {name: 'New ESB', icon: 'device_hub' +
+        ''},
+        {name: 'New Registry', icon: 'folder'},
+        {name: 'New Log', icon: 'vpn_key'},
+        {name: 'Workspace', icon: 'cloud'},
+        {name: 'Export', icon: 'file_upload'},
+        {name: 'Import', icon: 'file_download'}
+    ];
+    $scope.close = function () {
+        $mdSidenav('right').close()
+            .then(function () {
+                $log.debug("close RIGHT is done");
+            });
+    }
+});

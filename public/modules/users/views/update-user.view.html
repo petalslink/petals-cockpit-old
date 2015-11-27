@@ -1,37 +1,35 @@
 <md-dialog data-ng-controller="UsersUpdateController as userUpCtrl" aria-label="Pop Up User" ng-cloak
-                       md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
+           md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
     <form name="updateUserForm" ng-submit="ok()" novalidate>
 
-        <md-toolbar>
-            <div class="md-toolbar-tools md-primary md-hue-2">
-                <md-tooltip md-direction="center">
-                    Back To The List
-                </md-tooltip>
-                <md-button class="md-icon-button"
+
+
+        <md-toolbar layout="row" class="md-primary md-hue-1">
+
+                <md-button class="md-icon-button md-accent"
                            ng-click="cancel(); answer('not useful')">
+                    <md-tooltip md-direction="bottom">
+                        Back To The List
+                    </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back</md-icon>
                 </md-button>
-            </div>
-            <div layout-padding>
-                <md-tooltip md-direction="center">
-                    Update User
-                </md-tooltip>
-                <md-button ng-click="userUpCtrl.update(user); cancel(); answer('useful')"
-                           class="md-icon-button md-fab md-accent" ng-disabled="updateUserForm.$invalid">
-                    <md-icon class="material-icons md-24 md-accent">refresh</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
 
+
+                <md-button ng-click="userUpCtrl.update(user); cancel(); answer('useful');openBottomSheet()"
+                           class="md-fab md-accent md-fab-bottom-left md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp"
+                           ng-disabled="updateUserForm.$invalid">
+                    <md-tooltip md-direction="bottom">
+                        Update User
+                    </md-tooltip>
+                    <md-icon class="material-icons md-36 md-accent">done</md-icon>
+                </md-button>
+
+        </md-toolbar>
 
         <md-dialog-content>
             <div layout-gt-sm="row">
 
                 <div class="md-dialog-content" layout-align="center start" flex>
-                    <!--                    <div layout-padding>
-                                            <h2>{{user.firstName}} {{user.lastName}}</h2>
-                                        </div>
-                                        -->
                     <div layout-padding>
                         <md-list>
                             <md-list-item>
@@ -47,33 +45,36 @@
                             <md-list-item>
                                 <p>
                                     Please , fill all the text fields before saving !
-
                                 </p>
                             </md-list-item>
                         </md-list>
                     </div>
 
-<!--                    <md-input-container class="md-primary md-hue-1" aria-label="Country">
-                        <div class="md-primary md-hue-1" layout-align="center center">
-                            <md-icon class="material-icons md-24 md-primary">terrain</md-icon>
-                            <label>Country</label>
-                            <md-select name="myModel" data-ng-model="user.country" required>
-                                <md-option ng-repeat="country in countries" value="{{country}}">{{country}}</md-option>
-                            </md-select>
-                        </div>
+                    <!--                    <md-input-container class="md-primary md-hue-1" aria-label="Country">
+                                            <div class="md-primary md-hue-1" layout-align="center center">
+                                                <md-icon class="material-icons md-24 md-primary">terrain</md-icon>
+                                                <label>Country</label>
+                                                <md-select name="myModel" data-ng-model="user.country" required>
+                                                    <md-option ng-repeat="country in countries" value="{{country}}">{{country}}</md-option>
+                                                </md-select>
+                                            </div>
 
-                    </md-input-container>-->
+                                        </md-input-container>-->
 
                     <md-input-container class="md-input-has-value" aria-label="Country">
                         <div class="md-primary md-hue-1" layout-align="center center">
                             <md-icon class="material-icons md-36 md-primary">terrain</md-icon>
                             <!-- Return Name Country Select for Update -->
                             <label>{{user.country}}</label>
-                            <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()" layout-align="center center" required>
+                            <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()"
+                                       layout-align="center center" required>
                                 <!-- Name of Group List -->
                                 <md-select-label class="md-primary md-hue-1">Country</md-select-label>
                                 <!-- Name of List Countries -->
-                                <md-option class="md-primary md-hue-1" ng-repeat="country in countries" ng-value="country.name" ng-init="user.country = countries.name">{{country.name}}</md-option>
+                                <md-option class="md-primary md-hue-1" ng-repeat="country in countries"
+                                           ng-value="country.name" ng-init="user.country = countries.name">
+                                    {{country.name}}
+                                </md-option>
                             </md-select>
                         </div>
 

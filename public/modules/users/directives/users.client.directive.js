@@ -32,7 +32,7 @@ usersApp.directive('dirSupUser', ['Users', 'Notify',
             scope: {
                 user: '='
             },
-            template: '<md-button class="md-fab md-mini md-primary md-hue-1" aria-label="Edit" ng-click="removeUser()"><md-tooltip md-direction="bottom">Remove {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="removeUser()"><md-tooltip md-direction="bottom">Remove {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">delete</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.removeUser = function() {
                     Users.deleteUser({userId: $scope.user._id}, function() {
@@ -52,7 +52,7 @@ usersApp.directive('dirUpUser', ['Users',
             scope: {
                 user: '='
             },
-            template: '<md-button class="md-fab md-mini md-primary md-hue-1" flex-sm="100" flex-md="100" flex-gt-md="auto" aria-label="Edit" ng-click="updUser()"><md-tooltip md-direction="bottom">Edit {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" flex-sm="100" flex-md="100" flex-gt-md="auto" aria-label="Edit" ng-click="updUser()"><md-tooltip md-direction="bottom">Edit {{user.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
             link: function ($scope, element, attrs) {
                 $scope.updUser = function() {
 
@@ -61,3 +61,22 @@ usersApp.directive('dirUpUser', ['Users',
         };
     }
 ]);
+
+/*
+usersApp.directive('dirMsgUpUser', ['Users',
+    function (Users) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                user: '='
+            },
+            template: '<md-bottom-sheet><h3 align="center">Update {{user.firstName}} {{user.lastName}} worked !</h3></md-bottom-sheet>',
+            link: function ($scope, element, attrs) {
+                $scope.updUser = function() {
+
+                };
+            }
+        };
+    }
+]);*/

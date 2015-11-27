@@ -1,28 +1,33 @@
-<div data-ng-controller="UsersController as usersCtrl" ng-cloak md-theme="core-theme">
+<div data-ng-controller="UsersController as usersCtrl" ng-cloak md-theme="user-theme">
 
-    <md-toolbar layout="row" class="md-accent md-hue-3" layout-align="start start">
+    <md-toolbar layout="row" class="md-primary md-hue-3">
 
-        <form name="searchForm" layout-padding>
 
-            <md-input-container class="md-primary md-hue-1" aria-label="Search" layout="row"
-                                layout-align="center center">
-                <i class="material-icons md-36 md-primary">search</i>
-                <label for="searchInput"></label>
-                <input id="searchInput" placeholder="Search.." type="text" ng-model="searchText"
-                       md-autofocus>
-            </md-input-container>
-
-        </form>
-
-    </md-toolbar>
-    <md-toolbar class="md-accent md-hue-3" layout-align="end end">
-        <md-tooltip md-direction="bottom">
-            Add User
-        </md-tooltip>
-        <md-button class="md-fab md-accent md-mini md-raised" ng-click="showModalCreateUser($event, user)">
-            <md-icon class="material-icons md-24 md-primary" aria-label="add">add</md-icon>
+        <md-button class="md-fab md-fab-bottom-left md-accent md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp"
+                   ng-click="showModalCreateUser($event, user)">
+            <md-tooltip md-direction="right">
+                Add User
+            </md-tooltip>
+            <md-icon class="material-icons md-36" aria-label="add">add</md-icon>
         </md-button>
+
     </md-toolbar>
+
+    <form name="searchForm">
+        <div class="md-dialog-content" layout-align="center center" flex>
+            <md-input-container class="md-accent" aria-label="Search" layout="row" layout-sm="column"
+                                                                 layout-align="center center">
+            <md-button class="md-accent">
+                <md-icon class="material-icons md-48">search</md-icon>
+            </md-button>
+
+            <label for="searchInput"></label>
+            <input id="searchInput" placeholder="Search.." type="text" ng-model="searchText"
+                   md-autofocus>
+        </md-input-container>
+        </div>
+    </form>
+
 
     <md-content class="md-padding">
         <dir-user-list info="usersCtrl.users" filter="searchText"></dir-user-list>
