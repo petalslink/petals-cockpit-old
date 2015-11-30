@@ -92,18 +92,18 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 
 nodesApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 	$mdThemingProvider.theme('node-theme', 'default')
-		.primaryPalette('light-blue', {
-			'default': '500',
-			'hue-1': '500',
-			'hue-2': '300',
-			'hue-3': '100'
-		})
-		.accentPalette('orange', {
-			'default': '700',
-			'hue-1': '400',
-			'hue-2': '300',
-			'hue-3': '200'
-		});
+			.primaryPalette('orange', {
+				'default': '700',
+				'hue-1': '500',
+				'hue-2': '300',
+				'hue-3': '100'
+			})
+			.accentPalette('deep-purple', {
+				'default': '800',
+				'hue-1': '800',
+				'hue-2': '300',
+				'hue-3': '200'
+			});
 }]);
 
 
@@ -126,7 +126,7 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buse
 			Nodes.postNode($scope.node, function (node) {
 
 				Notify.sendMsg('NewNode', {'id': node._id});
-				$rootScope.$emit('NodeCreate', node);
+				$rootScope.$broadcast('NodeCreate', node);
 
 
 			}, function (errorResponse) {

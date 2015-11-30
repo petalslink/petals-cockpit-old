@@ -30,256 +30,108 @@
     </md-toolbar>-->
 
 
-    <md-toolbar class="md-primary md-tall" layout="row" layout-align="center center">
+    <md-toolbar class="md-primary">
 
         <!-- When User is Logged -->
-        <div class="md-toolbar-tools" layout="row" layout-align="start center" layout-sm="column"
-             data-ng-show="authentication.user">
-            <!-- Title App -->
-                <a href="/#!/">
-                    <md-button class="md-accent md-raised md-hue-1 md-whiteframe-2dp">
-                        <md-tooltip md-direction="bottom">
-                            Take The Control !
-                        </md-tooltip>
+        <div class="md-toolbar-tools md-primary md-hue-2" data-ng-show="authentication.user"
+             data-ng-controller="HeaderConfigNavCtrl">
+            <a href="/#!/">
+                <md-tooltip md-direction="right">
+                    Take The Control !
+                </md-tooltip>
+                <h1 class="md-toolbar-tools"><strong>Petals COCKPIT</strong></h1>
+            </a>
 
-                        <h3>Petals<i class="zmdi zmdi-compass zmdi-hc-spin zmdi-hc-2x zmdi-hc-fw"></i><br> COCKPIT</h3>
-                    </md-button>
-                </a>
-        </div>
+            <div flex></div>
 
-            <div layout="row" layout-sm="column" data-ng-show="authentication.user">
-                <md-fab-speed-dial md-direction="right" class="md-scale" layout="row" layout-align="center center"
-                                   layout-sm="column">
-                    <md-fab-trigger>
-                        <a href="#" class="">
- <!--                           <md-button aria-label="Config" class="md-accent md-raised md-hue-1 md-whiteframe-6dp">
-                                <h5>
-                                    <md-icon class="material-icons md-24 md-accent" aria-label="config">settings
+            <md-menu md-position-mode="target-right target">
+                <md-button class="md-accent" aria-label="Open Config Menu"
+                           ng-click="$mdOpenMenu($event)">
+                    <md-tooltip md-direction="bottom">
+                        User Logged
+                    </md-tooltip>
+                    <md-icon md-menu-origin class="material-icons md-24 md-accent" aria-label="User">person
+                    </md-icon>
+                    <span data-ng-bind="authentication.user.displayName"></span> <i
+                        class="zmdi zmdi-caret-down"></i>
+                </md-button>
+
+
+                <md-menu-content width="3" class="md-whiteframe-8dp">
+                    <md-menu-item>
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="Edit Profile">
+                            <a href="/#!/settings/profile" class="btnLink">
+                                <div layout="row">
+                                    <p flex>Edit Profile </p>
+                                    <md-icon md-menu-align-target class="md-accent"
+                                             aria-label="edite profile">edit
                                     </md-icon>
-                                    CONFIG
-                                    <i class="zmdi zmdi-caret-down"></i>
-                                </h5>
-                            </md-button>-->
-
-                            <md-button class="md-fab md-accent md-hue-1 md-whiteframe-6dp" aria-label="Config">
-                                <md-tooltip md-direction="bottom">Config</md-tooltip>
-                                <md-icon class="material-icons md-24 md-accent md-raised" aria-label="Config">
-                                    settings
-                                </md-icon>
-                            </md-button>
-                        </a>
-                    </md-fab-trigger>
-                    <md-fab-actions>
-                        <a href="/#!/users" class="">
-                            <md-button class="md-primary md-raised md-hue-3 md-whiteframe-6dp" aria-label="List Users">
-                                <h5>
-                                    <md-icon class="material-icons md-24 md-accent" aria-label="list users">group
-                                    </md-icon>
-                                    LIST USERS
-                                </h5>
-                            </md-button>
-                        </a>
-                    </md-fab-actions>
-                </md-fab-speed-dial>
-            </div>
-
-
-            <div layout="row" layout-sm="column" data-ng-show="authentication.user">
-                <md-fab-speed-dial md-direction="left" class="md-scale" layout="row" layout-align="center center"
-                                   layout-sm="column">
-                    <md-fab-trigger>
-
-                            <md-button aria-label="menu" class="md-accent md-raised md-hue-1 md-whiteframe-6dp">
-                                <h5>
-                                    <md-icon class="material-icons md-24 md-accent" aria-label="pseudo">person
-                                    </md-icon>
-                                    <span data-ng-bind="authentication.user.displayName"></span> <i
-                                        class="zmdi zmdi-caret-down"></i></h5>
-                            </md-button>
-
-                    </md-fab-trigger>
-                    <md-fab-actions>
-                        <a href="/#!/settings/profile">
-                            <md-button class="md-primary md-raised md-hue-3 md-whiteframe-6dp"
-                                       aria-label="Edit Profile">
-                                <h5>
-                                    <md-icon class="material-icons md-24 md-accent" aria-label="edit profile">edit
-                                    </md-icon>
-                                    EDIT PROFILE
-                                </h5>
-                            </md-button>
-                        </a>
-                    </md-fab-actions>
-                </md-fab-speed-dial>
-            </div>
-
-
-            <div layout="row" layout-sm="column" data-ng-show="authentication.user">
-                <md-fab-speed-dial md-direction="down" class="md-scale" layout="row"
-                                   layout-align="center center" layout-sm="column">
-                    <md-fab-trigger>
-                        <a href="/auth/signout">
-                            <md-button class="md-fab md-accent md-hue-1 md-whiteframe-6dp" aria-label="Signout">
-                                <md-tooltip md-direction="bottom">Signout</md-tooltip>
-                                <md-icon class="material-icons md-24 md-accent md-raised" aria-label="signout">
-                                    power_settings_new
-                                </md-icon>
-                            </md-button>
-                        </a>
-                    </md-fab-trigger>
-                </md-fab-speed-dial>
-            </div>
-
-
-        <!--
-            </div>-->
-
-
-        <div class="md-toolbar-tools ajustWindowSignin" layout="row" layout-align="center center"
-             data-ng-hide="authentication.user">
-
-            <md-fab-speed-dial md-direction="down" class="md-scale margButtonNav">
-                <md-fab-trigger>
-                    <a href="/#!/signin">
-                        <md-button aria-label="menu" class="md-fab md-accent md-whiteframe-6dp">
-                            <md-tooltip md-direction="left">Signin</md-tooltip>
-                            <md-icon class="material-icons md-24 md-accent md-raised" aria-label="signin">
-                                power_settings_new
-                            </md-icon>
+                                </div>
+                            </a>
                         </md-button>
-                    </a>
-                </md-fab-trigger>
-            </md-fab-speed-dial>
-        </div>
-    </md-toolbar>
-    <!--
-        </div>-->
-    <!--
-                    <md-menu-item class="md-primary">
-                        <md-menu class="md-primary" md-position-mode="target-right target">
-                            <md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
-                                <a href="#" class="md-primary">
-                                    <md-icon class="material-icons md-36 md-primary">settings_application</md-icon>
-                                    <label class="normal">Config</label>
-                                </a>
-                            </md-button>
-                            <md-menu-content width="3">
-                                <md-menu-item class="md-primary">
-                                    <a href="/#!/users">
-                                        <md-button class="md-primary md-hue-1">
-                                            <md-icon class="material-icons md-24 md-primary">edit</md-icon>
-                                            <label class="faded">List User</label>
-                                        </md-button>
-                                    </a>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </md-menu-item>-->
-
-    <!--				<md-menu-item class="md-primary md-hue-1">
-                        <md-menu class="md-primary md-hue-1" md-position-mode="target-right target">
-                            <md-button class="md-primary md-hue-1" ng-click="$mdOpenMenu()">
-                                <a href="#" class="md-primary md-hue-1">
-                                    <md-icon class="material-icons md-36 md-primary">portrait</md-icon>
-                                    <label class="normal"><span data-ng-bind="authentication.user.displayName"></span></label>
-                                </a>
-                            </md-button>
-
-                            <md-menu-content width="3">
-                                <md-menu-item class="md-primary md-hue-1" ui-route="/settings/profile">
-                                    <a href="/#!/settings/profile">
-                                        <md-button class="md-primary md-hue-1">
-                                            <md-icon class="material-icons md-24 md-primary">edit</md-icon>
-                                            <label class="faded">Edit Profile</label>
-                                        </md-button>
-                                    </a>
-                                </md-menu-item>
-
-                                <md-menu-divider></md-menu-divider>
-
-                                <md-menu-item class="md-primary md-hue-1" ui-route="/auth/signout">
-                                    <a href="/auth/signout">
-                                        <md-button class="md-primary md-hue-1">
-                                            <md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
-                                            <label class="faded">Signout</label>
-                                        </md-button>
-                                    </a>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </md-menu-item>-->
-
-
-    <!-- When User is not Logged -->
-
-    <!--			<div data-ng-hide="authentication.user" layout="row" layout-align="end center">
-                    <md-menu-item class="md-primary md-hue-1" ui-route="/signin">
-                        <a href="/#!/signin">
-                            <md-button class="md-primary md-raised md-hue-1">
-                                <md-icon class="material-icons md-24 md-primary">power_settings_new</md-icon>
-                                <label class="normal">Sign In</label>
-                            </md-button>
-                        </a>
                     </md-menu-item>
-                </div>-->
+                </md-menu-content>
+            </md-menu>
+
+            <md-menu md-position-mode="target-right target">
+                <md-button class="md-icon-button md-accent" aria-label="Open Config Menu"
+                           ng-click="$mdOpenMenu($event)">
+                    <md-tooltip md-direction="bottom">
+                        Menu Config
+                    </md-tooltip>
+                    <md-icon md-menu-origin class="material-icons md-36 md-accent" aria-label="Open Menu">more_vert
+                    </md-icon>
+                </md-button>
+
+                <md-menu-content width="2" class="md-whiteframe-8dp">
+                    <md-menu-item>
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="List Users">
+                            <a href="/#!/users" class="btnLink">
+                                <div layout="row">
+                                    <p flex>List Users </p>
+                                    <md-icon md-menu-align-target class="md-accent"
+                                             aria-label="list users">group
+                                    </md-icon>
+                                </div>
+                            </a>
+                        </md-button>
+                    </md-menu-item>
+
+                    <!--<md-menu-divider></md-menu-divider>-->
+
+                    <md-menu-item>
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="Signout">
+                            <a href="/auth/signout" class="btnLink">
+                                <div layout="row">
+                                    <p flex>Log Out </p>
+                                    <md-icon md-menu-align-target class="md-accent"
+                                             aria-label="signout">power_settings_new
+                                    </md-icon>
+                                </div>
+                            </a>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item data-ng-hide="authentication.user">
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="Signin">
+                            <a href="/auth/signin" class="btnLink">
+                                <div layout="row">
+                                    <p flex>Login </p>
+                                    <md-icon md-menu-align-target class="md-accent"
+                                             aria-label="signin">power_settings_new
+                                    </md-icon>
+                                </div>
+                            </a>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+    </md-toolbar>
 
 </section>
-
-<!--<div class="container" data-ng-controller="HeaderController">
-	<div class="navbar-header">
-		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a href="/#!/" class="navbar-brand">petals-cockpit-reloaded</a>
-	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle">
-					<span data-ng-bind="item.title"></span>
-					<b class="caret"></b>
-				</a>
-				<ul ng-switch-when="dropdown" class="dropdown-menu">
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
-						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
-					</li>
-				</ul>
-				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Sign Up</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Sign In</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
-					</li>
-					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
-					</li>
-					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="/auth/signout">Signout</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-</div>-->

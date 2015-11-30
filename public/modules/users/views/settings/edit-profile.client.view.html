@@ -60,16 +60,16 @@
                                     </md-input-container>-->
 
                 <md-input-container class="md-input-has-value" aria-label="Country">
-                    <div class="md-primary md-hue-1" layout-align="center center">
-                        <md-icon class="material-icons md-36 md-primary">terrain</md-icon>
+                    <div class="md-accent md-hue-1" layout-align="center center">
+                        <md-icon class="md-36 md-accent">terrain</md-icon>
                         <!-- Return Name Country Select for Update -->
                         <label>{{user.country}}</label>
                         <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()"
-                                   layout-align="center center" required>
+                                   layout-align="center center" class="md-accent" required>
                             <!-- Name of Group List -->
-                            <md-select-label class="md-primary md-hue-1">Country</md-select-label>
+                            <md-select-label class="md-accent md-hue-1">Country</md-select-label>
                             <!-- Name of List Countries -->
-                            <md-option class="md-primary md-hue-1" ng-repeat="country in countries"
+                            <md-option class="md-accent md-hue-1" ng-repeat="country in countries"
                                        ng-value="country.name" ng-init="user.country = countries.name">{{country.name}}
                             </md-option>
                         </md-select>
@@ -82,9 +82,9 @@
 
             <div class="md-dialog-content" layout-align="center center" flex>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="firstName">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="firstName">
+                    <div class="md-accent">
+                        <md-icon class="md-36 md-accent">account_box</md-icon>
                         <label>Firstname</label>
                         <input type="text" id="firstName" name="firstName"
                                data-ng-model="user.firstName" required>
@@ -92,9 +92,9 @@
 
                 </md-input-container>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="lastName">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="lastName">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="material-icons md-36 md-accent">account_box</md-icon>
                         <label>Lastname</label>
                         <input type="text" id="lastName" name="lastName"
                                data-ng-model="user.lastName" required>
@@ -102,9 +102,9 @@
 
                 </md-input-container>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="username">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-36 md-primary">accessibility</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="username">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="md-36 md-accent">accessibility</md-icon>
                         <label>Username</label>
                         <input type="text" id="username" name="username"
                                data-ng-model="user.username" required>
@@ -125,9 +125,9 @@
 
             <div class="md-dialog-content" layout-align="center end" flex>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="email">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-24 md-primary">email</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="email">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="md-24 md-accent">email</md-icon>
                         <label>Email</label>
                         <input type="text" id="email" name="email"
                                data-ng-model="user.email" required>
@@ -135,9 +135,9 @@
 
                 </md-input-container>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="pseudo">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-24 md-primary">portrait</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="pseudo">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="md-24 md-accent">portrait</md-icon>
                         <label>Pseudo</label>
                         <input type="text" id="displayName" name="displayName"
                                data-ng-model="user.displayName" required>
@@ -145,9 +145,9 @@
 
                 </md-input-container>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="phone">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-24 md-primary">phone</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="phone">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="md-24 md-accent">phone</md-icon>
                         <label>Phone</label>
                         <input type="text" id="phone" name="phone"
                                data-ng-model="user.phone">
@@ -155,9 +155,9 @@
 
                 </md-input-container>
 
-                <md-input-container class="md-primary md-hue-1" aria-label="location">
-                    <div class="md-primary md-hue-1">
-                        <md-icon class="material-icons md-24 md-primary">my_location</md-icon>
+                <md-input-container class="md-accent md-hue-1" aria-label="location">
+                    <div class="md-accent md-hue-1">
+                        <md-icon class="md-24 md-accent">my_location</md-icon>
                         <label>Location</label>
                         <input type="text" id="location" name="location"
                                data-ng-model="user.location" required>

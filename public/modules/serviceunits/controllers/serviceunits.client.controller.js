@@ -92,8 +92,8 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 
 serviceunitsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('serviceunit-theme', 'default')
-		.primaryPalette('light-blue', {
-			'default': '500',
+		.primaryPalette('orange', {
+			'default': '700',
 			'hue-1': '500',
 			'hue-2': '300',
 			'hue-3': '100'
@@ -125,7 +125,7 @@ serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceun
 			Serviceunits.postServiceunit($scope.serviceunit, function (serviceunit) {
 
 				Notify.sendMsg('NewServiceunit', {'id': serviceunit._id});
-				$rootScope.$emit('ServiceunitCreate', serviceunit);
+				$rootScope.$broadcast('ServiceunitCreate', serviceunit);
 
 
 			}, function (errorResponse) {

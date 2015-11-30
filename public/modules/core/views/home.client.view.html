@@ -72,19 +72,39 @@
                     </md-toolbar>
 
                     <md-content class="md-accent" ng-controller="BusesController">
-                        <md-list>
-                            <md-list-item>
-                                <md-button class="md-primary"
+                        <md-menu-content class="md-whiteframe-8dp">
+                            <md-menu-item>
+                                <md-button class="md-raised md-cornered"
                                            ng-click="showModalCreateBus($event, bus)">
                                     <md-tooltip md-direction="right">
                                         Create
                                     </md-tooltip>
                                     <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub</md-icon>
-                                    <span class="md-inline-list-icon-label md-primary faded">&nbsp New ESB</span>
+                                    <p flex>NEW ESB </p>
                                 </md-button>
-                            </md-list-item>
-                        </md-list>
+                            </md-menu-item>
+                        </md-menu-content>
                     </md-content>
+
+<!--
+                <md-menu-content width="3" class="md-whiteframe-8dp">
+                    <md-menu-item>
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="Edit Profile">
+                            <a href="/#!/settings/profile" class="btnLink">
+                                <div layout="row">
+                                    <p flex>Edit Profile </p>
+                                    <md-icon md-menu-align-target class="md-accent"
+                                             aria-label="edite profile">edit
+                                    </md-icon>
+                                </div>
+                            </a>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>-->
+
+
+
             </md-sidenav>
         </md-sidenav>
 

@@ -92,18 +92,18 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 
 componentsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('component-theme', 'default')
-		.primaryPalette('light-blue', {
-			'default': '500',
-			'hue-1': '500',
-			'hue-2': '300',
-			'hue-3': '100'
-		})
-		.accentPalette('orange', {
-			'default': '700',
-			'hue-1': '400',
-			'hue-2': '300',
-			'hue-3': '200'
-		});
+			.primaryPalette('orange', {
+				'default': '700',
+				'hue-1': '500',
+				'hue-2': '300',
+				'hue-3': '100'
+			})
+			.accentPalette('deep-purple', {
+				'default': '800',
+				'hue-1': '800',
+				'hue-2': '300',
+				'hue-3': '200'
+			});
 }]);
 
 
@@ -125,7 +125,7 @@ componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 
 			Components.postComponent($scope.component, function (component) {
 
 				Notify.sendMsg('NewComponent', {'id': component._id});
-				$rootScope.$emit('ComponentCreate', component);
+				$rootScope.$broadcast('ComponentCreate', component);
 
 
 			}, function (errorResponse) {

@@ -2,9 +2,9 @@
 
 var app = angular.module('core');
 
-app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services',
+app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope',
 
-	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services) {
+	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 		$scope.template = '';
@@ -14,6 +14,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 		// Declare scope functions
 		$scope.selectItem = selectItem;
 		$scope.switchChildrenVisibility = switchChildrenVisibility;
+
 
 		// Function implementations
 		function selectItem(node) {
@@ -127,9 +128,42 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 				serviceunit.children.push(service);
 			});
 
-			// Register the tree in the scope
+			// Register the tree in the scope TREE
 			$scope.rootNodes = roots;
+
 		}
+
+		// Recieve Event when push component on Nav Tree
+		$scope.$on('BusCreate', function (event, bus) {
+			$scope.rootNodes.push(bus);
+			console.log("May Be Something Happens !!!!!!");
+
+		});
+
+		$scope.$on('NodeCreate', function (event, node) {
+			$scope.rootNodes.push(node);
+			console.log("May Be Something Happens !!!!!!");
+
+		});
+
+		$scope.$on('ComponentCreate', function (event, component) {
+			$scope.rootNodes.push(component);
+			console.log("May Be Something Happens !!!!!!");
+
+		});
+
+		$scope.$on('ServiceUnitCreate', function (event, serviceunit) {
+			$scope.rootNodes.push(serviceunit);
+			console.log("May Be Something Happens !!!!!!");
+
+		});
+
+		$scope.$on('ServiceCreate', function (event, service) {
+			$scope.rootNodes.push(service);
+			console.log("May Be Something Happens !!!!!!");
+
+		});
+
 		/* Boolean Node Visible or not */
 /*		function setChildrenVisibility (node, visible) {
 			node.children.forEach(function (val, index, arr) {
@@ -149,3 +183,16 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 		}
 
 	}]);
+
+/*
+
+app.factory('RefreshNavTree', function ($rootScope) {
+	return function createTest() {
+
+			var self = this;
+			$rootScope.$on('BusCreate', function(eventName, bus) {
+				self.buses.push(bus);
+			});
+		}
+
+});*/

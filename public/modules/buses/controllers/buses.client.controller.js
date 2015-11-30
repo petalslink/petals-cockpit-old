@@ -43,15 +43,25 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 			$scope.hide = function () {
 				$mdDialog.hide();
 			};
+			$scope.ok = function () {
+				if ($mdDialog.$valid) {
+					$log.info('Form is valid');
+					$mdDialog.close();
+
+				} else {
+					$log.error('Form is not valid');
+				}
+			};
 			$scope.cancel = function () {
 				$mdDialog.cancel();
 			};
 			$scope.answer = function (answer) {
 				$mdDialog.hide(answer);
 			};
+			$scope.bus = bus;
 		}
 
-		/********************************************************* OK *********************************************************/
+/*		/!********************************************************* OK *********************************************************!/
 			// Open a modal window to Create a single bus record
 		this.modalCreate = function (size, createBusForm) {
 
@@ -80,7 +90,7 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
-		};
+		};*/
 
 		/********************************************************* OK *********************************************************/
 			// Open a modal window to Update a single bus record
@@ -124,8 +134,8 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 
 busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('bus-theme', 'default')
-		.primaryPalette('light-blue', {
-			'default': '500',
+		.primaryPalette('orange', {
+			'default': '700',
 			'hue-1': '500',
 			'hue-2': '300',
 			'hue-3': '100'
@@ -141,10 +151,18 @@ busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope',
-	function ($scope, Buses, Notify, $rootScope) {
+busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$rootScope', '$mdBottomSheet',
+	function ($scope, Buses, Notify, $rootScope, $mdBottomSheet) {
 
 		$scope.bus = {};
+
+		/* Show the msg when Bus is Created */
+		$scope.openBottomSheet = function() {
+			$mdBottomSheet.show({
+				template: '<md-bottom-sheet><h3 align="center">Create Bus Worked !</h3></md-bottom-sheet>'
+			});
+		};
+
 
 		// Create new Bus
 		$scope.create = function () {
@@ -154,11 +172,11 @@ busesApp.controller('BusesCreateController', ['$scope', 'Buses', 'Notify', '$roo
 			Buses.postBus($scope.bus, function (bus) {
 
 				Notify.sendMsg('NewBus', {'id': bus._id});
-				$rootScope.$emit('BusCreate', bus);
+				$rootScope.$broadcast('BusCreate', bus);
 
 
-			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
+			}, function () {
+				$scope.error = 'Could not Create Bus !';
 			});
 
 		};

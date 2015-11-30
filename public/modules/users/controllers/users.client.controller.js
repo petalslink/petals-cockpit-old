@@ -129,19 +129,19 @@ usersApp.config(['$mdIconProvider', function ($mdIconProvider) {
 
 
 usersApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
-    $mdThemingProvider.theme('overview-theme', 'default')
+    $mdThemingProvider.theme('user-theme', 'default')
         .primaryPalette('deep-purple', {
             'default': '300',
             'hue-1': '200',
             'hue-2': '100',
             'hue-3': '50'
         })
-        .accentPalette('amber', {
-            'default': '300',
-            'hue-1': '200',
-            'hue-2': '100',
-            'hue-3': '50'
-        });
+        .accentPalette('orange', {
+            'default': '700',
+            'hue-1': '500',
+            'hue-2': '300',
+            'hue-3': '100'
+        })
 }]);
 
 
@@ -221,7 +221,7 @@ usersApp.controller('UsersCreateController', ['$scope', 'Users', 'Notify', '$roo
                 Notify.sendMsg('NewUser', {'id': user._id});
                 $rootScope.$emit('UserCreate', user);
 
-            }, function (errorResponse) {
+            }, function () {
                 $scope.error = 'Could not Create User !';
             });
 
@@ -312,8 +312,8 @@ usersApp.controller('UsersUpdateController', ['$scope', 'Users', 'Notify', '$mdB
 
 usersApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('user-theme', 'default')
-        .primaryPalette('light-blue', {
-            'default': '500',
+        .primaryPalette('orange', {
+            'default': '700',
             'hue-1': '500',
             'hue-2': '300',
             'hue-3': '100'

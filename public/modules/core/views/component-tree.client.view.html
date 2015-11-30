@@ -1,61 +1,32 @@
 <div data-ng-controller="BusesController as busesCtrl">
-<!--    <md-content layout-padding layout="column" layout-sm="column">
-        <form name="searchForm">
-            <md-input-container class="md-raised md-primary md-hue-1 md-block" aria-label="Search">
-
-
-                <label for="searchInput">
-                    <md-icon class="material-icons md-48 md-primary">search</md-icon>
-                </label>
-
-                <input id="searchInput" placeholder="Enter a search term..." type="search" ng-model="searchText"
-                       md-autofocus type="text">
-            </md-input-container>
-            &lt;!&ndash;            <div ng-messages="searchForm.searchText.$error">
-                            <div ng-message="required">This is a search bar for node list ..</div>
-                        </div>&ndash;&gt;
-        </form>
-    </md-content>-->
 
     <!-- A dynamic template to build a tree with AngularJS -->
     <script type="text/ng-template" id="my-tmpl">
-        <md-list class="navTree"
-                 ng-model="nodeType"
-                 ng-click="selectItem(node)"
-                 ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
+        <md-content class="md-whiteframe-8dp"
+                    ng-model="nodeType"
+                    ng-click="selectItem(node)"
+                    ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
+            <md-menu-item>
+                <md-button class="md-raised md-cornered" ng-click="switchChildrenVisibility(node)">
+                    <md-icon class="md-24 md-accent" ng-show="node.childrenWereVisible">keyboard_arrow_right
+                    </md-icon>
+                    <md-icon class="md-24 md-accent" ng-show="! node.childrenWereVisible">keyboard_arrow_down
+                    </md-icon>
+                    {{ node.name }}
+                    <md-icon class="md-24 md-accent">{{node.icon}}</md-icon>
+                </md-button>
+            </md-menu-item>
+        </md-content>
 
-            <md-button class="md-raised" ng-click="switchChildrenVisibility(node)">
-                <md-icon class="material-icons md-primary" ng-show="node.childrenWereVisible">keyboard_arrow_right
-                </md-icon>
-                <md-icon class="material-icons md-primary" ng-show="! node.childrenWereVisible">keyboard_arrow_down
-                </md-icon>
-                {{ node.name }}
-                <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
-            </md-button>
-
-        </md-list>
 
         <!-- Show node & children nodes -->
         <ul>
-            <li ng-show="node.visible || searchText.length > 0" ng-repeat="node in node.children | filter:searchText"
+            <li flex ng-show="node.visible || searchText.length > 0"
+                ng-repeat="node in node.children | filter:searchText"
                 ng-include="'my-tmpl'"></li>
         </ul>
     </script>
 
+    <p flex ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></p>
 
-    <ul ng-cloak>
-        <li ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
-    </ul>
 </div>
-
-
-
-<!--
-<md-button class="md-raised"
-           ng-click="setChildrenVisibility(node, true)"><md-icon class="material-icons md-primary">keyboard_arrow_right
-</md-icon> {{ node.name }} <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
-</md-button>&lt;!&ndash;ng-if="node.children.length === 0 || node.showChildren"&ndash;&gt;
-<md-button class="md-raised"
-           ng-click="setChildrenVisibility(node, false)"><md-icon class="material-icons md-primary">keyboard_arrow_down
-</md-icon> {{ node.name }} <md-icon class="material-icons md-24 md-primary">{{node.icon}}</md-icon>
-</md-button>-->

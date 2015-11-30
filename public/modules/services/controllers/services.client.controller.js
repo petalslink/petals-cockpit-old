@@ -91,37 +91,19 @@ servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authent
 
 servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('service-theme', 'default')
-		.primaryPalette('light-blue', {
-			'default': '500',
-			'hue-1': '500',
-			'hue-2': '300',
-			'hue-3': '100'
-		})
-		.accentPalette('orange', {
-			'default': '700',
-			'hue-1': '400',
-			'hue-2': '300',
-			'hue-3': '200'
-		});
+			.primaryPalette('orange', {
+				'default': '700',
+				'hue-1': '500',
+				'hue-2': '300',
+				'hue-3': '100'
+			})
+			.accentPalette('deep-purple', {
+				'default': '800',
+				'hue-1': '800',
+				'hue-2': '300',
+				'hue-3': '200'
+			});
 }]);
-
-
-servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
-	$mdThemingProvider.theme('overview-theme', 'default')
-		.primaryPalette('deep-purple', {
-			'default': '300',
-			'hue-1': '200',
-			'hue-2': '100',
-			'hue-3': '50'
-		})
-		.accentPalette('amber', {
-			'default': '300',
-			'hue-1': '200',
-			'hue-2': '100',
-			'hue-3': '50'
-		});
-}]);
-
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
@@ -141,7 +123,7 @@ servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notif
 			Services.postService($scope.service, function (service) {
 
 				Notify.sendMsg('NewService', {'id': service._id});
-				$rootScope.$emit('ServiceCreate', service);
+				$rootScope.$broadcast('ServiceCreate', service);
 
 
 			}, function (errorResponse) {

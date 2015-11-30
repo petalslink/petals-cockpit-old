@@ -167,8 +167,8 @@ coreApp.controller('ListWorkspaceCtrl', function ($scope, $mdSidenav) {
 
 coreApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('core-theme', 'default')
-        .primaryPalette('light-blue', {
-            'default': '500',
+        .primaryPalette('orange', {
+            'default': '700',
             'hue-1': '500',
             'hue-2': '300',
             'hue-3': '100'
@@ -199,16 +199,25 @@ coreApp.controller('NavWorkspaceCtrl', function ($scope, $timeout, $mdSidenav, $
     }
 });
 
+coreApp.controller('HeaderConfigNavCtrl', function ($mdDialog) {
+    var originatorEv;
+    this.openMenu = function ($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
+    };
+/*    this.announceClick = function (index) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title('You clicked!')
+                .textContent('You clicked the menu item at index ' + index)
+                .ok('Nice')
+                .targetEvent(originatorEv)
+        );
+        originatorEv = null;
+    }*/
+});
+
 coreApp.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-/*    $scope.items = [
-        {name: 'New ESB', icon: 'device_hub' +
-        ''},
-        {name: 'New Registry', icon: 'folder'},
-        {name: 'New Log', icon: 'vpn_key'},
-        {name: 'Workspace', icon: 'cloud'},
-        {name: 'Export', icon: 'file_upload'},
-        {name: 'Import', icon: 'file_download'}
-    ];*/
     $scope.close = function () {
         $mdSidenav('right').close()
             .then(function () {

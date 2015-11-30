@@ -80,7 +80,7 @@ body {
 }
 
 md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
-    min-height: 600px !important;
+    min-height: 500px !important;
 }
 
 /*md-tab:not([disabled]):hover {
@@ -158,4 +158,8 @@ md-button:not([disabled]):hover {
 .md-fab:hover, .md-fab.md-focused {
     /*	background-color: #000 !important;*/
     top: -2px;
+}
+
+.btnLink {
+    text-decoration:none !important;
 }
