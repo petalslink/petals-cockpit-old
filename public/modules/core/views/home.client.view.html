@@ -1,4 +1,4 @@
-<section ng-controller="HeaderController" layout="column" style="min-height: 500px;" ng-cloak>
+<section ng-controller="HeaderController" layout="column" ng-cloak>
     <div layout="row" flex data-ng-controller="HomeController">
 <!--
         <div flex-sm="50" ng-controller="MenuProdCtrl" md-theme="core-theme">
@@ -19,7 +19,7 @@
             </div>
         </div>-->
 
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
 
             <!-- Open SideLeft -->
             <md-toolbar class="md-accent">
@@ -43,15 +43,15 @@
             </md-toolbar>
 
             <!-- Nav Tree Components -->
-            <md-content class="md-accent md-hue-1" flex ng-controller="NavTreeCtrl">
+            <md-content class="" flex ng-controller="NavTreeCtrl">
 
                 <dir-component-tree components="component"></dir-component-tree>
 
-                <p hide-sm show-gt-md layout-padding>
+<!--                <p hide-sm show-gt-md layout-padding>
                     <i class="zmdi zmdi-comment-text zmdi-hc-2x zmdi-hc-fw"></i>
                     This sidenav is locked open on your device. To go back to the default behavior,
                     narrow your display.
-                </p>
+                </p>-->
             </md-content>
 
 

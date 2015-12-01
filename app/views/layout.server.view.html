@@ -48,15 +48,15 @@
 	<![endif]-->
 </head>
 
-<body>
-<div layout-fill layout="column">
+<body layout="column">
+<div layout="column">
     <!-- Nav Principale #1 Top -->
 
         <header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
 
-
+        <div layout="row">
         {% block content %}{% endblock %}
-
+        </div>
 </div>
 
 	<!--Embedding The User Object-->

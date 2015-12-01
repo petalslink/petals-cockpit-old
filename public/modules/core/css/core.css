@@ -80,7 +80,8 @@ body {
 }
 
 md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
-    min-height: 500px !important;
+/*    min-height: 400px !important;*/
+    height: 100% !important;
 }
 
 /*md-tab:not([disabled]):hover {
@@ -108,22 +109,42 @@ md-button:not([disabled]):hover {
     font-weight: bold;
 
 }
+.sideNavCustom {
+    height: 100% !important;
+}
+
+.fullSize {
+    height: 100% !important;
+}
+.btnNav {
+    margin: 0 !important;
+    min-height: 10px !important;
+    line-height: 10px !important;
+    text-transform: none !important;
+}
 
 .normal {
     color: white;
     font-weight: normal;
-    /*	background-color: #b39ddb;*/
+    background-color: #F57C00;
+
 }
 
 .faded {
-    color: #666666;
+    color: #111;
     /*	background-color: #f2f2f2;*/
+}
+
+.faded:hover{
+    color: #F57C00 !important;
 }
 
 .navTree {
     padding: 0;
-    display: inline-block;
     margin-left: -40px;
+}
+.margLi {
+    margin-left: -20px; !important;
 }
 
 .margButtonNav {
