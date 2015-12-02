@@ -1,4 +1,4 @@
-<section ng-controller="HeaderController" md-theme="core-theme" flex ng-cloak>
+<div ng-controller="HeaderController" md-theme="core-theme" flex ng-cloak>
 
 <!--    <md-toolbar ng-show="!showSearch">
         <div class="md-toolbar-tools">
@@ -30,11 +30,11 @@
     </md-toolbar>-->
 
 
-    <md-toolbar class="md-primary">
+    <md-toolbar class="md-primary" layout="row">
 
         <!-- When User is Logged -->
         <div class="md-toolbar-tools md-primary md-hue-2" data-ng-show="authentication.user"
-             data-ng-controller="HeaderConfigNavCtrl">
+             data-ng-controller="HeaderConfigNavCtrl" flex layout >
             <a href="/#!/">
                 <md-tooltip md-direction="right">
                     Take The Control !
@@ -133,4 +133,4 @@
 
     </md-toolbar>
 
-</section>
+</div>

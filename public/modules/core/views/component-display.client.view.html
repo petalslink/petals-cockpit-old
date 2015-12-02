@@ -1,22 +1,25 @@
-<md-content md-theme="core-theme">
+<div md-theme="core-theme" layout-fill ng-cloak>
 
-    <md-tabs class="md-accent" md-selected="datas.selectedIndex"
+    <md-tabs layout-fill class="md-accent" md-selected="datas.selectedIndex"
              md-align-tabs="{{datas.bottom ? 'bottom' : 'top'}}">
 
 
         <md-tab id="tab1" ng-disabled="datas.overviewLocked">
-            <md-tab-label class="md-primary">
-                <md-tooltip md-direction="bottom">
-                    Overview
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">{{datas.overviewIcon}}</md-icon>
-                <label hide-sm>
-                    {{datas.overviewLabel}}
-                </label>
-            </md-tab-label>
-            <md-tab-body ng-show="tab==1">
-                <div ng-include="'modules/core/views/overview.template.html'"></div>
-            </md-tab-body>
+
+                <md-tab-label class="md-primary">
+                    <md-tooltip md-direction="bottom">
+                        Overview
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">{{datas.overviewIcon}}</md-icon>
+                    <label hide-sm>
+                        {{datas.overviewLabel}}
+                    </label>
+                </md-tab-label>
+
+                <md-tab-body ng-show="tab==1">
+                    <div ng-include="'modules/core/views/overview.template.html'"></div>
+                </md-tab-body>
+            </md-content>
         </md-tab>
 
 
@@ -115,4 +118,4 @@
             </md-tab-body>
         </md-tab>
     </md-tabs>
-</md-content>
+</div>

@@ -1,5 +1,5 @@
-<section ng-controller="HeaderController" layout="column" ng-cloak>
-    <div layout="row" flex data-ng-controller="HomeController">
+<section ng-controller="HeaderController" layout="column" flex layout-fill ng-cloak>
+    <div data-ng-controller="HomeController" layout="row" flex>
 <!--
         <div flex-sm="50" ng-controller="MenuProdCtrl" md-theme="core-theme">
             <div layout-align="center">
@@ -19,46 +19,49 @@
             </div>
         </div>-->
 
-        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
+        <!-- Position of my panel Nav Tree & Nav Display -->
 
-            <!-- Open SideLeft -->
-            <md-toolbar class="md-accent">
-                <div class="md-toolbar-tools md-primary md-hue-2" ng-controller="NavWorkspaceCtrl">
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+                        md-theme="core-theme">
+
+                <!-- Open SideLeft -->
+                <md-toolbar class="md-accent">
+                    <div class="md-toolbar-tools md-primary md-hue-2" ng-controller="NavWorkspaceCtrl">
                         <md-button class="md-icon-button md-primary md-24" ng-click="close()">
                             <md-tooltip md-direction="bottom">
                                 Hide
                             </md-tooltip>
-                            <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back</md-icon>
+                            <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back
+                            </md-icon>
                         </md-button>
-                    <h1 class="md-toolbar-tools"><i class="zmdi zmdi-collection-folder-image"></i></h1>
-                    <md-button class="md-icon-button md-primary md-24"
-                               ng-click="toggleRight()"
-                               ng-hide="isOpenRight()">
-                        <md-tooltip md-direction="bottom">
-                            Menu Workspace
-                        </md-tooltip>
-                        <md-icon class="material-icons md-24 md-primary" aria-label="Open Menu">more_vert</md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
+                        <h1 class="md-toolbar-tools"><i class="zmdi zmdi-collection-folder-image"></i></h1>
+                        <md-button class="md-icon-button md-primary md-24"
+                                   ng-click="toggleRight()"
+                                   ng-hide="isOpenRight()">
+                            <md-tooltip md-direction="bottom">
+                                Menu Workspace
+                            </md-tooltip>
+                            <md-icon class="material-icons md-24 md-primary" aria-label="Open Menu">more_vert</md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
 
-            <!-- Nav Tree Components -->
-            <md-content class="" flex ng-controller="NavTreeCtrl">
+                <!-- Nav Tree Components -->
+                <md-content class="" flex ng-controller="NavTreeCtrl">
 
-                <dir-component-tree components="component"></dir-component-tree>
+                    <dir-component-tree components="component"></dir-component-tree>
 
-<!--                <p hide-sm show-gt-md layout-padding>
-                    <i class="zmdi zmdi-comment-text zmdi-hc-2x zmdi-hc-fw"></i>
-                    This sidenav is locked open on your device. To go back to the default behavior,
-                    narrow your display.
-                </p>-->
-            </md-content>
+                    <!--                <p hide-sm show-gt-md layout-padding>
+                                        <i class="zmdi zmdi-comment-text zmdi-hc-2x zmdi-hc-fw"></i>
+                                        This sidenav is locked open on your device. To go back to the default behavior,
+                                        narrow your display.
+                                    </p>-->
+                </md-content>
 
-
-            <!-- Nav Menu Workspace -->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="core-theme">
+                <!-- Nav Menu Workspace -->
+                <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="core-theme">
                     <md-toolbar class="md-accent" ng-controller="RightCtrl">
-                        <h2 class="md-toolbar-tools"> <span flex>MENU</span>
+                        <h2 class="md-toolbar-tools"><span flex>MENU</span>
                             <i class="zmdi zmdi-collection-folder-image zmdi-hc-1x zmdi-hc-fw"></i>
                             <md-button class="md-icon-button md-primary md-24"
                                        ng-click="close()">
@@ -79,56 +82,58 @@
                                     <md-tooltip md-direction="right">
                                         Create
                                     </md-tooltip>
-                                    <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub</md-icon>
+                                    <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub
+                                    </md-icon>
                                     <p flex>NEW ESB </p>
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-content>
 
-<!--
-                <md-menu-content width="3" class="md-whiteframe-8dp">
-                    <md-menu-item>
-                        <md-button class="md-raised md-cornered"
-                                   aria-label="Edit Profile">
-                            <a href="/#!/settings/profile" class="btnLink">
-                                <div layout="row">
-                                    <p flex>Edit Profile </p>
-                                    <md-icon md-menu-align-target class="md-accent"
-                                             aria-label="edite profile">edit
-                                    </md-icon>
-                                </div>
-                            </a>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>-->
+                    <!--
+                                    <md-menu-content width="3" class="md-whiteframe-8dp">
+                                        <md-menu-item>
+                                            <md-button class="md-raised md-cornered"
+                                                       aria-label="Edit Profile">
+                                                <a href="/#!/settings/profile" class="btnLink">
+                                                    <div layout="row">
+                                                        <p flex>Edit Profile </p>
+                                                        <md-icon md-menu-align-target class="md-accent"
+                                                                 aria-label="edite profile">edit
+                                                        </md-icon>
+                                                    </div>
+                                                </a>
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>-->
 
 
-
+                </md-sidenav>
             </md-sidenav>
-        </md-sidenav>
+
 
 <!--        <md-toolbar class="md-primary">-->
 
-        <md-content class="md-accent md-hue-1" flex >
 
 
-            <md-content class="md-primary">
 
-<!--                <div layout="column" layout-fill layout-align="top center">
-                    <div>
-                        <md-button ng-click="toggleLeft()" class="md-raised md-primary md-hue-2" hide-gt-md>
-                            <md-tooltip md-direction="bottom">
-                                Menu
-                            </md-tooltip>
-                            <i class="zmdi zmdi-collection-folder-image"></i>
-                        </md-button>
-                    </div>
-                </div>-->
 
-                <dir-component-display components="component"></dir-component-display>
-            </md-content>
-        </md-content>
+                <md-content class="" flex layout-fill>
+
+                    <!--                <div layout="column" layout-fill layout-align="top center">
+                                        <div>
+                                            <md-button ng-click="toggleLeft()" class="md-raised md-primary md-hue-2" hide-gt-md>
+                                                <md-tooltip md-direction="bottom">
+                                                    Menu
+                                                </md-tooltip>
+                                                <i class="zmdi zmdi-collection-folder-image"></i>
+                                            </md-button>
+                                        </div>
+                                    </div>-->
+
+                    <dir-component-display components="component"></dir-component-display>
+                </md-content>
+
 
 <!--            </md-toolbar>-->
 

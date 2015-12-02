@@ -81,7 +81,6 @@ body {
 
 md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
 /*    min-height: 400px !important;*/
-    height: 100% !important;
 }
 
 /*md-tab:not([disabled]):hover {
@@ -101,7 +100,7 @@ md-button:not([disabled]):hover {
 }
 
 .md-list-item, .md-list-item .md-list-item-inner {
-    min-height: 48px;
+/*    min-height: 48px;*/
 }
 
 .text-color-icon-nav {
@@ -127,7 +126,6 @@ md-button:not([disabled]):hover {
     color: white;
     font-weight: normal;
     background-color: #F57C00;
-
 }
 
 .faded {

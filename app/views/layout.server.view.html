@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" layout-fill>
 
 <head>
     <title>{{title}}</title>
@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="viewport" content="width=device-width; initial-scale=1,maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -43,21 +43,20 @@
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
 
 	<!-- HTML5 Shim -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
 
 <body layout="column">
-<div layout="column">
-    <!-- Nav Principale #1 Top -->
+    <div layout="column" layout-fill>
 
         <header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
 
-        <div layout="row">
-        {% block content %}{% endblock %}
+        <div flex layout="row">
+            {% block content %}{% endblock %}
         </div>
-</div>
+    </div>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
