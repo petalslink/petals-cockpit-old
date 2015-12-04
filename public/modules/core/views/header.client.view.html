@@ -34,7 +34,7 @@
 
         <!-- When User is Logged -->
         <div class="md-toolbar-tools md-primary md-hue-2" data-ng-show="authentication.user"
-             data-ng-controller="HeaderConfigNavCtrl" flex layout >
+             data-ng-controller="HeaderConfigNavCtrl" flex layout>
             <a href="/#!/">
                 <md-tooltip md-direction="right">
                     Take The Control !
@@ -56,33 +56,28 @@
                         class="zmdi zmdi-caret-down"></i>
                 </md-button>
 
-
                 <md-menu-content width="3" class="md-whiteframe-8dp">
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Edit Profile">
-                            <a href="/#!/settings/profile" class="btnLink">
-                                <div layout="row">
-                                    <p flex>Edit Profile </p>
-                                    <md-icon md-menu-align-target class="md-accent"
-                                             aria-label="edite profile">edit
-                                    </md-icon>
-                                </div>
-                            </a>
+                                   aria-label="Edit Profile" href="/#!/settings/profile">
+                            <div layout="row" flex>
+                                <p flex>Edit Profile </p>
+                                <md-icon md-menu-align-target class="md-accent"
+                                         aria-label="edite profile"> edit
+                                </md-icon>
+                            </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Signout">
-                            <a href="/auth/signout" class="btnLink">
-                                <div layout="row">
-                                    <p flex>Log Out </p>
-                                    <md-icon md-menu-align-target class="md-accent"
-                                             aria-label="signout">power_settings_new
-                                    </md-icon>
-                                </div>
-                            </a>
+                                   aria-label="Signout" href="/auth/signout">
+                            <div layout="row" flex>
+                                <p flex>Log Out </p>
+                                <md-icon md-menu-align-target class="md-accent"
+                                         aria-label="signout"> power_settings_new
+                                </md-icon>
+                            </div>
                         </md-button>
                     </md-menu-item>
 
@@ -99,32 +94,28 @@
                     </md-icon>
                 </md-button>
 
-                <md-menu-content width="2" class="md-whiteframe-8dp">
+                <md-menu-content width="3" class="md-whiteframe-8dp">
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="List Users">
-                            <a href="/#!/users" class="btnLink">
-                                <div layout="row">
-                                    <p flex>List Users </p>
-                                    <md-icon md-menu-align-target class="md-accent"
-                                             aria-label="list users">group
-                                    </md-icon>
-                                </div>
-                            </a>
+                                   aria-label="List Users" href="/#!/users">
+                            <div layout="row" flex>
+                                <p flex>List Users </p>
+                                <md-icon md-menu-align-target class="md-accent"
+                                         aria-label="list users"> group
+                                </md-icon>
+                            </div>
                         </md-button>
                     </md-menu-item>
 
                     <md-menu-item data-ng-hide="authentication.user">
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Signin">
-                            <a href="/auth/signin" class="btnLink">
-                                <div layout="row">
-                                    <p flex>Login </p>
-                                    <md-icon md-menu-align-target class="md-accent"
-                                             aria-label="signin">power_settings_new
-                                    </md-icon>
-                                </div>
-                            </a>
+                                   aria-label="Signin" href="/auth/signin">
+                            <div layout="row" flex>
+                                <p flex>Login </p>
+                                <md-icon md-menu-align-target class="md-accent"
+                                         aria-label="signin"> power_settings_new
+                                </md-icon>
+                            </div>
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

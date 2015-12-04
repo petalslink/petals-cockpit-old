@@ -79,20 +79,6 @@ body {
     top: 0;
 }
 
-md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
-/*    min-height: 400px !important;*/
-}
-
-/*md-tab:not([disabled]):hover {
-	background-color: rgba(140, 158, 255, 0.96);
-	color: rgba(44, 65, 164, 0.96);
-	transition: 0.3s;
-}
-md-button:not([disabled]):hover {
-	background-color: rgba(193, 193, 193, 0.96);
-	color: rgba(44, 65, 164, 0.96);
-	transition: 0.3s;
-}*/
 .md-inline-list-icon-label {
     display: inline-block;
     color: #c5cae9;
@@ -109,7 +95,8 @@ md-button:not([disabled]):hover {
 
 }
 .sideNavCustom {
-    height: 100% !important;
+    margin-top: 65px;
+    position: fixed !important;
 }
 
 .fullSize {
@@ -179,6 +166,6 @@ md-button:not([disabled]):hover {
     top: -2px;
 }
 
-.btnLink {
-    text-decoration:none !important;
+.myClassVisibility {
+    visibility: hidden
 }

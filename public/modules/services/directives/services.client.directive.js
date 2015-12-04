@@ -92,3 +92,18 @@ servicesApp.directive('dirUpService', ['Services',
         };
     }
 ]);
+
+servicesApp.directive('dirServiceUniqueUp', ['Services',
+    function (Services) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/services/views/configuration-edit-service.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+

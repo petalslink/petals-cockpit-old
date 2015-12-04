@@ -92,3 +92,19 @@ nodesApp.directive('dirUpNode', ['Nodes',
         };
     }
 ]);
+
+nodesApp.directive('dirNodeUniqueUp', ['Nodes',
+    function (Nodes) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/nodes/views/configuration-edit-node.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+
+

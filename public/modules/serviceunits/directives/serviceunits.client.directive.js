@@ -93,3 +93,17 @@ serviceunitsApp.directive('dirUpServiceunit', ['Serviceunits',
         };
     }
 ]);
+
+serviceunitsApp.directive('dirServiceunitUniqueUp', ['Serviceunits',
+    function (Serviceunits) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/serviceunits/views/configuration-edit-su.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);

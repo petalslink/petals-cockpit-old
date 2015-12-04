@@ -92,3 +92,17 @@ componentsApp.directive('dirUpComponent', ['Components',
         };
     }
 ]);
+
+componentsApp.directive('dirComponentUniqueUp', ['Components',
+    function (Components) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/components/views/configuration-edit-component.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);

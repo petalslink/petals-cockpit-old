@@ -75,3 +75,17 @@ busesApp.directive('dirUpBus', ['Buses',
         };
     }
 ]);
+
+busesApp.directive('dirBusUniqueUp', ['Buses',
+    function (Buses) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/buses/views/configuration-edit-bus.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);

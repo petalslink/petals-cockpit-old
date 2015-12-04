@@ -2,9 +2,25 @@
 
     <md-tabs layout-fill class="md-accent" md-selected="datas.selectedIndex"
              md-align-tabs="{{datas.bottom ? 'bottom' : 'top'}}">
+        <!--ng-style="{'visibility': isOpenLeft?'visible':'hidden'}"-->
 
+        <div class="md-toolbar-tools md-primary md-hue-2">
+            <md-tab id="tab1" ng-disabled="datas.overviewLocked" ng-click="toggleLeft()" ng-hide="isOpenLeft()">
 
-        <md-tab id="tab1" ng-disabled="datas.overviewLocked">
+                <md-tab-label class="md-primary">
+                    <md-tooltip md-direction="bottom">
+                        Menu
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">{{datas.menuIcon}}</md-icon>
+                    <label hide-sm>
+                        {{datas.menuLabel}}
+                    </label>
+                </md-tab-label>
+
+            </md-tab>
+        </div>
+
+        <md-tab id="tab2" ng-disabled="datas.overviewLocked">
 
                 <md-tab-label class="md-primary">
                     <md-tooltip md-direction="bottom">
@@ -16,14 +32,14 @@
                     </label>
                 </md-tab-label>
 
-                <md-tab-body ng-show="tab==1">
-                    <div ng-include="'modules/core/views/overview.template.html'"></div>
+                <md-tab-body ng-show="tab==2">
+                    <dir-overview-template></dir-overview-template>
                 </md-tab-body>
-            </md-content>
+
         </md-tab>
 
 
-        <md-tab id="tab2" ng-disabled="datas.adminLocked">
+        <md-tab id="tab3" ng-disabled="datas.adminLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     Admin
@@ -33,13 +49,13 @@
                     {{ datas.adminLabel }}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==2">
-                <div ng-include="'modules/core/views/admin.template.html'"></div>
+            <md-tab-body ng-show="tab==3">
+                <dir-operation-template></dir-operation-template>
             </md-tab-body>
         </md-tab>
 
 
-        <md-tab id="tab3" ng-disabled="datas.monitorLocked">
+        <md-tab id="tab4" ng-disabled="datas.monitorLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     Monitor
@@ -49,13 +65,13 @@
                     {{datas.monitorLabel}}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==3">
-                <div ng-include="'modules/core/views/monitor.template.html'"></div>
+            <md-tab-body ng-show="tab==4">
+                <dir-monitor-template></dir-monitor-template>
             </md-tab-body>
         </md-tab>
 
 
-        <md-tab id="tab4" ng-disabled="datas.configLocked">
+        <md-tab id="tab5" ng-disabled="datas.configLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     Config
@@ -65,13 +81,13 @@
                     {{datas.configLabel}}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==4">
-                <div ng-include="'modules/core/views/configuration.template.html'"></div>
+            <md-tab-body ng-show="tab==5">
+                <dir-config-template></dir-config-template>
             </md-tab-body>
         </md-tab>
 
 
-        <md-tab id="tab5" ng-disabled="datas.logLocked">
+        <md-tab id="tab6" ng-disabled="datas.logLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     Log
@@ -81,13 +97,13 @@
                     {{datas.logLabel}}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==5">
-                <div ng-include="'modules/core/views/log.template.html'"></div>
+            <md-tab-body ng-show="tab==6">
+                <dir-log-template></dir-log-template>
             </md-tab-body>
         </md-tab>
 
 
-        <md-tab id="tab6" ng-disabled="datas.flowLocked">
+        <md-tab id="tab7" ng-disabled="datas.flowLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     Flow
@@ -97,13 +113,13 @@
                     {{datas.flowLabel}}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==6">
-                <div ng-include="'modules/core/views/flow.template.html'"></div>
+            <md-tab-body ng-show="tab==7">
+                <dir-flow-template></dir-flow-template>
             </md-tab-body>
         </md-tab>
 
 
-        <md-tab id="tab7" ng-disabled="datas.userLocked">
+        <md-tab id="tab8" ng-disabled="datas.userLocked">
             <md-tab-label>
                 <md-tooltip md-direction="bottom">
                     User
@@ -113,8 +129,8 @@
                     {{datas.userLabel}}
                 </label>
             </md-tab-label>
-            <md-tab-body ng-show="tab==7">
-                <div ng-include="'modules/core/views/user.template.html'"></div>
+            <md-tab-body ng-show="tab==8">
+                <dir-user-template></dir-user-template>
             </md-tab-body>
         </md-tab>
     </md-tabs>

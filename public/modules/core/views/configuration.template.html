@@ -1,19 +1,19 @@
 <md-content ng-init="bus">
     <div ng-switch="template">
         <md-content ng-switch-when="bus">
-            <div ng-include="'modules/buses/views/configuration-edit-bus.html'"></div>
+            <dir-bus-unique-up></dir-bus-unique-up>
         </md-content>
         <md-content ng-switch-when="node">
-            <div ng-include="'modules/nodes/views/configuration-edit-node.html'"></div>
+            <dir-node-unique-up></dir-node-unique-up>
         </md-content>
         <md-content ng-switch-when="component">
-            <div ng-include="'modules/components/views/configuration-edit-component.html'"></div>
+            <dir-component-unique-up></dir-component-unique-up>
         </md-content>
         <md-content ng-switch-when="su">
-            <div ng-include="'modules/serviceunits/views/configuration-edit-su.html'"></div>
+            <dir-serviceunit-unique-up></dir-serviceunit-unique-up>
         </md-content>
         <md-content ng-switch-when="service">
-            <div ng-include="'modules/services/views/configuration-edit-service.html'"></div>
+            <dir-service-unique-up></dir-service-unique-up>
         </md-content>
     </div>
 </md-content>

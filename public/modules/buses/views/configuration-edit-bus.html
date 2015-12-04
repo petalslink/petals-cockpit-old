@@ -1,61 +1,64 @@
 <div data-ng-controller="BusesUpdateController as busUpCtrl" md-theme="bus-theme">
-    <md-toolbar class="md-primary md-hue-3">
+    <md-toolbar class="md-primary md-hue-2">
 
         <div class="md-toolbar-tools md-primary md-hue-2">
-            <a href="/#!/">
-                <md-button class="md-icon-button"
-                           ng-click="cancel(); answer('not useful');previous()">
-                    <md-tooltip md-direction="right">
-                        Previous
-                    </md-tooltip>
-                    <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
-                </md-button>
-            </a>
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');previous()">
+                <md-tooltip md-direction="right">
+                    Previous
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+            </md-button>
 
-            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">{{sItem.name}}
-                <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
+            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
+                <div class="md-title"> {{sItem.name}}
+                    <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
+                </div>
+
             </div>
 
-            <a href="/#!/">
-                <md-button class="md-icon-button"
-                           ng-click="cancel(); answer('not useful');next()">
-                    <md-tooltip md-direction="left">
-                        Next
-                    </md-tooltip>
-                    <md-icon class="material-icons md-24 md-primary" aria-label="Next">arrow_forward</md-icon>
-                </md-button>
-            </a>
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');next()">
+                <md-tooltip md-direction="left">
+                    Next
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Next">arrow_forward</md-icon>
+            </md-button>
         </div>
 
 
     </md-toolbar>
 
     <form name="updateBusForm" ng-submit="ok()" novalidate>
-        <md-content layout-padding layout="row" layout-sm="column">
-            <md-input-container>
-                <label>Name</label>
-                <input type="text" ng-model="sItem.name" placeholder="Name">
-            </md-input-container>
+        <md-content layout-padding layout="row" >
+            <div layout="row" layout-sm="column" layout-align="start center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Name</label>
+                    <input type="text" ng-model="sItem.name" placeholder="Name" required>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Version</label>
-                <input type="text" ng-model="sItem.version" placeholder="Version">
-            </md-input-container>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Version</label>
+                    <input type="text" ng-model="sItem.version" placeholder="Version" required>
+                </md-input-container>
+            </div>
 
-            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
-                <md-tooltip>
-                    Update Bus
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">update</md-icon>
-            </md-button>
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
+                    <md-tooltip md-direction="down">
+                        Update Bus
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">done</md-icon>
+                </md-button>
 
-            <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
-                       aria-label="Update" ng-click="nodesCtrl.modalCreate(createNodeForm)">
-                <md-tooltip>
-                    Create New Node
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">add</md-icon>
-            </md-button>
+                <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
+                           aria-label="Update" ng-click="nodesCtrl.modalCreate(createNodeForm)">
+                    <md-tooltip md-direction="down">
+                        Create New Node
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">add</md-icon>
+                </md-button>
+            </div>
         </md-content>
     </form>
 </div>

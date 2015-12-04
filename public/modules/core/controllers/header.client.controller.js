@@ -23,12 +23,13 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             $scope.isCollapsed = false;
         });
 
-        $scope.toggleLeft = buildDelayedToggler('left');
-        $scope.toggleNavLeft = buildToggler('left');
+
+        $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
-        $scope.isOpenLeft = function(){
+/*        $scope.isOpenLeft = function(){
+            console.log('PIPOOOOOOOOOOOOOOOOOOOOO !!!');
             return $mdSidenav('left').isOpen();
-        };
+        };*/
         $scope.isOpenRight = function(){
             return $mdSidenav('right').isOpen();
         };
@@ -40,15 +41,20 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
         $scope.datas = {
 
             selectedIndex: 0,
+
+            menuLocked: false,
+            menuLabel: 'Menu',
+            menuIcon: 'menu',
+
             overviewLocked: false,
             overviewLabel: 'Overview',
             overviewIcon: 'remove_red_eye',
 
-            adminLocked: false,
-            adminLabel: 'Admin',
-            adminIcon: 'supervisor_account',
+            adminLocked: true,
+            adminLabel: 'Operation',
+            adminIcon: 'details',
 
-            monitorLocked: false,
+            monitorLocked: true,
             monitorLabel: 'Monitor',
             monitorIcon: 'build',
 
@@ -56,22 +62,23 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             configLabel: 'Config',
             configIcon: 'settings',
 
-            logLocked: false,
+            logLocked: true,
             logLabel: 'Log',
             logIcon: 'security',
 
-            flowLocked: false,
+            flowLocked: true,
             flowLabel: 'Flow',
             flowIcon: 'trending_up',
 
-            userLocked: false,
+            userLocked: true,
             userLabel: 'User',
             userIcon: 'verified_user',
 
+            /* Position Toolbar Tab on Top when it's false */
             bottom: false
         };
         $scope.next = function () {
-            $scope.datas.selectedIndex = Math.min($scope.datas.selectedIndex + 1, 2, 3, 4, 5, 6, 7);
+            $scope.datas.selectedIndex = Math.min($scope.datas.selectedIndex + 1, 2, 3, 4, 5, 6, 7,8);
         };
         $scope.previous = function () {
             $scope.datas.selectedIndex = Math.max($scope.datas.selectedIndex - 1, 0);
@@ -98,6 +105,7 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
          * Build handler to open/close a SideNav; when animation finishes
          * report completion in console
          */
+/*
         function buildDelayedToggler(navID) {
             return debounce(function() {
                 $mdSidenav(navID)
@@ -107,6 +115,7 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
                     });
             }, 200);
         }
+*/
 
         function buildToggler(navID) {
             return function() {
@@ -119,51 +128,6 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
         }
 
     }]);
-
-/*coreApp.controller('MenuProdCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.alert = '';
-    $scope.hideListMenuProd = function ($event) {
-        $scope.alert = '';
-        $mdSidenav.hide({
-            templateUrl: '/modules/core/views/prod-list-template.html',
-            controller: 'ListWorkspaceCtrl',
-            targetEvent: $event
-        }).then(function (close) {
-            $scope.close = function () {
-                $mdSidenav('left').close()
-                    .then(function () {
-                        $log.debug("close LEFT is done");
-                    });
-            }
-        })
-    };
-
-    $scope.showListMenuProd = function ($event) {
-        $scope.alert = '';
-        $mdSidenav.show({
-            templateUrl: '/modules/core/views/prod-list-template.html',
-            controller: 'ListWorkspaceCtrl',
-            targetEvent: $event
-        }).then(function (clickedItem) {
-            $scope.alert = clickedItem['name'] + ' selected!';
-        });
-    };
-});
-coreApp.controller('ListWorkspaceCtrl', function ($scope, $mdSidenav) {
-    $scope.items = [
-        {name: 'New ESB', icon: 'device_hub' +
-        ''},
-        {name: 'New Registry', icon: 'folder'},
-        {name: 'New Log', icon: 'vpn_key'},
-        {name: 'Workspace', icon: 'cloud'},
-        {name: 'Export', icon: 'file_upload'},
-        {name: 'Import', icon: 'file_download'}
-    ];
-    $scope.listItemClick = function ($index) {
-        var clickedItem = $scope.items[$index];
-        $mdSidenav.hide(clickedItem);
-    };
-});*/
 
 coreApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
     $mdThemingProvider.theme('core-theme', 'default')
