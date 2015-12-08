@@ -3,22 +3,34 @@
     <!-- A dynamic template to build a tree with AngularJS -->
     <script type="text/ng-template" id="my-tmpl">
         <md-list class="navTree"
-                    ng-model="nodeType"
-                    ng-click="selectItem(node)"
-                    ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
+                 ng-model="nodeType"
+                 ng-click="selectItem(node)"
+                 ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
 
-                <md-button class="btnNav" ng-click="switchChildrenVisibility(node)">
-                    <md-icon class="md-24 md-accent" ng-show="node.childrenWereVisible">chevron_right
-                    </md-icon>
-                    <md-icon class="md-24 md-accent" ng-show="! node.childrenWereVisible">expand_more
-                    </md-icon>
+            <md-button class="btnNav" ng-click="switchChildrenVisibility(node)">
+                <md-icon class="md-24 md-accent" ng-show="node.childrenWereVisible">chevron_right
+                </md-icon>
+                <md-icon class="md-24 md-accent" ng-show="! node.childrenWereVisible">expand_more
+                </md-icon>
 
-                    <md-icon class="md-18 md-accent">{{node.icon}}</md-icon>
-
-                    {{ node.name }}
-
-                </md-button>
-
+                <md-icon class="md-18 md-accent">{{node.icon}}</md-icon>
+                {{ node.name }}
+            </md-button>
+<!--            <md-icon class="md-18 md-accent" ng-click="delete(sItem.bus)">
+                {{node.iconBusDelete}}
+            </md-icon>-->
+            <md-icon class="md-18 md-accent" ng-click="delete(node)">
+                {{node.iconNodeDelete}}
+            </md-icon>
+<!--            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.component)">
+                {{node.iconComponentDelete}}
+            </md-icon>
+            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.serviceunit)">
+                {{node.iconServiceUnitDelete}}
+            </md-icon>
+            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.service)">
+                {{node.iconServiceDelete}}
+            </md-icon>-->
         </md-list>
 
 

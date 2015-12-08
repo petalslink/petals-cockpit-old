@@ -11,7 +11,7 @@ app.directive('dirComponentDisplay',
             templateUrl: '/modules/core/views/component-display.client.view.html',
             link: function ($scope, element, attrs) {
                 $scope.isOpenLeft = function(){
-                    console.log('Test !!!' + $mdSidenav('left'));
+                    /*console.log('Test !!!' + $mdSidenav('left'));*/
                     return $mdSidenav('left').isOpen();
                 };
             }

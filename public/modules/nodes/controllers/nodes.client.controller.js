@@ -4,8 +4,8 @@
 
 var nodesApp = angular.module('nodes');
 
-nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authentication', 'Nodes', '$modal', '$log', '$rootScope',
-	function ($scope, $stateParams, Authentication, Nodes, $modal, $log, $rootScope) {
+nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authentication', 'Nodes', '$modal', '$log', '$rootScope', '$mdDialog', 'verifyDelete',
+	function ($scope, $stateParams, Authentication, Nodes, $modal, $log, $rootScope, $mdDialog, verifyDelete) {
 
 		this.authentication = Authentication;
 
@@ -18,35 +18,30 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 			self.nodes.push(node);
 		});
 
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Create a single node record
-		this.modalCreate = function (size, createNodeForm) {
+		/* Window for Create New NODE */
+		$scope.showModalCreateNode = function(ev) {
+			$mdDialog.show({
+						controller: mdDialogCtrl,
+						templateUrl: '/modules/nodes/views/create-node.client.view.html',
+						parent: angular.element(document.body),
+						targetEvent: ev,
+						locals: { bus: $scope.sItem }
+					})
+					.then(function (answer) {
+						$scope.status = 'You said the information was "' + answer + '".';
+					}, function () {
+						$scope.status = 'You cancelled the dialog.';
+					});
+		};
 
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/nodes/views/create-node.client.view.html',
-				controller: function ($scope, $modalInstance) {
+		var mdDialogCtrl = function ($scope, $mdDialog, bus) {
+			$scope.nodeP  = bus;
 
-					$scope.ok = function () {
-						if (createNodeForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close();
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
+			$scope.closeDialog = function() {
+				// Easily hides most recent dialog shown...
+				// no specific instance reference is needed.
+				$mdDialog.hide();
+			};
 		};
 
 		/********************************************************* OK *********************************************************/
@@ -86,9 +81,21 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+
+		$scope.delete = function (node) {
+
+			verifyDelete(node).then(function () {
+
+				var index = $scope.nodes.indexOf(node);
+
+				$scope.nodes.splice(index, 1);
+
+			});
+
+		}
+
 	}
 ]);
-
 
 nodesApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 	$mdThemingProvider.theme('node-theme', 'default')
@@ -110,13 +117,21 @@ nodesApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope',
-	function ($scope, Nodes, Notify, Buses, $rootScope) {
+nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buses', '$rootScope', '$mdBottomSheet',
+	function ($scope, Nodes, Notify, Buses, $rootScope, $mdBottomSheet) {
 
 		// Find a list of Bus
-		$scope.buses = Buses.getBuses();
+/*		$scope.buses = Buses.getBuses();*/
 
-		$scope.node = {};
+/*		$scope.node = {};*/
+		$scope.node = {	parentBus: $scope.nodeP._id };
+
+		/* Show the msg when Bus is Created */
+		$scope.openBottomSheet = function() {
+			$mdBottomSheet.show({
+				template: '<md-bottom-sheet><h3 align="center">Create Node Worked !</h3></md-bottom-sheet>'
+			});
+		};
 
 		// Create new Node
 		$scope.create = function () {

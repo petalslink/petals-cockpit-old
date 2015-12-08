@@ -24,6 +24,25 @@ nodesApp.directive('dirNodeList', ['Nodes',
     }
 ]);
 
+
+nodesApp.directive('dirCreateNode', ['Nodes',
+    function (Nodes) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                node: '='
+            },
+            template: '<md-button class="md-fab md-mini md-accent md-hue-1" flex-sm="100" flex-md="100" flex-gt-md="auto" aria-label="Edit" ng-click="createNode()"><md-tooltip md-direction="bottom">Create New Server</md-tooltip><md-icon class="material-icons md-24 md-primary">add</md-icon></md-button>',
+            link: function ($scope, element, attrs) {
+                $scope.createNode = function() {
+
+                };
+            }
+        };
+    }
+]);
+
 nodesApp.directive('dirNodeUnique', ['Nodes',
     function (Nodes) {
 

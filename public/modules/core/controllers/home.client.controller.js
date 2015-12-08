@@ -46,7 +46,8 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					type: 'bus',
 					version: val.version,
 					children: [],
-					icon: 'device_hub'
+					icon: 'device_hub',
+					iconBusDelete: 'delete'
 				};
 
 				bindex[val._id] = bus;
@@ -65,6 +66,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					parentBus: val.parentBus,
 					children: [],
 					icon: 'developer_mode',
+					iconNodeDelete: 'delete',
 					parent: bus
 				};
 
@@ -83,6 +85,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					type: 'component',
 					children: [],
 					icon: 'extension',
+					iconComponentDelete: 'delete',
 					parent: node
 				};
 
@@ -102,6 +105,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					type: 'su',
 					children: [],
 					icon: 'folder_special',
+					iconServiceUnitDelete: 'delete',
 					parent: component
 				};
 
@@ -120,6 +124,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					type: 'service',
 					children: [],
 					icon: 'usb',
+					iconServiceDelete: 'delete',
 					parent: serviceunit
 				};
 

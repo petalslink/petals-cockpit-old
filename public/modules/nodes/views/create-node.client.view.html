@@ -1,111 +1,75 @@
-<section data-ng-controller="NodesCreateController as nodeCtrl">
+<!--<section data-ng-controller="NodesCreateController as nodeCtrl" md-theme="node-theme" md-whiteframe-32dp>-->
+    <md-dialog data-ng-controller="NodesCreateController as nodeCtrl" md-theme="node-theme" aria-label="Pop Up New Server" ng-cloak
+               flex-sm="80" flex-md="80" flex-gt-md="80">
+    <form name="createNodeForm">
 
-    <div class="modal-header">
-        <h3 class="modal-title">Create New Node</h3>
-    </div>
-    <div class="modal-body">
-        <form name="createNodeForm" ng-submit="ok()" novalidate>
-            <fieldset>
-                <div class="row">
-                    <div class="form-group">
-                        <div data-ng-show="error" class="text-center text-danger">
-                            <div class="alert alert-danger" role="alert">
-                                <strong data-ng-bind="error"></strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div data-ng-show="close" class="text-center text-success">
-                            <div class="alert alert-success" role="alert">
-                                <strong data-ng-bind="close"></strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <i class="glyphicon glyphicon-wrench cust-profile"></i>
-                        <br/><br/>
-                    </div>
-                    <div class="col-sm-8">
- <!--                       <div class="panel-green">
-                            <div class="panel-heading padZero text-center">
-                                <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Select Bus - Parent</h4>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="parentBus">Name</label>
+        <md-toolbar layout="row" class="md-primary md-hue-1">
 
-                            <div class="controls">
-                                    <span class="input-group-addon">
-                                        <div class="disabled" id="parentBus">{{sItem.parentBus.name}}</div>
-                                    </span>
-                            </div>
-                        </div>-->
-                        <div class="panel-pricing">
-                            <div class="panel-green">
-                                <div class="panel-heading padZero text-center">
-                                    <h4 class=""><i class="glyphicon glyphicon-flash cust-overview"></i> Select Bus - Parent</h4>
+            <md-button class="md-icon-button md-accent"
+                       ng-click="closeDialog()">
+                <md-tooltip md-direction="bottom">
+                    Back
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
+            </md-button>
 
-                                    <div class="form-group text-center">
-                                        <select data-ng-model="node.parentBus" required id="parentBus" class="form-control">
-                                            <option value="">-- Please Select Parent --</option>
-                                            <option value="{{bus._id}}" data-ng-repeat="bus in buses">{{bus.name}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <br><br>
-                        </div>
+            <md-button ng-click="create(node); closeDialog(); openBottomSheet()"
+                       class="md-fab md-accent md-fab-bottom-left md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp" ng-disabled="createNodeForm.$invalid">
+                <md-tooltip md-direction="bottom">
+                    Create New Node
+                </md-tooltip>
+                <md-icon class="md-accent md-24">done</md-icon>
+            </md-button>
 
-                        <div class="panel-green">
-                            <div class="panel-heading padZero text-center">
-                                <h4 class=""><i class="glyphicon glyphicon-wrench cust-overview"></i> Node Settings</h4>
-                            </div>
-                        </div>
+            <h1 class="md-toolbar-tools md-primary md-hue-1" layout-align="center center">
+                <md-button class="md-primary md-accent md-24">
+                    <md-tooltip md-direction="bottom">
+                        Node
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-accent" aria-label="add">developer_mode</md-icon>
+                </md-button>
+                New Server in <code> {{ nodeP.name }} </code>
+            </h1>
 
-                        <div class="form-group">
-                            <label class="control-label" for="name">Name</label>
+        </md-toolbar>
 
-                            <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.name" required id="name"
-                                               class="form-control">
-                                    </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="ip">Petals Node Ip</label>
+        <md-dialog-content layout-padding layout="row" layout-sm="column" class="md-accent" flex>
 
-                            <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.ip" required id="ip" class="form-control"
-                                                >
-                                    </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="port">Petals Node Port</label>
-
-                            <div class="controls">
-                                    <span class="input-group-addon">
-                                        <input type="text" data-ng-model="node.port" required id="port" class="form-control"
-                                                >
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
+<!--            <div layout="column" layout-align="center center" flex="33" flex-sm="100">
+                <div class="md-accent md-hue-1" flex>
+                    <p>Bus</p>
+                    {{ nodeP.name }}
                 </div>
-            </fieldset>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="create(); cancel()">
-            <i class="glyphicon glyphicon-save"></i>
-            Save New Node
-        </button>
-        <button class="btn btn-warning btn-lg" ng-click="cancel()">
-            <i class="glyphicon glyphicon-remove"></i>
-            Close
-        </button>
-    </div>
+            </div>-->
+<!--
+                    <input type="text" data-ng-model="node.parentBus" disabled>
+-->
 
-</section>
+
+            <div layout="column" layout-align="center center" flex="50" flex-sm="100">
+                <md-input-container class="md-accent md-hue-1" flex>
+                    <label>Name</label>
+                    <input type="text" data-ng-model="node.name" placeholder="Name" required>
+                </md-input-container>
+
+                <md-input-container class="md-accent md-hue-1" flex>
+                    <label>Version</label>
+                    <input type="text" data-ng-model="node.version" placeholder="Version" required>
+                </md-input-container>
+            </div>
+
+            <div layout="column" layout-align="center center" flex="50" flex-sm="100">
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Ip</label>
+                    <input type="text" data-ng-model="node.ip" placeholder="Ip" required>
+                </md-input-container>
+
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Port</label>
+                    <input type="text" data-ng-model="node.port" placeholder="Port" required>
+                </md-input-container>
+            </div>
+
+        </md-dialog-content>
+    </form>
+</md-dialog>

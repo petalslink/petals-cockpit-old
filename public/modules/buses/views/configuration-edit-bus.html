@@ -43,7 +43,7 @@
                 </md-input-container>
             </div>
 
-            <div layout="row" layout-sm="column" layout-align="center center" flex>
+            <div data-ng-controller="NodesController as nodesCtrl" layout="row" layout-sm="column" layout-align="center center" flex id="modalContainer">
                 <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
                     <md-tooltip md-direction="down">
                         Update Bus
@@ -51,13 +51,33 @@
                     <md-icon class="material-icons md-24 md-primary">done</md-icon>
                 </md-button>
 
-                <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
+<!--                <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
                            aria-label="Update" ng-click="nodesCtrl.modalCreate(createNodeForm)">
                     <md-tooltip md-direction="down">
                         Create New Node
                     </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">add</md-icon>
+                </md-button>-->
+
+                    <md-button class="md-fab md-mini md-accent md-hue-1"
+                               ng-click="showModalCreateNode($event)">
+                        <md-tooltip md-direction="down">
+                            Add Server
+                        </md-tooltip>
+                        <md-icon class="material-icons md-24 md-primary" aria-label="add">add</md-icon>
+                    </md-button>
+
+
+<!--
+                <md-button class="md-fab md-mini md-accent md-hue-1"
+                           ng-click="showModalCreateNode($event, node)">
+                    <md-tooltip md-direction="down">
+                        Create New Server
+                    </md-tooltip>
+                    <md-icon class="material-icons md-36" aria-label="add">add</md-icon>
                 </md-button>
+-->
+
             </div>
         </md-content>
     </form>

@@ -46,3 +46,25 @@ nodesApp.factory('Notify', ['$rootScope',
 		return notify;
 	}
 ]);
+
+nodesApp.factory('verifyDelete', function($mdDialog) {
+
+	return function(node) {
+
+		var confirm = $mdDialog.confirm()
+
+				.title('Confirm Your Choice')
+
+				.content('Are you sure you want to delete ' + node.name + ' ' + '?')
+
+				.ariaLabel('Delete Node')
+
+				.ok('Delete Node')
+
+				.cancel('Cancel');
+
+		return $mdDialog.show(confirm);
+
+	}
+
+});
