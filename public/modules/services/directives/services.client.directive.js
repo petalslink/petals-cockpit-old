@@ -4,26 +4,7 @@
 
 var servicesApp = angular.module('services');
 
-// Transclusion for integration service list template html
-
-servicesApp.directive('dirServiceList', ['Services',
-    function (Services) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                servicesList: '=info',
-                searchText: '=filter'
-            },
-            transclude: true,
-            templateUrl: '/modules/services/views/service-list-template.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
+<!-- FOR SEE OVERVIEW SETTINGS SERVICE SELECTED -->
 servicesApp.directive('dirServiceUnique', ['Services',
     function (Services) {
 
@@ -38,16 +19,14 @@ servicesApp.directive('dirServiceUnique', ['Services',
     }
 ]);
 
-servicesApp.directive('dirServiceTree', ['Services',
+<!-- FOR UPDATE SERVICE SELECTED -->
+servicesApp.directive('dirServiceUniqueUp', ['Services',
     function (Services) {
 
         return {
             restrict: 'E',
-            scope: {
-                serviceName: '=info'
-            },
             transclude: true,
-            templateUrl: '/modules/services/views/service-name-tree.html',
+            templateUrl: '/modules/services/views/configuration-edit-service.html',
             link: function ($scope, element, attrs) {
 
             }
@@ -55,6 +34,7 @@ servicesApp.directive('dirServiceTree', ['Services',
     }
 ]);
 
+/*
 servicesApp.directive('dirSupService', ['Services',
     function (Services) {
 
@@ -73,37 +53,4 @@ servicesApp.directive('dirSupService', ['Services',
             }
         };
     }
-]);
-
-servicesApp.directive('dirUpService', ['Services',
-    function (Services) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                service: '='
-            },
-            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="updService()"><md-tooltip>Edit {{service.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
-            link: function ($scope, element, attrs) {
-                $scope.updService = function() {
-
-                };
-            }
-        };
-    }
-]);
-
-servicesApp.directive('dirServiceUniqueUp', ['Services',
-    function (Services) {
-
-        return {
-            restrict: 'E',
-            transclude: true,
-            templateUrl: '/modules/services/views/configuration-edit-service.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
+]);*/

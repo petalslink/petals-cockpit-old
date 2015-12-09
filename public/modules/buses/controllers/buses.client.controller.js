@@ -10,7 +10,7 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 		this.authentication = Authentication;
 
 		// Find a list of Bus
-		this.buses = Buses.getBuses();
+		/*this.buses = Buses.getBuses();*/
 
 		// Recieve Event
 		var self = this;
@@ -60,75 +60,6 @@ busesApp.controller('BusesController', ['$scope', '$stateParams', 'Authenticatio
 			};
 			$scope.bus = bus;
 		}
-
-/*		/!********************************************************* OK *********************************************************!/
-			// Open a modal window to Create a single bus record
-		this.modalCreate = function (size, createBusForm) {
-
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/buses/views/create-bus.client.view.html',
-				controller: function ($scope, $modalInstance) {
-
-					$scope.ok = function () {
-						if (createBusForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close();
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
-		};*/
-
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Update a single bus record
-		this.modalUpdate = function (size, selectedBus, updateBusForm) {
-
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/buses/views/edit-bus.client.view.html',
-				controller: function ($scope, $modalInstance, bus) {
-					$scope.bus = bus;
-
-					$scope.ok = function () {
-						if (updateBusForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close($scope.bus);
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size,
-				resolve: {
-					bus: function () {
-						return selectedBus;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
-		};
 	}
 ]);
 
@@ -147,7 +78,6 @@ busesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 			'hue-3': '200'
 		});
 }]);
-
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER

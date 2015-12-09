@@ -10,7 +10,7 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 		this.authentication = Authentication;
 
 		// Find a list of Component
-		this.components = Components.getComponents();
+/*		this.components = Components.getComponents();*/
 
 		// Recieve Event
 		var self = this;
@@ -43,47 +43,8 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 				$mdDialog.hide();
 			};
 		};
-
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Update a single component record
-		this.modalUpdate = function (size, selectedComponent, updateComponentForm) {
-
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/components/views/edit-component.client.view.html',
-				controller: function ($scope, $modalInstance, component) {
-					$scope.component = component;
-
-					$scope.ok = function () {
-						if (updateComponentForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close($scope.component);
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size,
-				resolve: {
-					component: function () {
-						return selectedComponent;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
-		};
 	}
 ]);
-
 
 componentsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 	$mdThemingProvider.theme('component-theme', 'default')
@@ -100,7 +61,6 @@ componentsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 				'hue-3': '200'
 			});
 }]);
-
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
@@ -144,8 +104,7 @@ componentsApp.controller('ComponentsUpdateController', ['$scope', 'Components', 
 	function ($scope, Components, Notify, Nodes, $rootScope) {
 
 		// Find a list of Node
-		$scope.nodes = Nodes.getNodes();
-
+		/*$scope.nodes = Nodes.getNodes();*/
 
 		// Update existing Component
 		this.update = function(updatedComponent) {

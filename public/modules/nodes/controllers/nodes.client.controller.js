@@ -10,7 +10,7 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 		this.authentication = Authentication;
 
 		// Find a list of Node
-		this.nodes = Nodes.getNodes();
+		/*this.nodes = Nodes.getNodes();*/
 
 		// Recieve Event
 		var self = this;
@@ -44,44 +44,6 @@ nodesApp.controller('NodesController', ['$scope', '$stateParams', 'Authenticatio
 			};
 		};
 
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Update a single node record
-		this.modalUpdate = function (size, selectedNode, updateNodeForm) {
-
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/nodes/views/edit-node.client.view.html',
-				controller: function ($scope, $modalInstance, node) {
-					$scope.node = node;
-
-					$scope.ok = function () {
-						if (updateNodeForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close($scope.node);
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size,
-				resolve: {
-					node: function () {
-						return selectedNode;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
-		};
-
 		$scope.delete = function (node) {
 
 			verifyDelete(node).then(function () {
@@ -112,8 +74,6 @@ nodesApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 				'hue-3': '200'
 			});
 }]);
-
-
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER

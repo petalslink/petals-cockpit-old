@@ -4,45 +4,7 @@
 
 var nodesApp = angular.module('nodes');
 
-// Transclusion for integration node list template html
-
-nodesApp.directive('dirNodeList', ['Nodes',
-    function (Nodes) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                nodesList: '=info',
-                searchText: '=filter'
-            },
-            transclude: true,
-            templateUrl: '/modules/nodes/views/node-list-template.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
-
-nodesApp.directive('dirCreateNode', ['Nodes',
-    function (Nodes) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                node: '='
-            },
-            template: '<md-button class="md-fab md-mini md-accent md-hue-1" flex-sm="100" flex-md="100" flex-gt-md="auto" aria-label="Edit" ng-click="createNode()"><md-tooltip md-direction="bottom">Create New Server</md-tooltip><md-icon class="material-icons md-24 md-primary">add</md-icon></md-button>',
-            link: function ($scope, element, attrs) {
-                $scope.createNode = function() {
-
-                };
-            }
-        };
-    }
-]);
-
+<!-- FOR SEE OVERVIEW SETTINGS NODES SELECTED -->
 nodesApp.directive('dirNodeUnique', ['Nodes',
     function (Nodes) {
 
@@ -57,16 +19,14 @@ nodesApp.directive('dirNodeUnique', ['Nodes',
     }
 ]);
 
-nodesApp.directive('dirNodeTree', ['Nodes',
+<!-- FOR UPDATE NODE SELECTED -->
+nodesApp.directive('dirNodeUniqueUp', ['Nodes',
     function (Nodes) {
 
         return {
             restrict: 'E',
-            scope: {
-                nodeName: '=info'
-            },
             transclude: true,
-            templateUrl: '/modules/nodes/views/node-name-tree.html',
+            templateUrl: '/modules/nodes/views/configuration-edit-node.html',
             link: function ($scope, element, attrs) {
 
             }
@@ -74,6 +34,7 @@ nodesApp.directive('dirNodeTree', ['Nodes',
     }
 ]);
 
+/*
 nodesApp.directive('dirSupNode', ['Nodes',
     function (Nodes) {
 
@@ -92,38 +53,4 @@ nodesApp.directive('dirSupNode', ['Nodes',
             }
         };
     }
-]);
-
-nodesApp.directive('dirUpNode', ['Nodes',
-    function (Nodes) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                node: '='
-            },
-            template: '<md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Edit" ng-click="updNode()"><md-tooltip>Edit {{node.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
-            link: function ($scope, element, attrs) {
-                $scope.updNode = function() {
-
-                };
-            }
-        };
-    }
-]);
-
-nodesApp.directive('dirNodeUniqueUp', ['Nodes',
-    function (Nodes) {
-
-        return {
-            restrict: 'E',
-            transclude: true,
-            templateUrl: '/modules/nodes/views/configuration-edit-node.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
-
+]);*/

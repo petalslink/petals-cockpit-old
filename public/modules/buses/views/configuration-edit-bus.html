@@ -1,3 +1,5 @@
+<!-- CONFIG OF BUS SELECTED & NEW CHILDREN -->
+
 <div data-ng-controller="BusesUpdateController as busUpCtrl" md-theme="bus-theme">
     <md-toolbar class="md-primary md-hue-2">
 
@@ -11,8 +13,9 @@
             </md-button>
 
             <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
-                <div class="md-title"> {{sItem.name}}
+                <div class="md-title">
                     <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
+                    {{sItem.name}}
                 </div>
             </div>
 
@@ -29,6 +32,7 @@
 
     <form name="updateBusForm" ng-submit="ok()" novalidate>
         <md-content layout-padding layout="row">
+
             <div layout="row" layout-sm="column" layout-align="start center" flex>
                 <md-input-container class="md-accent md-hue-1">
                     <label>Name</label>
@@ -59,10 +63,7 @@
                     <md-icon class="material-icons md-24 md-primary" aria-label="add">add</md-icon>
                 </md-button>
             </div>
+
         </md-content>
     </form>
-</div>
-
-<div data-ng-controller="NodesController as nodesCtrl">
-    <dir-node-list info="nodesCtrl.nodes" filter="searchText"></dir-node-list>
 </div>

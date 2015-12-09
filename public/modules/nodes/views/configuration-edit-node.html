@@ -1,3 +1,5 @@
+<!-- CONFIG OF NODE SELECTED & NEW CHILDREN -->
+
 <div data-ng-controller="NodesUpdateController as nodeUpCtrl" md-theme="node-theme">
     <md-toolbar class="md-primary md-hue-2">
 
@@ -11,8 +13,9 @@
             </md-button>
 
             <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
-                <div class="md-title"> {{sItem.name}}
+                <div class="md-title">
                     <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
+                    {{sItem.name}}
                 </div>
             </div>
 
@@ -29,6 +32,7 @@
 
     <form name="updateNodeForm" ng-submit="ok()" novalidate>
         <md-content layout-padding layout="row">
+
             <div layout="row" layout-sm="column" layout-align="start center" flex>
                 <md-input-container>
                     <label>Name</label>
@@ -48,7 +52,6 @@
 
             <div data-ng-controller="ComponentsController as componentsCtrl" layout="row" layout-sm="column"
                  layout-align="center center" flex id="modalContainer">
-
                 <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh"
                            ng-click="nodeUpCtrl.update(sItem)">
                     <md-tooltip>
@@ -64,12 +67,8 @@
                     </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">add</md-icon>
                 </md-button>
-
             </div>
+
         </md-content>
     </form>
-</div>
-
-<div data-ng-controller="ComponentsController as componentsCtrl">
-    <dir-component-list info="componentsCtrl.components" filter="searchText"></dir-component-list>
 </div>

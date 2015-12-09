@@ -4,26 +4,7 @@
 
 var busesApp = angular.module('buses');
 
-// Transclusion for integration bus list template html
-
-busesApp.directive('dirBusList', ['Buses',
-    function (Buses) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                busesList: '=info',
-                searchText: '=filter'
-            },
-            transclude: true,
-            templateUrl: '/modules/buses/views/bus-list-template.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
-
+<!-- FOR SEE SETTINGS OVERVIEW BUS SELECTED -->
 busesApp.directive('dirBusUnique', ['Buses',
     function (Buses) {
 
@@ -38,6 +19,22 @@ busesApp.directive('dirBusUnique', ['Buses',
     }
 ]);
 
+<!-- FOR UPDATE BUS SELECTED -->
+busesApp.directive('dirBusUniqueUp', ['Buses',
+    function (Buses) {
+
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: '/modules/buses/views/configuration-edit-bus.html',
+            link: function ($scope, element, attrs) {
+
+            }
+        };
+    }
+]);
+
+/*
 busesApp.directive('dirSupBus', ['Buses',
     function (Buses) {
 
@@ -56,36 +53,4 @@ busesApp.directive('dirSupBus', ['Buses',
             }
         };
     }
-]);
-
-busesApp.directive('dirUpBus', ['Buses',
-    function (Buses) {
-
-        return {
-            restrict: 'E',
-            scope: {
-                bus: '='
-            },
-            template: '<md-button class="md-fab md-accent md-hue-1" aria-label="Edit" ng-click="updBus()"><md-tooltip>Edit {{bus.name}}</md-tooltip><md-icon class="material-icons md-24 md-primary">edit</md-icon></md-button>',
-            link: function ($scope, element, attrs) {
-                $scope.updBus = function() {
-
-                };
-            }
-        };
-    }
-]);
-
-busesApp.directive('dirBusUniqueUp', ['Buses',
-    function (Buses) {
-
-        return {
-            restrict: 'E',
-            transclude: true,
-            templateUrl: '/modules/buses/views/configuration-edit-bus.html',
-            link: function ($scope, element, attrs) {
-
-            }
-        };
-    }
-]);
+]);*/
