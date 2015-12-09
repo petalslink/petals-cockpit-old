@@ -4,8 +4,8 @@
 
 var componentsApp = angular.module('components');
 
-componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Authentication', 'Components', '$modal', '$log', '$rootScope',
-	function ($scope, $stateParams, Authentication, Components, $modal, $log, $rootScope) {
+componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Authentication', 'Components', '$modal', '$log', '$rootScope', '$mdDialog',
+	function ($scope, $stateParams, Authentication, Components, $modal, $log, $rootScope, $mdDialog) {
 
 		this.authentication = Authentication;
 
@@ -18,35 +18,30 @@ componentsApp.controller('ComponentsController', ['$scope', '$stateParams', 'Aut
 			self.components.push(component);
 		});
 
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Create a single component record
-		this.modalCreate = function (size, createComponentForm) {
+		/* Window for Create New COMPONENT */
+		$scope.showModalCreateComponent = function(ev) {
+			$mdDialog.show({
+						controller: mdDialogCtrl,
+						templateUrl: '/modules/components/views/create-component.client.view.html',
+						parent: angular.element(document.body),
+						targetEvent: ev,
+						locals: { node: $scope.sItem }
+					})
+					.then(function (answer) {
+						$scope.status = 'You said the information was "' + answer + '".';
+					}, function () {
+						$scope.status = 'You cancelled the dialog.';
+					});
+		};
 
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/components/views/create-component.client.view.html',
-				controller: function ($scope, $modalInstance) {
+		var mdDialogCtrl = function ($scope, $mdDialog, node) {
+			$scope.componentP  = node;
 
-					$scope.ok = function () {
-						if (createComponentForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close();
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
+			$scope.closeDialog = function() {
+				// Easily hides most recent dialog shown...
+				// no specific instance reference is needed.
+				$mdDialog.hide();
+			};
 		};
 
 		/********************************************************* OK *********************************************************/
@@ -109,13 +104,21 @@ componentsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope',
-	function ($scope, Components, Notify, Nodes, $rootScope) {
+componentsApp.controller('ComponentsCreateController', ['$scope', 'Components', 'Notify', 'Nodes', '$rootScope', '$mdBottomSheet',
+	function ($scope, Components, Notify, Nodes, $rootScope, $mdBottomSheet) {
 
 		// Find a list of Node
-		$scope.nodes = Nodes.getNodes();
+/*		$scope.nodes = Nodes.getNodes();*/
 
-		$scope.component = {};
+/*		$scope.component = {};*/
+		$scope.component = {	parentServer: $scope.componentP._id };
+
+		/* Show the msg when Component is Created */
+		$scope.openBottomSheet = function() {
+			$mdBottomSheet.show({
+				template: '<md-bottom-sheet><h3 align="center">Create Component Worked !</h3></md-bottom-sheet>'
+			});
+		};
 
 		// Create new Component
 		$scope.create = function () {

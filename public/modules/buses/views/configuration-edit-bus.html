@@ -14,7 +14,6 @@
                 <div class="md-title"> {{sItem.name}}
                     <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
                 </div>
-
             </div>
 
             <md-button class="md-icon-button md-accent"
@@ -26,11 +25,10 @@
             </md-button>
         </div>
 
-
     </md-toolbar>
 
     <form name="updateBusForm" ng-submit="ok()" novalidate>
-        <md-content layout-padding layout="row" >
+        <md-content layout-padding layout="row">
             <div layout="row" layout-sm="column" layout-align="start center" flex>
                 <md-input-container class="md-accent md-hue-1">
                     <label>Name</label>
@@ -43,41 +41,23 @@
                 </md-input-container>
             </div>
 
-            <div data-ng-controller="NodesController as nodesCtrl" layout="row" layout-sm="column" layout-align="center center" flex id="modalContainer">
-                <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="busUpCtrl.update(sItem)">
+            <div data-ng-controller="NodesController as nodesCtrl" layout="row" layout-sm="column"
+                 layout-align="center center" flex id="modalContainer">
+                <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh"
+                           ng-click="busUpCtrl.update(sItem)">
                     <md-tooltip md-direction="down">
                         Update Bus
                     </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">done</md-icon>
                 </md-button>
 
-<!--                <md-button data-ng-controller="NodesController as nodesCtrl" class="md-fab md-mini md-accent md-hue-1"
-                           aria-label="Update" ng-click="nodesCtrl.modalCreate(createNodeForm)">
-                    <md-tooltip md-direction="down">
-                        Create New Node
-                    </md-tooltip>
-                    <md-icon class="material-icons md-24 md-primary">add</md-icon>
-                </md-button>-->
-
-                    <md-button class="md-fab md-mini md-accent md-hue-1"
-                               ng-click="showModalCreateNode($event)">
-                        <md-tooltip md-direction="down">
-                            Add Server
-                        </md-tooltip>
-                        <md-icon class="material-icons md-24 md-primary" aria-label="add">add</md-icon>
-                    </md-button>
-
-
-<!--
                 <md-button class="md-fab md-mini md-accent md-hue-1"
-                           ng-click="showModalCreateNode($event, node)">
+                           ng-click="showModalCreateNode($event)">
                     <md-tooltip md-direction="down">
-                        Create New Server
+                        Add Server
                     </md-tooltip>
-                    <md-icon class="material-icons md-36" aria-label="add">add</md-icon>
+                    <md-icon class="material-icons md-24 md-primary" aria-label="add">add</md-icon>
                 </md-button>
--->
-
             </div>
         </md-content>
     </form>
@@ -86,21 +66,3 @@
 <div data-ng-controller="NodesController as nodesCtrl">
     <dir-node-list info="nodesCtrl.nodes" filter="searchText"></dir-node-list>
 </div>
-
-<!--    <div class="row">
-        <div class="form-group">
-            <div data-ng-show="error" class="text-center text-danger">
-                <div class="alert alert-danger" role="alert">
-                    <strong data-ng-bind="error"></strong>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div data-ng-show="close" class="text-center text-success">
-                <div class="alert alert-success" role="alert">
-                    <strong data-ng-bind="close"></strong>
-                </div>
-            </div>
-        </div>
-
-    </div>-->

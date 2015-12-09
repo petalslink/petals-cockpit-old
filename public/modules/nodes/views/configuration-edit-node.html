@@ -1,22 +1,23 @@
 <div data-ng-controller="NodesUpdateController as nodeUpCtrl" md-theme="node-theme">
-    <md-toolbar class="md-primary md-hue-3">
+    <md-toolbar class="md-primary md-hue-2">
 
-        <div class="md-toolbar-tools md-primary md-hue-3">
-
-            <md-button class="md-icon-button"
-                       ng-click="previous()">
+        <div class="md-toolbar-tools md-primary md-hue-2">
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');previous()">
                 <md-tooltip md-direction="right">
                     Previous
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
             </md-button>
 
-            <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
-                <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
+            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
+                <div class="md-title"> {{sItem.name}}
+                    <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
+                </div>
             </div>
 
-            <md-button class="md-icon-button"
-                       ng-click="next()">
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');next()">
                 <md-tooltip md-direction="left">
                     Next
                 </md-tooltip>
@@ -27,36 +28,44 @@
     </md-toolbar>
 
     <form name="updateNodeForm" ng-submit="ok()" novalidate>
-        <md-content layout-padding layout="row" layout-sm="column">
-            <md-input-container>
-                <label>Name</label>
-                <input type="text" ng-model="sItem.name" placeholder="Name">
-            </md-input-container>
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-sm="column" layout-align="start center" flex>
+                <md-input-container>
+                    <label>Name</label>
+                    <input type="text" ng-model="sItem.name" placeholder="Name" required>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Ip</label>
-                <input type="text" ng-model="sItem.ip" placeholder="Ip">
-            </md-input-container>
+                <md-input-container>
+                    <label>Ip</label>
+                    <input type="text" ng-model="sItem.ip" placeholder="Ip" required>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Port</label>
-                <input type="text" ng-model="sItem.port" placeholder="Port">
-            </md-input-container>
+                <md-input-container>
+                    <label>Port</label>
+                    <input type="text" ng-model="sItem.port" placeholder="Port" required>
+                </md-input-container>
+            </div>
 
-            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh" ng-click="nodeUpCtrl.update(sItem)">
-                <md-tooltip>
-                    Update Node
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
-            </md-button>
+            <div data-ng-controller="ComponentsController as componentsCtrl" layout="row" layout-sm="column"
+                 layout-align="center center" flex id="modalContainer">
 
-            <md-button data-ng-controller="ComponentsController as componentsCtrl" class="md-fab md-mini md-accent md-hue-1"
-                       aria-label="Refresh" ng-click="componentsCtrl.modalCreate(createComponentForm)">
-                <md-tooltip>
-                    Create New Component
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">add</md-icon>
-            </md-button>
+                <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh"
+                           ng-click="nodeUpCtrl.update(sItem)">
+                    <md-tooltip>
+                        Update Node
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">done</md-icon>
+                </md-button>
+
+                <md-button class="md-fab md-mini md-accent md-hue-1"
+                           ng-click="showModalCreateComponent($event)">
+                    <md-tooltip md-direction="down">
+                        Add Component
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">add</md-icon>
+                </md-button>
+
+            </div>
         </md-content>
     </form>
 </div>

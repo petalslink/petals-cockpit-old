@@ -126,7 +126,7 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buse
 /*		$scope.node = {};*/
 		$scope.node = {	parentBus: $scope.nodeP._id };
 
-		/* Show the msg when Bus is Created */
+		/* Show the msg when Node is Created */
 		$scope.openBottomSheet = function() {
 			$mdBottomSheet.show({
 				template: '<md-bottom-sheet><h3 align="center">Create Node Worked !</h3></md-bottom-sheet>'
