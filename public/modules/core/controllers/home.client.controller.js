@@ -139,31 +139,31 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			// Recieve Event when push component on Nav Tree
 			$scope.$on('BusCreate', function (event, bus) {
 				$scope.rootNodes.push(bus);
-				console.log("May Be Something Happens !!!!!!");
+				console.log('May Be Something Happens !!!!!!');
 
 			});
 
 			$scope.$on('NodeCreate', function (event, node) {
 				$scope.rootNodes.push(node);
-				console.log("May Be Something Happens !!!!!!");
+				console.log('May Be Something Happens !!!!!!');
 
 			});
 
 			$scope.$on('ComponentCreate', function (event, component) {
 				$scope.rootNodes.push(component);
-				console.log("May Be Something Happens !!!!!!");
+				console.log('May Be Something Happens !!!!!!');
 
 			});
 
 			$scope.$on('ServiceUnitCreate', function (event, serviceunit) {
 				$scope.rootNodes.push(serviceunit);
-				console.log("May Be Something Happens !!!!!!");
+				console.log('May Be Something Happens !!!!!!');
 
 			});
 
 			$scope.$on('ServiceCreate', function (event, service) {
 				$scope.rootNodes.push(service);
-				console.log("May Be Something Happens !!!!!!");
+				console.log('May Be Something Happens !!!!!!');
 
 			});
 		}

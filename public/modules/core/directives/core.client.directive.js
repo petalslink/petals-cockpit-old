@@ -11,7 +11,7 @@ app.directive('dirComponentDisplay',
             templateUrl: '/modules/core/views/component-display.client.view.html',
             link: function ($scope, element, attrs) {
                 $scope.isOpenLeft = function(){
-                    /*console.log('Test !!!' + $mdSidenav('left'));*/
+                    /*console.log('Test !!!' + $mdSidenav('left').isOpen());*/
                     return $mdSidenav('left').isOpen();
                 };
             }
@@ -35,7 +35,6 @@ app.directive('dirComponentTree',
         };
     }
 );
-
 
 app.directive('dirOverviewTemplate',
     function () {
@@ -149,20 +148,16 @@ app.directive('dirSidenavTemplate',
     }
 );
 
-/*usersApp.directive('dirUserList', ['Users', 'Notify',
-    function (Users, Notify) {
+app.directive('dirBtnMenu',
+    function () {
 
         return {
             restrict: 'E',
-            scope: {
-                usersList: '=info',
-                searchText: '=filter'
-            },
             transclude: true,
-            templateUrl: '/modules/users/views/user-list-template.html',
+            template: '<md-tab id="tab1" ng-disabled="datas.overviewLocked" ng-click="toggleLeft()" ng-hide="isOpenLeft();"><md-tab-label class=""><md-tooltip md-direction="bottom">Menu</md-tooltip><i class="material-icons md-24">{{datas.menuIcon}}</i></md-tab-label></md-tab>',
             link: function ($scope, element, attrs) {
 
             }
         };
     }
-]);*/
+);

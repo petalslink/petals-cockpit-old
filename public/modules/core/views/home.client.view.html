@@ -1,64 +1,11 @@
-<section ng-controller="HeaderController" layout="column" flex layout-fill ng-cloak>
-    <div data-ng-controller="HomeController" layout="row" flex>
+<section ng-controller="HeaderController" md-theme="core-theme" layout="column" flex layout-fill ng-cloak>
+    <div data-ng-controller="HomeController" layout="row">
 
-            <dir-sidenav-template></dir-sidenav-template>
-            <dir-component-display components="component" flex layout-fill></dir-component-display>
+        <dir-sidenav-template></dir-sidenav-template>
+
+        <div flex layout-fill>
+            <dir-component-display components="component"></dir-component-display>
+        </div>
 
     </div>
 </section>
-<!--        <md-toolbar class="md-primary">-->
-
-
-
-
-
-
-
-                    <!--                <div layout="column" layout-fill layout-align="top center">
-                                        <div>
-                                            <md-button ng-click="toggleLeft()" class="md-raised md-primary md-hue-2" hide-gt-md>
-                                                <md-tooltip md-direction="bottom">
-                                                    Menu
-                                                </md-tooltip>
-                                                <i class="zmdi zmdi-collection-folder-image"></i>
-                                            </md-button>
-                                        </div>
-                                    </div>-->
-
-
-
-
-<!--            </md-toolbar>-->
-
-<!--        <div flex-sm="50" md-theme="core-theme">
-            <div layout-align="center" class="md-primary md-hue-1">
-                <md-content>
-                    <md-button ng-click="openLeftMenu()" class="md-raised md-primary md-hue-1">
-                        <md-tooltip md-direction="bottom">
-                            Menu
-                        </md-tooltip>
-                        <md-icon class="material-icons md-24 md-primary">navigation</md-icon>
-                    </md-button>
-                </md-content>
-                <md-sidenav md-component-id="left" class="navSideLeft md-whiteframe-z2 md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
-                    <md-toolbar >
-                        <h3 class="md-primary md-inline-list-icon-label" layout-align="start center">MENU NAVIGATION
-                            <md-button ng-click="close()" class="md-primary md-hue-1 material-icons" hide-gt-md>close
-                            </md-button>
-                        </h3>
-&lt;!&ndash;                        <p hide-md show-gt-md>
-                            This sidenav is locked open on your device. To go back to the default behavior,
-                            narrow your display.
-                        </p>&ndash;&gt;
-
-                    </md-toolbar>
-                    <dir-component-tree components="component"></dir-component-tree>
-                </md-sidenav>
-            </div>
-        </div>-->
-<!--
-        <div flex md-theme="core-theme">
-            <md-content class="md-primary md-hue-2">
-                <dir-component-display components="component"></dir-component-display>
-            </md-content>
-        </div>-->

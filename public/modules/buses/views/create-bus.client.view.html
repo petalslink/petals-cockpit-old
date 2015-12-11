@@ -4,14 +4,14 @@
         <md-toolbar layout="row" class="md-primary md-hue-2">
 
             <md-button class="md-icon-button md-accent"
-                       ng-click="cancel(); answer('not useful')">
+                       ng-click="close(); answer('not useful')">
                 <md-tooltip md-direction="bottom">
-                    Back
+                    Close
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
             </md-button>
 
-            <md-button ng-click="create(bus); cancel(); answer('useful'); openBottomSheet()"
+            <md-button ng-click="create(bus); close(); answer('useful'); openBottomSheet()"
                        class="md-fab md-mini md-accent md-fab-bottom-left margButtonMiniFloat md-whiteframe-z3 md-whiteframe-6dp">
                 <md-tooltip md-direction="bottom">
                     Create New Bus

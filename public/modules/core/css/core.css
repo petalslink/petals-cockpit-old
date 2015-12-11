@@ -169,3 +169,23 @@ body {
 .myClassVisibility {
     visibility: hidden
 }
+
+.md-button.md-middle-left {
+    top: auto;
+    right: auto;
+    bottom: 45%;
+    left: -20px;
+    position: absolute !important;
+    background-color: #f5f5f5;
+    z-index: 10000;
+}
+
+.md-button.changePosition {
+    top: auto;
+    right: auto;
+    bottom: 45%;
+    left: 268px;
+    position: absolute !important;
+    background-color: #f5f5f5;
+    z-index: 10000;
+}

@@ -59,7 +59,7 @@
                 <md-menu-content width="3" class="md-whiteframe-8dp">
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Edit Profile" href="/#!/settings/profile">
+                                   aria-label="Edit Profile" href="/#!/settings/profile" ng-click="close()">
                             <div layout="row" flex>
                                 <p flex>Edit Profile </p>
                                 <md-icon md-menu-align-target class="md-accent"
@@ -71,7 +71,7 @@
                     <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Signout" href="/auth/signout">
+                                   aria-label="Signout" href="/auth/signout" ng-click="close()">
                             <div layout="row" flex>
                                 <p flex>Log Out </p>
                                 <md-icon md-menu-align-target class="md-accent"
@@ -97,7 +97,7 @@
                 <md-menu-content width="3" class="md-whiteframe-8dp">
                     <md-menu-item>
                         <md-button class="md-raised md-cornered"
-                                   aria-label="List Users" href="/#!/users">
+                                   aria-label="List Users" href="/#!/users" ng-click="close()">
                             <div layout="row" flex>
                                 <p flex>List Users </p>
                                 <md-icon md-menu-align-target class="md-accent"
@@ -109,7 +109,7 @@
 
                     <md-menu-item data-ng-hide="authentication.user">
                         <md-button class="md-raised md-cornered"
-                                   aria-label="Signin" href="/auth/signin">
+                                   aria-label="Signin" href="/auth/signin" ng-click="close()">
                             <div layout="row" flex>
                                 <p flex>Login </p>
                                 <md-icon md-menu-align-target class="md-accent"

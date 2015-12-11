@@ -9,29 +9,19 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
         $scope.$state = $state;
         $scope.authentication = Authentication;
 
-        // Get the topbar menu
-        $scope.menu = Menus.getMenu('topbar');
-
-        // Toggle the menu items
-        $scope.isCollapsed = false;
-        $scope.toggleCollapsibleMenu = function () {
-            $scope.isCollapsed = !$scope.isCollapsed;
-        };
-
         // Collapsing the menu after navigation
         $scope.$on('$stateChangeSuccess', function () {
             $scope.isCollapsed = false;
         });
 
-
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
-/*        $scope.isOpenLeft = function(){
-            console.log('PIPOOOOOOOOOOOOOOOOOOOOO !!!');
-            return $mdSidenav('left').isOpen();
-        };*/
+        $scope.lockLeft = true;
         $scope.isOpenRight = function(){
             return $mdSidenav('right').isOpen();
+        };
+        $scope.isOpenLeft = function(){
+            return $mdSidenav('left').isOpen();
         };
 
         $scope.isOpenNavWorkspaceLeft = function(){
@@ -44,7 +34,8 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
 
             menuLocked: false,
             menuLabel: 'Menu',
-            menuIcon: 'menu',
+            menuIconOpen: 'arrow_back',
+            menuIconClose: 'menu',
 
             overviewLocked: false,
             overviewLabel: 'Overview',

@@ -1,60 +1,13 @@
-<!--<div layout-fill>
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="lockLeft && $mdMedia('gt-md')"
+            md-theme="core-theme" flex>
 
-    <md-tabs layout-fill class="md-accent" md-selected="datas.selectedIndex"
-             md-align-tabs="{{datas.bottom ? 'bottom' : 'top'}}">
-
-
-        <md-tab id="tab1" ng-disabled="datas.overviewLocked">
-
-            <md-tab-label class="md-primary">
-                <md-tooltip md-direction="bottom">
-                    Overview
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">{{datas.overviewIcon}}</md-icon>
-                <label hide-sm>
-                    {{datas.overviewLabel}}
-                </label>
-            </md-tab-label>
-
-            <md-tab-body ng-show="tab==1">
-                <dir-overview-template></dir-overview-template>
-            </md-tab-body>
-            </md-content>
-        </md-tab>
-
-</md-tabs>
-</div>-->
-<!--
-    <div class="md-toolbar-tools md-primary md-hue-2" ng-controller="NavWorkspaceCtrl" ng-hide="isOpenLeft()">
-        <md-button class="md-icon-button md-primary md-24" ng-click="toggleLeft()">
-            <md-tooltip md-direction="bottom">
-                Show Menu
-            </md-tooltip>
-            <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">menu
-            </md-icon>
-        </md-button>
-    </div>-->
-
-
-
-
-
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-lg')"
-            md-theme="core-theme" flex ng-show="isOpenLeft()">
-
-    <!-- Open SideLeft -->
     <md-toolbar class="md-accent">
+
         <div class="md-toolbar-tools md-primary md-hue-2" ng-controller="NavWorkspaceCtrl">
-            <md-button class="md-icon-button md-primary md-24" ng-click="close()" >
-                <md-tooltip md-direction="bottom">
-                    Hide Menu
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back
-                </md-icon>
-            </md-button>
+
             <h1 class="md-toolbar-tools"><i class="zmdi zmdi-collection-folder-image"></i></h1>
             <md-button class="md-icon-button md-primary md-24"
-                       ng-click="toggleRight()"
+                       ng-click="toggleRight();"
                        ng-hide="isOpenRight()">
                 <md-tooltip md-direction="bottom">
                     Menu Workspace
@@ -63,12 +16,7 @@
             </md-button>
         </div>
 
-
-
-
     </md-toolbar>
-
-
 
 
     <!-- Nav Tree Components -->
@@ -76,15 +24,11 @@
 
         <dir-component-tree components="component"></dir-component-tree>
 
-        <!--                <p hide-sm show-gt-md layout-padding>
-                            <i class="zmdi zmdi-comment-text zmdi-hc-2x zmdi-hc-fw"></i>
-                            This sidenav is locked open on your device. To go back to the default behavior,
-                            narrow your display.
-                        </p>-->
     </md-content>
 
     <!-- Nav Menu Workspace -->
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="core-theme" flex>
+
         <md-toolbar class="md-accent" ng-controller="RightCtrl">
             <h2 class="md-toolbar-tools"><span flex>MENU</span>
                 <i class="zmdi zmdi-collection-folder-image zmdi-hc-1x zmdi-hc-fw"></i>
@@ -96,14 +40,14 @@
                     <md-icon class="material-icons md-24 md-primary" aria-label="Close Menu">close</md-icon>
                 </md-button>
             </h2>
-
         </md-toolbar>
 
         <md-content class="md-accent" ng-controller="BusesController">
-            <md-menu-content class="md-whiteframe-8dp">
+
+            <md-menu class="md-whiteframe-8dp">
                 <md-menu-item>
-                    <md-button class="md-raised md-cornered"
-                               ng-click="showModalCreateBus($event, bus)">
+                    <md-button class="md-raised md-cornered md-shadow-bottom-z-2"
+                               ng-click="showModalCreateBus($event, bus);close()">
                         <md-tooltip md-direction="right">
                             Create
                         </md-tooltip>
@@ -112,8 +56,10 @@
                         <p flex>NEW ESB </p>
                     </md-button>
                 </md-menu-item>
-            </md-menu-content>
+            </md-menu>
+
         </md-content>
 
     </md-sidenav>
+
 </md-sidenav>
