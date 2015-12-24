@@ -1,23 +1,54 @@
-<div data-ng-controller="ServicesUpdateController as serviceUpCtrl" md-theme="overview-theme">
-    <md-toolbar class="md-primary md-hue-3">
-        <div class="md-toolbar-tools" layout-align="center">{{sItem.name}}
-            <i class="material-icons md-48 md-primary">{{sItem.icon}}</i>
+<!-- CONFIG OF SERVICE SELECTED -->
+
+<div data-ng-controller="ServicesUpdateController as serviceUpCtrl" md-theme="service-theme">
+    <md-toolbar class="md-primary md-hue-2">
+
+        <div class="md-toolbar-tools md-primary md-hue-2">
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');previous()">
+                <md-tooltip md-direction="right">
+                    Previous
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+            </md-button>
+
+            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
+                <div class="md-title">
+                    <md-icon class="material-icons md-36 md-primary">{{sItem.icon}}</md-icon>
+                    {{sItem.name}}
+                </div>
+            </div>
+
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful');next()">
+                <md-tooltip md-direction="left">
+                    Next
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Next">arrow_forward</md-icon>
+            </md-button>
         </div>
+
     </md-toolbar>
 
     <form name="updateServiceunitForm" ng-submit="ok()" novalidate>
-        <md-content layout-padding layout="row" layout-sm="column">
-            <md-input-container>
-                <label>Name</label>
-                <input type="text" ng-model="sItem.name" placeholder="Name">
-            </md-input-container>
+        <md-content layout-padding layout="row">
 
-            <md-button class="md-fab md-mini md-accent" aria-label="Refresh" ng-click="serviceUpCtrl.update(sItem)">
-                <md-tooltip>
-                    Update Service
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
-            </md-button>
+            <div layout="row" layout-sm="column" layout-align="start center" flex>
+                <md-input-container>
+                    <label>Name</label>
+                    <input type="text" ng-model="sItem.name" placeholder="Name">
+                </md-input-container>
+            </div>
+
+            <div data-ng-controller="ServicesController as servicesCtrl" layout="row" layout-sm="column"
+                 layout-align="center center" flex id="modalContainer">
+                <md-button class="md-fab md-mini md-accent" aria-label="Refresh" ng-click="serviceUpCtrl.update(sItem)">
+                    <md-tooltip>
+                        Update Service
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">done</md-icon>
+                </md-button>
+            </div>
         </md-content>
     </form>
 </div>

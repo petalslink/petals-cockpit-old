@@ -39,7 +39,10 @@ var UserSchema = new Schema({
     },
     displayName: {
         type: String,
-        trim: true
+        trim: true,
+        default: '',
+        unique: 'testing error message',
+        required: 'Please fill in a username',
     },
     email: {
         type: String,
@@ -110,7 +113,7 @@ var UserSchema = new Schema({
         trim: true
     },
     phone: {
-        type: Number,
+        type: String,
         default: '',
         trim: true
     },
@@ -222,10 +225,10 @@ var User = mongoose.model('User', UserSchema);
 var UserDefault = new User({
     firstName: 'Admin',
     lastName: 'Admin',
-    displayName: 'Admin Admin',
+    displayName: 'Sa',
     email: 'admin@linagora.com',
     username: 'SuperAdmin',
-    password: 'stage2015',
+    password: 'admin2015',
     roles: 'admin',
     capacities: ['user',
                 'admin',
@@ -234,6 +237,7 @@ var UserDefault = new User({
                 'technicalMonitoring',
                 'buisnessMonitoring'
     ],
+    phone: '01.01.01.01.01',
     country: 'France',
     location: 'Toulouse',
     gender: 'Male'

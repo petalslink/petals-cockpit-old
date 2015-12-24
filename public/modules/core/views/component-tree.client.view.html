@@ -8,15 +8,15 @@
                  ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
 
             <md-button class="btnNav" ng-click="switchChildrenVisibility(node)">
-                <md-icon class="md-24 md-accent" ng-show="node.childrenWereVisible">chevron_right
+                <md-icon class="md-24" ng-show="node.childrenWereVisible">chevron_right
                 </md-icon>
-                <md-icon class="md-24 md-accent" ng-show="! node.childrenWereVisible">expand_more
+                <md-icon class="md-24" ng-show="! node.childrenWereVisible">expand_more
                 </md-icon>
 
                 <md-icon class="md-18 md-accent">{{node.icon}}</md-icon>
                 {{ node.name }}
             </md-button>
-            <md-icon class="md-18 md-accent" ng-click="delete(sItem.bus)">
+<!--            <md-icon class="md-18 md-accent" ng-click="delete(sItem.bus)">
                 {{node.iconBusDelete}}
             </md-icon>
             <md-icon class="md-18 md-accent" ng-click="delete(node)">
@@ -30,7 +30,7 @@
             </md-icon>
             <md-icon class="md-18 md-accent" ng-click="delete.(sItem.service)">
                 {{node.iconServiceDelete}}
-            </md-icon>
+            </md-icon>-->
         </md-list>
 
 
@@ -41,7 +41,7 @@
                 ng-include="'my-tmpl'" class="margLi" ></li>
         </ul>
     </script>
-    <ul>
+    <ul class="">
         <li ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
     </ul>
 </div>

@@ -4,13 +4,13 @@
 
 var servicesApp = angular.module('services');
 
-servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authentication', 'Services', '$modal', '$log', '$rootScope',
-	function ($scope, $stateParams, Authentication, Services, $modal, $log, $rootScope) {
+servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authentication', 'Services', '$modal', '$log', '$rootScope', '$mdDialog',
+	function ($scope, $stateParams, Authentication, Services, $modal, $log, $rootScope, $mdDialog) {
 
 		this.authentication = Authentication;
 
 		// Find a list of Services
-		this.services = Services.getServices();
+		/*this.services = Services.getServices();*/
 
 		// Recieve Event
 		var self = this;
@@ -18,78 +18,35 @@ servicesApp.controller('ServicesController', ['$scope', '$stateParams', 'Authent
 			self.services.push(service);
 		});
 
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Create a single service record
-		this.modalCreate = function (size, createServiceForm) {
-
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/services/views/create-service.client.view.html',
-				controller: function ($scope, $modalInstance) {
-
-					$scope.ok = function () {
-						if (createServiceForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close();
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
+		/* Window for Create New SERVICE */
+		$scope.showModalCreateService = function(ev) {
+			$mdDialog.show({
+						controller: mdDialogCtrl,
+						templateUrl: '/modules/services/views/create-service.client.view.html',
+						parent: angular.element(document.body),
+						targetEvent: ev,
+						locals: { serviceUnit: $scope.sItem }
+					})
+					.then(function (answer) {
+						$scope.status = 'You said the information was "' + answer + '".';
+					}, function () {
+						$scope.status = 'You cancelled the dialog.';
+					});
 		};
 
-		/********************************************************* OK *********************************************************/
-			// Open a modal window to Update a single service record
-		this.modalUpdate = function (size, selectedService, updateServiceForm) {
+		var mdDialogCtrl = function ($scope, $mdDialog, serviceUnit) {
+			$scope.serviceP  = serviceUnit;
 
-			var modalInstance = $modal.open({
-				templateUrl: '/modules/services/views/edit-service.client.view.html',
-				controller: function ($scope, $modalInstance, service) {
-					$scope.service = service;
-
-					$scope.ok = function () {
-						if (updateServiceForm.$valid) {
-							$log.info('Form is valid');
-							$modalInstance.close($scope.service);
-
-						} else {
-							$log.error('Form is not valid');
-						}
-					};
-
-					$scope.cancel = function () {
-						$modalInstance.dismiss('cancel');
-					};
-				},
-				size: size,
-				resolve: {
-					service: function () {
-						return selectedService;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
+			$scope.closeDialog = function() {
+				// Easily hides most recent dialog shown...
+				// no specific instance reference is needed.
+				$mdDialog.hide();
+			};
 		};
 	}
 ]);
 
-servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
+servicesApp.config(['$mdThemingProvider', function ($mdThemingProvider) {
 	$mdThemingProvider.theme('service-theme', 'default')
 			.primaryPalette('orange', {
 				'default': '700',
@@ -105,15 +62,23 @@ servicesApp.config(['$mdThemingProvider', function($mdThemingProvider) {
 			});
 }]);
 
+
 /********************************************************* OK *********************************************************/
 // CREATE CONTROLLER
-servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notify', 'Serviceunits', '$rootScope',
-	function ($scope, Services, Notify, Serviceunits, $rootScope) {
+servicesApp.controller('ServicesCreateController', ['$scope', 'Services', 'Notify', 'Serviceunits', '$rootScope','$mdBottomSheet',
+	function ($scope, Services, Notify, Serviceunits, $rootScope, $mdBottomSheet) {
 
 		// Find a list of Component
-		$scope.serviceunits = Serviceunits.getServiceunits();
+		/*$scope.serviceunits = Serviceunits.getServiceunits();*/
 
-		$scope.service = {};
+		$scope.service = { parentServiceUnit: $scope.serviceP._id };
+
+		/* Show the msg when Service Unit is Created */
+		$scope.openBottomSheet = function() {
+			$mdBottomSheet.show({
+				template: '<md-bottom-sheet><h3 align="center">Create Service Worked !</h3></md-bottom-sheet>'
+			});
+		};
 
 		// Create new Service
 		$scope.create = function () {
@@ -139,7 +104,7 @@ servicesApp.controller('ServicesUpdateController', ['$scope', 'Services', 'Notif
 	function ($scope, Services, Notify, Serviceunits, $rootScope) {
 
 		// Find a list of Component
-		$scope.serviceunits = Serviceunits.getServiceunits();
+		/*$scope.serviceunits = Serviceunits.getServiceunits();*/
 
 		// Update existing Service
 		this.update = function(updatedService) {

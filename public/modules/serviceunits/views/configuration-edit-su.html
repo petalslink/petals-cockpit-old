@@ -1,6 +1,6 @@
 <!-- CONFIG OF SERVICE UNIT SELECTED & NEW CHILDREN -->
 
-<div data-ng-controller="ServiceunitsUpdateController as serviceunitUpCtrl" md-theme="serviceunit-theme">
+<div data-ng-controller="ServiceunitsUpdateController as serviceunitUpCtrl" md-theme="su-theme">
     <md-toolbar class="md-primary md-hue-2">
 
         <div class="md-toolbar-tools md-primary md-hue-2">
@@ -31,7 +31,7 @@
     </md-toolbar>
 
     <form name="updateSuForm" ng-submit="ok()" novalidate>
-        <md-content layout-padding layout="row" layout-sm="column">
+        <md-content layout-padding layout="row">
 
             <div layout="row" layout-sm="column" layout-align="start center" flex>
                 <md-input-container>
@@ -40,21 +40,25 @@
                 </md-input-container>
             </div>
 
-            <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh"
-                       ng-click="serviceunitUpCtrl.update(sItem)">
-                <md-tooltip>
-                    Update Service Unit
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">refresh</md-icon>
-            </md-button>
+            <div data-ng-controller="ServicesController as servicesCtrl" layout="row" layout-sm="column"
+                 layout-align="center center" flex id="modalContainer">
+                <md-button class="md-fab md-mini md-accent md-hue-1" aria-label="Refresh"
+                           ng-click="serviceunitUpCtrl.update(sItem)">
+                    <md-tooltip>
+                        Update Service Unit
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">done</md-icon>
+                </md-button>
 
-            <md-button data-ng-controller="ServicesController as servicesCtrl" class="md-fab md-mini md-accent md-hue-1"
-                       aria-label="Refresh" ng-click="servicesCtrl.modalCreate('lg',size,createServiceForm)">
-                <md-tooltip>
-                    Create New Service
-                </md-tooltip>
-                <md-icon class="material-icons md-24 md-primary">add</md-icon>
-            </md-button>
+                <md-button data-ng-controller="ServicesController as servicesCtrl"
+                           class="md-fab md-mini md-accent md-hue-1"
+                           aria-label="Refresh" ng-click="showModalCreateService($event)">
+                    <md-tooltip md-direction="down">
+                        Add Service
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">add</md-icon>
+                </md-button>
+            </div>
 
         </md-content>
     </form>

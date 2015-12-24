@@ -74,6 +74,23 @@ body {
     border-color: #78FA89;
 }
 
+[ng-messages] {
+    opacity: 0;
+    -webkit-transition: opacity .1s;
+    transition: opacity .1s;
+}
+[ng-messages].visible {
+    opacity: 1;
+}
+#loading-bar {
+    position: absolute;
+    width: 100%;
+}
+#loading-bar .bar {
+    position: absolute;
+    background-color: #ff4081;
+}
+
 .logoPetals {
     width: 75px;
     top: 0;
@@ -85,8 +102,9 @@ body {
     vertical-align: middle;
 }
 
-.md-list-item, .md-list-item .md-list-item-inner {
+.md-list {
 /*    min-height: 48px;*/
+    width: 100%;
 }
 
 .text-color-icon-nav {
@@ -128,9 +146,29 @@ body {
     padding: 0;
     margin-left: -40px;
 }
+
 .margLi {
-    margin-left: -20px; !important;
+    margin-left: -20px !important;
 }
+
+/*.margUl {
+    padding-left: 0px !important;
+}*/
+
+/*#my-tmpl ul {
+    padding-left: 13px !important;
+    margin-left: 0px !important;
+}*/
+
+/*.menuContainer {
+    float: left;
+    width: 15px;
+}
+
+.menuContent {
+    float: left;
+    width: 85%;
+}*/
 
 .margButtonNav {
     margin-right: 20%;
@@ -170,6 +208,7 @@ body {
     visibility: hidden
 }
 
+/* Button for hide & show the Sidenav */
 .md-button.md-middle-left {
     top: auto;
     right: auto;
@@ -187,5 +226,9 @@ body {
     left: 268px;
     position: absolute !important;
     background-color: #f5f5f5;
-    z-index: 10000;
+    z-index: 10;
+}
+
+.md-sidenav-left {
+    z-index: 10;
 }

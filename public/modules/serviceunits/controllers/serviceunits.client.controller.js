@@ -46,9 +46,8 @@ serviceunitsApp.controller('ServiceunitsController', ['$scope', '$stateParams', 
 	}
 ]);
 
-
 serviceunitsApp.config(['$mdThemingProvider', function($mdThemingProvider) {
-	$mdThemingProvider.theme('serviceunit-theme', 'default')
+	$mdThemingProvider.theme('su-theme', 'default')
 			.primaryPalette('orange', {
 				'default': '700',
 				'hue-1': '500',
@@ -73,7 +72,7 @@ serviceunitsApp.controller('ServiceunitsCreateController', ['$scope', 'Serviceun
 		/*$scope.components = Components.getComponents();*/
 
 		/*$scope.serviceunit = {};*/
-		$scope.serviceunit = {	parentComponent: $scope.suP._id };
+		$scope.serviceunit = { parentComponent: $scope.suP._id };
 
 		/* Show the msg when Component is Created */
 		$scope.openBottomSheet = function() {
