@@ -38,6 +38,11 @@
 }
 
 /*Rules for sizing the icon*/
+
+.material-icons.md-16 {
+    font-size: 16px;
+}
+
 .material-icons.md-18 {
     font-size: 18px;
 }
@@ -74,19 +79,11 @@ body {
     border-color: #78FA89;
 }
 
-[ng-messages] {
-    opacity: 0;
-    -webkit-transition: opacity .1s;
-    transition: opacity .1s;
-}
-[ng-messages].visible {
-    opacity: 1;
-}
 #loading-bar {
     position: absolute;
     width: 100%;
 }
-#loading-bar .bar {
+#loading-bar.bar {
     position: absolute;
     background-color: #ff4081;
 }
@@ -127,10 +124,101 @@ body {
     text-transform: none !important;
 }
 
+.btnDelNav {
+    min-height: 10px !important;
+    position: absolute !important;
+    height: 22px !important;
+    line-height: 22px !important;
+    width: 22px !important;
+/*    margin-left: 150px !important;*/
+    margin-top: -23px !important;
+    right: 25px;
+    padding: 0 !important;
+}
+
+.btnUpdNav {
+    min-height: 10px !important;
+    position: absolute !important;
+    height: 22px !important;
+    line-height: 22px !important;
+    width: 22px !important;
+/*    margin-left: 120px !important;*/
+    margin-top: -23px !important;
+    right: 0;
+    padding: 0 !important;
+}
+
+.btnAddNav {
+    min-height: 10px !important;
+    position: absolute !important;
+    height: 22px !important;
+    line-height: 22px !important;
+    width: 22px !important;
+/*    margin-left: 150px !important;*/
+    margin-top: -23px !important;
+    right: 50px;
+    padding: 0 !important;
+    z-index: 10 !important;
+}
+
+md-sidenav.md-locked-open {
+    width: 354px !important;
+    min-width: 354px !important;
+    max-width: 354px !important;
+}
+
+.busIcon {
+    margin-left: -2px;
+}
+.nodeIcon {
+    margin-left: -20px;
+}
+.componentIcon {
+    margin-left: -23px;
+}
+.suIcon {
+    margin-left: -21px;
+}
+.serviceIcon {
+    margin-left: -23px;
+}
+
+/*.busIconDel {
+     margin-left: -2px;
+ }
+.nodeIconDel {
+    margin-left: -20px;
+}
+.componentIconDel {
+    margin-left: -23px;
+}
+.suIconDel {
+    margin-left: -21px;
+}
+.serviceIconDel {
+    margin-left: -23px;
+}
+
+.busIconAdd {
+    margin-left: -2px;
+}
+.nodeIconAdd {
+    margin-left: -20px;
+}
+.componentIconAdd {
+    margin-left: -23px;
+}
+.suIconAdd {
+    margin-left: -21px;
+}
+.serviceIconAdd {
+    margin-left: -23px;
+}*/
+
 .normal {
-    color: white;
+    color: black;
     font-weight: normal;
-    background-color: #40c4ff;
+    background-color: #eeeefe;
 }
 
 .faded {
@@ -144,7 +232,14 @@ body {
 
 .navTree {
     padding: 0;
-    margin-left: -40px;
+    margin-left: -50px;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    -o-text-overflow: ellipsis !important;
+    overflow-wrap: break-word !important;
+    width: 280px !important;
+    white-space: nowrap !important;
+    left: 0 !important;
 }
 
 .margLi {
@@ -212,7 +307,7 @@ body {
 .md-button.md-middle-left {
     top: auto;
     right: auto;
-    bottom: 45%;
+    bottom: 35%;
     left: -20px;
     position: absolute !important;
     background-color: #f5f5f5;
@@ -222,8 +317,8 @@ body {
 .md-button.changePosition {
     top: auto;
     right: auto;
-    bottom: 45%;
-    left: 268px;
+    bottom: 35%;
+    left: 350px;
     position: absolute !important;
     background-color: #f5f5f5;
     z-index: 10;

@@ -148,7 +148,7 @@ app.directive('dirSidenavTemplate',
     }
 );
 
-app.directive('dirBtnMenu',
+/*app.directive('dirBtnMenu',
     function () {
 
         return {
@@ -160,4 +160,4 @@ app.directive('dirBtnMenu',
             }
         };
     }
-);
+);*/

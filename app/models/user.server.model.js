@@ -42,7 +42,7 @@ var UserSchema = new Schema({
         trim: true,
         default: '',
         unique: 'testing error message',
-        required: 'Please fill in a username',
+        required: 'Please fill in a username'
     },
     email: {
         type: String,
@@ -225,7 +225,7 @@ var User = mongoose.model('User', UserSchema);
 var UserDefault = new User({
     firstName: 'Admin',
     lastName: 'Admin',
-    displayName: 'Sa',
+    displayName: 'Sa1',
     email: 'admin@linagora.com',
     username: 'SuperAdmin',
     password: 'admin2015',

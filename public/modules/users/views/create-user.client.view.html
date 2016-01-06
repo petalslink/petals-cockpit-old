@@ -1,237 +1,40 @@
-<!--<section data-ng-controller="UsersCreateController as userCtrl">
-
-    <div class="modal-header">
-        <h3 class="modal-title">Create New User</h3>
-    </div>
-    <div class="modal-body">
-        <form name="createUserForm" ng-submit="ok()" novalidate>
-            <fieldset>
-                <div class="row">
-                    <div class="form-group">
-                        <div data-ng-show="error" class="text-center text-danger">
-                            <div class="alert alert-danger" role="alert">
-                                <strong data-ng-bind="error"></strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div data-ng-show="close" class="text-center text-success">
-                            <div class="alert alert-success" role="alert">
-                                <strong data-ng-bind="close"></strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <i class="glyphicon glyphicon-user cust-profile"
-                           ng-class="{
-                           'text-primary': user.capacities.admin, 'text-green': user.capacities.adminBus, 'text-orange': user.capacities.developer,
-                           'text-yellow': user.capacities.technicalMonitoring, 'text-red': user.capacities.buisnessMonitoring}"></i>
-                        <br/><br/>
-
-                        <div class="form-group">
-                            <label class="control-label" for="admin">Admin Petals COCKPIT</label>
-
-                            <div class="controls">
-                                <input type="checkbox" data-ng-model="user.capacities.admin" id="admin"
-                                       class="form-control checkbox-center">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="adminBus">Admin Bus</label>
-
-                            <div class="controls">
-                                <input type="checkbox" data-ng-model="user.capacities.adminBus" id="adminBus"
-                                       class="form-control checkbox-center">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="developer">Developer</label>
-
-                            <div class="controls">
-                                <input type="checkbox" data-ng-model="user.capacities.developer" id="developer"
-                                       class="form-control checkbox-center">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="technicalMonitoring">Technical Monitoring</label>
-
-                            <div class="controls">
-                                <input type="checkbox" data-ng-model="user.capacities.technicalMonitoring"
-                                       id="technicalMonitoring"
-                                       class="form-control checkbox-center">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="buisnessMonitoring">Buisness Monitoring</label>
-
-                            <div class="controls">
-                                <input type="checkbox" data-ng-model="user.capacities.buisnessMonitoring"
-                                       id="buisnessMonitoring"
-                                       class="form-control checkbox-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="firstName">First Name</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.firstName" id="firstName"
-                                           class="form-control">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="lastName">Last Name</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.lastName" id="lastName" class="form-control"
-                                           required>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="username">Username</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.username" id="username" class="form-control"
-                                           required>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="password">Password</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="password" data-ng-model="user.password" id="password"
-                                           class="form-control"
-                                           required>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="email">Email</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.email" id="email" class="form-control"
-                                           required>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="country">Gender</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <select data-ng-model="user.gender" id="gender" class="form-control" required
-                                            ng-options="channelItem.item for channelItem in channelGender">
-                                        <option value="">&#45;&#45;Choose your Sexe&#45;&#45;</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="displayName">Pseudo Console</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.displayName" id="displayName"
-                                           class="form-control">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="country">Country</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <select data-ng-model="user.country" id="country" class="form-control" required
-                                            ng-options="channelItem.item for channelItem in channelCountry">
-                                        <option value="">&#45;&#45;Choose your Country&#45;&#45;</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="phone">Phone</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.phone" id="phone" class="form-control">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="location">Location</label>
-
-                            <div class="controls">
-                                <span class="input-group-addon">
-                                    <input type="text" data-ng-model="user.location" id="location"
-                                           class="form-control">
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="create(); cancel()">
-            <i class="glyphicon glyphicon-save"></i>
-            Save New User
-        </button>
-        <button class="btn btn-warning btn-lg" ng-click="cancel()">
-            <i class="glyphicon glyphicon-remove"></i>
-            Close
-        </button>
-    </div>
-
-</section>-->
-
-
-<md-dialog data-ng-controller="UsersCreateController as userCtrl" aria-label="Pop Up User" ng-cloak
+<md-dialog data-ng-controller="UsersCreateController" aria-label="Pop Up User" ng-cloak
            md-theme="core-theme" flex-sm="100" flex-md="100" flex-gt-md="100">
+
+    <!-- Form with Multiples Attributes -->
     <form name="createUserForm" ng-submit="ok()" novalidate>
 
-        <md-toolbar class="md-primary md-hue-1">
+        <md-toolbar layout="row" class="md-primary md-hue-1">
 
-            <div class="md-toolbar-tools md-primary md-hue-2">
-                <md-button class="md-icon-button md-accent"
-                           ng-click="cancel(); answer('not useful');previous()">
-                    <md-tooltip md-direction="right">
-                        Previous
+            <md-button class="md-icon-button md-accent"
+                       ng-click="cancel(); answer('not useful')">
+                <md-tooltip md-direction="bottom">
+                    Back To The List
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Close Dialog">arrow_back</md-icon>
+            </md-button>
+
+            <div layout-padding>
+                <md-button ng-click="create(user); cancel(); answer('useful');openBottomSheet()"
+                           class="md-fab md-accent md-fab-bottom-left md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp"
+                           ng-disabled="createUserForm.$invalid">
+                    <md-tooltip md-direction="bottom">
+                        Save User
                     </md-tooltip>
-                    <md-icon class="material-icons md-24 md-primary" aria-label="Previous">arrow_back</md-icon>
+                    <md-icon class="material-icons md-36 md-accent">save</md-icon>
                 </md-button>
             </div>
-            <div layout="row">
-                <div layout-padding>
-                    <md-tooltip md-direction="right">
-                        Save
-                    </md-tooltip>
-                    <md-button ng-click="create(); cancel(); answer('useful');openBottomSheet()"
-                               class="md-icon-button md-fab md-accent" ng-disabled="createUserForm.$invalid">
-                        <md-icon class="material-icons md-24 md-accent">save</md-icon>
-                    </md-button>
-                </div>
-                <div layout-padding>
-                    <md-tooltip md-direction="right">
+
+            <div layout-padding>
+                <md-button ng-click="clearValue()"
+                           class="md-fab md-accent md-fab-bottom-right md-raised margButtonFloat md-whiteframe-z3 md-whiteframe-6dp">
+                    <md-tooltip md-direction="left">
                         Clear All
                     </md-tooltip>
-                    <md-button ng-click="clearValue()"
-                               class="md-icon-button md-fab md-accent">
-                        <md-icon class="material-icons md-24 md-accent">clear</md-icon>
-                    </md-button>
-                </div>
+                    <md-icon class="material-icons md-36 md-accent">clear</md-icon>
+                </md-button>
             </div>
+
         </md-toolbar>
 
 
@@ -239,10 +42,6 @@
             <div layout-gt-sm="row">
 
                 <div class="md-dialog-content" layout-align="center start" flex>
-                    <!--                    <div layout-padding>
-                                            <h2>{{user.firstName}} {{user.lastName}}</h2>
-                                        </div>
-                                        -->
                     <div layout-padding>
                         <md-list>
                             <md-list-item>
@@ -264,12 +63,15 @@
                     </div>
 
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="Country">
-                        <div class="md-primary md-hue-1" layout-align="center center">
-                            <md-icon class="material-icons md-24 md-primary">terrain</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="Country">
+                        <div class="md-accent md-hue-1" layout-align="center center">
+                            <md-icon class="material-icons md-24 md-accent">terrain</md-icon>
 
-                            <md-select name="myModel" data-ng-model="user.country" md-on-open="loadCountries()"
+                            <md-select name="country" data-ng-model="user.country" md-on-open="loadCountries()"
                                        required>
+                                <div ng-messages="createUserForm.country.$error" ng-show="createUserForm.country.$dirty">
+                                    <div ng-message="required">This is required!</div>
+                                </div>
                                 <md-select-label>{{user.country}}</md-select-label>
                                 <md-option ng-repeat="country in countries" ng-value="country.name"> {{country.name}}
                                 </md-option>
@@ -283,29 +85,59 @@
 
                 <div class="md-dialog-content" layout-align="center center" flex>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="firstName" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="firstName" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-36 md-accent">account_box</md-icon>
                             <label>Firstname</label>
                             <input type="text" id="firstName" name="myFirstName"
-                                   data-ng-model="user.firstName" required>
+                                   data-ng-model="user.firstName" ng-minlength="2" ng-maxlength="15" required>
+
+                            <div ng-messages="createUserForm.firstName.$error" class="" role="alert">
+
+                                <div ng-if="createUserForm.firstName.$error.required">
+                                    <div ng-message-exp="'required'" class="">
+                                        This field is empty ! Please, enter a firstname
+                                    </div>
+                                </div>
+                                <div ng-if="createUserForm.firstName.$error.minlength || createUserForm.firstName.$error.maxlength">
+                                    <div ng-message-exp="['minlength', 'maxlength']" class="">
+                                        Your firstname must be between 2 and 15 characters long
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="lastName" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-36 md-primary">account_box</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="lastName" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-36 md-accent">account_box</md-icon>
                             <label>Lastname</label>
                             <input type="text" id="lastName" name="myLastName"
-                                   data-ng-model="user.lastName" required>
+                                   data-ng-model="user.lastName" ng-minlength="2" ng-maxlength="15" required>
+
+                            <div ng-messages="createUserForm.lastName.$error" class="" role="alert">
+
+                                <div ng-if="createUserForm.lastName.$error.required">
+                                    <div ng-message-exp="'required'" class="">
+                                        This field is empty ! Please, enter a lastname
+                                    </div>
+                                </div>
+                                <div ng-if="createUserForm.lastName.$error.minlength || createUserForm.lastName.$error.maxlength">
+                                    <div ng-message-exp="['minlength', 'maxlength']" class="">
+                                        Your lastname must be between 2 and 15 characters long
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="username" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-36 md-primary">accessibility</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="username" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-36 md-accent">accessibility</md-icon>
                             <label>Username</label>
                             <input type="text" id="username" name="myUsername"
                                    data-ng-model="user.username" required>
@@ -313,9 +145,9 @@
 
                     </md-input-container>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="password" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-36 md-primary">vpn_keys</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="password" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-36 md-accent">vpn_keys</md-icon>
                             <label>Password</label>
                             <input type="password" id="password" name="myPassword"
                                    data-ng-model="user.password" required>
@@ -327,9 +159,9 @@
 
                 <div class="md-dialog-content" layout-align="center end" flex>
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="email" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-24 md-primary">email</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="email" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-24 md-accent">email</md-icon>
                             <label>Email</label>
                             <input type="text" id="email" name="myEmail"
                                    data-ng-model="user.email" required>
@@ -338,9 +170,9 @@
                     </md-input-container>
 
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="pseudo" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-24 md-primary">portrait</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="pseudo" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-24 md-accent">portrait</md-icon>
                             <label>Pseudo</label>
                             <input type="text" id="displayName" name="myDisplayName"
                                    data-ng-model="user.displayName" required>
@@ -349,9 +181,9 @@
                     </md-input-container>
 
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="phone" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-24 md-primary">phone</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="phone" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-24 md-accent">phone</md-icon>
                             <label>Phone</label>
                             <input type="text" id="phone" name="myPhone"
                                    data-ng-model="user.phone" required>
@@ -360,9 +192,9 @@
                     </md-input-container>
 
 
-                    <md-input-container class="md-primary md-hue-1" aria-label="location" layout-align="center center">
-                        <div class="md-primary md-hue-1">
-                            <md-icon class="material-icons md-24 md-primary">my_location</md-icon>
+                    <md-input-container class="md-accent md-hue-1" aria-label="location" layout-align="center center">
+                        <div class="md-accent md-hue-1">
+                            <md-icon class="material-icons md-24 md-accent">my_location</md-icon>
                             <label>Location</label>
                             <input type="text" id="location" name="myLocation"
                                    data-ng-model="user.location" required>

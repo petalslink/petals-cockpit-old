@@ -7,31 +7,110 @@
                  ng-click="selectItem(node)"
                  ng-class="! sItem || sItem === node ? 'normal' : 'faded'">
 
-            <md-button class="btnNav" ng-click="switchChildrenVisibility(node)">
-                <md-icon class="md-24" ng-show="node.childrenWereVisible">chevron_right
-                </md-icon>
-                <md-icon class="md-24" ng-show="! node.childrenWereVisible">expand_more
-                </md-icon>
+                <md-button class="btnNav" ng-click="switchChildrenVisibility(node)">
+                    <md-icon class="md-24" ng-show="node.childrenWereVisible">expand_more
+                    </md-icon>
+                    <md-icon class="md-24" ng-show="! node.childrenWereVisible">chevron_right
+                    </md-icon>
 
-                <md-icon class="md-18 md-accent">{{node.icon}}</md-icon>
-                {{ node.name }}
-            </md-button>
-<!--            <md-icon class="md-18 md-accent" ng-click="delete(sItem.bus)">
+                    <md-icon class="md-18">{{node.icon}}</md-icon>
+                    {{ node.name }}
+                </md-button>
+        </md-list>
+
+        <md-button class="md-icon-button md-ink-ripple btnDelNav" ng-show="node.childrenWereVisible">
+            <md-tooltip md-direction="right">
+                Delete
+            </md-tooltip>
+            <md-icon class="md-18 md-accent busIcon" ng-click="">
                 {{node.iconBusDelete}}
             </md-icon>
-            <md-icon class="md-18 md-accent" ng-click="delete(node)">
+            <md-tooltip md-direction="right">
+                Delete
+            </md-tooltip>
+            <md-icon class="md-18 md-accent nodeIcon" title="delete" ng-click="">
                 {{node.iconNodeDelete}}
             </md-icon>
-            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.component)">
+            <md-tooltip md-direction="right">
+                Delete
+            </md-tooltip>
+            <md-icon class="md-18 md-accent componentIcon" title="delete" ng-click="">
                 {{node.iconComponentDelete}}
             </md-icon>
-            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.serviceunit)">
+            <md-tooltip md-direction="right">
+                Delete
+            </md-tooltip>
+            <md-icon class="md-18 md-accent suIcon" title="delete" ng-click="">
                 {{node.iconServiceUnitDelete}}
             </md-icon>
-            <md-icon class="md-18 md-accent" ng-click="delete.(sItem.service)">
+            <md-tooltip md-direction="right">
+                Delete
+            </md-tooltip>
+            <md-icon class="md-18 md-accent serviceIcon" title="delete" ng-click="">
                 {{node.iconServiceDelete}}
-            </md-icon>-->
-        </md-list>
+            </md-icon>
+        </md-button>
+
+
+        <md-button class="md-icon-button md-ink-ripple btnUpdNav" ng-show="node.childrenWereVisible">
+            <md-tooltip md-direction="right">
+                Update
+            </md-tooltip>
+            <md-icon class="md-16 md-accent busIcon" title="update" ng-click="">
+                {{node.iconBusUpdate}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Update
+            </md-tooltip>
+            <md-icon class="md-18 md-accent nodeIcon" title="update" ng-click="">
+                {{node.iconNodeUpdate}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Update
+            </md-tooltip>
+            <md-icon class="md-18 md-accent componentIcon" title="update" ng-click="">
+                {{node.iconComponentUpdate}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Update
+            </md-tooltip>
+            <md-icon class="md-18 md-accent suIcon" title="update" ng-click="">
+                {{node.iconServiceUnitUpdate}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Update
+            </md-tooltip>
+            <md-icon class="md-18 md-accent serviceIcon" title="update" ng-click="">
+                {{node.iconServiceUpdate}}
+            </md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button md-ink-ripple btnAddNav" ng-show="node.childrenWereVisible">
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent busIcon" title="Add" ng-click="">
+                {{node.iconBusChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent nodeIcon" title="Add" ng-click="">
+                {{node.iconNodeChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent componentIcon" title="Add" ng-click="">
+                {{node.iconComponentChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent suIcon" title="Add" ng-click="">
+                {{node.iconSuChildAdd}}
+            </md-icon>
+        </md-button>
 
 
         <!-- Show node & children nodes -->
