@@ -41,8 +41,8 @@ var BusSchema = new Schema({
 var Bus = mongoose.model('Bus', BusSchema);
 
 var BusDefault = new Bus({
-	name: 'BUS-RH Domain',
-	version: 'Petals 3'
+	name: 'BUS Default',
+	version: 'Petals Default'
 });
 
 BusDefault.update(function (err, saved) {

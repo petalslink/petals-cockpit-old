@@ -41,6 +41,14 @@ var NodeSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	state: {
+		type: String,
+		enum: [
+			'Shutdown',
+			'Started'
+		],
+		default: 'Shutdown'
+	},
 	components: [
 		{
 			type: Schema.Types.ObjectId,
@@ -51,14 +59,15 @@ var NodeSchema = new Schema({
 
 var Node = mongoose.model('Node', NodeSchema);
 
-var NodeDefault = new Node({
+/*var NodeDefault = new Node({
 	name: 'N-Toulouse1',
 	ip: '10.3.44.5',
 	port: '45',
-	parentBus: '5638c7b6a9c9323812434074'
+	parentBus: '',
+	state: 'Shutdown'
 });
 
-NodeDefault.update(function (err, saved) {
+NodeDefault.save(function (err, saved) {
 	if (err) {
 		console.log('Node Default is already saved !', err);
 	}
@@ -68,7 +77,7 @@ NodeDefault.update(function (err, saved) {
 	if (!saved) {
 		console.log('GO Node');
 	}
-});
+});*/
 
 // make this available to our users in our Node applications
 module.exports = Node;

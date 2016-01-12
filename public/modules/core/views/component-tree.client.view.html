@@ -1,7 +1,9 @@
+<!--
 <div data-ng-controller="BusesController as busesCtrl" layout-fill>
 
-    <!-- A dynamic template to build a tree with AngularJS -->
+    &lt;!&ndash; A dynamic template to build a tree with AngularJS &ndash;&gt;
     <script type="text/ng-template" id="my-tmpl">
+
         <md-list class="navTree"
                  ng-model="nodeType"
                  ng-click="selectItem(node)"
@@ -18,7 +20,34 @@
                 </md-button>
         </md-list>
 
-        <md-button class="md-icon-button md-ink-ripple btnDelNav" ng-show="node.childrenWereVisible">
+        <md-button class="md-icon-button md-ink-ripple btnAddNav" ng-click="switchChildrenVisibility(node)">
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent busIcon" title="Add" ng-click="">
+                {{node.iconBusChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent nodeIcon" title="Add" ng-click="">
+                {{node.iconNodeChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent componentIcon" title="Add" ng-click="">
+                {{node.iconComponentChildAdd}}
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add
+            </md-tooltip>
+            <md-icon class="md-18 md-accent suIcon" title="Add" ng-click="">
+                {{node.iconSuChildAdd}}
+            </md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button md-ink-ripple btnDelNav" ng-click="switchChildrenVisibility(node)">
             <md-tooltip md-direction="right">
                 Delete
             </md-tooltip>
@@ -51,69 +80,38 @@
             </md-icon>
         </md-button>
 
-
-        <md-button class="md-icon-button md-ink-ripple btnUpdNav" ng-show="node.childrenWereVisible">
+        <md-button class="md-icon-button md-ink-ripple btnStateNav" ng-click="switchChildrenVisibility(node)">
             <md-tooltip md-direction="right">
-                Update
+                State
             </md-tooltip>
-            <md-icon class="md-16 md-accent busIcon" title="update" ng-click="">
-                {{node.iconBusUpdate}}
+            <md-icon class="md-18 nodeIconState" title="State" ng-click=""
+                     ng-class="{'stateShutdown': node.state == 1, 'stateStarted': node.state == 2}">
+                {{node.iconNodeState}}
             </md-icon>
             <md-tooltip md-direction="right">
-                Update
+                State
             </md-tooltip>
-            <md-icon class="md-18 md-accent nodeIcon" title="update" ng-click="">
-                {{node.iconNodeUpdate}}
+            <md-icon class="md-18 componentIconState" title="State" ng-click=""
+                     ng-class="{'stateUninstalled': component.state, 'stateDeployed': component.state, 'stateStopped': component.state, 'stateStarted': component.state}">
+                {{node.iconComponentState}}
             </md-icon>
             <md-tooltip md-direction="right">
-                Update
+                State
             </md-tooltip>
-            <md-icon class="md-18 md-accent componentIcon" title="update" ng-click="">
-                {{node.iconComponentUpdate}}
+            <md-icon class="md-18 suIconState" title="State" ng-click=""
+                     ng-class="{'stateUndeployed': serviceunit.state, 'stateDeployed': serviceunit.state, 'stateStopped': serviceunit.state, 'stateStarted': serviceunit.state}">
+                {{node.iconServiceUnitState}}
             </md-icon>
             <md-tooltip md-direction="right">
-                Update
+                State
             </md-tooltip>
-            <md-icon class="md-18 md-accent suIcon" title="update" ng-click="">
-                {{node.iconServiceUnitUpdate}}
-            </md-icon>
-            <md-tooltip md-direction="right">
-                Update
-            </md-tooltip>
-            <md-icon class="md-18 md-accent serviceIcon" title="update" ng-click="">
-                {{node.iconServiceUpdate}}
+            <md-icon class="md-18 serviceIconState" title="State" ng-click=""
+                     ng-class="{'stateUninstalled': service.state, 'stateDeployed': service.state, 'stateStopped': service.state, 'stateStarted': service.state}">
+                {{node.iconServiceState}}
             </md-icon>
         </md-button>
 
-        <md-button class="md-icon-button md-ink-ripple btnAddNav" ng-show="node.childrenWereVisible">
-            <md-tooltip md-direction="right">
-                Add
-            </md-tooltip>
-            <md-icon class="md-18 md-accent busIcon" title="Add" ng-click="">
-                {{node.iconBusChildAdd}}
-            </md-icon>
-            <md-tooltip md-direction="right">
-                Add
-            </md-tooltip>
-            <md-icon class="md-18 md-accent nodeIcon" title="Add" ng-click="">
-                {{node.iconNodeChildAdd}}
-            </md-icon>
-            <md-tooltip md-direction="right">
-                Add
-            </md-tooltip>
-            <md-icon class="md-18 md-accent componentIcon" title="Add" ng-click="">
-                {{node.iconComponentChildAdd}}
-            </md-icon>
-            <md-tooltip md-direction="right">
-                Add
-            </md-tooltip>
-            <md-icon class="md-18 md-accent suIcon" title="Add" ng-click="">
-                {{node.iconSuChildAdd}}
-            </md-icon>
-        </md-button>
-
-
-        <!-- Show node & children nodes -->
+        &lt;!&ndash; Show node & children nodes &ndash;&gt;
         <ul>
             <li ng-show="node.visible || searchText.length > 0"
                 ng-repeat="node in node.children | filter:searchText"
@@ -123,4 +121,38 @@
     <ul class="">
         <li ng-repeat="node in rootNodes" ng-include="'my-tmpl'"></li>
     </ul>
+</div>-->
+
+<div ng-app="app" ng-cloak layout-fill>
+    <div ng-controller="TreeController">
+        <div>
+            <md-button class="md-accent md-raised" ng-click="addChild(data)">
+                <md-tooltip md-direction="right">Create New Bus</md-tooltip>
+                <md-icon class="material-icons md-24 accent" aria-label="New">add</md-icon>
+                <label>New Bus</label>
+            </md-button>
+        </div>
+        <div>
+            <ol>
+                <li ya-tree="child in data.children at ol" ng-class="{minimized:child.minimized}">
+                    <md-list class="navTree">
+
+                        <md-icon class="md-18 md-accent" ng-click="toggleMinimized(child)" ng-switch
+                                 on="child.minimized">
+                            <span ng-switch-when="true">&#x25B6;</span>
+                            <span ng-switch-default>&#x25BC;</span>
+                        </md-icon>
+                        <md-button ng-click="select(child)">{{ child.title }}</md-button>
+
+                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="addChild(child)">add</md-icon>
+                        <md-icon title="Delete" class="md-18 md-accent" ng-click="delete(child)">delete</md-icon>
+                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="">create</md-icon>
+
+                    </md-list>
+                    <ol ng-class="{pregnant:child.children.length}"></ol>
+                </li>
+            </ol>
+        </div>
+
+    </div>
 </div>

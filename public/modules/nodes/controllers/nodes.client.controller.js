@@ -86,6 +86,18 @@ nodesApp.controller('NodesCreateController', ['$scope', 'Nodes', 'Notify', 'Buse
 /*		$scope.node = {};*/
 		$scope.node = {	parentBus: $scope.nodeP._id };
 
+		/* Loading States List */
+		$scope.state = null;
+		$scope.states = null;
+
+		$scope.loadStates = function() {
+
+			$scope.states =  $scope.states  || [
+					{id: 1, name: 'Shutdown'},
+					{id: 2, name: 'Started'}
+				];
+		};
+
 		/* Show the msg when Node is Created */
 		$scope.openBottomSheet = function() {
 			$mdBottomSheet.show({
@@ -118,6 +130,31 @@ nodesApp.controller('NodesUpdateController', ['$scope', 'Nodes', 'Notify', 'Buse
 
 		// Find a list of Bus
 		$scope.buses = Buses.getBuses();
+
+		$scope.stateData = [
+			{
+				'title': 'What would you want to have as state ?',
+				'state': 1
+			}
+		];
+
+		/* Loading States List */
+		$scope.state = null;
+		$scope.states = null;
+
+		$scope.loadStates = function() {
+
+			$scope.states =  $scope.states  || [
+					{id: 1, name: 'Shutdown'},
+					{id: 2, name: 'Started'}
+				];
+		};
+
+		$scope.$on(function (event, node) {
+			$scope.states.push(node);
+			console.log('May Be Something Happens !!!!!!');
+
+		});
 
 		// Update existing Node
 		this.update = function(updatedNode) {

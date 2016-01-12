@@ -28,6 +28,34 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             return $mdSidenav('left').isOpen();
         };
 
+        $scope.dataNav = {
+
+            selectedIndex: 0,
+
+            view1Locked: false,
+            view1Label: 'View 1',
+            view1Icon: 'lock_open',
+
+            view2Locked: true,
+            view2Label: 'View 2',
+            view2Icon: 'lock',
+
+            view3Locked: true,
+            view3Label: 'View 3',
+            view3Icon: 'lock',
+
+
+            /* Position Toolbar Tab on Top when it's false */
+            bottom: false
+        };
+        $scope.nextNav = function () {
+            $scope.dataNav.selectedIndex = Math.min($scope.dataNav.selectedIndex + 1, 2, 3);
+        };
+        $scope.previousNav = function () {
+            $scope.dataNav.selectedIndex = Math.max($scope.dataNav.selectedIndex - 1, 0);
+        };
+
+
         $scope.datas = {
 
             selectedIndex: 0,

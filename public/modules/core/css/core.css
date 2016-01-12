@@ -136,7 +136,7 @@ body {
     padding: 0 !important;
 }
 
-.btnUpdNav {
+.btnStateNav {
     min-height: 10px !important;
     position: absolute !important;
     height: 22px !important;
@@ -174,46 +174,81 @@ md-sidenav.md-locked-open {
     margin-left: -20px;
 }
 .componentIcon {
-    margin-left: -23px;
+    margin-left: -22px;
 }
 .suIcon {
     margin-left: -21px;
 }
 .serviceIcon {
-    margin-left: -23px;
+    margin-left: -22px;
 }
 
-/*.busIconDel {
-     margin-left: -2px;
- }
-.nodeIconDel {
-    margin-left: -20px;
-}
-.componentIconDel {
-    margin-left: -23px;
-}
-.suIconDel {
-    margin-left: -21px;
-}
-.serviceIconDel {
-    margin-left: -23px;
-}
-
-.busIconAdd {
+.nodeIconState {
     margin-left: -2px;
 }
-.nodeIconAdd {
-    margin-left: -20px;
+.componentIconState {
+    margin-left: -22px;
 }
-.componentIconAdd {
-    margin-left: -23px;
-}
-.suIconAdd {
+.suIconState {
     margin-left: -21px;
 }
-.serviceIconAdd {
-    margin-left: -23px;
-}*/
+.serviceIconState {
+    margin-left: -22px;
+}
+
+.stateStarted {
+    color: green;
+}
+.stateStarted.active {
+    color: green;
+    background: green;
+    transition: all 0.3s ease-in-out;
+}
+.stateStopped {
+    color: orange;
+}
+
+.stateShutdown {
+    color: red;
+}
+.stateShutdown.active {
+    color: red;
+    background: red;
+    transition: all 0.3s ease-in-out;
+}
+.stateUninstalled {
+    color: black;
+}
+.stateUndeployed{
+    color: black;
+}
+.stateDeployed {
+    color: red;
+}
+
+#separator {
+    border-left : 1px solid #000;
+    height: 30px;
+}
+
+.check {
+    display: inline-block;
+    padding: 12px 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    color: #eee;
+    font-size: 18px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.check.active {
+    background: #00A3E0;
+    transition: all 0.3s ease-in-out;
+}
 
 .normal {
     color: black;
@@ -232,12 +267,12 @@ md-sidenav.md-locked-open {
 
 .navTree {
     padding: 0;
-    margin-left: -50px;
+/*    margin-left: -50px;*/
     text-overflow: ellipsis !important;
     overflow: hidden !important;
     -o-text-overflow: ellipsis !important;
     overflow-wrap: break-word !important;
-    width: 280px !important;
+/*    width: 280px !important;*/
     white-space: nowrap !important;
     left: 0 !important;
 }
@@ -317,8 +352,8 @@ md-sidenav.md-locked-open {
 .md-button.changePosition {
     top: auto;
     right: auto;
-    bottom: 35%;
-    left: 350px;
+    bottom: 40%;
+    left: 320px;
     position: absolute !important;
     background-color: #f5f5f5;
     z-index: 10;
@@ -327,3 +362,31 @@ md-sidenav.md-locked-open {
 .md-sidenav-left {
     z-index: 10;
 }
+
+
+/* ************************************************************** */
+
+* {
+    box-sizing: border-box
+}
+ol {
+    border: 0 none transparent;
+    padding: 0;
+}
+li {
+    list-style:none;
+    margin: 0;
+/*    border: 1px solid #ddd;*/
+    padding: 0 0 0 6px;
+}
+.ui-sortable li {
+    cursor: move;
+}
+
+.pregnant {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.minimized > ol > li { display:none; }
+.minimized > ol {   border: 0 none transparent; }

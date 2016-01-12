@@ -71,26 +71,19 @@ var UserSchema = new Schema({
      },*/
     providerData: {},
     additionalProvidersData: {},
-    roles: {
-        type: [{
-            type: String,
-            enum: ['user', 'admin']
-        }],
-        default: ['user']
-    },
-    capacities: {
-        type: [{
-            type: String,
-            enum: ['user',
-                    'admin',
-                    'adminBus',
-                    'developer',
-                    'technicalMonitoring',
-                    'buisnessMonitoring'
-            ]
-        }],
-        required: 'Please Select a capacities',
-        default: ['user']
+    /*
+    * viewer -> Just see
+    * developer -> All
+    * admin -> conf Bus
+    * */
+    capabilities: {
+        type: String,
+        enum: [
+            'viewer',
+            'developer',
+            'admin'
+        ],
+        default: 'user'
     },
     updated: {
         type: Date,
@@ -118,12 +111,11 @@ var UserSchema = new Schema({
         trim: true
     },
     gender: {
-        type: [{
-            type: String,
-            enum: ['male',
-                    'female'
-            ]
-        }],
+        type: String,
+        enum: [
+            'Male',
+            'Female'
+        ],
         default: '',
         trim: true
     },
@@ -230,13 +222,7 @@ var UserDefault = new User({
     username: 'SuperAdmin',
     password: 'admin2015',
     roles: 'admin',
-    capacities: ['user',
-                'admin',
-                'adminBus',
-                'developer',
-                'technicalMonitoring',
-                'buisnessMonitoring'
-    ],
+    capabilities: 'admin',
     phone: '01.01.01.01.01',
     country: 'France',
     location: 'Toulouse',
@@ -244,7 +230,7 @@ var UserDefault = new User({
 });
 
 // call the built-in save method to save to the database
-UserDefault.save(function (err, saved) {
+UserDefault.update(function (err, saved) {
     if (err) {
         console.log('User Default is already saved !', err);
     }

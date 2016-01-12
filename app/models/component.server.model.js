@@ -29,6 +29,16 @@ var ComponentSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	state: {
+		type: String,
+		enum: [
+			'Uninstalled',
+			'Deployed',
+			'Stopped',
+			'Started'
+		],
+		default: 'Uninstalled'
+	},
 	serviceUnits: [
 		{
 			type: Schema.Types.ObjectId,
@@ -39,12 +49,13 @@ var ComponentSchema = new Schema({
 
 var Component = mongoose.model('Component', ComponentSchema);
 
-var ComponentDefault = new Component({
+/*var ComponentDefault = new Component({
 	name: 'SE-ACTIVITI',
-	parentServer: '5638c835379e96f815ea4298'
+	parentServer: '',
+	state: 'Uninstalled'
 });
 
-ComponentDefault.update(function (err, saved) {
+ComponentDefault.save(function (err, saved) {
 	if (err) {
 		console.log('Component Default is already saved !', err);
 	}
@@ -54,7 +65,7 @@ ComponentDefault.update(function (err, saved) {
 	if (!saved) {
 		console.log('GO Component');
 	}
-});
+});*/
 
 // make this available to our users in our Node applications
 module.exports = Component;

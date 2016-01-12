@@ -16,17 +16,6 @@ var ServiceunitSchema = new Schema({
 		trim: true,
 		required: 'Please fill Service Unit name'
 	},
-	states: {
-		type: [{
-			type: String,
-			enum: ['unknown',
-				'started',
-				'stopped',
-				'shutdown'
-			]
-		}],
-		default: ['unknown']
-	},
 	parentComponent: {
 		type: Schema.Types.ObjectId,
 		ref: 'Component',
@@ -40,6 +29,16 @@ var ServiceunitSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	state: {
+		type: String,
+		enum: [
+			'Undeployed',
+			'Deployed',
+			'Stopped',
+			'Started'
+		],
+		default: 'Undeployed'
+	},
 	services: [
 		{
 			type: Schema.Types.ObjectId,
@@ -50,13 +49,13 @@ var ServiceunitSchema = new Schema({
 
 var Serviceunit = mongoose.model('Serviceunit', ServiceunitSchema);
 
-var ServiceUnitDefault = new Serviceunit({
+/*var ServiceUnitDefault = new Serviceunit({
 	name: 'SU-Achat',
-	states: 'started',
-	parentComponent: '5638c8c212fe09dc1d49ea04'
+	parentComponent: '',
+	state: 'Undeployed'
 });
 
-ServiceUnitDefault.update(function (err, saved) {
+ServiceUnitDefault.save(function (err, saved) {
 	if (err) {
 		console.log('Service Unit Default is already saved !', err);
 	}
@@ -66,7 +65,7 @@ ServiceUnitDefault.update(function (err, saved) {
 	if (!saved) {
 		console.log('GO Service Unit');
 	}
-});
+});*/
 
 // make this available to our users in our Node applications
 module.exports = Serviceunit;

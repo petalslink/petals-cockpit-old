@@ -48,7 +48,6 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					children: [],
 					icon: 'device_hub',
 					iconBusDelete: 'close',
-					iconBusUpdate: 'build',
 					iconBusChildAdd: 'add'
 				};
 
@@ -66,10 +65,11 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					ip: val.ip,
 					port: val.port,
 					parentBus: val.parentBus,
+					state: val.state,
 					children: [],
 					icon: 'developer_mode',
 					iconNodeDelete: 'close',
-					iconNodeUpdate: 'build',
+					iconNodeState: 'fiber_smart_record',
 					iconNodeChildAdd: 'add',
 					parent: bus
 				};
@@ -87,10 +87,11 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					name: val.name,
 					parentServer: val.parentServer,
 					type: 'component',
+					state: val.state,
 					children: [],
 					icon: 'extension',
 					iconComponentDelete: 'close',
-					iconComponentUpdate: 'build',
+					iconComponentState: 'fiber_smart_record',
 					iconComponentChildAdd: 'add',
 					parent: node
 				};
@@ -107,12 +108,12 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					_id: val._id,
 					name: val.name,
 					parentComponent: val.parentComponent,
-					state: val.states,
 					type: 'su',
+					state: val.state,
 					children: [],
 					icon: 'folder_special',
 					iconServiceUnitDelete: 'close',
-					iconServiceUnitUpdate: 'build',
+					iconServiceUnitState: 'fiber_smart_record',
 					iconSuChildAdd: 'add',
 					parent: component
 				};
@@ -130,10 +131,11 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					name: val.name,
 					parentServiceunit: val.parentServiceunit,
 					type: 'service',
+					state: val.state,
 					children: [],
 					icon: 'usb',
 					iconServiceDelete: 'close',
-					iconServiceUpdate: 'build',
+					iconServiceState: 'fiber_smart_record',
 					parent: serviceunit
 				};
 
@@ -198,6 +200,92 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 		}
 
 	}]);
+
+
+app.controller('TreeController', function ($scope, $timeout) {
+	$scope.json = '';
+	$scope.data = {
+		children: [{
+			title: 'Bus Test',
+			children: [{
+				title: 'Node Test',
+				children: [{
+					title: 'Component Test',
+					children: [{
+						title: 'SE Test',
+						children: [{
+							title: 'Service Test'
+						}]
+					}]
+				}]
+			}]
+		}]
+	};
+
+	$scope.getJson = function () {
+		$scope.json = angular.toJson($scope.data);
+	};
+
+	$scope.toggleMinimized = function (child) {
+		child.minimized = !child.minimized;
+	};
+
+	$scope.addChild = function (child) {
+		child.children.push({
+			title: '',
+			children: []
+		});
+	};
+
+	$scope.delete = function (child) {
+		function walk(target) {
+			var children = target.children;
+			var i;
+			if (children) {
+				i = children.length;
+				while (i--) {
+					if (children[i] === child) {
+						return children.splice(i, 1);
+					} else {
+						walk(children[i])
+					}
+				}
+			}
+		}
+		walk($scope.data);
+	};
+
+	$scope.update = function (event, ui) {
+
+		var root = event.target,
+			item = ui.item,
+			parent = item.parent(),
+			target = (parent[0] === root) ? $scope.data : parent.scope().child,
+			child = item.scope().child,
+			index = item.index();
+
+		target.children || (target.children = []);
+
+		function walk(target, child) {
+			var children = target.children;
+			var i;
+			if (children) {
+				i = children.length;
+				while (i--) {
+					if (children[i] === child) {
+						return children.splice(i, 1);
+					} else {
+						walk(children[i], child);
+					}
+				}
+			}
+		}
+		walk($scope.data, child);
+
+		target.children.splice(index, 0, child);
+	};
+
+});
 
 /*
 

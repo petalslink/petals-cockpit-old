@@ -28,17 +28,28 @@ var ServiceSchema = new Schema({
 	updated: {
 		type: Date,
 		default: Date.now
+	},
+	state: {
+		type: String,
+		enum: [
+			'Uninstalled',
+			'Deployed',
+			'Stopped',
+			'Started'
+		],
+		default: 'Uninstalled'
 	}
 });
 
 var Service = mongoose.model('Service', ServiceSchema);
 
-var ServiceDefault = new Service({
+/*var ServiceDefault = new Service({
 	name: 'S-Tools',
-	parentServiceunit:'5638c914c9053e4422f6c203'
+	parentServiceunit: '',
+	state: 'Uninstalled'
 });
 
-ServiceDefault.update(function (err, saved) {
+ServiceDefault.save(function (err, saved) {
 	if (err) {
 		console.log('Service Default is already saved !', err);
 	}
@@ -48,7 +59,7 @@ ServiceDefault.update(function (err, saved) {
 	if (!saved) {
 		console.log('GO Service');
 	}
-});
+});*/
 
 // make this available to our users in our Node applications
 module.exports = Service;
