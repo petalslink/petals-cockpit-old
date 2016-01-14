@@ -158,14 +158,20 @@
                         </md-icon>
                         <md-button ng-click="select(child)">{{ child.title }}</md-button>
 
-                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="showModalChangeName(child)">
+                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="renameChild(child)">
                             edit
                         </md-icon>
-                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="showModalBranch(child)"
+                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="addChild(child)"
                                  ng-hide="hideAdd(child) || child.minimized">add
                         </md-icon>
                         <md-icon title="Delete" class="md-18 md-accent" ng-click="delete(child)"
                                  ng-hide="child.minimized">delete
+                        </md-icon>
+                        <md-icon title="Up Child" class="md-18 md-accent" ng-click="upChild(child)"
+                                 ng-hide="child.minimized">keyboard_arrow_up
+                        </md-icon>
+                        <md-icon title="Down Child" class="md-18 md-accent" ng-click="downChild(child)"
+                                 ng-hide="child.minimized">keyboard_arrow_down
                         </md-icon>
 
                     </md-list>

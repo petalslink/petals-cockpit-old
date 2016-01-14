@@ -1,0 +1,73 @@
+<md-dialog aria-label="Add Branch" md-theme="core-theme" md-whiteframe-32dp ng-cloak>
+    <form name="myFormAddBranch">
+
+        <md-toolbar layout="row" class="md-accent">
+
+            <md-button class="md-icon-button md-primary"
+                       ng-click="closeDialog()">
+                <md-tooltip md-direction="bottom">
+                    Back
+                </md-tooltip>
+                <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
+            </md-button>
+
+            <div class="md-toolbar-tools md-primary" layout-align="center center">
+                <h1 class="md-title md-primary">
+                    <md-tooltip md-direction="bottom">
+                        Create New Branch
+                    </md-tooltip>
+                    <md-icon class="md-24 md-primary" aria-label="add">edit</md-icon>
+                    New Branch
+                </h1>
+            </div>
+
+        </md-toolbar>
+
+        <md-content layout-padding layout="row">
+
+            <div layout="row" layout-sm="column" layout-align="start center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <h3>New <code>{{formChildData.type}}</code></h3>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Name</label>
+                    <input type="text" data-ng-model="formChildData.title" placeholder="Name">
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column" layout-align="end center" flex>
+
+                <md-select placeholder="Type" ng-model="formChildData.componentType" required>
+                    <md-optgroup label="Select Component Type">
+                        <md-option ng-value="choice" ng-repeat="choice in componentTypeList">{{choice.name}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+
+                <div class="errors" ng-messages="myFormAddBranch.componentType.$error" ng-if="myFormAddBranch.$dirty">
+                    <div ng-message="required">Required</div>
+                </div>
+            </div>
+        </md-content>
+
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-align="end center" flex>
+                <md-button ng-click="validDialog()"
+                           class="md-raised md-whiteframe-z3 md-whiteframe-6dp" ng-disabled="myFormAddBranch.$invalid"
+                           md-autofocus layout-align="center end">
+                    <md-tooltip md-direction="bottom">ok</md-tooltip>
+                    <md-icon class="md-accent md-24">done</md-icon>
+                </md-button>
+
+                <md-button ng-click="closeDialog()"
+                           class="md-raised md-whiteframe-z3 md-whiteframe-6dp" layout-align="center end">
+                    <md-tooltip md-direction="bottom">cancel</md-tooltip>
+                    <md-icon class="md-accent md-24">close</md-icon>
+                </md-button>
+            </div>
+        </md-content>
+
+    </form>
+</md-dialog>

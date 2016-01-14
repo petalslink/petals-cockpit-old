@@ -2,9 +2,9 @@
 
 var app = angular.module('core');
 
-app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope', '$mdDialog', '$log', 'verifyDelete',
+app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope', '$mdDialog', '$log', 'verifyDelete', 'verifyUpdate',
 
-	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope, $mdDialog, $log, verifyDelete) {
+	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope, $mdDialog, $log, verifyDelete, verifyUpdate) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 		$scope.template = '';
@@ -201,7 +201,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 
 /*		$scope.showModalBranch = showModalBranch;*/
 
-		$scope.showModalChangeName = function (child) {
+/*		$scope.showModalChangeName = function (child) {
 
 			$scope.formChildData.title = child.title;
 			$scope.formChildData.type = child.type;
@@ -236,22 +236,14 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			$scope.hide = function () {
 				$mdDialog.hide();
 			};
-			$scope.ok = function () {
-				if ($mdDialog.$valid) {
-					$log.info('Form is valid');
-					$mdDialog.close();
 
-				} else {
-					$log.error('Form is not valid');
-				}
-			};
 			$scope.cancel = function () {
 				$mdDialog.cancel();
 			};
 			$scope.child = child;
-		}
+		}*/
 
-		$scope.showModalBranch = function (child) {
+		$scope.addChild = function (child) {
 
 			switch(child.type) {
 				case 'BUS':
@@ -274,43 +266,41 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 
 			$mdDialog.show({
 				parent: angular.element(document.body),
-				targetEvent: child,
 				clickOutsideToClose: true,
-				template: '<form name="myFormNewBranch">' +
-				'<md-content layout-padding layout="row" layout-sm="column" class="md-accent">' +
-				'<p>New {{formChildData.type}}</p><br>' +
-				'<p>Enter name: </p>' +
-				'<input type="text" ng-model="formChildData.title" />' +
-				'<br/>' +
-				'<label ng-hide="!isComponent(formChildData)">Choice Component Type : </label>' +
-				'<md-select ng-model="formChildData.componentType" ng-hide="!isComponent(formChildData)">' +
-				'<md-option ng-value="choice" ng-repeat="choice in componentTypeList">{{choice.name}}</md-option>' +
-				'</md-select>' +
-				'<br/>' +
-				'<md-button ng-click="ok(); answer();" class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">' +
-				'<md-tooltip md-direction="bottom">ok</md-tooltip>' +
-				'<md-icon class="md-accent md-24">done</md-icon>' +
-				'</md-button>' +
-				'<md-button ng-click="cancel()" class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">' +
-				'<md-tooltip md-direction="bottom">cancel</md-tooltip>' +
-				'<md-icon class="md-accent md-24">cancel</md-icon>' +
-				'</md-button>' +
-				'</md-content>' +
-				'</form>',
-				resolve: {
-					child: function () {
-						return child;
-					}
+				templateUrl: '/modules/core/views/modal.add.branch.html',
+				locals: {
+					formChildData: $scope.formChildData
 				},
-				scope: $scope
+				controller: function DialogController($scope, $mdDialog, formChildData){
+					$scope.formChildData = formChildData;
 
-			}).then(function (answer) {
-				$scope.status = 'You said the information was "' + answer + '".';
-				$scope.addChild(child);
+					$scope.closeDialog = function() {
+						$mdDialog.cancel();
+					};
+					$scope.validDialog = function() {
+						$mdDialog.hide();
+					};
+				}
+
+			}).then(function () {
+
+				if ( $scope.formChildData.type === 'COMPONENT') {
+					child.children.push({
+						title: $scope.formChildData.title,
+						type: $scope.formChildData.type,
+						componentType: $scope.formChildData.componentType,
+						children: []
+					});
+				} else {
+					child.children.push({
+						title: $scope.formChildData.title,
+						type: $scope.formChildData.type,
+						children: []
+					});
+				}
+
 				$scope.formChildData.title = '';
-				console.log(answer);
-			}, function () {
-				$scope.status = 'You cancelled the dialog.';
+
 			});
 		};
 
@@ -366,32 +356,99 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			return (child.type === 'COMPONENT');
 		};
 
-		$scope.addChild = function (child) {
-			if ( $scope.formChildData.type === 'COMPONENT') {
-				child.children.push({
-					title: $scope.formChildData.title,
-					type: $scope.formChildData.type,
-					componentType: $scope.formChildData.componentType,
-					children: []
-				});
-			} else {
-				child.children.push({
-					title: $scope.formChildData.title,
-					type: $scope.formChildData.type,
-					children: []
-				});
+		$scope.upChild = function (child) {
+			function walk(target) {
+				var children = target.children,
+					i;
+				if (children) {
+					i = children.length;
+					while (i--) {
+						if (children[i] === child) {
+							if (i == 0) {
+								return children;
+							} else {
+								children.splice(i, 1);
+								return children.splice((i - 1), 0, child);
+							}
+						} else {
+							walk(children[i])
+						}
+					}
+				}
 			}
+
+			walk($scope.data);
+		};
+
+		$scope.downChild = function (child) {
+			function walk(target) {
+				var children = target.children,
+					i;
+				if (children) {
+					i = children.length;
+					while (i--) {
+						if (children[i] === child) {
+							if (i == children.length - 1) {
+								return children;
+							} else {
+								children.splice(i, 1);
+								return children.splice(i + 1, 0, child);
+							}
+						} else {
+							walk(children[i])
+						}
+					}
+				}
+			}
+
+			walk($scope.data);
+		};
+
+		$scope.delete = function (child) {
+
+			verifyDelete(child)
+				.then(function () {
+
+					function walk(target) {
+						var children = target.children;
+						var i;
+						if (children) {
+							i = children.length;
+							while (i--) {
+								if (children[i] === child) {
+									return children.splice(i, 1);
+								} else {
+									walk(children[i])
+								}
+							}
+						}
+					}
+
+					walk($scope.data);
+				});
 		};
 
 		$scope.renameChild = function (child) {
-			child.title = $scope.formChildData.title;
-		};
 
-		$scope.delete = function(child) {
+			verifyUpdate(child)
+				.then(function () {
 
-			verifyDelete(child).then(function() {
+					child.title = $scope.formChildData.title;
+				});
 
-				function walk(target) {
+
+			$scope.update = function (event, ui) {
+
+				var root = event.target;
+				var item = ui.item;
+				var parent = item.parent();
+				var target = (parent[0] === root) ? $scope.data : parent.scope().child;
+				var child = item.scope().child;
+				var index = item.index();
+
+				target.children || (target.children = []);
+
+				function walk(target, child) {
 					var children = target.children;
 					var i;
 					if (children) {
@@ -400,48 +457,64 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 							if (children[i] === child) {
 								return children.splice(i, 1);
 							} else {
-								walk(children[i])
+								walk(children[i], child);
 							}
 						}
 					}
 				}
-				walk($scope.data);
-			});
-		};
 
-		$scope.update = function (event, ui) {
+				walk($scope.data, child);
 
-			var root = event.target,
-				item = ui.item,
-				parent = item.parent(),
-				target = (parent[0] === root) ? $scope.data : parent.scope().child,
-				child = item.scope().child,
-				index = item.index();
-
-			target.children || (target.children = []);
-
-			function walk(target, child) {
-				var children = target.children;
-				var i;
-				if (children) {
-					i = children.length;
-					while (i--) {
-						if (children[i] === child) {
-							return children.splice(i, 1);
-						} else {
-							walk(children[i], child);
-						}
-					}
-				}
+				target.children.splice(index, 0, child);
 			}
-			walk($scope.data, child);
-
-			target.children.splice(index, 0, child);
 		};
-
-
 
 	}]);
+
+
+app.factory('verifyDelete', function($mdDialog) {
+
+	return function(child) {
+
+		var confirm = $mdDialog.confirm()
+
+			.title('Confirm Your Choice')
+
+			.content('Are you sure you want to delete ' + child.title + ' ' + '?')
+
+			.ariaLabel('Delete')
+
+			.ok('Delete')
+
+			.cancel('Cancel');
+
+		return $mdDialog.show(confirm);
+
+	}
+
+});
+
+app.factory('verifyUpdate', function($mdDialog) {
+
+	return function(child) {
+
+		var confirm = $mdDialog.confirm()
+
+			.title('Confirm Your Choice')
+
+			.content('Are you sure you want to update ' + child.title + ' ' + '?')
+
+			.ariaLabel('Update')
+
+			.ok('Update')
+
+			.cancel('Cancel');
+
+		return $mdDialog.show(confirm);
+
+	}
+
+});
 
 /*
 

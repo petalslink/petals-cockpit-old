@@ -166,25 +166,3 @@ app.service('Menus', [
 		this.addMenu('topbar');
 	}
 ]);
-
-app.factory('verifyDelete', function($mdDialog) {
-
-	return function(child) {
-
-		var confirm = $mdDialog.confirm()
-
-			.title('Confirm Your Choice')
-
-			.content('Are you sure you want to delete ' + child.title + ' ' + '?')
-
-			.ariaLabel('Delete')
-
-			.ok('Delete')
-
-			.cancel('Cancel');
-
-		return $mdDialog.show(confirm);
-
-	}
-
-});
