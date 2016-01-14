@@ -123,15 +123,29 @@
     </ul>
 </div>-->
 
-<div ng-app="app" ng-cloak layout-fill>
-    <div ng-controller="TreeController">
-        <div>
-            <md-button class="md-accent md-raised" ng-click="addChild(data)">
-                <md-tooltip md-direction="right">Create New Bus</md-tooltip>
-                <md-icon class="material-icons md-24 accent" aria-label="New">add</md-icon>
-                <label>New Bus</label>
-            </md-button>
-        </div>
+<div layout-fill>
+    <div>
+
+        <md-content class="md-accent" ng-controller="HomeController">
+            <md-menu-item>
+                <md-button class="md-raised md-cornered md-shadow-bottom-z-2"
+                           ng-click="showModalBranch(data);close()">
+                    <md-tooltip md-direction="right">
+                        Create
+                    </md-tooltip>
+                    <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub
+                    </md-icon>
+                    <p flex>NEW ESB </p>
+                </md-button>
+            </md-menu-item>
+        </md-content>
+
+        <!--            <md-button class="md-accent md-raised" ng-click="addChild(data)">
+                        <md-tooltip md-direction="right">Create New Bus</md-tooltip>
+                        <md-icon class="material-icons md-24 accent" aria-label="New">add</md-icon>
+                        <label>New Bus</label>
+                    </md-button>-->
+
         <div>
             <ol>
                 <li ya-tree="child in data.children at ol" ng-class="{minimized:child.minimized}">
@@ -144,15 +158,20 @@
                         </md-icon>
                         <md-button ng-click="select(child)">{{ child.title }}</md-button>
 
-                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="addChild(child)">add</md-icon>
-                        <md-icon title="Delete" class="md-18 md-accent" ng-click="delete(child)">delete</md-icon>
-                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="">create</md-icon>
+                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="showModalChangeName(child)">
+                            edit
+                        </md-icon>
+                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="showModalBranch(child)"
+                                 ng-hide="hideAdd(child) || child.minimized">add
+                        </md-icon>
+                        <md-icon title="Delete" class="md-18 md-accent" ng-click="delete(child)"
+                                 ng-hide="child.minimized">delete
+                        </md-icon>
 
                     </md-list>
                     <ol ng-class="{pregnant:child.children.length}"></ol>
                 </li>
             </ol>
         </div>
-
     </div>
 </div>

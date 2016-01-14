@@ -33,14 +33,14 @@ coreApp.controller('HeaderController', ['$scope', '$state', 'Authentication', 'M
             selectedIndex: 0,
 
             view1Locked: false,
-            view1Label: 'View 1',
+            view1Label: 'View Bus',
             view1Icon: 'lock_open',
 
-            view2Locked: true,
-            view2Label: 'View 2',
+            view2Locked: false,
+            view2Label: 'View Service',
             view2Icon: 'lock',
 
-            view3Locked: true,
+            view3Locked: false,
             view3Label: 'View 3',
             view3Icon: 'lock',
 

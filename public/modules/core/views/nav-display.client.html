@@ -1,14 +1,14 @@
-<div md-theme="core-theme" layout-fill flex ng-cloak>
+<div md-theme="core-theme" layout-fill ng-cloak>
 
     <md-tabs md-dynamic-height="true" class="md-accent" md-on-selected="dataNav.selectedIndex"
-             md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}">
+             md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}" flex-auto="">
 
         <md-tab id="tab1" ng-disabled="dataNav.view1Locked">
 
             <md-tab-label class="md-primary">
-                <md-tooltip md-direction="bottom">
+<!--                <md-tooltip md-direction="top">
                     Nav 1
-                </md-tooltip>
+                </md-tooltip>-->
                 <md-icon class="material-icons md-24 md-primary">{{ dataNav.view1Icon }}</md-icon>
                 <label hide-sm>
                     {{ dataNav.view1Label }}
@@ -23,9 +23,9 @@
 
         <md-tab id="tab2" ng-disabled="dataNav.view2Locked">
             <md-tab-label>
-                <md-tooltip md-direction="bottom">
+<!--                <md-tooltip md-direction="top">
                     Nav 2
-                </md-tooltip>
+                </md-tooltip>-->
                 <md-icon class="material-icons md-24 md-primary">{{ dataNav.view2Icon }}</md-icon>
                 <label hide-sm>
                     {{ dataNav.view2Label }}
@@ -36,9 +36,9 @@
             </md-tab-body>-->
         </md-tab>
 
-        <md-tab id="tab3" ng-disabled="dataNav.view3Locked">
+<!--        <md-tab id="tab3" ng-disabled="dataNav.view3Locked">
             <md-tab-label>
-                <md-tooltip md-direction="bottom">
+                <md-tooltip md-direction="top">
                     Nav 3
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary">{{ dataNav.view3Icon }}</md-icon>
@@ -46,9 +46,9 @@
                     {{ dataNav.view3Label }}
                 </label>
             </md-tab-label>
-<!--            <md-tab-body ng-show="tab==3">
+&lt;!&ndash;            <md-tab-body ng-show="tab==3">
 
-            </md-tab-body>-->
-        </md-tab>
+            </md-tab-body>&ndash;&gt;
+        </md-tab>-->
 
 </div>

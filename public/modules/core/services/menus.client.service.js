@@ -1,7 +1,9 @@
 'use strict';
 
+var app = angular.module('core');
+
 //Menu service used for managing  menus
-angular.module('core').service('Menus', [
+app.service('Menus', [
 
 	function() {
 		// Define a set of default roles
@@ -164,3 +166,25 @@ angular.module('core').service('Menus', [
 		this.addMenu('topbar');
 	}
 ]);
+
+app.factory('verifyDelete', function($mdDialog) {
+
+	return function(child) {
+
+		var confirm = $mdDialog.confirm()
+
+			.title('Confirm Your Choice')
+
+			.content('Are you sure you want to delete ' + child.title + ' ' + '?')
+
+			.ariaLabel('Delete')
+
+			.ok('Delete')
+
+			.cancel('Cancel');
+
+		return $mdDialog.show(confirm);
+
+	}
+
+});

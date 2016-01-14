@@ -1,4 +1,4 @@
-<section data-ng-controller="BusesCreateController as busCtrl" md-theme="bus-theme" md-whiteframe-32dp>
+<section data-ng-controller="BusesCreateController" md-theme="bus-theme" md-whiteframe-32dp>
     <form name="createBusForm">
 
         <md-toolbar layout="row" class="md-primary md-hue-2">
@@ -11,7 +11,7 @@
                 <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
             </md-button>
 
-            <md-button ng-click="create(bus); close(); answer('useful'); openBottomSheet()"
+            <md-button ng-click="addChild(data.bus);create(bus); close(); answer('useful'); openBottomSheet()"
                        class="md-fab md-mini md-accent md-fab-bottom-left margButtonMiniFloat md-whiteframe-z3 md-whiteframe-6dp">
                 <md-tooltip md-direction="bottom">
                     Create New Bus

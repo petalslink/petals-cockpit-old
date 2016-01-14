@@ -2,16 +2,16 @@
 
 var app = angular.module('core');
 
-app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope',
+app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope', '$mdDialog', '$log', 'verifyDelete',
 
-	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope) {
+	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope, $mdDialog, $log, verifyDelete) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 		$scope.template = '';
 
 		$scope.isOpen = false;
 
-		// Declare scope functions
+/*		// Declare scope functions
 		$scope.selectItem = selectItem;
 		$scope.switchChildrenVisibility = switchChildrenVisibility;
 
@@ -21,19 +21,19 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 
 			$scope.sItem = node;
 			$scope.template = node.type;
-		}
+		}*/
 
 
 		// Get initial values
-		$q.all([
+/*		$q.all([
 			Buses.getBuses().$promise,
 			Nodes.getNodes().$promise,
 			Components.getComponents().$promise,
 			Serviceunits.getServiceunits().$promise,
 			Services.getServices().$promise
-		]).then(buildTree);
+		]).then(buildTree);*/
 
-		function buildTree(data) {
+/*		function buildTree(data) {
 
 			var roots = [];
 
@@ -177,7 +177,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 				console.log('May Be Something Happens !!!!!!');
 
 			});
-		}
+		}*/
 
 
 
@@ -189,7 +189,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			console.log(node.children);
 		}*/
 
-		/* 2 in 1 states */
+/*		/!* 2 in 1 states *!/
 		function switchChildrenVisibility( node ) {
 			var visible = node.childrenWereVisible;
 
@@ -197,95 +197,251 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			node.children.forEach( function( child, index, arr ) {
 				child.visible =  node.childrenWereVisible;
 			})
+		}*/
+
+/*		$scope.showModalBranch = showModalBranch;*/
+
+		$scope.showModalChangeName = function (child) {
+
+			$scope.formChildData.title = child.title;
+			$scope.formChildData.type = child.type;
+			if (child.type === 'COMPONENT') {
+				$scope.formChildData.componentType = child.componentType;
+			}
+
+			$mdDialog.show({
+				parent: angular.element(document.body),
+				targetEvent: child,
+				clickOutsideToClose: true,
+				templateUrl: '/modules/core/views/modal.change.name.html',
+				resolve: {
+					child: function () {
+						return child;
+					}
+				},
+				scope: $scope,
+				controller: DialogController
+
+			}).then(function (value) {
+				$scope.renameChild(child);
+				$scope.formChildData.title = '';
+				$scope.formChildData.componentType = '';
+				console.log(value);
+			}, function (reject) {
+				console.log(reject);
+			});
+		};
+
+		function DialogController($scope, $mdDialog, child) {
+			$scope.hide = function () {
+				$mdDialog.hide();
+			};
+			$scope.ok = function () {
+				if ($mdDialog.$valid) {
+					$log.info('Form is valid');
+					$mdDialog.close();
+
+				} else {
+					$log.error('Form is not valid');
+				}
+			};
+			$scope.cancel = function () {
+				$mdDialog.cancel();
+			};
+			$scope.child = child;
 		}
+
+		$scope.showModalBranch = function (child) {
+
+			switch(child.type) {
+				case 'BUS':
+					$scope.formChildData.title = 'Server ';
+					$scope.formChildData.type = 'SERVER';
+					break;
+				case 'SERVER':
+					$scope.formChildData.title = 'BC- SE-';
+					$scope.formChildData.type = 'COMPONENT';
+					$scope.formChildData.componentType = $scope.componentTypeList[0];
+					break;
+				case 'COMPONENT':
+					$scope.formChildData.title = 'SU-Service-';
+					$scope.formChildData.type = 'SU';
+					break;
+				default:
+					$scope.formChildData.title = 'Bus ';
+					$scope.formChildData.type = 'BUS';
+			}
+
+			$mdDialog.show({
+				parent: angular.element(document.body),
+				targetEvent: child,
+				clickOutsideToClose: true,
+				template: '<form name="myFormNewBranch">' +
+				'<md-content layout-padding layout="row" layout-sm="column" class="md-accent">' +
+				'<p>New {{formChildData.type}}</p><br>' +
+				'<p>Enter name: </p>' +
+				'<input type="text" ng-model="formChildData.title" />' +
+				'<br/>' +
+				'<label ng-hide="!isComponent(formChildData)">Choice Component Type : </label>' +
+				'<md-select ng-model="formChildData.componentType" ng-hide="!isComponent(formChildData)">' +
+				'<md-option ng-value="choice" ng-repeat="choice in componentTypeList">{{choice.name}}</md-option>' +
+				'</md-select>' +
+				'<br/>' +
+				'<md-button ng-click="ok(); answer();" class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">' +
+				'<md-tooltip md-direction="bottom">ok</md-tooltip>' +
+				'<md-icon class="md-accent md-24">done</md-icon>' +
+				'</md-button>' +
+				'<md-button ng-click="cancel()" class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">' +
+				'<md-tooltip md-direction="bottom">cancel</md-tooltip>' +
+				'<md-icon class="md-accent md-24">cancel</md-icon>' +
+				'</md-button>' +
+				'</md-content>' +
+				'</form>',
+				resolve: {
+					child: function () {
+						return child;
+					}
+				},
+				scope: $scope
+
+			}).then(function (answer) {
+				$scope.status = 'You said the information was "' + answer + '".';
+				$scope.addChild(child);
+				$scope.formChildData.title = '';
+				console.log(answer);
+			}, function () {
+				$scope.status = 'You cancelled the dialog.';
+			});
+		};
+
+
+		$scope.componentTypeList = [
+			{id: 1, name: 'BC-SOAP', type:'BC'},
+			{id: 2, name: 'BC-REST', type:'BC'},
+			{id: 3, name: 'BC-MAIL', type:'BC'},
+			{id: 4, name: 'SE-POJO', type:'SE'},
+			{id: 5, name: 'SE-QUARTZ', type:'SE'}];
+
+		$scope.choice = $scope.componentTypeList[0];
+
+
+		$scope.formChildData = {
+			title:'',
+			type:'',
+			componentType:''
+		};
+
+		$scope.json = '';
+		$scope.data = {
+			children: [{
+				title: 'BUS 1 ',
+				type: 'BUS',
+				state: 'UNDEPLOYED',
+				children: [{
+					title: 'server 1',
+					type: 'SERVER',
+					children: []
+				},
+					{
+						title: 'server 2',
+						type: 'SERVER',
+						children: []
+					}]
+			}]
+		};
+
+		$scope.getJson = function () {
+			$scope.json = angular.toJson($scope.data);
+		};
+
+		$scope.toggleMinimized = function (child) {
+			child.minimized = !child.minimized;
+		};
+
+		$scope.hideAdd = function (child) {
+			return (child.type === 'SU');
+		};
+
+		$scope.isComponent = function (child) {
+			return (child.type === 'COMPONENT');
+		};
+
+		$scope.addChild = function (child) {
+			if ( $scope.formChildData.type === 'COMPONENT') {
+				child.children.push({
+					title: $scope.formChildData.title,
+					type: $scope.formChildData.type,
+					componentType: $scope.formChildData.componentType,
+					children: []
+				});
+			} else {
+				child.children.push({
+					title: $scope.formChildData.title,
+					type: $scope.formChildData.type,
+					children: []
+				});
+			}
+		};
+
+		$scope.renameChild = function (child) {
+			child.title = $scope.formChildData.title;
+		};
+
+		$scope.delete = function(child) {
+
+			verifyDelete(child).then(function() {
+
+				function walk(target) {
+					var children = target.children;
+					var i;
+					if (children) {
+						i = children.length;
+						while (i--) {
+							if (children[i] === child) {
+								return children.splice(i, 1);
+							} else {
+								walk(children[i])
+							}
+						}
+					}
+				}
+				walk($scope.data);
+			});
+		};
+
+		$scope.update = function (event, ui) {
+
+			var root = event.target,
+				item = ui.item,
+				parent = item.parent(),
+				target = (parent[0] === root) ? $scope.data : parent.scope().child,
+				child = item.scope().child,
+				index = item.index();
+
+			target.children || (target.children = []);
+
+			function walk(target, child) {
+				var children = target.children;
+				var i;
+				if (children) {
+					i = children.length;
+					while (i--) {
+						if (children[i] === child) {
+							return children.splice(i, 1);
+						} else {
+							walk(children[i], child);
+						}
+					}
+				}
+			}
+			walk($scope.data, child);
+
+			target.children.splice(index, 0, child);
+		};
+
+
 
 	}]);
-
-
-app.controller('TreeController', function ($scope, $timeout) {
-	$scope.json = '';
-	$scope.data = {
-		children: [{
-			title: 'Bus Test',
-			children: [{
-				title: 'Node Test',
-				children: [{
-					title: 'Component Test',
-					children: [{
-						title: 'SE Test',
-						children: [{
-							title: 'Service Test'
-						}]
-					}]
-				}]
-			}]
-		}]
-	};
-
-	$scope.getJson = function () {
-		$scope.json = angular.toJson($scope.data);
-	};
-
-	$scope.toggleMinimized = function (child) {
-		child.minimized = !child.minimized;
-	};
-
-	$scope.addChild = function (child) {
-		child.children.push({
-			title: '',
-			children: []
-		});
-	};
-
-	$scope.delete = function (child) {
-		function walk(target) {
-			var children = target.children;
-			var i;
-			if (children) {
-				i = children.length;
-				while (i--) {
-					if (children[i] === child) {
-						return children.splice(i, 1);
-					} else {
-						walk(children[i])
-					}
-				}
-			}
-		}
-		walk($scope.data);
-	};
-
-	$scope.update = function (event, ui) {
-
-		var root = event.target,
-			item = ui.item,
-			parent = item.parent(),
-			target = (parent[0] === root) ? $scope.data : parent.scope().child,
-			child = item.scope().child,
-			index = item.index();
-
-		target.children || (target.children = []);
-
-		function walk(target, child) {
-			var children = target.children;
-			var i;
-			if (children) {
-				i = children.length;
-				while (i--) {
-					if (children[i] === child) {
-						return children.splice(i, 1);
-					} else {
-						walk(children[i], child);
-					}
-				}
-			}
-		}
-		walk($scope.data, child);
-
-		target.children.splice(index, 0, child);
-	};
-
-});
 
 /*
 
