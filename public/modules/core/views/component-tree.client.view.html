@@ -123,61 +123,63 @@
     </ul>
 </div>-->
 
-<div layout-fill>
+<div ng-controller="HomeController" layout-fill>
+
+    <md-content class="md-accent">
+
+        <md-button class="md-accent md-raised md-shadow-bottom-z-2"
+                   ng-click="addChild(data)">
+            <label>
+                <md-icon class="material-icons md-18 md-primary" aria-label="add">add
+                </md-icon>
+                BUS</label>
+            <md-tooltip md-direction="right">
+                Add New Bus
+            </md-tooltip>
+            <md-icon class="material-icons md-24 md-primary" aria-label="add">device_hub
+            </md-icon>
+
+        </md-button>
+
+    </md-content>
+
     <div>
+        <ol>
+            <li ya-tree="child in data.children at ol" ng-class="{minimized:child.minimized}">
+                <md-list class="navTree">
 
-        <md-content class="md-accent" ng-controller="HomeController">
-            <md-menu-item>
-                <md-button class="md-raised md-cornered md-shadow-bottom-z-2"
-                           ng-click="showModalBranch(data);close()">
-                    <md-tooltip md-direction="right">
-                        Create
-                    </md-tooltip>
-                    <md-icon class="material-icons md-36 md-primary" aria-label="add">device_hub
+                    <md-icon class="material-icons md-18 md-accent" ng-click="toggleMinimized(child)" ng-switch
+                             on="child.minimized">
+                        <span ng-switch-when="true">&#x25B6;</span>
+                        <span ng-switch-default>&#x25BC;</span>
                     </md-icon>
-                    <p flex>NEW ESB </p>
-                </md-button>
-            </md-menu-item>
-        </md-content>
 
-        <!--            <md-button class="md-accent md-raised" ng-click="addChild(data)">
-                        <md-tooltip md-direction="right">Create New Bus</md-tooltip>
-                        <md-icon class="material-icons md-24 accent" aria-label="New">add</md-icon>
-                        <label>New Bus</label>
-                    </md-button>-->
+                    <span class="md-caption md-headline md-accent" ng-click="select(child)">{{ child.title }}</span>
 
-        <div>
-            <ol>
-                <li ya-tree="child in data.children at ol" ng-class="{minimized:child.minimized}">
-                    <md-list class="navTree">
+                    <md-icon title="Change Name" class="material-icons md-18 md-accent"
+                             ng-click="changeName(child)">
+                        edit
+                    </md-icon>
 
-                        <md-icon class="md-18 md-accent" ng-click="toggleMinimized(child)" ng-switch
-                                 on="child.minimized">
-                            <span ng-switch-when="true">&#x25B6;</span>
-                            <span ng-switch-default>&#x25BC;</span>
-                        </md-icon>
-                        <md-button ng-click="select(child)">{{ child.title }}</md-button>
+                    <md-icon title="Add Child" class="material-icons md-18 md-accent" ng-click="addChild(child)"
+                             ng-hide="isSU(child) || child.minimized">add
+                    </md-icon>
 
-                        <md-icon title="Change Name" class="md-18 md-accent" ng-click="renameChild(child)">
-                            edit
-                        </md-icon>
-                        <md-icon title="Add Child" class="md-18 md-accent" ng-click="addChild(child)"
-                                 ng-hide="hideAdd(child) || child.minimized">add
-                        </md-icon>
-                        <md-icon title="Delete" class="md-18 md-accent" ng-click="delete(child)"
-                                 ng-hide="child.minimized">delete
-                        </md-icon>
-                        <md-icon title="Up Child" class="md-18 md-accent" ng-click="upChild(child)"
-                                 ng-hide="child.minimized">keyboard_arrow_up
-                        </md-icon>
-                        <md-icon title="Down Child" class="md-18 md-accent" ng-click="downChild(child)"
-                                 ng-hide="child.minimized">keyboard_arrow_down
-                        </md-icon>
+                    <md-icon title="Delete" class="material-icons md-18 md-accent" ng-click="delete(child)"
+                             ng-hide="child.minimized">delete
+                    </md-icon>
 
-                    </md-list>
-                    <ol ng-class="{pregnant:child.children.length}"></ol>
-                </li>
-            </ol>
-        </div>
+                    <md-icon title="Up Child" class="material-icons md-18 md-accent" ng-click="upChild(child)"
+                             ng-hide="child.minimized">keyboard_arrow_up
+                    </md-icon>
+
+                    <md-icon title="Down Child" class="material-icons md-18 md-accent" ng-click="downChild(child)"
+                             ng-hide="child.minimized">keyboard_arrow_down
+                    </md-icon>
+
+                </md-list>
+                <ol ng-class="{pregnant:child.children.length}"></ol>
+            </li>
+        </ol>
     </div>
 </div>

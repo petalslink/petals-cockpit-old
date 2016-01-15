@@ -47,6 +47,8 @@
     font-size: 18px;
 }
 
+.
+
 .material-icons.md-24 {
     font-size: 24px;
 }
@@ -117,48 +119,12 @@ body {
 .fullSize {
     height: 100% !important;
 }
-.btnNav {
+
+.btnNavTree {
+    min-height: 10px !important;
+    line-height: 22px !important;
     margin: 0 !important;
-    min-height: 10px !important;
-    line-height: 10px !important;
-    text-transform: none !important;
-}
-
-.btnDelNav {
-    min-height: 10px !important;
-    position: absolute !important;
-    height: 22px !important;
-    line-height: 22px !important;
-    width: 22px !important;
-/*    margin-left: 150px !important;*/
-    margin-top: -23px !important;
-    right: 25px;
     padding: 0 !important;
-}
-
-.btnStateNav {
-    min-height: 10px !important;
-    position: absolute !important;
-    height: 22px !important;
-    line-height: 22px !important;
-    width: 22px !important;
-/*    margin-left: 120px !important;*/
-    margin-top: -23px !important;
-    right: 0;
-    padding: 0 !important;
-}
-
-.btnAddNav {
-    min-height: 10px !important;
-    position: absolute !important;
-    height: 22px !important;
-    line-height: 22px !important;
-    width: 22px !important;
-/*    margin-left: 150px !important;*/
-    margin-top: -23px !important;
-    right: 50px;
-    padding: 0 !important;
-    z-index: 10 !important;
 }
 
 md-sidenav.md-locked-open {

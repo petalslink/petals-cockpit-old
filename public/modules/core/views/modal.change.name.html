@@ -1,46 +1,55 @@
-<md-dialog aria-label="Mango"md-theme="core-theme" md-whiteframe-32dp>
-    <form name="changeNameForm" ng-submit="ok()" novalidate>
+<md-dialog aria-label="Rename Branch" md-theme="core-theme" md-whiteframe-32dp ng-cloak>
+    <form name="myFormChangeName">
 
-        <md-toolbar layout="row" class="md-primary md-hue-2">
+        <md-toolbar layout="row" class="md-accent">
 
-            <md-button class="md-icon-button md-accent"
-                       ng-click="cancel(); answer('not useful')">
+            <md-button class="md-icon-button md-primary"
+                       ng-click="closeDialog()">
                 <md-tooltip md-direction="bottom">
-                    Close
+                    Back
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-accent" aria-label="Close Dialog">arrow_back</md-icon>
             </md-button>
 
-            <div class="md-toolbar-tools md-primary md-hue-1" layout-align="center">
-                <div class="md-title">
-                    <md-icon class="md-24 md-accent" aria-label="add">edit</md-icon>
-                    New Name
-                </div>
+            <div class="md-toolbar-tools md-primary" layout-align="center center">
+                <h1 class="md-title md-primary">
+                    <md-tooltip md-direction="bottom">
+                        Change Name
+                    </md-tooltip>
+                    <md-icon class="md-24 md-primary" aria-label="add">edit</md-icon>
+                    Change Name
+                </h1>
             </div>
 
         </md-toolbar>
 
-        <md-content layout-padding layout="row" layout-sm="column" class="md-accent">
+        <md-content layout-padding layout="row">
 
-            {{formChildData.type}} {{formChildData.componentType.name}}
-
-            <label>Enter name: </label>
-
-            <md-input-container class="md-accent md-hue-1">
-                <input type="text" data-ng-model="formChildData.title">
-            </md-input-container>
-
-            <md-button ng-click="ok(formChildData); cancel();value()"
-                       class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">
-                <md-tooltip md-direction="bottom">ok</md-tooltip>
-                <md-icon class="md-accent md-24">done</md-icon>
-            </md-button>
-
-            <md-button ng-click="cancel();" class="md-fab md-mini md-accent md-whiteframe-z3 md-whiteframe-6dp">
-                <md-tooltip md-direction="bottom">cancel</md-tooltip>
-                <md-icon class="md-accent md-24">cancel</md-icon>
-            </md-button>
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>New Name</label>
+                    <input type="text" ng-model="formChildData.title" placeholder="Please, Enter a new name..">
+                </md-input-container>
+            </div>
 
         </md-content>
+
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-align="end center" flex>
+                <md-button ng-click="validDialog(formChildData);"
+                           class="md-raised md-accent md-whiteframe-z3 md-whiteframe-6dp"
+                           ng-disabled="myFormChangeName.$invalid" layout-align="center end">
+                    <md-tooltip md-direction="bottom">ok</md-tooltip>
+                    <md-icon class="md-accent md-24">done</md-icon>
+                </md-button>
+
+                <md-button ng-click="closeDialog()"
+                           class="md-raised md-accent md-whiteframe-z3 md-whiteframe-6dp" layout-align="center end">
+                    <md-tooltip md-direction="bottom">cancel</md-tooltip>
+                    <md-icon class="md-accent md-24">close</md-icon>
+                </md-button>
+            </div>
+        </md-content>
+
     </form>
 </md-dialog>
