@@ -2,255 +2,181 @@
 
 var app = angular.module('core');
 
-app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope', '$mdDialog', '$log', 'verifyDelete',
+app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 'Buses', 'Nodes', 'Components', 'Serviceunits', 'Services', '$rootScope', '$mdDialog', '$log',
 
-	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope, $mdDialog, $log, verifyDelete) {
+	function (Authentication, $q, $scope, $timeout, Buses, Nodes, Components, Serviceunits, Services, $rootScope, $mdDialog, $log) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 		$scope.template = '';
 
 		$scope.isOpen = false;
 
-/*		// Declare scope functions
-		$scope.selectItem = selectItem;
-		$scope.switchChildrenVisibility = switchChildrenVisibility;
+		$scope.json = '';
+		$scope.data = {
+			title : 'Workspace Demo',
+			type : 'WKSPCE',
+			cat : {name: 'Demo'},
+			icon : 'folder_special',
+			state: 'UNDEPLOYED',
+			children: [{
+				title: 'BUS 1',
+				type: 'BUS',
+				cat : {name: '4-3-3', filter:'in-house'},
+				icon: 'directions_bus',
+				state: 'UNDEPLOYED',
+				affichage : 'details',
+				children: [
+					{
+						title: 'server 1',
+						type: 'SERVER',
+						cat : {name: 'PetalsNode'},
+						icon: 'dock',
+						state: 'UNDEPLOYED',
+						affichage: 'vide',
+					children: []
+					},
+					{
+						title: 'server 2',
+						type: 'SERVER',
+						cat : {name: 'PetalsNode'},
+						icon: 'dock',
+						state: 'UNDEPLOYED',
+						affichage: 'vide',
+						children: []
+					}]
+			}]
+		};
+		$scope.selectedChild = $scope.data.children[0];
+		$scope.selectedChild.selected = 'true';
 
-
-		// Function implementations
-		function selectItem(node) {
-
-			$scope.sItem = node;
-			$scope.template = node.type;
-		}*/
-
-
-		// Get initial values
-/*		$q.all([
-			Buses.getBuses().$promise,
-			Nodes.getNodes().$promise,
-			Components.getComponents().$promise,
-			Serviceunits.getServiceunits().$promise,
-			Services.getServices().$promise
-		]).then(buildTree);*/
-
-/*		function buildTree(data) {
-
-			var roots = [];
-
-			// Deal with buses
-			var bindex = {};
-			data[0].forEach(function (val, index, arr) {
-				var bus = {
-					_id: val._id,
-					name: val.name,
-					type: 'bus',
-					version: val.version,
-					children: [],
-					icon: 'device_hub',
-					iconBusDelete: 'close',
-					iconBusChildAdd: 'add'
-				};
-
-				bindex[val._id] = bus;
-				roots.push(bus);
-			});
-
-			// Deal with nodes -> console.log(data[1]);
-			var nindex = {};
-			data[1].forEach(function (val, index, arr) {
-				var node = {
-					_id: val._id,
-					name: val.name,
-					type: 'node',
-					ip: val.ip,
-					port: val.port,
-					parentBus: val.parentBus,
-					state: val.state,
-					children: [],
-					icon: 'developer_mode',
-					iconNodeDelete: 'close',
-					iconNodeState: 'fiber_smart_record',
-					iconNodeChildAdd: 'add',
-					parent: bus
-				};
-
-				nindex[val._id] = node;
-				var bus = bindex[val.parentBus._id];
-				bus.children.push(node);
-			});
-
-			// Deal with components
-			var cindex = {};
-			data[2].forEach(function (val, index, arr) {
-				var component = {
-					_id: val._id,
-					name: val.name,
-					parentServer: val.parentServer,
-					type: 'component',
-					state: val.state,
-					children: [],
-					icon: 'extension',
-					iconComponentDelete: 'close',
-					iconComponentState: 'fiber_smart_record',
-					iconComponentChildAdd: 'add',
-					parent: node
-				};
-
-				cindex[val._id] = component;
-				var node = nindex[val.parentServer._id];
-				node.children.push(component);
-			});
-
-			// Deal with serviceunits
-			var suindex = {};
-			data[3].forEach(function (val, index, arr) {
-				var serviceunit = {
-					_id: val._id,
-					name: val.name,
-					parentComponent: val.parentComponent,
-					type: 'su',
-					state: val.state,
-					children: [],
-					icon: 'folder_special',
-					iconServiceUnitDelete: 'close',
-					iconServiceUnitState: 'fiber_smart_record',
-					iconSuChildAdd: 'add',
-					parent: component
-				};
-
-				suindex[val._id] = serviceunit;
-				var component = cindex[val.parentComponent._id];
-				component.children.push(serviceunit);
-			});
-
-			// Deal with services
-			var sindex = {};
-			data[4].forEach(function (val, index, arr) {
-				var service = {
-					_id: val._id,
-					name: val.name,
-					parentServiceunit: val.parentServiceunit,
-					type: 'service',
-					state: val.state,
-					children: [],
-					icon: 'usb',
-					iconServiceDelete: 'close',
-					iconServiceState: 'fiber_smart_record',
-					parent: serviceunit
-				};
-
-				sindex[val._id] = service;
-				var serviceunit = suindex[val.parentServiceunit._id];
-				serviceunit.children.push(service);
-			});
-
-			// Register the tree in the scope TREE
-			$scope.rootNodes = roots;
-
-			// Recieve Event when push component on Nav Tree
-			$scope.$on('BusCreate', function (event, bus) {
-				$scope.rootNodes.push(bus);
-				console.log('May Be Something Happens !!!!!!');
-
-			});
-
-			$scope.$on('NodeCreate', function (event, node) {
-				$scope.rootNodes.push(node);
-				console.log('May Be Something Happens !!!!!!');
-
-			});
-
-			$scope.$on('ComponentCreate', function (event, component) {
-				$scope.rootNodes.push(component);
-				console.log('May Be Something Happens !!!!!!');
-
-			});
-
-			$scope.$on('ServiceUnitCreate', function (event, serviceunit) {
-				$scope.rootNodes.push(serviceunit);
-				console.log('May Be Something Happens !!!!!!');
-
-			});
-
-			$scope.$on('ServiceCreate', function (event, service) {
-				$scope.rootNodes.push(service);
-				console.log('May Be Something Happens !!!!!!');
-
-			});
-		}*/
-
-
-
-		/* Boolean Node Visible or not */
-/*		function setChildrenVisibility (node, visible) {
-			node.children.forEach(function (val, index, arr) {
-				val.visible = visible;
-			});
-			console.log(node.children);
-		}*/
-
-/*		/!* 2 in 1 states *!/
-		function switchChildrenVisibility( node ) {
-			var visible = node.childrenWereVisible;
-
-			node.childrenWereVisible = ! node.childrenWereVisible;
-			node.children.forEach( function( child, index, arr ) {
-				child.visible =  node.childrenWereVisible;
-			})
-		}*/
-
-/*		$scope.showModalBranch = showModalBranch;*/
-
-/*		$scope.showModalChangeName = function (child) {
-
-			$scope.formChildData.title = child.title;
-			$scope.formChildData.type = child.type;
-			if (child.type === 'COMPONENT') {
-				$scope.formChildData.componentType = child.componentType;
-			}
-
-			$mdDialog.show({
-				parent: angular.element(document.body),
-				targetEvent: child,
-				clickOutsideToClose: true,
-				templateUrl: '/modules/core/views/modal.change.name.html',
-				resolve: {
-					child: function () {
-						return child;
-					}
-				},
-				scope: $scope,
-				controller: DialogController
-
-			}).then(function (value) {
-				$scope.renameChild(child);
-				$scope.formChildData.title = '';
-				$scope.formChildData.componentType = '';
-				console.log(value);
-			}, function (reject) {
-				console.log(reject);
-			});
+		$scope.getJson = function () {
+			$scope.json = angular.toJson($scope.data);
 		};
 
-		function DialogController($scope, $mdDialog, child) {
-			$scope.hide = function () {
-				$mdDialog.hide();
-			};
+		// have a tree config to build tree without switch case
+		$scope.treeConfigList = [
+			{
+				type : 'WKSPCE',
+				cat : {name: 'Demo'},
+				icon : 'folder_special',
+				stateList: ['STOPPED','ALERT','RUNNING','FULL'],
+				filters: ['in-house', 'cloud'],
+				choices : [
+					{
+						type : 'BUS',
+						cat : {name: '4-3-3', filter:'in-house'},
+						icon : 'directions_bus',
+						stateList: ['UNDEPLOYED','DEPLOYED','STOPPED','STARTED'],
+						childrenType: 'SERVER',
+						filters: [],
+						choices : [
+							{
+								type : 'SERVER',
+								cat : {name: '4-3-3', filter:'in-house'},
+								icon : 'dock',
+								stateList: ['UNDEPLOYED','DEPLOYED','STOPPED','STARTED'],
+								filters: [],
+								choices : [
+									{
+										type : 'COMPONENT',
+										cat : {name: 'BC-SOAP', filter:'BC'},
+										icon : 'settings_input_composite',
+										stateList: ['UNDEPLOYED','DEPLOYED','STOPPED','STARTED'],
+										filters: [],
+										choices : [
+											{
+												type : 'SU',
+												cat : {name: 'Consume'},
+												icon : 'input',
+												stateList: ['UNDEPLOYED','DEPLOYED','STOPPED','STARTED'],
+												filters: [],
+												choices : []
+											},
+											{
+												type : 'SU',
+												cat : {name: 'Provide'},
+												icon : 'input',
+												stateList: ['UNDEPLOYED','DEPLOYED','STOPPED','STARTED'],
+												filters: [],
+												choices : []
+											}
 
-			$scope.cancel = function () {
-				$mdDialog.cancel();
-			};
-			$scope.child = child;
-		}*/
 
-		var componentTypeList = [
-			{id: 1, name: 'BC-SOAP', type:'BC'},
-			{id: 2, name: 'BC-REST', type:'BC'},
-			{id: 3, name: 'BC-MAIL', type:'BC'},
-			{id: 4, name: 'SE-POJO', type:'SE'},
-			{id: 5, name: 'SE-QUARTZ', type:'SE'}];
+										]
 
-		$scope.componentTypeList = componentTypeList;
+									}
+
+								]
+
+							}
+
+						]
+
+					}
+				]
+			}
+		];
+
+
+		/*						name: '4-3-3',
+
+                                childrenType: 'SERVER',
+                                subtypeChoice : [
+                                    {
+                                        name: 'PetalsNode',
+                                        filter:'Server',
+                                        childrenType: 'COMPONENT',
+                                        subtypeChoice : [
+                                            {
+                                                name: 'BC-SOAP',
+                                                filter:'BC',
+                                                childrenType: 'SU',
+                                                subtypeChoice : [
+                                                    {
+                                                        name: 'BC-SOAP',
+                                                        filter:'SU',
+
+                                                    }]
+
+                                            }]
+
+                                    }]
+
+                            },
+                            {
+                                name: '5-0-0',
+                                filter:'version'}],
+                                childrenType: 'SERVER'
+                    }
+        */
+
+
+
+		$scope.busTypeList = [
+			{name: '4-3-3', type:'version'},
+			{name: '5-0-0', type:'version'}];
+
+		$scope.serverConfigTypeList = [
+			{name: '4-3-3',
+				serverTypeList: [
+					{name: 'PetalsNode', type: 'server'}] },
+			{name: '5-0-0',
+				serverTypeList: [
+					{name: 'PetalsNode', type: 'server'},
+					{name: 'Registry', type: 'server'},
+					{name: 'Log', type: 'server'}] }
+		];
+
+		$scope.componentTypeList = [
+			{name: 'BC-SOAP', type:'BC'},
+			{name: 'BC-REST', type:'BC'},
+			{name: 'BC-MAIL', type:'BC'},
+			{name: 'SE-POJO', type:'SE'},
+			{name: 'SE-QUARTZ', type:'SE'}];
+
+		$scope.suTypeList = [
+			{name: 'Provide', type:'SU'},
+			{name: 'Consume', type:'SU'}];
 
 		$scope.addChild = function (child) {
 
@@ -258,37 +184,83 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 				case 'BUS':
 					$scope.formChildData.title = 'SERVER- ';
 					$scope.formChildData.type = 'SERVER';
+					$scope.formChildData.icon = 'dock';
+					$scope.choiceList = $scope.serverConfigTypeList[0].serverTypeList;
+
 					break;
 				case 'SERVER':
 					$scope.formChildData.title = 'BC- SE-';
 					$scope.formChildData.type = 'COMPONENT';
-					$scope.formChildData.componentType = $scope.componentTypeList[0];
+					$scope.formChildData.icon = 'extension';
+					$scope.choiceList = $scope.componentTypeList;
 					break;
 				case 'COMPONENT':
 					$scope.formChildData.title = 'SU- SERVICE-';
 					$scope.formChildData.type = 'SU';
+					$scope.formChildData.icon = 'stars';
+					$scope.choiceList = $scope.suTypeList;
 					break;
 				default:
 					$scope.formChildData.title = 'BUS- ';
 					$scope.formChildData.type = 'BUS';
+					$scope.formChildData.icon = 'directions_bus';
+					$scope.choiceList = $scope.busTypeList;
 			}
+			$scope.formChildData.affichage = 'vide';
+			$scope.parentTitle = child.title;
+
 
 			$mdDialog.show({
 				parent: angular.element(document.body),
 				clickOutsideToClose: true,
 				templateUrl: '/modules/core/views/modal.add.branch.html',
 				locals: {
-					formChildData: $scope.formChildData
+					formChildData: $scope.formChildData,
+					parentTitle: $scope.parentTitle,
+					choiceList: $scope.choiceList
 				},
-				controller: function DialogController($scope, $mdDialog, formChildData){
-
-					$scope.componentTypeList = componentTypeList;
-					$scope.choice = $scope.componentTypeList[0];
+				controller: function DialogController($scope, $mdDialog, formChildData, parentTitle, choiceList){
 
 					$scope.formChildData = formChildData;
+					$scope.parentTitle = parentTitle;
+					$scope.choiceList = choiceList;
+					$scope.myChoice='';
+					if ($scope.choiceList.length === 1) {
+						$scope.myChoice=$scope.choiceList[0];
+						changeSelected();
+					}
 
-					$scope.isComponent = function (child) {
-						return (child.type === 'COMPONENT');
+					console.log(angular.toJson($scope.choiceList));
+					console.log(angular.toJson($scope.myChoice));
+
+					$scope.hasChoice = function () {
+						if ($scope.choiceList.length === 1) {
+							return false;
+						}
+						return true;
+					};
+
+
+					$scope.changeSelected = function() {
+						changeSelected();
+					};
+
+
+					function changeSelected() {
+						$scope.formChildData.componentType = $scope.myChoice;
+						switch($scope.formChildData.type) {
+							case 'BUS':
+								$scope.formChildData.title = 'BUS-(' + $scope.formChildData.componentType.name+')';
+								break;
+							case 'SERVER':
+								$scope.formChildData.title = $scope.formChildData.componentType.name + '-';
+								break;
+							case 'COMPONENT':
+								$scope.formChildData.title = $scope.formChildData.componentType.name + '-';
+								break;
+							default:
+								$scope.formChildData.title = 'SU-'+$scope.formChildData.componentType.name+ '-';
+						}
 					};
 
 					$scope.closeDialog = function() {
@@ -305,6 +277,8 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					child.children.push({
 						title: $scope.formChildData.title,
 						type: $scope.formChildData.type,
+						icon: $scope.formChildData.icon,
+						affichage: $scope.formChildData.affichage,
 						componentType: $scope.formChildData.componentType,
 						children: []
 					});
@@ -312,11 +286,16 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					child.children.push({
 						title: $scope.formChildData.title,
 						type: $scope.formChildData.type,
+						icon: $scope.formChildData.icon,
+						affichage: $scope.formChildData.affichage,
 						children: []
 					});
 				}
+				child.affichage = 'details'
+				console.log(angular.toJson($scope.data));
 
 				$scope.formChildData.title = '';
+				$scope.formChildData.componentType = '';
 
 			});
 		};
@@ -325,27 +304,18 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			return (child.type === 'SU');
 		};
 
-		$scope.renameChild = function (child) {
-			child.title = $scope.formChildData.title;
-		};
-
 		$scope.changeName = function (child) {
 
+			$scope.formChildData.title = child.title;
 			$mdDialog.show({
 				parent: angular.element(document.body),
 				clickOutsideToClose: true,
 				templateUrl: '/modules/core/views/modal.change.name.html',
-				locals: {
-					formChildData: $scope.formChildData
-				},
+				locals: { formChildData: $scope.formChildData },
 				controller: function DialogController($scope, $mdDialog, formChildData){
 
 					$scope.formChildData = formChildData;
-
-					$scope.renameChild = function (child) {
-						$scope.formChildData.title = child.title;
-						$scope.formChildData.type = child.type;
-					};
+					$scope.title = formChildData.title;
 
 					$scope.closeDialog = function() {
 						$mdDialog.cancel();
@@ -356,8 +326,56 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 				}
 
 			}).then(function () {
+				child.title = $scope.formChildData.title;
+				console.log(angular.toJson($scope.data));
 
-				$scope.renameChild(child);
+				$scope.formChildData.title = '';
+			});
+		};
+
+		$scope.formChildData = {
+			title:'',
+			type:'',
+			componentType:''
+		};
+
+		$scope.deleteBranch = function (child) {
+
+			$scope.formChildData.title = child.title;
+			$mdDialog.show({
+				parent: angular.element(document.body),
+				clickOutsideToClose: true,
+				templateUrl: '/modules/core/views/modal.delete.branch.html',
+				locals: { formChildData: $scope.formChildData },
+				controller: function DialogController($scope, $mdDialog, formChildData){
+
+					$scope.formChildData = formChildData;
+					$scope.title = formChildData.title;
+
+					$scope.closeDialog = function() {
+						$mdDialog.cancel();
+					};
+					$scope.validDialog = function() {
+						$mdDialog.hide();
+					};
+				}
+
+			}).then(function () {
+				function walk(target) {
+					var children = target.children;
+					var i;
+					if (children) {
+						i = children.length;
+						while (i--) {
+							if (children[i] === child) {
+								return children.splice(i, 1);
+							} else {
+								walk(children[i])
+							}
+						}
+					}
+				}
+				walk($scope.data);
 				$scope.formChildData.title = '';
 
 			});
@@ -369,31 +387,26 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			componentType:''
 		};
 
-		$scope.json = '';
-		$scope.data = {
-			children: [{
-				title: 'BUS 1 ',
-				type: 'BUS',
-				state: 'UNDEPLOYED',
-				children: [{
-					title: 'server 1',
-					type: 'SERVER',
-					children: []
-				},
-					{
-						title: 'server 2',
-						type: 'SERVER',
-						children: []
-					}]
-			}]
-		};
-
-		$scope.getJson = function () {
-			$scope.json = angular.toJson($scope.data);
-		};
-
 		$scope.toggleMinimized = function (child) {
-			child.minimized = !child.minimized;
+			if (child.children.length === 0) {
+				child.affichage = 'vide';
+			} else {
+				if (child.affichage === 'minimized'){
+					child.affichage = 'details'
+
+				} else {
+					child.affichage = 'minimized'
+				}
+			}
+		};
+
+		$scope.select = function (child) {
+			if($scope.selectedChild) {
+				$scope.selectedChild.selected = false;
+			}
+			child.selected = true;
+			$scope.selectedChild = child;
+			console.log(angular.toJson($scope.data));
 		};
 
 		$scope.upChild = function (child) {
@@ -444,6 +457,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 			walk($scope.data);
 		};
 
+/*
 		$scope.delete = function (child) {
 
 			verifyDelete(child)
@@ -467,6 +481,7 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 					walk($scope.data);
 				});
 		};
+*/
 
 		$scope.update = function (event, ui) {
 
@@ -501,18 +516,3 @@ app.controller('HomeController', ['Authentication', '$q', '$scope', '$timeout', 
 
 	}]);
 
-
-
-
-/*
-
-app.factory('RefreshNavTree', function ($rootScope) {
-	return function createTest() {
-
-			var self = this;
-			$rootScope.$on('BusCreate', function(eventName, bus) {
-				self.buses.push(bus);
-			});
-		}
-
-});*/
