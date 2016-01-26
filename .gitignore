@@ -1,19 +1,11 @@
-.DS_Store
+# Compiled Server Files
+dist/
+reports/
 
-.nodemonignore
-
-.sass-cache/
-
-npm-debug.log
-
+# Third Party Dependencies
+bower_components/
 node_modules/
+libs/
 
-public/lib/
-
-app/tests/coverage/
-
-.bower-*/
-
+# Webstorm Files
 .idea/
-Thumbs.db
-.project

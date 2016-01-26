@@ -1,52 +1,81 @@
+// Karma configuration
+
 'use strict';
 
-/**
- * Module dependencies.
- */
-var applicationConfiguration = require('./config/config');
+var istanbul = require('browserify-istanbul');
 
-// Karma configuration
-module.exports = function(config) {
-	config.set({
-		// Frameworks to use
-		frameworks: ['jasmine'],
+module.exports = function (config) {
 
-		// List of files / patterns to load in the browser
-		files: applicationConfiguration.assets.lib.js.concat(applicationConfiguration.assets.js, applicationConfiguration.assets.tests),
+    config.set({
 
-		// Test results reporter to use
-		// Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-		//reporters: ['progress'],
-		reporters: ['progress'],
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: './',
 
-		// Web server port
-		port: 9876,
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
 
-		// Enable / disable colors in the output (reporters and logs)
-		colors: true,
+        // list of files / patterns to load in the browser
+        files: [
+            './libs/angular/angular.js',
+            './libs/angular-mocks/angular-mocks.js', // for angular.mock.module and inject.
+            './app/**/*.js'
+        ],
 
-		// Level of logging
-		// Possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-		logLevel: config.LOG_INFO,
+        // list of files to exclude
+        exclude: [],
 
-		// Enable / disable watching file and executing tests whenever any file changes
-		autoWatch: true,
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+            './app/**/!(*spec)*.js': ['browserify']
+        },
 
-		// Start these browsers, currently available:
-		// - Chrome
-		// - ChromeCanary
-		// - Firefox
-		// - Opera
-		// - Safari (only Mac)
-		// - PhantomJS
-		// - IE (only Windows)
-		browsers: ['PhantomJS'],
+        // karma-browserify configuration
 
-		// If browser does not capture in given timeout [ms], kill it
-		captureTimeout: 60000,
+        browserify: {
+            debug: true,
+            transform: ['debowerify', 'partialify', istanbul({
+                'ignore': ['**/*.spec.js', '**/libs/**']
+            })],
 
-		// Continuous Integration mode
-		// If true, it capture browsers, run tests and exit
-		singleRun: true
-	});
+            // don't forget to register the extensions
+            extensions: ['.js']
+        },
+
+        // test results reporter to use
+        // possible values: 'dots', 'progress', 'spec'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['spec', 'coverage'],
+
+        coverageReporter: {
+            type: 'html',
+            dir: './reports/coverage'
+        },
+
+        // web server port
+        port: 9876,
+
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
+
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
+
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
+
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: [
+            // 'Chrome',
+            'PhantomJS'
+        ],
+
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false
+
+    });
 };

@@ -1,0 +1,108 @@
+<div flex>
+
+    <md-toolbar class="md-primary" layout="row">
+
+        <!-- When User is Logged -->
+        <div class="md-toolbar-tools md-primary md-hue-2" flex>
+            <a href="">
+                <md-tooltip md-direction="right">
+                    Take The Control !
+                </md-tooltip>
+                <div class="">
+                    <h1 class="md-toolbar-tools"><strong>
+                        <div class="text-color-white">
+                            Petals
+                        </div>
+                        <div class="text-color-icon-nav">
+                            COCKPIT
+                        </div>
+                    </strong></h1>
+                </div>
+            </a>
+
+            <div flex></div>
+
+            <md-menu md-position-mode="target-right target" class="md-accent">
+                <md-button class="" aria-label="Open Config Account"
+                           ng-click="">
+                    <md-tooltip md-direction="bottom">
+                        User Logged
+                    </md-tooltip>
+                    <md-button class="md-fab md-mini">
+                        <md-icon md-menu-origin class="md-icon-button md-24 md-accent" aria-label="User">account_circle
+                        </md-icon>
+                    </md-button>
+                    <strong>
+                        <span data-ng-bind="" class="text-color-white"></span></strong> <i
+                        class="zmdi zmdi-caret-down text-color-white"></i>
+                </md-button>
+
+                <md-menu-content width="3" class="md-whiteframe-8dp">
+                    <md-menu-item>
+                        <a class="md-button md-ink-ripple"
+                           aria-label="Edit Profile" href="" ng-click="close()">
+                            <div layout="row" flex>
+                                <p flex>Edit Profile </p>
+                                <md-icon md-menu-align-target class="md-whiteframe-2dp"
+                                         aria-label="edite profile"> edit
+                                </md-icon>
+                            </div>
+                        </a>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a class="md-button md-ink-ripple"
+                           aria-label="Signout" href="" ng-click="">
+                            <div layout="row" flex>
+                                <p flex>Log Out </p>
+                                <md-icon md-menu-align-target class="md-whiteframe-2dp"
+                                         aria-label="signout"> power_settings_new
+                                </md-icon>
+                            </div>
+                        </a>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+
+            <md-menu md-position-mode="target-right target">
+                <md-button class="md-icon-button md-accent md-fab md-mini" aria-label="Open Config Menu"
+                           ng-click="">
+                    <md-tooltip md-direction="bottom">
+                        Menu Config
+                    </md-tooltip>
+                    <md-icon md-menu-origin class="material-icons md-24" aria-label="Open Menu">more_vert
+                    </md-icon>
+                </md-button>
+
+                <md-menu-content width="3" class="md-whiteframe-8dp">
+                    <md-menu-item>
+                        <a class="md-button md-ink-ripple" href="" aria-label="List Users" ng-click="">
+                            <div layout="row" flex>
+                                <span flex>List Users </span>
+                                <md-icon md-menu-align-target class="md-whiteframe-2dp"
+                                         aria-label="list users"> group
+                                </md-icon>
+                            </div>
+                        </a>
+                    </md-menu-item>
+
+                    <md-menu-item data-ng-hide="">
+                        <md-button class="md-raised md-cornered"
+                                   aria-label="Signin" href="" ng-click="">
+                            <div layout="row" flex>
+                                <p flex>Login </p>
+                                <md-icon md-menu-align-target class=""
+                                         aria-label="signin"> power_settings_new
+                                </md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+    </md-toolbar>
+
+</div>
+

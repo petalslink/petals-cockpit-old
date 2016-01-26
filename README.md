@@ -5,7 +5,6 @@ Petals COCKPIT is a web application prototype to drive Petals ESB servers.
 
 ### Before You Begin
 
-Use a *standard* structure such as "MEAN": MongoDB, Express, AngularJS, Node.js.
 WebStorm was used to develop it, but any IDE should work. Everything you need is to...
 
 1. Install [Node.js](https://nodejs.org/)
@@ -17,13 +16,8 @@ WebStorm was used to develop it, but any IDE should work. Everything you need is
 
 - What is BOWER?
 Bower is a package manager. It can be used when you want to add packages of code to your web app, Bower can help you quickly install the code, and help you upgrade to newer versions.
-- What is GRUNT?
+- What is GULP?
 Grunt helps you automate repetitive tasks. Grunt comes in lots of different varieties, and its job is to make your job easier.
-- What is YO?
-Yo is a scaffolding tool. It can be used to create and set-up your app by asking you questions, taking your input and pre-filling parts of your app based on your preferences.
-It can also help you to quickly create and extend parts of your app.
-- What is MEANJS?
-The MEAN.js generator is the MEAN based code that will be used by Yo to help you pre-populate parts of your app.
 
 
 ### Building
@@ -31,7 +25,7 @@ The MEAN.js generator is the MEAN based code that will be used by Yo to help you
 Open a terminal in your project's directory.
 
 ```
-cd /wherever/you/want/petals-cockpit
+cd /wherever/you/want/petals-cockpit-modular
 ```
 
 Then, execute these commands.
@@ -48,41 +42,70 @@ bower update
 ./node_modules/bower/bin/bower update
 ```
 
-
 ### Running your Application
 
-Once the install process is over, you will be able to run your application with Grunt.
-Run Grunt's default task.
+Once the install process is over, you will be able to run your application with Gulp.
+Run Gulp's default task.
 
 ```properties
-grunt
+gulp
 
-# ... or...
-./node_modules/grunt-cli/bin/grunt
+
+### Setup Instructions
+
+*NOTE:* This starter kit assumes that you already have bower (http://bower.io/) and gulp (http://gulpjs.com/) installed locally. If you don't, then run the following command first: ```npm install -g bower gulp```
+
+1) Node Modules and Bower Components are not included in this repository to keep it light weight. After cloning or pulling changes from this repository, make sure to run the following command in terminal: ```npm install```
+
+Bower dependencies should install automatically at the end of the NPM install process. If the dependencies don't install correctly you may need to manually run ```bower install``` as well.
+
+2) Once everything is installed all you have to do is run ```gulp build``` and your new server will be running at ```http://localhost:5000``` (you can edit the port in the gulpFile). To speed up gulp times, the standard ```gulp``` task does not include copying over static files. Using the standard ```gulp``` task will be useful for most cases, but if you need to rebuild the whole ```dist``` folder, use ```gulp build```.
+
+
+### This is an example of structure to modular architecture that we used
+
 ```
-
-
-### Logging in as an Admin
-
-After running the application, open your web browser to...
-
-	http://localhost:3000
-
-... and log in with the following credentials.
-
+/app
+--- /assets
+------ /images
+------ /icons
+--- /common
+------ /directives
+------ /constants
+------ /elements (common page elements like footer and header)
+------ /resources
+------ /services
+------ /styles
+------ common.js (common module requirements)
+------ common.less
+--- /modules
+------ index.js
+------ MainController.js
+------ MainController.spec.js (controller unit tests)
+------ modules.less
+------ /module1 (ex: home)
+--------- index.js (module definition)
+--------- home.html (view)
+--------- home.less (styles)
+--------- HomeController.js (Controller inherits from MainController)
+--------- HomeController.spec.js
+--------- homeDirective.js (view definition)
+--------- homeRoutes.js (route definitions)
+------ /module2
+--------- /sub-module1
+--------- /sub-module2
+--------- index.js (module definition - sub-modules are required in here)
+--------- module.html
+--------- module.less
+--------- ModuleController.js
+--------- ModuleController.spec.js
+--------- moduleDirective.js
+--------- moduleRoutes.js (route definitions and config options for nested sub-modules)
+--- app.js
+--- app.less
+--- appConfig.js (main config file - no routes are defined here)
+--- index.html
+/dist (this is the gulp pipeline file output destination)
+/libs (bower components install here)
+/node_modules (npm installations go here)
 ```
-Username : 'SuperAdmin'
-Password : 'stage2015'
-```
-
-
-### After 1st connexion
-
-Go to the file in the path :
-
-"../app/models/users.server.model.js"
-
-... then go on the line 212 and change "save" by "update".
-
-You can restart server & you connect to the app with login
-...

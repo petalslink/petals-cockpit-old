@@ -1,45 +1,19 @@
-'use strict';
-/**
- * Module dependencies.
- */
-var init = require('./config/init')(),
-	config = require('./config/config'),
-	mongoose = require('mongoose'),
-	chalk = require('chalk'),
-	express = require('express'),
-	users = require('./app/models/user.server.model'); // connect to database with user
+'user strict';
+// This is the PROD server config file used to serve your AngularJS app on a service like Heroku
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
+var express = require('express');
+var url = require('url');
+var proxy = require('proxy-middleware');
+var server = express();
+var API_URL = process.env.API_URL || 'http://localhost:3000/';
 
-// Bootstrap db connection
-var db = mongoose.connect(config.database.url, function(err) {
-	if (err) {
-		console.error(chalk.red('Could not connect to MongoDB!'));
-		console.log(chalk.red(err));
-	}
+server.set('port', (process.env.PORT || 5000));
+server.use(express.static(__dirname + '/dist'));
+
+server.listen(server.get('port'), function() {
+  console.log("Node app is running at localhost:" + server.get('port'));
 });
 
-// Init the express application
-var app = require('./config/express')(db);
-
-/*
- // Say Hello
- app.get('/', function(req, res) {
- res.send('Hello Word from server.js')
- });
- */
-
-// Bootstrap passport config
-require('./config/passport')();
-
-// Start the app by listening on <port>
-app.listen(config.port);
-
-// Expose app
-exports = module.exports = app;
-
-// Logging initialization
-console.log('Petals COCKPIT application started on port ' + config.port);
+// Proxy settings for connecting to API
+// process.env.API_URL is an environment variable set on Heroku
+server.use('/api', proxy(url.parse(API_URL)));
