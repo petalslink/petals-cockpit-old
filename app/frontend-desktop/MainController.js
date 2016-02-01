@@ -8,6 +8,6 @@ function MainCtrl($rootScope, $scope) {
 
 }
 
-// $inject is necessary for minification. See http://bit.ly/1lNICde for explanation.
+// $inject is necessary for minification.
 MainCtrl.$inject = ['$rootScope', '$scope'];
 module.exports = MainCtrl;

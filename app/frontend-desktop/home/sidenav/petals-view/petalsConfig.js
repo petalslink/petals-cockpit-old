@@ -1,15 +1,10 @@
 'use strict';
 
-module.exports = angular.module('common.elements.commonHeader', [])
-    .directive('commonHeader', function() {
-        return {
-            template: require('./common-header.html'),
-            restrict: 'EA',
-            replace: true
-        };
-    })
+module.exports = angular.module('frontend-desktop.home.sidenav', [
+        require('./petals-view').name
+    ])
     .config(function($mdThemingProvider) {
-        $mdThemingProvider.theme('header-theme', 'default')
+        $mdThemingProvider.theme('petals-theme', 'default')
             .primaryPalette('orange', {
                 'default': '800',
                 'hue-1': '800',

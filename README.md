@@ -25,7 +25,7 @@ Grunt helps you automate repetitive tasks. Grunt comes in lots of different vari
 Open a terminal in your project's directory.
 
 ```
-cd /wherever/you/want/petals-cockpit-modular
+cd /wherever/you/want/petals-cockpit
 ```
 
 Then, execute these commands.

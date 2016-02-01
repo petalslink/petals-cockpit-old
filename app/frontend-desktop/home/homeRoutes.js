@@ -13,8 +13,21 @@ function homeRoutes($stateProvider) {
             pageDescription: 'Meta Description goes here' // meta description in <head>
         }
     };
+/*
+    var sidenav = {
+        name: 'sidenav',
+        url: '^/sidenav', // The ^ character makes this url override the parent url
+        template: '<div sidenav-view></div>',
+        data: {
+            moduleClasses: 'page',
+            pageClasses: 'sidenav',
+            pageTitle: 'Sidenav',
+            pageDescription: 'Some description.'
+        }
+    };*/
 
     $stateProvider.state(home);
+/*    $stateProvider.state(sidenav);*/
 
 }
 

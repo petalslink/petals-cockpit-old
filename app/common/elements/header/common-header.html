@@ -1,9 +1,10 @@
-<div flex>
+<header class="header" md-theme="header-theme" flex>
 
     <md-toolbar class="md-primary" layout="row">
 
         <!-- When User is Logged -->
         <div class="md-toolbar-tools md-primary md-hue-2" flex>
+
             <a href="">
                 <md-tooltip md-direction="right">
                     Take The Control !
@@ -13,9 +14,11 @@
                         <div class="text-color-white">
                             Petals
                         </div>
+                        <md-divider></md-divider>
                         <div class="text-color-icon-nav">
                             COCKPIT
                         </div>
+                        <md-divider></md-divider>
                     </strong></h1>
                 </div>
             </a>
@@ -23,15 +26,13 @@
             <div flex></div>
 
             <md-menu md-position-mode="target-right target" class="md-accent">
-                <md-button class="" aria-label="Open Config Account"
+                <md-button class="md-fab md-mini" aria-label="Open Config Account"
                            ng-click="">
                     <md-tooltip md-direction="bottom">
                         User Logged
                     </md-tooltip>
-                    <md-button class="md-fab md-mini">
-                        <md-icon md-menu-origin class="md-icon-button md-24 md-accent" aria-label="User">account_circle
-                        </md-icon>
-                    </md-button>
+                    <md-icon md-menu-origin class="md-icon-button md-24 md-accent" aria-label="User">face
+                    </md-icon>
                     <strong>
                         <span data-ng-bind="" class="text-color-white"></span></strong> <i
                         class="zmdi zmdi-caret-down text-color-white"></i>
@@ -65,8 +66,8 @@
                 </md-menu-content>
             </md-menu>
 
-            <md-menu md-position-mode="target-right target">
-                <md-button class="md-icon-button md-accent md-fab md-mini" aria-label="Open Config Menu"
+            <md-menu md-position-mode="target-right target" class="md-accent">
+                <md-button class="md-fab md-mini" aria-label="Open Config Menu"
                            ng-click="">
                     <md-tooltip md-direction="bottom">
                         Menu Config
@@ -104,5 +105,5 @@
 
     </md-toolbar>
 
-</div>
+</header>
 

@@ -1,12 +1,12 @@
 'use strict';
 
-module.exports = function aboutDirective() {
+module.exports = function petalsDirective() {
     return {
-        controller: 'AboutCtrl',
+        controller: 'PetalsCtrl',
         controllerAs: 'ctrl',
         bindToController: true,
         restrict: 'EA',
         scope: true,
-        template: require('./about.html')
+        template: require('./petals.html')
     };
 };

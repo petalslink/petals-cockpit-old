@@ -1,7 +1,7 @@
 'use strict';
 // Controller naming conventions should start with an uppercase letter
 function HomeCtrl($scope) {
-    $scope.testVar = 'We are up and running using a required module!';
+    $scope.infoInclude = 'This is the content from home.html';
 }
 
 // $inject is necessary for minification. See http://bit.ly/1lNICde for explanation.

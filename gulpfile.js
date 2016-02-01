@@ -2,6 +2,7 @@
 // =======================================================================
 // Gulp Plugins
 // =======================================================================
+/* Importe les modules installer */
 var gulp = require('gulp'),
     connect = require('gulp-connect'),
     jshint = require('gulp-jshint'),
@@ -42,7 +43,8 @@ var filePath = {
             '!./app/assets/libs/**/*.js',
             '!./app/**/*.spec.js',
             './app/*.js', './app/**/*.js',
-            '/app/**/*.html'
+            '/app/**/*.html',
+            './app/frontend-desktop/home/sidenav/index.js'
         ]
     },
     styles: {
@@ -66,14 +68,14 @@ var filePath = {
             './libs/angular/angular.js',
             './libs/angular-animate/angular-animate.js',
             './libs/angular-aria/angular-aria.js',
-            './libs/angular-bootstrap/ui-bootstrap-tpls.js',
+
             './libs/angular-cookies/angular-cookies.js',
             './libs/angular-material/angular-material.js',
             './libs/angular-resource/angular-resource.js',
             './libs/angular-sanitize/angular-sanitize.js',
             './libs/angular-ui-router/release/angular-ui-router.js',
             './libs/jquery/dist/jquery.js',
-            './libs/bootstrap/dist/js/bootstrap.js',
+
             './libs/domready/ready.js',
             './libs/lodash/lodash.js',
             './libs/restangular/dist/restangular.js'
@@ -81,7 +83,7 @@ var filePath = {
     },
     vendorCSS: {
         src: [
-            './libs/bootstrap/dist/css/bootstrap.css', // v3.1.1
+            './libs/angular-material/angular-material.layouts.css',
             './libs/angular-material/angular-material.min.css',
             './libs/font-awesome/css/font-awesome.css' // v4.1.0
         ]
@@ -232,6 +234,7 @@ gulp.task('bundle-prod', function () {
 // =======================================================================
 // Styles Task
 // =======================================================================
+/* Définissions des tâches à appliquer aux fichiers */
 gulp.task('styles-dev', function() {
     return gulp.src(filePath.styles.src)
     .pipe(sourcemaps.init())
@@ -312,11 +315,11 @@ gulp.task('vendorJS', function() {
 // Vendor CSS Task
 // =======================================================================
 gulp.task('vendorCSS', function() {
-    return gulp.src(filePath.vendorCSS.src)
-    .pipe(concat('vendor.css'))
+    return gulp.src(filePath.vendorCSS.src) // Prend en entrée les fichiers css
+    .pipe(concat('vendor.css')) // Compile les fichiers
     .on('error', handleError)
-    .pipe(minifyCSS())
-    .pipe(gulp.dest(filePath.build.dest))
+    .pipe(minifyCSS()) // Minifie le css qui a été généré
+    .pipe(gulp.dest(filePath.build.dest)) // Sauvegarde le tout dans un dossier dist
     .pipe(notify({
         message: 'VendorCSS task complete'
     }))

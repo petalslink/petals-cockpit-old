@@ -1,15 +1,11 @@
+/*
 'use strict';
 
-module.exports = angular.module('common.elements.commonHeader', [])
-    .directive('commonHeader', function() {
-        return {
-            template: require('./common-header.html'),
-            restrict: 'EA',
-            replace: true
-        };
-    })
-    .config(function($mdThemingProvider) {
-        $mdThemingProvider.theme('header-theme', 'default')
+module.exports = angular.module('frontend-desktop.home', [
+        require('./sidenav').name
+    ])
+    .config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('sidenav-theme', 'default')
             .primaryPalette('orange', {
                 'default': '800',
                 'hue-1': '800',
@@ -22,4 +18,4 @@ module.exports = angular.module('common.elements.commonHeader', [])
                 'hue-2': '300',
                 'hue-3': '200'
             });
-    });
+    });*/

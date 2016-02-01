@@ -1,14 +1,14 @@
 {
   "name": "Petals-Cockpit",
   "version": "0.0.3",
-  "description": "Base AngularJS application with gulp and browserify",
+  "description": "AngularJS application with gulp and browserify",
   "main": "app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/petalslink/petals-cockpit"
   },
   "license" : "GNU",
-  "authors": "Christophe Chevalier <cchevalier@linagora.com>",
+  "authors": "QantumLeap <cchevalier@linagora.com>",
   "private": false,
   "engines": {
     "node": "0.10.38"
