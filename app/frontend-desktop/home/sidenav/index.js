@@ -1,6 +1,9 @@
 'use strict';
 // Sidenav View
-module.exports = angular.module('frontend-desktop.home.sidenav', [])
+module.exports = angular.module('frontend-desktop.home.sidenav',
+    [
+        require('./petals-view').name
+    ])
     .config(require('./sidenavRoutes'))
-    .controller('SidenavCtrl', require('./SidenavController'))
-    .directive('sidenavView', require('./sidenavDirective'));
+    .directive('sidenavView', require('./sidenavDirective'))
+    .controller('SidenavCtrl', require('./SidenavController'));

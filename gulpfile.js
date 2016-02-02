@@ -195,7 +195,7 @@ bundle.conf = {
     cache: {},
     packageCache: {}
 };
-
+// Cette tâche va prendre le script "racine" de l'application et résoudre toutes ses dépendances, les ajouter dans un fichier 'bundle.js' et le placer dans le répertoire "dist"
 function rebundle() {
     return bundle.bundler.bundle()
         .pipe(source('bundle.js'))

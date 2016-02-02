@@ -1,4 +1,3 @@
-/*
 'use strict';
 
 module.exports = angular.module('frontend-desktop.home', [
@@ -18,4 +17,4 @@ module.exports = angular.module('frontend-desktop.home', [
                 'hue-2': '300',
                 'hue-3': '200'
             });
-    });*/
+    });

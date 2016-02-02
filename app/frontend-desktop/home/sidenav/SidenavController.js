@@ -2,6 +2,9 @@
 
 function SidenavCtrl($scope, $mdSidenav, $timeout, $log) {
 
+    console.log('Sidenav Info!');
+
+
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.lockLeft = true;

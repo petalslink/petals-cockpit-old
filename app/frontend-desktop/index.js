@@ -2,7 +2,6 @@
 
 module.exports = angular.module('frontend-desktop',
     [
-        require('./home').name,
-        require('./pages').name
+        require('./home').name
     ])
     .controller('MainCtrl', require('./MainController'));
