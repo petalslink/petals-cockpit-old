@@ -6,12 +6,12 @@
         <div class="md-toolbar-tools md-primary md-hue-2">
 
             <h1 class="md-toolbar-tools">
-                <md-icon class="material-icons md-24 md-primary" aria-label="Folder">folder</md-icon>
+                <md-icon class="material-icons md-24 md-primary" aria-label="Folder">folder
+                </md-icon>
+                <span> WORKSPACE NAME</span>
             </h1>
-            <md-button class="md-icon-button md-primary md-24"
-                       ng-click="toggleRight();"
-                       ng-hide="isOpenRight()">
-                <md-tooltip md-direction="bottom">
+            <md-button class="md-icon-button md-primary md-24">
+                <md-tooltip md-direction="top">
                     Menu Workspace
                 </md-tooltip>
                 <md-icon class="material-icons md-24 md-primary" aria-label="Open Menu">more_vert</md-icon>
@@ -42,7 +42,7 @@
                     </md-tab-label>
 
                     <md-tab-body ng-show="tab==1">
-                        <div petals-view></div>
+                        <div petals-view autoscroll="false" id="petals" flex></div>
                     </md-tab-body>
 
                 </md-tab>
@@ -80,24 +80,6 @@
         </div>
 
     </md-content>
-
-    <!-- Nav Menu Workspace -->
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" flex>
-
-        <md-toolbar class="md-accent">
-            <h2 class="md-toolbar-tools"><span flex>MENU</span>
-                <md-icon class="material-icons md-24 md-primary" aria-label="Folder">folder</md-icon>
-                <md-button class="md-icon-button md-primary md-24"
-                           ng-click="close()">
-                    <md-tooltip md-direction="bottom">
-                        Back
-                    </md-tooltip>
-                    <md-icon class="material-icons md-24 md-primary" aria-label="Close Menu">close</md-icon>
-                </md-button>
-            </h2>
-        </md-toolbar>
-
-    </md-sidenav>
 
 </md-sidenav>
 

@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function petalsDirective() {
+
     return {
         controller: 'PetalsCtrl',
         controllerAs: 'ctrl',

@@ -250,7 +250,7 @@ function PetalsCtrl($scope, $mdDialog) {
                     children: []
                 });
             }
-            child.affichage = 'details'
+            child.affichage = 'details';
             console.log(angular.toJson($scope.data));
 
             $scope.formChildData.title = '';

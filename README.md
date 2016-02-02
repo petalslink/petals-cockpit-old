@@ -16,7 +16,7 @@ WebStorm was used to develop it, but any IDE should work. Everything you need is
 - What is BOWER?
 Bower is a package manager. It can be used when you want to add packages of code to your web app, Bower can help you quickly install the code, and help you upgrade to newer versions.
 - What is GULP?
-Grunt helps you automate repetitive tasks. Grunt comes in lots of different varieties, and its job is to make your job easier.
+Gulp helps you automate repetitive tasks. Grunt comes in lots of different varieties, and its job is to make your job easier.
 
 
 ### Building
