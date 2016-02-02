@@ -2,7 +2,6 @@
 
 module.exports = function sidenavDirective1() {
 
-    console.log('blabla');
     return {
         controller: 'SidenavCtrl',
         controllerAs: 'ctrl',

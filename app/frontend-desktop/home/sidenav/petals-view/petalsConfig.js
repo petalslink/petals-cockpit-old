@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = angular.module('frontend-desktop.home.sidenav', [
+module.exports = angular.module('frontend-desktop.home.sidenav',
+    [
         require('./petals-view').name
     ])
     .config(function($mdThemingProvider) {

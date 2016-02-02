@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = angular.module('frontend-desktop.home', [
+module.exports = angular.module('frontend-desktop.home',
+    [
         require('./sidenav').name
     ])
     .config(function ($mdThemingProvider) {

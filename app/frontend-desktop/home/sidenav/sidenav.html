@@ -1,5 +1,5 @@
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="lockLeft && $mdMedia('gt-md')"
-            md-theme="sidenav-theme" flex>
+            flex>
 
     <md-toolbar class="md-accent">
 
@@ -24,7 +24,7 @@
     <!-- Nav Tree Components -->
     <md-content layout-fill flex>
 
-        <div md-theme="sidenav-theme" layout-fill ng-cloak>
+        <div layout-fill ng-cloak>
 
             <md-tabs md-dynamic-height="true" class="md-accent" md-on-selected="dataNav.selectedIndex"
                      md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}" flex-auto="">
@@ -42,7 +42,6 @@
                     </md-tab-label>
 
                     <md-tab-body ng-show="tab==1">
-                        <!--                        <petals-tree components="component"></petals-tree>-->
                         <div petals-view></div>
                     </md-tab-body>
 
@@ -83,7 +82,7 @@
     </md-content>
 
     <!-- Nav Menu Workspace -->
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="core-theme" flex>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" flex>
 
         <md-toolbar class="md-accent">
             <h2 class="md-toolbar-tools"><span flex>MENU</span>

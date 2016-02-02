@@ -2,9 +2,6 @@
 
 function SidenavCtrl($scope, $mdSidenav, $timeout, $log) {
 
-    console.log('Sidenav Info!');
-
-
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.lockLeft = true;
@@ -26,12 +23,12 @@ function SidenavCtrl($scope, $mdSidenav, $timeout, $log) {
             });
     };
 
-    $scope.close = function() {
+/*    $scope.close = function() {
         $mdSidenav('left').close()
             .then(function() {
                 $log.debug("close LEFT is done");
             });
-    };
+    };*/
 
     $scope.dataNav = {
 
