@@ -21,13 +21,13 @@
     <div>
         <ol>
             <li ya-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}">
+
                 <!--                <md-list class="navTree" layout="row"> -->
                 <div layout="row">
                     <md-icon class="material-icons md-18 md-primary md-raised treeIcon"
                              ng-click="toggleMinimized(child)"
                              ng-switch on="child.affichage">
-                        <!--                        <span ng-switch-when="true">&#x25B6;</span>
-                                                <span ng-switch-default>&#x25BC;</span> -->
+
                         <span ng-switch-when="vide"> </span>
                         <span ng-switch-when="minimized">folder</span>
                         <span ng-switch-default>folder_open</span>

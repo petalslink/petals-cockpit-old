@@ -32,9 +32,21 @@
                     </md-button>
                 </div>
 
-                <div layout-align="center center">
+                <div>
+                    <span>
+<!--                        <md-icon class="material-icons md-18 md-accent treeIcon">
+                            {{selectedChild.icon}}
+                        </md-icon>
 
-                    <!--<span class="middleAlign">{{child.icon}} {{ child.title }}</span>-->
+                        <md-button class="md-primary menuBtnTree" ng-class="{'md-raised': selectedChild.selected}">
+                                    {{ selectedChild.title }}
+                        </md-button>-->
+                            <span>You are in </span>
+                            <md-button class="md-primary menuBtnTree"
+                                       ng-class="{'md-raised': selectedChild.value.selected}" ng-bind="selectedChild.value.title">
+
+                            </md-button>
+                    </span>
 
                     <md-button class="md-icon-button md-primary md-24">
                         <md-tooltip md-direction="top">
@@ -42,7 +54,6 @@
                         </md-tooltip>
                         <md-icon class="material-icons md-24 md-primary" aria-label="Open Menu">more_vert</md-icon>
                     </md-button>
-
                 </div>
 
             </div>
