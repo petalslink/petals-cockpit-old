@@ -44,29 +44,50 @@
                     </md-button>
 
                     <span flex></span>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Add Child
+                        </md-tooltip>
+                        <md-icon title="Add Child" class="material-icons md-18 md-primary md-raised treeIcon"
+                                 ng-click="addChild(child)"
+                                 ng-hide="isSU(child) || (child.affichage==='minimized')">
+                            add_circle_outline
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Delete
+                        </md-tooltip>
+                        <md-icon title="Delete" class="material-icons md-18 md-primary md-raised treeIcon"
+                                 ng-click="deleteBranch(child)"
+                                 ng-hide="(child.affichage==='minimized')">cancel
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Change Name
+                        </md-tooltip>
+                        <md-icon title="Change Name" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="changeName(child)">edit
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Moove Up
+                        </md-tooltip>
+                        <md-icon title="Up Child" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="upChild(child)">keyboard_arrow_up
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Moove Down
+                        </md-tooltip>
 
-                    <md-icon title="Add Child" class="material-icons md-18 md-primary md-raised treeIcon"
-                             ng-click="addChild(child)"
-                             ng-hide="isSU(child) || (child.affichage==='minimized')">
-                        add_circle_outline
-                    </md-icon>
-                    <md-icon title="Delete" class="material-icons md-18 md-primary md-raised treeIcon"
-                             ng-click="deleteBranch(child)"
-                             ng-hide="(child.affichage==='minimized')">
-                        cancel
-                    </md-icon>
-
-                    <md-icon title="Change Name" class="material-icons md-18 md-accent treeIcon"
-                             ng-click="changeName(child)">
-                        edit
-                    </md-icon>
-                    <md-icon title="Up Child" class="material-icons md-18 md-accent treeIcon" ng-click="upChild(child)">
-                        keyboard_arrow_up
-                    </md-icon>
-                    <md-icon title="Down Child" class="material-icons md-18 md-accent treeIcon"
-                             ng-click="downChild(child)">
-                        keyboard_arrow_down
-                    </md-icon>
+                        <md-icon title="Down Child" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="downChild(child)">keyboard_arrow_down
+                        </md-icon>
+                    </div>
                 </div>
                 <!--                </md-list> -->
                 <ol ng-class="{pregnant:child.children.length}"></ol>

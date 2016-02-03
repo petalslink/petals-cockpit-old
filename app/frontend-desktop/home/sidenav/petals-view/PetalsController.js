@@ -172,7 +172,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: '/petals-view/modals/addBranch.html',
+            templateUrl: './modals/addBranch.html',
             locals: {
                 formChildData: $scope.formChildData,
                 parentTitle: $scope.parentTitle,
@@ -269,7 +269,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: '/petals-view/modals/changeName.html',
+            templateUrl: './modals/changeName.html',
             locals: {formChildData: $scope.formChildData},
             controller: function DialogController($scope, $mdDialog, formChildData) {
 
@@ -304,7 +304,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: '/petals-view/modals/deleteBranch.html',
+            templateUrl: './modals/deleteBranch.html',
             locals: {formChildData: $scope.formChildData},
             controller: function DialogController($scope, $mdDialog, formChildData) {
 
