@@ -7,9 +7,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $scope.json = angular.toJson($scope.data);
     };
 
-
-
-    $scope.addChild = function (child) {
+    $scope.addBranch = function (child) {
 
         switch (child.type) {
             case 'BUS':
@@ -40,11 +38,10 @@ function PetalsCtrl($scope, $mdDialog) {
         $scope.formChildData.affichage = 'vide';
         $scope.parentTitle = child.title;
 
-
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: './modals/addBranch.html',
+            template: require('./modals/addBranch.html'),
             locals: {
                 formChildData: $scope.formChildData,
                 parentTitle: $scope.parentTitle,
@@ -141,7 +138,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: './modals/changeName.html',
+            template: require('./modals/changeName.html'),
             locals: {formChildData: $scope.formChildData},
             controller: function DialogController($scope, $mdDialog, formChildData) {
 
@@ -176,7 +173,7 @@ function PetalsCtrl($scope, $mdDialog) {
         $mdDialog.show({
             parent: angular.element(document.body),
             clickOutsideToClose: true,
-            templateUrl: './modals/deleteBranch.html',
+            template: require('./modals/deleteBranch.html'),
             locals: {formChildData: $scope.formChildData},
             controller: function DialogController($scope, $mdDialog, formChildData) {
 

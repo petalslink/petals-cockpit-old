@@ -1,6 +1,8 @@
 'use strict';
 // Petals View
 module.exports = angular.module('frontend-desktop.home.sidenav.petals-view', [])
+
+    .config(require('./petalsRoutes'))
     .directive('petalsView', require('./petalsDirective'))
     .controller('PetalsCtrl', require('./PetalsController'))
     .config(function($mdThemingProvider) {

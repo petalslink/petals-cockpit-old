@@ -5,6 +5,8 @@ function MainCtrl($rootScope, $scope) {
     $scope.test = null;
     console.log('Up and running!');
 
+    $scope.infoSelect = ' You Pick : ';
+
     $scope.data = {
         title: 'Workspace Demo',
         type: 'WKSPCE',

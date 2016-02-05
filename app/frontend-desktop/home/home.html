@@ -5,7 +5,7 @@
 
             <div class="md-toolbar-tools md-primary">
 
-                <div flex>
+                <div ng-controller="SidenavCtrl" flex>
                     <md-button class="md-icon-button md-primary md-24">
                         <md-tooltip md-direction="top">
                             Workspace
@@ -24,28 +24,33 @@
                     </md-button>
 
                     <md-button class="md-icon-button md-primary md-24"
-                               ng-click="close()">
+                               ng-click="close()" ng-hide="isOpenLeft()">
                         <md-tooltip md-direction="top">
                             Close
                         </md-tooltip>
                         <md-icon class="material-icons md-24 md-primary" aria-label="Hide Tree">arrow_back</md-icon>
                     </md-button>
+
+                    <md-button class="md-icon-button md-primary md-24"
+                               ng-click="isOpenLeft()" ng-hide="!isOpenLeft()">
+                        <md-tooltip md-direction="top">
+                            Open
+                        </md-tooltip>
+                        <md-icon class="material-icons md-24 md-primary" aria-label="Show Tree">arrow_next</md-icon>
+                    </md-button>
                 </div>
 
                 <div>
                     <span>
-<!--                        <md-icon class="material-icons md-18 md-accent treeIcon">
-                            {{selectedChild.icon}}
+                        <span> {{ infoSelect }} </span>
+                        <md-icon class="material-icons md-18 md-accent treeIcon">
+                            {{ selectedChild.value.icon }}
                         </md-icon>
 
-                        <md-button class="md-primary menuBtnTree" ng-class="{'md-raised': selectedChild.selected}">
-                                    {{ selectedChild.title }}
-                        </md-button>-->
-                            <span>You are in </span>
-                            <md-button class="md-primary menuBtnTree"
-                                       ng-class="{'md-raised': selectedChild.value.selected}" ng-bind="selectedChild.value.title">
-
-                            </md-button>
+                        <md-button class="md-primary menuBtnTree"
+                                   ng-class="{'md-raised': selectedChild.value.selected}">
+                            {{ selectedChild.value.title }}
+                        </md-button>
                     </span>
 
                     <md-button class="md-icon-button md-primary md-24">
