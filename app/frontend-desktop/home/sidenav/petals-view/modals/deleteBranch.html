@@ -1,16 +1,16 @@
-<md-dialog aria-label="Rename Branch" md-theme="petals-theme" md-whiteframe-32dp class="md-dialog" ng-cloak>
+<md-dialog aria-label="Rename Branch" md-theme="petals-theme" md-whiteframe-32dp class="md-dialog">
     <form name="myFormChangeName">
-        <md-toolbar layout-align="center center">
-            <h1 class="md-title md-accent" style="font-weight: bold; font-size: larger;">
-                <md-icon class="md-36 md-accent" aria-label="add">edit</md-icon>
-                Deletion of "{{ title }}"
-            </h1>
+
+        <md-toolbar layout-align="center center" layout-padding>
+            <h3 class="md-headline md-accent">
+                <md-icon class="md-36 md-accent" aria-label="delete">cancel</md-icon>
+                Removal of <span class="md-display-1"><b>'{{ title }}'</b></span>
+            </h3>
         </md-toolbar>
 
         <md-content layout-padding layout="row">
-            <div layout="row" layout-sm="column" layout-align="center center"
-                 style="font-weight: bold; font-size: xx-large;" flex>
-                Are you sure to delete "{{ title }}" ?
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <span class="md-headline">Are you sure to <b>delete "{{ title }}</b>" ?</span>
             </div>
         </md-content>
 

@@ -1,17 +1,18 @@
-<md-dialog aria-label="Rename Branch" md-theme="petals-theme" md-whiteframe-32dp class="md-dialog" ng-cloak>
+<md-dialog aria-label="Rename Branch" md-theme="petals-theme" md-whiteframe-32dp class="md-dialog">
     <form name="myFormChangeName">
-        <md-toolbar layout-align="center center">
-            <h1 class="md-title md-accent" style="font-weight: bold; font-size: larger;">
-                <md-icon class="md-36 md-accent" aria-label="add">edit</md-icon>
-                Change Name of "{{ title }}"
-            </h1>
+
+        <md-toolbar layout-align="center center" layout-padding>
+            <h3 class="md-headline md-accent">
+                <md-icon class="md-36 md-accent" aria-label="edit">edit</md-icon>
+                Change Name of <span class="md-display-1"><b>'{{ title }}'</b></span>
+            </h3>
         </md-toolbar>
 
         <md-content layout-padding layout="row">
             <div layout="row" layout-sm="column" layout-align="center center" flex>
                 <md-input-container class="md-accent md-hue-1">
                     <label>Enter a new Name</label>
-                    <input type="text" style="font-size: 28px;" ng-model="formChildData.title"
+                    <input type="text" class="md-headline" ng-model="formChildData.title"
                            placeholder="Please, Enter a new name..">
                 </md-input-container>
             </div>
