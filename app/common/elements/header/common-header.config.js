@@ -1,14 +1,10 @@
-'use strict';
+(function () {
+    'use strict';
 
-module.exports = angular.module('common.elements.commonHeader', [])
-    .directive('commonHeader', function() {
-        return {
-            template: require('./common-header.html'),
-            restrict: 'EA',
-            replace: true
-        };
-    })
-    .config(function($mdThemingProvider) {
+    angular.module('common.elements.commonHeader', [])
+        .config('commonHeaderConfig');
+
+    function commonHeaderConfig($mdThemingProvider) {
         $mdThemingProvider.theme('header-theme', 'default')
             .primaryPalette('orange', {
                 'default': '800',
@@ -22,4 +18,8 @@ module.exports = angular.module('common.elements.commonHeader', [])
                 'hue-2': '300',
                 'hue-3': '200'
             });
-    });
+    }
+
+})();
+
+commonHeaderConfig.$inject = ['$mdThemingProvider'];

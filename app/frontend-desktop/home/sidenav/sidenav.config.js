@@ -1,13 +1,12 @@
-'use strict';
-// Sidenav View
-module.exports = angular.module('frontend-desktop.home.sidenav',
-    [
-        require('./petals-view').name
-    ])
-    .config(require('./sidenavRoutes'))
-    .directive('sidenavView', require('./sidenavDirective'))
-    .controller('SidenavCtrl', require('./SidenavController'))
-    .config(function ($mdThemingProvider) {
+(function () {
+    'use strict';
+
+    angular
+        .module('frontend-desktop.home.sidenav', [])
+        .config('sidenavConfig');
+
+    function sidenavConfig($mdThemingProvider) {
+
         $mdThemingProvider.theme('sidenav-theme', 'default')
             .primaryPalette('orange', {
                 'default': '800',
@@ -21,4 +20,8 @@ module.exports = angular.module('frontend-desktop.home.sidenav',
                 'hue-2': '300',
                 'hue-3': '200'
             });
-    });
+    }
+
+})();
+
+sidenavConfig.$inject = ['$mdThemingProvider'];

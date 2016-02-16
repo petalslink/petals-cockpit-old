@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
     <head>
         <base href="/">
         <title ng-bind="'Petals Cockpit - ' + pageTitle"></title>
@@ -26,15 +26,16 @@
 
         <!-- Material Design icon font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     </head>
 
-    <body ng-class="bodyClasses" ng-controller="MainCtrl" layout="column">
+    <body ng-class="bodyClasses" ng-controller="MainController" layout="column">
 
         <div class="page">
             <common-header></common-header>
 
             <section class="">
-                <home-view></home-view>
+                <home-directive></home-directive>
             </section>
 
             <!--<common-footer></common-footer>-->

@@ -1,12 +1,18 @@
-'use strict';
+(function () {
+    'use strict';
 
-var CONSTANTS = (function() {
-    return {
-        successMessage: 'You have successfully logged in.',
-        failureMessage: 'Your username or password is incorrect.',
-        key: 'value'
-    };
-}());
+    angular
+        .module('app', [])
+        .constant('appConstants');
 
-CONSTANTS.$inject = [];
-module.exports = CONSTANTS;
+    function appConstants() {
+        return {
+            successMessage: 'You have successfully logged in.',
+            failureMessage: 'Your username or password is incorrect.',
+            key: 'value'
+        };
+    }
+
+})();
+
+appConstants.$inject = [];

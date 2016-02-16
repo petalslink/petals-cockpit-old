@@ -44,7 +44,7 @@ var filePath = {
             '!./app/**/*.spec.js',
             './app/*.js', './app/**/*.js',
             '/app/**/*.html',
-            './app/frontend-desktop/home/sidenav/index.js'
+            './app/frontend-desktop/home/sidenav/sidenav.module.js'
         ]
     },
     styles: {
