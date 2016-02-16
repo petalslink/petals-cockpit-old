@@ -3,7 +3,9 @@
 
     angular
         .module('app')
-        .config('sidenavRoutes');
+        .config('sidenavRoutes', sidenavRoutes);
+
+    sidenavRoutes.$inject = ['$stateProvider'];
 
     function sidenavRoutes($stateProvider) {
 
@@ -19,5 +21,3 @@
     }
 
 })();
-
-sidenavRoutes.$inject = ['$stateProvider'];

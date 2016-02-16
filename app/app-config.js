@@ -3,7 +3,9 @@
 
     angular
         .module('app', [])
-        .config('appConfig');
+        .config('appConfig', appConfig);
+
+    appConfig.$inject = ['$urlRouterProvider', '$locationProvider'];
 
     function appConfig($urlRouterProvider, $locationProvider) {
 
@@ -15,7 +17,7 @@
 
     }
 
+
 })();
 
-appConfig.$inject = ['$urlRouterProvider', '$locationProvider'];
 

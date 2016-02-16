@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home.sidenav', [])
-        .config('sidenavConfig');
+        .config('sidenavConfig', sidenavConfig);
+
+    sidenavConfig.$inject = ['$mdThemingProvider'];
 
     function sidenavConfig($mdThemingProvider) {
 
@@ -23,5 +25,3 @@
     }
 
 })();
-
-sidenavConfig.$inject = ['$mdThemingProvider'];

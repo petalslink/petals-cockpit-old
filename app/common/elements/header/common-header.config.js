@@ -2,7 +2,9 @@
     'use strict';
 
     angular.module('common.elements.commonHeader', [])
-        .config('commonHeaderConfig');
+        .config('commonHeaderConfig', commonHeaderConfig);
+
+    commonHeaderConfig.$inject = ['$mdThemingProvider'];
 
     function commonHeaderConfig($mdThemingProvider) {
         $mdThemingProvider.theme('header-theme', 'default')
@@ -21,5 +23,3 @@
     }
 
 })();
-
-commonHeaderConfig.$inject = ['$mdThemingProvider'];

@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home.sidenav', [])
-        .controller('SidenavController');
+        .controller('SidenavController', SidenavController);
+
+    SidenavController.$inject = ['$scope', '$mdSidenav', '$log'];
 
     function SidenavController($scope, $mdSidenav, $log) {
 
@@ -59,5 +61,3 @@
     }
 
 })();
-
-SidenavController.$inject = ['$scope', '$mdSidenav', '$log'];

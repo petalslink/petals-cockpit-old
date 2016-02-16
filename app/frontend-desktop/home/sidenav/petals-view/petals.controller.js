@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home.sidenav.petals-view', [])
-        .controller('PetalsController');
+        .controller('PetalsController', PetalsController);
+
+    PetalsController.$inject = ['$scope', '$mdDialog'];
 
     function PetalsController($scope, $mdDialog) {
 
@@ -326,5 +328,3 @@
     }
 
 })();
-
-PetalsController.$inject = ['$scope', '$mdDialog'];

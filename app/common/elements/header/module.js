@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('common.elements.commonHeader', [])
-        .directive('commonHeader');
+        .directive('commonHeader', commonHeader);
 
     function commonHeader() {
         return {

@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home', [])
-        .controller('HomeController');
+        .controller('HomeController', HomeController);
+
+    HomeController.$inject = ['$scope'];
 
 // Controller naming conventions should start with an uppercase letter
     function HomeController($scope) {
@@ -13,5 +15,3 @@
     }
 
 })();
-
-HomeController.$inject = ['$scope'];

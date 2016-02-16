@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop', [])
-        .controller('MainController');
+        .controller('MainController', MainController);
+
+    MainController.$inject = ['$rootScope', '$scope'];
 
     function MainController($rootScope, $scope) {
 
@@ -147,5 +149,3 @@
     }
 
 })();
-
-MainController.$inject = ['$rootScope', '$scope'];

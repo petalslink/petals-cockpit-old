@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home.sidenav.petals-view', [])
-        .config('petalsConfig');
+        .config('petalsConfig', petalsConfig);
+
+    petalsConfig.$inject = ['$mdThemingProvider'];
 
     function petalsConfig($mdThemingProvider) {
 
@@ -23,5 +25,3 @@
     }
 
 })();
-
-petalsConfig.$inject = ['$mdThemingProvider'];

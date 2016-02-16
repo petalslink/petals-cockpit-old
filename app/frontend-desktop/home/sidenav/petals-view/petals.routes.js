@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home.sidenav.petals-view', [])
-        .config('petalsRoutes');
+        .config('petalsRoutes', petalsRoutes);
+
+    petalsRoutes.$inject = ['$stateProvider'];
 
     function petalsRoutes($stateProvider) {
 
@@ -17,5 +19,3 @@
     }
 
 })();
-
-petalsRoutes.$inject = ['$stateProvider'];

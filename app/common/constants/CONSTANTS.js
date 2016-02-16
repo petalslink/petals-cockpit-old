@@ -3,7 +3,9 @@
 
     angular
         .module('app', [])
-        .constant('appConstants');
+        .constant('appConstants', appConstants);
+
+    appConstants.$inject = [];
 
     function appConstants() {
         return {
@@ -14,5 +16,3 @@
     }
 
 })();
-
-appConstants.$inject = [];

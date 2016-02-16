@@ -3,7 +3,9 @@
 
     angular
         .module('app', [])
-        .run('commonInit');
+        .run('commonInit', commonInit);
+
+    commonInit.$inject = ['$rootScope', '$state'];
 
     function commonInit($rootScope, $state) {
         $rootScope.$state = $state;
@@ -29,5 +31,3 @@
 
     }
 })();
-
-commonInit.$inject = ['$rootScope', '$state'];

@@ -3,7 +3,9 @@
 
     angular
         .module('frontend-desktop.home', [])
-        .config('homeRoutes');
+        .config('homeRoutes', homeRoutes);
+
+    homeRoutes.$inject = ['$stateProvider'];
 
     function homeRoutes($stateProvider) {
 
@@ -25,5 +27,3 @@
     }
 
 })();
-
-homeRoutes.$inject = ['$stateProvider'];

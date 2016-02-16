@@ -24,6 +24,5 @@ angular.module('common',
         'ngMaterial',
         'ngResource',
         'ngSanitize',
-        'restangular',
-        'app.frontend-desktop'
+        'restangular'
     ]);
