@@ -1,0 +1,66 @@
+<md-dialog aria-label="Add Branch" md-theme="core-theme" md-whiteframe-32dp class="md-dialog">
+    <form name="myFormAddBranch">
+
+        <md-toolbar layout-align="center center" layout-padding>
+            <h3 class="md-headline md-accent">
+                <md-icon class="md-36 md-accent" aria-label="add">add_circle_outline</md-icon>
+                Create New <span class="md-display-1">{{ formChildData.type }}</span> on <span class="md-display-1"><b>'{{ parentTitle}}'</b></span>
+            </h3>
+        </md-toolbar>
+
+        <md-content layout-padding layout="row">
+
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Type</label>
+                    <md-select name="myChoice"
+                               ng-model="myChoice"
+                               ng-change="changeSelected()" required>
+                        <md-option ng-value="choice" ng-repeat="choice in choiceList">
+                            {{choice.name}}
+                        </md-option>
+                        <!--                        <md-optgroup label="BC">
+                                                    <md-option ng-value="choice" ng-repeat="choice in choiceList | filter: {type: 'BC'}">
+                                                        {{choice.name}}
+                                                    </md-option>
+                                                </md-optgroup>
+                                                <md-optgroup label="SE">
+                                                    <md-option ng-value="choice" ng-repeat="choice in choiceList | filter: {type: 'SE'}">
+                                                        {{choice.name}}
+                                                    </md-option>
+                                                </md-optgroup> -->
+                    </md-select>
+
+                    <div class="errors" ng-messages="myFormAddBranch.myChoice.$error"
+                         ng-if="!myFormAddBranch.$dirty && hasChoice()">
+                        <div ng-message="required">Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <md-input-container class="md-accent md-hue-1">
+                    <label>Enter Name</label>
+                    <input type="text" class="md-headline" ng-model="formChildData.title" placeholder="Name">
+                </md-input-container>
+            </div>
+
+        </md-content>
+
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-align=" end center" flex>
+                <md-button ng-click="closeDialog()"
+                           class="md-accent md-whiteframe-z3 md-whiteframe-6dp" layout-align="center end">
+                    Cancel
+                </md-button>
+                <md-button ng-click="validDialog(formChildData);"
+                           class="md-accent md-raised md-whiteframe-z3 md-whiteframe-6dp"
+                           ng-disabled="myFormAddBranch.$invalid"
+                           layout-align="center end">
+                    Create {{ formChildData.type }}
+                </md-button>
+            </div>
+        </md-content>
+
+    </form>
+</md-dialog>

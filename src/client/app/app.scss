@@ -1,0 +1,15 @@
+@import "core/styles/_variables.scss";
+@import "core/styles/_core.scss";
+@import "components/approot/approot.scss";
+@import "components/appbar/appbar.scss";
+@import "components/apptabs/apptabs.scss";
+@import "components/sidenav/sidenav.scss";
+@import "petals/petals.scss";
+
+/* =======================================================================
+    App Module Styles
+======================================================================= */
+
+md-tooltip {
+    background-color: black;
+}

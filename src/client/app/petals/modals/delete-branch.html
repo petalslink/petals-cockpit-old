@@ -1,0 +1,33 @@
+<md-dialog aria-label="Rename Branch" md-theme="core-theme" md-whiteframe-32dp class="md-dialog">
+    <form name="myFormChangeName">
+
+        <md-toolbar layout-align="center center" layout-padding>
+            <h3 class="md-headline md-accent">
+                <md-icon class="md-36 md-accent" aria-label="delete">cancel</md-icon>
+                Removal of <span class="md-display-1"><b>'{{ title }}'</b></span>
+            </h3>
+        </md-toolbar>
+
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-sm="column" layout-align="center center" flex>
+                <span class="md-headline">Are you sure to <b>delete "{{ title }}</b>" ?</span>
+            </div>
+        </md-content>
+
+        <md-content layout-padding layout="row">
+            <div layout="row" layout-align=" end center" flex>
+                <md-button ng-click="closeDialog()"
+                           class="md-accent md-whiteframe-z3 md-whiteframe-6dp" layout-align="center end">
+                    Cancel
+                </md-button>
+                <md-button ng-click="validDialog(formChildData);"
+                           class="md-accent md-raised md-whiteframe-z3 md-whiteframe-6dp"
+                           ng-disabled="myFormChangeName.$invalid" layout-align="center end">
+                    Delete
+
+                </md-button>
+            </div>
+        </md-content>
+
+    </form>
+</md-dialog>

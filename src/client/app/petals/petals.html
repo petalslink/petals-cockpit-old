@@ -1,0 +1,97 @@
+<div layout-fill md-theme="core-theme" ng-cloak>
+
+    <md-content class="md-accent">
+
+        <md-button class="md-primary md-raised md-shadow-bottom-z-2" ng-click="addBranch(data)">
+            <md-icon class="material-icons md-24 md-primary"
+                     aria-label="add">add
+            </md-icon>
+            <span> New </span>
+            <md-icon class="material-icons md-24 md-primary"
+                     aria-label="add">directions_bus
+            </md-icon>
+            <md-tooltip md-direction="right">
+                Add New Bus
+            </md-tooltip>
+
+        </md-button>
+
+    </md-content>
+
+    <div>
+        <ol>
+            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}">
+
+                <!--                <md-list class="navTree" layout="row"> -->
+                <div layout="row">
+                    <md-icon class="material-icons md-18 md-primary md-raised treeIcon"
+                             ng-click="toggleMinimized(child)"
+                             ng-switch on="child.affichage">
+
+                        <span ng-switch-when="vide"> </span>
+                        <span ng-switch-when="minimized">folder</span>
+                        <span ng-switch-default>folder_open</span>
+
+                    </md-icon>
+
+                    <md-icon class="material-icons md-18 md-accent treeIcon">
+                        {{child.icon}}
+                    </md-icon>
+
+
+                    <md-button class="md-accent menuBtnTree" ng-click="select(child)"
+                               ng-class="{'md-raised': child.selected}"> {{ child.title }}
+                    </md-button>
+
+                    <span flex></span>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Add Child
+                        </md-tooltip>
+                        <md-icon title="Add Child" class="material-icons md-18 md-primary md-raised treeIcon"
+                                 ng-click="addBranch(child)"
+                                 ng-hide="isSU(child) || (child.affichage==='minimized')">
+                            add_circle_outline
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Delete
+                        </md-tooltip>
+                        <md-icon title="Delete" class="material-icons md-18 md-primary md-raised treeIcon"
+                                 ng-click="deleteBranch(child)"
+                                 ng-hide="(child.affichage==='minimized')">cancel
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Change Name
+                        </md-tooltip>
+                        <md-icon title="Change Name" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="changeName(child)">edit
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Moove Up
+                        </md-tooltip>
+                        <md-icon title="Up Child" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="upChild(child)">keyboard_arrow_up
+                        </md-icon>
+                    </div>
+                    <div>
+                        <md-tooltip md-direction="top">
+                            Moove Down
+                        </md-tooltip>
+
+                        <md-icon title="Down Child" class="material-icons md-18 md-accent treeIcon"
+                                 ng-click="downChild(child)">keyboard_arrow_down
+                        </md-icon>
+                    </div>
+                </div>
+                <!--                </md-list> -->
+                <ol ng-class="{pregnant:child.children.length}"></ol>
+            </li>
+        </ol>
+    </div>
+</div>

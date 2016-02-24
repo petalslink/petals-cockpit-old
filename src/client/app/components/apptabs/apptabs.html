@@ -1,0 +1,51 @@
+<div layout-fill md-theme="core-theme" ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height="true" md-border-bottom class="md-accent" md-on-selected="dataNav.selectedIndex"
+                 md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}" flex="100">
+            <md-tab id="tab1" ng-disabled="dataNav.view1Locked">
+
+                <md-tab-label class="md-primary">
+                    <md-tooltip md-direction="bottom">
+                        Petals Tree View
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNav.view1Icon }}</md-icon>
+                    <label hide-sm>
+                        {{ dataNav.view1Label }}
+                    </label>
+                </md-tab-label>
+
+                <md-tab-body ng-show="tab==1" flex="40">
+                    <tmpl-sidenav></tmpl-sidenav>
+                </md-tab-body>
+
+            </md-tab>
+
+            <md-tab id="tab2" ng-disabled="true">
+                <md-tab-label>
+                    <md-tooltip md-direction="bottom">
+                        Service Tree View
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNav.view2Icon }}</md-icon>
+                    <label hide-sm>
+                        {{ dataNav.view2Label }}
+                    </label>
+                </md-tab-label>
+
+            </md-tab>
+
+            <md-tab id="tab3" ng-disabled="true">
+                <md-tab-label>
+                    <md-tooltip md-direction="bottom">
+                        API Tree View
+                    </md-tooltip>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNav.view3Icon }}</md-icon>
+                    <label hide-sm>
+                        {{ dataNav.view3Label }}
+                    </label>
+                </md-tab-label>
+
+            </md-tab>
+        </md-tabs>
+
+    </md-content>
+</div>

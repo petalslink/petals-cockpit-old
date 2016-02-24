@@ -1,20 +1,30 @@
 {
-    "disallowKeywords": ["with"],
-    "disallowKeywordsOnNewLine": ["else"],
-    "disallowMixedSpacesAndTabs": true,
-    "disallowMultipleVarDecl": "exceptUndefined",
-    "disallowNewlineBeforeBlockStatements": true,
-    "disallowQuotedKeysInObjects": true,
-    "disallowSpaceAfterObjectKeys": true,
-    "disallowSpaceAfterPrefixUnaryOperators": true,
-    "disallowSpacesInFunction": {
-        "beforeOpeningRoundBrace": true
+    "excludeFiles": [
+        "node_modules/**",
+        "bower_components/**"
+    ],
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireOperatorBeforeLineBreak": true,
+    "maximumLineLength": {
+        "value": 120,
+        "allowComments": true,
+        "allowRegex": true
     },
-    "disallowSpacesInsideParentheses": true,
+    "validateIndentation": 4,
+    "validateQuoteMarks": "'",
+    "disallowMultipleLineStrings": true,
+    "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
-    "requireCamelCaseOrUpperCaseIdentifiers": true,
-    "requireCapitalizedConstructors": true,
-    "requireCurlyBraces": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowMultipleVarDecl": null,
     "requireSpaceAfterKeywords": [
         "if",
         "else",
@@ -22,21 +32,60 @@
         "while",
         "do",
         "switch",
-        "case",
         "return",
         "try",
-        "catch",
-        "typeof"
+        "catch"
     ],
-    "requireSpaceAfterLineComment": true,
+    "requireSpaceBeforeBinaryOperators": [
+        "=",
+        "+=",
+        "-=",
+        "*=",
+        "/=",
+        "%=",
+        "<<=",
+        ">>=",
+        ">>>=",
+        "&=",
+        "|=",
+        "^=",
+        "+=",
+        "+",
+        "-",
+        "*",
+        "/",
+        "%",
+        "<<",
+        ">>",
+        ">>>",
+        "&",
+        "|",
+        "^",
+        "&&",
+        "||",
+        "===",
+        "==",
+        ">=",
+        "<=",
+        "<",
+        ">",
+        "!=",
+        "!=="
+    ],
     "requireSpaceAfterBinaryOperators": true,
-    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpacesInConditionalExpression": true,
     "requireSpaceBeforeBlockStatements": true,
-    "requireSpaceBeforeObjectValues": true,
-    "requireSpacesInFunction": {
-        "beforeOpeningCurlyBrace": true
+    "validateJSDoc": {
+        "checkParamNames": true,
+        "requireParamTypes": true
     },
-    "validateIndentation": 4,
-    "validateLineBreaks": "LF",
-    "validateQuoteMarks": "'"
+    "disallowCommaBeforeLineBreak": null,
+    "disallowDanglingUnderscores": null,
+    "disallowEmptyBlocks": null,
+    "disallowMultipleLineStrings": null,
+    "disallowTrailingComma": null,
+    "requireCommaBeforeLineBreak": null,
+    "requireDotNotation": null,
+    "requireMultipleVarDecl": null,
+    "requireParenthesesAroundIIFE": true
 }

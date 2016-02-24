@@ -1,0 +1,44 @@
+<md-toolbar md-theme="core-theme" layout="row" ng-cloak>
+
+    <!-- When User is Logged -->
+    <div class="md-toolbar-tools md-accent">
+
+        <md-button class="md-icon-button" hide-gt-sm ng-click="vm.toggleSidenav()" aria-label="Show Navbar">
+            <md-icon md-svg-icon="navigation:menu"></md-icon>
+        </md-button>
+
+
+        <div class="">
+            <h1 class="md-toolbar-tools"><strong>
+                <div>
+                    Petals
+                </div>
+                <md-divider></md-divider>
+                <a class="cockpit">
+                    <div class="cockpit">
+                        COCKPIT
+                    </div>
+                </a>
+            </strong></h1>
+            <md-tooltip md-direction="bottom">
+                Take The Control !
+            </md-tooltip>
+        </div>
+
+        <span flex></span>
+
+
+        <md-button ng-click="vm.login()" aria-label="login" class="md-raised md-accent">
+            <md-icon class="md-icon-button md-24 md-accent" aria-label="Connexion User">account_box
+            </md-icon>
+            <span flex></span>
+            <span>Login</span>
+            <md-tooltip md-direction="bottom">
+                Connexion User
+            </md-tooltip>
+        </md-button>
+
+
+    </div>
+
+</md-toolbar>
