@@ -36,21 +36,34 @@
 
             selectedIndex: 0,
 
-            view1Locked: false,
-            view1Label: 'Petals',
-            view1Icon: 'lock_open',
+            menuLocked: false,
+            menuLabelOpen: 'Hide',
+            menuLabelClose: 'Show',
+            menuIconOpen: 'undo',
+            menuIconClose: 'redo',
 
-            view2Locked: false,
-            view2Label: 'Service',
-            view2Icon: 'lock',
+            petalsLocked: false,
+            petalsLabel: 'Petals',
+            petalsIcon: 'lock_open',
 
-            view3Locked: false,
-            view3Label: 'Api',
-            view3Icon: 'lock',
+            serviceLocked: false,
+            serviceLabel: 'Service',
+            serviceIcon: 'lock',
+
+            apiLocked: false,
+            apiLabel: 'Api',
+            apiIcon: 'lock',
 
 
             /* Position Toolbar Tab on Top when it's false */
             bottom: false
+        };
+
+        $scope.nextNav = function () {
+            $scope.dataNav.selectedIndex = Math.min($scope.dataNav.selectedIndex + 1, 2, 3, 4);
+        };
+        $scope.previousNav = function () {
+            $scope.dataNav.selectedIndex = Math.max($scope.dataNav.selectedIndex - 1, 0);
         };
     }
 

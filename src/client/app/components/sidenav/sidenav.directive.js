@@ -17,7 +17,8 @@
             restrict: 'E',
             templateUrl: 'app/components/sidenav/sidenav.html',
             scope: true,
-            controller: 'SidenavController'
+            controller: 'SidenavController',
+            controllerAs: 'vm'
         };
 
         return directive;
@@ -35,29 +36,6 @@
         function toggleSidenav() {
             $mdSidenav('left').toggle();
         }
-/*
-        // TABS VIEWS TREE
-        $scope.dataNav = {
-
-            selectedIndex: 0,
-
-            view1Locked: false,
-            view1Label: 'Petals',
-            view1Icon: 'lock_open',
-
-            view2Locked: false,
-            view2Label: 'Service',
-            view2Icon: 'lock',
-
-            view3Locked: false,
-            view3Label: 'Api',
-            view3Icon: 'lock',
-
-
-            /!* Position Toolbar Tab on Top when it's false *!/
-            bottom: false
-        };*/
-
         // SIDENAV
 
         $scope.toggleLeft = buildToggler('left');

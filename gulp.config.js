@@ -21,6 +21,10 @@ module.exports = {
         src + 'app/framework/**/*.js',
         src + 'app/petals/**/*.js',
         src + 'app/components/**/*.js',
+        src + 'app/components/sidenav/*js',
+        src + 'app/components/apptabs/*js',
+        src + 'app/components/approot/*js',
+        src + 'app/components/appbar/*js',
         src + 'app/**/*.js'
     ],
     html: [
@@ -29,7 +33,8 @@ module.exports = {
         src + 'app/**/**/*html',
         src + 'app/components/sidenav/*html',
         src + 'app/components/apptabs/*html',
-        src + 'app/components/approot/*html'
+        src + 'app/components/approot/*html',
+        src + 'app/components/appbar/*html'
     ],
     sass: [
         src + 'app/**/*.scss',
