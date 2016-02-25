@@ -11,17 +11,33 @@
                 </label>
             </md-tab-label>
 
-            <!--<md-tab-body ng-show="tab==1" flex="40"></md-tab-body>-->
+            <md-tab-body ng-show="tab==1">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-overview></tmpl-overview>
+                    </div>
+                </md-content>
+            </md-tab-body>
 
         </md-tab>
 
-        <md-tab id="tab2" ng-disabled="dataNavConsole.adminLocked">
+        <md-tab id="tab2" ng-disabled="dataNavConsole.operationLocked">
             <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.adminIcon }}</md-icon>
+                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.operationIcon }}</md-icon>
                 <label hide-xs>
-                    {{ dataNavConsole.adminLabel }}
+                    {{ dataNavConsole.operationLabel }}
                 </label>
             </md-tab-label>
+
+            <md-tab-body ng-show="tab==2">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-operation></tmpl-operation>
+                    </div>
+                </md-content>
+            </md-tab-body>
 
         </md-tab>
 
@@ -33,6 +49,15 @@
                 </label>
             </md-tab-label>
 
+            <md-tab-body ng-show="tab==3">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-monitor></tmpl-monitor>
+                    </div>
+                </md-content>
+            </md-tab-body>
+
         </md-tab>
 
         <md-tab id="tab4" ng-disabled="dataNavConsole.configLocked">
@@ -42,6 +67,15 @@
                     {{ dataNavConsole.configLabel }}
                 </label>
             </md-tab-label>
+
+            <md-tab-body ng-show="tab==4">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-config></tmpl-config>
+                    </div>
+                </md-content>
+            </md-tab-body>
 
         </md-tab>
 
@@ -53,6 +87,15 @@
                 </label>
             </md-tab-label>
 
+            <md-tab-body ng-show="tab==5">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-log></tmpl-log>
+                    </div>
+                </md-content>
+            </md-tab-body>
+
         </md-tab>
 
         <md-tab id="tab6" ng-disabled="dataNavConsole.flowLocked">
@@ -63,6 +106,15 @@
                 </label>
             </md-tab-label>
 
+            <md-tab-body ng-show="tab==6">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-flow></tmpl-flow>
+                    </div>
+                </md-content>
+            </md-tab-body>
+
         </md-tab>
 
         <md-tab id="tab7" ng-disabled="dataNavConsole.userLocked">
@@ -72,6 +124,15 @@
                     {{ dataNavConsole.userLabel }}
                 </label>
             </md-tab-label>
+
+            <md-tab-body ng-show="tab==7">
+                <md-content>
+                    <div layout="row" layout-padding>
+                        <span hide-xs flex="30"></span>
+                        <tmpl-user></tmpl-user>
+                    </div>
+                </md-content>
+            </md-tab-body>
 
         </md-tab>
 </md-content>

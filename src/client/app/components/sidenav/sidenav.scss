@@ -13,21 +13,25 @@ md-sidenav.md-locked-open {
 
 // Button for hide & show the Sidenav
 .md-button.changePositionClose {
-    top: 4px;
+    top: 50px;
     right: auto;
-    bottom: 40%;
-    left: 350px;
+    bottom: auto;
+    left: 0;
     position: absolute !important;
     background-color: #f2f2f2;
     z-index: 10000;
 }
 
 .md-button.changePositionOpen {
-    top: 60px;
+    top: 50px;
     right: auto;
     bottom: auto;
-    left: 350px;
+    left: 0;
     position: absolute !important;
     background-color: #f2f2f2;
     z-index: 10000;
+}
+
+.md-sidenav-left, md-sidenav {
+    margin-top: 50px;
 }

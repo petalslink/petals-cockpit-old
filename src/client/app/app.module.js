@@ -11,10 +11,18 @@
         'app.appbar',
         'app.approot',
         'app.apptabs',
+        'app.config',
+        'app.console',
         'app.dashboard',
+        'app.flow',
+        'app.log',
         'app.login',
+        'app.monitor',
         'app.nav-console',
-        'app.sidenav'
+        'app.operation',
+        'app.overview',
+        'app.sidenav',
+        'app.user'
 
     ]);
 })();

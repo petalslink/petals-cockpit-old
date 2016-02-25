@@ -15,7 +15,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/nav-console/nav-console.html',
+            templateUrl: 'app/petals/console/nav-console/nav-console.html',
             scope: {
             },
             controller: 'NavConsoleController',
@@ -40,9 +40,9 @@
             overviewLabel: 'Overview',
             overviewIcon: 'remove_red_eye',
 
-            adminLocked: false,
-            adminLabel: 'Operation',
-            adminIcon: 'details',
+            operationLocked: false,
+            operationLabel: 'Operation',
+            operationIcon: 'details',
 
             monitorLocked: false,
             monitorLabel: 'Monitor',
