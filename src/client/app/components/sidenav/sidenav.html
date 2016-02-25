@@ -1,6 +1,6 @@
-<md-content md-theme="core-theme">
-    <div ui-view></div>
-    <div>
+<md-content md-theme="core-theme" layout="row">
+    <!--<div ui-view></div>-->
+    <div flex>
 <!--        <md-button class="md-icon-button" ng-click="toggleSidenav('left')" aria-label="Show Navbar">
             <md-icon md-svg-icon="navigation:menu"></md-icon>
         </md-button>-->
@@ -9,16 +9,21 @@
         <!-- Button Hide or Show Menu -->
         <md-button class="md-icon-button changePositionClose" aria-label="Menu"
                    ng-click="lockLeft=!lockLeft" ng-class="{'changePositionOpen': lockLeft === true}">
-            <md-tooltip md-direction="right">
+            <md-tooltip md-direction="bottom">
                 {{ lockLeft ? dataNav.menuLabelOpen : dataNav.menuLabelClose}}
             </md-tooltip>
             <md-icon class="material-icons">{{ lockLeft ? dataNav.menuIconOpen : dataNav.menuIconClose}}
             </md-icon>
         </md-button>
 
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="lockLeft" md-theme="core-theme" ng-cloak>
+            <tmpl-petals></tmpl-petals>
+        </md-sidenav>
 
     </div>
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="lockLeft" md-theme="core-theme" ng-cloak>
-        <tmpl-petals></tmpl-petals>
-    </md-sidenav>
+
+    <div flex="100" md-theme="navConsole-theme" ng-cloak>
+        <tmpl-nav-console></tmpl-nav-console>
+    </div>
+
 </md-content>

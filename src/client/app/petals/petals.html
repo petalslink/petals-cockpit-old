@@ -1,4 +1,4 @@
-<div layout-fill md-theme="core-theme" ng-cloak>
+<div layout-fill md-theme="navTree-theme" ng-cloak>
 
     <md-content class="md-accent btnAddBus">
 
@@ -13,7 +13,6 @@
             <md-tooltip md-direction="right">
                 Add New Bus
             </md-tooltip>
-
         </md-button>
 
     </md-content>
@@ -39,15 +38,12 @@
                     </md-icon>
 
 
-                    <md-button class="md-accent menuBtnTree" ng-click="select(child)"
+                    <md-button class="md-primary menuBtnTree" ng-click="select(child)"
                                ng-class="{'md-raised': child.selected}"> {{ child.title }}
                     </md-button>
 
                     <span flex></span>
                     <div>
-                        <md-tooltip md-direction="top">
-                            Add Child
-                        </md-tooltip>
                         <md-icon title="Add Child" class="material-icons md-18 md-primary md-raised treeIcon"
                                  ng-click="addBranch(child)"
                                  ng-hide="isSU(child) || (child.affichage==='minimized')">
@@ -55,36 +51,23 @@
                         </md-icon>
                     </div>
                     <div>
-                        <md-tooltip md-direction="top">
-                            Delete
-                        </md-tooltip>
                         <md-icon title="Delete" class="material-icons md-18 md-primary md-raised treeIcon"
                                  ng-click="deleteBranch(child)"
                                  ng-hide="(child.affichage==='minimized')">cancel
                         </md-icon>
                     </div>
                     <div>
-                        <md-tooltip md-direction="top">
-                            Change Name
-                        </md-tooltip>
                         <md-icon title="Change Name" class="material-icons md-18 md-accent treeIcon"
                                  ng-click="changeName(child)">edit
                         </md-icon>
                     </div>
                     <div>
-                        <md-tooltip md-direction="top">
-                            Moove Up
-                        </md-tooltip>
-                        <md-icon title="Up Child" class="material-icons md-18 md-accent treeIcon"
+                        <md-icon title="Moove up" class="material-icons md-18 md-accent treeIcon"
                                  ng-click="upChild(child)">keyboard_arrow_up
                         </md-icon>
                     </div>
                     <div>
-                        <md-tooltip md-direction="top">
-                            Moove Down
-                        </md-tooltip>
-
-                        <md-icon title="Down Child" class="material-icons md-18 md-accent treeIcon"
+                        <md-icon title="Moove down" class="material-icons md-18 md-accent treeIcon"
                                  ng-click="downChild(child)">keyboard_arrow_down
                         </md-icon>
                     </div>

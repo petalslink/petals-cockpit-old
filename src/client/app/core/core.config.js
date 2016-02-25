@@ -59,5 +59,33 @@
                 'hue-2': '300',
                 'hue-3': '200'
             });
+
+        $mdThemingProvider.theme('navConsole-theme', 'default')
+            .primaryPalette('deep-purple', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '100'
+            })
+            .accentPalette('grey', {
+                'default': '200',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
+
+        $mdThemingProvider.theme('navTree-theme', 'default')
+            .primaryPalette('deep-purple', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '100'
+            })
+            .accentPalette('orange', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
     }
 })();

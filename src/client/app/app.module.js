@@ -13,6 +13,7 @@
         'app.apptabs',
         'app.dashboard',
         'app.login',
+        'app.nav-console',
         'app.sidenav'
 
     ]);

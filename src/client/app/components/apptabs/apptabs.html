@@ -2,21 +2,18 @@
 
     <md-content>
         <md-tabs md-dynamic-height="true" md-border-bottom class="md-accent" md-on-selected="dataNav.selectedIndex"
-                 md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}" flex="100" >
+                 md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}">
 
             <md-tab id="tab1" ng-disabled="dataNav.petalsLocked">
 
                 <md-tab-label class="md-primary">
-                    <md-tooltip md-direction="bottom">
-                        Petals Tree View
-                    </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.petalsIcon }}</md-icon>
                     <label>
                         {{ dataNav.petalsLabel }}
                     </label>
                 </md-tab-label>
 
-                <md-tab-body ng-show="tab==1" flex="40">
+                <md-tab-body ng-show="tab==1" flex="35">
                     <tmpl-sidenav></tmpl-sidenav>
                 </md-tab-body>
 
@@ -24,9 +21,6 @@
 
             <md-tab id="tab2" ng-disabled="dataNav.serviceLocked">
                 <md-tab-label>
-                    <md-tooltip md-direction="bottom">
-                        Service Tree View
-                    </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.serviceIcon }}</md-icon>
                     <label>
                         {{ dataNav.serviceLabel }}
@@ -37,9 +31,6 @@
 
             <md-tab id="tab3" ng-disabled="dataNav.apiLocked">
                 <md-tab-label>
-                    <md-tooltip md-direction="bottom">
-                        API Tree View
-                    </md-tooltip>
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.apiIcon }}</md-icon>
                     <label>
                         {{ dataNav.apiLabel }}
