@@ -25,6 +25,7 @@ module.exports = {
         src + 'app/components/apptabs/*js',
         src + 'app/components/approot/*js',
         src + 'app/components/appbar/*js',
+        src + 'app/components/login/*.js',
         src + 'app/**/*.js',
         src + 'app/petals/console/nav-console/*.js',
         src + 'app/petals/console/*.js',
@@ -38,10 +39,12 @@ module.exports = {
         src + 'app/components/apptabs/*html',
         src + 'app/components/approot/*html',
         src + 'app/components/appbar/*html',
+        src + 'app/components/login/*.html',
         src + 'app/petals/*.html',
         src + 'app/petals/console/nav-console/*.html',
         src + 'app/petals/console/*.html',
-        src + 'app/petals/console/**/*.html'
+        src + 'app/petals/console/**/*.html',
+        src + 'app/petals/modals/*.html'
     ],
     sass: [
         src + 'app/**/*.scss',
@@ -53,7 +56,8 @@ module.exports = {
         src + 'app/petals/console/nav-console/*.scss',
         src + 'app/components/appbar/*.scss',
         src + 'app/components/apptabs/*.scss',
-        src + 'app/components/sidenav/*.scss'
+        src + 'app/components/sidenav/*.scss',
+        src + 'app/components/login/*.scss'
     ],
 
     $: $,

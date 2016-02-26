@@ -1,36 +1,44 @@
-<md-dialog aria-label="Rename Branch" md-theme="navTree-theme" md-whiteframe-32dp class="md-dialog">
+<md-dialog aria-label="Rename Branch" md-theme="core-theme" ng-cloak>
+
     <form name="myFormChangeName">
 
-        <md-toolbar layout-align="center center" layout-padding>
-            <h3 class="md-headline md-accent">
-                <md-icon class="md-36 md-accent" aria-label="edit">edit</md-icon>
-                Change Name of <span class="md-display-1"><b>'{{ title }}'</b></span>
-            </h3>
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <md-icon class="md-icon-button md-accent" aria-label="edit">edit
+                </md-icon>
+                <span flex></span>
+                <h2>Change name of <b>'{{ title }}'</b></h2>
+                <span flex></span>
+                <!--                <md-button type="button" class="md-icon-button" ng-click="closeDialog()">
+                                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                                </md-button>-->
+            </div>
         </md-toolbar>
 
-        <md-content layout-padding layout="row">
-            <div layout="row" layout-sm="column" layout-align="center center" flex>
-                <md-input-container class="md-accent md-hue-1">
-                    <label>Enter a new Name</label>
-                    <input type="text" class="md-headline" ng-model="formChildData.title"
-                           placeholder="Please, Enter a new name..">
+        <md-dialog-content layout-padding layout="row">
+            <div class="md-dialog-content md-accent" layout-gt-sm="row">
+                <md-input-container class="md-block md-accent">
+                    <label>New Name :</label>
+                    <input type="text" ng-model="formChildData.title" md-maxlength="20" required>
+                    <div ng-messages="myFormChangeName.name.$error">
+                        <div ng-message="required">Name is required.</div>
+                        <div ng-message="md-maxlength">The new name has to be less than 20 characters long.</div>
+                    </div>
                 </md-input-container>
             </div>
-        </md-content>
+        </md-dialog-content>
 
-        <md-content layout-padding layout="row">
-            <div layout="row" layout-align=" end center" flex>
-                <md-button ng-click="closeDialog()"
-                           class="md-accent md-whiteframe-z3 md-whiteframe-6dp" layout-align="center end">
-                    Cancel
-                </md-button>
-                <md-button ng-click="validDialog(formChildData);"
-                           class="md-accent md-raised md-whiteframe-z3 md-whiteframe-6dp"
-                           ng-disabled="myFormChangeName.$invalid" layout-align="center end">
-                    Change Name
-                </md-button>
-            </div>
-        </md-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" ng-click="validDialog(formChildData);"
+                       class="md-primary" ng-disabled="myFormChangeName.$invalid"
+                       ng-class="{'md-raised md-hue-1': (myFormChangeName.$dirty && myFormChangeName.$valid) }">
+                Change Name
+            </md-button>
+            <md-button type="button" ng-click="closeDialog()" aria-label="Cancel">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
 
     </form>
 </md-dialog>

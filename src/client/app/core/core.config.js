@@ -87,5 +87,19 @@
                 'hue-2': '300',
                 'hue-3': '200'
             });
+
+        $mdThemingProvider.theme('iconTree-theme', 'default')
+            .primaryPalette('green', {
+                'default': '600',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '100'
+            })
+            .accentPalette('red', {
+                'default': '600',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
     }
 })();

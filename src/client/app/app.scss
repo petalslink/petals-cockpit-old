@@ -12,6 +12,10 @@
     App Module Styles
 ======================================================================= */
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
 md-tooltip {
     background-color: black;
 }

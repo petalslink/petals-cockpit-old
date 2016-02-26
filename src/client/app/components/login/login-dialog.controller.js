@@ -15,6 +15,7 @@
         var vm = this;
         vm.username = null;
         vm.password = null;
+        vm.cbRemember = true;
 
         vm.handleSubmit = handleSubmit;
         vm.handleCancel = handleCancel;
