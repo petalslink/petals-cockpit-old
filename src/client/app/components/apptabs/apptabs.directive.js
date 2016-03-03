@@ -36,12 +36,6 @@
 
             selectedIndex: 0,
 
-            menuLocked: false,
-            menuLabelOpen: 'Hide',
-            menuLabelClose: 'Show',
-            menuIconOpen: 'undo',
-            menuIconClose: 'redo',
-
             petalsLocked: false,
             petalsLabel: 'Petals',
             petalsIcon: 'lock_open',
@@ -60,7 +54,7 @@
         };
 
         $scope.nextNav = function () {
-            $scope.dataNav.selectedIndex = Math.min($scope.dataNav.selectedIndex + 1, 2, 3, 4);
+            $scope.dataNav.selectedIndex = Math.min($scope.dataNav.selectedIndex + 1, 2, 3);
         };
         $scope.previousNav = function () {
             $scope.dataNav.selectedIndex = Math.max($scope.dataNav.selectedIndex - 1, 0);

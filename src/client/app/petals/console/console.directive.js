@@ -26,11 +26,16 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = ['logger'];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction(logger) {
 
+        activate();
+
+        function activate() {
+            logger.log('Activated Petals View');
+        }
     }
 
 })();

@@ -3,4 +3,25 @@
 ======================================================================= */
 tmpl-approot {
     min-height: 100%;
+    height: 100%;
+    overflow: auto;
 }
+
+.fixHeightVertival {
+    position: absolute;
+}
+
+body {
+    height : 100%;
+    overflow : auto;
+}
+
+/*
+md-content[flex] {
+    height: 0px;
+}
+body {
+    height : 100%;
+    overflow : auto;
+}
+*/

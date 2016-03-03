@@ -1,6 +1,6 @@
 <div layout-fill md-theme="navTree-theme" ng-cloak>
 
-    <md-content class="md-accent btnAddBus">
+    <md-content class="md-accent">
 
         <md-button class="md-accent md-raised md-shadow-bottom-z-2" ng-click="addBranch(data)">
             <md-icon class="material-icons"
@@ -46,29 +46,32 @@
                     <div>
                         <md-icon title="Add" class="material-icons md-primary md-raised treeIcon"
                                  ng-click="addBranch(child)"
-                                 ng-hide="isSU(child) || (child.affichage==='minimized')">
+                                 ng-hide="isSU(child) || !(child.selected === true) || (child.affichage==='minimized')">
                             add
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Delete" class="material-icons md-accent treeIcon"
                                  ng-click="deleteBranch(child)"
-                                 ng-hide="(child.affichage==='minimized')">delete
+                                 ng-hide="!(child.selected === true)">delete
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Edit" class="material-icons md-primary treeIcon"
-                                 ng-click="changeName(child)">edit
+                                 ng-click="changeName(child)"
+                                 ng-hide="!(child.selected === true)">edit
                         </md-icon>
                     </div>
                     <div>
                         <md-icon title="Moove up" class="material-icons md-primary treeIcon"
-                                 ng-click="upChild(child)">keyboard_arrow_up
+                                 ng-click="upChild(child)"
+                                 ng-hide="!(child.selected === true)">keyboard_arrow_up
                         </md-icon>
                     </div>
                     <div>
                         <md-icon title="Moove down" class="material-icons md-primary treeIcon"
-                                 ng-click="downChild(child)">keyboard_arrow_down
+                                 ng-click="downChild(child)"
+                                 ng-hide="!(child.selected === true)">keyboard_arrow_down
                         </md-icon>
                     </div>
                 </div>

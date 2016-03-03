@@ -54,6 +54,7 @@ module.exports = {
         src + 'app/petals/console/**/*.scss',
         src + 'app/petals/**/*.scss',
         src + 'app/petals/console/nav-console/*.scss',
+        src + 'app/components/approot/*.scss',
         src + 'app/components/appbar/*.scss',
         src + 'app/components/apptabs/*.scss',
         src + 'app/components/sidenav/*.scss',

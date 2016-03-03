@@ -7,7 +7,6 @@
         'app.petals',
 
         // Features (listed alphabetically)
-        'app.accounts',
         'app.appbar',
         'app.approot',
         'app.apptabs',

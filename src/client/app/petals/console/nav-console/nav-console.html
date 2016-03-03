@@ -1,139 +1,113 @@
-<md-content>
-    <md-tabs md-dynamic-height="true" class="md-accent" md-on-selected="dataNavConsole.selectedIndex"
-             md-align-tabs="{{dataNavConsole.bottom ? 'bottom' : 'top'}}">
+<md-content layout-fill flex layout-wrap>
+    <div layout="row">
 
-        <md-tab id="tab1" ng-disabled="dataNavConsole.overviewLocked">
+        <md-button class="md-primary md-fab md-mini" ng-click="toggleSidenav('left')"
+                   aria-label="Show Navbar" ng-controller="SidenavController" hide-gt-md md-theme="core-theme">
+            <md-tooltip md-direction="bottom">
+                Open Sidenav
+            </md-tooltip>
+            <md-icon class="material-icons md-accent" md-svg-icon="content:redo"></md-icon>
+        </md-button>
 
-            <md-tab-label class="md-primary">
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.overviewIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.overviewLabel }}
-                </label>
-            </md-tab-label>
+        <!--md-selected="dataNavConsole.selectedIndex"-->
+        <md-tabs flex layout-wrap class="md-accent" md-border-bottom
+                 md-align-tabs="{{dataNavConsole.bottom ? 'bottom' : 'top'}}" md-stretch-tabs="always">
 
-            <md-tab-body ng-show="tab==1">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-overview></tmpl-overview>
-                    </div>
-                </md-content>
-            </md-tab-body>
+            <md-tab flex id="tab1" ui-sref="overview" md-active="$state.is('overview')"
+                    ng-disabled="dataNavConsole.overviewLocked">
 
-        </md-tab>
+                <md-tab-label class="md-primary">
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.overviewIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.overviewLabel }}
+                    </label>
+                </md-tab-label>
 
-        <md-tab id="tab2" ng-disabled="dataNavConsole.operationLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.operationIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.operationLabel }}
-                </label>
-            </md-tab-label>
+                <md-tab-body ui-view="overview" layout-fill></md-tab-body>
 
-            <md-tab-body ng-show="tab==2">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-operation></tmpl-operation>
-                    </div>
-                </md-content>
-            </md-tab-body>
+            </md-tab>
 
-        </md-tab>
+            <md-tab flex id="tab2" ui-sref="operation"
+                    md-active="$state.is('operation')" ng-disabled="dataNavConsole.operationLocked">
 
-        <md-tab id="tab3" ng-disabled="dataNavConsole.monitorLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.monitorIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.monitorLabel }}
-                </label>
-            </md-tab-label>
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.operationIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.operationLabel }}
+                    </label>
+                </md-tab-label>
 
-            <md-tab-body ng-show="tab==3">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-monitor></tmpl-monitor>
-                    </div>
-                </md-content>
-            </md-tab-body>
+                <md-tab-body ui-view="operation" layout-fill></md-tab-body>
 
-        </md-tab>
+            </md-tab>
 
-        <md-tab id="tab4" ng-disabled="dataNavConsole.configLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.configIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.configLabel }}
-                </label>
-            </md-tab-label>
+            <md-tab flex id="tab3" ui-sref="monitor"
+                    md-active="$state.is('monitor')" ng-disabled="dataNavConsole.monitorLocked">
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.monitorIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.monitorLabel }}
+                    </label>
+                </md-tab-label>
 
-            <md-tab-body ng-show="tab==4">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-config></tmpl-config>
-                    </div>
-                </md-content>
-            </md-tab-body>
+                <md-tab-body ui-view="monitor" layout-fill></md-tab-body>
 
-        </md-tab>
+            </md-tab>
 
-        <md-tab id="tab5" ng-disabled="dataNavConsole.logLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.logIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.logLabel }}
-                </label>
-            </md-tab-label>
+            <md-tab flex layout-fill id="tab4" ui-sref="config"
+                    md-active="$state.is('config')" ng-disabled="dataNavConsole.configLocked">
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.configIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.configLabel }}
+                    </label>
+                </md-tab-label>
 
-            <md-tab-body ng-show="tab==5">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-log></tmpl-log>
-                    </div>
-                </md-content>
-            </md-tab-body>
+                <md-tab-body ui-view="config" layout-fill></md-tab-body>
 
-        </md-tab>
+            </md-tab>
 
-        <md-tab id="tab6" ng-disabled="dataNavConsole.flowLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.flowIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.flowLabel }}
-                </label>
-            </md-tab-label>
+            <md-tab flex layout-fill id="tab5" ui-sref="log"
+                    md-active="$state.is('log')" ng-disabled="dataNavConsole.logLocked">
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.logIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.logLabel }}
+                    </label>
+                </md-tab-label>
 
-            <md-tab-body ng-show="tab==6">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-flow></tmpl-flow>
-                    </div>
-                </md-content>
-            </md-tab-body>
+                <md-tab-body ui-view="log" layout-fill></md-tab-body>
 
-        </md-tab>
+            </md-tab>
 
-        <md-tab id="tab7" ng-disabled="dataNavConsole.userLocked">
-            <md-tab-label>
-                <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.userIcon }}</md-icon>
-                <label hide-xs>
-                    {{ dataNavConsole.userLabel }}
-                </label>
-            </md-tab-label>
+            <md-tab flex layout-fill id="tab6" ui-sref="flow"
+                    md-active="$state.is('flow')" ng-disabled="dataNavConsole.flowLocked">
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.flowIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.flowLabel }}
+                    </label>
+                </md-tab-label>
 
-            <md-tab-body ng-show="tab==7">
-                <md-content>
-                    <div layout="row" layout-padding>
-                        <span hide-xs flex="30"></span>
-                        <tmpl-user></tmpl-user>
-                    </div>
-                </md-content>
-            </md-tab-body>
+                <md-tab-body ui-view="flow" layout-fill></md-tab-body>
 
-        </md-tab>
+            </md-tab>
+
+            <md-tab flex layout-fill id="tab7" ui-sref="user"
+                    md-active="$state.is('user')" ng-disabled="dataNavConsole.userLocked">
+                <md-tab-label>
+                    <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.userIcon }}</md-icon>
+                    <label hide-xs hide-sm>
+                        {{ dataNavConsole.userLabel }}
+                    </label>
+                </md-tab-label>
+
+                <md-tab-body ui-view="user" layout-fill></md-tab-body>
+
+            </md-tab>
+        </md-tabs>
+    </div>
+
+    <div layout-padding layout="column" ui-view></div>
+
 </md-content>
-

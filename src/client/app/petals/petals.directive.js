@@ -30,6 +30,8 @@
 
         $scope.json = '';
 
+        $scope.infoSelect = ' You Pick : ';
+
         $scope.data = {
             title: 'Workspace Demo',
             type: 'WKSPCE',
@@ -96,8 +98,9 @@
             {name: 'Provide', type: 'SU'},
             {name: 'Consume', type: 'SU'}];
 
-        $scope.selectedChild = $scope.data.children[0];
-        $scope.selectedChild.selected = 'true';
+        $scope.selectedChild = {};
+        $scope.selectedChild.value = $scope.data.children[0];
+        $scope.selectedChild.value.selected = 'true';
 
         // have a tree config to build tree without switch case
         $scope.treeConfigList = [
@@ -365,11 +368,13 @@
             if (child.children.length === 0) {
                 child.affichage = 'vide';
             } else {
-                if (child.affichage === 'minimized') {
+                if (child.affichage === 'minimized' || !(child.selected === true)) {
                     child.affichage = 'details'
 
                 } else {
-                    child.affichage = 'minimized'
+                    if ((child.selected === true)) {
+                        child.affichage = 'minimized'
+                    }
                 }
             }
         };

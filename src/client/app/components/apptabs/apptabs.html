@@ -1,10 +1,9 @@
-<div layout-fill md-theme="core-theme" ng-cloak>
-
-    <md-content>
-        <md-tabs md-dynamic-height="true" md-border-bottom class="md-accent" md-on-selected="dataNav.selectedIndex"
+    <md-content md-theme="core-theme" ng-cloak>
+        <div layout-fill>
+        <md-tabs layout-fill md-border-bottom class="md-accent" md-selected="dataNav.selectedIndex"
                  md-align-tabs="{{dataNav.bottom ? 'bottom' : 'top'}}">
 
-            <md-tab id="tab1" ng-disabled="dataNav.petalsLocked">
+            <md-tab flex layout-fill id="tab1" ng-disabled="dataNav.petalsLocked">
 
                 <md-tab-label class="md-primary">
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.petalsIcon }}</md-icon>
@@ -13,13 +12,9 @@
                     </label>
                 </md-tab-label>
 
-                <md-tab-body ng-show="tab==1" flex="35">
-                    <tmpl-sidenav></tmpl-sidenav>
-                </md-tab-body>
-
             </md-tab>
 
-            <md-tab id="tab2" ng-disabled="dataNav.serviceLocked">
+            <md-tab flex layout-fill id="tab2" ng-disabled="dataNav.serviceLocked">
                 <md-tab-label>
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.serviceIcon }}</md-icon>
                     <label>
@@ -29,7 +24,7 @@
 
             </md-tab>
 
-            <md-tab id="tab3" ng-disabled="dataNav.apiLocked">
+            <md-tab flex layout-fill id="tab3" ng-disabled="dataNav.apiLocked">
                 <md-tab-label>
                     <md-icon class="material-icons md-24 md-primary">{{ dataNav.apiIcon }}</md-icon>
                     <label>
@@ -38,6 +33,12 @@
                 </md-tab-label>
 
             </md-tab>
-
+        </md-tabs>
+        </div>
     </md-content>
-</div>
+
+    <md-content layout-fill flex>
+        <div layout-fill class="fixHeightVertival">
+            <tmpl-sidenav></tmpl-sidenav>
+        </div>
+    </md-content>
