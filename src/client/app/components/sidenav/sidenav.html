@@ -2,38 +2,17 @@
 
     <md-sidenav layout-fill class="md-whiteframe-z2 md-sidenav-left" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme" ng-cloak>
-        <tmpl-petals></tmpl-petals>
+
+        <div ui-view="petalsView"></div>
+
     </md-sidenav>
 
-
     <md-content layout-fill flex md-theme="navConsole-theme" ng-cloak>
-        <tmpl-console></tmpl-console>
+
+        <div layout-fill>
+            <div ui-view="consoleView"></div>
+        </div>
+
     </md-content>
 
 </md-content>
-
-
-<!--<div ui-view></div>-->
-
-<!-- Button Hide or Show Menu -->
-<!--        <md-button class="md-icon-button changePositionClose" aria-label="Menu"
-                   ng-click="lockLeft=!lockLeft" ng-class="{'changePositionOpen': lockLeft === true}">
-            <md-tooltip md-direction="bottom">
-                {{ lockLeft ? dataNav.menuLabelOpen : dataNav.menuLabelClose}}
-            </md-tooltip>
-            <md-icon class="material-icons">{{ lockLeft ? dataNav.menuIconOpen : dataNav.menuIconClose}}
-            </md-icon>
-        </md-button>-->
-
-<!--    <div flex>
-        <md-button ng-controller="SidenavController" class="md-icon-button" ng-click="toggleSidenav('left')" aria-label="Show Navbar">
-            <md-icon md-svg-icon="navigation:menu"></md-icon>
-        </md-button>
-    </div>-->
-
-
-
-<!--        <md-button class="md-accent" ng-click="toggleSidenav('left')"
-                   aria-label="Show Navbar" hide-gt-md>
-            <md-icon md-svg-icon="navigation:menu"></md-icon>
-        </md-button>-->

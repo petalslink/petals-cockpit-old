@@ -19,7 +19,8 @@
 
     <div>
         <ol>
-            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}">
+            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}"
+                ui-sref="workspace.apptabs.sidenav.petals.nav" ui-sref-active="active">
 
                 <!--                <md-list class="navTree" layout="row"> -->
                 <div layout="row">

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app.approot', [
+    angular.module('app.configBus', [
         'app.core'
     ]);
 })();

@@ -1,4 +1,3 @@
-/*
 (function () {
     'use strict';
 
@@ -11,12 +10,12 @@
     // ----- directiveFunction -----
     directiveFunction.$inject = [];
 
-    /!* @ngInject *!/
+    /* @ngInject */
     function directiveFunction() {
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/console/console.html',
+            templateUrl: 'app/components/console/console.html',
             scope: {
             },
             controller: 'ConsoleController',
@@ -29,7 +28,7 @@
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['logger'];
 
-    /!* @ngInject *!/
+    /* @ngInject */
     function ControllerFunction(logger) {
 
         activate();
@@ -40,4 +39,3 @@
     }
 
 })();
-*/

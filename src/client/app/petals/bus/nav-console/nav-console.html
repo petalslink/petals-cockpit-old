@@ -1,0 +1,31 @@
+<md-tabs flex layout-wrap class="md-accent" md-border-bottom
+         md-align-tabs="{{dataNavConsole.bottom ? 'bottom' : 'top'}}" md-stretch-tabs="always">
+
+    <md-tab flex id="tab1" ui-sref="workspace.apptabs.sidenav.petals.nav.overview" ui-sref-active="active"
+            ng-disabled="dataNavConsole.overviewLocked">
+
+        <md-tab-label class="md-primary">
+            <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.overviewIcon }}</md-icon>
+            <label hide-xs hide-sm>
+                {{ dataNavConsole.overviewLabel }}
+            </label>
+        </md-tab-label>
+
+        <md-tab-body layout-fill><div ui-view="busOverviewView"></div></md-tab-body>
+
+    </md-tab>
+
+    <md-tab flex layout-fill id="tab4" ui-sref="workspace.apptabs.sidenav.petals.nav.config" ui-sref-active="active"
+            ng-disabled="dataNavConsole.configLocked">
+        <md-tab-label>
+            <md-icon class="material-icons md-24 md-primary">{{ dataNavConsole.configIcon }}</md-icon>
+            <label hide-xs hide-sm>
+                {{ dataNavConsole.configLabel }}
+            </label>
+        </md-tab-label>
+
+        <md-tab-body layout-fill><div ui-view="busConfigView"></div></md-tab-body>
+
+    </md-tab>
+
+</md-tabs>

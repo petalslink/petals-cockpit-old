@@ -33,7 +33,11 @@
 
 <body ng-cloak>
 
-    <tmpl-approot layout="column"></tmpl-approot>
+    <tmpl-appbar></tmpl-appbar>
+
+    <div layout="column">
+        <div ui-view="workspaceView"></div>
+    </div>
 
     <!-- build:js js/lib.js -->
     <script src="/bower_components/angular/angular.js"></script>

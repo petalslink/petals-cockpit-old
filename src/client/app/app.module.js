@@ -8,20 +8,22 @@
 
         // Features (listed alphabetically)
         'app.appbar',
-        'app.approot',
         'app.apptabs',
-        'app.config',
+        'app.configBus',
+        'app.configServer',
         'app.console',
         'app.dashboard',
         'app.flow',
         'app.log',
         'app.login',
         'app.monitor',
-        'app.nav-console',
+        'app.nav-consoleBus',
         'app.operation',
-        'app.overview',
+        'app.overviewBus',
+        'app.overviewServer',
         'app.sidenav',
-        'app.user'
+        'app.user',
+        'app.workspace'
 
     ]);
 })();

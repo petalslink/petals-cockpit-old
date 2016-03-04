@@ -1,3 +1,4 @@
+/*
 (function () {
     'use strict';
 
@@ -10,7 +11,7 @@
     // ----- directiveFunction -----
     directiveFunction.$inject = [];
 
-    /* @ngInject */
+    /!* @ngInject *!/
     function directiveFunction() {
 
         var directive = {
@@ -28,7 +29,7 @@
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$scope'];
 
-    /* @ngInject */
+    /!* @ngInject *!/
     function ControllerFunction($scope) {
 
         // TABS VIEWS CONSOLE
@@ -65,7 +66,7 @@
             userIcon: 'verified_user',
 
 
-            /* Position Toolbar Tab on Top when it's false */
+            /!* Position Toolbar Tab on Top when it's false *!/
             bottom: false
         };
 
@@ -78,3 +79,4 @@
     }
 
 })();
+*/

@@ -1,15 +1,16 @@
+<!--
 <md-content layout-fill flex layout-wrap>
     <div layout="row">
 
-        <md-button class="md-primary md-fab md-mini" ng-click="toggleSidenav('left')"
-                   aria-label="Show Navbar" ng-controller="SidenavController" hide-gt-md md-theme="core-theme">
+        <md-button class="md-accent md-raised" ng-click="toggleSidenav('left')"
+                   aria-label="Show Navbar" ng-controller="SidenavController" hide-gt-md md-theme="navConsole-theme">
             <md-tooltip md-direction="bottom">
                 Open Sidenav
             </md-tooltip>
-            <md-icon class="material-icons md-accent" md-svg-icon="content:redo"></md-icon>
+            <md-icon class="material-icons md-accent" md-svg-icon="navigation:menu"></md-icon>
         </md-button>
 
-        <!--md-selected="dataNavConsole.selectedIndex"-->
+        &lt;!&ndash;md-selected="dataNavConsole.selectedIndex"&ndash;&gt;
         <md-tabs flex layout-wrap class="md-accent" md-border-bottom
                  md-align-tabs="{{dataNavConsole.bottom ? 'bottom' : 'top'}}" md-stretch-tabs="always">
 
@@ -23,7 +24,7 @@
                     </label>
                 </md-tab-label>
 
-                <md-tab-body ui-view="overview" layout-fill></md-tab-body>
+                <md-tab-body ui-view="overviewBus" layout-fill></md-tab-body>
 
             </md-tab>
 
@@ -63,7 +64,7 @@
                     </label>
                 </md-tab-label>
 
-                <md-tab-body ui-view="config" layout-fill></md-tab-body>
+                <md-tab-body ui-view="configServer" layout-fill></md-tab-body>
 
             </md-tab>
 
@@ -111,3 +112,4 @@
     <div layout-padding layout="column" ui-view></div>
 
 </md-content>
+-->

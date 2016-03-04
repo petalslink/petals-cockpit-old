@@ -1,0 +1,26 @@
+<div layout="column" layout-fill ng-cloak>
+
+    <md-content layout-fill flex layout-wrap>
+        <div layout="row">
+
+            <md-button class="md-accent md-raised" ng-click="toggleSidenav('left')"
+                       aria-label="Show Navbar" ng-controller="SidenavController" hide-gt-md
+                       md-theme="navConsole-theme">
+                <md-tooltip md-direction="bottom">
+                    Open Sidenav
+                </md-tooltip>
+                <md-icon class="material-icons md-accent" md-svg-icon="navigation:menu"></md-icon>
+            </md-button>
+
+            <div layout-fill flex ui-view="navConsoleView"></div>
+
+        </div>
+        <div layout-padding layout="column">
+            <div>
+                <h1>Copyright Linagora - Open Source</h1>
+            </div>
+        </div>
+    </md-content>
+
+
+</div>

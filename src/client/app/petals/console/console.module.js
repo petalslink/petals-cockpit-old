@@ -1,7 +1,9 @@
-(function() {
-    'use strict';
+/*
+ (function() {
+ 'use strict';
 
-    angular.module('app.console', [
-        'app.core'
-    ]);
-})();
+ angular.module('app.console', [
+ 'app.core'
+ ]);
+ })();
+ */

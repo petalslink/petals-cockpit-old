@@ -1,9 +1,7 @@
-/*
 (function() {
     'use strict';
 
-    angular.module('app.nav-console', [
+    angular.module('app.configServer', [
         'app.core'
     ]);
 })();
-*/

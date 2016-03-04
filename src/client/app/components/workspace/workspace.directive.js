@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module('app.approot')
-        .directive('tmplApproot', directiveFunction);
+    angular.module('app.workspace')
+        .directive('tmplWorkspace', directiveFunction);
 
 
     // ----- directiveFunction -----
@@ -11,7 +11,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/approot/approot.html',
+            templateUrl: 'app/components/workspace/workspace.html',
             scope: {
             }
         };

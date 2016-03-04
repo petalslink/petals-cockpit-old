@@ -1,9 +1,7 @@
-/*
 (function() {
     'use strict';
 
-    angular.module('app.nav-console', [
+    angular.module('app.nav-consoleBus', [
         'app.core'
     ]);
 })();
-*/

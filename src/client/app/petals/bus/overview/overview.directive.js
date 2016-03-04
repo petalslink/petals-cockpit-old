@@ -18,7 +18,7 @@
             templateUrl: 'app/petals/bus/overview/overview.html',
             scope: {
             },
-            controller: 'OverviewController',
+            controller: 'OverviewBusController',
             controllerAs: 'vm'
         };
 

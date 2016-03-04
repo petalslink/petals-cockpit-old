@@ -1,3 +1,4 @@
+/*
 (function () {
     'use strict';
 
@@ -8,7 +9,7 @@
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
-    /* @ngInject */
+    /!* @ngInject *!/
     function runFunction($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
@@ -16,7 +17,7 @@
 
     configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
-    /* @ngInject */
+    /!* @ngInject *!/
     function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
@@ -24,23 +25,46 @@
         $urlRouterProvider
             .otherwise('/');
 
-        $stateProvider
-/*            .state('tabs', {
+/!*        $stateProvider
+            .state('nav', {
+                abstract: true,
+                url: '/nav',
+                templateUrl: 'src/client/app/components/console/nav-console/nav-console.html',
+                onEnter: function () {
+                    console.log("You are in NAV CONSOLE");
+                }
+            })
+            .state('overview.bus', {
+                url: '/overview',
+                onEnter: function () {
+                    console.log("You are in OVERVIEW");
+                },
+                templateUrl: 'src/client/app/petals/bus/overview/overview.html'
+            })
+            .state('config.bus', {
+                url: '/config',
+                onEnter: function () {
+                    console.log("You are in CONFIG");
+                },
+                templateUrl: 'src/client/app/petals/server/config/config.html'
+            });*!/
+
+/!*            .state('tabs', {
                 abstract: true,
                 url: '/tabs',
                 templateUrl: 'src/client/app/petals/console/nav-console/nav-console.html',
                 onEnter: function () {
                     console.log("You are in NAV CONSOLE");
                 }
-            })*/
+            })*!/
 
             // Route Console Tabs
-            .state('overview', {
+/!*            .state('overview.bus', {
                 url: '/overview',
                 onEnter: function () {
                     console.log("You are in OVERVIEW");
                 },
-                templateUrl: 'src/client/app/petals/console/overview/overview.html'
+                templateUrl: 'src/client/app/petals/bus/overview/overview.html'
             })
             .state('operation', {
                 url: '/operation',
@@ -56,12 +80,12 @@
                 },
                 templateUrl: 'src/client/app/petals/console/monitor/monitor.html'
             })
-            .state('config', {
+            .state('config.bus', {
                 url: '/config',
                 onEnter: function () {
                     console.log("You are in CONFIG");
                 },
-                templateUrl: 'src/client/app/petals/console/config/config.html'
+                templateUrl: 'src/client/app/petals/server/config/config.html'
             })
             .state('flow', {
                 url: '/flow',
@@ -83,6 +107,7 @@
                     console.log("You are in USER");
                 },
                 templateUrl: 'src/client/app/petals/console/user/user.html'
-            });
+            });*!/
     }
 })();
+*/
