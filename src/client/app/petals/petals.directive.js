@@ -4,6 +4,7 @@
     angular
         .module('app.petals')
         .directive('tmplPetals', directiveFunction)
+        .directive('inputClear', inputClear)
         .controller('PetalsController', ControllerFunction);
 
     // ----- directiveFunction -----
@@ -22,15 +23,33 @@
         return directive;
     }
 
+    // ----- directiveFunction -----
+    inputClear.$inject = [];
+
+    function inputClear() {
+        return {
+            restrict: 'A',
+            compile: function (element, attrs) {
+                var color = attrs.inputClear;
+                var style = color ? "color:" + color + ";" : "";
+                var action = attrs.ngModel + " = ''";
+                element.after(
+                    '<md-button class="md-icon-button md-primary"' +
+                    'ng-show="' + attrs.ngModel + '" ng-click="' + action + '"' +
+                    'style="position: absolute; top: 0px; right: 0px; margin: 0px 0px;">' +
+                    '<div style="' + style + '">X</div>' +
+                    '</md-button>');
+            }
+        };
+    }
+
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope', '$mdDialog', '$filter'];
+    ControllerFunction.$inject = ['$scope', '$mdDialog'];
 
     /* @ngInject */
-    function ControllerFunction($scope, $mdDialog, $filter) {
+    function ControllerFunction($scope, $mdDialog) {
 
         $scope.json = '';
-
-        $scope.infoSelect = ' You Pick : ';
 
         $scope.data = {
             title: 'Workspace Demo',
@@ -67,17 +86,15 @@
             }]
         };
 
-
+        $scope.myChoiceType = null;
         $scope.busTypeList = [
-            {name: '4-3-3', type: 'version', value: 'one'},
-            {name: '5-0-0', type: 'version', value: 'two'},
-            {name: 'EXISTING', type: 'version', value: 'three'},
-            {name: 'FROM ANOTHER WORKSPACE', type: 'version', value: 'four'}];
+            {name: '4-3-3', value: 'typeOne', type: 'version'},
+            {name: '5-0-0', value: 'typeTwo', type: 'version'}];
 
-        $scope.selectedId = 2;
-        $scope.selectedDescribe = function() {
-            return $filter('filter')($scope.busTypeList, { id: $scope.selectedId })[0].describe;
-        };
+        $scope.busConnectList = [
+            {name: 'CREATING', value: 'one', isDisabled: false },
+            {name: 'EXISTING', value: 'two', isDisabled: false },
+            {name: 'FROM ANOTHER WORKSPACE', value: 'three', isDisabled: true }];
 
         $scope.serverConfigTypeList = [
             {
@@ -106,8 +123,8 @@
             {name: 'Consume', type: 'SU'}];
 
         $scope.selectedChild = {};
-        $scope.selectedChild.value = $scope.data.children[0];
-        $scope.selectedChild.value.selected = 'true';
+        $scope.selectedChild = $scope.data.children[0];
+        $scope.selectedChild.selected = 'true';
 
         // have a tree config to build tree without switch case
         $scope.treeConfigList = [
@@ -162,6 +179,152 @@
             $scope.json = angular.toJson($scope.data);
         };
 
+        $scope.addBusList = function (child) {
+
+            switch (child.type) {
+                case 'BUS':
+                    $scope.formChildData.title = 'SERVER- ';
+                    $scope.formChildData.type = 'SERVER';
+                    $scope.formChildData.icon = 'dock';
+                    $scope.choiceList = $scope.serverConfigTypeList[0].serverTypeList;
+
+                    break;
+                case 'SERVER':
+                    $scope.formChildData.title = 'BC- SE-';
+                    $scope.formChildData.type = 'COMPONENT';
+                    $scope.formChildData.icon = 'extension';
+                    $scope.choiceList = $scope.componentTypeList;
+                    break;
+                case 'COMPONENT':
+                    $scope.formChildData.title = 'SU- SERVICE-';
+                    $scope.formChildData.type = 'SU';
+                    $scope.formChildData.icon = 'stars';
+                    $scope.choiceList = $scope.suTypeList;
+                    break;
+                default:
+                    $scope.formChildData.title = 'BUS- ';
+                    $scope.formChildData.type = 'BUS';
+                    $scope.formChildData.icon = 'directions_bus';
+                    $scope.choiceList = $scope.busTypeList;
+                    $scope.choiceBusList = $scope.busConnectList;
+            }
+            $scope.formChildData.affichage = 'vide';
+            $scope.parentTitle = child.title;
+
+            $mdDialog.show({
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                templateUrl: '/src/client/app/petals/modals/add-bus.html',
+                locals: {
+                    formChildData: $scope.formChildData,
+                    parentTitle: $scope.parentTitle,
+                    choiceList: $scope.choiceList,
+                    choiceBusList: $scope.choiceBusList
+                },
+                controller: function DialogController($scope, $mdDialog, formChildData, parentTitle, choiceList, choiceBusList) {
+
+                    $scope.choiceBusSelected = { selected:'one'};
+
+                    $scope.checkSelection = function () {
+                        console.log($scope.choiceBusSelected.selected);
+                    };
+
+                    $scope.formChildData = formChildData;
+                    $scope.parentTitle = parentTitle;
+                    $scope.choiceList = choiceList;
+                    $scope.choiceBusList = choiceBusList;
+                    $scope.myChoiceType = '';
+
+                    if ($scope.choiceList.length === 1) {
+                        $scope.myChoiceType = $scope.choiceList[0];
+                        changeSelected();
+                    }
+
+                    console.log(angular.toJson($scope.choiceList));
+                    console.log(angular.toJson($scope.myChoiceType));
+
+                    $scope.hasChoice = function () {
+                        if ($scope.choiceList.length === 1) {
+                            return false;
+                        }
+                        return true;
+                    };
+
+                    $scope.changeSelected = function () {
+                        changeSelected();
+                    };
+
+                    function changeSelected() {
+
+                        $scope.formChildData.componentType = $scope.choiceList;
+
+                        switch ($scope.formChildData.type) {
+                            case 'BUS':
+                                $scope.formChildData.title = 'BUS-(' + $scope.formChildData.componentType.name + ')';
+                                break;
+                            case 'SERVER':
+                                $scope.formChildData.title = $scope.formChildData.componentType.name + '-';
+                                break;
+                            case 'COMPONENT':
+                                $scope.formChildData.title = $scope.formChildData.componentType.name + '-';
+                                break;
+                            default:
+                                $scope.formChildData.title = 'SU-' + $scope.formChildData.componentType.name + '-';
+                        }
+                    }
+
+                    $scope.closeDialog = function () {
+                        $mdDialog.cancel();
+                    };
+                    $scope.validDialog = function () {
+                        $mdDialog.hide();
+                    };
+                }
+
+            }).then(function () {
+
+                if ($scope.formChildData.type === 'COMPONENT') {
+                    child.children.push({
+                        title: $scope.formChildData.title,
+                        type: $scope.formChildData.type,
+                        icon: $scope.formChildData.icon,
+                        affichage: $scope.formChildData.affichage,
+                        componentType: $scope.formChildData.componentType,
+                        children: []
+                    });
+                } else {
+                    child.children.push({
+                        title: $scope.formChildData.title,
+                        type: $scope.formChildData.type,
+                        icon: $scope.formChildData.icon,
+                        affichage: $scope.formChildData.affichage,
+                        children: []
+                    });
+                }
+                child.affichage = 'details';
+                console.log(angular.toJson($scope.data));
+
+                $scope.formChildData.title = '';
+                $scope.formChildData.componentType = '';
+
+            });
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         $scope.addBranch = function (child) {
 
             switch (child.type) {
@@ -203,9 +366,6 @@
                     choiceList: $scope.choiceList
                 },
                 controller: function DialogController($scope, $mdDialog, formChildData, parentTitle, choiceList) {
-
-                    $scope.show = true;
-                    $scope.id = 1;
 
                     $scope.choiceBusSelected = { selected:'one'};
 
@@ -288,7 +448,7 @@
                 $scope.formChildData.componentType = '';
 
             });
-        };
+        };*/
 
         $scope.isSU = function (child) {
             return (child.type === 'SU');
@@ -392,32 +552,32 @@
                 }
             }
         };
-
+/*
         $scope.activateState = function (child) {
 
             if ($scope.selectedChild.value[0] === true ) {
-                /*$state.go('core.workspace.petals.bus');*/
+                /!*$state.go('core.workspace.petals.bus');*!/
                 $scope.selectedChild.value.selected = false;
                 console.log('J ai sélectionné la branch du bus !!!');
             } else {
                 if ($scope.selectedChild.value[1] === true ) {
-                    /*$state.go('core.workspace.petals.server')*/
+                    /!*$state.go('core.workspace.petals.server')*!/
                     $scope.selectedChild.value.selected = false;
                     console.log('J ai sélectionné la branch du server !!!');
                 }
             }
             child.selected = true;
             $scope.selectedChild.value = child;
-        };
+        };*/
 
         $scope.select = function (child) {
 
-            if ($scope.selectedChild.value) {
-                $scope.selectedChild.value.selected = false;
+            if ($scope.selectedChild) {
+                $scope.selectedChild.selected = false;
             }
 
             child.selected = true;
-            $scope.selectedChild.value = child;
+            $scope.selectedChild = child;
             console.log(angular.toJson($scope.data));
         };
 

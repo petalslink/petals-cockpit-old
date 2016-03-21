@@ -1,7 +1,6 @@
-<!--
-<md-dialog aria-label="Add Branch" md-theme="core-theme" ng-cloak>
+<md-dialog aria-label="Add Bus" md-theme="core-theme" ng-cloak>
 
-    <form name="myFormAddBranch">
+    <form name="myFormAddBus">
 
         <md-toolbar class="md-accent" flex>
             <div class="md-toolbar-tools">
@@ -10,13 +9,13 @@
                 <span flex></span>
                 <h2>Add <b>'{{ formChildData.type }}'</b> on <b>'{{ parentTitle}}'</b></h2>
                 <span flex></span>
-                &lt;!&ndash;                <md-button type="button" class="md-icon-button" ng-click="closeDialog()">
+                <!--                <md-button type="button" class="md-icon-button" ng-click="closeDialog()">
                                     <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
-                                </md-button>&ndash;&gt;
+                                </md-button>-->
             </div>
         </md-toolbar>
 
-        &lt;!&ndash; Choix du bus &ndash;&gt;
+        <!-- Choix du bus -->
         <md-card layout="column" layout-padding flex>
 
             <div flex layout="row" layout-align="space-between center">
@@ -25,43 +24,137 @@
                 </div>
             </div>
 
-            <div class="md-accent" layout-gt-sm="column">
+            <md-divider></md-divider>
 
-                <md-input-container class="md-block md-accent">
-                    <label>Select your choice :</label>
-                    <md-select name="myChoice"
-                               ng-model="myChoice" class="md-accent"
-                               ng-change="changeSelected()" required>
-                        <md-optgroup label="Create Bus">
-                            <md-option ng-value="choice.name" ng-repeat="choice in choiceList">{{choice.name}}
-                            </md-option>
-                        </md-optgroup>
-                        <md-optgroup label="Import Bus">
-                            <md-option ng-value="choiceImport.name" ng-repeat="choiceImport in choiceListImport">
-                                {{choiceImport.name}}
-                            </md-option>
-                        </md-optgroup>
-                    </md-select>
-                    <div ng-messages="myFormAddBranch.myChoice.$error"
-                         ng-if="!myFormAddBranch.$dirty && hasChoice()">
-                        <div ng-message="required">Select your choice.</div>
+            <div layout="row">
+
+                <div layout-margin>
+                    <md-radio-group ng-model="choiceBusSelected.selected" class="effect-radio-group">
+                        <md-radio-button ng-click="checkSelection()" class="md-primary" ng-repeat="choice in choiceBusList"
+                                         ng-value="choice.value" ng-disabled=" choice.isDisabled "
+                                         ng-class="{'md-align-top-left': $index==1}" >{{choice.name}}
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+
+                <!-- Affiche la section qui correspond au nom du bus-->
+                <div id="wrapper" ng-switch="choiceBusSelected.selected">
+
+                    <div ng-switch-when="one">
+
+                        <md-input-container class="md-block md-accent">
+                            <label>Select your type :</label>
+                            <md-select name="myChoiceType" ng-model="myChoiceType" class="md-accent">
+
+                                    <md-option class="md-accent" ng-repeat="ct in choiceList" ng-value="ct">
+                                        {{ct.name}}
+                                    </md-option>
+
+                            </md-select>
+                            <md-card>
+                                {{myChoiceType}}
+                            </md-card>
+<!--                            <div ng-messages="myFormAddBusCreate.myChoiceType.$error"
+                                 ng-if="!myFormAddBusCreate.$dirty && hasChoice()">
+                                <div ng-message="required">Select your choice.</div>
+                            </div>-->
+                        </md-input-container>
+
+                        <md-input-container class="md-block md-accent">
+                            <label>Name :</label>
+                            <input type="text" ng-model="myChoiceType.name" md-maxlength="30" required>
+                        </md-input-container>
+<!--                        <md-input-container class="md-block md-accent">
+                            <label>Name :</label>
+                            <input type="text" ng-model="myChoiceType.name" md-maxlength="30" required>
+
+&lt;!&ndash;                            <div ng-messages="myFormAddBusCreate.name.$error">
+                                <div ng-message="required">Name is required.</div>
+                                <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                            </div>&ndash;&gt;
+                        </md-input-container>-->
+
+                        <div class="md-actions" layout="row" layout-align="space-between center">
+                            <span flex></span>
+
+                            <md-button ng-click="validDialog(formChildData);"
+                                       class="md-primary" ng-disabled="myFormAddBus.$invalid"
+                                       ng-class="{'md-raised md-hue-1': (myFormAddBus.$dirty && myFormAddBus.$valid) }">
+                                Create
+                            </md-button>
+                            <md-button ng-click="closeDialog()" aria-label="Cancel">
+                                Cancel
+                            </md-button>
+                        </div>
+
                     </div>
-                </md-input-container>
 
-                <md-input-container class="md-block md-accent">
-                    <label>Name :</label>
-                    <input type="text" ng-model="formChildData.title" md-maxlength="30" required>
-                    <div ng-messages="myFormAddBranch.name.$error">
-                        <div ng-message="required">Name is required.</div>
-                        <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                    <!-- BUS EXISTING SELECTED -->
+                    <div ng-switch-when="two">
+                        <div class="md-accent" layout="column" flex>
+
+                            <div class="md-accent">
+                                <div layout="column">
+
+                                    <div flex layout="row" layout-align="center center">
+                                        <div flex-initial>
+                                            <span class="name">Data Source JMX</span>
+                                        </div>
+                                    </div>
+
+                                    <div layout="row">
+
+                                        <md-input-container class="md-block md-accent">
+                                            <label>Ip / Hostname :</label>
+                                            <input type="text" placeholder="xxx.xxx.xxx.xxx" ng-model="hostname" input-clear>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block md-accent">
+                                            <label>Port :</label>
+                                            <input type="text" placeholder="7700" ng-model="port" input-clear>
+                                        </md-input-container>
+                                    </div>
+
+                                    <div flex layout="row" layout-align="center center">
+                                        <div flex-initial>
+                                            <span class="name">Security JMX</span>
+                                        </div>
+                                    </div>
+
+                                    <div layout="row">
+
+                                        <md-input-container class="md-block md-accent">
+                                            <label>Username :</label>
+                                            <input type="text" placeholder="petals" ng-model="username" input-clear>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block md-accent">
+                                            <label>Network Security Key  :</label>
+                                            <input type="password" placeholder="petals" ng-model="password" input-clear>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="md-actions" layout="row" layout-align="space-between center">
+                                <span flex></span>
+                                <md-button class="md-accent md-raised">Connect</md-button>
+                                <md-button ng-click="closeDialog()" aria-label="Cancel">
+                                    Cancel
+                                </md-button>
+                            </div>
+
+                        </div>
                     </div>
-                </md-input-container>
-
+                    <div ng-switch-when="three">
+                        <h2>Connect Bus</h2>
+                    </div>
+                </div>
             </div>
-
         </md-card>
 
-&lt;!&ndash;        <md-content>
+<!--        <md-content>
 
 
             <md-card ng-show="show" ng-class="{'fadeIn animated' : show}">
@@ -160,8 +253,8 @@
                 </md-card-content>
 
             </md-card>
-        </md-content>&ndash;&gt;
-        &lt;!&ndash;
+        </md-content>-->
+        <!--
                 <md-content>
 
 
@@ -368,7 +461,6 @@
                 </md-dialog-actions>&ndash;&gt;
 
 
-        &ndash;&gt;
+        -->
     </form>
 </md-dialog>
--->
