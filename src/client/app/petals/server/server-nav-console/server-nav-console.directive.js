@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('app.nav-consoleBus')
-        .directive('tmplNavConsoleBus', directiveFunction)
-        .controller('NavConsoleBusController', ControllerFunction);
+        .module('app.nav-consoleServer')
+        .directive('tmplNavConsoleServer', directiveFunction)
+        .controller('NavConsoleServerController', ControllerFunction);
 
 
     // ----- directiveFunction -----
@@ -15,10 +15,10 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/bus/nav-console/nav-console.html',
+            templateUrl: 'app/petals/server/server-nav-console/server-nav-console.html',
             scope: {
             },
-            controller: 'NavConsoleBusController',
+            controller: 'NavConsoleServerController',
             controllerAs: 'vm'
         };
 
@@ -34,25 +34,22 @@
         // TABS VIEWS CONSOLE
         $scope.dataNavConsole = {
 
-            selectedIndex: 0,
+            menuLocked: false,
+            menuLabel: 'Menu',
+            menuIcon: 'menu',
 
             overviewLocked: false,
             overviewLabel: 'Overview',
             overviewIcon: 'remove_red_eye',
 
+            operationLocked: false,
+            operationLabel: 'Operation',
+            operationIcon: 'details',
+
             configLocked: false,
             configLabel: 'Config',
-            configIcon: 'settings',
+            configIcon: 'settings'
 
-            /* Position Toolbar Tab on Top when it's false */
-            bottom: false
-        };
-
-        $scope.nextNav = function () {
-            $scope.dataNavConsole.selectedIndex = Math.min($scope.dataNavConsole.selectedIndex + 1, 2);
-        };
-        $scope.previousNav = function () {
-            $scope.dataNavConsole.selectedIndex = Math.max($scope.dataNavConsole.selectedIndex - 1, 0);
         };
     }
 

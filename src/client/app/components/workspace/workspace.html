@@ -1,3 +1,10 @@
-<div layout="row">
-    <div layout="column" flex="100" ui-view="apptabsView"></div>
+<div layout="column" flex md-theme="core-theme">
+
+    <div layout="column" ui-view="menuView"></div>
+
+    <div layout="row" layout-fill flex>
+        <div layout="column" ui-view="sidenavView"></div>
+        <div layout="column" layout-fill ui-view="consoleView"></div>
+    </div>
+
 </div>

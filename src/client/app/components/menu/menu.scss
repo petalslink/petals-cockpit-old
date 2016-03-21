@@ -1,0 +1,27 @@
+/* =======================================================================
+    Menu Module Styles
+======================================================================= */
+.md-button.left {
+    border-radius: 0;
+}
+.md-button.middle {
+    border-radius: 0;
+    border-left: 1px solid rgba(230, 230, 230, 0.96);
+    border-right: 1px solid rgba(230, 230, 230, 0.96);
+}
+.md-button.right {
+    border-radius: 0;
+}
+a.md-button.md-menu-theme-theme.md-primary{
+    margin: 20px 0;
+    padding: 3px 15px 3px 15px;
+    min-width:100px;
+}
+a.md-button.md-menu-theme-theme.md-primary:active, a.md-button.md-menu-theme-theme.md-primary:focus, a.md-button.md-menu-theme-theme.md-primary:hover {
+    background-color: rgba(0,0,0,0.20);
+    transition: 0.5s;
+}
+a.md-button.md-menu-theme-theme.md-primary:active md-icon, a.md-button.md-menu-theme-theme.md-primary:focus md-icon, a.md-button.md-menu-theme-theme.md-primary:hover md-icon {
+    color: #EF6C00 !important;
+    transition: 0.5s;
+}

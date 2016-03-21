@@ -1,4 +1,3 @@
-/*
 (function () {
     'use strict';
 
@@ -9,15 +8,21 @@
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
-    /!* @ngInject *!/
+    /* @ngInject */
     function runFunction($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $rootScope.$on('$stateChangeStart', function(evt, to, params) {
+            if (to.redirectTo) {
+                evt.preventDefault();
+                $state.go(to.redirectTo, params)
+            }
+        });
     }
 
     configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
-    /!* @ngInject *!/
+    /* @ngInject */
     function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
@@ -25,7 +30,21 @@
         $urlRouterProvider
             .otherwise('/');
 
-/!*        $stateProvider
+        $stateProvider
+            .state('core', {
+                url: '',
+                views: {
+                    'workspaceView': {
+                        templateUrl: 'src/client/app/components/workspace/workspace.html',
+                        onEnter: function () {
+                            console.log("You are in WORKSPACE");
+                        }
+                        /*redirectTo: 'core.workspace'*/
+                    }
+                }
+            });
+
+/*        $stateProvider
             .state('nav', {
                 abstract: true,
                 url: '/nav',
@@ -47,19 +66,19 @@
                     console.log("You are in CONFIG");
                 },
                 templateUrl: 'src/client/app/petals/server/config/config.html'
-            });*!/
+            });*/
 
-/!*            .state('tabs', {
+/*            .state('tabs', {
                 abstract: true,
                 url: '/tabs',
                 templateUrl: 'src/client/app/petals/console/nav-console/nav-console.html',
                 onEnter: function () {
                     console.log("You are in NAV CONSOLE");
                 }
-            })*!/
+            })*/
 
             // Route Console Tabs
-/!*            .state('overview.bus', {
+/*            .state('overview.bus', {
                 url: '/overview',
                 onEnter: function () {
                     console.log("You are in OVERVIEW");
@@ -107,7 +126,6 @@
                     console.log("You are in USER");
                 },
                 templateUrl: 'src/client/app/petals/console/user/user.html'
-            });*!/
+            });*/
     }
 })();
-*/

@@ -2,16 +2,14 @@
     Sidenav Module Styles
 ======================================================================= */
 md-sidenav.md-locked-open {
-    width: 450px !important;
-    min-width: 450px !important;
-    max-width: 450px !important;
+    width: 350px !important;
+    min-width: 350px !important;
+    max-width: 350px !important;
 }
 
-/*
-.md-sidenav-left {
-    z-index: 10;
-}
-*/
+/*.md-sidenav-left {
+    z-index: 1000;
+}*/
 
 /*// Button for hide & show the Sidenav
 .md-button.changePositionClose {

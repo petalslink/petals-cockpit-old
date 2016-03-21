@@ -6,7 +6,7 @@
             <md-icon class="material-icons"
                      aria-label="add">add
             </md-icon>
-            <span> New </span>
+            <span> Add </span>
             <md-icon class="material-icons"
                      aria-label="add">directions_bus
             </md-icon>
@@ -19,10 +19,8 @@
 
     <div>
         <ol>
-            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}"
-                ui-sref="workspace.apptabs.sidenav.petals.nav" ui-sref-active="active">
+            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}">
 
-                <!--                <md-list class="navTree" layout="row"> -->
                 <div layout="row">
                     <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
                              ng-click="toggleMinimized(child)"
@@ -39,7 +37,7 @@
                     </md-icon>
 
 
-                    <md-button class="md-primary menuBtnTree" ng-click="select(child)"
+                    <md-button class="md-primary menuBtnTree" ng-click="select(child) && activateState(child)"
                                ng-class="{'md-raised': child.selected}"> {{ child.title }}
                     </md-button>
 

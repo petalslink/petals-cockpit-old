@@ -24,7 +24,36 @@
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider
-            .otherwise('/');
+            .otherwise('/workspace');
+
+/*        $stateProvider
+            .state('core.workspace.petals.bus', {
+                url: '/bus',
+                views: {
+/!*                    'navConsoleView': {
+                        controller: 'NavConsoleBusController',
+                        templateUrl: 'src/client/app/petals/bus/nav-console/nav-console.html',
+                        onEnter: function () {
+                            console.log("You are in NAV CONSOLE");
+                        }
+
+                    },*!/
+                    'busOverviewView': {
+                        controller: 'OverviewBusController',
+                        templateUrl: 'src/client/app/petals/bus/overview/overview.html',
+                        onEnter: function () {
+                            console.log("You are in BUS OVERVIEW");
+                        }
+                    },
+                    'busConfigView': {
+                        controller: 'ConfigBusController',
+                        templateUrl: 'src/client/app/petals/bus/config/config.html',
+                        onEnter: function () {
+                            console.log("You are in BUS CONFIG");
+                        }
+                    }
+                }
+            });*/
 
     }
 })();

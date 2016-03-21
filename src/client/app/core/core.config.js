@@ -54,7 +54,21 @@
                 'hue-3': '100'
             })
             .accentPalette('deep-purple', {
-                'default': '900',
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
+
+        $mdThemingProvider.theme('menu-theme', 'default')
+            .primaryPalette('grey', {
+                'default': '100',
+                'hue-1': '100',
+                'hue-2': '50',
+                'hue-3': '50'
+            })
+            .accentPalette('deep-purple', {
+                'default': '800',
                 'hue-1': '800',
                 'hue-2': '300',
                 'hue-3': '200'

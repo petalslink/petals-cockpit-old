@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('app.configBus')
-        .directive('tmplConfigBus', directiveFunction)
-        .controller('ConfigBusController', ControllerFunction);
+        .module('app.configServer')
+        .directive('tmplConfigServer', directiveFunction)
+        .controller('ConfigServerController', ControllerFunction);
 
 
     // ----- directiveFunction -----
@@ -15,10 +15,10 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/bus/config/config.html',
+            templateUrl: 'app/petals/server/server-config/server-config.html',
             scope: {
             },
-            controller: 'ConfigBusController',
+            controller: 'ConfigServerController',
             controllerAs: 'vm'
         };
 

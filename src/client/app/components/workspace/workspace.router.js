@@ -14,7 +14,6 @@
     function runFunction($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-/*        $state.transitionTo('workspace.apptabs');*/
     }
 
     configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
@@ -28,14 +27,30 @@
             .otherwise('/workspace');
 
         $stateProvider
-            .state('workspace', {
+            .state('core.workspace', {
                 url: '/workspace',
-                abstract: true,
+/*                abstract: true,*/
                 views: {
-                    'workspaceView': {
-                        templateUrl: 'src/client/app/components/workspace/workspace.html',
+                    'menuView': {
+                        templateUrl: 'src/client/app/components/menu/menu.html',
+                        controller: 'MenuController',
                         onEnter: function () {
-                            console.log("You are in WORKSPACE");
+                            console.log("You are in MENU");
+                        }
+                    },
+                    'sidenavView': {
+                        templateUrl: 'src/client/app/components/sidenav/sidenav.html',
+                        controller: 'SidenavController',
+                        onEnter: function () {
+                            console.log("You are in SIDENAV");
+                        }
+                    },
+                    /* Affiche la console qui charge la nav console */
+                    'consoleView': {
+                        templateUrl: 'src/client/app/components/console/console.html',
+                        controller: 'ConsoleController',
+                        onEnter: function () {
+                            console.log("You are in CONSOLE");
                         }
                     }
                 }

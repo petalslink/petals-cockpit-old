@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('app.configServer')
-        .directive('tmplConfigServer', directiveFunction)
-        .controller('ConfigServerController', ControllerFunction);
+        .module('app.operationServer')
+        .directive('tmplOperationServer', directiveFunction)
+        .controller('OperationServerController', ControllerFunction);
 
 
     // ----- directiveFunction -----
@@ -15,10 +15,10 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/server/config/config.html',
+            templateUrl: 'app/petals/server/server-operation/server-operation.html',
             scope: {
             },
-            controller: 'ConfigServerController',
+            controller: 'OperationServerController',
             controllerAs: 'vm'
         };
 

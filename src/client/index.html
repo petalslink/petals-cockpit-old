@@ -31,13 +31,35 @@
 
 </head>
 
-<body ng-cloak>
+<body ng-cloak layout="column" flex>
 
+<md-content layout="column" flex>
+    <!-- HEADER -->
     <tmpl-appbar></tmpl-appbar>
 
-    <div layout="column">
-        <div ui-view="workspaceView"></div>
+    <div layout="column" layout-fill flex>
+
+        <!-- WORKSPACE -->
+        <div ui-view="workspaceView" layout="column" layout-fill flex></div>
+        <!-- FOOTER -->
+        <footer flex="none" layout="row">
+            <md-card flex>
+                <md-card-header layout-fill>
+                    <md-card-header-text layout="row" layout-align="center center">
+                        <md-card-avatar layout="row" hide-xs>
+                            <img class="" src="src/client/images/petals_cockpit.png"/>
+                        </md-card-avatar>
+                        <div layout="column">
+                            <span class="" flex>Copyright © 2016 - LINAGORA</span>
+                            <span class="md-subhead" flex>Version Prototype - Open Source</span>
+                        </div>
+                    </md-card-header-text>
+                </md-card-header>
+            </md-card>
+        </footer>
+
     </div>
+</md-content>
 
     <!-- build:js js/lib.js -->
     <script src="/bower_components/angular/angular.js"></script>

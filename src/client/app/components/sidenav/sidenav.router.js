@@ -6,23 +6,34 @@
     sidenav.config(configFunction);
     sidenav.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
+    runFunction.$inject = ['$rootScope', '$state', '$stateParams', '$anchorScroll'];
 
     /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
+    function runFunction($rootScope, $state, $stateParams, $anchorScroll) {
+
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+            if ($stateParams.scrollTo) {
+                $location.hash($stateParams.scrollTo);
+                $anchorScroll();
+            }
+
+        });
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$uiViewScrollProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $uiViewScrollProvider, $stateProvider, $urlRouterProvider) {
+
+        $uiViewScrollProvider.useAnchorScroll();
 
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider
-            .otherwise('/');
+/*        $urlRouterProvider
+            .otherwise('/workspace/apptabs/sidenav');
 
         $stateProvider
             .state('workspace.apptabs.sidenav', {
@@ -36,6 +47,6 @@
                         }
                     }
                 }
-            });
+            });*/
     }
 })();

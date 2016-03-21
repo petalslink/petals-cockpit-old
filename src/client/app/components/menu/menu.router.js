@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var apptabs = angular.module('app.apptabs');
+    var menu = angular.module('app.menu');
 
     var runFuntion = runFuntion;
 
-    apptabs.config(configFunction);
-    apptabs.run(runFuntion);
+    menu.config(configFunction);
+    menu.run(runFuntion);
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
@@ -23,8 +23,8 @@
 
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider
-            .otherwise('/workspace');
+/*        $urlRouterProvider
+            .otherwise('/workspace/apptabs');
 
         $stateProvider
             .state('workspace.apptabs', {
@@ -38,6 +38,6 @@
                         }
                     }
                 }
-            });
+            });*/
     }
 })();

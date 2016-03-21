@@ -24,45 +24,35 @@
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider
-            .otherwise('/');
+            .otherwise('/workspace');
 
-        $stateProvider
-            .state('workspace.apptabs.sidenav.petals.nav', {
-                url: '/bus',
-                views: {
-                    'navConsoleView': {
-                        controller: 'NavConsoleBusController',
-                        templateUrl: 'src/client/app/petals/bus/nav-console/nav-console.html',
-                        onEnter: function () {
-                            console.log("You are in NAV CONSOLE");
-                        }
-
-                    }
-                }
-            })
-            .state('workspace.apptabs.sidenav.petals.nav.overview', {
-                url: '/overview',
+/*        $stateProvider
+/!*            .state('core.workspace.petals.bus', {
+                url: '/bus'
+            })*!/
+            .state('core.workspace.petals.bus.overview', {
+                url: '/overview-bus',
                 views: {
                     'busOverviewView': {
                         controller: 'OverviewBusController',
-                        templateUrl: 'src/client/app/petals/bus/overview/overview.html',
+                        templateUrl: 'src/client/app/petals/bus/bus-overview/bus-overview.html',
                         onEnter: function () {
                             console.log("You are in BUS OVERVIEW");
                         }
                     }
                 }
             })
-            .state('workspace.apptabs.sidenav.petals.nav.config', {
-                url: '/config',
+            .state('core.workspace.petals.bus.config', {
+                url: '/config-bus',
                 views: {
                     'busConfigView': {
                         controller: 'ConfigBusController',
-                        templateUrl: 'src/client/app/petals/bus/config/config.html',
+                        templateUrl: 'src/client/app/petals/bus/bus-config/bus-config.html',
                         onEnter: function () {
                             console.log("You are in BUS CONFIG");
                         }
                     }
                 }
-            });
+            });*/
     }
 })();

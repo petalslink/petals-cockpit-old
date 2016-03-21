@@ -1,0 +1,23 @@
+<md-toolbar class="md-accent" md-theme="menu-theme" ng-cloak>
+    <section class="md-toolbar-tools md-primary" layout-align="start center" id="menu">
+        <md-button class="md-primary left" aria-label="Go Petals"
+                   ng-class="{active: $state.includes('petalsView')}"
+                   ui-sref="core.workspace.petals" ui-sref-active="active">
+            <md-icon class="md-icon-button groupIcn" hide-xs>{{ dataNav.petalsIcon }}</md-icon>
+            <span flex></span>
+            <span>{{dataNav.petalsLabel}}</span>
+        </md-button>
+
+        <md-button class="md-primary middle" aria-label="Go Service" ui-sref="core.workspace">
+            <md-icon class="md-icon-button groupIcn" hide-xs>{{ dataNav.serviceIcon }}</md-icon>
+            <span flex></span>
+            <span>{{dataNav.serviceLabel}}</span>
+        </md-button>
+
+        <md-button class="md-primary right" aria-label="Go Api" ui-sref="core.workspace">
+            <md-icon class="md-icon-button groupIcn" hide-xs>{{ dataNav.apiIcon }}</md-icon>
+            <span flex></span>
+            <span>{{dataNav.apiLabel}}</span>
+        </md-button>
+    </section>
+</md-toolbar>

@@ -23,10 +23,10 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope', '$mdDialog'];
+    ControllerFunction.$inject = ['$scope', '$mdDialog', '$filter'];
 
     /* @ngInject */
-    function ControllerFunction($scope, $mdDialog) {
+    function ControllerFunction($scope, $mdDialog, $filter) {
 
         $scope.json = '';
 
@@ -69,8 +69,15 @@
 
 
         $scope.busTypeList = [
-            {name: '4-3-3', type: 'version'},
-            {name: '5-0-0', type: 'version'}];
+            {name: '4-3-3', type: 'version', value: 'one'},
+            {name: '5-0-0', type: 'version', value: 'two'},
+            {name: 'EXISTING', type: 'version', value: 'three'},
+            {name: 'FROM ANOTHER WORKSPACE', type: 'version', value: 'four'}];
+
+        $scope.selectedId = 2;
+        $scope.selectedDescribe = function() {
+            return $filter('filter')($scope.busTypeList, { id: $scope.selectedId })[0].describe;
+        };
 
         $scope.serverConfigTypeList = [
             {
@@ -197,6 +204,15 @@
                 },
                 controller: function DialogController($scope, $mdDialog, formChildData, parentTitle, choiceList) {
 
+                    $scope.show = true;
+                    $scope.id = 1;
+
+                    $scope.choiceBusSelected = { selected:'one'};
+
+                    $scope.checkSelection = function () {
+                        console.log($scope.choiceBusSelected.selected);
+                    };
+
                     $scope.formChildData = formChildData;
                     $scope.parentTitle = parentTitle;
                     $scope.choiceList = choiceList;
@@ -216,11 +232,9 @@
                         return true;
                     };
 
-
                     $scope.changeSelected = function () {
                         changeSelected();
                     };
-
 
                     function changeSelected() {
                         $scope.formChildData.componentType = $scope.myChoice;
@@ -379,7 +393,25 @@
             }
         };
 
+        $scope.activateState = function (child) {
+
+            if ($scope.selectedChild.value[0] === true ) {
+                /*$state.go('core.workspace.petals.bus');*/
+                $scope.selectedChild.value.selected = false;
+                console.log('J ai sélectionné la branch du bus !!!');
+            } else {
+                if ($scope.selectedChild.value[1] === true ) {
+                    /*$state.go('core.workspace.petals.server')*/
+                    $scope.selectedChild.value.selected = false;
+                    console.log('J ai sélectionné la branch du server !!!');
+                }
+            }
+            child.selected = true;
+            $scope.selectedChild.value = child;
+        };
+
         $scope.select = function (child) {
+
             if ($scope.selectedChild.value) {
                 $scope.selectedChild.value.selected = false;
             }

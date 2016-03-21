@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('app.apptabs')
-        .directive('tmplApptabs', directiveFunction)
-        .controller('ApptabsController', ControllerFunction);
+        .module('app.menu')
+        .directive('tmplMenu', directiveFunction)
+        .controller('MenuController', ControllerFunction);
 
 
     // ----- directiveFunction -----
@@ -15,10 +15,10 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/apptabs/apptabs.html',
+            templateUrl: 'app/components/menu/menu.html',
             scope: {
             },
-            controller: 'ApptabsController',
+            controller: 'MenuController',
             controllerAs: 'vm'
         };
 
@@ -34,8 +34,6 @@
         // TABS VIEWS TREE
         $scope.dataNav = {
 
-            selectedIndex: 0,
-
             petalsLocked: false,
             petalsLabel: 'Petals',
             petalsIcon: 'lock_open',
@@ -46,18 +44,7 @@
 
             apiLocked: false,
             apiLabel: 'Api',
-            apiIcon: 'lock',
-
-
-            /* Position Toolbar Tab on Top when it's false */
-            bottom: false
-        };
-
-        $scope.nextNav = function () {
-            $scope.dataNav.selectedIndex = Math.min($scope.dataNav.selectedIndex + 1, 2, 3);
-        };
-        $scope.previousNav = function () {
-            $scope.dataNav.selectedIndex = Math.max($scope.dataNav.selectedIndex - 1, 0);
+            apiIcon: 'lock'
         };
     }
 

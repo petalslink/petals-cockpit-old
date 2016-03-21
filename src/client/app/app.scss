@@ -2,11 +2,12 @@
 @import "core/styles/_core.scss";
 @import "components/workspace/workspace.scss";
 @import "components/appbar/appbar.scss";
-@import "components/apptabs/apptabs.scss";
+@import "components/menu/menu.scss";
 @import "components/sidenav/sidenav.scss";
 @import "petals/petals.scss";
 @import "petals/console/console.scss";
-@import "petals/console/nav-console/nav-console.scss";
+@import "petals/bus/bus-nav-console/bus-nav-console.scss";
+@import "petals/server/server-nav-console/server-nav-console.scss";
 
 /* =======================================================================
     App Module Styles
@@ -16,22 +17,7 @@
     display: none !important;
 }
 
+/*
 md-tooltip {
     background-color: black;
-}
-
-md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
-    color: black;
-}
-
-md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item.md-active:not([disabled]), md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item.md-active:not([disabled]) md-icon, md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item.md-focused:not([disabled]), md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item.md-focused:not([disabled]) md-icon {
-    color: #311B92;
-    font-weight: 700;
-}
-
-/*
-md-tabs.md-navConsole-theme-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper {
-    left: initial;
-    right: 0;
-}
-*/
+}*/
