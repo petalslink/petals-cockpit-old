@@ -15,30 +15,31 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content layout-padding layout="row">
-            <div class="md-dialog-content md-accent" layout-gt-sm="row">
-                <md-input-container class="md-block md-accent">
-                    <label>New Name :</label>
-                    <input type="text" ng-model="formChildData.title" md-maxlength="20" required>
-                    <div ng-messages="myFormChangeName.name.$error">
-                        <div ng-message="required">Name is required.</div>
-                        <div ng-message="md-maxlength">The new name has to be less than 20 characters long.</div>
-                    </div>
-                </md-input-container>
-            </div>
-        </md-dialog-content>
+        <md-card layout="column" layout-padding flex>
 
-        <md-dialog-actions layout="row">
-            <span flex></span>
-            <md-button type="submit" ng-click="validDialog(formChildData);"
-                       class="md-primary" ng-disabled="myFormChangeName.$invalid"
-                       ng-class="{'md-raised md-hue-1': (myFormChangeName.$dirty && myFormChangeName.$valid) }">
-                Change Name
-            </md-button>
-            <md-button type="button" ng-click="closeDialog()" aria-label="Cancel">
-                Cancel
-            </md-button>
-        </md-dialog-actions>
+            <md-input-container class="md-block md-accent">
+                <label>New Name :</label>
+                <input type="text" ng-model="formChildData.title" md-maxlength="20" required>
+                <div ng-messages="myFormChangeName.name.$error">
+                    <div ng-message="required">Name is required.</div>
+                    <div ng-message="md-maxlength">The new name has to be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <span flex></span>
+                <md-button type="submit" ng-click="validDialog(formChildData);"
+                           class="md-primary" ng-disabled="myFormChangeName.$invalid"
+                           ng-class="{'md-raised md-hue-1': (myFormChangeName.$dirty && myFormChangeName.$valid) }">
+                    Change Name
+                </md-button>
+                <md-button type="button" ng-click="closeDialog()" aria-label="Cancel">
+                    Cancel
+                </md-button>
+            </div>
+
+        </md-card>
 
     </form>
+
 </md-dialog>

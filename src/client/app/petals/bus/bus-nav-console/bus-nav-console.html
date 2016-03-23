@@ -3,19 +3,17 @@
         <md-button class="md-primary md-raised" ng-click="toggleSidenav('left')"
                    aria-label="Show" ng-controller="SidenavController" hide-gt-md>
             <md-icon class="md-icon-button">{{ dataNavConsole.menuIcon }}</md-icon>
-<!--            <span flex></span>
-            <span hide-xs>{{dataNavConsole.menuLabel}}</span>-->
         </md-button>
 
         <md-button class="md-primary left" aria-label="Go Overview"
-                   ng-class="{active: $state.includes('busOverviewView')}"
-                   ui-sref="core.workspace.petals.overview" ui-sref-active="active">
+                   ui-sref=".overview" ui-sref-active="selected">
             <md-icon class="md-icon-button groupIcn">{{ dataNavConsole.overviewIcon }}</md-icon>
             <span flex></span>
             <span hide-xs>{{dataNavConsole.overviewLabel}}</span>
         </md-button>
 
-        <md-button class="md-primary middle" aria-label="Go Config" ui-sref="core.workspace.petals.config">
+        <md-button class="md-primary middle" aria-label="Go Config"
+                   ui-sref=".config" ui-sref-active="selected">
             <md-icon class="md-icon-button groupIcn">{{ dataNavConsole.configIcon }}</md-icon>
             <span flex></span>
             <span hide-xs>{{dataNavConsole.configLabel}}</span>

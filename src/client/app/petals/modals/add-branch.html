@@ -1,374 +1,60 @@
-<!--
 <md-dialog aria-label="Add Branch" md-theme="core-theme" ng-cloak>
 
     <form name="myFormAddBranch">
 
-        <md-toolbar class="md-accent" flex>
+        <md-toolbar class="md-accent">
             <div class="md-toolbar-tools">
                 <md-icon class="md-icon-button md-accent" aria-label="add">add_circle_outline
                 </md-icon>
                 <span flex></span>
-                <h2>Add <b>'{{ formChildData.type }}'</b> on <b>'{{ parentTitle}}'</b></h2>
+                <h2>Add new <b>'{{ formChildData.type }}'</b> on <b>'{{ parentTitle}}'</b></h2>
                 <span flex></span>
-                &lt;!&ndash;                <md-button type="button" class="md-icon-button" ng-click="closeDialog()">
+                <!--                <md-button type="button" class="md-icon-button" ng-click="closeDialog()">
                                     <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
-                                </md-button>&ndash;&gt;
+                                </md-button>-->
             </div>
         </md-toolbar>
 
-        &lt;!&ndash; Choix du bus &ndash;&gt;
         <md-card layout="column" layout-padding flex>
 
-            <div flex layout="row" layout-align="space-between center">
-                <div flex-initial>
-                    <span>Create / Connect - Bus</span>
+            <md-input-container class="md-block md-accent">
+                <label>Type :</label>
+                <md-select name="myChoice"
+                           ng-model="myChoice" class="md-accent"
+                           ng-change="changeSelected()" required>
+                    <md-option class="md-accent" ng-value="choice" ng-repeat="choice in choiceList">
+                        {{choice.name}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="myFormAddBranch.myChoice.$error"
+                     ng-if="!myFormAddBranch.$dirty && hasChoice()"><!--!myFormAddBranch.$dirty &&-->
+                    <div ng-message="required">Select a Type.</div>
                 </div>
-            </div>
+            </md-input-container>
 
-            <div class="md-accent" layout-gt-sm="column">
+            <md-input-container class="md-block md-accent">
+                <label>Name :</label>
+                <input type="text" ng-model="formChildData.title" md-maxlength="20" required>
+                <div ng-messages="myFormAddBranch.name.$error">
+                    <div ng-message="required">Name is required.</div>
+                    <div ng-message="md-maxlength">The name has to be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
 
-                <md-input-container class="md-block md-accent">
-                    <label>Select your choice :</label>
-                    <md-select name="myChoice"
-                               ng-model="myChoice" class="md-accent"
-                               ng-change="changeSelected()" required>
-                        <md-optgroup label="Create Bus">
-                            <md-option ng-value="choice.name" ng-repeat="choice in choiceList">{{choice.name}}
-                            </md-option>
-                        </md-optgroup>
-                        <md-optgroup label="Import Bus">
-                            <md-option ng-value="choiceImport.name" ng-repeat="choiceImport in choiceListImport">
-                                {{choiceImport.name}}
-                            </md-option>
-                        </md-optgroup>
-                    </md-select>
-                    <div ng-messages="myFormAddBranch.myChoice.$error"
-                         ng-if="!myFormAddBranch.$dirty && hasChoice()">
-                        <div ng-message="required">Select your choice.</div>
-                    </div>
-                </md-input-container>
-
-                <md-input-container class="md-block md-accent">
-                    <label>Name :</label>
-                    <input type="text" ng-model="formChildData.title" md-maxlength="30" required>
-                    <div ng-messages="myFormAddBranch.name.$error">
-                        <div ng-message="required">Name is required.</div>
-                        <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                    </div>
-                </md-input-container>
-
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <span flex></span>
+                <md-button ng-click="validDialog(formChildData);"
+                           class="md-primary" ng-disabled="myFormAddBranch.$invalid"
+                           ng-class="{'md-raised md-hue-1': (myFormAddBranch.$dirty && myFormAddBranch.$valid) }">
+                    Create
+                </md-button>
+                <md-button ng-click="closeDialog()" aria-label="Cancel">
+                    Cancel
+                </md-button>
             </div>
 
         </md-card>
 
-&lt;!&ndash;        <md-content>
-
-
-            <md-card ng-show="show" ng-class="{'fadeIn animated' : show}">
-                <md-card-content>
-
-                    <div flex layout="row" layout-align="space-between center">
-                        <div flex-initial>
-                            <h3>Select Settings Option</h3>
-                        </div>
-                    </div>
-
-                    <div flex layout="row" layout-align="space-between center">
-                        <div flex-initial>
-                            <span>Create or Import &#45;&#45; Bus</span>
-                        </div>
-                    </div>
-
-                    <md-divider></md-divider>
-
-                    <md-radio-group ng-model="myChoice">
-                        <div ng-repeat="choice in choiceList">
-                            <div flex layout="row" layout-align="start center" ng-model="myChoice" class="md-accent"
-                                 ng-change="changeSelected()">
-                                <div ng-value="choice.id" flex>
-                                    {{choice.name}}
-                                </div>
-                                <md-radio-button ng-value="choice.name" class="md-primary">
-                                    <md-tooltip md-direction="right">
-                                        {{choice.describe}}
-                                    </md-tooltip>
-                                </md-radio-button>
-                            </div>
-                        </div>
-                    </md-radio-group>
-
-                    <md-divider></md-divider>
-
-                    <div class="md-actions" layout-align="end center">
-                        <md-button class="md-accent md-raised" ng-click="show = false">continue</md-button>
-                    </div>
-
-                </md-card-content>
-            </md-card>
-
-            <md-card ng-show="!show" layout="column" flex ng-class="{'fadeIn animated' : !show}">
-
-                <md-card-content class="md-accent" layout="column" flex>
-
-                    <div class="md-accent" ng-if="myChoice">
-                        <div layout="row">
-                            <div class="summary" flex layout="row" layout-align="center center">
-                                <div flex-initial>
-                                    <span class="name">Data Source JMX</span>
-                                </div>
-                            </div>
-                            <md-divider></md-divider>
-                            <div class="summary" flex layout="row" layout-align="center center">
-                                <div flex-initial>
-                                    <span class="name">Security Connexion</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <md-divider></md-divider>
-
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block md-accent">
-                                <label>Ip / Hostname :</label>
-                                <input type="text" placeholder="xxx.xxx.xxx.xxx">
-                            </md-input-container>
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Port :</label>
-                                <input type="text" placeholder="7700">
-                            </md-input-container>
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Username :</label>
-                                <input type="text" placeholder="petals">
-                            </md-input-container>
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Password :</label>
-                                <input type="password" placeholder="petals">
-                            </md-input-container>
-                        </div>
-
-                    </div>
-
-                    <div class="md-actions" layout="row" layout-align="space-between center">
-                        <md-button class="md-primary md-raised" ng-click="show = true">Back</md-button>
-                        <span flex></span>
-                        <md-button class="md-accent md-raised" ng-click="show = false">Connect</md-button>
-                    </div>
-
-                </md-card-content>
-
-            </md-card>
-        </md-content>&ndash;&gt;
-        &lt;!&ndash;
-                <md-content>
-
-
-
-                    <md-card ng-show="show" class="min-height-350" ng-class="{'fadeIn animated' : show}">
-
-                        <md-card-content>
-
-                            <h2 class="md-title">Demo</h2>
-
-                            <p>click continue for next slide.</p>
-
-
-
-        &lt;!&ndash;                    <md-select placeholder="Pick" ng-model="someVal">
-
-                                <md-option value="1">One</md-option>
-
-                                <md-option value="2">Two</md-option>
-
-                            </md-select>&ndash;&gt;
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Select your choice :</label>
-                                <md-select name="myChoice"
-                                           ng-model="myChoice" class="md-accent"
-                                           ng-change="changeSelected()" required>
-                                    <md-optgroup label="Create Bus">
-                                        <md-option ng-value="choice.name" ng-repeat="choice in choiceList">{{choice.name}}
-                                        </md-option>
-                                    </md-optgroup>
-                                    <md-optgroup label="Import Bus">
-                                        <md-option ng-value="choiceImport.name" ng-repeat="choiceImport in choiceListImport">
-                                            {{choiceImport.name}}
-                                        </md-option>
-                                    </md-optgroup>
-                                </md-select>
-                                <div ng-messages="myFormAddBranch.myChoice.$error"
-                                     ng-if="!myFormAddBranch.$dirty && hasChoice()">
-                                    <div ng-message="required">Select your choice.</div>
-                                </div>
-                            </md-input-container>
-
-
-
-                            <div class="md-actions" layout="row" layout-align="end center">
-
-                                <md-button class="md-accent md-raised" ng-click="show = false">continue</md-button>
-
-                            </div>
-
-                        </md-card-content>
-
-                    </md-card>
-
-
-
-                    <md-card ng-show="!show" class="min-height-350" layout="column" flex ng-class="{'fadeIn animated' : !show }">
-
-                        <md-card-content class="md-accent"  layout="column" flex>
-
-                                <h1 class="md-title">Data Name Bus</h1>
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Name :</label>
-                                <input type="text" ng-model="formChildData.title" md-maxlength="30" required>
-                                <div ng-messages="myFormAddBranch.name.$error">
-                                    <div ng-message="required">Name is required.</div>
-                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                </div>
-                            </md-input-container>
-
-                            <div class="md-actions" layout="row" layout-align="start center">
-
-                                <md-button class="md-primary md-raised" ng-click="show = true">Back</md-button>
-
-                            </div>
-
-                        </md-card-content>
-
-
-
-                    </md-card>
-
-                    <md-card ng-if="myChoice" ng-show="!show" class="min-height-350" layout="column" flex ng-class="{'fadeIn animated' : !show}">
-
-                        <md-card-content class="md-accent" layout="column" flex>
-
-                                <h1 class="md-title">Security JMX</h1>
-
-                                <div layout-gt-sm="row">
-                                    <md-input-container class="md-block md-accent">
-                                        <label>Username :</label>
-                                        <input type="text">
-                                    </md-input-container>
-
-                                    <md-input-container class="md-block md-accent">
-                                        <label>Password :</label>
-                                        <input type="password">
-                                    </md-input-container>
-                                </div>
-
-
-                            <div class="md-actions" layout="row" layout-align="start center">
-
-                                <md-button class="md-primary md-raised" ng-click="show = true">Back</md-button>
-
-                            </div>
-
-                        </md-card-content>
-
-
-
-                    </md-card>
-
-                </md-content>
-
-        &lt;!&ndash;        <md-dialog-content>
-                    <div class="md-dialog-content md-accent" layout-gt-sm="column">
-
-                        <div class="md-accent" layout-gt-sm="column">
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Select your choice :</label>
-                                <md-select name="myChoice"
-                                           ng-model="myChoice" class="md-accent"
-                                           ng-change="changeSelected()" required>
-                                    <md-optgroup label="Create Bus">
-                                        <md-option ng-value="choice.name" ng-repeat="choice in choiceList">{{choice.name}}
-                                        </md-option>
-                                    </md-optgroup>
-                                    <md-optgroup label="Import Bus">
-                                        <md-option ng-value="choiceImport.name" ng-repeat="choiceImport in choiceListImport">
-                                            {{choiceImport.name}}
-                                        </md-option>
-                                    </md-optgroup>
-                                </md-select>
-                                <div ng-messages="myFormAddBranch.myChoice.$error"
-                                     ng-if="!myFormAddBranch.$dirty && hasChoice()">&lt;!&ndash;!myFormAddBranch.$dirty &&&ndash;&gt;
-                                    <div ng-message="required">Select your choice.</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-block md-accent">
-                                <label>Name :</label>
-                                <input type="text" ng-model="formChildData.title" md-maxlength="30" required>
-                                <div ng-messages="myFormAddBranch.name.$error">
-                                    <div ng-message="required">Name is required.</div>
-                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                </div>
-                            </md-input-container>
-
-                        </div>
-
-                        <div class="md-accent" ng-if="myChoice">
-
-                            <h1 class="md-title">Data Source JMX</h1>
-
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block md-accent">
-                                    <label>Ip / Hostname :</label>
-                                    <input type="text">
-                                </md-input-container>
-
-                                <md-input-container class="md-block md-accent">
-                                    <label>Port :</label>
-                                    <input type="text">
-                                </md-input-container>
-                            </div>
-
-                        </div>
-
-                        <div class="md-accent" ng-if="myChoice">
-
-                            <h1 class="md-title">Security JMX</h1>
-
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block md-accent">
-                                    <label>Username :</label>
-                                    <input type="text">
-                                </md-input-container>
-
-                                <md-input-container class="md-block md-accent">
-                                    <label>Password :</label>
-                                    <input type="password">
-                                </md-input-container>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </md-dialog-content>
-
-                <md-dialog-actions layout="row">
-                    <span flex></span>
-                    <md-button type="submit" ng-click="validDialog(formChildData);"
-                               class="md-primary" ng-disabled="myFormAddBranch.$invalid"
-                               ng-class="{'md-raised md-hue-1': (myFormAddBranch.$dirty && myFormAddBranch.$valid) }">
-                        Create
-                    </md-button>
-                    <md-button type="button" ng-click="closeDialog()" aria-label="Cancel">
-                        Cancel
-                    </md-button>
-                </md-dialog-actions>&ndash;&gt;
-
-
-        &ndash;&gt;
     </form>
+
 </md-dialog>
--->

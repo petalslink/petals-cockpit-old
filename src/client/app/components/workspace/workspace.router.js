@@ -31,14 +31,14 @@
                 url: '/workspace',
 /*                abstract: true,*/
                 views: {
-                    'menuView': {
+                    'workspaceMenu': {
                         templateUrl: 'src/client/app/components/menu/menu.html',
                         controller: 'MenuController',
                         onEnter: function () {
                             console.log("You are in MENU");
                         }
                     },
-                    'sidenavView': {
+                    'workspaceSidenav': {
                         templateUrl: 'src/client/app/components/sidenav/sidenav.html',
                         controller: 'SidenavController',
                         onEnter: function () {
@@ -46,7 +46,7 @@
                         }
                     },
                     /* Affiche la console qui charge la nav console */
-                    'consoleView': {
+                    'workspaceConsole': {
                         templateUrl: 'src/client/app/components/console/console.html',
                         controller: 'ConsoleController',
                         onEnter: function () {

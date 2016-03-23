@@ -1,8 +1,7 @@
 <md-toolbar class="md-accent" md-theme="menu-theme" ng-cloak>
     <section class="md-toolbar-tools md-primary" layout-align="start center" id="menu">
         <md-button class="md-primary left" aria-label="Go Petals"
-                   ng-class="{active: $state.includes('petalsView')}"
-                   ui-sref="core.workspace.petals" ui-sref-active="active">
+                   ui-sref=".petals" ui-sref-active="selected">
             <md-icon class="md-icon-button groupIcn" hide-xs>{{ dataNav.petalsIcon }}</md-icon>
             <span flex></span>
             <span>{{dataNav.petalsLabel}}</span>

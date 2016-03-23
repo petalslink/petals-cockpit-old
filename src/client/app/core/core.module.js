@@ -8,6 +8,6 @@
         'fw.exception', 'fw.logger',
 
         // 3rd Party modules
-        'ui.router'
+        'ui.router', 'ct.ui.router.extras'
     ]);
 })();

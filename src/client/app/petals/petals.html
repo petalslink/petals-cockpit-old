@@ -37,7 +37,7 @@
                     </md-icon>
 
 
-                    <md-button class="md-primary menuBtnTree" ng-click="select(child) && activateState(child)"
+                    <md-button class="md-primary menuBtnTree" ng-click="select(child)"
                                ng-class="{'md-raised': child.selected}"> {{ child.title }}
                     </md-button>
 
@@ -79,4 +79,10 @@
             </li>
         </ol>
     </div>
+
+<!--    <a ui-sref=".bus">My Bus</a>
+    <a ui-sref=".server">My Server</a>
+    <div ng-show="$state.includes('core.workspace.petals.bus')" ui-view="busNavConsole"></div>
+    <div ng-show="$state.includes('core.workspace.petals.server')" ui-view="serverNavConsole"></div>-->
+
 </div>

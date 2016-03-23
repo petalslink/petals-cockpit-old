@@ -86,10 +86,9 @@
             }]
         };
 
-        $scope.myChoiceType = null;
         $scope.busTypeList = [
-            {name: '4-3-3', value: 'typeOne', type: 'version'},
-            {name: '5-0-0', value: 'typeTwo', type: 'version'}];
+            {name: '4-3-3', type: 'version'},
+            {name: '5-0-0', type: 'version'}];
 
         $scope.busConnectList = [
             {name: 'CREATING', value: 'one', isDisabled: false },
@@ -179,6 +178,8 @@
             $scope.json = angular.toJson($scope.data);
         };
 
+        /***************************************************************************************************************/
+
         $scope.addBusList = function (child) {
 
             switch (child.type) {
@@ -237,7 +238,7 @@
 
                     if ($scope.choiceList.length === 1) {
                         $scope.myChoiceType = $scope.choiceList[0];
-                        changeSelected();
+                        changeSelectedType();
                     }
 
                     console.log(angular.toJson($scope.choiceList));
@@ -250,13 +251,13 @@
                         return true;
                     };
 
-                    $scope.changeSelected = function () {
-                        changeSelected();
+                    $scope.changeSelectedType = function () {
+                        changeSelectedType();
                     };
 
-                    function changeSelected() {
+                    function changeSelectedType() {
 
-                        $scope.formChildData.componentType = $scope.choiceList;
+                        $scope.formChildData.componentType = $scope.myChoiceType;
 
                         switch ($scope.formChildData.type) {
                             case 'BUS':
@@ -310,21 +311,8 @@
             });
         };
 
+        /***************************************************************************************************************/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
         $scope.addBranch = function (child) {
 
             switch (child.type) {
@@ -448,7 +436,9 @@
                 $scope.formChildData.componentType = '';
 
             });
-        };*/
+        };
+
+        /***************************************************************************************************************/
 
         $scope.isSU = function (child) {
             return (child.type === 'SU');
@@ -486,8 +476,11 @@
         $scope.formChildData = {
             title: '',
             type: '',
-            componentType: ''
+            componentType: '',
+            url: ''
         };
+
+        /***************************************************************************************************************/
 
         $scope.deleteBranch = function (child) {
 
@@ -532,11 +525,8 @@
             });
         };
 
-        $scope.formChildData = {
-            title: '',
-            type: '',
-            componentType: ''
-        };
+
+        /***************************************************************************************************************/
 
         $scope.toggleMinimized = function (child) {
             if (child.children.length === 0) {
@@ -552,22 +542,64 @@
                 }
             }
         };
-/*
-        $scope.activateState = function (child) {
+/*        $scope.activateState = function (child) {
 
-            if ($scope.selectedChild.value[0] === true ) {
-                /!*$state.go('core.workspace.petals.bus');*!/
-                $scope.selectedChild.value.selected = false;
-                console.log('J ai sélectionné la branch du bus !!!');
+            if (($scope.selectedChild[0] === true)) {
+                console.log("Je suis dans la branche 0");
+                $state.go('core.workspace.petals.bus');
             } else {
-                if ($scope.selectedChild.value[1] === true ) {
-                    /!*$state.go('core.workspace.petals.server')*!/
-                    $scope.selectedChild.value.selected = false;
-                    console.log('J ai sélectionné la branch du server !!!');
+                if (($scope.selectedChild[1] === true)) {
+                    console.log("Je suis dans la branche 1");
+                    $state.go('core.workspace.petals.server');
                 }
             }
+
             child.selected = true;
             $scope.selectedChild.value = child;
+        };*/
+/*
+        $scope.select = function (child) {
+
+/!*            if ($scope.selectedChild) {
+                $scope.selectedChild.selected = false;
+            }*!/
+
+            if (($scope.selectedChild[0] === true)) {
+                console.log("Je suis dans la branche 0");
+                $state.go('core.workspace.petals.bus');
+            } else {
+                if (($scope.selectedChild[1] === true)) {
+                    console.log("Je suis dans la branche 1");
+                    $state.go('core.workspace.petals.server');
+                }
+                $scope.selectedChild.selected = false;
+            }
+
+            child.selected = true;
+            $scope.selectedChild = child;
+            console.log(angular.toJson($scope.data));
+        };*/
+
+        /***************************************************************************************************************/
+
+/*        $scope.select = function (child) {
+
+            $scope.items = [
+                {url: 'bus'},
+                {url: 'server'}
+            ];
+            $scope.selected = $scope.items[0];
+/!*            $scope.gotoSelected = function(){
+                $state.go('core.workspace.petals.' + $scope.selected.url);
+            };*!/
+
+            if ($scope.selectedChild) {
+                $scope.selectedChild.selected = false;
+            }
+
+            child.selected = true;
+            $scope.selectedChild = child;
+            console.log(angular.toJson($scope.data));
         };*/
 
         $scope.select = function (child) {
@@ -580,6 +612,8 @@
             $scope.selectedChild = child;
             console.log(angular.toJson($scope.data));
         };
+
+        /***************************************************************************************************************/
 
         $scope.upChild = function (child) {
             function walk(target) {
@@ -605,6 +639,8 @@
             walk($scope.data);
         };
 
+        /***************************************************************************************************************/
+
         $scope.downChild = function (child) {
             function walk(target) {
                 var children = target.children,
@@ -628,6 +664,8 @@
 
             walk($scope.data);
         };
+
+        /***************************************************************************************************************/
 
         $scope.update = function (event, ui) {
 

@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -27,95 +27,121 @@
             .otherwise('/workspace');
 
         $stateProvider
+        /*
+         * **** SEE THE VIEW PETALS TREE WHEN BUTTON PETALS IS SELECTED
+         * */
             .state('core.workspace.petals', {
                 url: '/petals',
-                /*abstract: true,*/
                 views: {
-                    'petalsView': {
+                    'petals': {
                         templateUrl: 'src/client/app/petals/petals.html',
                         directive: 'tmplTree',
-/*                        link : function (scope, elem, attrs) {
-                            scope.isActiveState = function () {
-
-                                if ($scope.selected[0] = true ) {
-                                    return $state.go('core.workspace.petals.bus')
-                                }
-                                if ($scope.selected[1] = true ) {
-                                    $state.go('core.workspace.petals.server')
-                                }
-                                return $state.includes(name);
-                            };
-                        },*/
                         controller: 'PetalsController',
+                        sticky: true,
+                        dsr: true,
                         onEnter: function () {
                             console.log("You are in PETALS");
                         }
-                        /* OTHERS VIEWS COMING (SERVICE & API) */
                     }
-/*                     'busNavConsoleView': {
-                     controller: 'NavConsoleBusController',
-                     templateUrl: 'src/client/app/petals/bus/bus-nav-console/bus-nav-console.html',
-                     onEnter: function () {
-                     console.log("You are in NAV CONSOLE");
-                     }
-                     },
-                    'serverNavConsoleView': {
+                }
+            })
+            /*
+             * **** SEE THE VIEW NAV CONSOLE WHEN BUS IS SELECTED
+             * */
+            .state('core.workspace.petals.bus', {
+                url: '/bus',
+                views: {
+                    'petals@busNavConsole': {
+                        controller: 'NavConsoleBusController',
+                        templateUrl: 'src/client/app/petals/bus/bus-nav-console/bus-nav-console.html',
+                        onEnter: function () {
+                            console.log("You are in NAV CONSOLE BUS");
+                        }
+                    }
+                }
+            })
+            /*
+             * **** SEE THE VIEW CONTENT BUTTONS OF THE BUS NAV CONSOLE WHEN BUTTON IS SELECTED
+             * */
+            .state('core.workspace.petals.bus.overview', {
+                url: '/overview',
+                views: {
+                    'busNavConsole@busOverview': {
+                        controller: 'OverviewBusController',
+                        templateUrl: 'src/client/app/petals/bus/bus-overview/bus-overview.html',
+                        onEnter: function () {
+                            console.log("You are in BUS OVERVIEW");
+                        }
+                    }
+                }
+            })
+            .state('core.workspace.petals.bus.config', {
+                url: '/config',
+                views: {
+                    'busNavConsole@busConfig': {
+                        controller: 'ConfigBusController',
+                        templateUrl: 'src/client/app/petals/bus/bus-config/bus-config.html',
+                        onEnter: function () {
+                            console.log("You are in BUS CONFIG");
+                        }
+                    }
+                }
+            })
+            /*
+             * **** SEE THE VIEW NAV CONSOLE WHEN SERVER IS SELECTED
+             * */
+            .state('core.workspace.petals.server', {
+                url: '/server',
+                views: {
+                    'petals@serverNavConsole': {
                         controller: 'NavConsoleServerController',
                         templateUrl: 'src/client/app/petals/server/server-nav-console/server-nav-console.html',
                         onEnter: function () {
-                            console.log("You are in NAV CONSOLE");
+                            console.log("You are in NAV CONSOLE SERVER");
                         }
-                    }*/
-/*                    'busOverviewView': {
-                        template: '<div ui-view="busOverviewView"></div>'
-                    },
-                    'busConfigView': {
-                        template: '<div ui-view="busConfigView"></div>'
-                    },
-                    'serverOverviewView': {
-                        template: '<div ui-view="serverOverviewView"></div>'
-                    },
-                    'serverOperationView': {
-                        template: '<div ui-view="serverOperationView"></div>'
-                    },
-                    'serverConfigView': {
-                        template: '<div ui-view="serverConfigView"></div>'
-                    }*//*
-                    'busOverviewView': {
-                     controller: 'OverviewBusController',
-                     templateUrl: 'src/client/app/petals/bus/overview/overview.html',
-                     onEnter: function () {
-                     console.log("You are in BUS OVERVIEW");
-                     }
-                     },
-                     'busConfigView': {
-                     controller: 'ConfigBusController',
-                     templateUrl: 'src/client/app/petals/bus/config/config.html',
-                     onEnter: function () {
-                     console.log("You are in BUS CONFIG");
-                     }
-                     }*/
-                }
-            })
-            .state('core.workspace.petals.bus', {
-                url: '/bus',
-                'busNavConsoleView': {
-                    controller: 'NavConsoleBusController',
-                    templateUrl: 'src/client/app/petals/bus/bus-nav-console/bus-nav-console.html',
-                    onEnter: function () {
-                        console.log("You are in NAV CONSOLE");
                     }
                 }
             })
-            .state('core.workspace.petals.server', {
-                url: '/server',
-                'serverNavConsoleView': {
-                    controller: 'NavConsoleServerController',
-                    templateUrl: 'src/client/app/petals/server/server-nav-console/server-nav-console.html',
-                    onEnter: function () {
-                        console.log("You are in NAV CONSOLE SERVER");
+            /*
+             * **** SEE THE VIEW CONTENT BUTTONS OF THE SERVER NAV CONSOLE WHEN BUTTON IS SELECTED
+             * */
+            .state('core.workspace.petals.server.overview', {
+                url: '/overview',
+                views: {
+                    'serverNavConsole@serverOverview': {
+                        controller: 'OverviewServerController',
+                        templateUrl: 'src/client/app/petals/server/server-overview/server-overview.html',
+                        onEnter: function () {
+                            console.log("You are in SERVER OVERVIEW");
+                        }
                     }
                 }
             })
+            .state('core.workspace.petals.server.operation', {
+                url: '/operation',
+                views: {
+                    'serverNavConsole@serverOperation': {
+                        controller: 'OperationServerController',
+                        templateUrl: 'src/client/app/petals/server/server-operation/server-operation.html',
+                        onEnter: function () {
+                            console.log("You are in SERVER OPERATION");
+                        }
+                    }
+                }
+            })
+            .state('core.workspace.petals.server.config', {
+                url: '/config',
+                views: {
+                    'serverNavConsole@serverConfig': {
+                        controller: 'ConfigServerController',
+                        templateUrl: 'src/client/app/petals/server/server-config/server-config.html',
+                        onEnter: function () {
+                            console.log("You are in SERVER CONFIG");
+                        }
+                    }
+                }
+            });
+
+        $stickyStateProvider.enableDebug(true);
     }
 })();

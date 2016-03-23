@@ -1,13 +1,23 @@
 <div layout="column" ng-cloak>
 
-        <div layout="column">
-            <div ui-view="busNavConsoleView"></div>
-            <div ui-view="serverNavConsoleView"></div>
-            <div>
-                <div ui-view="busOverviewView"></div>
-                <div ui-view="busConfigView"></div>
-            </div>
+    <div layout="column">
+        <a ui-sref=".petals.bus">My Bus</a>
+        <a ui-sref=".petals.server">My Server</a>
+
+        <div ng-show="$state.includes('core.workspace.petals.bus')">
+            <div ui-view="petals@busNavConsole"></div>
+            <div ui-view="busNavConsole@busOverview"></div>
+            <div ui-view="busNavConsole@busConfig"></div>
         </div>
+
+        <div ng-show="$state.includes('core.workspace.petals.server')">
+            <div ui-view="petals@serverNavConsole"></div>
+            <div ui-view="serverNavConsole@serverOverview"></div>
+            <div ui-view="serverNavConsole@serverOperation"></div>
+            <div ui-view="serverNavConsole@serverConfig"></div>
+        </div>
+
+    </div>
 
 </div>
 

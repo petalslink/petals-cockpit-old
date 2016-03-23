@@ -15,22 +15,24 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content layout-padding layout="row">
-            <div class="md-dialog-content md-accent" layout-gt-sm="row">
-                <span>Are you sure you want to <b>remove '{{ title }}</b>' ?</span>
-            </div>
-        </md-dialog-content>
+        <md-card layout="column" layout-padding flex>
 
-        <md-dialog-actions layout-padding layout="row">
-            <span flex></span>
-            <md-button type="submit" ng-click="validDialog(formChildData);"
-                       class="md-primary">
-                Delete
-            </md-button>
-            <md-button type="button" ng-click="closeDialog()" aria-label="Cancel">
-                Cancel
-            </md-button>
-        </md-dialog-actions>
+            <span>Are you sure you want to <b>remove '{{ title }}</b>' ?</span>
+
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <span flex></span>
+                <md-button ng-click="validDialog(formChildData);"
+                           class="md-primary">
+                    Delete
+                </md-button>
+                <md-button ng-click="closeDialog()" aria-label="Cancel">
+                    Cancel
+                </md-button>
+
+            </div>
+
+        </md-card>
 
     </form>
 
