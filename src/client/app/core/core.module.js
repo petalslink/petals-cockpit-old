@@ -2,12 +2,18 @@
     'use strict';
 
     angular.module('app.core', [
-        'ngAnimate', 'ngMaterial', 'ngSanitize',
+        'ngAnimate',
+        'ngMaterial',
+        'ngSanitize',
 
         // Our reusable framework
-        'fw.exception', 'fw.logger',
+        'blocks.diagnostics',
+        'blocks.exception',
+        'blocks.logger',
+        'blocks.router',
 
         // 3rd Party modules
-        'ui.router', 'ct.ui.router.extras'
+        'ui.router',
+        'ct.ui.router.extras'
     ]);
 })();

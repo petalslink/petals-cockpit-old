@@ -4,20 +4,19 @@
     angular.module('app', [
         // Common (everybody has access to these)
         'app.core',
-        'app.appbar',
-        'app.login',
+        'app.layout',
         'app.workspace',
 
-        // Features Petals
+        // Features Workspace
 
-        'app.console',
-        'app.menu',
         'app.petals',
-        'app.sidenav',
+        'app.service',
+        'app.api'
+
 
         // Features Components
 
-        'app.configBus',
+/*        'app.configBus',
         'app.configServer',
 
         'app.nav-consoleBus',
@@ -26,8 +25,7 @@
         'app.operationServer',
 
         'app.overviewBus',
-        'app.overviewServer'
-
+        'app.overviewServer'*/
 
     ]);
 })();

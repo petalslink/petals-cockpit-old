@@ -12,10 +12,20 @@
     core.value('config', config);
 
     // Configure the app
-    core.config(configFunction);
+    core.config(configFunction, toastrConfig);
+
+    toastrConfig.$inject = [
+        '$mdToast'
+    ];
+
+    function toastrConfig($mdToast) {
+        $mdToast.options.timeOut = 4000;
+        $mdToast.options.positionClass = 'toast-bottom-right';
+    }
 
     configFunction.$inject = [
         '$compileProvider',
+        'diagnostics',
         '$logProvider',
         '$mdIconProvider',
         '$mdThemingProvider',
@@ -25,10 +35,13 @@
     /* @ngInject */
     function configFunction(
         $compileProvider,
+        diagnostics,
         $logProvider,
         $mdIconProvider,
         $mdThemingProvider,
         exceptionHandlerProvider) {
+
+        diagnostics.enable = false;
 
         // During development, you may want to set debugInfoEnabled to true. This is required for tools like
         // Protractor, Batarang and ng-inspector to work correctly. However do not check in this change.
@@ -40,7 +53,7 @@
             $logProvider.debugEnabled(true);
         }
 
-        exceptionHandlerProvider.configure(config.appErrorPrefix);
+        exceptionHandlerProvider.configFunction(config.appErrorPrefix);
 
         $mdIconProvider
             .iconSet('content', 'images/content-icons.svg', 24)

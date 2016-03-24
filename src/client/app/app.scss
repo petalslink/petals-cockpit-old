@@ -1,13 +1,13 @@
 @import "core/styles/_variables.scss";
 @import "core/styles/_core.scss";
-@import "components/workspace/workspace.scss";
-@import "components/appbar/appbar.scss";
-@import "components/menu/menu.scss";
-@import "components/sidenav/sidenav.scss";
-@import "petals/petals.scss";
-@import "petals/console/console.scss";
-@import "petals/bus/bus-nav-console/bus-nav-console.scss";
-@import "petals/server/server-nav-console/server-nav-console.scss";
+@import "workspace/workspace.scss";
+@import "layout/layout";
+@import "workspace/petals/petals.scss";
+@import "service/service.scss";
+@import "api/api.scss";
+@import "petals-component/console/console.scss";
+@import "petals-component/bus/bus-nav-console/bus-nav-console.scss";
+@import "petals-component/server/server-nav-console/server-nav-console.scss";
 
 /* =======================================================================
     App Module Styles

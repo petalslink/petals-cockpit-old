@@ -22,20 +22,21 @@
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider
-            .otherwise('/');
+            .otherwise('/workspace');
 
-        $stateProvider
+/*        $stateProvider
             .state('core', {
                 url: '',
                 abstract: true,
                 views: {
                     'workspace': {
-                        templateUrl: 'src/client/app/components/workspace/workspace.html',
+                        templateUrl: 'src/client/app/layout/workspace/workspace.html',
+                        controller: 'WorkspaceController',
                         onEnter: function () {
                             console.log("You are in WORKSPACE");
                         }
                     }
                 }
-            });
+            });*/
     }
 })();
