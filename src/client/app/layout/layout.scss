@@ -7,11 +7,8 @@
 ====================*/
 .cockpit {
     display: inline-block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     padding: 2px;
-    color: #311B92;
+    color: #311B92 !important;
     text-align: center;
     -o-text-overflow: clip;
     text-overflow: clip;

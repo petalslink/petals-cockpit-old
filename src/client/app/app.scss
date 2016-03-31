@@ -1,13 +1,13 @@
-@import "core/styles/_variables.scss";
-@import "core/styles/_core.scss";
-@import "workspace/workspace.scss";
-@import "layout/layout";
-@import "workspace/petals/petals.scss";
-@import "service/service.scss";
-@import "api/api.scss";
-@import "petals-component/console/console.scss";
-@import "petals-component/bus/bus-nav-console/bus-nav-console.scss";
-@import "petals-component/server/server-nav-console/server-nav-console.scss";
+@import "src/client/app/core/styles/_variables.scss";
+@import "src/client/app/core/styles/_core.scss";
+@import "src/client/app/workspace/workspace.scss";
+@import "src/client/app/layout/layout.scss";
+@import "src/client/app/workspace/petals/petals.scss";
+@import "src/client/app/workspace/service/service.scss";
+@import "src/client/app/workspace/api/api.scss";
+@import "src/client/app/petals-component/bus/bus.scss";
+@import "src/client/app/petals-component/server/server.scss";
+@import "src/client/app/petals-component/bc-soap/bc-soap.scss";
 
 /* =======================================================================
     App Module Styles

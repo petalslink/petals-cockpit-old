@@ -11,21 +11,29 @@
 
         'app.petals',
         'app.service',
-        'app.api'
+        'app.api',
 
 
         // Features Components
 
-/*        'app.configBus',
-        'app.configServer',
+        'app.bus',
+        'app.server',
+        'app.bc-soap',
 
-        'app.nav-consoleBus',
-        'app.nav-consoleServer',
+        'app.configBus',
+        'app.configServer',
+        'app.configBcSoap',
+        'app.configSu',
+
+        'app.nav-consoleSu',
 
         'app.operationServer',
+        'app.operationBcSoap',
 
         'app.overviewBus',
-        'app.overviewServer'*/
+        'app.overviewServer',
+        'app.overviewBcSoap',
+        'app.overviewSu'
 
     ]);
 })();

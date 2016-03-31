@@ -49,6 +49,12 @@
     /* @ngInject */
     function ControllerFunction($scope, $mdDialog) {
 
+        activate();
+
+        function activate(){
+            $scope.$state.go('workspace.petals.bus');
+        }
+
         $scope.json = '';
 
         $scope.infoSelect = ' You Pick : ';
@@ -122,6 +128,7 @@
         $scope.selectedChild = {};
         $scope.selectedChild = $scope.data.children[0];
         $scope.selectedChild.selected = 'true';
+        $scope.selectedChild.lastState = 'workspace.petals.bus.config';
 
         // have a tree config to build tree without switch case
         $scope.treeConfigList = [
@@ -302,6 +309,8 @@
         };
 
         $scope.changeName = function (child) {
+            console.log(angular.toJson(child));
+
 
             $scope.formChildData.title = child.title;
             $mdDialog.show({
@@ -404,39 +413,39 @@
 
             if ($scope.selectedChild) {
                 $scope.selectedChild.selected = false;
+                $scope.selectedChild.lastState = $scope.$state.current.name;
+                console.log($scope.$state.current.name);
             }
 
             child.selected = true;
             $scope.selectedChild = child;
-        };
 
-/*
-        $scope.select = function (child, $state) {
-
-            if($scope.selectedChild) {
-                if (child.selected === $scope.data.children) {
-                    console.log("Je suis dans la branche bus");
-
-                    $scope.$state.go('.bus');
-                } else {
-                    if (child.selected === $scope.data.children[1]) {
+            if (child.lastState) {
+                $scope.$state.go(child.lastState);
+            } else {
+                switch (child.type) {
+                    case 'BUS':
+                        console.log("Je suis dans la branche bus");
+                        $scope.$state.go('workspace.petals.bus.overview');
+                        break;
+                    case 'SERVER':
                         console.log("Je suis dans la branche server");
-
-                        $scope.$state.go('core.workspace.petals.server');
-                    }
+                        $scope.$state.go('workspace.petals.server.overview');
+                        break;
+                    case 'COMPONENT':
+                     console.log("Je suis dans la branche BC-SOAP");
+                     $scope.$state.go('workspace.petals.bc-soap.overview');
+                     break;
+                    /*                case 'SU':
+                     console.log("Je suis dans la branche su");
+                     $scope.$state.go('workspace.petals.su');
+                     break;*/
+                    default:
+                        console.log("Je suis dans la branche bus");
+                        $scope.$state.go('workspace.petals.bus.overview');
                 }
-
-                $scope.selectedChild.selected = false;
             }
-
-
-            /!*$scope.selectedChild.selected = false;*!/
-            child.selected = true;
-            $scope.$state = $state;
-            $scope.selectedChild = child;
-            /!*console.log(angular.toJson($scope.data));*!/
         };
-*/
 
         $scope.upChild = function (child) {
             function walk(target) {

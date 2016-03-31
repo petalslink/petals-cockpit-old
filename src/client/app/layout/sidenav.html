@@ -1,6 +1,9 @@
 <md-sidenav layout-fill flex class="md-whiteframe-z2 md-sidenav-left" md-component-id="left"
             md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme" ng-cloak>
 
-    <div ui-view="sidenav"></div>
+
+    <div ng-show="$state.includes('workspace.petals')" ui-view="petals-sidenav"></div>
+    <div ng-show="$state.includes('workspace.service')" ui-view="service-sidenav"></div>
+    <div ng-show="$state.includes('workspace.api')" ui-view="api-sidenav"></div>
 
 </md-sidenav>

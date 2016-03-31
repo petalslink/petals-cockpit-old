@@ -15,7 +15,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/server/server-operation/server-operation.html',
+            templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html',
             scope: {
             },
             controller: 'OperationServerController',

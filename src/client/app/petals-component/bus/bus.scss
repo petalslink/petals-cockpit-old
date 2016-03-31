@@ -1,0 +1,61 @@
+/* =======================================================================
+    Bus Module Styles
+======================================================================= */
+
+md-toolbar.md-navConsole-theme-theme:not(.md-menu-toolbar) md-icon {
+    color: #EF6C00 !important;
+}
+
+.md-toolbar-tools {
+    font-size: 15px;
+    text-transform: uppercase !important;
+    letter-spacing: 0.005em;
+    font-weight: 400;
+}
+
+a.md-button.md-navConsole-theme-theme.selectionCmd {
+    margin: 20px 0 !important;
+    padding: 3px 15px 3px 15px;
+    min-width: 100px;
+    background-color: #4527A0;
+    color: yellow !important;
+    text-transform: uppercase !important;
+    border-left: 1px solid rgba(230, 230, 230, 0.96);
+    border-right: 1px solid rgba(230, 230, 230, 0.96);
+}
+
+.selectionCmdDefault {
+    color: #4527A0 !important;
+}
+
+.md-icon.selectionCmd {
+    color: #EF6C00 !important;
+}
+
+/*a.md-button.md-navConsole-theme-theme.md-primary{
+    margin: 20px 0 !important;
+    padding: 3px 15px 3px 15px;
+    min-width: 100px;
+}*/
+a.md-button.md-navConsole-theme-theme.md-primary:active, a.md-button.md-navConsole-theme-theme.md-primary:focus, a.md-button.md-navConsole-theme-theme.md-primary:hover {
+    background-color: #4527A0;
+    color: white !important;
+    transition: 0.5s;
+    margin: 20px 0 !important;
+    padding: 3px 15px 3px 15px;
+    min-width: 100px;
+}
+a.md-button.md-navConsole-theme-theme.md-primary:active md-icon, a.md-button.md-navConsole-theme-theme.md-primary:focus md-icon, a.md-button.md-navConsole-theme-theme.md-primary:hover md-icon {
+    color: #EF6C00 !important;
+    transition: 0.5s;
+    margin: 20px 0 !important;
+    padding: 3px 15px 3px 15px;
+    min-width: 100px;
+}
+a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navConsole-theme-theme.md-primary.md-fab, .md-button.md-navConsole-theme-theme.md-primary.md-raised, .md-button.md-navConsole-theme-theme.md-primary.md-fab {
+    min-width: 50px;
+}
+.md-navConsole-theme-theme.md-toolbar-tools a {
+    margin: 20px 0 !important;
+    padding: 3px 15px 3px 15px;
+}

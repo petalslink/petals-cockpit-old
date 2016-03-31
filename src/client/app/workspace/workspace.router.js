@@ -29,40 +29,18 @@
         $stateProvider
             .state('workspace', {
                 url: '/workspace',
+                sticky: true,
+                dsr: true,
                 views: {
                     '': {
                         templateUrl: 'src/client/app/workspace/workspace.html',
                         controller: 'WorkspaceController',
+                        controllerAs: 'vm',
                         onEnter: function () {
                             console.log("You are in WORKSPACE");
                         }
                     }
                 }
             });
-
-/*        $urlRouterProvider
-            .otherwise('/workspace');
-
-        $stateProvider
-            .state('core.workspace', {
-                url: '/workspace',
-                views: {
-                    'sidenav': {
-                        templateUrl: 'src/client/app/layout/sidenav/sidenav.html',
-                        controller: 'SidenavController',
-                        onEnter: function () {
-                            console.log("You are in SIDENAV");
-                        }
-                    },
-                    /!* Affiche la console qui charge la nav console *!/
-                    'console': {
-                        templateUrl: 'src/client/app/layout/console/console.html',
-                        controller: 'ConsoleController',
-                        onEnter: function () {
-                            console.log("You are in CONSOLE");
-                        }
-                    }
-                }
-            });*/
     }
 })();

@@ -15,7 +15,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/petals/server/server-config/server-config.html',
+            templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html',
             scope: {
             },
             controller: 'ConfigServerController',

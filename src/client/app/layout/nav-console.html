@@ -1,17 +1,7 @@
 <div layout="column" ng-cloak>
 
     <div layout="column">
-
-        <div ng-show="$state.includes('workspace.petals.bus')">
-            <div ui-view="petals@busNavConsole"></div>
-        </div>
-
-        <div ng-show="$state.includes('workspace.petals.server')">
-            <div ui-view="petals@serverNavConsole"></div>
-        </div>
-
+        <div ui-view="navConsole"></div>
     </div>
 
 </div>
-
-

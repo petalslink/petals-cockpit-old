@@ -15,7 +15,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/layout/nav-console.html',
+            templateUrl: 'src/client/app/layout/nav-console.html',
             scope: {
             },
             controller: 'NavConsoleController',

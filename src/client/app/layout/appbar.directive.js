@@ -15,7 +15,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/layout/appbar.html',
+            templateUrl: 'src/client/app/layout/appbar.html',
             scope: {
             },
             controller: 'AppbarController',
@@ -40,7 +40,7 @@
 
         function login() {
             $mdDialog.show({
-                templateUrl: 'app/layout/login-dialog.html',
+                templateUrl: 'src/client/app/layout/login-dialog.html',
                 controller: 'LoginDialogController',
                 controllerAs: 'vm'
             });
