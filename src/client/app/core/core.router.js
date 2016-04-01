@@ -14,29 +14,46 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider
-            .otherwise('/workspace');
+            .otherwise('/404');
 
-/*        $stateProvider
-            .state('core', {
-                url: '',
-                abstract: true,
+        $stateProvider
+            .state('404', {
+                url: '/404',
+                sticky: true,
+                dsr: true,
                 views: {
-                    'workspace': {
-                        templateUrl: 'src/client/app/layout/workspace/workspace.html',
-                        controller: 'WorkspaceController',
+                    '': {
+                        templateUrl: 'src/client/app/core/404.html',
+                        controller: '',
                         onEnter: function () {
-                            console.log("You are in WORKSPACE");
+                            console.log("You are in ERROR PAGE");
                         }
                     }
                 }
-            });*/
+            })
+            .state('404.error', {
+                url: '/404',
+                sticky: true,
+                dsr: true,
+                views: {
+                    'messageError404': {
+                        template: '<div ui-view="messageError404"></div>',
+                        controller: '',
+                        onEnter: function () {
+                            console.log("You are in ERROR PAGE");
+                        }
+                    }
+                }
+            });
+
+        $stickyStateProvider.enableDebug(true);
     }
 })();

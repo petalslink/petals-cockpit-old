@@ -20,7 +20,7 @@ module.exports = {
         src + 'app/**/*.js',
         src + 'app/**/**/*.js',
         src + 'app/**/**/**/*.js',
-        src + 'app/core/**/*.js',
+        src + 'app/core/*.js',
         src + 'app/blocks/**/*.js',
 
         // LAYOUT

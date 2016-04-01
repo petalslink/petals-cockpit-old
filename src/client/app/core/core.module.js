@@ -6,11 +6,9 @@
         'ngMaterial',
         'ngSanitize',
 
-        // Our reusable framework
-        'blocks.diagnostics',
+        // Our reusable blocks
         'blocks.exception',
         'blocks.logger',
-        'blocks.router',
 
         // 3rd Party modules
         'ui.router',

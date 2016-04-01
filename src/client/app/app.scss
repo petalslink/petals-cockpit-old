@@ -21,3 +21,57 @@
 md-tooltip {
     background-color: black;
 }*/
+
+
+md-toast.md-red-theme {
+    background-color: rgba(33,33,33,1.0);
+    text-align: center;
+    padding: 20px;
+    opacity: 1;
+    min-width: 100%;
+    width: 100%;
+}
+
+md-toast.md-red-theme:hover, md-toast.md-green-theme:hover, md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
+    background-color: white;
+    text-align: center;
+}
+
+md-toast.md-green-theme .md-toast-content {
+    background-color: #62c462;
+    border: solid 2px whitesmoke;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+ md-toast.md-red-theme .md-toast-content{
+     background-color: #ee5f5b;
+     border: solid 2px whitesmoke;
+     cursor: pointer;
+     padding: 10px;
+     text-align: center;
+     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+ }
+
+
+ md-toast.md-orange-theme .md-toast-content{
+     background-color: #fb921a;
+     border: solid 2px whitesmoke;
+     cursor: pointer;
+     padding: 10px;
+     text-align: center;
+     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+ }
+
+
+ md-toast.md-blue-theme .md-toast-content{
+     background-color: #0088cc;
+     border: solid 2px whitesmoke;
+     cursor: pointer;
+     padding: 10px;
+     text-align: center;
+     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+ }
