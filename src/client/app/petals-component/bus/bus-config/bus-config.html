@@ -1,9 +1,62 @@
-<div layout="row">
-    <md-card layout-align="center center" flex>
-        <h1>Bus Config</h1>
+<div layout="column" layout-align="space-around stretch">
+    <div layout="row" layout-align="center stretch">
+        <h3>*** <b>{{details.title}}</b> ***</h3>
+    </div>
+    <md-card layout="column" layout-align="start stretch" flex>
+        <div layout="row" layout-align="center stretch">
+            <p> *** <b>BUS Registry</b> *** </p>
+        </div>
+        <div layout="row" layout-align="start stretch">
+            <md-card flex="50">
+                <p>
+                    registry_implementation: <br>
+                    &nbsp;&nbsp;&nbsp;{{details.topology.registry.registry_implementation}}
+                </p>
+            </md-card>
+            <md-card flex="50">
+                <p>
+                    *** <b>configuration</b> ***<br>
+                    group_name : {{details.topology.registry.registry_configuration.group_name}} <br>
+                    group_password:  {{details.topology.registry.registry_configuration.group_password}}
+                </p>
+            </md-card>
+        </div>
+        <div layout="row" layout-align="start stretch">
+            <p> *** <b>overlay_members</b> *** </p>
+        </div>
+        <div layout="column" layout-align="center stretch">
+            <md-card ng-repeat="member in details.topology.registry.registry_configuration.overlay_members">
+                <p>
+                    host_name : {{member.host_name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    port : {{member.port}}
+                </p>
+            </md-card>
+        </div>
     </md-card>
 
-    <md-card layout-align="center center" flex>
-        <p>Ici, une deuxième balise md-card "Config".</p>
+    <md-card layout="column" layout-align="start stretch" flex>
+        <div layout="row" layout-align="center stretch">
+            <p> *** <b>Petals containers</b> *** </p>
+        </div>
+        <div layout="column" layout-align="center stretch">
+            <md-card ng-repeat="container in details.topology.containers">
+                <p>
+                    name : {{container.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    description : {{container.description}}<br>
+                    host : {{container.host}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    user : {{container.user}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    password : {{container.password}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    jmx_port : {{container.jmx_port}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    transport_port : {{container.transport_port}}<br>
+                </p>
+            </md-card>
+        </div>
     </md-card>
+
 </div>

@@ -6,10 +6,17 @@
         .controller('ConfigBusController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = ['$scope', 'promiseDetails'];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction($scope, promiseDetails) {
+        $scope.details = {};
+
+        activate();
+
+        function activate() {
+            $scope.details = promiseDetails;
+        }
 
     }
 

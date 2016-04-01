@@ -1,0 +1,107 @@
+{
+    "componentType": {
+        "name": "BUS",
+        "version": "5-0",
+        "icon": "directions_bus"
+    },
+    "contains": [
+        {
+            "componentType": {
+                "name": "PETALSCONTAINER",
+                "version": "5-0-0",
+                "cat": "SERVER",
+                "icon": "dock"
+            },
+            "contains" : [
+                {
+                    "componentType": {
+                        "name": "BC-SOAP",
+                        "version": "3-2",
+                        "cat": "COMPONENT",
+                        "subCat": "BC",
+                        "icon": "extension"
+                    },
+                    "contains" : [
+                        {
+                            "componentType": {
+                                "name": "SU-CONSUME",
+                                "version": "3-2-1",
+                                "cat": "CONSUME",
+                                "icon": "star"
+                            },
+                            "componentType": {
+                                "name": "SU-PROVIDE",
+                                "version": "3-2-1",
+                                "cat": "PROVIDE",
+                                "icon": "star"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "componentType": {
+                        "name": "BC-REST",
+                        "version": "2-4",
+                        "cat": "COMPONENT",
+                        "subCat": "BC",
+                        "icon": "extension"
+                    },
+                    "contains" : [
+                        {
+                            "componentType": {
+                                "name": "SU-CONSUME",
+                                "version": "2-4-3",
+                                "cat": "CONSUME",
+                                "icon": "star"
+                            },
+                            "componentType": {
+                                "name": "SU-PROVIDE",
+                                "version": "2-4-3",
+                                "cat": "PROVIDE",
+                                "icon": "star"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "componentType": {
+                        "name": "BC-MAIL",
+                        "version": "2-5",
+                        "cat": "COMPONENT",
+                        "subCat": "BC",
+                        "icon": "extension"
+                    },
+                    "contains" : [
+                        {
+                            "componentType": {
+                                "name": "SU-CONSUME",
+                                "version": "2-5-6",
+                                "cat": "CONSUME",
+                                "icon": "star"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "componentType": {
+                        "name": "SE-QUARTZ",
+                        "version": "1-5",
+                        "cat": "COMPONENT",
+                        "subCat": "SE",
+                        "icon": "extension"
+                    },
+                    "contains" : [
+                        {
+                            "componentType": {
+                                "name": "SU-CONSUME",
+                                "version": "3-2-1",
+                                "cat": "CONSUME",
+                                "icon": "star"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

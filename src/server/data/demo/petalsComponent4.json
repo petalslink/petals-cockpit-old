@@ -1,0 +1,53 @@
+{
+    "id": 4,
+    "title": "BUS RH",
+    "componentType": {
+        "name": "BUS",
+        "version": "5-0",
+        "icon": "directions_bus"
+    },
+    "state": "UNDEPLOYED",
+    "topology": {
+        "domain":{
+            "name": "domain_RH",
+            "mode": "static",
+            "description": "ESB managing services of domain RH"
+        },
+        "containers":[
+            {
+                "id": 5,
+                "name": "server-1",
+                "description": "description of the container 1",
+                "host": "192.18.1.005",
+                "user": "petals",
+                "password": "petals",
+                "jmx_port": "7701",
+                "transport_port": "7801"
+            },
+            {
+                "id": 6,
+                "name": "server-2",
+                "description": "description of the container 1",
+                "host": "192.18.1.006",
+                "user": "petals",
+                "password": "petals",
+                "jmx_port": "7701",
+                "transport_port": "7801"
+            }
+        ],
+        "registry":{
+            "registry_implementation": "org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl",
+            "registry_configuration": {
+                "group_name": "default-sample",
+                "group_password": "s3cr3t",
+                "overlay_members": [
+                    {
+                        "host_name": "192.18.1.110",
+                        "port": "7901"
+                    }
+                ]
+            }
+        }
+    }
+
+}

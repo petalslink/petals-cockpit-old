@@ -1,0 +1,13 @@
+{
+    "id": 0,
+    "title": "Demo",
+    "componentType": {
+        "name": "WKSPCE",
+        "icon": "folder_special"
+    },
+    "state": "UNDEPLOYED",
+    "config": {
+        "name": "Demo",
+        "description": "Demo"
+    }
+}

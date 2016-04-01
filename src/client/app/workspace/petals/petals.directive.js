@@ -44,21 +44,35 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope', '$mdDialog'];
+    ControllerFunction.$inject = ['$scope', '$mdDialog', 'logger', 'promiseData', 'promiseConfig'];
 
     /* @ngInject */
-    function ControllerFunction($scope, $mdDialog) {
+    function ControllerFunction($scope, $mdDialog, logger, promiseData, promiseConfig) {
+        $scope.data = {};
+        $scope.configData = {};
 
         activate();
 
-        function activate(){
-            $scope.$state.go('workspace.petals.bus');
+        //goto First element if exist
+        if ($scope.data.children[0]) {
+            select($scope.data.children[0]);
         }
 
-        $scope.json = '';
+
+        function activate() {
+            console.log("*** promiseData dans PetalsController:");
+            console.log(angular.toJson(promiseData));
+            $scope.data = promiseData;
+            console.log("*** promiseConfig dans PetalsController:");
+            console.log(angular.toJson(promiseConfig));
+            $scope.configData = promiseConfig;
+        }
+
+ //       $scope.$state.go('workspace.petals.bus');
 
         $scope.infoSelect = ' You Pick : ';
 
+/*
         $scope.data = {
             title: 'Workspace Demo',
             type: 'WKSPCE',
@@ -93,6 +107,7 @@
                     }]
             }]
         };
+*/
 
 
         $scope.busTypeList = [
@@ -179,18 +194,14 @@
             }
         ];
 
-        $scope.getJson = function () {
-            $scope.json = angular.toJson($scope.data);
-        };
-
         $scope.addBranch = function (child) {
 
-            switch (child.type) {
+            switch (child.componentType.name) {
                 case 'BUS':
                     $scope.formChildData.title = 'SERVER- ';
-                    $scope.formChildData.type = 'SERVER';
+                    $scope.formChildData.componentType.cat = 'SERVER';
                     $scope.formChildData.icon = 'dock';
-                    $scope.choiceList = $scope.serverConfigTypeList[0].serverTypeList;
+                    $scope.choiceList = $scope.configData.contains;
 
                     break;
                 case 'SERVER':
@@ -410,6 +421,11 @@
         };
 
         $scope.select = function (child) {
+            select(child);
+        }
+
+
+        function select(child) {
 
             if ($scope.selectedChild) {
                 $scope.selectedChild.selected = false;
@@ -420,17 +436,17 @@
             child.selected = true;
             $scope.selectedChild = child;
 
-            if (child.lastState) {
+            /*if (child.lastState) {
                 $scope.$state.go(child.lastState);
-            } else {
-                switch (child.type) {
+            } else {*/
+                switch (child.componentType.name) {
                     case 'BUS':
                         console.log("Je suis dans la branche bus");
-                        $scope.$state.go('workspace.petals.bus.overview');
+                        $scope.$state.go('workspace.petals.bus', {id: child.id});
                         break;
-                    case 'SERVER':
+                    case 'PETALSCONTAINER':
                         console.log("Je suis dans la branche server");
-                        $scope.$state.go('workspace.petals.server.overview');
+                        $scope.$state.go('workspace.petals.server', {id: child.id});
                         break;
                     case 'COMPONENT':
                      console.log("Je suis dans la branche BC-SOAP");
@@ -445,7 +461,7 @@
                         $scope.$state.go('workspace.petals.bus.overview');
                 }
             }
-        };
+       // };
 
         $scope.upChild = function (child) {
             function walk(target) {

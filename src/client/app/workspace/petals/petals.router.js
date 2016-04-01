@@ -30,14 +30,14 @@
             .state('workspace.petals', {
                 url: '/petals',
                 sticky: true,
-                dsr: true,
+                dsr: false,
                 views: {
                     'petals-sidenav': {
                         templateUrl: 'src/client/app/workspace/petals/petals.html',
                         directive: 'tmplTree',
                         controller: 'PetalsController',
                         onEnter: function () {
-                            console.log("You are in PETALS");
+                            console.log("======================> You are in PETALS");
                         }
                     },
                     'petals-nav-console': {
@@ -48,15 +48,31 @@
                         }
                     },
                     'petals-console': {
-                        template: '<div ui-view="petals-console"></div>',
+                        template: '<div ui-view="petals-console" layout="column" layout-align="start stretch"></div>',
                         controller: '',
                         onEnter: function () {
                             console.log("You are in CONSOLE");
                         }
                     }
+                },
+                resolve: {
+                    promiseData: function(dataservice) {
+                        return dataservice.getPetalsComponents().then(function(data){
+                            console.log("*** data dans promiseData:");
+                            console.log(angular.toJson(data));
+                            return data;
+                        });
+                    },
+                    promiseConfig: function(dataservice) {
+                        return dataservice.getPetalsComponentConfig().then(function(data){
+                            console.log("*** config dans promiseData:");
+                            console.log(angular.toJson(data));
+                            return data;
+                        });
+                    }
                 }
             });
 
-        $stickyStateProvider.enableDebug(true);
+ //       $stickyStateProvider.enableDebug(true);
     }
 })();

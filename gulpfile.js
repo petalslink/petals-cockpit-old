@@ -9,11 +9,11 @@
  * --verbose  : Various tasks will produce more output to the console.
  */
 
-var gulp = require('gulp'),
-    $ = require('gulp-load-plugins')({lazy: true}),
-    src = './src/client',
-    config = require('./gulp.config'),
-    buildTask = (function (config, taskFile) {
+var gulp = require('gulp');
+var $ = require('gulp-load-plugins')({lazy: true});
+var src = './src/client';
+var config = require('./gulp.config');
+var buildTask = (function (config, taskFile) {
         require('./gulp-tasks/' + taskFile)(config);
     }).bind(null, config);
 

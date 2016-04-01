@@ -13,6 +13,8 @@
 
         activate();
 
+
+
         $scope.dataNavMenu = {
             menuLocked: false,
             menuLabel: 'Menu',

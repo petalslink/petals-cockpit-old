@@ -1,0 +1,116 @@
+{
+    "id": 6,
+    "title": "server Paris",
+    "componentType": {
+        "name": "PETALSCONTAINER",
+        "version": "5-0-0",
+        "cat": "SERVER",
+        "icon": "dock"
+    },
+    "state": "UNDEPLOYED",
+    "name": "server-2",
+    "description": "description of the container 1",
+    "host": "192.18.1.006",
+    "user": "petals",
+    "password": "petals",
+    "jmx_port": "7701",
+    "transport_port": "7801",
+    "general": "*** Petals ESB - General Properties ***",
+    "general": {
+        "data_basedir": "/var/lib/petals/server_2",
+        "repository_path": "/var/lib/petals/server-2/repository",
+        "work_path": "/var/lib/petals/server-2/work",
+        "log_config_file": "/etc/petals-esb/container-available/server-2/logger.properties",
+        "task_timeout": "120000",
+        "exchange_validation": true,
+        "classloaders_isolated": true,
+        "topology": {
+            "url": "",
+            "passphrase": "petals",
+            "dynamic_lock_wait_time": "30",
+            "pinger": {
+                "start_delay": "2000",
+                "period_delay": "5000"
+            }
+        },
+        "container_moves_lock_wait_time": "30"
+    },
+    "router": "*** Petals ESB - Router ***",
+    "router": {
+        "srtategy": "highest,3,2,1",
+        "send_attempt": "2",
+        "send_delay": "1000",
+        "traffic_stop_delay": "30000",
+        "traffic_pause_delay": "10000"
+    },
+    "ssl": "*** Petals ESB - SSL Connections ***",
+    "ssl": {
+        "key_password": "myKey",
+        "keystore": {
+            "file": "/var/lib/petals/server-2/keystore.file",
+            "password": "k3ystor3pwd"
+        },
+        "truststore": {
+            "file": "/var/lib/petals/server-2/truststore.file",
+            "password": "tr0ststor3pwd"
+        }
+    },
+    "transport": "*** Petals ESB - Transporter Configuration ***",
+    "transport":{
+        "queue": {
+            "max_size": "10000",
+            "offering_timeout": "2500"
+        },
+        "tcp": {
+            "receivers": {
+                "listening_interface": "0.0.0.0",
+                "numbers": "10",
+                "keep_alive": "60000"
+            },
+            "senders": {
+                "numbers": "10",
+                "connection_timeout": "5000",
+                "timeout":"5000",
+                "evictor_delay": "60000"
+            }
+        }
+    },
+    "registry": "*** Petals ESB - Registry Client Configuration ***",
+    "registry":{
+        "registry_implementation": "org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl",
+        "registry_parameters": {
+            "map_cache": {
+                "max_size": "500"
+            }
+        }
+    },
+    "recovery": "*** Petals ESB - System recovery service ***",
+    "recovery": {
+        "corepoolsize": "5",
+        "keepalivetime": "60"
+    },
+    "autoloader": "*** Petals ESB - Autoloader extension ***",
+    "autoloader": {
+        "activation": true,
+        "scan_period": "4000",
+        "path_install": "/var/lib/petals/server-2/install",
+        "path_installed": "/var/lib/petals/server-2/installed"
+    },
+    "embedded_registry_overlay": "//Petals ESB - Embedded Registry Server extension",
+    "embedded_registry_overlay": {
+        "activation": false,
+        "port": "7900"
+    },
+    "artifact_repository": "*** Petals ESB - Artifact Repository extension ***",
+    "artifact_repository": {
+        "activation": true,
+        "path": "/var/lib/petals/server-2/artifacts"
+    },
+    "ws_api": "*** Petals ESB - WS API extension ***",
+    "ws_api":{
+        "activation": true,
+        "listening_interface": "localhost",
+        "http_port":"7600",
+        "http_path": "petals/ws"
+    }
+}

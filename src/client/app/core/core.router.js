@@ -2,6 +2,7 @@
     'use strict';
 
     var core = angular.module('app.core');
+    var runFuntion = runFunction;
 
     core.config(configFunction);
     core.run(runFuntion);

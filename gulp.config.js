@@ -2,13 +2,17 @@
 
 'use strict';
 
-var $ = require('gulp-load-plugins')({lazy: true}),
-    src = './src/client/';
+var $ = require('gulp-load-plugins')({lazy: true});
+var src = './src/client/';
+var server = './src/server/';
 
 module.exports = {
 
     // --- Configurables ---
+    nodeServer: server + '/app.js',
+    defaultPort: '7203',
     sourceDir: src,
+    serverDir: server,
     testDir: './test/',
     buildDir: './build/',
     tempDir: './.tmp/',
@@ -45,8 +49,7 @@ module.exports = {
         src + 'app/petals-component/bus/**/*.js',
         src + 'app/petals-component/server/**/*.js',
         src + 'app/petals-component/bc-soap/**/*.js',
-        src + 'app/petals-component/su/**/*.js'
-
+        src + 'app/petals-component/su/**/*.js',
     ],
     html: [
         // ALL

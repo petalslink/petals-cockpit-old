@@ -26,10 +26,20 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = ['$scope', 'promiseDetails'];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction($scope, promiseDetails) {
+        $scope.details = {};
+
+        activate();
+
+        function activate() {
+            console.log("*** promiseDetails dans SERVER-ConfigController:");
+            console.log(angular.toJson(promiseDetails));
+            $scope.details = promiseDetails;
+        }
+
 
     }
 

@@ -42,24 +42,25 @@
         <!-- WORKSPACE & ERROR 404 -->
         <div ui-view layout="column" layout-fill flex></div>
 
-        <!-- FOOTER -->
-        <footer flex="none" layout="row">
-            <md-card flex>
-                <md-card-header layout-fill>
-                    <md-card-header-text layout="row" layout-align="center center">
-                        <md-card-avatar layout="row" hide-xs>
-                            <img class="" src="src/client/images/petals_cockpit.png"/>
-                        </md-card-avatar>
-                        <div layout="column">
-                            <span class="" flex>Copyright © 2016 - LINAGORA</span>
-                            <span class="md-subhead" flex>Version Prototype - Open Source</span>
-                        </div>
-                    </md-card-header-text>
-                </md-card-header>
-            </md-card>
-        </footer>
-
     </div>
+
+    <!-- FOOTER -->
+    <footer layout="column" layout-align="center stretch">
+        <md-card>
+            <md-card-header>
+                <md-card-header-text layout="row" layout-align="center center">
+                    <md-card-avatar layout="row" hide-xs>
+                        <img class="" src="src/client/images/petals_cockpit.png"/>
+                    </md-card-avatar>
+                    <div layout="column">
+                        <span class="" flex>Copyright © 2016 - LINAGORA</span>
+                        <span class="md-subhead" flex>Version Prototype - Open Source</span>
+                    </div>
+                </md-card-header-text>
+            </md-card-header>
+        </md-card>
+    </footer>
+
 </md-content>
 
     <!-- build:js js/lib.js -->
@@ -71,6 +72,8 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/lodash/lodash.js"></script>
     <script src="/bower_components/ui-router-extras/release/ct-ui-router-extras.js"></script>
+
+
     <!-- endbuild -->
 
     <!-- build:js js/app.js -->

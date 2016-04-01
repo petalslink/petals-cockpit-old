@@ -1,9 +1,159 @@
-<div layout="row">
-    <md-card layout-align="center center" flex>
-        <h1>Server Config</h1>
-    </md-card>
+<div layout="column" layout-align="space-around stretch">
+    <div layout="row" layout-align="start stretch" flex>
+        <md-card flex="33">
+            <h3>*** <b>{{details.title}}</b> ***</h3>
+            <p>
+                State: {{details.state}}<br>
+                Description: {{details.description}}
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p> Type : {{details.componentType.name}}</p>
+            <p> Version:  {{details.componentType.version}}</p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                Host : {{details.host}}<br>
+                Jmx_port : {{details.jmx_port}}<br>
+                Transport_port : {{details.transport_port}}<br>
+                User : {{details.user}}<br>
+                password: {{details.password}}
+            </p>
+        </md-card>
+    </div>
 
-    <md-card layout-align="center center" flex>
-        <p>Ici, une deuxième balise md-card "Config".</p>
-    </md-card>
+    <div layout="row" layout-align="start stretch">
+        <md-card flex="66">
+            <p>
+                *** <b>General Properties</b> ***<br>
+                data_basedir : {{details.general.data_basedir}}<br>
+                repository_path : {{details.general.repository_path}}<br>
+                work_path : {{details.general.work_path}}<br>
+                log_config_file : {{details.general.log_config_file}}<br>
+                task_timeout: {{details.general.task_timeout}} &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+                task_timeout: {{details.general.task_timeout}}<br>
+                exchange_validation: {{details.general.exchange_validation}} &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+                classloaders_isolated: {{details.general.classloaders_isolated}}
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>Topology</b> ***<br>
+                url: {{details.general.topology.url}}<br>
+                passphrase: {{details.general.topology.passphrase}}<br>
+                dynamic_lock_wait_time: {{details.general.topology.dynamic_lock_wait_time}}<br>
+                pinger: <br>
+                &nbsp;&nbsp;--> start_delay: {{details.general.topology.pinger.start_delay}}<br>
+                &nbsp;&nbsp;--> period_delay: {{details.general.topology.pinger.period_delay}}
+            </p>
+        </md-card>
+    </div>
+
+    <div layout="row" layout-align="start stretch">
+        <md-card flex="33">
+            <p>
+                *** <b>Router</b> ***<br>
+                srtategy : {{details.router.srtategy}}<br>
+                send_attempt : {{details.router.send_attempt}}<br>
+                send_delay : {{details.router.send_delay}}<br>
+                traffic_stop_delay : {{details.router.traffic_stop_delay}}<br>
+                traffic_pause_delay : {{details.router.traffic_pause_delay}}
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>SSL Connections</b> ***<br>
+                key_password : {{details.ssl.key_password}}<br>
+                keystore : <br>
+                &nbsp;&nbsp;--> file : {{details.ssl.keystore.file}}<br>
+                &nbsp;&nbsp;--> password : {{details.ssl.keystore.password}}<br>
+                truststore : <br>
+                &nbsp;&nbsp;--> file : {{details.ssl.truststore.file}}<br>
+                &nbsp;&nbsp;--> password : {{details.ssl.truststore.password}}
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>Transporter Configuration</b> ***<br>
+                queue --> max_size : {{details.transport.queue.max_size}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                --> offering_timeout : </pre>{{details.transport.queue.offering_timeout}}<br>
+                tcp   --> receivers --> listening_interface : {{details.transport.tcp.receivers.listening_interface}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;--> numbers : {{details.transport.tcp.receivers.numbers}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;--> keep_alive : {{details.transport.tcp.receivers.keep_alive}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> senders &nbsp;&nbsp;--> numbers : {{details.transport.tcp.senders.numbers}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;--> connection_timeout : {{details.transport.tcp.senders.connection_timeout}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;--> timeout : {{details.transport.tcp.senders.timeout}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;--> evictor_delay : {{details.transport.tcp.senders.evictor_delay}}
+            </p>
+        </md-card>
+    </div>
+
+    <div layout="row" layout-align="start stretch">
+        <md-card flex="40">
+            <p>
+                *** <b>Registry Client Configuration</b> ***<br>
+                registry_implementation :<br>&nbsp;&nbsp;&nbsp;&nbsp; {{details.registry.registry_implementation}}<br>
+                registry_parameters : <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;--> map_cache : <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                --> max_size : {{details.registry.registry_parameters.map_cache.max_size}}
+            </p>
+        </md-card>
+        <md-card flex="30">
+            <p>
+                *** <b>System recovery service</b> ***<br>
+                recovery : <br>
+                &nbsp;&nbsp;--> corepoolsize : {{details.recovery.corepoolsize}}<br>
+                &nbsp;&nbsp;--> keepalivetime : {{details.recovery.keepalivetime}}
+            </p>
+        </md-card>
+        <md-card flex="30">
+            <p>
+                *** <b>Autoloader extension</b> ***<br>
+                activation : {{details.autoloader.activation}}<br>
+                scan_period : {{details.autoloader.scan_period}}<br>
+                path_install : {{details.autoloader.path_install}}<br>
+                path_installed : {{details.autoloader.path_installed}}
+            </p>
+        </md-card>
+    </div>
+
+    <div layout="row" layout-align="start stretch">
+        <md-card flex="33">
+            <p>
+                *** <b>Embedded Registry Server extension</b> ***<br>
+                activation : {{details.embedded_registry_overlay.activation}}<br>
+                port : {{details.embedded_registry_overlay.port}}<br>
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>Artifact Repository extension</b> ***<br>
+                activation : {{details.artifact_repository.activation}}<br>
+                path : {{details.artifact_repository.path}}<br>
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>WS API extension</b> ***<br>
+                activation : {{details.ws_api.activation}}<br>
+                listening_interface : {{details.ws_api.listening_interface}}<br>
+                http_port : {{details.ws_api.http_port}}<br>
+                http_path : {{details.ws_api.http_path}}
+            </p>
+        </md-card>
+    </div>
+
 </div>
+

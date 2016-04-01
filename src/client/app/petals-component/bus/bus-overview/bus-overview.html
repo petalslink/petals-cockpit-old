@@ -1,9 +1,26 @@
-<div layout="row">
-    <md-card layout-align="center center" flex>
-        <h1>Bus Overview</h1>
-    </md-card>
+<div layout="column" layout-align="space-around stretch">
+    <div layout="row" layout-align="start stretch" flex>
+        <md-card flex="33">
+            <h3>*** <b>{{details.title}}</b> ***</h3>
+            <p>
+                State: {{details.state}}<br>
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>Type</b> ***<br><br>
+                Name : {{details.componentType.name}}<br>
+                Version:  {{details.componentType.version}}
+            </p>
+        </md-card>
+        <md-card flex="33">
+            <p>
+                *** <b>Topology</b> ***<br>
+                name: {{details.topology.domain.name}} <br>
+                mode : {{details.topology.domain.mode}} <br>
+                Description: {{details.topology.domain.description}}
+            </p>
+        </md-card>
+    </div>
 
-    <md-card layout-align="center center" flex>
-        <div>Ici, une deuxième balise md-card "Overview".</div>
-    </md-card>
 </div>

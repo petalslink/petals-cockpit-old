@@ -26,7 +26,7 @@
         $stateProvider
 
             .state('workspace.petals.server', {
-                url: '/server',
+                url: '/server/:id',
                 sticky: true,
                 dsr: true,
                 views: {
@@ -44,7 +44,15 @@
                             console.log("You are in PETALS CONSOLE");
                         }
                     }
-
+                },
+                resolve: {
+                    promiseDetails: function (dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id).then(function (data) {
+                            console.log("*** data dans promiseDetails:");
+                            console.log(angular.toJson(data));
+                            return data;
+                        });
+                    }
                 }
             })
 

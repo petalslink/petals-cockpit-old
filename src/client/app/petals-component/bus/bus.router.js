@@ -26,25 +26,22 @@
         $stateProvider
 
             .state('workspace.petals.bus', {
-                url: '/bus',
-                sticky: true,
-                dsr: true,
+                url: '/bus/:id',
+                sticky: false,
                 views: {
                     'petals-nav-console': {
                         controller: 'BusController',
                         templateUrl: 'src/client/app/petals-component/bus/bus.html',
-                        onEnter: function () {
-                            console.log("You are in PETALS NAV CONSOLE BUS");
-                        }
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
                         controller: '',
-                        onEnter: function () {
-                            console.log("You are in PETALS CONSOLE");
-                        }
                     }
-
+                },
+                resolve: {
+                    promiseDetails: function(dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id);
+                    }
                 }
             })
 
