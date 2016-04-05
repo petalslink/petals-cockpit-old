@@ -1,7 +1,7 @@
 <div layout="column" flex md-theme="core-theme">
 
     <div layout="column">
-        <md-toolbar class="md-accent" md-theme="menu-theme">
+        <md-toolbar class="md-accent toolbarCustom" md-theme="menu-theme">
             <section class="md-toolbar-tools md-primary" layout-align="start center" id="menu">
                 <md-button class="selectionDefault" ng-repeat="btn in dataNav"
                            ui-sref="{{btn.UiSref}}" ui-sref-active="selection">
@@ -13,13 +13,13 @@
 
     </div>
 
-    <div layout="row" layout-fill flex>
+    <div layout="row" layout-fill flex style="z-index: 1">
         <div layout="column">
             <tmpl-sidenav></tmpl-sidenav>
         </div>
         <div layout="column" layout-fill flex>
             <md-card layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-nav-console"></md-card>
-            <md-card layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-console"></md-card>
+            <md-card layout="column" ng-show="$state.includes('workspace.petals')" ui-view="petals-console"></md-card>
 
 <!--
             <md-card layout="row" ng-show="$state.includes('workspace.service')" ui-view="service-nav-console"></md-card>

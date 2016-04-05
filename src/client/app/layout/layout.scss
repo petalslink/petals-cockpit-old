@@ -32,3 +32,15 @@ md-sidenav.md-locked-open {
     min-width: 350px !important;
     max-width: 350px !important;
 }
+
+md-sidenav.md-locked-open, md-sidenav.md-locked-open.md-closed,
+md-sidenav.md-locked-open.md-closed.md-sidenav-left,
+md-sidenav.md-locked-open.md-closed,
+md-sidenav.md-locked-open.md-closed.md-sidenav-right,
+md-sidenav.md-locked-open-remove.md-closed {
+    padding-top: 0px !important;
+}
+
+md-sidenav {
+    padding-top: 60px;
+}

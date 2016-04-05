@@ -2,20 +2,13 @@
     Workspace Module Styles
 ======================================================================= */
 body {
-    height: 100%;
-    overflow: auto;
+    height: auto !important;
 }
 
-/*.fixHeightworkspace {
-    min-height: 100%;
-    height: 100%;
-    overflow: auto;
+.toolbarCustom {
+    z-index: 1;
+    padding-top: 60px;
 }
-
-.fixHeightVertival {
-    position: absolute;
-    overflow: auto;
-}*/
 
 .selectionDefault {
     color: white !important;
