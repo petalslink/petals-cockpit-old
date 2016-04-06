@@ -6,12 +6,8 @@ body {
 }
 
 .toolbarCustom {
-    z-index: 1;
+    z-index: 10;
     padding-top: 60px;
-}
-
-.navCustom {
-    z-index: 1;
 }
 
 .selectionDefault {
@@ -25,4 +21,8 @@ body {
     color: yellow !important;
     background-color: rgba(0, 0, 0, 0.50);
     text-transform: uppercase !important;
+}
+
+a.md-button.md-menu-theme-theme.md-primary.md-raised, a.md-button.md-menu-theme-theme.md-primary.md-fab, .md-button.md-menu-theme-theme.md-primary.md-raised, .md-button.md-menu-theme-theme.md-primary.md-fab {
+    min-width: 50px;
 }

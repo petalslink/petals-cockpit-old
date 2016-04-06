@@ -13,14 +13,6 @@
 
         activate();
 
-
-
-        $scope.dataNavMenu = {
-            menuLocked: false,
-            menuLabel: 'Menu',
-            menuIcon: 'menu'
-        };
-
         // TABS VIEWS CONSOLE
         $scope.dataNavConsole = [
             {

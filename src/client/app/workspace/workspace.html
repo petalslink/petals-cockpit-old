@@ -3,6 +3,11 @@
     <div layout="column">
         <md-toolbar class="md-accent toolbarCustom" md-theme="menu-theme">
             <section class="md-toolbar-tools md-primary" layout-align="start center" id="menu">
+                <md-button class="md-primary md-raised" ng-click="toggleSidenav('left')"
+                           aria-label="Show" ng-controller="SidenavController" hide-gt-md>
+                    <md-icon class="md-icon-button">{{ dataNavMenu.menuIcon }}</md-icon>
+                </md-button>
+
                 <md-button class="selectionDefault" ng-repeat="btn in dataNav"
                            ui-sref="{{btn.UiSref}}" ui-sref-active="selection">
                     <span flex></span>
@@ -15,7 +20,7 @@
 
     <div layout="row" layout-fill flex>
         <div layout="row">
-            <tmpl-sidenav class="sidenavCustom"></tmpl-sidenav>
+            <tmpl-sidenav></tmpl-sidenav>
         </div>
         <div layout="column" layout-fill flex>
             <md-card class="navCustom" layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-nav-console"></md-card>
