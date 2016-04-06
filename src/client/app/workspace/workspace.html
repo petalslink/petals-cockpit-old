@@ -15,10 +15,10 @@
 
     <div layout="row" layout-fill flex>
         <div layout="row">
-            <tmpl-sidenav></tmpl-sidenav>
+            <tmpl-sidenav class="sidenavCustom"></tmpl-sidenav>
         </div>
         <div layout="column" layout-fill flex>
-            <md-card layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-nav-console"></md-card>
+            <md-card class="navCustom" layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-nav-console"></md-card>
             <md-card layout="column" layout-align="start stretch"
                      ng-show="$state.includes('workspace.petals')"
                      ui-view="petals-console"></md-card>

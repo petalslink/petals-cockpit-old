@@ -36,7 +36,7 @@
                 console.log("****** "+ e.data.description);
 
                 $location.url('/');
-                return exception.catcher('XHR Failed for getCustomer')(e);
+                return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
 
@@ -56,7 +56,7 @@
                 console.log("****** getPetalsComponentsFailed");
                 console.log("****** "+ e.data.description);
                 $location.url('/');
-                return exception.catcher('XHR Failed for getCustomers')(e);
+                return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
 
@@ -76,7 +76,7 @@
                 console.log("****** getPetalsComponentConfigFailed");
                 console.log("****** "+ e.data.description);
                 $location.url('/');
-                return exception.catcher('XHR Failed for getCustomers')(e);
+                return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
 
