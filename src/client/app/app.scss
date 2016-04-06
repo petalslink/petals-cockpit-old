@@ -8,6 +8,7 @@
 @import "petals-component/bus/bus.scss";
 @import "petals-component/server/server.scss";
 @import "petals-component/bc-soap/bc-soap.scss";
+@import "petals-component/bc-rest/bc-rest.scss";
 
 /* =======================================================================
     App Module Styles
@@ -18,11 +19,6 @@
 }
 
 body { height: auto !important }
-
-/*
-md-tooltip {
-    background-color: black;
-}*/
 
 md-toast.md-red-theme {
     background-color: rgba(33,33,33,1.0);
@@ -73,21 +69,3 @@ md-toast.md-green-theme .md-toast-content {
      text-align: center;
      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
  }
-
-
-/*
-
-@media only screen and (min-width: 0) and (max-width: 959px) and (orientation: portrait) {
-    md-toolbar {
-        min-height: 56px; }
-    .md-toolbar-tools {
-        height: 56px;
-        max-height: 56px; } }
-
-@media only screen and (min-width: 0) and (max-width: 959px) and (orientation: landscape) {
-    md-toolbar {
-        min-height: 48px; }
-    .md-toolbar-tools {
-        height: 48px;
-        max-height: 48px; } }
-*/

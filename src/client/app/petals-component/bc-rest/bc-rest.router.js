@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var operationBcSoap = angular.module('app.operationBcSoap');
+    var bcRest = angular.module('app.bc-rest');
 
     var runFuntion = runFunction;
 
-    operationBcSoap.config(configFunction);
-    operationBcSoap.run(runFuntion);
+    bcRest.config(configFunction);
+    bcRest.run(runFuntion);
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
@@ -24,18 +24,27 @@
         $locationProvider.html5Mode(true);
 
         $stateProvider
-            .state('workspace.petals.bc-soap.operation', {
-                url: '/operation',
+
+            .state('workspace.petals.bc-rest', {
+                url: '/bc-rest',
                 sticky: true,
                 dsr: true,
                 views: {
-                    'petals-console': {
-                        controller: 'OperationBcSoapController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-rest-operation/bc-soap-operation.html',
+                    'petals-nav-console': {
+                        controller: 'BcRestController',
+                        templateUrl: 'src/client/app/petals-component/bc-rest/bc-rest.html',
                         onEnter: function () {
-                            console.log("You are in OPERATION BC-SOAP");
+                            console.log("You are in PETALS NAV CONSOLE BC-REST");
+                        }
+                    },
+                    'petals-console': {
+                        template: '<div ui-view="petals-console"></div>',
+                        controller: '',
+                        onEnter: function () {
+                            console.log("You are in PETALS CONSOLE");
                         }
                     }
+
                 }
             })
 

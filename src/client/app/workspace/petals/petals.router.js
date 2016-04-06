@@ -30,7 +30,7 @@
             .state('workspace.petals', {
                 url: '/petals',
                 sticky: true,
-                dsr: false,
+                dsr: true,
                 views: {
                     'petals-sidenav': {
                         templateUrl: 'src/client/app/workspace/petals/petals.html',

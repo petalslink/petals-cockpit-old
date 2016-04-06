@@ -43,13 +43,15 @@ module.exports = {
         src + 'app/petals-component/bus/*.js',
         src + 'app/petals-component/server/*.js',
         src + 'app/petals-component/bc-soap/*.js',
+        src + 'app/petals-component/bc-rest/*.js',
         src + 'app/petals-component/su/su-nav-console/*.js',
 
         // BC-SOAP, BUS, SERVER, SU
         src + 'app/petals-component/bus/**/*.js',
         src + 'app/petals-component/server/**/*.js',
         src + 'app/petals-component/bc-soap/**/*.js',
-        src + 'app/petals-component/su/**/*.js',
+        src + 'app/petals-component/bc-rest/**/*.js',
+        src + 'app/petals-component/su/**/*.js'
     ],
     html: [
         // ALL
@@ -74,6 +76,7 @@ module.exports = {
         src + 'app/petals-component/bus/*.html',
         src + 'app/petals-component/server/*.html',
         src + 'app/petals-component/bc-soap/*.html',
+        src + 'app/petals-component/bc-rest/*.html',
         src + 'app/petals-component/su/su-nav-console/*.html',
         src + 'app/petals-component/modals/*.html',
 
@@ -104,11 +107,13 @@ module.exports = {
         src + 'app/petals-component/bus/**/*.scss',
         src + 'app/petals-component/server/**/*.scss',
         src + 'app/petals-component/bc-soap/**/*.scss',
+        src + 'app/petals-component/bc-rest/**/*.scss',
 
         // BC-SOAP, BUS, SERVER, SU
         src + 'app/petals-component/bus/*.scss',
         src + 'app/petals-component/server/*.scss',
         src + 'app/petals-component/bc-soap/*.scss',
+        src + 'app/petals-component/bc-rest/*.scss',
         src + 'app/petals-component/su/su-nav-console/*.scss'
 
 

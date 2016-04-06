@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.operationBcSoap')
-        .controller('OperationBcSoapController', ControllerFunction);
+        .module('app.operationBcRest')
+        .controller('OperationBcRestController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$scope'];

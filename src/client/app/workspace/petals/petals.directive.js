@@ -422,7 +422,7 @@
 
         $scope.select = function (child) {
             select(child);
-        }
+        };
 
 
         function select(child) {
