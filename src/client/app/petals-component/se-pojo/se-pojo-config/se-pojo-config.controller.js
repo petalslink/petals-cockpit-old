@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.configSeQuartz')
-        .controller('ConfigSeQuartzController', ControllerFunction);
+        .module('app.configSePojo')
+        .controller('ConfigSePojoController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$scope'];

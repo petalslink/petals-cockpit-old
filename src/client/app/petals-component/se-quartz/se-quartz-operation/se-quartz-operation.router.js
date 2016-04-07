@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var operationSePojo = angular.module('app.operationSePojo');
+    var operationSeQuartz = angular.module('app.operationSeQuartz');
 
     var runFuntion = runFunction;
 
-    operationSePojo.config(configFunction);
-    operationSePojo.run(runFuntion);
+    operationSeQuartz.config(configFunction);
+    operationSeQuartz.run(runFuntion);
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
@@ -24,16 +24,16 @@
         $locationProvider.html5Mode(true);
 
         $stateProvider
-            .state('workspace.petals.se-pojo.operation', {
+            .state('workspace.petals.se-quartz.operation', {
                 url: '/operation',
                 sticky: true,
                 dsr: true,
                 views: {
                     'petals-console': {
-                        controller: 'OperationSePojoController',
-                        templateUrl: 'src/client/app/petals-component/se-pojo/se-pojo-operation/se-pojo-operation.html',
+                        controller: 'OperationSeQuartzController',
+                        templateUrl: 'src/client/app/petals-component/se-quartz/se-quartz-operation/se-quartz-operation.html',
                         onEnter: function () {
-                            console.log("You are in OPERATION SE-POJO");
+                            console.log("You are in OPERATION SE-QUARTZ");
                         }
                     }
                 }

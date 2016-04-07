@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.operationSeQuartz')
-        .controller('OperationSeQuartzController', ControllerFunction);
+        .module('app.operationSePojo')
+        .controller('OperationSePojoController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$scope'];

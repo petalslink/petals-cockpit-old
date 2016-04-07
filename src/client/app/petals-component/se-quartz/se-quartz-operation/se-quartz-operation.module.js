@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app.operationSePojo', [
+    angular.module('app.operationSeQuartz', [
         'app.core'
     ]);
 })();

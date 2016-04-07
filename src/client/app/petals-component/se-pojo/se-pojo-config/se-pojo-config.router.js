@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var configSeQuartz = angular.module('app.configSeQuartz');
+    var configSePojo = angular.module('app.configSePojo');
 
     var runFuntion = runFunction;
 
-    configSeQuartz.config(configFunction);
-    configSeQuartz.run(runFuntion);
+    configSePojo.config(configFunction);
+    configSePojo.run(runFuntion);
 
     runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
 
@@ -24,16 +24,16 @@
         $locationProvider.html5Mode(true);
 
         $stateProvider
-            .state('workspace.petals.se-quartz.config', {
+            .state('workspace.petals.se-pojo.config', {
                 url: '/config',
                 sticky: true,
                 dsr: true,
                 views: {
                     'petals-console': {
-                        controller: 'ConfigSeQuartzController',
-                        templateUrl: 'src/client/app/petals-component/se-quartz/se-quartz-config/se-quartz-config.html',
+                        controller: 'ConfigSePojoController',
+                        templateUrl: 'src/client/app/petals-component/se-pojo/se-pojo-config/se-pojo-config.html',
                         onEnter: function () {
-                            console.log("You are in CONFIG SE-QUARTZ");
+                            console.log("You are in CONFIG SE-POJO");
                         }
                     }
                 }
