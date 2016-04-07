@@ -44,6 +44,7 @@ module.exports = {
         src + 'app/petals-component/server/*.js',
         src + 'app/petals-component/bc-soap/*.js',
         src + 'app/petals-component/bc-rest/*.js',
+        src + 'app/petals-component/bc-mail/*.js',
         src + 'app/petals-component/su/su-nav-console/*.js',
 
         // BC-SOAP, BUS, SERVER, SU
@@ -51,6 +52,7 @@ module.exports = {
         src + 'app/petals-component/server/**/*.js',
         src + 'app/petals-component/bc-soap/**/*.js',
         src + 'app/petals-component/bc-rest/**/*.js',
+        src + 'app/petals-component/bc-mail/**/*.js',
         src + 'app/petals-component/su/**/*.js'
     ],
     html: [
@@ -77,13 +79,18 @@ module.exports = {
         src + 'app/petals-component/server/*.html',
         src + 'app/petals-component/bc-soap/*.html',
         src + 'app/petals-component/bc-rest/*.html',
+        src + 'app/petals-component/se-quartz/*.html',
+        src + 'app/petals-component/se-pojo/*.html',
         src + 'app/petals-component/su/su-nav-console/*.html',
         src + 'app/petals-component/modals/*.html',
 
-        // BC-SOAP, BUS, SERVER, SU
+        // BC-SOAP, BUS, SERVER, SU ...
         src + 'app/petals-component/bus/**/*.html',
         src + 'app/petals-component/server/**/*.html',
         src + 'app/petals-component/bc-soap/*.html',
+        src + 'app/petals-component/bc-mail/*.html',
+        src + 'app/petals-component/se-quartz/*.html',
+        src + 'app/petals-component/se-pojo/*.html',
         src + 'app/petals-component/su/*.html'
     ],
     sass: [
@@ -108,12 +115,18 @@ module.exports = {
         src + 'app/petals-component/server/**/*.scss',
         src + 'app/petals-component/bc-soap/**/*.scss',
         src + 'app/petals-component/bc-rest/**/*.scss',
+        src + 'app/petals-component/bc-mail/**/*.scss',
+        src + 'app/petals-component/se-quartz/**/*.scss',
+        src + 'app/petals-component/se-pojo/**/*.scss',
 
         // BC-SOAP, BUS, SERVER, SU
         src + 'app/petals-component/bus/*.scss',
         src + 'app/petals-component/server/*.scss',
         src + 'app/petals-component/bc-soap/*.scss',
         src + 'app/petals-component/bc-rest/*.scss',
+        src + 'app/petals-component/bc-mail/*.scss',
+        src + 'app/petals-component/se-quartz/*.scss',
+        src + 'app/petals-component/se-pojo/*.scss',
         src + 'app/petals-component/su/su-nav-console/*.scss'
 
 
