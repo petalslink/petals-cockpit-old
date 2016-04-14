@@ -3,21 +3,18 @@
     'use strict';
 
     angular.module('app.workspace')
-        .controller('WorkspaceController', ControllerFunction);
+        .controller('WorkspaceController', ControllerFunction)
+        .service('dataWkspceService', dataWkspceService);
+
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = ['$scope', 'dataWkspceService'];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction($scope, dataWkspceService) {
+//        $scope.infoSelected = dataWkspceService.infoSelect.value;
 
         activate();
-
-        $scope.dataNavMenu = {
-            menuLocked: false,
-            menuLabel: 'Menu',
-            menuIcon: 'menu'
-        };
 
         $scope.dataNav = [
             {
@@ -40,8 +37,43 @@
         ];
 
         function activate() {
-            $scope.$state.go('workspace.petals');
+            $scope.infoSelected = dataWkspceService.getInfoSelect();
+
         }
+    }
+
+    dataWkspceService.$inject = [];
+
+    /* @ngInject */
+    function dataWkspceService() {
+
+        var service = {
+            setInfoSelect: setInfoSelect,
+            getInfoSelect: getInfoSelect,
+            storeStateInfoSelect: storeStateInfoSelect,
+            resetStateInfoSelect: resetStateInfoSelect
+        };
+
+        var infoSelect= {};
+
+        return service;
+
+        function setInfoSelect(selection) {
+            infoSelect.value= selection;
+        }
+
+        function storeStateInfoSelect(stateName) {
+            infoSelect[stateName] = infoSelect.value;
+        }
+
+        function resetStateInfoSelect(stateName) {
+            infoSelect.value =  infoSelect[stateName];
+        }
+
+        function getInfoSelect() {
+            return infoSelect;
+        }
+
     }
 
 })();

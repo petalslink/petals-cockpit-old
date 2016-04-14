@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -34,28 +34,29 @@
                 views: {
                     'api-sidenav': {
                         templateUrl: 'src/client/app/workspace/api/api.html',
-                        controller: 'ApiController',
-                        onEnter: function () {
-                            console.log("You are in API");
-                        }
+                        controller: 'ApiController'
                     },
                     'api-nav-console': {
                         template: '<h1>THIS IS NAV API</h1>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in NAV");
-                        }
+                        controller: ''
                     },
                     'api-console': {
                         template: '<h1>THIS IS CONSOLE API</h1>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in CONSOLE");
-                        }
+                        controller: ''
                     }
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.API');
+                }],
+                onReactivate: ['dataWkspceService', 'logger', function (dataWkspceService, logger) {
+                    logger.debug('You are in WORKSPACE.API');
+                    dataWkspceService.resetStateInfoSelect('API');
+                }],
+                onInactivate: ['dataWkspceService', function (dataWkspceService) {
+                    dataWkspceService.storeStateInfoSelect('API');
+
+                }]
             });
 
-        $stickyStateProvider.enableDebug(true);
     }
 })();

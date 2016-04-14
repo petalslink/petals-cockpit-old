@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -34,28 +34,29 @@
                 views: {
                     'service-sidenav': {
                         templateUrl: 'src/client/app/workspace/service/service.html',
-                        controller: 'ServiceController',
-                        onEnter: function () {
-                            console.log("You are in SERVICE");
-                        }
+                        controller: 'ServiceController'
                     },
                     'service-nav-console': {
                         template: '<h1>THIS IS NAV SERVICE</h1>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in NAV");
-                        }
+                        controller: ''
                     },
                     'service-console': {
                         template: '<h1>THIS IS CONSOLE SERVICE</h1>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in CONSOLE");
-                        }
+                        controller: ''
                     }
-                }
-            });
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.SERVICE');
+                }],
+                onReactivate: ['dataWkspceService', 'logger', function (dataWkspceService, logger) {
+                    logger.debug('You are in WORKSPACE.SERVICE');
+                    dataWkspceService.resetStateInfoSelect('SERVICE');
+                }],
+                onInactivate: ['dataWkspceService', function (dataWkspceService) {
+                    dataWkspceService.storeStateInfoSelect('SERVICE');
 
-        $stickyStateProvider.enableDebug(true);
+                }]
+            });
     }
+
 })();

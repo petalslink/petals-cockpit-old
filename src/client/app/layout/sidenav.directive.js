@@ -25,10 +25,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$mdSidenav', '$scope'];
+    ControllerFunction.$inject = ['$mdSidenav', '$scope', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction($mdSidenav, $scope) {
+    function ControllerFunction($mdSidenav, $scope, logger) {
 
         $scope.toggleSidenav = toggleSidenav;
 
@@ -49,7 +49,7 @@
         $scope.close = function () {
             $mdSidenav('left').close()
                 .then(function () {
-                    $log.debug("close LEFT is done");
+                    logger.debug('close LEFT is done');
                 });
         };
 
@@ -57,10 +57,8 @@
             return function () {
                 $mdSidenav(navID)
                     .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
-                    });
-            }
+                    .then( function() {logger.debug('toggle ' + navID + ' is done');});
+            };
         }
     }
 

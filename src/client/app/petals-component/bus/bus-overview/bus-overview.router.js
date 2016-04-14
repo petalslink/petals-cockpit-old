@@ -16,28 +16,29 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
             .state('workspace.petals.bus.overview', {
                 url: '/overview',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-console': {
                         controller: 'OverviewBusController',
-                        templateUrl: 'src/client/app/petals-component/bus/bus-overview/bus-overview.html',
-                        onEnter: function () {
-                            console.log("You are in OVERVIEW BUS");
-                        }
+                        templateUrl: 'src/client/app/petals-component/bus/bus-overview/bus-overview.html'
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS.OVERVIEW');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS.OVERVIEW');
+                }]
+            });
 
     }
 })();

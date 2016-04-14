@@ -6,7 +6,7 @@ module.exports = function(app) {
 
     app.get(api + 'petalscomponent/:wkspce/:id', getPetalsComponent);
     app.get(api + 'petalscomponents/:wkspce', getPetalsComponents);
-    app.get(api + 'petalscomponentsconfig', getPetalsComponentConfig);
+    app.get(api + 'petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
 
     app.get(api + '*', four0four.notFoundMiddleware);
 
@@ -54,9 +54,10 @@ module.exports = function(app) {
     }
 
     function getPetalsComponentConfig(req, res, next) {
+        var wkspce = req.params.wkspce;
         var msg = 'Petals Components Configuration not found. ';
         try {
-            var json = jsonfileservice.getJsonFromFile(data + 'petalsComponentConfig.json');
+            var json = jsonfileservice.getJsonFromFile(data + wkspce +'ComponentConfig.json');
             if (json) {
                 res.send(json);
             } else {

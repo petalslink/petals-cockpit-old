@@ -1,7 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.overviewServer', [
-        'app.core'
-    ]);
+    angular.module('app.overviewServer', []);
 })();

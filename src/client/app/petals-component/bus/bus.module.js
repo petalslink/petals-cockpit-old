@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('app.bus', [
-        'app.core'
+        'app.configBus',
+        'app.overviewBus'
     ]);
 })();

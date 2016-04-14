@@ -6,10 +6,10 @@
         .controller('OverviewBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = [];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction() {
 
     }
 

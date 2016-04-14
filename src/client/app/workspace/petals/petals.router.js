@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -34,45 +34,39 @@
                 views: {
                     'petals-sidenav': {
                         templateUrl: 'src/client/app/workspace/petals/petals.html',
-                        directive: 'tmplTree',
                         controller: 'PetalsController',
-                        onEnter: function () {
-                            console.log("======================> You are in PETALS");
-                        }
+                        controllerAs: 'vmPetals'
                     },
                     'petals-nav-console': {
                         template: '<div ui-view="petals-nav-console"></div>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in NAV");
-                        }
+                        controller: ''
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console" layout="column" layout-align="start stretch"></div>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in CONSOLE");
-                        }
+                        controller: ''
                     }
                 },
                 resolve: {
                     promiseData: function(dataservice) {
-                        return dataservice.getPetalsComponents().then(function(data){
-                            console.log("*** data dans promiseData:");
-                            console.log(angular.toJson(data));
-                            return data;
-                        });
+                        return dataservice.getPetalsComponents();
                     },
                     promiseConfig: function(dataservice) {
-                        return dataservice.getPetalsComponentConfig().then(function(data){
-                            console.log("*** config dans promiseData:");
-                            console.log(angular.toJson(data));
-                            return data;
-                        });
+                        return dataservice.getPetalsComponentConfig();
                     }
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS');
+                }],
+                onReactivate: ['dataWkspceService', 'logger', function (dataWkspceService, logger) {
+                    logger.debug('You are in WORKSPACE.PETALS');
+                    dataWkspceService.resetStateInfoSelect('PETALS');
+                }],
+                onInactivate: ['dataWkspceService', function (dataWkspceService) {
+                    dataWkspceService.storeStateInfoSelect('PETALS');
+
+                }]
+
             });
 
- //       $stickyStateProvider.enableDebug(true);
     }
 })();

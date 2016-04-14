@@ -16,28 +16,29 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
             .state('workspace.petals.server.operation', {
                 url: '/operation',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-console': {
                         controller: 'OperationServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html',
-                        onEnter: function () {
-                            console.log("You are in OPERATION SERVER");
-                        }
+                        templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html'
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER.OPERATION');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER.OPERATION');
+                }]
+            });
 
     }
 })();

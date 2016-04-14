@@ -22,18 +22,22 @@
         return service;
 
         function getPetalsComponent(id) {
+            // todo remove url when proxy of API is OK
+            // return $http.get('/api/petalscomponent/demo/' + id)
             return $http.get('http://localhost:7203/api/petalscomponent/demo/' + id)
-                .then(getPetalsComponentComplete)
-                .catch(getPetalsComponentFailed);
+/*
+            return $http.get('http://10.31.0.121:7203/api/petalscomponent/demo/' + id)
+*/
+                .then(getPetalsComponentComplete,
+                      getPetalsComponentFailed);
 
-            function getPetalsComponentComplete(data, status, headers, config) {
-                console.log(angular.toJson(data));
+            function getPetalsComponentComplete(data) {
                 return data.data;
             }
 
             function getPetalsComponentFailed(e) {
-                console.log("****** getPetalsComponentFailed");
-                console.log("****** "+ e.data.description);
+                logger.info('****** getPetalsComponentFailed');
+                logger.info('****** '+ e.data.description);
 
                 $location.url('/');
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
@@ -41,40 +45,44 @@
         }
 
         function getPetalsComponents() {
-//           return $http.get('/api/petalscomponents/demo')
+            // todo remove url when proxy of API is OK
+            // return $http.get('/api/petalscomponents/demo')
             return $http.get('http://localhost:7203/api/petalscomponents/demo')
-                .then(getPetalsComponentsComplete)
-                .catch(getPetalsComponentsFailed);
+/*
+            return $http.get('http://10.31.0.121:7203/api/petalscomponents/demo')
+*/
+                .then(getPetalsComponentsComplete,
+                      getPetalsComponentsFailed);
 
-            function getPetalsComponentsComplete(data, status, headers, config) {
-                console.log("****** getPetalsComponentsComplete");
-                console.log(angular.toJson(data));
+            function getPetalsComponentsComplete(data) {
                 return data.data;
             }
 
             function getPetalsComponentsFailed(e) {
-                console.log("****** getPetalsComponentsFailed");
-                console.log("****** "+ e.data.description);
+                logger.info('****** getPetalsComponentsFailed');
+                logger.info('****** '+ e.data.description);
                 $location.url('/');
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
 
         function getPetalsComponentConfig() {
-//           return $http.get('/api/petalscomponents/demo')
-            return $http.get('http://localhost:7203/api/petalscomponentsconfig')
-                .then(getPetalsComponentConfigComplete)
-                .catch(getPetalsComponentConfigFailed);
+            // todo remove url when proxy of API is OK
+            // return $http.get('/api/petalscomponentsconfig/demo')
+            return $http.get('http://localhost:7203/api/petalscomponentsconfig/demo')
+/*
+            return $http.get('http://10.31.0.121:7203/api/petalscomponentsconfig/demo')
+*/
+                .then(getPetalsComponentConfigComplete,
+                      getPetalsComponentConfigFailed);
 
-            function getPetalsComponentConfigComplete(data, status, headers, config) {
-                console.log("****** getPetalsComponentConfigComplete");
-                console.log(angular.toJson(data));
+            function getPetalsComponentConfigComplete(data) {
                 return data.data;
             }
 
             function getPetalsComponentConfigFailed(e) {
-                console.log("****** getPetalsComponentConfigFailed");
-                console.log("****** "+ e.data.description);
+                logger.info('****** getPetalsComponentConfigFailed');
+                logger.info('****** '+ e.data.description);
                 $location.url('/');
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
@@ -93,11 +101,10 @@
         }
 
         function ready(promisesArray) {
-            return getReady()
-                .then(function() {
-                    return promisesArray ? $q.all(promisesArray) : readyPromise;
-                })
-                .catch(exception.catcher('"ready" function failed'));
+            return getReady().then(
+                function() { return promisesArray ? $q.all(promisesArray) : readyPromise; },
+                function() { exception.catcher('"ready" function failed');}
+            );
         }
     }
 })();

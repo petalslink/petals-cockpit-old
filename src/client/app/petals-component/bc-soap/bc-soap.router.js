@@ -16,15 +16,14 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
-
             .state('workspace.petals.bc-soap', {
                 url: '/bc-soap',
                 sticky: true,
@@ -32,21 +31,25 @@
                 views: {
                     'petals-nav-console': {
                         controller: 'BcSoapController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap.html',
-                        onEnter: function () {
-                            console.log("You are in PETALS NAV CONSOLE BC-SOAP");
-                        }
+                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap.html'
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in PETALS CONSOLE");
+                        controller: ''
+                    },
+                    resolve: {
+                        promiseDetails: function(dataservice, $stateParams) {
+                            return dataservice.getPetalsComponent($stateParams.id);
                         }
-                    }
-
+                    },
+                    onEnter: ['logger', function (logger) {
+                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
+                    }],
+                    onReactivate: ['logger', function (logger) {
+                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
+                    }]
                 }
-            })
+            });
 
     }
 })();

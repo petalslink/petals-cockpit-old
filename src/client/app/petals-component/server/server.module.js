@@ -2,6 +2,8 @@
     'use strict';
 
     angular.module('app.server', [
-        'app.core'
+        'app.overviewServer',
+        'app.configServer',
+        'app.operationServer'
     ]);
 })();

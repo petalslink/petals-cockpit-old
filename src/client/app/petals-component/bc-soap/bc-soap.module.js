@@ -2,6 +2,8 @@
     'use strict';
 
     angular.module('app.bc-soap', [
-        'app.core'
+        'app.overviewBcSoap',
+        'app.configBcSoap',
+        'app.operationBcSoap'
     ]);
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.petals')
+        .module('app.layout')
         .directive('tmplTree', tmplTree);
 
     // ----- directiveFunction -----
@@ -11,6 +11,7 @@
     /* @ngInject */
     function tmplTree() {
 
+        /* jshint ignore:start */
         var directive = {
             restrict: 'A',
             transclude: 'element',
@@ -26,7 +27,7 @@
                 childrenExpr = repeatExpr[3];
                 branchExpr = repeatExpr[4];
 
-                return function link(scope, element, tAttrs) {
+                return function link(scope, element) {
 
                     var rootElement = element[0].parentNode,
                         cache = [];
@@ -148,8 +149,11 @@
                     }, true);
                 };
             }
+
         };
+
         return directive;
+        /* jshint ignore:end */
     }
 
 })();

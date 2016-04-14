@@ -16,28 +16,29 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
             .state('workspace.petals.bus.config', {
                 url: '/config',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-console': {
                         controller: 'ConfigBusController',
-                        templateUrl: 'src/client/app/petals-component/bus/bus-config/bus-config.html',
-                        onEnter: function () {
-                            console.log("You are in CONFIG BUS");
-                        }
+                        templateUrl: 'src/client/app/petals-component/bus/bus-config/bus-config.html'
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS.CONFIG');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS.CONFIG');
+                }]
+            });
 
     }
 })();

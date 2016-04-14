@@ -16,45 +16,39 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
-
             .state('workspace.petals.server', {
                 url: '/server/:id',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-nav-console': {
                         controller: 'ServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server.html',
-                        onEnter: function () {
-                            console.log("You are in PETALS NAV CONSOLE SERVER");
-                        }
+                        templateUrl: 'src/client/app/petals-component/server/server.html'
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in PETALS CONSOLE");
-                        }
+                        controller: ''
                     }
                 },
                 resolve: {
-                    promiseDetails: function (dataservice, $stateParams) {
-                        return dataservice.getPetalsComponent($stateParams.id).then(function (data) {
-                            console.log("*** data dans promiseDetails:");
-                            console.log(angular.toJson(data));
-                            return data;
-                        });
+                    promiseDetails: function(dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id);
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER');
+                }]
+            });
 
     }
+
 })();

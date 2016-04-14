@@ -1,7 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.configBus', [
-        'app.core'
-    ]);
+    angular.module('app.configBus', []);
 })();

@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -31,13 +31,17 @@
                 views: {
                     'petals-console': {
                         controller: 'OperationBcSoapController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-rest-operation/bc-soap-operation.html',
-                        onEnter: function () {
-                            console.log("You are in OPERATION BC-SOAP");
-                        }
+                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap-operation/bc-soap-operation.html'
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.OPERATION');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.OPERATION');
+                }]
+
+            });
 
     }
 })();

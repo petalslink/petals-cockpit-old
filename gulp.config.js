@@ -9,7 +9,7 @@ var server = './src/server/';
 module.exports = {
 
     // --- Configurables ---
-    nodeServer: server + '/app.js',
+    nodeServer: server + 'app.js',
     defaultPort: '7203',
     sourceDir: src,
     serverDir: server,

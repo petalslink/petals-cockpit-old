@@ -5,6 +5,7 @@
         'ngAnimate',
         'ngMaterial',
         'ngSanitize',
+        'ngMessages',
 
         // Our reusable blocks
         'blocks.exception',

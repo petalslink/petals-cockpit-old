@@ -1,0 +1,48 @@
+<md-dialog aria-label="Add Component" md-theme="core-theme" ng-cloak>
+    <form name="componentAddForm">
+        <md-toolbar class="md-accent md-toolbar-tools">
+            <md-icon class="md-icon-button md-accent">
+                add_circle_outline
+            </md-icon>
+            <span flex></span>
+            <h2>Add new <b>'{{ vmModal.newComponent.cat }}'</b> on <b>'{{ vmModal.parentTitle}}'</b></h2>
+            <span flex></span>
+        </md-toolbar>
+        <md-card layout="column" layout-padding flex>
+            <md-input-container aria-label="Choose component type" class="md-block md-accent">
+                <label>Petals Component Type :</label>
+                <md-select name="myChoice" ng-model="vmModal.myChoice"
+                           ng-change="vmModal.changeSelected()" required>
+                    <md-option class="md-accent" ng-value="choice" ng-repeat="choice in vmModal.choiceList">
+                        {{choice.name}} - version: {{choice.version}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="componentAddForm.myChoice.$error"
+                     ng-if="!componentAddForm.$dirty && vmModal.hasChoice()">
+                    <div ng-message="required">Select a Petals Component Type.</div>
+                </div>
+            </md-input-container>
+            <md-input-container aria-label="Enter title" class="md-block md-accent">
+                <label>Component Title :</label>
+                <input name="title" ng-model="vmModal.newComponent.title"
+                       type="text" md-maxlength="20" required>
+                <div ng-messages="componentAddForm.title.$error"
+                     ng-show="componentAddForm.title.$dirty">
+                    <div ng-message="required">Title is required.</div>
+                    <div ng-message="md-maxlength">The title has to be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+            <md-dialog-actions layout="row" layout-align="space-between center">
+                <span flex></span>
+                <md-button aria-label="Create Component" ng-click="vmModal.validDialog();"
+                           class="md-primary" ng-disabled="componentAddForm.$invalid"
+                           ng-class="{'md-raised md-hue-1': (componentAddForm.$dirty && componentAddForm.$valid) }">
+                    Create
+                </md-button>
+                <md-button aria-label="Cancel" ng-click="vmModal.closeDialog()" >
+                    Cancel
+                </md-button>
+            </md-dialog-actions>
+        </md-card>
+    </form>
+</md-dialog>

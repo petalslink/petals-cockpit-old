@@ -84,6 +84,7 @@
         }
 
         function debug(message) {
+/*
             $mdToast.show(
                 $mdToast.simple()
                     .content('Debug: ' + message)
@@ -92,6 +93,7 @@
                     .position('bottom')
             );
 
+*/
             $log.debug('debug: ' + message);
         }
     }

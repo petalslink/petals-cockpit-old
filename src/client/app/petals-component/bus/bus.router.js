@@ -16,10 +16,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -27,23 +27,28 @@
 
             .state('workspace.petals.bus', {
                 url: '/bus/:id',
-                sticky: false,
                 views: {
                     'petals-nav-console': {
                         controller: 'BusController',
-                        templateUrl: 'src/client/app/petals-component/bus/bus.html',
-                    },
+                        templateUrl: 'src/client/app/petals-component/bus/bus.html'
+
+                },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
-                        controller: '',
+                        controller: ''
                     }
                 },
                 resolve: {
                     promiseDetails: function(dataservice, $stateParams) {
                         return dataservice.getPetalsComponent($stateParams.id);
                     }
-                }
-            })
-
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BUS');
+                }]
+            });
     }
 })();

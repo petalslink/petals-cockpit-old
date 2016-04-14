@@ -1,7 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.service', [
-        'app.core'
-    ]);
+    angular.module('app.service', []);
 })();

@@ -2,7 +2,7 @@
 
     <md-content class="md-accent">
 
-        <md-button class="md-accent md-raised md-shadow-bottom-z-2" ng-click="addBranch(data)">
+        <md-button class="md-accent md-raised md-shadow-bottom-z-2" ng-click="vmPetals.addTreeComponent(vmPetals.data)">
             <md-icon class="material-icons"
                      aria-label="add">add
             </md-icon>
@@ -19,62 +19,61 @@
 
     <div>
         <ol>
-            <li tmpl-tree="child in data.children at ol" ng-class="{minimized:(child.affichage=='minimized')}">
+            <li tmpl-tree="child in vmPetals.data.children at ol" ng-class="{minimized:(child.display=='minimized')}">
 
                 <div layout="row">
                     <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
-                             ng-click="toggleMinimized(child)"
-                             ng-switch on="child.affichage">
+                             ng-click="vmPetals.toggleMinimized(child)"
+                             ng-switch on="child.display">
 
-                        <span ng-switch-when="vide"> </span>
+                        <span ng-switch-when="empty"> </span>
                         <span ng-switch-when="minimized">folder</span>
                         <span ng-switch-default>folder_open</span>
 
                     </md-icon>
 
                     <md-icon class="material-icons md-18 md-primary treeIcon">
-                        {{child.icon}}
+                        {{child.componentType.icon}}
                     </md-icon>
 
 
-                    <md-button class="md-primary menuBtnTree" ng-click="select(child)"
+                    <md-button class="md-primary menuBtnTree" ng-click="vmPetals.select(child)"
                                ng-class="{'md-raised': child.selected}"> {{ child.title }}
                     </md-button>
 
                     <span flex></span>
                     <div>
                         <md-icon title="Add" class="material-icons md-primary md-raised treeIcon"
-                                 ng-click="addBranch(child)"
-                                 ng-hide="isSU(child) || !(child.selected === true) || (child.affichage==='minimized')">
+                                 ng-click="vmPetals.addTreeComponent(child)"
+                                 ng-hide="!(child.mayAddSubComponent) || !(child.selected === true) || (child.display==='minimized')">
                             add
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Delete" class="material-icons md-accent treeIcon"
-                                 ng-click="deleteBranch(child)"
+                                 ng-click="vmPetals.deleteTreeComponent(child)"
                                  ng-hide="!(child.selected === true)">delete
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Edit" class="material-icons md-primary treeIcon"
-                                 ng-click="changeName(child)"
+                                 ng-click="vmPetals.changeTitle(child)"
                                  ng-hide="!(child.selected === true)">edit
                         </md-icon>
                     </div>
                     <div>
-                        <md-icon title="Moove up" class="material-icons md-primary treeIcon"
-                                 ng-click="upChild(child)"
+                        <md-icon title="Move up" class="material-icons md-primary treeIcon"
+                                 ng-click="vmPetals.moveUp(child)"
                                  ng-hide="!(child.selected === true)">keyboard_arrow_up
                         </md-icon>
                     </div>
                     <div>
-                        <md-icon title="Moove down" class="material-icons md-primary treeIcon"
-                                 ng-click="downChild(child)"
+                        <md-icon title="Move down" class="material-icons md-primary treeIcon"
+                                 ng-click="vmPetals.moveDown(child)"
                                  ng-hide="!(child.selected === true)">keyboard_arrow_down
                         </md-icon>
                     </div>
                 </div>
-                <!--                </md-list> -->
                 <ol ng-class="{pregnant:child.children.length}"></ol>
             </li>
         </ol>

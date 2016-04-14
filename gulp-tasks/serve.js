@@ -11,8 +11,7 @@ var $ = require('gulp-load-plugins')({lazy: true});
 
 module.exports = function (config) {
 
-//    gulp.task('serve-dev', ['inject','vet'], function () {
-        gulp.task('serve-dev', ['inject'], function () {
+    gulp.task('serve-dev', ['inject','vet'], function () {
         serve(true /*isDev*/);
     });
 
@@ -42,7 +41,6 @@ module.exports = function (config) {
 
         return $.nodemon(nodeOptions)
             .on('restart', ['vet'], function(ev) {
-//            .on('restart', function(ev) {
                 config.log('*** nodemon restarted');
                 config.log('files changed:\n' + ev);
                 setTimeout(function() {
@@ -101,8 +99,25 @@ module.exports = function (config) {
 */
 
             var options = {
-//                proxy: 'localhost:' + port,
-//                port: 3000,
+/* todo  proxying the api server 7203 => 3000
+                proxy: 'localhost:' + port,
+                port: 3000,
+                files: isDev ? [
+/!*
+                    config.client + '**!/!*.*',
+                    '!' + config.less,
+                    config.temp + '**!/!*.css',
+*!/
+                    './src/client/!**!/!*.*',
+                    './bower_components',
+                    './bower_components/bootstrap-sass/assets/fonts',
+                    './.tmp/!**!/!*.css'
+/!*
+                    config.sourceDir + '/client**!/!*.*',
+                    config.tempDir+ '/!*.*'
+*!/
+                    ] : [],
+*/
                 server: {
                     baseDir: isDev ? config.tempDir : config.buildDir,
                     routes: isDev ? {
@@ -133,46 +148,6 @@ module.exports = function (config) {
             browserSync(options);
         }
 
-/*
-        // If build: watches the files, builds, and restarts browser-sync.
-        // If dev: watches sass, compiles it to css, browser-sync handles reload
-        var files = [].concat(config.js, config.html, config.sass);
-        if (isDev) {
-            watch(files, function() { gulp.start('inject', browserSync.reload); });
-        } else {
-            watch(files, function() { gulp.start('optimize', browserSync.reload); });
-        }
-
-        var options = {
-            server: {
-                baseDir: isDev ? config.tempDir : config.buildDir,
-                routes: isDev ? {
-                    '/bower_components': './bower_components',
-                    '/fonts': './bower_components/bootstrap-sass/assets/fonts',
-                    '/src/client': config.sourceDir,
-                    '/images': config.sourceDir + 'images',
-                    '/.tmp': config.tempDir
-                } : {},
-                middleware: [
-                    modRewrite([ '!\\.\\w+$ /index.html [L]' ])
-                ]
-            },
-            ghostMode: {
-                clicks: true,
-                location: false,
-                forms: true,
-                scroll: true
-            },
-            injectChanges: true,
-            logFileChanges: true,
-            logLevel: 'info',
-            logPrefix: 'Petals Cockpit',
-            notify: true
-        };
-
-
-        browserSync(options);
-*/
     }
 
     function runNodeInspector() {

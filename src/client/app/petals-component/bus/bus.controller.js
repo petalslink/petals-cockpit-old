@@ -31,7 +31,6 @@
         ];
 
         function activate() {
-            //$scope.$state.go('.overview');
         }
     }
 

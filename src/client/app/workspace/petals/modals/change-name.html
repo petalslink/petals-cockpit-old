@@ -1,0 +1,35 @@
+<md-dialog aria-label="Rename Component" md-theme="core-theme" ng-cloak>
+    <form name="componentChangeNameForm">
+        <md-toolbar class="md-accent md-toolbar-tools">
+            <md-icon class="md-icon-button md-accent">
+                edit
+            </md-icon>
+            <span flex></span>
+            <h2>Change title of <b>'{{ vmModal.modalTitle }}'</b></h2>
+            <span flex></span>
+        </md-toolbar>
+        <md-card layout="column" layout-padding flex>
+            <md-input-container aria-label="Enter title" class="md-block md-accent">
+                <label>New title :</label>
+                <input name="title" ng-model="vmModal.data.title"
+                       type="text"  md-maxlength="20" required>
+                <div ng-messages="componentChangeNameForm.title.$error"
+                     ng-show="componentChangeNameForm.title.$dirty">
+                    <div ng-message="required">Title is required.</div>
+                    <div ng-message="md-maxlength">The new title has to be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+            <md-dialog-actions layout="row" layout-align="space-between center">
+                <span flex></span>
+                <md-button aria-label="Valid" ng-click="vmModal.validDialog();"
+                           class="md-primary" ng-disabled="componentChangeNameForm.$invalid"
+                           ng-class="{'md-raised md-hue-1': (componentChangeNameForm.$dirty && componentChangeNameForm.$valid) }">
+                    Change title
+                </md-button>
+                <md-button aria-label="Cancel" ng-click="vmModal.closeDialog()">
+                    Cancel
+                </md-button>
+            </md-dialog-actions>
+        </md-card>
+    </form>
+</md-dialog>

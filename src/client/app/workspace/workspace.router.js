@@ -26,6 +26,9 @@
         $urlRouterProvider
             .otherwise('/workspace');
 
+        $urlRouterProvider
+            .when('/workspace', '/workspace/petals');
+
         $stateProvider
             .state('workspace', {
                 url: '/workspace',
@@ -35,12 +38,15 @@
                     '': {
                         templateUrl: 'src/client/app/workspace/workspace.html',
                         controller: 'WorkspaceController',
-                        controllerAs: 'vm',
-                        onEnter: function () {
-                            console.log("You are in WORKSPACE");
-                        }
+                        controllerAs: 'vm'
                     }
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE');
+                }]
             });
     }
 })();

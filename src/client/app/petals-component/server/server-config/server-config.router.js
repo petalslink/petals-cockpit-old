@@ -16,28 +16,29 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
             .state('workspace.petals.server.config', {
                 url: '/config',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-console': {
                         controller: 'ConfigServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html',
-                        onEnter: function () {
-                            console.log("You are in CONFIG SERVER");
-                        }
+                        templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html'
                     }
-                }
-            })
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER.CONFIG');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.SERVER.CONFIG');
+                }]
+            });
 
     }
 })();

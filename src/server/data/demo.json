@@ -3,6 +3,8 @@
     "title": "Demo",
     "componentType": {
         "name": "WKSPCE",
+        "version": "1-0",
+        "cat": "WKSPCE",
         "icon": "folder_special"
     },
     "state": "UNDEPLOYED",
@@ -11,37 +13,41 @@
             "id": 1,
             "title": "BUS 1",
             "componentType": {
-                "name": "BUS",
+                "name": "PETALS ESB",
                 "version": "5-0",
+                "cat": "BUS",
                 "icon": "directions_bus"
             },
             "state": "UNDEPLOYED",
             "display": "open",
+            "selectionChain": "BUS 1",
             "children": [
                 {
                     "id": 2,
                     "title": "server 1",
                     "componentType": {
-                        "name": "PETALSCONTAINER",
+                        "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
                         "icon": "dock"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
+                    "selectionChain": "BUS 1/server 1",
                     "children": []
                 },
                 {
                     "id": 3,
                     "title": "server 2",
                     "componentType": {
-                        "name": "PETALSCONTAINER",
+                        "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
                         "icon": "dock"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
+                    "selectionChain": "BUS 1/server 2",
                     "children": []
                 }
             ]
@@ -50,37 +56,41 @@
             "id": 4,
             "title": "BUS RH",
             "componentType": {
-                "name": "BUS",
+                "name": "PETALS ESB",
                 "version": "5-0",
+                "cat": "BUS",
                 "icon": "directions_bus"
             },
             "state": "UNDEPLOYED",
             "display": "open",
+            "selectionChain": "BUS RH",
             "children": [
                 {
                     "id": 5,
                     "title": "server Tlse",
                     "componentType": {
-                        "name": "PETALSCONTAINER",
+                        "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
                         "icon": "dock"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
+                    "selectionChain": "BUS RH/server Tlse",
                     "children": []
                 },
                 {
                     "id": 6,
                     "title": "server Paris",
                     "componentType": {
-                        "name": "PETALSCONTAINER",
+                        "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
                         "icon": "dock"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
+                    "selectionChain": "BUS RH/server Paris",
                     "children": []
                 }
             ]

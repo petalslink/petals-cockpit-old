@@ -15,10 +15,10 @@
         $rootScope.$stateParams = $stateParams;
     }
 
-    configFunction.$inject = ['$locationProvider', '$stickyStateProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stickyStateProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -33,10 +33,7 @@
                 views: {
                     '': {
                         templateUrl: 'src/client/app/core/404.html',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in ERROR PAGE");
-                        }
+                        controller: ''
                     }
                 }
             })
@@ -47,14 +44,9 @@
                 views: {
                     'messageError404': {
                         template: '<div ui-view="messageError404"></div>',
-                        controller: '',
-                        onEnter: function () {
-                            console.log("You are in ERROR PAGE");
-                        }
+                        controller: ''
                     }
                 }
             });
-
-        $stickyStateProvider.enableDebug(true);
     }
 })();
