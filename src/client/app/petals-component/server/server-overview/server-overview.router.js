@@ -3,28 +3,15 @@
 
     var overviewServer = angular.module('app.overviewServer');
 
-    var runFuntion = runFunction;
-
     overviewServer.config(configFunction);
-    overviewServer.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider) {
-
-        $locationProvider.html5Mode(true);
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.petals.server.overview', {
+            .state('home.workspace.petals.server.overview', {
                 url: '/overview',
                 views: {
                     'petals-console': {

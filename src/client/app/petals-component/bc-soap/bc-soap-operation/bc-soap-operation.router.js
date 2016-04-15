@@ -3,28 +3,15 @@
 
     var operationBcSoap = angular.module('app.operationBcSoap');
 
-    var runFuntion = runFunction;
-
     operationBcSoap.config(configFunction);
-    operationBcSoap.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider) {
-
-        $locationProvider.html5Mode(true);
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.petals.bc-soap.operation', {
+            .state('home.workspace.petals.bc-soap.operation', {
                 url: '/operation',
                 sticky: true,
                 dsr: true,

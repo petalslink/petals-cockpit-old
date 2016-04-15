@@ -1,48 +1,37 @@
 <div layout="column" flex md-theme="core-theme">
-
-    <div layout="column">
         <md-toolbar layout="row" class="md-accent toolbarCustom" md-theme="menu-theme">
             <section class="md-toolbar-tools md-primary" layout="row" layout-align="start center" id="menu">
-
-                <md-button class="md-toolbar-tools md-primary" ng-click="toggleSidenav('left')"
+                <md-button class="md-toolbar-tools md-primary selectionDefault" ng-click="toggleSidenav('left')"
+                           style="width: 20px;"
                            aria-label="Show" ng-controller="SidenavController" hide-gt-md>
-                    <md-icon class="md-icon-button"> menu </md-icon>
+                    <md-icon class="md-icon-button" style="width: 20px;"> menu </md-icon>
                 </md-button>
 
-                <md-button class="selectionDefault" ng-repeat="btn in dataNav"
+                <md-button class="selectionDefault" ng-repeat="btn in vmWkspce.dataNav"
                            ui-sref="{{btn.UiSref}}" ui-sref-active="selection">
-                    <span flex></span>
-                    <span>{{ btn.Label }}</span>
+                    {{ btn.Label }}
                 </md-button>
             </section>
-
-            <span></span>
-
-            <md-button class="md-toolbar-tools md-primary" aria-label="Selection">
-                Selection: {{infoSelected.value}}
+            <md-button class="md-toolbar-tools md-primary selectionDefault" style="text-align :right;" aria-label="Selection">
+                Selection: {{vmWkspce.infoSelected.value}}
             </md-button>
-
-
-
         </md-toolbar>
-
-    </div>
 
     <div layout="row" layout-fill flex>
         <tmpl-sidenav layout="column" layout-align="space-around stretch"></tmpl-sidenav>
         <div layout="column" layout-fill flex style="z-index: 1">
-            <md-card layout="row" ng-show="$state.includes('workspace.petals')" ui-view="petals-nav-console"></md-card>
-            <md-card layout="column" layout-align="start stretch"
-                     ng-show="$state.includes('workspace.petals')"
-                     ui-view="petals-console">
-            </md-card>
-
-            <md-card layout="row" ng-show="$state.includes('workspace.service')" ui-view="service-nav-console"></md-card>
-            <md-card ng-show="$state.includes('workspace.service')" ui-view="service-console"></md-card>
-
-            <md-card layout="row" ng-show="$state.includes('workspace.api')" ui-view="api-nav-console"></md-card>
-            <md-card ng-show="$state.includes('workspace.api')" ui-view="api-console"></md-card>
+            <!-- Multi named view for managing sticky state -->
+            <!-- named view for state workspace.petals -->
+            <ui-view name="petals-nav-console" ng-show="$state.includes('home.workspace.petals')"></ui-view>
+            <ui-view name="petals-console" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
+            <!-- named view for state workspace.service -->
+            <ui-view name="service-nav-console" ng-show="$state.includes('home.workspace.service')"></ui-view>
+            <ui-view name="service-console" ng-show="$state.includes('home.workspace.service')" flex></ui-view>
+            <!-- named view for state workspace.api -->
+            <ui-view name="api-nav-console" ng-show="$state.includes('home.workspace.api')"></ui-view>
+            <ui-view name="api-console" ng-show="$state.includes('home.workspace.api')" flex></ui-view>
         </div>
+
     </div>
 
 </div>

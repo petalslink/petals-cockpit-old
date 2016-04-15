@@ -11,10 +11,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
     <link rel="shortcut icon" href="/src/client/images/favicon.png">
+-->
+    <link rel="shortcut icon" href="/src/client/images/petals_cockpit.png">
     <base href="/">
 
+<!-- omit title allows having complete url in history
     <title>Petals Cockpit Prototype</title>
+-->
 
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,27 +42,16 @@
     <!-- HEADER -->
     <tmpl-appbar style="z-index:61; position: fixed; width:100%;"></tmpl-appbar>
 
-    <div layout="column" layout-fill flex>
-
-        <!-- WORKSPACE & ERROR 404 -->
-        <div ui-view layout="column" layout-fill flex></div>
-
-    </div>
+    <!-- main view of app using ui-router -->
+    <ui-view layout="column" layout-fill flex></ui-view>
 
     <!-- FOOTER -->
     <footer layout="column" layout-align="center stretch">
-        <md-card>
-            <md-card-header>
-                <md-card-header-text layout="row" layout-align="center center">
-                    <md-card-avatar layout="row" hide-xs>
-                        <img class="" src="src/client/images/petals_cockpit.png"/>
-                    </md-card-avatar>
-                    <div layout="column">
-                        <span class="" flex>Copyright © 2016 - LINAGORA</span>
-                        <span class="md-subhead" flex>Version Prototype - Open Source</span>
-                    </div>
-                </md-card-header-text>
-            </md-card-header>
+        <md-card style="height:60px; padding:0 0; margin:0 0;">
+            <span class="" flex layout="row" layout-align="center center">
+                Copyright © 2016 -
+                <img src="src/client/images/Linagora.png" style="height:30px; width:147px;margin:15px 0px;"/>
+            </span>
         </md-card>
     </footer>
 

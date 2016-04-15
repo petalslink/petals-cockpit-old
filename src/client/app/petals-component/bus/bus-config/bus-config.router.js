@@ -3,28 +3,15 @@
 
     var configBus = angular.module('app.configBus');
 
-    var runFuntion = runFunction;
-
     configBus.config(configFunction);
-    configBus.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider) {
-
-        $locationProvider.html5Mode(true);
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.petals.bus.config', {
+            .state('home.workspace.petals.bus.config', {
                 url: '/config',
                 views: {
                     'petals-console': {

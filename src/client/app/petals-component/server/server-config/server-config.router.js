@@ -3,28 +3,15 @@
 
     var configServer = angular.module('app.configServer');
 
-    var runFuntion = runFunction;
-
     configServer.config(configFunction);
-    configServer.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider) {
-
-        $locationProvider.html5Mode(true);
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.petals.server.config', {
+            .state('home.workspace.petals.server.config', {
                 url: '/config',
                 views: {
                     'petals-console': {

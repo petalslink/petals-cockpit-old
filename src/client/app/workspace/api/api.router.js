@@ -3,31 +3,15 @@
 
     var api = angular.module('app.api');
 
-    var runFuntion = runFunction;
-
     api.config(configFunction);
-    api.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
-
-        $locationProvider.html5Mode(true);
-
-        $urlRouterProvider
-            .otherwise('/workspace');
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.api', {
+            .state('home.workspace.api', {
                 url: '/api',
                 sticky: true,
                 dsr: true,

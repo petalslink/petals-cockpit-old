@@ -3,31 +3,14 @@
 
     var petals = angular.module('app.petals');
 
-    var runFuntion = runFunction;
-
     petals.config(configFunction);
-    petals.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
+    configFunction.$inject = ['$stateProvider'];
     /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
-
-    /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
-
-        $locationProvider.html5Mode(true);
-
-        $urlRouterProvider
-            .otherwise('/workspace');
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.petals', {
+            .state('home.workspace.petals', {
                 url: '/petals',
                 sticky: true,
                 dsr: true,
@@ -42,7 +25,8 @@
                         controller: ''
                     },
                     'petals-console': {
-                        template: '<div ui-view="petals-console" layout="column" layout-align="start stretch"></div>',
+                        template: '<div ui-view="petals-console" ' +
+                        'layout="column" layout-align="start stretch" layout-fill flex></div>',
                         controller: ''
                     }
                 },

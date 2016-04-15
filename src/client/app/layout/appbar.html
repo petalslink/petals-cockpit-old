@@ -1,9 +1,12 @@
 <md-toolbar md-scroll-shrink md-theme="core-theme" ng-cloak layout="row">
-
-    <!-- When User is Logged -->
     <div class="md-toolbar-tools md-accent">
-
-        <div ui-sref="workspace" layout="column">
+        <md-button ui-sref="workspace" style="height:50px; width:50px;margin:15px;">
+            <img src="src/client/images/petals_cockpit.png" style="height:50px; width:50px;"/>
+            <md-tooltip md-direction="right">
+                Take The Control !
+            </md-tooltip>
+        </md-button>
+        <div layout="column" style="margin:50px;>
             <h1>
             <span>
                   <a class="">Petals</a>
@@ -18,9 +21,7 @@
                 Take The Control !
             </md-tooltip>
         </div>
-
         <span flex></span>
-
         <md-button ng-click="vm.login()" aria-label="login" class="md-raised md-accent">
             <md-icon class="md-icon-button md-24 md-accent" aria-label="Connexion User">account_box
             </md-icon>
@@ -30,22 +31,11 @@
                 Connexion User
             </md-tooltip>
         </md-button>
-
         <md-button class="md-icon-button md-accent" ui-sref=".404">
             <md-tooltip md-direction="bottom">
                 Menu
             </md-tooltip>
             <md-icon class="material-icons md-accent" aria-label="Open Menu">more_vert</md-icon>
         </md-button>
-
     </div>
-
 </md-toolbar>
-
-<!--
-<div layout="column" layout-fill flex>
-    <md-card layout="row" ng-show="$state.includes('404.error')" ui-view="messageError404"></md-card>
-</div>
--->
-
-<!--<div flex ui-view="404"></div>-->

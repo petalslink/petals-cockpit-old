@@ -6,17 +6,12 @@
         .controller('WorkspaceController', ControllerFunction)
         .service('dataWkspceService', dataWkspceService);
 
-
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope', 'dataWkspceService'];
-
+    ControllerFunction.$inject = ['dataWkspceService'];
     /* @ngInject */
-    function ControllerFunction($scope, dataWkspceService) {
-//        $scope.infoSelected = dataWkspceService.infoSelect.value;
-
-        activate();
-
-        $scope.dataNav = [
+    function ControllerFunction(dataWkspceService) {
+        var vmWkspce = this;
+        vmWkspce.dataNav = [
             {
                 Locked: false,
                 Label: 'Petals',
@@ -36,14 +31,15 @@
             }
         ];
 
+        activate();
+
         function activate() {
-            $scope.infoSelected = dataWkspceService.getInfoSelect();
+            vmWkspce.infoSelected = dataWkspceService.getInfoSelect();
 
         }
     }
 
     dataWkspceService.$inject = [];
-
     /* @ngInject */
     function dataWkspceService() {
 

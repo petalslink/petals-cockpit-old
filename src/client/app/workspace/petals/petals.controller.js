@@ -79,8 +79,6 @@
         }
 
         function addTreeComponent(component) {
-
-
             //todo add promise and mange error
             var componentType = getConfigComponentType(component);
 
@@ -126,6 +124,7 @@
                     componentType: newComponent.componentType,
                     state: 'undeployed',
                     display: 'empty',
+                    selectionChain: component.selectionChain+'/'+newComponent.title,
                     children: []
                 });
                 component.display = 'open';
@@ -300,14 +299,15 @@
                 select(vmPetals.selectedChild);
                 return;
             } else {
+                component.mayAddSubComponent = (!componentType.contains) ? false : true;
+/*
                 if(!componentType.contains){
                     component.mayAddSubComponent = false;
                 } else {
                     component.mayAddSubComponent = true;
                 }
+*/
             }
-            // Set selection for Workspace
-            dataWkspceService.setInfoSelect(component.selectionChain);
             // goto his state
             var nextState ='';
             if (component.lastState) {
@@ -315,10 +315,24 @@
             } else {
                 nextState = componentType.initState;
             }
-            // todo use promise or call a gotoState function
-            component.selected = true;
-            vmPetals.selectedChild = component;
-            $state.go(nextState,{id: component.id});
+            $state.go(nextState,{id: component.id}).then( function() {
+                    // if succes Set selection for Workspace
+                    component.selected = true;
+                    vmPetals.selectedChild = component;
+                    dataWkspceService.setInfoSelect(component.selectionChain);
+                    component.hasPlugin = true;
+
+                }, function(){
+                    // if error
+                    logger.debug('petals.controller.js: failed go state !!!');
+                    component.selected = true;
+                    vmPetals.selectedChild = component;
+                    dataWkspceService.setInfoSelect(component.selectionChain);
+                    //TODO manage plugin error
+                    component.hasPlugin = false;
+                    $state.go('home.workspace.petals.fallbackComponent');
+                }
+            );
         }
 
         function toggleMinimized(component) {

@@ -3,20 +3,21 @@
     "version": "1-0",
     "cat": "WKSPCE",
     "icon": "folder_special",
+    "initState": "home.workspace",
     "contains": [
         {
             "name": "PETALS ESB",
             "version": "5-0",
             "cat": "BUS",
             "icon": "directions_bus",
-            "initState": "workspace.petals.bus.overview",
+            "initState": "home.workspace.petals.bus.overview",
             "contains": [
                 {
                     "name": "PETALS CONTAINER",
                     "version": "5-0-0",
                     "cat": "SERVER",
                     "icon": "dock",
-                    "initState": "workspace.petals.server.config",
+                    "initState": "home.workspace.petals.server.config",
                     "contains" : [
                         {
                             "name": "BC-SOAP",
@@ -24,7 +25,7 @@
                             "cat": "COMPONENT",
                             "subCat": "BC",
                             "icon": "extension",
-                            "initState": "workspace.petals.bc-soap.overview",
+                            "initState": "home.workspace.petals.bc-soap.overview",
                             "contains" : [
                                 {
                                     "name": "SU-CONSUME",
@@ -32,7 +33,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "workspace.petals.bc-soap.su-consume.overview"
+                                    "initState": "home.workspace.petals.bc-soap.su-consume.overview"
                                 },
                                 {
                                     "name": "SU-PROVIDE",
@@ -40,7 +41,7 @@
                                     "cat": "SU",
                                     "subCat": "PROVIDE",
                                     "icon": "star",
-                                    "initState": "workspace.petals.bc-soap.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-soap.su-provide.overview"
                                 }
                             ]
                         },
@@ -50,7 +51,7 @@
                             "cat": "COMPONENT",
                             "subCat": "BC",
                             "icon": "extension",
-                            "initState": "workspace.petals.bc-rest.overview",
+                            "initState": "home.workspace.petals.bc-rest.overview",
                             "contains" : [
                                 {
                                     "name": "SU-CONSUME",
@@ -58,7 +59,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "workspace.petals.bc-rest.su-consume.overview"
+                                    "initState": "home.workspace.petals.bc-rest.su-consume.overview"
                                 },
                                 {
                                     "name": "SU-PROVIDE",
@@ -66,7 +67,7 @@
                                     "cat": "SU",
                                     "subCat": "PROVIDE",
                                     "icon": "star",
-                                    "initState": "workspace.petals.bc-rest.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-rest.su-provide.overview"
                                 }
                             ]
                         },
@@ -76,7 +77,7 @@
                             "cat": "COMPONENT",
                             "subCat": "BC",
                             "icon": "extension",
-                            "initState": "workspace.petals.bc-mail.overview",
+                            "initState": "home.workspace.petals.bc-mail.overview",
                             "contains" : [
                                 {
                                     "name": "SU-PROVIDE",
@@ -84,7 +85,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "workspace.petals.bc-soap.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-soap.su-provide.overview"
                                 }
                             ]
                         },
@@ -94,7 +95,7 @@
                             "cat": "COMPONENT",
                             "subCat": "SE",
                             "icon": "extension",
-                            "initState": "workspace.petals.se-quartz.overview",
+                            "initState": "home.workspace.petals.se-quartz.overview",
                             "contains" : [
                                 {
                                     "name": "SU-CONSUME",
@@ -102,7 +103,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "workspace.petals.se-quartz.su-consume.overview"
+                                    "initState": "home.workspace.petals.se-quartz.su-consume.overview"
                                 }
                             ]
                         }

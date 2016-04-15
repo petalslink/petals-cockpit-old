@@ -27,20 +27,6 @@
 /* ====================
     Sidenav
 ====================*/
-/*
-md-sidenav.md-locked-open {
-    width: 350px !important;
-    min-width: 350px !important;
-    max-width: 350px !important;
-    margin-top: 0px;
-    /!*
-    position: relative;
-    *!/
-
-
-}
-*/
-
 md-sidenav.md-locked-open, md-sidenav.md-locked-open.md-closed,
 md-sidenav.md-locked-open.md-closed.md-sidenav-left,
 md-sidenav.md-locked-open.md-closed,
@@ -89,9 +75,3 @@ md-sidenav.md-locked-open-remove.md-closed {
 
     }
 }
-/*
-@media screen and (min-width: 1280px) and (max-width: 1919px) {
-}
-@media screen and (min-width: 1920px) {
-}
-*/

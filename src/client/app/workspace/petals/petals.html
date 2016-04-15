@@ -45,7 +45,8 @@
                     <div>
                         <md-icon title="Add" class="material-icons md-primary md-raised treeIcon"
                                  ng-click="vmPetals.addTreeComponent(child)"
-                                 ng-hide="!(child.mayAddSubComponent) || !(child.selected === true) || (child.display==='minimized')">
+                                 ng-hide="!(child.mayAddSubComponent) || !(child.hasPlugin === true)
+                                 || !(child.selected === true) || (child.display==='minimized')">
                             add
                         </md-icon>
                     </div>

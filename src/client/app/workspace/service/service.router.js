@@ -3,31 +3,15 @@
 
     var service = angular.module('app.service');
 
-    var runFuntion = runFunction;
-
     service.config(configFunction);
-    service.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams'];
-
-    /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    }
-
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$stateProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
-
-        $locationProvider.html5Mode(true);
-
-        $urlRouterProvider
-            .otherwise('/workspace');
+    function configFunction($stateProvider) {
 
         $stateProvider
-            .state('workspace.service', {
+            .state('home.workspace.service', {
                 url: '/service',
                 sticky: true,
                 dsr: true,
