@@ -44,7 +44,9 @@
 
         $mdIconProvider
             .iconSet('content', 'images/content-icons.svg', 24)
-            .iconSet('navigation', 'images/navigation-icons.svg', 24);
+            .iconSet('navigation', 'images/navigation-icons.svg', 24)
+            .iconSet('mdicons', 'images/mdi.svg',24);
+            //.defaultIconSet('mdicon', 'images/mdi.svg',48);
 
         $mdThemingProvider.theme('core-theme', 'default')
             .primaryPalette('orange', {

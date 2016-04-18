@@ -2,14 +2,12 @@
 
     <md-content class="md-accent">
 
-        <md-button class="md-accent md-raised md-shadow-bottom-z-2" ng-click="vmPetals.addTreeComponent(vmPetals.data)">
-            <md-icon class="material-icons"
-                     aria-label="add">add
-            </md-icon>
+        <md-button class="md-accent md-raised md-shadow-bottom-z-2"
+                   aria-label="add"
+                   ng-click="vmPetals.addTreeComponent(vmPetals.data)">
+            <md-icon class="material-icons" md-svg-icon="mdicons:plus-box"></md-icon>
             <span> Add </span>
-            <md-icon class="material-icons"
-                     aria-label="add">directions_bus
-            </md-icon>
+            <md-icon class="material-icons" md-svg-icon="mdicons:bus"></md-icon>
             <md-tooltip md-direction="right">
                 Add New Bus
             </md-tooltip>
@@ -22,18 +20,23 @@
             <li tmpl-tree="child in vmPetals.data.children at ol" ng-class="{minimized:(child.display=='minimized')}">
 
                 <div layout="row">
-                    <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
-                             ng-click="vmPetals.toggleMinimized(child)"
+                    <span ng-click="vmPetals.toggleMinimized(child)"
                              ng-switch on="child.display">
-
-                        <span ng-switch-when="empty"> </span>
-                        <span ng-switch-when="minimized">folder</span>
-                        <span ng-switch-default>folder_open</span>
-
-                    </md-icon>
-
-                    <md-icon class="material-icons md-18 md-primary treeIcon">
-                        {{child.componentType.icon}}
+                        <span ng-switch-when="empty">
+                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                                     md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
+                        </span>
+                        <span ng-switch-when="minimized">
+                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                                     md-svg-icon="mdicons:folder-plus"></md-icon>
+                        </span>
+                        <span ng-switch-default>
+                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                                     md-svg-icon="mdicons:folder-outline"></md-icon>
+                        </span>
+                    </span>
+                    <md-icon class="material-icons md-18 md-primary treeIcon"
+                             md-svg-icon="mdicons:{{child.componentType.icon}}">
                     </md-icon>
 
 
@@ -43,35 +46,39 @@
 
                     <span flex></span>
                     <div>
-                        <md-icon title="Add" class="material-icons md-primary md-raised treeIcon"
+                        <md-icon title="Add" class="material-icons md-accent md-raised treeIcon"
                                  ng-click="vmPetals.addTreeComponent(child)"
                                  ng-hide="!(child.mayAddSubComponent) || !(child.hasPlugin === true)
-                                 || !(child.selected === true) || (child.display==='minimized')">
-                            add
+                                 || !(child.selected === true) || (child.display==='minimized')"
+                                 md-svg-icon="mdicons:plus-box">
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Delete" class="material-icons md-accent treeIcon"
                                  ng-click="vmPetals.deleteTreeComponent(child)"
-                                 ng-hide="!(child.selected === true)">delete
+                                 ng-hide="!(child.selected === true)"
+                                 md-svg-icon="mdicons:delete-forever">
                         </md-icon>
                     </div>
                     <div md-theme="iconTree-theme">
                         <md-icon title="Edit" class="material-icons md-primary treeIcon"
                                  ng-click="vmPetals.changeTitle(child)"
-                                 ng-hide="!(child.selected === true)">edit
+                                 ng-hide="!(child.selected === true)"
+                                 md-svg-icon="mdicons:border-color">
                         </md-icon>
                     </div>
                     <div>
                         <md-icon title="Move up" class="material-icons md-primary treeIcon"
                                  ng-click="vmPetals.moveUp(child)"
-                                 ng-hide="!(child.selected === true)">keyboard_arrow_up
+                                 ng-hide="!(child.selected === true)"
+                                 md-svg-icon="mdicons:arrow-up-bold">
                         </md-icon>
                     </div>
                     <div>
                         <md-icon title="Move down" class="material-icons md-primary treeIcon"
                                  ng-click="vmPetals.moveDown(child)"
-                                 ng-hide="!(child.selected === true)">keyboard_arrow_down
+                                 ng-hide="!(child.selected === true)"
+                                 md-svg-icon="mdicons:arrow-down-bold">
                         </md-icon>
                     </div>
                 </div>

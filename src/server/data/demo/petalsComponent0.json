@@ -3,7 +3,7 @@
     "title": "Demo",
     "componentType": {
         "name": "WKSPCE",
-        "icon": "folder_special"
+        "icon": "folder-multiple"
     },
     "state": "UNDEPLOYED",
     "config": {

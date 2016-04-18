@@ -2,21 +2,21 @@
     "name": "WKSPCE",
     "version": "1-0",
     "cat": "WKSPCE",
-    "icon": "folder_special",
+    "icon": "folder-multiple",
     "initState": "home.workspace",
     "contains": [
         {
             "name": "PETALS ESB",
             "version": "5-0",
             "cat": "BUS",
-            "icon": "directions_bus",
+            "icon": "bus",
             "initState": "home.workspace.petals.bus.overview",
             "contains": [
                 {
                     "name": "PETALS CONTAINER",
                     "version": "5-0-0",
                     "cat": "SERVER",
-                    "icon": "dock",
+                    "icon": "server-network",
                     "initState": "home.workspace.petals.server.config",
                     "contains" : [
                         {
@@ -24,7 +24,7 @@
                             "version": "3-2",
                             "cat": "COMPONENT",
                             "subCat": "BC",
-                            "icon": "extension",
+                            "icon": "puzzle",
                             "initState": "home.workspace.petals.bc-soap.overview",
                             "contains" : [
                                 {
@@ -50,7 +50,7 @@
                             "version": "2-4",
                             "cat": "COMPONENT",
                             "subCat": "BC",
-                            "icon": "extension",
+                            "icon": "puzzle",
                             "initState": "home.workspace.petals.bc-rest.overview",
                             "contains" : [
                                 {
@@ -76,7 +76,7 @@
                             "version": "2-5",
                             "cat": "COMPONENT",
                             "subCat": "BC",
-                            "icon": "extension",
+                            "icon": "puzzle",
                             "initState": "home.workspace.petals.bc-mail.overview",
                             "contains" : [
                                 {
@@ -94,7 +94,7 @@
                             "version": "1-5",
                             "cat": "COMPONENT",
                             "subCat": "SE",
-                            "icon": "extension",
+                            "icon": "puzzle",
                             "initState": "home.workspace.petals.se-quartz.overview",
                             "contains" : [
                                 {

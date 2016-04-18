@@ -4,7 +4,7 @@
     "componentType": {
         "name": "BUS",
         "version": "5-0",
-        "icon": "directions_bus"
+        "icon": "bus"
     },
     "state": "UNDEPLOYED",
     "topology": {

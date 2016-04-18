@@ -18,7 +18,7 @@
             {
                 Locked: false,
                 Label: 'Overview',
-                Icon: 'remove_red_eye',
+                Icon: 'eye',
                 UiSref: '.overview'
             },
             {

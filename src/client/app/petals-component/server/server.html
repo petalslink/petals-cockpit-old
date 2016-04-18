@@ -1,8 +1,9 @@
 <md-toolbar md-theme="navConsole-theme" ng-cloak>
     <md-card class="md-toolbar-tools" layout-align="start center">
         <md-button class="selectionCmdDefault" ng-repeat="button in dataNavConsole"
+                   aria-label="{{ button.Label }}"
                    ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
-            <md-icon class="selectionCmdDefault">{{ button.Icon }}</md-icon>
+            <md-icon class="material-icons selectionCmdDefault" md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
             <span flex></span>
             <span hide-xs>{{ button.Label }}</span>
         </md-button>

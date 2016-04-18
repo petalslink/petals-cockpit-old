@@ -5,7 +5,7 @@
         "name": "PETALSCONTAINER",
         "version": "5-0-0",
         "cat": "SERVER",
-        "icon": "dock"
+        "icon": "server-network"
     },
     "state": "UNDEPLOYED",
     "name": "server-1",

@@ -5,7 +5,7 @@
         "name": "WKSPCE",
         "version": "1-0",
         "cat": "WKSPCE",
-        "icon": "folder_special"
+        "icon": "folder-multiple"
     },
     "state": "UNDEPLOYED",
     "children": [
@@ -16,7 +16,7 @@
                 "name": "PETALS ESB",
                 "version": "5-0",
                 "cat": "BUS",
-                "icon": "directions_bus"
+                "icon": "bus"
             },
             "state": "UNDEPLOYED",
             "display": "open",
@@ -29,7 +29,7 @@
                         "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
-                        "icon": "dock"
+                        "icon": "server-network"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
@@ -43,7 +43,7 @@
                         "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
-                        "icon": "dock"
+                        "icon": "server-network"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
@@ -59,7 +59,7 @@
                 "name": "PETALS ESB",
                 "version": "5-0",
                 "cat": "BUS",
-                "icon": "directions_bus"
+                "icon": "bus"
             },
             "state": "UNDEPLOYED",
             "display": "open",
@@ -72,7 +72,7 @@
                         "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
-                        "icon": "dock"
+                        "icon": "server-network"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
@@ -86,7 +86,7 @@
                         "name": "PETALS CONTAINER",
                         "version": "5-0-0",
                         "cat": "SERVER",
-                        "icon": "dock"
+                        "icon": "server-network"
                     },
                     "state": "UNDEPLOYED",
                     "display": "empty",
