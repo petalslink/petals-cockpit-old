@@ -8,14 +8,12 @@ var compress = require('compression');
 var cors = require('cors');
 var errorHandler = require('./utils/errorHandler')();
 var four0four = require('./utils/404')();
-//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var port = process.env.PORT || 7203;
 var routes;
 
 var environment = process.env.NODE_ENV;
 
-//app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(compress());
