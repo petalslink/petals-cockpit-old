@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function (app) {
     var api = '/api/';
     var data = '/../data/';
     var jsonfileservice = require('../utils/jsonfileservice')();
@@ -15,17 +15,17 @@ module.exports = function(app) {
         var id = req.params.id;
         var msg = 'Petals Component ' + id + ' not found. ';
         try {
-            var json = jsonfileservice.getJsonFromFile(data + wkspce +'/petalscomponent'+id+'.json');
-/*
-            var petalsComponent = json.filter(function(c) {
-                return c.id === parseInt(id);
-            });
-            if (customer && customer[0]) {
-                res.send(customer[0]);
-            } else {
-                four0four.send404(req, res, msg);
-            }
-*/
+            var json = jsonfileservice.getJsonFromFile(data + wkspce + '/petalsComponent' + id + '.json');
+            /*
+             var petalsComponent = json.filter(function(c) {
+             return c.id === parseInt(id);
+             });
+             if (customer && customer[0]) {
+             res.send(customer[0]);
+             } else {
+             four0four.send404(req, res, msg);
+             }
+             */
             if (json) {
                 res.send(json);
             } else {
@@ -41,7 +41,7 @@ module.exports = function(app) {
         var wkspce = req.params.wkspce;
         var msg = 'Petals Components not found. ';
         try {
-            var json = jsonfileservice.getJsonFromFile(data + wkspce +'.json');
+            var json = jsonfileservice.getJsonFromFile(data + wkspce + '.json');
             if (json) {
                 res.send(json);
             } else {
@@ -57,7 +57,7 @@ module.exports = function(app) {
         var wkspce = req.params.wkspce;
         var msg = 'Petals Components Configuration not found. ';
         try {
-            var json = jsonfileservice.getJsonFromFile(data + wkspce +'ComponentConfig.json');
+            var json = jsonfileservice.getJsonFromFile(data + wkspce + 'ComponentConfig.json');
             if (json) {
                 res.send(json);
             } else {
