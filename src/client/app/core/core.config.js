@@ -117,5 +117,19 @@
                 'hue-2': '300',
                 'hue-3': '200'
             });
+
+        $mdThemingProvider.theme('cardServer-theme', 'default')
+            .primaryPalette('orange', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '100'
+            })
+            .accentPalette('deep-purple', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
     }
 })();

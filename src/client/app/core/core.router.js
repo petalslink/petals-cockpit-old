@@ -69,7 +69,7 @@
                 url: '/',
                 sticky: true,
                 dsr: true,
-                template: '<ui-view layout="column" layout-fill></ui-view>',
+                template: '<ui-view layout="column" layout-fill flex></ui-view>',
                 controller: '',
                 onEnter: ['logger', function (logger) {
                     logger.debug('You are in HOME');

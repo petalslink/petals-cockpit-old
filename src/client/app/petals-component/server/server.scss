@@ -59,3 +59,16 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
     margin: 20px 0 !important;
     padding: 3px 15px 3px 15px;
 }
+.sizeSmall {
+    font-size: small !important;
+}
+.sizeDividerCard {
+    height: 5px;
+}
+md-card.md-cardServer-theme-theme md-card-title {
+    height: 50px !important;
+    flex: 0;
+    -webkit-flex: 0;
+    -ms-flex: 0;
+
+}
