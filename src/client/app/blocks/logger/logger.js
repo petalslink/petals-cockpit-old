@@ -27,9 +27,9 @@
             $mdToast.show(
                 $mdToast.simple()
                     .content('Log: ' + message)
-                    .theme('red')
-                    .hideDelay(8000)
-                    .position('bottom')
+                    .theme('yellow')
+                    .hideDelay(6000)
+                    .position('top left')
             );
 
             $log.log('log: ' + message);
@@ -40,8 +40,8 @@
                 $mdToast.simple()
                     .content('Info: ' + message)
                     .theme('blue')
-                    .hideDelay(8000)
-                    .position('bottom')
+                    .hideDelay(6000)
+                    .position('bottom left')
             );
 
             $log.info('info: ' + message);
@@ -52,8 +52,8 @@
                 $mdToast.simple()
                     .content('Success: ' + message)
                     .theme('green')
-                    .hideDelay(8000)
-                    .position('bottom')
+                    .hideDelay(6000)
+                    .position('top right')
             );
 
             $log.info('success: ' + message);
@@ -64,8 +64,8 @@
                 $mdToast.simple()
                     .content('Warning: ' + message)
                     .theme('orange')
-                    .hideDelay(8000)
-                    .position('bottom')
+                    .hideDelay(6000)
+                    .position('bottom right')
             );
 
             $log.warn('warn: ' + message);
@@ -76,8 +76,8 @@
                 $mdToast.simple()
                     .content('Error: ' + message)
                     .theme('red')
-                    .hideDelay(8000)
-                    .position('bottom')
+                    .hideDelay(6000)
+                    .position('bottom right')
             );
 
             $log.error('error: ' + message);

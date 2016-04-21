@@ -118,7 +118,7 @@
                 'hue-3': '200'
             });
 
-        $mdThemingProvider.theme('cardServer-theme', 'default')
+        $mdThemingProvider.theme('cardCustom-theme', 'default')
             .primaryPalette('orange', {
                 'default': '800',
                 'hue-1': '800',

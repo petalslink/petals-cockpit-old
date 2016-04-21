@@ -40,17 +40,17 @@
 
 <md-content layout="column" flex>
     <!-- HEADER -->
-    <tmpl-appbar style="z-index:61; position: fixed; width:100%;"></tmpl-appbar>
+    <tmpl-appbar class="appbarTemp"></tmpl-appbar>
 
     <!-- main view of app using ui-router -->
     <ui-view layout="column" layout-fill flex></ui-view>
 
     <!-- FOOTER -->
     <footer layout="column" layout-align="center stretch">
-        <md-card style="height:60px; padding:0 0; margin:0 0;">
-            <span class="" flex layout="row" layout-align="center center">
+        <md-card class="footerCard">
+            <span flex layout="row" layout-align="center center">
                 Copyright © 2016 -
-                <img src="src/client/images/Linagora.png" style="height:30px; width:147px;margin:15px 0px;"/>
+                <img src="src/client/images/Linagora.png" class="logoLinagora"/>
             </span>
         </md-card>
     </footer>

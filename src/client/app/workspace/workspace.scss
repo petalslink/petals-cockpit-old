@@ -2,6 +2,10 @@
     Workspace Module Styles
 ======================================================================= */
 
+.backgroundWrkspce {
+    background-color: #F5F5F5;
+}
+
 .toolbarCustom {
     z-index: 10;
     padding-top: 60px;
@@ -9,19 +13,20 @@
 
 .selectionDefault {
     color: white !important;
-    z-index: 15;
+}
+
+.buttonMenu {
+    width: 20px;
+    margin-right: 8px;
 }
 
 .md-button.selection {
-    margin: 20px 0 !important;
+    margin: 10px 0 !important;
     padding: 3px 15px 3px 15px;
-    min-width:100px;
+    min-width: 100px;
     color: #ff5e3e !important;
-    /*
-    color: yellow !important;
-    background-color: rgba(0, 0, 0, 0.50);
-    */
-    background-color: rgba(255, 255, 255, 0.62);
+    font-weight: bold ;
+    background-color: rgba(255, 255, 255, 0.88);
     text-transform: uppercase !important;
 }
 

@@ -50,12 +50,12 @@
             resetStateInfoSelect: resetStateInfoSelect
         };
 
-        var infoSelect= {};
+        var infoSelect = {};
 
         return service;
 
         function setInfoSelect(selection) {
-            infoSelect.value= selection;
+            infoSelect.value = selection;
         }
 
         function storeStateInfoSelect(stateName) {
@@ -63,7 +63,7 @@
         }
 
         function resetStateInfoSelect(stateName) {
-            infoSelect.value =  infoSelect[stateName];
+            infoSelect.value = infoSelect[stateName];
         }
 
         function getInfoSelect() {

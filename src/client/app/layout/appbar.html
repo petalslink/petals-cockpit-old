@@ -1,26 +1,11 @@
 <md-toolbar md-scroll-shrink md-theme="core-theme" ng-cloak layout="row">
     <div class="md-toolbar-tools md-accent">
-        <md-button ui-sref="workspace" style="height:50px; width:50px;margin:15px;">
-            <img src="src/client/images/petals_cockpit.png" style="height:50px; width:50px;"/>
+        <md-button ui-sref="home.workspace">
+            <img src="src/client/images/petals_cockpit.png" class="logoPetals"/>
             <md-tooltip md-direction="right">
                 Take The Control !
             </md-tooltip>
         </md-button>
-        <div layout="column" style="margin:50px;>
-            <h1>
-            <span>
-                  <a class="">Petals</a>
-                <md-divider></md-divider>
-                <strong>
-                  <a class="cockpit">COCKPIT</a>
-                </strong>
-            </span>
-            </h1>
-
-            <md-tooltip md-direction="right">
-                Take The Control !
-            </md-tooltip>
-        </div>
         <span flex></span>
         <md-button ng-click="vm.login()" aria-label="login" class="md-raised md-accent">
             <md-icon class="material-icons md-accent" aria-label="Connexion User" md-svg-icon="mdicons:account"></md-icon>
