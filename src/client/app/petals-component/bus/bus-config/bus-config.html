@@ -1,62 +1,84 @@
-<div layout="column" layout-align="space-around stretch">
+<div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
+     layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
+
     <div layout="row" layout-align="center stretch">
-        <h3>*** <b>{{details.title}}</b> ***</h3>
+        <h1><b>{{details.title}}</b></h1>
     </div>
-    <md-card layout="column" layout-align="start stretch" flex>
-        <div layout="row" layout-align="center stretch">
-            <p> *** <b>BUS Registry</b> *** </p>
-        </div>
-        <div layout="row" layout-align="start stretch">
-            <md-card flex="50">
-                <p>
-                    registry_implementation: <br>
-                    &nbsp;&nbsp;&nbsp;{{details.topology.registry.registry_implementation}}
-                </p>
-            </md-card>
-            <md-card flex="50">
-                <p>
-                    *** <b>configuration</b> ***<br>
-                    group_name : {{details.topology.registry.registry_configuration.group_name}} <br>
-                    group_password:  {{details.topology.registry.registry_configuration.group_password}}
-                </p>
-            </md-card>
-        </div>
-        <div layout="row" layout-align="start stretch">
-            <p> *** <b>overlay_members</b> *** </p>
-        </div>
-        <div layout="column" layout-align="center stretch">
-            <md-card ng-repeat="member in details.topology.registry.registry_configuration.overlay_members">
-                <p>
-                    host_name : {{member.host_name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    port : {{member.port}}
-                </p>
-            </md-card>
-        </div>
-    </md-card>
 
     <md-card layout="column" layout-align="start stretch" flex>
-        <div layout="row" layout-align="center stretch">
-            <p> *** <b>Petals containers</b> *** </p>
-        </div>
-        <div layout="column" layout-align="center stretch">
-            <md-card ng-repeat="container in details.topology.containers">
-                <p>
-                    name : {{container.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    description : {{container.description}}<br>
-                    host : {{container.host}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    user : {{container.user}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    password : {{container.password}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    jmx_port : {{container.jmx_port}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    transport_port : {{container.transport_port}}<br>
-                </p>
+
+        <md-card-title layout-align="center center"><b>BUS Registry</b></md-card-title>
+
+        <div layout="row" layout-align="start stretch">
+            <!---------------------------------------------------------------------------------------------------
+                Registry Client
+            ---------------------------------------------------------------------------------------------------->
+            <md-card flex="50" class="md-whiteframe-2dp">
+                <md-card-title layout-align="center center"><b>Registry Client</b></md-card-title>
+                <md-divider class="sizeDividerCard" layout-margin
+                            ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+                <md-card-content layout-align="start center">
+                    Registry_implementation :
+                    <b class="sizeSmall">{{details.topology.registry.registry_implementation}}</b>
+                </md-card-content>
+            </md-card>
+            <!---------------------------------------------------------------------------------------------------
+                Configuration
+            ---------------------------------------------------------------------------------------------------->
+            <md-card flex="50" class="md-whiteframe-2dp">
+                <md-card-title layout-align="center center"><b>Configuration</b></md-card-title>
+                <md-divider class="sizeDividerCard" layout-margin
+                            ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+                <md-card-content layout-align="start center">
+                    Group_name :
+                    <b class="sizeSmall">{{details.topology.registry.registry_configuration.group_name}}</b><br>
+                    Group_password :
+                    <b class="sizeSmall">{{details.topology.registry.registry_configuration.group_password}}{details.topology.registry.registry_implementation}}</b>
+                </md-card-content>
             </md-card>
         </div>
+
+        <div layout="column" layout-align="center stretch">
+            <!---------------------------------------------------------------------------------------------------
+                Overlay_members
+            ---------------------------------------------------------------------------------------------------->
+            <md-card flex="80" class="md-whiteframe-2dp"
+                     ng-repeat="member in details.topology.registry.registry_configuration.overlay_members">
+                <md-card-content>
+                    Overlay_members :<br>&nbsp;
+                    <md-icon class="material-icons md-icon-button md-accent"
+                             md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
+                    Host_name : <b class="sizeSmall">{{member.host_name}}</b><br>&nbsp;&nbsp;
+                    <md-icon class="material-icons md-icon-button md-accent"
+                             md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
+                    Port : <b class="sizeSmall">{{member.port}}</b>
+                </md-card-content>
+            </md-card>
+        </div>
+
+    </md-card>
+    <!---------------------------------------------------------------------------------------------------
+        Petals Containers
+    ---------------------------------------------------------------------------------------------------->
+    <md-card layout-margin layout="column" layout-align="start stretch" flex>
+
+        <md-card-title layout-align="center center"><b>Petals Containers</b></md-card-title>
+
+        <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+        <div layout="row" layout-align="center stretch">
+            <md-card class="md-whiteframe-2dp" ng-repeat="container in details.topology.containers" flex="50">
+                <md-card-content>
+                    Name : <b class="sizeSmall">{{container.name}}</b> <br>
+                    Description : <b class="sizeSmall">{{container.description}}</b> <br>
+                    Host : <b class="sizeSmall">{{container.host}}</b> <br>
+                    User : <b class="sizeSmall">{{container.user}}</b> <br>
+                    Password : <b class="sizeSmall">{{container.password}}</b> <br>
+                    Jmx_port : <b class="sizeSmall">{{container.jmx_port}}</b> <br>
+                    Transport_port : <b class="sizeSmall">{{container.transport_port}}</b><br>
+                </md-card-content>
+            </md-card>
+        </div>
+
     </md-card>
 
 </div>

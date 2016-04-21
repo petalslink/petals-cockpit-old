@@ -1,25 +1,43 @@
-<div layout="column" layout-align="space-around stretch">
+<div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
+     layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
+
     <div layout="row" layout-align="start stretch" flex>
-        <md-card flex="33">
-            <h3>*** <b>{{details.title}}</b> ***</h3>
-            <p>
-                State: {{details.state}}<br>
-            </p>
+        <!---------------------------------------------------------------------------------------------------
+            Details Title Selection
+        ---------------------------------------------------------------------------------------------------->
+        <md-card flex="33" class="md-whiteframe-2dp">
+            <md-card-title layout-align="center center"><b>{{details.title}}</b></md-card-title>
+            <md-divider class="sizeDividerCard" layout-margin
+                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+            <md-card-content layout-align="start center">
+                State : <b class="sizeSmall">{{details.state}}</b><br>
+                Description : <b class="sizeSmall">{{details.description}}</b>
+            </md-card-content>
         </md-card>
-        <md-card flex="33">
-            <p>
-                *** <b>Type</b> ***<br><br>
-                Name : {{details.componentType.name}}<br>
-                Version:  {{details.componentType.version}}
-            </p>
+        <!---------------------------------------------------------------------------------------------------
+            Typing
+        ---------------------------------------------------------------------------------------------------->
+        <md-card flex="33" class="md-whiteframe-2dp">
+            <md-card-title layout-align="center center"><b>Typing</b></md-card-title>
+            <md-divider class="sizeDividerCard" layout-margin
+                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+            <md-card-content layout-align="start center">
+                Type : <b class="sizeSmall">{{details.componentType.name}}</b><br>
+                Version : <b class="sizeSmall">{{details.componentType.version}}</b>
+            </md-card-content>
         </md-card>
-        <md-card flex="33">
-            <p>
-                *** <b>Topology</b> ***<br>
-                name: {{details.topology.domain.name}} <br>
-                mode : {{details.topology.domain.mode}} <br>
-                Description: {{details.topology.domain.description}}
-            </p>
+        <!---------------------------------------------------------------------------------------------------
+            Topology
+        ---------------------------------------------------------------------------------------------------->
+        <md-card flex="33" class="md-whiteframe-2dp">
+            <md-card-title layout-align="center center"><b>Topology</b></md-card-title>
+            <md-divider class="sizeDividerCard" layout-margin
+                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
+            <md-card-content layout-align="start center">
+                Name : <b class="sizeSmall">{{details.topology.domain.name}}</b><br>
+                Mode : <b class="sizeSmall">{{details.topology.domain.mode}}</b><br>
+                Description : <b class="sizeSmall">{{details.topology.domain.description}}</b>
+            </md-card-content>
         </md-card>
     </div>
 

@@ -32,11 +32,6 @@ a.md-button.md-navConsole-theme-theme.selectionCmd {
     color: #EF6C00 !important;
 }
 
-/*a.md-button.md-navConsole-theme-theme.md-primary{
-    margin: 20px 0 !important;
-    padding: 3px 15px 3px 15px;
-    min-width: 100px;
-}*/
 a.md-button.md-navConsole-theme-theme.md-primary:active, a.md-button.md-navConsole-theme-theme.md-primary:focus, a.md-button.md-navConsole-theme-theme.md-primary:hover {
     background-color: #4527A0;
     color: white !important;
@@ -81,7 +76,7 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
     border-radius: 20px;
 }
 
-md-card.md-cardServer-theme-theme md-card-title {
+md-card.md-cardCustom-theme-theme md-card-title {
     height: 50px !important;
     flex: 0;
     -webkit-flex: 0;

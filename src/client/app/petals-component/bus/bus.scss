@@ -32,11 +32,6 @@ a.md-button.md-navConsole-theme-theme.selectionCmd {
     color: #EF6C00 !important;
 }
 
-/*a.md-button.md-navConsole-theme-theme.md-primary{
-    margin: 20px 0 !important;
-    padding: 3px 15px 3px 15px;
-    min-width: 100px;
-}*/
 a.md-button.md-navConsole-theme-theme.md-primary:active, a.md-button.md-navConsole-theme-theme.md-primary:focus, a.md-button.md-navConsole-theme-theme.md-primary:hover {
     background-color: #4527A0;
     color: white !important;
@@ -58,4 +53,33 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
 .md-navConsole-theme-theme.md-toolbar-tools a {
     margin: 20px 0 !important;
     padding: 3px 15px 3px 15px;
+}
+
+.sizeSmall {
+    font-size: small !important;
+}
+
+.sizeDividerCard {
+    height: 5px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+.sizeDividerCard:before {
+    display: block;
+    content: "";
+    height: 5px;
+    margin-top: -5px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+md-card.md-cardServer-theme-theme md-card-title {
+    height: 50px !important;
+    flex: 0;
+    -webkit-flex: 0;
+    -ms-flex: 0;
 }

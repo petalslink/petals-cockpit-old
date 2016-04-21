@@ -19,20 +19,22 @@
 
 body {
     height: auto !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
 }
 
-md-toast.md-red-theme {
-    background-color: rgba(33,33,33,1.0);
-    text-align: center;
-    padding: 20px;
-    opacity: 1;
-    min-width: 100%;
-    width: 100%;
-}
-
-md-toast.md-red-theme:hover, md-toast.md-green-theme:hover, md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
+md-toast.md-yellow-theme:hover, md-toast.md-red-theme:hover, md-toast.md-green-theme:hover, md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
     background-color: white;
     text-align: center;
+}
+
+md-toast.md-yellow-theme .md-toast-content {
+    background-color: yellow;
+    border: solid 2px whitesmoke;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 md-toast.md-green-theme .md-toast-content {
@@ -70,3 +72,14 @@ md-toast.md-green-theme .md-toast-content {
      text-align: center;
      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
  }
+
+ .logoLinagora {
+     height:30px;
+     width:147px;
+     margin:15px 10px;
+ }
+.footerCard {
+    height:60px;
+    padding:0 0;
+    margin:0 0;
+}
