@@ -62,13 +62,28 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
 .sizeSmall {
     font-size: small !important;
 }
+
 .sizeDividerCard {
     height: 5px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
 }
+.sizeDividerCard:before {
+    display: block;
+    content: "";
+    height: 5px;
+    margin-top: -5px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
 md-card.md-cardServer-theme-theme md-card-title {
     height: 50px !important;
     flex: 0;
     -webkit-flex: 0;
     -ms-flex: 0;
-
 }
