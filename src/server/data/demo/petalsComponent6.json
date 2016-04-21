@@ -37,7 +37,7 @@
     },
     "router": "*** Petals ESB - Router ***",
     "router": {
-        "srtategy": "highest,3,2,1",
+        "strategy": "highest,3,2,1",
         "send_attempt": "2",
         "send_delay": "1000",
         "traffic_stop_delay": "30000",
