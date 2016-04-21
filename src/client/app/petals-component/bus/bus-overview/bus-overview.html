@@ -1,11 +1,11 @@
 <div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
      layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
 
-    <div layout="row" layout-align="start stretch" flex>
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             Details Title Selection
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
             <md-card-title layout-align="center center"><b>{{details.title}}</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
@@ -17,7 +17,7 @@
         <!---------------------------------------------------------------------------------------------------
             Typing
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
             <md-card-title layout-align="center center"><b>Typing</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
@@ -29,7 +29,7 @@
         <!---------------------------------------------------------------------------------------------------
             Topology
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
             <md-card-title layout-align="center center"><b>Topology</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>

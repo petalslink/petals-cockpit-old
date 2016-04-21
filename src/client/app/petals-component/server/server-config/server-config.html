@@ -1,11 +1,11 @@
 <div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
      layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
 
-    <div layout="row" layout-align="start stretch" flex>
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             Details Title Selection
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>{{details.title}}</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
@@ -16,7 +16,7 @@
         <!---------------------------------------------------------------------------------------------------
             Typing
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Typing</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
@@ -27,7 +27,7 @@
         <!---------------------------------------------------------------------------------------------------
             Security Connection
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Security Connection</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
@@ -35,207 +35,207 @@
                 Jmx_port : <b class="sizeSmall">{{details.jmx_port}}</b><br>
                 Transport_port : <b class="sizeSmall">{{details.transport_port}}</b><br>
                 User : <b class="sizeSmall">{{details.user}}</b><br>
-                password : <b class="sizeSmall">{{details.password}}</b>
+                Password : <b class="sizeSmall">{{details.password}}</b>
             </md-card-content>
         </md-card>
     </div>
 
-    <div layout="row" layout-align="start stretch">
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             General Properties
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="66" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>General Properties</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                data_basedir : <b class="sizeSmall">{{details.general.data_basedir}}</b><br>
-                repository_path : <b class="sizeSmall">{{details.general.repository_path}}</b><br>
-                work_path : <b class="sizeSmall">{{details.general.work_path}}</b><br>
-                log_config_file : <b class="sizeSmall">{{details.general.log_config_file}}</b><br>
-                task_timeout : <b class="sizeSmall">{{details.general.task_timeout}}</b>
+                Data_basedir : <b class="sizeSmall">{{details.general.data_basedir}}</b><br>
+                Repository_path : <b class="sizeSmall">{{details.general.repository_path}}</b><br>
+                Work_path : <b class="sizeSmall">{{details.general.work_path}}</b><br>
+                Log_config_file : <b class="sizeSmall">{{details.general.log_config_file}}</b><br>
+                Task_timeout : <b class="sizeSmall">{{details.general.task_timeout}}</b>
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="content:remove"></md-icon>
-                task_timeout : <b class="sizeSmall">{{details.general.task_timeout}}</b><br>
-                exchange_validation : <b class="sizeSmall">{{details.general.exchange_validation}}</b>
+                Task_timeout : <b class="sizeSmall">{{details.general.task_timeout}}</b><br>
+                Exchange_validation : <b class="sizeSmall">{{details.general.exchange_validation}}</b>
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="content:remove"></md-icon>
-                classloaders_isolated : <b class="sizeSmall">{{details.general.classloaders_isolated}}</b>
+                Classloaders_isolated : <b class="sizeSmall">{{details.general.classloaders_isolated}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             Topology
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Topology</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                url : <b class="sizeSmall">{{details.general.topology.url}}</b><br>
-                passphrase : <b class="sizeSmall">{{details.general.topology.passphrase}}</b><br>
-                dynamic_lock_wait_time : <b class="sizeSmall">{{details.general.topology.dynamic_lock_wait_time}}</b><br>
-                pinger : <br>&nbsp;
+                Url : <b class="sizeSmall">{{details.general.topology.url}}</b><br>
+                Passphrase : <b class="sizeSmall">{{details.general.topology.passphrase}}</b><br>
+                Dynamic_lock_wait_time : <b class="sizeSmall">{{details.general.topology.dynamic_lock_wait_time}}</b><br>
+                Pinger : <br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                start_delay : <b class="sizeSmall">{{details.general.topology.pinger.start_delay}}</b><br>&nbsp;&nbsp;
+                Start_delay : <b class="sizeSmall">{{details.general.topology.pinger.start_delay}}</b><br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                period_delay : <b class="sizeSmall">{{details.general.topology.pinger.period_delay}}</b>
+                Period_delay : <b class="sizeSmall">{{details.general.topology.pinger.period_delay}}</b>
             </md-card-content>
         </md-card>
     </div>
 
-    <div layout="row" layout-align="start stretch">
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             Router
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Router</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content>
-                srtategy : <b class="sizeSmall">{{details.router.srtategy}}</b><br>
-                send_attempt : <b class="sizeSmall">{{details.router.send_attempt}}</b><br>
-                send_delay : <b class="sizeSmall">{{details.router.send_delay}}</b><br>
-                traffic_stop_delay : <b class="sizeSmall">{{details.router.traffic_stop_delay}}</b><br>
-                traffic_pause_delay : <b class="sizeSmall">{{details.router.traffic_pause_delay}}</b>
+                Strategy : <b class="sizeSmall">{{details.router.srtategy}}</b><br>
+                Send_attempt : <b class="sizeSmall">{{details.router.send_attempt}}</b><br>
+                Send_delay : <b class="sizeSmall">{{details.router.send_delay}}</b><br>
+                Traffic_stop_delay : <b class="sizeSmall">{{details.router.traffic_stop_delay}}</b><br>
+                Traffic_pause_delay : <b class="sizeSmall">{{details.router.traffic_pause_delay}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
                 SSL Connections
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>SSL Connections</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content>
-                key_password : <b class="sizeSmall">{{details.ssl.key_password}}</b><br>
-                keystore : <br>&nbsp;
+                Key_password : <b class="sizeSmall">{{details.ssl.key_password}}</b><br>
+                Keystore : <br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                file : <b class="sizeSmall">{{details.ssl.keystore.file}}</b><br>&nbsp;&nbsp;
+                File : <b class="sizeSmall">{{details.ssl.keystore.file}}</b><br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                password : <b class="sizeSmall">{{details.ssl.keystore.password}}</b><br>
+                Password : <b class="sizeSmall">{{details.ssl.keystore.password}}</b><br>
 
-                truststore : <br>&nbsp;
+                Truststore : <br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                file : <b class="sizeSmall">{{details.ssl.truststore.file}}</b><br>&nbsp;&nbsp;
+                File : <b class="sizeSmall">{{details.ssl.truststore.file}}</b><br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                password : <b class="sizeSmall">{{details.ssl.truststore.password}}</b>
+                Password : <b class="sizeSmall">{{details.ssl.truststore.password}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             Transporter Configuration
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Transporter Configuration</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content>
-                queue :<br>&nbsp;
+                Queue :<br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                max_size : <b class="sizeSmall">{{details.transport.queue.max_size}}</b><br>&nbsp;&nbsp;
+                Max_size : <b class="sizeSmall">{{details.transport.queue.max_size}}</b><br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                offering_timeout : <b class="sizeSmall">{{details.transport.queue.offering_timeout}}</b><br><br>
+                Offering_timeout : <b class="sizeSmall">{{details.transport.queue.offering_timeout}}</b><br><br>
 
-                tcp : <br>&nbsp;
-
-                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                receivers :<br>&nbsp;
-                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                listening_interface : <b class="sizeSmall">{{details.transport.tcp.receivers.listening_interface}}</b><br>&nbsp;
-                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                numbers : <b class="sizeSmall">{{details.transport.tcp.receivers.numbers}}</b><br>&nbsp;
-                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                keep_alive : <b class="sizeSmall">{{details.transport.tcp.receivers.keep_alive}}</b><br>&nbsp;
+                Tcp : <br>&nbsp;
 
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                senders :<br>&nbsp;
+                Receivers :<br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                numbers : <b class="sizeSmall">{{details.transport.tcp.senders.numbers}}</b><br>&nbsp;
+                Listening_interface : <b class="sizeSmall">{{details.transport.tcp.receivers.listening_interface}}</b><br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                connection_timeout : <b class="sizeSmall">{{details.transport.tcp.senders.connection_timeout}}</b><br>&nbsp;
+                Numbers : <b class="sizeSmall">{{details.transport.tcp.receivers.numbers}}</b><br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                timeout : <b class="sizeSmall">{{details.transport.tcp.senders.timeout}}</b><br>&nbsp;
+                Keep_alive : <b class="sizeSmall">{{details.transport.tcp.receivers.keep_alive}}</b><br>&nbsp;
+
+                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
+                Senders :<br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
-                evictor_delay : <b class="sizeSmall">{{details.transport.tcp.senders.evictor_delay}}</b>
+                Numbers : <b class="sizeSmall">{{details.transport.tcp.senders.numbers}}</b><br>&nbsp;
+                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
+                Connection_timeout : <b class="sizeSmall">{{details.transport.tcp.senders.connection_timeout}}</b><br>&nbsp;
+                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
+                Timeout : <b class="sizeSmall">{{details.transport.tcp.senders.timeout}}</b><br>&nbsp;
+                <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:chevron-right"></md-icon>
+                Evictor_delay : <b class="sizeSmall">{{details.transport.tcp.senders.evictor_delay}}</b>
             </md-card-content>
         </md-card>
     </div>
 
-    <div layout="row" layout-align="start stretch">
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             Registry Client Configuration
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="40" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Registry Client Configuration</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                registry_implementation :
+                Registry_implementation :
                 <b class="sizeSmall">{{details.registry.registry_implementation}}</b><br><br>
-                registry_parameters : <br>&nbsp;
+                Registry_parameters : <br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                map_cache : <br>&nbsp;&nbsp;
+                Map_cache : <br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                max_size :
+                Max_size :
                 <b class="sizeSmall">{{details.registry.registry_parameters.map_cache.max_size}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             System Recovery Service
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="30" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>System Recovery Service</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                recovery : <br>&nbsp;
+                Recovery : <br>&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                corepoolsize :
+                Corepoolsize :
                 <b class="sizeSmall">{{details.recovery.corepoolsize}}</b><br>&nbsp;&nbsp;
                 <md-icon class="material-icons md-icon-button md-accent" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                keepalivetime :
+                Keepalivetime :
                 <b class="sizeSmall">{{details.recovery.keepalivetime}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             Autoloader Extension
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="30" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Autoloader Extension</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                activation : <b class="sizeSmall">{{details.autoloader.activation}}</b><br>
-                scan_period : <b class="sizeSmall">{{details.autoloader.scan_period}}</b><br>
-                path_install : <b class="sizeSmall">{{details.autoloader.path_install}}</b><br>
-                path_installed : <b class="sizeSmall">{{details.autoloader.path_installed}}</b>
+                Activation : <b class="sizeSmall">{{details.autoloader.activation}}</b><br>
+                Scan_period : <b class="sizeSmall">{{details.autoloader.scan_period}}</b><br>
+                Path_install : <b class="sizeSmall">{{details.autoloader.path_install}}</b><br>
+                Path_installed : <b class="sizeSmall">{{details.autoloader.path_installed}}</b>
             </md-card-content>
         </md-card>
     </div>
 
-    <div layout="row" layout-align="start stretch">
+    <div layout="row" layout-align="start stretch" flex layout-xs="column">
         <!---------------------------------------------------------------------------------------------------
             Embedded Registry Server Extension
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Embedded Registry Server Extension</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                activation : <b class="sizeSmall">{{details.embedded_registry_overlay.activation}}</b><br>
-                port : <b class="sizeSmall">{{details.embedded_registry_overlay.port}}</b><br>
+                Activation : <b class="sizeSmall">{{details.embedded_registry_overlay.activation}}</b><br>
+                Port : <b class="sizeSmall">{{details.embedded_registry_overlay.port}}</b><br>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             Artifact Repository Extension
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>Artifact Repository Extension</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                activation : <b class="sizeSmall">{{details.artifact_repository.activation}}</b><br>
-                path : <b class="sizeSmall">{{details.artifact_repository.path}}</b><br>
+                Activation : <b class="sizeSmall">{{details.artifact_repository.activation}}</b><br>
+                Path : <b class="sizeSmall">{{details.artifact_repository.path}}</b><br>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
             WS API Extension
         ---------------------------------------------------------------------------------------------------->
-        <md-card flex="33" class="md-whiteframe-2dp">
+        <md-card flex class="md-whiteframe-2dp" layout-xs="column">
             <md-card-title layout-align="center center"><b>WS API Extension</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                activation : <b class="sizeSmall">{{details.ws_api.activation}}</b><br>
-                listening_interface : <b class="sizeSmall">{{details.ws_api.listening_interface}}</b><br>
-                http_port : <b class="sizeSmall">{{details.ws_api.http_port}}</b><br>
-                http_path : <b class="sizeSmall">{{details.ws_api.http_path}}</b>
+                Activation : <b class="sizeSmall">{{details.ws_api.activation}}</b><br>
+                Listening_interface : <b class="sizeSmall">{{details.ws_api.listening_interface}}</b><br>
+                Http_port : <b class="sizeSmall">{{details.ws_api.http_port}}</b><br>
+                Http_path : <b class="sizeSmall">{{details.ws_api.http_path}}</b>
             </md-card-content>
         </md-card>
     </div>

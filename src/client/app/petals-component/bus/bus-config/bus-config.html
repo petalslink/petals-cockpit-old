@@ -9,11 +9,11 @@
 
         <md-card-title layout-align="center center"><b>BUS Registry</b></md-card-title>
 
-        <div layout="row" layout-align="start stretch">
+        <div layout="row" layout-align="start stretch" layout-xs="column">
             <!---------------------------------------------------------------------------------------------------
                 Registry Client
             ---------------------------------------------------------------------------------------------------->
-            <md-card flex="50" class="md-whiteframe-2dp">
+            <md-card flex class="md-whiteframe-2dp" layout-xs="column">
                 <md-card-title layout-align="center center"><b>Registry Client</b></md-card-title>
                 <md-divider class="sizeDividerCard" layout-margin
                             ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
@@ -25,7 +25,7 @@
             <!---------------------------------------------------------------------------------------------------
                 Configuration
             ---------------------------------------------------------------------------------------------------->
-            <md-card flex="50" class="md-whiteframe-2dp">
+            <md-card flex class="md-whiteframe-2dp" layout-xs="column">
                 <md-card-title layout-align="center center"><b>Configuration</b></md-card-title>
                 <md-divider class="sizeDividerCard" layout-margin
                             ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
@@ -42,7 +42,7 @@
             <!---------------------------------------------------------------------------------------------------
                 Overlay_members
             ---------------------------------------------------------------------------------------------------->
-            <md-card flex="80" class="md-whiteframe-2dp"
+            <md-card flex class="md-whiteframe-2dp" layout-xs="column"
                      ng-repeat="member in details.topology.registry.registry_configuration.overlay_members">
                 <md-card-content>
                     Overlay_members :<br>&nbsp;
@@ -65,8 +65,8 @@
         <md-card-title layout-align="center center"><b>Petals Containers</b></md-card-title>
 
         <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-        <div layout="row" layout-align="center stretch">
-            <md-card class="md-whiteframe-2dp" ng-repeat="container in details.topology.containers" flex="50">
+        <div layout="row" layout-align="center stretch" layout-xs="column">
+            <md-card class="md-whiteframe-2dp" ng-repeat="container in details.topology.containers" flex layout-xs="column">
                 <md-card-content>
                     Name : <b class="sizeSmall">{{container.name}}</b> <br>
                     Description : <b class="sizeSmall">{{container.description}}</b> <br>
