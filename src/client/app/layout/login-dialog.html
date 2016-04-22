@@ -1,17 +1,13 @@
-<md-dialog md-theme="core-theme" aria-label="Login" ng-cloak>
+<md-dialog md-theme="core-theme" aria-label="Login">
 
     <form name="loginForm" data-ng-submit="vm.handleSubmit()">
 
         <md-toolbar class="md-accent">
             <div class="md-toolbar-tools">
-                <md-icon class="md-icon-button md-accent" aria-label="Connexion User">account_box
-                </md-icon>
+                <md-icon class="material-icons md-icon-button md-accent" aria-label="Connexion User" md-svg-icon="mdicons:account-box"></md-icon>
                 <span flex></span>
                 <h2>Sign in {{vm.username}}</h2>
                 <span flex></span>
-<!--                <md-button type="button" class="md-icon-button" ng-click="vm.handleCancel(); $event.stopPropagation();">
-                    <md-icon md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
-                </md-button>-->
             </div>
         </md-toolbar>
 

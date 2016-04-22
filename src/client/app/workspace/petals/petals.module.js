@@ -2,9 +2,10 @@
     'use strict';
 
     angular.module('app.petals', [
-        'app.fallbackComponent',
+        'app.fallback-component',
         'app.bus',
         'app.server',
-        'app.bc-soap'
+        'app.bc-soap',
+        'app.su-provide'
     ]);
 })();

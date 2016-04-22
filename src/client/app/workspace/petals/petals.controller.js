@@ -330,7 +330,7 @@
                     dataWkspceService.setInfoSelect(component.selectionChain);
                     //TODO manage plugin error
                     component.hasPlugin = false;
-                    $state.go('home.workspace.petals.fallbackComponent');
+                    $state.go('home.workspace.petals.fallback-component');
                 }
             );
         }
