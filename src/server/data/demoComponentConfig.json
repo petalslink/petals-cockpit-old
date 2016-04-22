@@ -25,7 +25,7 @@
                             "cat": "COMPONENT",
                             "subCat": "BC",
                             "icon": "puzzle",
-                            "initState": "home.workspace.petals.bc-soap.overview",
+                            "initState": "home.workspace.petals.bc-soap.config",
                             "contains" : [
                                 {
                                     "name": "SU-CONSUME",

@@ -48,7 +48,22 @@
                     "state": "UNDEPLOYED",
                     "display": "empty",
                     "selectionChain": "BUS 1/server 2",
-                    "children": []
+                    "children": [
+                        {
+                            "id": 7,
+                            "title": "BC-SOAP 1",
+                            "componentType": {
+                                "name": "BC-SOAP",
+                                "version": "4-4-1",
+                                "cat": "COMPONENT",
+                                "icon": "puzzle"
+                            },
+                            "state": "UNDEPLOYED",
+                            "display": "empty",
+                            "selectionChain": "BUS 1/server 2/BC-SOAP 1",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         },
