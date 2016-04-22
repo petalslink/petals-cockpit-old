@@ -6,10 +6,17 @@
         .controller('OverviewBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = [];
+    ControllerFunction.$inject = ['$scope', 'promiseDetails'];
 
     /* @ngInject */
-    function ControllerFunction() {
+    function ControllerFunction($scope, promiseDetails) {
+        $scope.details = {};
+
+        activate();
+
+        function activate() {
+            $scope.details = promiseDetails;
+        }
 
     }
 

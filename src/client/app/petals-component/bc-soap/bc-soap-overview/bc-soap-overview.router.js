@@ -13,8 +13,6 @@
         $stateProvider
             .state('home.workspace.petals.bc-soap.overview', {
                 url: '/overview',
-                sticky: true,
-                dsr: true,
                 views: {
                     'petals-console': {
                         controller: 'OverviewBcSoapController',

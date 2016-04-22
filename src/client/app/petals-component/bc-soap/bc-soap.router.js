@@ -11,10 +11,9 @@
     function configFunction($stateProvider) {
 
         $stateProvider
+            
             .state('home.workspace.petals.bc-soap', {
-                url: '/bc-soap',
-                sticky: true,
-                dsr: true,
+                url: '/bc-soap/:id',
                 views: {
                     'petals-nav-console': {
                         controller: 'BcSoapController',
