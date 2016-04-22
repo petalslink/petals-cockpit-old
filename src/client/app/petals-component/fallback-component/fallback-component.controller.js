@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module('app.fallbackComponent')
-        .controller('fallbackComponentController', ControllerFunction);
+    angular.module('app.fallback-component')
+        .controller('FallbackComponentController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = [];

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var fallbackComponent = angular.module('app.fallbackComponent');
+    var fallbackComponent = angular.module('app.fallback-component');
 
     fallbackComponent.config(configFunction);
 
@@ -11,16 +11,16 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.fallbackComponent', {
-                url: '/fallbackComponent',
+            .state('home.workspace.petals.fallback-component', {
+                url: '/fallback-component',
                 views: {
                     'petals-nav-console': {
                         controller: '',
                         template: '<div></div>'
                     },
                     'petals-console': {
-                        controller: 'fallbackComponentController',
-                        templateUrl: 'src/client/app/petals-component/fallbackComponent/fallbackComponent.html'
+                        controller: 'FallbackComponentController',
+                        templateUrl: 'src/client/app/petals-component/fallback-component/fallback-component.html'
                     }
                 },
                 onEnter: ['logger', function (logger) {
