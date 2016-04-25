@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('app.bc-soap')
+    angular.module('petalsComponent.bc-soap')
         .controller('BcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
@@ -10,11 +10,10 @@
 
     /* @ngInject */
     function ControllerFunction($scope) {
-
-        activate();
+        var vm = this;
 
         // TABS VIEWS CONSOLE
-        $scope.dataNavConsole = [
+        vm.dataNavConsole = [
             {
                 Locked: false,
                 Label: 'Overview',
@@ -35,6 +34,8 @@
 
             }
         ];
+
+        activate();
 
         function activate() {
         }

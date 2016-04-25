@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var operationBcSoap = angular.module('app.operationBcSoap');
+    var operationBcSoap = angular.module('petalsComponent.operationBcSoap');
 
     operationBcSoap.config(configFunction);
 
@@ -15,8 +15,9 @@
                 url: '/operation',
                 views: {
                     'petals-console': {
+                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap-operation/bc-soap-operation.html',
                         controller: 'OperationBcSoapController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap-operation/bc-soap-operation.html'
+                        controllerAs: 'vmBcSoapOperation'
                     }
                 },
                 onEnter: ['logger', function (logger) {

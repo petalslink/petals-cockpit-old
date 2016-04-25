@@ -2,20 +2,21 @@
     'use strict';
 
     angular
-        .module('app.overviewBcSoap')
+        .module('petalsComponent.overviewBcSoap')
         .controller('OverviewBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope', 'promiseDetails'];
+    ControllerFunction.$inject = ['promiseDetails'];
 
     /* @ngInject */
-    function ControllerFunction($scope, promiseDetails) {
-        $scope.details = {};
+    function ControllerFunction(promiseDetails) {
+        var vm = this;
+        vm.details = {};
 
         activate();
 
         function activate() {
-            $scope.details = promiseDetails;
+            vm.details = promiseDetails;
         }
 
     }

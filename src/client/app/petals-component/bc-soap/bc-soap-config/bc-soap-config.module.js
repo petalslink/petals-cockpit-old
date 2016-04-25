@@ -1,6 +1,6 @@
 (function() {
     'use strict';
 
-    angular.module('app.configBcSoap', [
+    angular.module('petalsComponent.configBcSoap', [
     ]);
 })();
