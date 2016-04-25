@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var overviewBcSoap = angular.module('petalsComponent.overviewBcSoap');
+    var overviewBcSoap = angular.module('petalsComponent.bc-soap.overview');
 
     overviewBcSoap.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap-overview/bc-soap-overview.html',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/overview/overview.html',
                         controller: 'OverviewBcSoapController',
                         controllerAs: 'vmBcSoapOverview'
                     }

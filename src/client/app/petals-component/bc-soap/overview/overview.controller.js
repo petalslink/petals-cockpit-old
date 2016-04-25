@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('petalsComponent.overviewBcSoap')
+        .module('petalsComponent.bc-soap.overview')
         .controller('OverviewBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----

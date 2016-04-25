@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var configBcSoap = angular.module('petalsComponent.configBcSoap');
+    var configBcSoap = angular.module('petalsComponent.bc-soap.config');
 
     configBcSoap.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap-config/bc-soap-config.html',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/config/config.html',
                         controller: 'ConfigBcSoapController',
                         controllerAs: 'vmBcSoapConfig'
                     }

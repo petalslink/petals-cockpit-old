@@ -2,8 +2,10 @@
     'use strict';
 
     angular.module('petalsComponent.bc-soap', [
-        'petalsComponent.overviewBcSoap',
-        'petalsComponent.configBcSoap',
-        'petalsComponent.operationBcSoap'
+        'petalsComponent.bc-soap.overview',
+        'petalsComponent.bc-soap.config',
+        'petalsComponent.bc-soap.operation',
+        'petalsComponent.bc-soap.su-consume',
+        'petalsComponent.bc-soap.su-provide'
     ]);
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.overviewSuProvide')
+        .module('petalsComponent.bc-soap.su-provide.overview')
         .controller('OverviewSuProvideController', ControllerFunction);
 
     // ----- ControllerFunction -----

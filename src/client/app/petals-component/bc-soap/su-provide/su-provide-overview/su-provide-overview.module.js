@@ -1,6 +1,6 @@
 (function() {
     'use strict';
 
-    angular.module('app.overviewSuProvide', [
+    angular.module('petalsComponent.bc-soap.su-provide.overview', [
     ]);
 })();

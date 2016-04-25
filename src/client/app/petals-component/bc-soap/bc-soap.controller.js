@@ -6,10 +6,10 @@
         .controller('BcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = [];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction() {
         var vm = this;
 
         // TABS VIEWS CONSOLE

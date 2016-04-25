@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module('petalsComponent.bc-soap.su-provide')
-        .controller('SuProvideController', ControllerFunction);
+    angular.module('petalsComponent.bc-soap.su-consume')
+        .controller('SuConsumeController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = [];

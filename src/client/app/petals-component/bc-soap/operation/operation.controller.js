@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('petalsComponent.configBcSoap')
-        .controller('ConfigBcSoapController', ControllerFunction);
+        .module('petalsComponent.bc-soap.operation')
+        .controller('OperationBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['promiseDetails'];

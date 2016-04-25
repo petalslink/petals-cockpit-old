@@ -5,7 +5,6 @@
         'app.fallback-component',
         'petalsComponent.bus',
         'app.server',
-        'petalsComponent.bc-soap',
-        'app.su-provide'
+        'petalsComponent.bc-soap'
     ]);
 })();

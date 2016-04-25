@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var operationSuProvide = angular.module('petalsComponent.bc-soap.su-provide.operation');
+    var operationSuProvide = angular.module('petalsComponent.bc-soap.su-consume.operation');
 
     operationSuProvide.config(configFunction);
 
@@ -11,21 +11,21 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-provide.operation', {
+            .state('home.workspace.petals.bc-soap.su-consume.operation', {
                 url: '/operation',
                 views: {
                     /* jshint ignore:start */
                     'petals-console': {
-                        controller: 'OperationSuProvideController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-provide-operztion/su-provide-operation.html'
+                        controller: 'OperationSuConsumeController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-consume-operation/su-consume-operation.html'
                     }
                     /* jshint ignore:end */
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE.OPERATION');
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE.OPERATION');
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
                 }]
 
             });

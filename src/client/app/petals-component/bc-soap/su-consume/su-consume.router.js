@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var suProvide = angular.module('petalsComponent.bc-soap.su-provide');
+    var suProvide = angular.module('petalsComponent.bc-soap.su-consume');
 
     suProvide.config(configFunction);
 
@@ -11,13 +11,13 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-provide', {
+            .state('home.workspace.petals.bc-soap.su-consume', {
                 url: '/su-provide/:suId',
                 views: {
                     'petals-nav-console': {
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-provide.html',
-                        controller: 'SuProvideController',
-                        controllerAs: 'vmSuProvide'
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/su-consume.html',
+                        controller: 'SuConsumeController',
+                        controllerAs: 'vmSuConsume'
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
@@ -29,10 +29,10 @@
                         }
                     },
                     onEnter: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
+                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
                     }],
                     onReactivate: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
+                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
                     }]
                 }
             });
