@@ -24,9 +24,9 @@
                     }
                 },
                 resolve: {
-                    promiseDetails: function(dataservice, $stateParams) {
+                    promiseDetails:[ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
                         return dataservice.getPetalsComponent($stateParams.id);
-                    }
+                    }]
                 },
                 onEnter: ['logger', function (logger) {
                     logger.debug('You are in WORKSPACE.PETALS.SERVER');

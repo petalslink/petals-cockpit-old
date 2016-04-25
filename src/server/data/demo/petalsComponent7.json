@@ -3,8 +3,9 @@
     "title": "BC-SOAP 1",
     "componentType": {
         "name": "BC-SOAP",
-        "version": "4-4-1",
+        "version": "3-2",
         "cat": "COMPONENT",
+        "subCat": "BC",
         "icon": "puzzle"
     },
     "state": "UNDEPLOYED",
@@ -24,8 +25,8 @@
         "properties_file": "",
         "monitoring_sampling_period": "300"
     },
-    "cdk_part": "*** Configuration of the component, Component part ***",
-    "cdk_part": {
+    "component_part": "*** Configuration of the component, Component part ***",
+    "component_part": {
         "http_port": "8084",
         "http_host": "",
         "http_service_list": true,
@@ -35,7 +36,7 @@
         "http_thread_pool_size_max": "255",
         "http_acceptors": "4",
         "http_backlog_size": "50",
-        "max_http_connections_per_host": "The max size of the message exchange processor thread pool (Processor_max_pool_size)",
+        "max_http_connections_per_host": "10",
         "https_enabled": false,
         "https_port": "8083",
         "https_acceptors": "4",

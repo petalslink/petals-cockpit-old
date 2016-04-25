@@ -54,8 +54,9 @@
                             "title": "BC-SOAP 1",
                             "componentType": {
                                 "name": "BC-SOAP",
-                                "version": "4-4-1",
+                                "version": "3-2",
                                 "cat": "COMPONENT",
+                                "subCat": "BC",
                                 "icon": "puzzle"
                             },
                             "state": "UNDEPLOYED",

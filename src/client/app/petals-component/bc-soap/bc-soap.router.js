@@ -11,7 +11,6 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            
             .state('home.workspace.petals.bc-soap', {
                 url: '/bc-soap/:id',
                 views: {
@@ -22,19 +21,19 @@
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',
                         controller: ''
-                    },
-                    resolve: {
-                        promiseDetails: function(dataservice, $stateParams) {
-                            return dataservice.getPetalsComponent($stateParams.id);
-                        }
-                    },
-                    onEnter: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
-                    }],
-                    onReactivate: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
+                    }
+                },
+                resolve: {
+                    promiseDetails: [ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id);
                     }]
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP');
+                }]
             });
 
     }
