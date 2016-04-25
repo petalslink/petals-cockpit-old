@@ -6,12 +6,12 @@
             Details Title Selection
         ---------------------------------------------------------------------------------------------------->
         <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
-            <md-card-title layout-align="center center"><b>{{details.title}}</b></md-card-title>
+            <md-card-title layout-align="center center"><b>{{vmBusOverview.details.title}}</b></md-card-title>
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                State : <b class="sizeSmall">{{details.state}}</b><br>
-                Description : <b class="sizeSmall">{{details.description}}</b>
+                State : <b class="sizeSmall">{{vmBusOverview.details.state}}</b><br>
+                Description : <b class="sizeSmall">{{vmBusOverview.details.description}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
@@ -22,8 +22,8 @@
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                Type : <b class="sizeSmall">{{details.componentType.name}}</b><br>
-                Version : <b class="sizeSmall">{{details.componentType.version}}</b>
+                Type : <b class="sizeSmall">{{vmBusOverview.details.componentType.name}}</b><br>
+                Version : <b class="sizeSmall">{{vmBusOverview.details.componentType.version}}</b>
             </md-card-content>
         </md-card>
         <!---------------------------------------------------------------------------------------------------
@@ -34,9 +34,9 @@
             <md-divider class="sizeDividerCard" layout-margin
                         ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
             <md-card-content layout-align="start center">
-                Name : <b class="sizeSmall">{{details.topology.domain.name}}</b><br>
-                Mode : <b class="sizeSmall">{{details.topology.domain.mode}}</b><br>
-                Description : <b class="sizeSmall">{{details.topology.domain.description}}</b>
+                Name : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.name}}</b><br>
+                Mode : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.mode}}</b><br>
+                Description : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.description}}</b>
             </md-card-content>
         </md-card>
     </div>

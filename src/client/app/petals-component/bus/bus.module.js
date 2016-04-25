@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('app.bus', [
-        'app.configBus',
-        'app.overviewBus'
+    angular.module('petalsComponent.bus', [
+        'petalsComponent.configBus',
+        'petalsComponent.overviewBus'
     ]);
 })();

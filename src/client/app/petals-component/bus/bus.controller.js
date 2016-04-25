@@ -2,19 +2,18 @@
 
     'use strict';
 
-    angular.module('app.bus')
+    angular.module('petalsComponent.bus')
         .controller('BusController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = [];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
-
-        activate();
+    function ControllerFunction() {
+        var vm = this;
 
         // TABS VIEWS CONSOLE
-        $scope.dataNavConsole = [
+        vm.dataNavConsole = [
             {
                 Locked: false,
                 Label: 'Overview',
@@ -29,6 +28,8 @@
 
             }
         ];
+
+        activate();
 
         function activate() {
         }

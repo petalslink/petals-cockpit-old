@@ -2,7 +2,7 @@
      layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
 
     <div layout="row" layout-align="center stretch">
-        <h1><b>{{details.title}}</b></h1>
+        <h1><b>{{vmBusConfig.details.title}}</b></h1>
     </div>
 
     <md-card layout="column" layout-align="start stretch" flex>
@@ -19,7 +19,7 @@
                             ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
                 <md-card-content layout-align="start center">
                     Registry_implementation :
-                    <b class="sizeSmall">{{details.topology.registry.registry_implementation}}</b>
+                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_implementation}}</b>
                 </md-card-content>
             </md-card>
             <!---------------------------------------------------------------------------------------------------
@@ -31,9 +31,9 @@
                             ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
                 <md-card-content layout-align="start center">
                     Group_name :
-                    <b class="sizeSmall">{{details.topology.registry.registry_configuration.group_name}}</b><br>
+                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_configuration.group_name}}</b><br>
                     Group_password :
-                    <b class="sizeSmall">{{details.topology.registry.registry_configuration.group_password}}{details.topology.registry.registry_implementation}}</b>
+                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_configuration.group_password}}{vmBusConfig.details.topology.registry.registry_implementation}}</b>
                 </md-card-content>
             </md-card>
         </div>
@@ -43,7 +43,7 @@
                 Overlay_members
             ---------------------------------------------------------------------------------------------------->
             <md-card flex class="md-whiteframe-2dp" layout-xs="column"
-                     ng-repeat="member in details.topology.registry.registry_configuration.overlay_members">
+                     ng-repeat="member in vmBusConfig.details.topology.registry.registry_configuration.overlay_members">
                 <md-card-content>
                     Overlay_members :<br>&nbsp;
                     <md-icon class="material-icons md-icon-button md-accent"
@@ -66,7 +66,7 @@
 
         <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
         <div layout="row" layout-align="center stretch" layout-xs="column">
-            <md-card class="md-whiteframe-2dp" ng-repeat="container in details.topology.containers" flex layout-xs="column">
+            <md-card class="md-whiteframe-2dp" ng-repeat="container in vmBusConfig.details.topology.containers" flex layout-xs="column">
                 <md-card-content>
                     Name : <b class="sizeSmall">{{container.name}}</b> <br>
                     Description : <b class="sizeSmall">{{container.description}}</b> <br>

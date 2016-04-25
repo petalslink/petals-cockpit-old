@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.overviewBus', []);
+    angular.module('petalsComponent.overviewBus', []);
 })();
