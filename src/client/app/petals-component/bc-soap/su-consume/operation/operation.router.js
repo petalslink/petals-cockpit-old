@@ -17,7 +17,7 @@
                     /* jshint ignore:start */
                     'petals-console': {
                         controller: 'OperationSuConsumeController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-consume-operation/su-consume-operation.html'
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/operation/operation.html'
                     }
                     /* jshint ignore:end */
                 },

@@ -1,15 +1,29 @@
-@import "core/styles/_variables.scss";
-@import "core/styles/_core.scss";
-@import "workspace/workspace.scss";
 @import "layout/layout.scss";
+@import "workspace/workspace.scss";
+@import "workspace/api/api.scss";
 @import "workspace/petals/petals.scss";
 @import "workspace/service/service.scss";
-@import "workspace/api/api.scss";
-@import "petals-component/bus/bus.scss";
-@import "petals-component/server/server.scss";
-@import "petals-component/bc-soap/bc-soap.scss";
 @import "petals-component/fallback-component/fallback-component.scss";
+@import "petals-component/bus/bus.scss";
+@import "petals-component/bus/config/config.scss";
+@import "petals-component/bus/overview/overview.scss";
+@import "petals-component/server/server.scss";
+/*
+@import "petals-component/server/config/config.scss";
+@import "petals-component/server/overview/overview.scss";
+*/
+@import "petals-component/bc-soap/bc-soap.scss";
+@import "petals-component/bc-soap/config/config.scss";
+@import "petals-component/bc-soap/operation/operation.scss";
+@import "petals-component/bc-soap/overview/overview.scss";
 @import "petals-component/bc-soap/su-provide/su-provide.scss";
+@import "petals-component/bc-soap/su-provide/config/config.scss";
+@import "petals-component/bc-soap/su-provide/operation/operation.scss";
+@import "petals-component/bc-soap/su-provide/overview/overview.scss";
+@import "petals-component/bc-soap/su-consume/su-consume.scss";
+@import "petals-component/bc-soap/su-consume/config/config.scss";
+@import "petals-component/bc-soap/su-consume/operation/operation.scss";
+@import "petals-component/bc-soap/su-consume/overview/overview.scss";
 
 /* =======================================================================
     App Module Styles
@@ -25,7 +39,8 @@ body {
     overflow-x: hidden !important;
 }
 
-md-toast.md-yellow-theme:hover, md-toast.md-red-theme:hover, md-toast.md-green-theme:hover, md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
+md-toast.md-yellow-theme:hover, md-toast.md-red-theme:hover, md-toast.md-green-theme:hover,
+md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
     background-color: white;
     text-align: center;
 }

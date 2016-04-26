@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var configBus = angular.module('petalsComponent.configBus');
+    var configBus = angular.module('petalsComponent.bus.config');
 
     configBus.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bus/bus-config/bus-config.html',
+                        templateUrl: 'src/client/app/petals-component/bus/config/config.html',
                         controller: 'ConfigBusController',
                         controllerAs: 'vmBusConfig'
                     }

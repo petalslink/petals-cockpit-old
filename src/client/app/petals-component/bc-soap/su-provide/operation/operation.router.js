@@ -17,7 +17,7 @@
                     /* jshint ignore:start */
                     'petals-console': {
                         controller: 'OperationSuProvideController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-provide-operztion/su-provide-operation.html'
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/operation/operation.html'
                     }
                     /* jshint ignore:end */
                 },

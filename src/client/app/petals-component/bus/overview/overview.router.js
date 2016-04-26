@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var overviewBus = angular.module('petalsComponent.overviewBus');
+    var overviewBus = angular.module('petalsComponent.bus.overview');
 
     overviewBus.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bus/bus-overview/bus-overview.html',
+                        templateUrl: 'src/client/app/petals-component/bus/overview/overview.html',
                         controller: 'OverviewBusController',
                         controllerAs: 'vmBusOverview'
                     }

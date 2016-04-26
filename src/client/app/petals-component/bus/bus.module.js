@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('petalsComponent.bus', [
-        'petalsComponent.configBus',
-        'petalsComponent.overviewBus'
+        'petalsComponent.bus.config',
+        'petalsComponent.bus.overview'
     ]);
 })();

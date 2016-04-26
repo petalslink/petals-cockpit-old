@@ -17,103 +17,83 @@ module.exports = {
     buildDir: './build/',
     tempDir: './.tmp/',
     js: [
-        // MODULE
+        // MODULE -- inject first --
         src + 'app/**/*.module.js',
-
-        // ALL
-        src + 'app/**/*.js',
-        src + 'app/**/**/*.js',
-        src + 'app/**/**/**/*.js',
+        // CORE
         src + 'app/core/*.js',
+        // BLOCKS
         src + 'app/blocks/**/*.js',
-
         // LAYOUT
-        src + 'app/layout/**/*.js',
-        src + 'app/layout/appbar/*js',
-        src + 'app/layout/login/*.js',
-        src + 'app/layout/sidenav/*js',
-
+        src + 'app/layout/*.js',
         // WORKSPACE
-        src + 'app/workspace/*js',
+        src + 'app/workspace/*.js',
+        src + 'app/workspace/api/*.js',
         src + 'app/workspace/petals/*.js',
         src + 'app/workspace/service/*.js',
-        src + 'app/workspace/api/*.js',
-
         // PETALS-COMPONENT
-        src + 'app/petals-component/bus/*.js',
-        src + 'app/petals-component/server/*.js',
+        // --- FallBack Component
         src + 'app/petals-component/fallback-component/*.js',
-        src + 'app/petals-component/bc-soap/*.js',
-        src + 'app/petals-component/bc-soap/su-provide/*.js',
-
-        // BC-SOAP, BUS, SERVER, SU
+        // --- Bus Component
+        src + 'app/petals-component/bus/*.js',
         src + 'app/petals-component/bus/**/*.js',
+        // --- Server Component
+        src + 'app/petals-component/server/*.js',
         src + 'app/petals-component/server/**/*.js',
+        // --- Bc-Soap Component
+        src + 'app/petals-component/bc-soap/*.js',
         src + 'app/petals-component/bc-soap/**/*.js',
-        src + 'app/petals-component/bc-soap/su-provide/**/*.js'
+        src + 'app/petals-component/bc-soap/**/**/*.js'
     ],
     html: [
-        // ALL
+        // INDEX
         src + '*.html',
-        src + 'app/**/*html',
-        src + 'app/**/**/*html',
-        src + 'app/**/**/**/*html',
-
+        // CORE
+        src + 'app/core/*html',
         // LAYOUT
-        src + 'app/layout/appbar/*html',
-        src + 'app/layout/login/*.html',
-        src + 'app/layout/console/*.html',
-        src + 'app/layout/sidenav/*html',
-
+        src + 'app/layout/*html',
         // WORKSPACE
         src + 'app/workspace/*html',
-        src + 'app/workspace/petals/*.html',
-        src + 'app/workspace/service/*.html',
         src + 'app/workspace/api/*.html',
-
+        src + 'app/workspace/petals/*.html',
+        src + 'app/workspace/petals/modals/*.html',
+        src + 'app/workspace/service/*.html',
         // PETALS-COMPONENT
-        src + 'app/petals-component/bus/*.html',
-        src + 'app/petals-component/server/*.html',
-        src + 'app/petals-component/bc-soap/*.html',
+        // --- FallBack Component
         src + 'app/petals-component/fallback-component/*.html',
-        src + 'app/petals-component/bc-soap/su-provide/*.html',
-        src + 'app/petals-component/modals/*.html',
-
-        // BC-SOAP, BUS, SERVER, SU ...
+        // --- Bus Component
+        src + 'app/petals-component/bus/*.html',
         src + 'app/petals-component/bus/**/*.html',
+        // --- Server Component
+        src + 'app/petals-component/server/*.html',
         src + 'app/petals-component/server/**/*.html',
+        // --- Bc-Soap Component
+        src + 'app/petals-component/bc-soap/*.html',
         src + 'app/petals-component/bc-soap/**/*.html',
-        src + 'app/petals-component/bc-soap/su-provide/**/*.html'
+        src + 'app/petals-component/bc-soap/**/**/*.html'
     ],
     sass: [
-        // ALL
-        src + 'app/**/*.scss',
-        src + 'app/**/**/*.scss',
-        src + 'app/**/**/**/*.scss',
-        src + 'app/core/**/*.scss',
-
+        // APP
+        src + 'app/*.scss',
         // LAYOUT
         src + 'app/layout/*.scss',
-
         // WORKSPACE
         src + 'app/workspace/*.scss',
+        src + 'app/workspace/api/*.scss',
         src + 'app/workspace/petals/*.scss',
         src + 'app/workspace/service/*.scss',
-        src + 'app/workspace/api/*.scss',
-
         // PETALS-COMPONENT
-        src + 'app/petals-component/bus/**/*.scss',
-        src + 'app/petals-component/server/**/*.scss',
-        src + 'app/petals-component/bc-soap/**/*.scss',
-        src + 'app/petals-component/bc-soap/su-provide/**/*.scss',
-
-        // BC-SOAP, BUS, SERVER, SU, FALLBACK COMPONENT
+        // --- FallBack Component
+        src + 'app/petals-component/fallback-component/*.scss',
+        // --- Bus Component
         src + 'app/petals-component/bus/*.scss',
+        src + 'app/petals-component/bus/**/*.scss',
+        // --- Server Component
         src + 'app/petals-component/server/*.scss',
+        src + 'app/petals-component/server/**/*.scss',
+        // --- Bc-Soap Component
         src + 'app/petals-component/bc-soap/*.scss',
-        src + 'app/petals-component/fallback-component/fallback-component/*.scss'
-
-
+        src + 'app/petals-component/bc-soap/**/*.scss',
+        src + 'app/petals-component/bc-soap/**/**/*.scss'
     ],
 
     $: $,

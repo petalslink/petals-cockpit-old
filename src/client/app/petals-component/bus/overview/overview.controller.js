@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('petalsComponent.configBus')
-        .controller('ConfigBusController', ControllerFunction);
+        .module('petalsComponent.bus.overview')
+        .controller('OverviewBusController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['promiseDetails'];
