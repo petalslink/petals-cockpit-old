@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var fallbackComponent = angular.module('app.fallback-component');
+    var fallbackComponent = angular.module('petalsComponent.fallback-component');
 
     fallbackComponent.config(configFunction);
 
@@ -15,11 +15,9 @@
                 url: '/fallback-component',
                 views: {
                     'petals-nav-console': {
-                        controller: '',
                         template: '<div></div>'
                     },
                     'petals-console': {
-                        controller: 'FallbackComponentController',
                         templateUrl: 'src/client/app/petals-component/fallback-component/fallback-component.html'
                     }
                 },

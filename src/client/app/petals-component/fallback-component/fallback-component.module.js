@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.fallback-component', []);
+    angular.module('petalsComponent.fallback-component', []);
 })();
