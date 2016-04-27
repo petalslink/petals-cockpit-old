@@ -11,15 +11,13 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-provide.operation', {
+            .state('home.workspace.petals.bc-soap-su-provide.operation', {
                 url: '/operation',
                 views: {
-                    /* jshint ignore:start */
                     'petals-console': {
                         controller: 'OperationSuProvideController',
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/operation/operation.html'
                     }
-                    /* jshint ignore:end */
                 },
                 onEnter: ['logger', function (logger) {
                     logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE.OPERATION');

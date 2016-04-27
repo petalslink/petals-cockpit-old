@@ -11,8 +11,8 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-provide', {
-                url: '/su-provide/:suId',
+            .state('home.workspace.petals.bc-soap-su-provide', {
+                url: '/bc-soap-su-provide/:id',
                 views: {
                     'petals-nav-console': {
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-provide.html',
@@ -25,7 +25,7 @@
                     },
                     resolve: {
                         promiseSUDetails: function(dataservice, $stateParams) {
-                            return dataservice.getPetalsComponent($stateParams.suId);
+                            return dataservice.getPetalsComponent($stateParams.id);
                         }
                     },
                     onEnter: ['logger', function (logger) {

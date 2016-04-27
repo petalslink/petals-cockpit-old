@@ -11,21 +11,21 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-consume', {
-                url: '/su-provide/:suId',
+            .state('home.workspace.petals.bc-soap-su-consume', {
+                url: '/bc-soap-su-consume/:id',
                 views: {
-                    'petals-nav-console': {
+                    'petals-nav-console@home.workspace.petals': {
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/su-consume.html',
                         controller: 'SuConsumeController',
                         controllerAs: 'vmSuConsume'
                     },
-                    'petals-console': {
+                    'petals-console@home.workspace.petals': {
                         template: '<div ui-view="petals-console"></div>',
                         controller: ''
                     },
                     resolve: {
                         promiseSUDetails: function(dataservice, $stateParams) {
-                            return dataservice.getPetalsComponent($stateParams.suId);
+                            return dataservice.getPetalsComponent($stateParams.id);
                         }
                     },
                     onEnter: ['logger', function (logger) {

@@ -11,15 +11,13 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap.su-consume.config', {
+            .state('home.workspace.petals.bc-soap-su-consume.config', {
                 url: '/config',
                 views: {
-                    /* jshint ignore:start */
                     'petals-console': {
                         controller: 'ConfigSuConsumeController',
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/config/config.html'
                     }
-                    /* jshint ignore:end */
                 },
                 onEnter: ['logger', function (logger) {
                     logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.CONFIG');
