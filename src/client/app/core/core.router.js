@@ -8,10 +8,11 @@
     core.config(configFunction);
     core.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$state', '$stateParams', '$urlRouter', 'logger'];
+    runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger'];
 
     /* @ngInject */
-    function runFunction($rootScope, $state, $stateParams, $urlRouter, logger) {
+    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger) {
+        $rootScope.$location = $location;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 

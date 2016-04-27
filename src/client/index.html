@@ -11,19 +11,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--
-    <link rel="shortcut icon" href="/src/client/images/favicon.png">
--->
     <link rel="shortcut icon" href="/src/client/images/petals_cockpit.png">
     <base href="/">
-
-<!-- omit title allows having complete url in history
-    <title>Petals Cockpit Prototype</title>
--->
-    <title>Petals Cockpit</title>
-
-    <!-- Material Design icon font -->
-    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+    <!-- title with complete url in history-->
+    <title ng-bind="'Petals Cockpit '+ $location.absUrl()">Petals Cockpit</title>
 
     <!-- build:css styles/lib.css -->
     <link href="/bower_components/angular-material/angular-material.css" rel="stylesheet" type="text/css">
