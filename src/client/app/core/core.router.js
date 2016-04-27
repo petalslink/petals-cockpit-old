@@ -66,7 +66,7 @@
                 }]
             })
             .state('home', {
-                url: '/',
+                url: '',
                 sticky: true,
                 dsr: true,
                 template: '<ui-view layout="column" layout-fill flex></ui-view>',

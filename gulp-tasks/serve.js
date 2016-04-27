@@ -67,7 +67,7 @@ module.exports = function (config) {
                     'PORT': port,
                     'NODE_ENV': isDev ? 'dev' : 'build'
                 },
-                watch: [config.server]
+                watch: [config.serverJs]
             };
         }
 

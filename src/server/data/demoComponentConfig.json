@@ -33,7 +33,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.bc-soap.su-consume.overview"
+                                    "initState": "home.workspace.petals.bc-soap-su-consume.overview"
                                 },
                                 {
                                     "name": "SU-PROVIDE",
@@ -41,7 +41,7 @@
                                     "cat": "SU",
                                     "subCat": "PROVIDE",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.bc-soap.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-soap-su-provide.overview"
                                 }
                             ]
                         },
@@ -59,7 +59,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.bc-rest.su-consume.overview"
+                                    "initState": "home.workspace.petals.bc-rest-su-consume.overview"
                                 },
                                 {
                                     "name": "SU-PROVIDE",
@@ -67,7 +67,7 @@
                                     "cat": "SU",
                                     "subCat": "PROVIDE",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.bc-rest.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-rest-su-provide.overview"
                                 }
                             ]
                         },
@@ -85,7 +85,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.bc-soap.su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-soap-su-provide.overview"
                                 }
                             ]
                         },
@@ -103,7 +103,7 @@
                                     "cat": "SU",
                                     "subCat": "CONSUME",
                                     "icon": "star",
-                                    "initState": "home.workspace.petals.se-quartz.su-consume.overview"
+                                    "initState": "home.workspace.petals.se-quartz-su-consume.overview"
                                 }
                             ]
                         }

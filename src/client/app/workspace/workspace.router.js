@@ -14,7 +14,7 @@
 
         $stateProvider
             .state('home.workspace', {
-                url: 'workspace',
+                url: '/workspace',
                 sticky: true,
                 dsr: true,
                 views: {
