@@ -7,10 +7,12 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', '$mdDialog', 'logger', 'promiseData', 'promiseConfig','dataWkspceService'];
+    ControllerFunction.$inject = ['$rootScope', '$state', '$mdDialog', 'logger',
+        'promiseData', 'promiseConfig', 'dataWkspceService', 'petalsService'];
 
     /* @ngInject */
-    function ControllerFunction($state, $mdDialog, logger, promiseData, promiseConfig, dataWkspceService) {
+    function ControllerFunction($rootScope, $state, $mdDialog, logger, promiseData,
+                                promiseConfig, dataWkspceService, petalsService) {
         var vmPetals = this;
 
         vmPetals.data = {};
@@ -18,25 +20,22 @@
         vmPetals.selectedChild = null;
         vmPetals.choiceList = [];
 
-        vmPetals.addTreeComponent = function (component) { addTreeComponent(component); };
-        vmPetals.changeTitle = function (component) { changeTitle(component); };
-        vmPetals.deleteTreeComponent = function (component) { deleteTreeComponent(component); };
-        vmPetals.mayAddSubComponent = function (component) { return component.mayAddSubComponent; };
-        vmPetals.moveDown = function (component) { moveDown(component); };
-        vmPetals.moveUp = function (component) { moveUp(component); };
-        vmPetals.select = function (component) { select(component); };
-        vmPetals.toggleMinimized = function (component) { toggleMinimized(component); };
+        vmPetals.addTreeComponent = function (component) {addTreeComponent(component);};
+        vmPetals.changeTitle = function (component) {changeTitle(component);};
+        vmPetals.deleteTreeComponent = function (component) {deleteTreeComponent(component);};
+        vmPetals.getComponentById = function (id) {return getComponentById(id);};
+        vmPetals.mayAddSubComponent = function (component) {return component.mayAddSubComponent;};
+        vmPetals.moveDown = function (component) {moveDown(component);};
+        vmPetals.moveUp = function (component) {moveUp(component);};
+        vmPetals.gotoComponentState = function (component) {gotoComponentState(component);};
+        vmPetals.toggleMinimized = function (component) {toggleMinimized(component);};
 
-        /*
-         $scope.$on('$stateNotFound',
-         function(event, unfoundState){
-         logger.debug(' petals.controller.js -  unfoundstate.to: '+ unfoundState.to +
-         ' - Params: ' + unfoundState.toParams + ' - Options: ' +unfoundState.options);
-         //todo allert user that no plud-in for this component is found o redirect to an null component
-         // that tells user plug-in is not avialable for this component
-         select(vmPetals.selectedChild);
-         });
-         */
+        $rootScope.$on('$stateChangeSuccess', function () {
+            // select component depending on url
+            var id = petalsService.getSelectedComponentId();
+            selectComponentById(id);
+
+        });
 
         activate();
 
@@ -47,11 +46,45 @@
             vmPetals.data = promiseData;
             vmPetals.configData = promiseConfig;
 
-            //goto First element if exist
-            if (vmPetals.data.children[0]) {
-                select(vmPetals.data.children[0]);
-            }
+            // select component depending on url
+            var id = petalsService.getSelectedComponentId();
+            selectComponentById(id);
+        }
 
+
+        function selectComponentById(id) {
+            if (id > -1) {
+                var selectedChild = getComponentById(id);
+
+                if (selectedChild) {
+                    // unselect previous sellected component
+                    if (vmPetals.selectedChild) {
+                        vmPetals.selectedChild.selected = false;
+                    }
+                    // set selected comonent
+                    vmPetals.selectedChild = selectedChild;
+                    vmPetals.selectedChild.selected = true;
+                    dataWkspceService.setInfoSelect(vmPetals.selectedChild.selectionChain);
+                } else {
+                    var alert = $mdDialog.alert({
+                        title: 'Attention',
+                        textContent: 'The component ' + id + ' does not exist anymore',
+                        ok: 'Close'
+                    });
+                    $mdDialog.show(alert).then(function () {
+                        //goto First element if exist
+                        if (vmPetals.data.children[0]) {
+                            gotoComponentState(vmPetals.data.children[0]);
+                        }
+
+                    });
+                }
+            } else {
+                //goto First element if exist
+                if (vmPetals.data.children[0]) {
+                    gotoComponentState(vmPetals.data.children[0]);
+                }
+            }
         }
 
         function getConfigComponentType(component) {
@@ -59,13 +92,13 @@
 
             function walk(componentConfigData) {
                 if (componentConfigData) {
-                    if ((componentConfigData.name === component.componentType.name) &&
-                        (componentConfigData.version === component.componentType.version) &&
-                        (componentConfigData.cat === component.componentType.cat) ) {
+                    if ((componentConfigData.componentType.name === component.componentType.name) &&
+                        (componentConfigData.componentType.version === component.componentType.version) &&
+                        (componentConfigData.componentType.cat === component.componentType.cat)) {
                         return componentConfigData;
                     } else {
-                        if (componentConfigData.contains){
-                            for( var i = 0; i < componentConfigData.contains.length; i++) {
+                        if (componentConfigData.contains) {
+                            for (var i = 0; i < componentConfigData.contains.length; i++) {
                                 var searchInChild = walk(componentConfigData.contains[i]);
                                 if (searchInChild) {
                                     return searchInChild;
@@ -84,19 +117,19 @@
 
             // Get list of sub-component if exist
             var choiceList = [];
-            if(componentType) {
+            if (componentType) {
                 for (var i = 0; i < componentType.contains.length; i++) {
                     choiceList[i] = {
-                        'name' : componentType.contains[i].name,
-                        'version': componentType.contains[i].version,
-                        'cat': componentType.contains[i].cat,
-                        'subCat': componentType.contains[i].subCat,
-                        'icon': componentType.contains[i].icon
-                        };
+                        'name': componentType.contains[i].componentType.name,
+                        'version': componentType.contains[i].componentType.version,
+                        'cat': componentType.contains[i].componentType.cat,
+                        'subCat': componentType.contains[i].componentType.subCat,
+                        'icon': componentType.contains[i].componentType.icon
+                    };
                 }
             } else {
                 // componentType does'nt exist anymore due to configuration change
-                select(component);
+                // todo ?
                 return;
             }
             var newComponent = {};
@@ -114,7 +147,7 @@
                     localChoiceList: choiceList
                 },
                 controller: DialogController,
-                controllerAs : 'vmModal'
+                controllerAs: 'vmModal'
 
             }).then(function () {
                 // todo call a addComponent function
@@ -124,7 +157,7 @@
                     componentType: newComponent.componentType,
                     state: 'undeployed',
                     display: 'empty',
-                    selectionChain: component.selectionChain+'/'+newComponent.title,
+                    selectionChain: component.selectionChain + '/' + newComponent.title,
                     children: []
                 });
                 component.display = 'open';
@@ -138,10 +171,18 @@
                 vmModal.parentTitle = localParentTitle;
                 vmModal.choiceList = localChoiceList;
                 vmModal.myChoice = {};
-                vmModal.changeSelected = function () { changeSelected(); };
-                vmModal.closeDialog = function () { $mdDialog.cancel(); };
-                vmModal.hasChoice = function () { return (vmModal.choiceList.length > 1); };
-                vmModal.validDialog = function () { $mdDialog.hide(); };
+                vmModal.changeSelected = function () {
+                    changeSelected();
+                };
+                vmModal.closeDialog = function () {
+                    $mdDialog.cancel();
+                };
+                vmModal.hasChoice = function () {
+                    return (vmModal.choiceList.length > 1);
+                };
+                vmModal.validDialog = function () {
+                    $mdDialog.hide();
+                };
 
                 activate();
 
@@ -170,7 +211,7 @@
                 templateUrl: 'src/client/app/workspace/petals/modals/change-name.html',
                 locals: {localData: data},
                 controller: DialogController,
-                controllerAs : 'vmModal'
+                controllerAs: 'vmModal'
             }).then(function () {
                 component.title = data.title;
             });
@@ -181,12 +222,17 @@
                 var vmModal = this;
                 vmModal.data = localData;
                 vmModal.modalTitle = localData.title;
-                vmModal.closeDialog = function () { $mdDialog.cancel(); };
-                vmModal.validDialog = function () { $mdDialog.hide(); };
+                vmModal.closeDialog = function () {
+                    $mdDialog.cancel();
+                };
+                vmModal.validDialog = function () {
+                    $mdDialog.hide();
+                };
 
                 activate();
 
-                function activate(){}
+                function activate() {
+                }
             }
         }
 
@@ -200,7 +246,7 @@
                 templateUrl: 'src/client/app/workspace/petals/modals/delete-component.html',
                 locals: {localData: data},
                 controller: DialogController,
-                controllerAs : 'vmModal'
+                controllerAs: 'vmModal'
             }).then(function () {
                 function walk(target) {
                     var children = target.children;
@@ -209,7 +255,8 @@
                         i = children.length;
                         while (i--) {
                             if (children[i] === component) {
-                                return children.splice(i, 1);
+                                children.splice(i, 1);
+                                return gotoComponentState(target);
                             } else {
                                 walk(children[i]);
                             }
@@ -225,13 +272,40 @@
             function DialogController($mdDialog, localData) {
                 var vmModal = this;
                 vmModal.modalTitle = localData.title;
-                vmModal.closeDialog = function () { $mdDialog.cancel(); };
-                vmModal.validDialog = function () { $mdDialog.hide(); };
+                vmModal.closeDialog = function () {
+                    $mdDialog.cancel();
+                };
+                vmModal.validDialog = function () {
+                    $mdDialog.hide();
+                };
 
                 activate();
 
-                function activate(){}
+                function activate() {
+                }
 
+            }
+        }
+
+        function getComponentById(id) {
+            return walk(vmPetals.data);
+
+            function walk(componentData) {
+                if (componentData) {
+                    if (componentData.id === id) {
+                        return componentData;
+                    } else {
+                        if (componentData.children) {
+                            for (var i = 0; i < componentData.children.length; i++) {
+                                var searchInChild = walk(componentData.children[i]);
+                                if (searchInChild) {
+                                    return searchInChild;
+                                }
+                            }
+                        }
+                    }
+                }
+                return null;
             }
         }
 
@@ -283,7 +357,7 @@
             walk(vmPetals.data);
         }
 
-        function select(component) {
+        function gotoComponentState(component) {
             // store data of previous selected component
             if (vmPetals.selectedChild) {
                 vmPetals.selectedChild.selected = false;
@@ -292,45 +366,37 @@
 
             var componentType = getConfigComponentType(component);
 
-            if(!componentType) {
+            if (!componentType) {
                 // component doesn't exist anymore due to configuration change
                 //todo unselect this component and select the first component available
                 component.mayAddSubComponent = false;
-                select(vmPetals.selectedChild);
+                /*
+                 select(vmPetals.selectedChild);
+                 */
                 return;
             } else {
                 component.mayAddSubComponent = (!componentType.contains) ? false : true;
-/*
-                if(!componentType.contains){
-                    component.mayAddSubComponent = false;
-                } else {
-                    component.mayAddSubComponent = true;
-                }
-*/
             }
             // goto his state
-            var nextState ='';
+            var nextState = '';
             if (component.lastState) {
                 nextState = component.lastState;
             } else {
                 nextState = componentType.initState;
             }
-            $state.go(nextState,{id: component.id}).then( function() {
+            $state.go(nextState, {id: component.id}).then(function () {
                     // if succes Set selection for Workspace
-                    component.selected = true;
-                    vmPetals.selectedChild = component;
-                    dataWkspceService.setInfoSelect(component.selectionChain);
-                    component.hasPlugin = true;
-
-                }, function(){
+                    /*
+                     petalsService.setSelectedComponentId(component.id);
+                     */
+                }, function () {
                     // if error
                     logger.debug('petals.controller.js: failed go state !!!');
                     component.selected = true;
                     vmPetals.selectedChild = component;
                     dataWkspceService.setInfoSelect(component.selectionChain);
                     //TODO manage plugin error
-                    component.hasPlugin = false;
-                    $state.go('home.workspace.petals.fallback-component');
+                    $state.go('home.workspace.petals.fallback-component', {id: component.id});
                 }
             );
         }

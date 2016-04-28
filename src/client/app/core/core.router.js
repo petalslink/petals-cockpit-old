@@ -16,22 +16,24 @@
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
-/* todo manage resolve error on state transition
-        $rootScope.$on('$stateChangeError', function(event){
-        }
-*/
-        $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
+        /* todo manage resolve error on state transition */
+        $rootScope.$on('$stateChangeError', function (event) {
             logger.debug('*** Core.router.js $on:');
-            logger.debug('  ------> event        : '+angular.toJson(event));
-            logger.debug('  ------> unfoundState.to : '+angular.toJson(unfoundState.to));
-            logger.debug('  ------> unfoundState.toParams : '+angular.toJson(unfoundState.toParams));
-            logger.debug('  ------> unfoundState.options : '+unfoundState.options);
-            logger.debug('  ------> fromState    : '+angular.toJson(fromState));
-            logger.debug('  ------> fromParams   : '+angular.toJson(fromParams));
+            logger.debug('  ------> event        : ' + angular.toJson(event));
+        });
+
+        $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
+            logger.debug('*** Core.router.js $on:');
+            logger.debug('  ------> event        : ' + angular.toJson(event));
+            logger.debug('  ------> unfoundState.to : ' + angular.toJson(unfoundState.to));
+            logger.debug('  ------> unfoundState.toParams : ' + angular.toJson(unfoundState.toParams));
+            logger.debug('  ------> unfoundState.options : ' + unfoundState.options);
+            logger.debug('  ------> fromState    : ' + angular.toJson(fromState));
+            logger.debug('  ------> fromParams   : ' + angular.toJson(fromParams));
             // this is required if you want to prevent the $UrlRouter
             // reverting the URL to the previous valid location
             event.preventDefault();
-            });
+        });
         // Configures $urlRouter's listener *after* your custom listener
         $urlRouter.listen();
     }
@@ -45,11 +47,9 @@
 
         $locationProvider.html5Mode({enabled:true,requireBase:true});
 
-        $urlRouterProvider
-            .otherwise('/404');
+        $urlRouterProvider.when('/', '/workspace');
 
-        $urlRouterProvider
-            .when('/', '/workspace');
+        $urlRouterProvider.otherwise('/404');
 
         $stateProvider
             .state('404', {
@@ -67,7 +67,7 @@
                 }]
             })
             .state('home', {
-                url: '',
+                url: '/',
                 sticky: true,
                 dsr: true,
                 template: '<ui-view layout="column" layout-fill flex></ui-view>',

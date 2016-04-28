@@ -30,10 +30,10 @@
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.SERVICE');
+                    logger.debug('You enter in WORKSPACE.SERVICE');
                 }],
                 onReactivate: ['dataWkspceService', 'logger', function (dataWkspceService, logger) {
-                    logger.debug('You are in WORKSPACE.SERVICE');
+                    logger.debug('You reactivate WORKSPACE.SERVICE');
                     dataWkspceService.resetStateInfoSelect('SERVICE');
                 }],
                 onInactivate: ['dataWkspceService', function (dataWkspceService) {

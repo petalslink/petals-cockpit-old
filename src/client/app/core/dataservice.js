@@ -38,8 +38,10 @@
             function getPetalsComponentFailed(e) {
                 logger.info('****** getPetalsComponentFailed');
                 logger.info('****** '+ e.data.description);
-
+                //todo nothing !
+/*
                 $location.url('/');
+*/
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
@@ -61,8 +63,15 @@
             function getPetalsComponentsFailed(e) {
                 logger.info('****** getPetalsComponentsFailed');
                 logger.info('****** '+ e.data.description);
+                //todo nothing !
+/*
                 $location.url('/');
+*/
+/*
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
+*/
+                exception.catcher('XHR Failed for getPetalsComponent')(e);
+                return $q.reject(e);
             }
         }
 
@@ -83,7 +92,10 @@
             function getPetalsComponentConfigFailed(e) {
                 logger.info('****** getPetalsComponentConfigFailed');
                 logger.info('****** '+ e.data.description);
+                //todo nothing ! let ui-router$on mange
+/*
                 $location.url('/');
+*/
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }

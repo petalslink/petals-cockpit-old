@@ -40,7 +40,7 @@
                     </md-icon>
 
 
-                    <md-button class="md-primary menuBtnTree" ng-click="vmPetals.select(child)"
+                    <md-button class="md-primary menuBtnTree" ng-click="vmPetals.gotoComponentState(child)"
                                ng-class="{'md-raised': child.selected}"> {{ child.title }}
                     </md-button>
 
@@ -48,8 +48,8 @@
                     <div>
                         <md-icon title="Add" class="material-icons md-accent md-raised treeIcon"
                                  ng-click="vmPetals.addTreeComponent(child)"
-                                 ng-hide="!(child.mayAddSubComponent) || !(child.hasPlugin === true)
-                                 || !(child.selected === true) || (child.display==='minimized')"
+                                 ng-hide="!(child.mayAddSubComponent) || !(child.selected === true)
+                                          || (child.display==='minimized')"
                                  md-svg-icon="mdicons:plus-box">
                         </md-icon>
                     </div>

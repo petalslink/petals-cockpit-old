@@ -31,10 +31,10 @@
                     }]
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BUS');
+                    logger.debug('You enter in WORKSPACE.PETALS.BUS');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BUS');
+                    logger.debug('You reactivate WORKSPACE.PETALS.BUS');
                 }]
             });
     }

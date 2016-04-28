@@ -9,12 +9,11 @@
     /* @ngInject */
     function configFunction($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider
-            .when('/workspace', '/workspace/petals');
+        $urlRouterProvider.when('/workspace', '/workspace/petals');
 
         $stateProvider
             .state('home.workspace', {
-                url: '/workspace',
+                url: 'workspace',
                 sticky: true,
                 dsr: true,
                 views: {
@@ -25,10 +24,10 @@
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE');
+                    logger.debug('You enter in WORKSPACE');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE');
+                    logger.debug('You reactivate WORKSPACE');
                 }]
             });
     }

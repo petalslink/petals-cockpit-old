@@ -21,10 +21,10 @@
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BUS.CONFIG');
+                    logger.debug('You enter in WORKSPACE.PETALS.BUS.CONFIG');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BUS.CONFIG');
+                    logger.debug('You reactivate WORKSPACE.PETALS.BUS.CONFIG');
                 }]
             });
 

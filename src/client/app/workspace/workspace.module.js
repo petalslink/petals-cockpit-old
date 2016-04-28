@@ -5,6 +5,5 @@
         'app.petals',
         'app.service',
         'app.api'
-/*        'app.layout'*/
     ]);
 })();

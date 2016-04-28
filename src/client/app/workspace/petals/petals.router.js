@@ -3,7 +3,36 @@
 
     var petals = angular.module('app.petals');
 
+    var runFuntion = runFunction;
+
     petals.config(configFunction);
+    petals.run(runFuntion);
+
+    runFunction.$inject = ['$rootScope', 'logger', 'petalsService'];
+
+    /* @ngInject */
+    function runFunction($rootScope, logger, petalsService) {
+        $rootScope.$on('$stateChangeError', function(event, toState){
+            logger.debug('------------------------------------------------------------------');
+            logger.debug('*** petals.router.js $on $stateChangeError:');
+            logger.debug('  ------> event        : ' + angular.toJson(event));
+            logger.debug('  ------> toState      : ' + angular.toJson(toState));
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState){
+            logger.debug('------------------------------------------------------------------');
+            logger.debug('*** petals.router.js $on $stateChangeSuccess:');
+            logger.debug('  ------> event        : ' + angular.toJson(event));
+            logger.debug('  ------> toState      : ' + angular.toJson(toState));
+            // set selectedComponent depending on url
+            var path = $rootScope.$location.path();
+            var componentPath = path.split('/workspace/petals/');
+            if (componentPath[1]) {
+                var id = parseInt(componentPath[1].split('/')[1],10);
+                petalsService.setSelectedComponentId(id);
+            }
+        });
+    }
 
     configFunction.$inject = ['$stateProvider'];
     /* @ngInject */
@@ -39,10 +68,10 @@
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS');
+                    logger.debug('You enter in WORKSPACE.PETALS');
                 }],
                 onReactivate: ['dataWkspceService', 'logger', function (dataWkspceService, logger) {
-                    logger.debug('You are in WORKSPACE.PETALS');
+                    logger.debug('You reactivate WORKSPACE.PETALS');
                     dataWkspceService.resetStateInfoSelect('PETALS');
                 }],
                 onInactivate: ['dataWkspceService', function (dataWkspceService) {

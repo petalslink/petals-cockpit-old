@@ -26,18 +26,13 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', '$mdDialog', '$mdSidenav'];
+    ControllerFunction.$inject = ['$state', '$mdDialog'];
 
     /* @ngInject */
-    function ControllerFunction($state, $mdDialog, $mdSidenav) {
+    function ControllerFunction($state, $mdDialog) {
         var vm = this;
         vm.login = login;
-        vm.reloadWorkspace = reloadWorkspace();
-        vm.toggleSidenav = toggleSidenav;
-
-        function toggleSidenav() {
-            $mdSidenav('left').toggle();
-        }
+        vm.reloadWorkspace = reloadWorkspace;
 
         function login() {
             $mdDialog.show({

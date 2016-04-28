@@ -12,7 +12,7 @@
 
         $stateProvider
             .state('home.workspace.petals.fallback-component', {
-                url: '/fallback-component',
+                url: '/fallback-component/:id',
                 views: {
                     'petals-nav-console': {
                         template: '<div></div>'
