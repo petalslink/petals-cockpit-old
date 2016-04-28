@@ -15,8 +15,9 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
+                        templateUrl: 'src/client/app/petals-component/server/server-overview/server-overview.html',
                         controller: 'OverviewServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-overview/server-overview.html'
+                        controllerAs: 'vmServerOverview'
                     }
                 },
                 onEnter: ['logger', function (logger) {

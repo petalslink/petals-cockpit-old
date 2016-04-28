@@ -16,7 +16,8 @@
                 views: {
                     'petals-console': {
                         controller: 'ConfigServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html'
+                        templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html',
+                        controllerAs: 'vmServerConfig'
                     }
                 },
                 onEnter: ['logger', function (logger) {

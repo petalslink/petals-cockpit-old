@@ -76,7 +76,6 @@
                         if (vmPetals.data.children[0]) {
                             gotoComponentState(vmPetals.data.children[0]);
                         }
-
                     });
                 }
             } else {

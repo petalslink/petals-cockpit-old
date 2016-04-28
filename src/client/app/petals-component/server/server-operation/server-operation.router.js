@@ -15,8 +15,9 @@
                 url: '/operation',
                 views: {
                     'petals-console': {
+                        templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html',
                         controller: 'OperationServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html'
+                        controllerAs: 'vmServerOperation'
                     }
                 },
                 onEnter: ['logger', function (logger) {

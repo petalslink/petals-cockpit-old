@@ -15,8 +15,9 @@
                 url: '/server/:id',
                 views: {
                     'petals-nav-console': {
+                        templateUrl: 'src/client/app/petals-component/server/server.html',
                         controller: 'ServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server.html'
+                        controllerAs: 'vmServer'
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console"></div>',

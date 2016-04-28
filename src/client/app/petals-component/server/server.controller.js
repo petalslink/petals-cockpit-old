@@ -6,15 +6,17 @@
         .controller('ServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$scope'];
+    ControllerFunction.$inject = [];
 
     /* @ngInject */
-    function ControllerFunction($scope) {
+    function ControllerFunction() {
+
+        var vm = this;
 
         activate();
 
         // TABS VIEWS CONSOLE
-        $scope.dataNavConsole = [
+        vm.dataNavConsole = [
             {
                 Locked: false,
                 Label: 'Overview',
