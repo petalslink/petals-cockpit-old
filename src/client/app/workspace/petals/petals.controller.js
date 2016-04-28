@@ -48,9 +48,9 @@
             vmPetals.configData = promiseConfig;
 
             //goto First element if exist
-            if (vmPetals.data.children[0]) {
+/*            if (vmPetals.data.children[0]) {
                 select(vmPetals.data.children[0]);
-            }
+            }*/
 
         }
 
