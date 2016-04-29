@@ -13,24 +13,11 @@
                       md-colspan-sm="2"
                       md-colspan-xs="3"
                       ng-class="tile.background">
-            <md-button layout="column" class="fondGrid" layout-fill layout-padding>
 
-                <md-grid-tile-header layout-align="center stretch" class="gridTitleHeader">
-                    <span class="md-title">{{tile.title}}</span>
-                </md-grid-tile-header>
-
-                <div class="gridContent">
-                    <p class="md-text-content" ng-class="tile.color" ng-repeat="data in tile.datas">
-                        {{data.title}}{{data.titleSub}}
-                        <md-icon class="md-accent" md-svg-icon="{{data.iconSub}}"></md-icon>
-                        <i>{{data.sub}}</i>
-                        <i>{{data.sub1}}</i>
-                        <br ng-if="(data.title.length + data.value.length) > 16 && (data.titleSub.length + data.value.length) > 12">
-                        <b>{{data.value}}</b>
-                    </p>
-                </div>
-
+            <md-button aria-label="Open Modal Server Config Details" layout="column" class="fondGrid" layout-fill layout-padding ng-click="vmServerConfig.openModalTile(tile)">
+                <config-tile tile="tile"></config-tile>
             </md-button>
+
         </md-grid-tile>
     </md-grid-list>
 

@@ -6,15 +6,16 @@
         .controller('ConfigServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails'];
+    ControllerFunction.$inject = ['promiseDetails', 'configModalTile'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails) {
+    function ControllerFunction(promiseDetails, configModalTile) {
 
         var vm = this;
 
         vm.details = {};
         vm.tiles = [];
+        vm.openModalTile = configModalTile.openModalTile;
 
         activate();
 
@@ -25,7 +26,6 @@
         }
 
         function buildTiles() {
-
 
             vm.tiles = [
                 {
@@ -273,6 +273,8 @@
                 }
             ];
         }
+
+
     }
 
 })();

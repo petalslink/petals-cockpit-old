@@ -16,8 +16,6 @@
         var directive = {
             restrict: 'E',
             templateUrl: 'src/client/app/layout/appbar.html',
-            scope: {
-            },
             controller: 'AppbarController',
             controllerAs: 'vm'
         };
@@ -26,6 +24,7 @@
     }
 
     // ----- ControllerFunction -----
+
     ControllerFunction.$inject = ['$state', '$mdDialog'];
 
     /* @ngInject */
