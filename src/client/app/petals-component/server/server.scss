@@ -107,6 +107,8 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
 .gridListServer md-grid-tile {
     text-transform: uppercase;
     transition: all 400ms ease-out 50ms;
+    border: black 10px;
+    border-radius: 6px;
 }
 .gridListServer .colorBlack {
     color: black !important;

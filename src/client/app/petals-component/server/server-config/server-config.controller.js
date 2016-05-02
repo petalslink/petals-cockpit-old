@@ -162,35 +162,35 @@
                             value: vm.details.transport.queue.offering_timeout
                         },
                         {titleSub: 'Tcp :'},
-                        {iconSub: 'mdicons:subdirectory-arrow-right', sub: 'Receivers :'},
+                        {iconSub: 'mdicons:subdirectory-arrow-right', subEmpty: 'Receivers :'},
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Numbers :',
                             value: vm.details.transport.tcp.receivers.numbers
                         },
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Keep_alive :',
                             value: vm.details.transport.tcp.receivers.keep_alive
                         },
-                        {iconSub: 'mdicons:subdirectory-arrow-right', sub: 'Senders :'},
+                        {iconSub: 'mdicons:subdirectory-arrow-right', subEmpty: 'Senders :'},
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Numbers :',
                             value: vm.details.transport.tcp.senders.numbers
                         },
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Connection_timeout :',
                             value: vm.details.transport.tcp.senders.connection_timeout
                         },
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Timeout :',
                             value: vm.details.transport.tcp.senders.timeout
                         },
                         {
-                            iconSub: 'mdicons:menu-right',
+                            iconSub1: 'mdicons:menu-right',
                             sub1: 'Evictor_delay :',
                             value: vm.details.transport.tcp.senders.evictor_delay
                         }

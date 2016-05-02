@@ -1,13 +1,37 @@
 <md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak>
     <form name="serverConfigForm">
-        <md-toolbar class="md-accent md-toolbar-tools">
+
+        <md-toolbar class="md-accent md-toolbar-tools gridTitleHeader">
             <md-icon class="material-icons"
                      md-svg-icon="mdicons:border-color">
             </md-icon>
             <span flex></span>
-            <h1>TEST</h1>
-<!--            <h2><b>'{{ vmModal.modalTitle }}'</b></h2>-->
+            <h2>{{vmModal.tile.title}}</h2>
             <span flex></span>
         </md-toolbar>
+
+        <md-card layout="column" layout-align="start start" layout-padding>
+
+            <md-input-container aria-label="title" class="md-accent md-icon-float"
+                                ng-repeat="data in vmModal.tile.datas" style="margin: 0;">
+                <span class="md-accent md-body-2"><b>{{data.title}}</b></span>
+                <span class="md-accent md-body-2"><b>{{data.titleSub}}</b></span>
+                <span class="md-body-2">
+
+                    <md-icon class="md-accent" md-svg-icon="{{data.iconSub}}"></md-icon>
+                    <span class="md-accent md-caption"><b>{{data.sub}}</b></span>
+                    <span class="md-accent md-caption"><b>{{data.subEmpty}}</b></span>
+                    <md-icon class="md-accent" md-svg-icon="{{data.iconSub1}}"></md-icon>
+                    <span class="md-accent md-caption">{{data.sub1}}</span>
+
+                </span>
+
+                <input name="value" ng-model="data.value" class="md-accent md-caption"
+                       type="text" ng-if="!data.titleSub && !data.subEmpty">
+
+            </md-input-container>
+
+        </md-card>
+
     </form>
 </md-dialog>
