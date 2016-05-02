@@ -26,6 +26,7 @@ md-sidenav.md-locked-open.md-closed,
 md-sidenav.md-locked-open.md-closed.md-sidenav-right,
 md-sidenav.md-locked-open-remove.md-closed {
     padding-top: 0 !important;
+    background: rgba(229, 222, 249, 1) !important;
 }
 
 
@@ -37,6 +38,7 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
+        background: rgba(229, 222, 249, 1) !important;
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 108px;
@@ -50,6 +52,7 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
+        background: rgba(229, 222, 249, 1) !important;
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 124px;
@@ -61,5 +64,6 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         margin-top: 0;
+        background: rgba(229, 222, 249, 1) !important;
     }
 }
