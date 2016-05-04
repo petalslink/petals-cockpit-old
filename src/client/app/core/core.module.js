@@ -6,6 +6,9 @@
         'ngMaterial',
         'ngSanitize',
         'ngMessages',
+        'ngAria',
+        'formly',
+        'formlyMaterial',
 
         // Our reusable blocks
         'blocks.exception',

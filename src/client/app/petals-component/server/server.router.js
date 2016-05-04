@@ -20,7 +20,7 @@
                         controllerAs: 'vmServer'
                     },
                     'petals-console': {
-                        template: '<div ui-view="petals-console"></div>',
+                        template: '<div ui-view="petals-console" layout-fill></div>',
                         controller: ''
                     }
                 },

@@ -1,5 +1,5 @@
 <div class="gridListServer" flex md-theme="cardCustom-theme">
-
+    <form name="vmServerConfig.form" novalidate>
     <md-grid-list
         md-cols-sm="6" md-cols-md="6" md-cols-gt-md="6"
         md-row-height="7:8"
@@ -14,11 +14,23 @@
                       md-colspan-xs="3"
                       ng-class="tile.background">
 
-            <md-button aria-label="Open Modal Server Config Details" layout="column" class="fondGrid" layout-fill layout-padding ng-click="vmServerConfig.openModalTile(tile)">
-                <config-tile tile="tile"></config-tile>
+            <md-button aria-label="Open Modal Server Config Details" class="fondGrid" layout-fill ng-click="vmServerConfig.openModalTile(tile)">
+
+                <formly-form model="tile.model" fields="tile.fields" options="tile.options" form="tile.form" layout-fill layout-align="center start"></formly-form>
+
             </md-button>
 
         </md-grid-tile>
     </md-grid-list>
+    </form>
 
+
+
+<!--    <hr />
+    <h2>Model Value</h2>
+    <pre>{{vmServerConfig.model | json}}</pre>
+    <h2>Fields <small>(note, functions are not shown)</small></h2>
+    <pre>{{vmServerConfig.originalFields | json}}</pre>
+    <h2>Form</h2>
+    <pre>{{vmServerConfig.form | json}}</pre>-->
 </div>

@@ -1,5 +1,5 @@
 <md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak>
-    <form name="serverConfigForm">
+    <form name="serverConfigForm" ng-submit="vmModal.onSubmit()" name="vmModal.form" novalidate>
 
         <md-toolbar class="md-accent md-toolbar-tools gridTitleHeader">
             <md-icon class="material-icons"
@@ -12,24 +12,11 @@
 
         <md-card layout="column" layout-align="start start" layout-padding>
 
-            <md-input-container aria-label="title" class="md-accent md-icon-float"
-                                ng-repeat="data in vmModal.tile.datas" style="margin: 0;">
-                <span class="md-accent md-body-2"><b>{{data.title}}</b></span>
-                <span class="md-accent md-body-2"><b>{{data.titleSub}}</b></span>
-                <span class="md-body-2">
-
-                    <md-icon class="md-accent" md-svg-icon="{{data.iconSub}}"></md-icon>
-                    <span class="md-accent md-caption"><b>{{data.sub}}</b></span>
-                    <span class="md-accent md-caption"><b>{{data.subEmpty}}</b></span>
-                    <md-icon class="md-accent" md-svg-icon="{{data.iconSub1}}"></md-icon>
-                    <span class="md-accent md-caption">{{data.sub1}}</span>
-
-                </span>
-
-                <input name="value" ng-model="data.value" class="md-accent md-caption"
-                       type="text" ng-if="!data.titleSub && !data.subEmpty">
-
-            </md-input-container>
+            <formly-form model="vmModal.tile.model" fields="vmModal.tile.fieldsModal" options="vmModal.tile.options" form="vmModal.tile.form">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="vmModal.tile.form.$invalid">Update
+                </md-button>
+                <md-button type="button" class="md-raised" ng-click="vmModal.tile.options.resetModel()">Reset</md-button>
+            </formly-form>
 
         </md-card>
 

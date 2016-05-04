@@ -3,13 +3,14 @@
 
     angular
         .module('app.configServer')
-        .controller('ConfigServerController', ControllerFunction);
+        .controller('ConfigServerController', ControllerFunction)
+        .directive('inputClear', inputClear);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails', 'configModalTile'];
+    ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails, configModalTile) {
+    function ControllerFunction(promiseDetails, configModalTile, logger) {
 
         var vm = this;
 
@@ -22,64 +23,340 @@
         function activate() {
             // init data with resolve from router
             vm.details = promiseDetails;
+
             buildTiles();
         }
 
         function buildTiles() {
 
+            // funcation assignment
+            vm.onSubmit = onSubmit;
+
+            vm.tiles.model = {
+                state: vm.details.state
+            };
+
+            vm.tiles.options = {};
+
             vm.tiles = [
+                /* TYPE */
                 {
                     span: {row: 1, col: 1},
                     background: 'imgGrid',
-                    color: 'colorWhite',
                     title: 'Type',
-                    datas: [
-                        {title: 'Type :', value: vm.details.componentType.name},
-                        {title: 'Version :', value: vm.details.componentType.version}
+                    fields: [
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroupModal: [
+                                {
+                                    key: 'type',
+                                    className: 'flex',
+                                    type: 'label',
+                                    templateOptions: {
+                                        label: vm.details.componentType.name,
+                                        disabled: true
+                                    }
+                                },
+                                {
+                                    key: 'version',
+                                    className: 'flex',
+                                    type: 'label',
+                                    templateOptions: {
+                                        label: vm.details.componentType.version,
+                                        disabled: true
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'type',
+                                    className: 'layout-fill',
+                                    type: 'detailsTitle',
+                                    templateOptions: {
+                                        label: 'Type'
+                                    }
+                                },
+                                {
+                                    key: 'name',
+                                    className: 'layout-fill colorWhite',
+                                    type: 'detailsCenter',
+                                    templateOptions: {
+                                        labelValue: vm.details.componentType.name
+                                    }
+                                },
+                                {
+                                    key: 'version',
+                                    className: 'layout-fill colorWhite',
+                                    type: 'detailsCenter',
+                                    templateOptions: {
+                                        label: 'Version : ',
+                                        labelValue: vm.details.componentType.version
+                                    }
+                                }
+                            ]
+                        }
                     ]
                 },
+                /* TITLE COMPONENT */
                 {
                     span: {row: 1, col: 1},
                     background: 'yellow',
-                    color: 'colorBlack',
                     title: vm.details.title,
-                    datas: [
-                        {title: 'State :', value: vm.details.state},
-                        {title: 'Description :', value: vm.details.description}
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'state',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        label: 'State : ',
+                                        input: vm.details.state
+                                    }
+                                },
+                                {
+                                    key: 'description',
+                                    className: 'flex',
+                                    type: 'input',
+                                    defaultValue: vm.details.description,
+                                    templateOptions: {
+                                        label: 'Description : '
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    fields: [
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'title',
+                                    className: 'flex',
+                                    type: 'detailsTitle',
+                                    templateOptions: {
+                                        label: vm.details.title
+                                    }
+                                },
+                                {
+                                    key: 'state',
+                                    className: 'flex',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'State : ' + vm.details.state
+                                    }
+                                },
+                                {
+                                    key: 'description',
+                                    className: 'flex',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Description : ' + vm.details.description
+                                    }
+                                }
+                            ]
+                        }
                     ]
                 },
+                /* ROUTER */
                 {
                     span: {row: 1, col: 1},
                     background: 'gray',
-                    color: 'colorBlack',
                     title: 'Router',
-                    datas: [
-                        {title: 'Strategy :', value: vm.details.router.strategy},
-                        {title: 'Send_attempt :', value: vm.details.router.send_attempt},
-                        {title: 'Send_delay :', value: vm.details.router.send_delay},
-                        {title: 'Traffic_stop_delay :', value: vm.details.router.traffic_stop_delay},
-                        {title: 'Traffic_pause_delay :', value: vm.details.router.traffic_pause_delay}
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'strategy',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        labelValue: vm.details.router.strategy
+                                    }
+                                },
+                                {
+                                    key: 'send_attempt',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        labelValue: vm.details.router.send_attempt
+                                    }
+                                },
+                                {
+                                    key: 'send_delay',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        labelValue: vm.details.router.send_delay
+                                    }
+                                },
+                                {
+                                    key: 'traffic_stop_delay',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        labelValue: vm.details.router.traffic_stop_delay
+                                    }
+                                },
+                                {
+                                    key: 'traffic_pause_delay',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {
+                                        labelValue: vm.details.router.traffic_pause_delay
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    fields: [
+                        {
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'router',
+                                    className: 'layout-fill',
+                                    type: 'detailsTitle',
+                                    templateOptions: {
+                                        label: 'Router'
+                                    }
+                                },
+                                {
+                                    key: 'strategy',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Strategy : ',
+                                        labelValue: vm.details.router.strategy
+                                    }
+                                },
+                                {
+                                    key: 'send_attempt',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Send_attempt : ',
+                                        labelValue: vm.details.router.send_attempt
+                                    }
+                                },
+                                {
+                                    key: 'send_delay',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Send_delay : ',
+                                        labelValue: vm.details.router.send_delay
+                                    }
+                                },
+                                {
+                                    key: 'traffic_stop_delay',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Traffic_stop_delay : ',
+                                        labelValue: vm.details.router.traffic_stop_delay
+                                    }
+                                },
+                                {
+                                    key: 'traffic_pause_delay',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Traffic_pause_delay : ',
+                                        labelValue: vm.details.router.traffic_pause_delay
+                                    }
+                                }
+                            ]
+                        }
                     ]
                 },
+                /* TOPOLOGY */
                 {
                     span: {row: 1, col: 1},
                     background: 'blue',
-                    color: 'colorBlack',
                     title: 'Topology',
-                    datas: [
-                        {titleSub: 'Url :', value: vm.details.general.topology.url},
-                        {title: 'Passphrase :', value: vm.details.general.topology.passphrase},
-                        {title: 'Dynamic_lock_wait_time :', value: vm.details.general.topology.dynamic_lock_wait_time},
-                        {titleSub: 'Pinger :'},
+                    fields: [
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Start_delay :',
-                            value: vm.details.general.topology.pinger.start_delay
-                        },
-                        {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Period_delay :',
-                            value: vm.details.general.topology.pinger.period_delay
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'topology',
+                                    className: 'layout-fill',
+                                    type: 'detailsTitle',
+                                    templateOptions: {
+                                        label: 'Topology'
+                                    }
+                                },
+                                {
+                                    key: 'url',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Url : '
+                                    }
+                                },
+                                {
+                                    key: 'send_attempt',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Passphrase : ',
+                                        labelValue: vm.details.general.topology.dynamic_lock_wait_time
+                                    }
+                                },
+                                {
+                                    key: 'pinger',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        label: 'Pinger : '
+                                    }
+                                },
+                                {
+                                    key: 'start_delay',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        labelSub: 'Start_delay : ',
+                                        labelValue: vm.details.general.topology.pinger.start_delay
+                                    }
+                                },
+                                {
+                                    key: 'period_delay',
+                                    className: 'layout-fill',
+                                    type: 'details',
+                                    templateOptions: {
+                                        labelSub: 'Period_delay : ',
+                                        labelValue: vm.details.general.topology.pinger.period_delay
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
@@ -122,16 +399,6 @@
                         {title: 'Scan_period :', value: vm.details.autoloader.scan_period},
                         {title: 'Path_install :', value: vm.details.autoloader.path_install},
                         {title: 'Path_installed :', value: vm.details.autoloader.path_installed}
-                    ]
-                },
-                {
-                    span: {row: 1, col: 1},
-                    background: 'gray',
-                    color: 'colorBlack',
-                    title: 'Artifact Repository Extension',
-                    datas: [
-                        {title: 'Activation :', value: vm.details.artifact_repository.activation},
-                        {title: 'Path :', value: vm.details.artifact_repository.path}
                     ]
                 },
                 {
@@ -242,18 +509,6 @@
                 },
                 {
                     span: {row: 1, col: 1},
-                    background: 'yellow',
-                    color: 'colorBlack',
-                    title: 'WS API Extension',
-                    datas: [
-                        {title: 'Activation :', value: vm.details.ws_api.activation},
-                        {title: 'Listening_interface :', value: vm.details.ws_api.listening_interface},
-                        {title: 'Http_port :', value: vm.details.ws_api.http_port},
-                        {title: 'Http_path :', value: vm.details.ws_api.http_path}
-                    ]
-                },
-                {
-                    span: {row: 1, col: 1},
                     background: 'lightPurple',
                     color: 'colorBlack',
                     title: 'System Recovery Service',
@@ -272,9 +527,38 @@
                     ]
                 }
             ];
+
+            vm.originalFields = angular.copy(vm.tiles.fieldsModal);
+
+            // function definition
+            function onSubmit() {
+                vm.tiles.options.updateInitialValue();
+                logger.info(JSON.stringify(vm.tiles.model), null, 2);
+            }
         }
 
 
+    }
+
+    // ----- directiveFunction -----
+    inputClear.$inject = [];
+
+    /* @ngInject */
+    function inputClear() {
+        return {
+            restrict: 'A',
+            compile: function (element, attrs) {
+                var color = attrs.inputClear;
+                var style = color ? 'color:' + color + ';' : '';
+                var action = attrs.ngModel + ' = ';
+                element.after(
+                    '<md-button class="animate-show md-icon-button md-accent"' +
+                    'ng-show="' + attrs.ngModel + '" ng-click="' + action + '"' +
+                    'style="position: absolute; top: 0px; right: -6px; margin: 13px 0px;">' +
+                    '<div style="' + style + '">x</div>' +
+                    '</md-button>');
+            }
+        };
     }
 
 })();
