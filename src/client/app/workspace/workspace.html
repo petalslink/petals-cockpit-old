@@ -1,6 +1,6 @@
 <div layout="column" flex md-theme="core-theme" class="backgroundWrkspce">
-        <md-toolbar layout="row" class="md-accent toolbarCustom" md-theme="menu-theme">
-            <div class="md-toolbar-tools md-primary" layout="row" layout-align="start center" id="menu">
+        <md-toolbar layout="row" layout-wrap class="md-accent toolbarCustom" md-theme="menu-theme">
+            <div class="md-toolbar-tools md-primary" layout="row" layout-align="start center" id="menu" flex-gt-sm flex-lt-sm="100">
                 <md-button class="md-primary selectionDefault buttonMenu" ng-click="toggleSidenav('left')"
                            aria-label="Show" ng-controller="SidenavController" hide-gt-md>
                     <md-icon class="material-icons md-accent" aria-label="Open Menu" md-svg-icon="mdicons:menu"></md-icon>
@@ -12,7 +12,7 @@
                     {{ btn.Label }}
                 </md-button>
             </div>
-            <div class="md-toolbar-tools md-primary" layout-align="end center">
+            <div class="md-toolbar-tools md-primary" layout-align="end center" flex-gt-sm flex-lt-sm="100">
                 <md-button class="md-primary selectionDefault" aria-label="Selection">
                     Selection: {{vmWkspce.infoSelected.value}}
                 </md-button>

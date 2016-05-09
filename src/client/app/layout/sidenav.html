@@ -1,8 +1,6 @@
-<md-card layout-fill>
-    <md-sidenav flex="100" class="md-whiteframe-z2 md-sidenav-left" md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
-        <ui-view name="petals-sidenav" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
-        <ui-view name="service-sidenav" ng-show="$state.includes('home.workspace.service')" flex></ui-view>
-        <ui-view name="api-sidenav" ng-show="$state.includes('home.workspace.api')" flex></ui-view>
-    </md-sidenav>
-</md-card>
+<md-sidenav flex="100" class="md-whiteframe-z2 md-sidenav-left" md-component-id="left"
+            md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
+    <ui-view name="petals-sidenav" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
+    <ui-view name="service-sidenav" ng-show="$state.includes('home.workspace.service')" flex></ui-view>
+    <ui-view name="api-sidenav" ng-show="$state.includes('home.workspace.api')" flex></ui-view>
+</md-sidenav>
