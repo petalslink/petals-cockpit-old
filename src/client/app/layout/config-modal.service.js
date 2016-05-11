@@ -18,7 +18,7 @@
         };
 
         return service;
-        
+
         function openModalTile(tile) {
 
             $mdDialog.show({
@@ -29,6 +29,10 @@
                 controller: DialogController,
                 controllerAs: 'vmModal'
             }).then(function () {
+                // TODO save data
+            }, function() {
+                // reset data when exit whitout update
+                tile.options.resetModel();
 
             });
 
@@ -36,7 +40,7 @@
             /* @ngInject */
             function DialogController($mdDialog, localData) {
                 var vmModal = this;
-                
+
                 vmModal.tile = localData;
 
                 vmModal.closeDialog = function () {
