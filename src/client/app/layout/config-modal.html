@@ -12,10 +12,19 @@
 
         <md-card layout="column" layout-align="start start" layout-padding>
 
-            <formly-form model="vmModal.tile.model" fields="vmModal.tile.fieldsModal" options="vmModal.tile.options" form="vmModal.tile.form">
-                <md-button type="submit" class="md-raised md-primary" ng-disabled="vmModal.tile.form.$invalid">Update
+            <formly-form model="vmModal.tile.model"
+                         fields="vmModal.tile.fieldsModal"
+                         options="vmModal.tile.options"
+                         form="vmModal.tile.form">
+                <md-button type="submit" class="md-raised md-primary"
+                           ng-disabled="vmModal.tile.form.$invalid"
+                           ng-click="vmModal.validDialog()">
+                    Update
                 </md-button>
-                <md-button type="button" class="md-raised" ng-click="vmModal.tile.options.resetModel()">Reset</md-button>
+                <md-button type="button" class="md-raised"
+                           ng-click="vmModal.tile.options.resetModel()">
+                    Reset
+                </md-button>
             </formly-form>
 
         </md-card>

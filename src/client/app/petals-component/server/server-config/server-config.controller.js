@@ -3,8 +3,7 @@
 
     angular
         .module('app.configServer')
-        .controller('ConfigServerController', ControllerFunction)
-        .directive('inputClear', inputClear);
+        .controller('ConfigServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
@@ -32,533 +31,877 @@
             // funcation assignment
             vm.onSubmit = onSubmit;
 
-            vm.tiles.model = {
-                state: vm.details.state
-            };
-
-            vm.tiles.options = {};
-
             vm.tiles = [
-                /* TYPE */
+                /* State */
                 {
-                    span: {row: 1, col: 1},
-                    background: 'imgGrid',
-                    title: 'Type',
+                    span: {row: 2, col: 1},
+                    background: 'yellow',
+                    title: 'State',
+                    model: {
+                        state: vm.details.state,
+                        name: vm.details.name,
+                        description: vm.details.description
+                    },
                     fields: [
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroupModal: [
-                                {
-                                    key: 'type',
-                                    className: 'flex',
-                                    type: 'label',
-                                    templateOptions: {
-                                        label: vm.details.componentType.name,
-                                        disabled: true
-                                    }
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex',
-                                    type: 'label',
-                                    templateOptions: {
-                                        label: vm.details.componentType.version,
-                                        disabled: true
-                                    }
-                                }
-                            ]
+                            key: 'state',
+                            type: 'detailsCenter',
+                            templateOptions: {}
                         },
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'type',
-                                    className: 'layout-fill',
-                                    type: 'detailsTitle',
-                                    templateOptions: {
-                                        label: 'Type'
-                                    }
-                                },
-                                {
-                                    key: 'name',
-                                    className: 'layout-fill colorWhite',
-                                    type: 'detailsCenter',
-                                    templateOptions: {
-                                        labelValue: vm.details.componentType.name
-                                    }
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'layout-fill colorWhite',
-                                    type: 'detailsCenter',
-                                    templateOptions: {
-                                        label: 'Version : ',
-                                        labelValue: vm.details.componentType.version
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                /* TITLE COMPONENT */
-                {
-                    span: {row: 1, col: 1},
-                    background: 'yellow',
-                    title: vm.details.title,
-                    fieldsModal: [
+                            key: 'name',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Name : '
+                            }
+                        },
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'state',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        label: 'State : ',
-                                        input: vm.details.state
-                                    }
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex',
-                                    type: 'input',
-                                    defaultValue: vm.details.description,
-                                    templateOptions: {
-                                        label: 'Description : '
-                                    }
-                                }
-                            ]
+                            key: 'description',
+                            type: 'details2lines',
+                            templateOptions: {
+                                label: 'Description : '
+                            }
                         }
                     ],
-                    fields: [
-                        {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'title',
-                                    className: 'flex',
-                                    type: 'detailsTitle',
-                                    templateOptions: {
-                                        label: vm.details.title
-                                    }
-                                },
-                                {
-                                    key: 'state',
-                                    className: 'flex',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'State : ' + vm.details.state
-                                    }
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Description : ' + vm.details.description
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                /* ROUTER */
-                {
-                    span: {row: 1, col: 1},
-                    background: 'gray',
-                    title: 'Router',
                     fieldsModal: [
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'strategy',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        labelValue: vm.details.router.strategy
-                                    }
-                                },
-                                {
-                                    key: 'send_attempt',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        labelValue: vm.details.router.send_attempt
-                                    }
-                                },
-                                {
-                                    key: 'send_delay',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        labelValue: vm.details.router.send_delay
-                                    }
-                                },
-                                {
-                                    key: 'traffic_stop_delay',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        labelValue: vm.details.router.traffic_stop_delay
-                                    }
-                                },
-                                {
-                                    key: 'traffic_pause_delay',
-                                    className: 'flex',
-                                    type: 'input',
-                                    templateOptions: {
-                                        labelValue: vm.details.router.traffic_pause_delay
-                                    }
-                                }
-                            ]
-                        }
-                    ],
-                    fields: [
+                            key: 'state',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'router',
-                                    className: 'layout-fill',
-                                    type: 'detailsTitle',
-                                    templateOptions: {
-                                        label: 'Router'
-                                    }
-                                },
-                                {
-                                    key: 'strategy',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Strategy : ',
-                                        labelValue: vm.details.router.strategy
-                                    }
-                                },
-                                {
-                                    key: 'send_attempt',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Send_attempt : ',
-                                        labelValue: vm.details.router.send_attempt
-                                    }
-                                },
-                                {
-                                    key: 'send_delay',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Send_delay : ',
-                                        labelValue: vm.details.router.send_delay
-                                    }
-                                },
-                                {
-                                    key: 'traffic_stop_delay',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Traffic_stop_delay : ',
-                                        labelValue: vm.details.router.traffic_stop_delay
-                                    }
-                                },
-                                {
-                                    key: 'traffic_pause_delay',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Traffic_pause_delay : ',
-                                        labelValue: vm.details.router.traffic_pause_delay
-                                    }
-                                }
-                            ]
+                            key: 'name',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Name : '
+                            }
+                        },
+                        {
+                            key: 'description',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Description : '
+                            }
                         }
                     ]
                 },
-                /* TOPOLOGY */
+                /* Type */
                 {
-                    span: {row: 1, col: 1},
+                    span: {row: 2, col: 1},
+                    background: 'imgGrid',
+                    title: 'Type',
+                    model: {
+                        name: vm.details.componentType.name,
+                        version: vm.details.componentType.version
+                    },
+                    fields: [
+                        {
+                            key: 'name',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'version',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {
+                                label: 'Version : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'name',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'version',
+                            type: 'detailsCenter',
+                            templateOptions: {
+                                label: 'Version : '
+                            }
+                        }
+                    ]
+                },
+                /* Host */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'red',
+                    color: 'colorBlack',
+                    title: 'Host',
+                    model: {
+                        host: vm.details.host,
+                        jmx_port: vm.details.jmx_port,
+                        transport_port: vm.details.transport_port,
+                        user: vm.details.user,
+                        password: vm.details.password
+                    },
+                    fields: [
+                        {
+                            key: 'host',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Host : '
+                            }
+                        },
+                        {
+                            key: 'jmx_port',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Jmx_port : '
+                            }
+                        },
+                        {
+                            key: 'transport_port',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Transport_port : '
+                            }
+                        },
+                        {
+                            key: 'user',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'User : '
+                            }
+                        },
+                        {
+                            key: 'password',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Password : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'host',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Host : '
+                            }
+                        },
+                        {
+                            key: 'jmx_port',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Jmx_port : '
+                            }
+                        },
+                        {
+                            key: 'transport_port',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Transport_port : '
+                            }
+                        },
+                        {
+                            key: 'user',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'User : '
+                            }
+                        },
+                        {
+                            key: 'password',
+                            type: 'input',
+                            templateOptions: {
+                                label: 'Password : '
+                            }
+                        }
+                    ]
+                },
+                /* Topology */
+                {
+                    span: {row: 3, col: 1},
                     background: 'blue',
                     title: 'Topology',
+                    model: {
+                        url: vm.details.topology.url,
+                        passphrase: vm.details.topology.passphrase,
+                        dynamic_lock_wait_time: vm.details.topology.dynamic_lock_wait_time,
+                        pinger: '',
+                        start_delay: vm.details.topology.pinger.start_delay,
+                        period_delay: vm.details.topology.pinger.period_delay
+                    },
                     fields: [
                         {
-                            elementAttributes: {
-                                layout: 'column',
-                                'layout-sm': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'topology',
-                                    className: 'layout-fill',
-                                    type: 'detailsTitle',
-                                    templateOptions: {
-                                        label: 'Topology'
-                                    }
-                                },
-                                {
-                                    key: 'url',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Url : '
-                                    }
-                                },
-                                {
-                                    key: 'send_attempt',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Passphrase : ',
-                                        labelValue: vm.details.general.topology.dynamic_lock_wait_time
-                                    }
-                                },
-                                {
-                                    key: 'pinger',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        label: 'Pinger : '
-                                    }
-                                },
-                                {
-                                    key: 'start_delay',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        labelSub: 'Start_delay : ',
-                                        labelValue: vm.details.general.topology.pinger.start_delay
-                                    }
-                                },
-                                {
-                                    key: 'period_delay',
-                                    className: 'layout-fill',
-                                    type: 'details',
-                                    templateOptions: {
-                                        labelSub: 'Period_delay : ',
-                                        labelValue: vm.details.general.topology.pinger.period_delay
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    span: {row: 1, col: 2},
-                    background: 'darkBlue',
-                    color: 'colorBlack',
-                    title: 'Registry Client Configuration',
-                    datas: [
-                        {title: 'Registry_implementation :', value: vm.details.registry.registry_implementation},
-                        {titleSub: 'Registry_parameters :'},
-                        {iconSub: 'mdicons:subdirectory-arrow-right', sub: 'Map_cache :'},
+                            key: 'url',
+                            type: 'details',
+                            templateOptions: {label: 'Url : '}
+                        },
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Max_size :',
-                            value: vm.details.registry.registry_parameters.map_cache.max_size
+                            key: 'passphrase',
+                            type: 'details',
+                            templateOptions: {label: 'Passphrase : '}
+                        },
+                        {
+                            key: 'dynamic_lock_wait_time',
+                            type: 'details',
+                            templateOptions: {label: 'Dynamic_lock_wait_time : '}
+                        },
+                        {
+                            key: 'pinger',
+                            type: 'details',
+                            templateOptions: {label: 'Pinger : '}
+                        },
+                        {
+                            key: 'start_delay',
+                            type: 'details',
+                            templateOptions: {label: '--> Start_delay : '}
+                        },
+                        {
+                            key: 'period_delay',
+                            type: 'details',
+                            templateOptions: {label: '--> Period_delay : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'url',
+                            type: 'input',
+                            templateOptions: {label: 'Url : '}
+                        },
+                        {
+                            key: 'passphrase',
+                            type: 'input',
+                            templateOptions: {label: 'Passphrase : '}
+                        },
+                        {
+                            key: 'dynamic_lock_wait_time',
+                            type: 'input',
+                            templateOptions: {label: 'Dynamic_lock_wait_time : '}
+                        },
+                        {
+                            key: 'pinger',
+                            type: 'details',
+                            templateOptions: {label: 'Pinger : '}
+                        },
+                        {
+                            key: 'start_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Start_delay : '}
+                        },
+                        {
+                            key: 'period_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Period_delay : '}
                         }
                     ]
                 },
+                /* General Properties */
                 {
-                    span: {row: 1, col: 2},
+                    span: {row: 3, col: 2},
                     background: 'green',
                     color: 'colorBlack',
                     title: 'General Properties',
-                    datas: [
-                        {title: 'Data_basedir :', value: vm.details.general.data_basedir},
-                        {title: 'Repository_path :', value: vm.details.general.repository_path},
-                        {title: 'Work_path :', value: vm.details.general.work_path},
-                        {title: 'Log_config_file :', value: vm.details.general.log_config_file},
-                        {title: 'Task_timeout :', value: vm.details.general.task_timeout}
-                    ]
-                },
-                {
-                    span: {row: 1, col: 1},
-                    background: 'orange',
-                    color: 'colorBlack',
-                    title: 'Autoloader Extension',
-                    datas: [
-                        {title: 'Activation :', value: vm.details.autoloader.activation},
-                        {title: 'Scan_period :', value: vm.details.autoloader.scan_period},
-                        {title: 'Path_install :', value: vm.details.autoloader.path_install},
-                        {title: 'Path_installed :', value: vm.details.autoloader.path_installed}
-                    ]
-                },
-                {
-                    span: {row: 1, col: 1},
-                    background: 'lightGreen',
-                    color: 'colorBlack',
-                    title: 'Embedded Registry Server Extension',
-                    datas: [
-                        {title: 'Activation :', value: vm.details.embedded_registry_overlay.activation},
-                        {title: 'Port :', value: vm.details.embedded_registry_overlay.port}
-                    ]
-                },
-                {
-                    span: {row: 2, col: 1},
-                    background: 'pink',
-                    color: 'colorBlack',
-                    title: 'Transporter Configuration',
-                    datas: [
-                        {titleSub: 'Queue :'},
+                    model: {
+                        data_basedir: vm.details.general.data_basedir,
+                        repository_path: vm.details.general.repository_path,
+                        work_path: vm.details.general.work_path,
+                        log_config_file: vm.details.general.log_config_file,
+                        task_timeout: vm.details.general.task_timeout,
+                        exchange_validation: vm.details.general.exchange_validation,
+                        classloaders_isolated: vm.details.general.classloaders_isolated,
+                        container_moves_lock_wait_time: vm.details.general.container_moves_lock_wait_time
+                    },
+                    fields: [
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Max_size :',
-                            value: vm.details.transport.queue.max_size
+                            key: 'data_basedir',
+                            type: 'details',
+                            templateOptions: {label: 'Data_basedir : '}
                         },
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Offering_timeout :',
-                            value: vm.details.transport.queue.offering_timeout
-                        },
-                        {titleSub: 'Tcp :'},
-                        {iconSub: 'mdicons:subdirectory-arrow-right', subEmpty: 'Receivers :'},
-                        {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Numbers :',
-                            value: vm.details.transport.tcp.receivers.numbers
+                            key: 'repository_path',
+                            type: 'details',
+                            templateOptions: {label: 'Repository_path : '}
                         },
                         {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Keep_alive :',
-                            value: vm.details.transport.tcp.receivers.keep_alive
-                        },
-                        {iconSub: 'mdicons:subdirectory-arrow-right', subEmpty: 'Senders :'},
-                        {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Numbers :',
-                            value: vm.details.transport.tcp.senders.numbers
+                            key: 'work_path',
+                            type: 'details',
+                            templateOptions: {label: 'Work_path : '}
                         },
                         {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Connection_timeout :',
-                            value: vm.details.transport.tcp.senders.connection_timeout
+                            key: 'log_config_file',
+                            type: 'details',
+                            templateOptions: {label: 'Log_config_file : '}
                         },
                         {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Timeout :',
-                            value: vm.details.transport.tcp.senders.timeout
+                            key: 'task_timeout',
+                            type: 'details',
+                            templateOptions: {label: 'Task_timeout : '}
                         },
                         {
-                            iconSub1: 'mdicons:menu-right',
-                            sub1: 'Evictor_delay :',
-                            value: vm.details.transport.tcp.senders.evictor_delay
+                            key: 'exchange_validation',
+                            type: 'details',
+                            templateOptions: {label: 'Exchange_validation : '}
+                        },
+                        {
+                            key: 'classloaders_isolated',
+                            type: 'details',
+                            templateOptions: {label: 'Classloaders_isolated : '}
+                        },
+                        {
+                            key: 'container_moves_lock_wait_time',
+                            type: 'details',
+                            templateOptions: {label: 'Container_moves_lock_wait_time : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'data_basedir',
+                            type: 'input',
+                            templateOptions: {label: 'Data_basedir : '}
+                        },
+                        {
+                            key: 'repository_path',
+                            type: 'input',
+                            templateOptions: {label: 'Repository_path : '}
+                        },
+                        {
+                            key: 'work_path',
+                            type: 'input',
+                            templateOptions: {label: 'Work_path : '}
+                        },
+                        {
+                            key: 'log_config_file',
+                            type: 'input',
+                            templateOptions: {label: 'Log_config_file : '}
+                        },
+                        {
+                            key: 'task_timeout',
+                            type: 'input',
+                            templateOptions: {label: 'Task_timeout : '}
+                        },
+                        {
+                            key: 'exchange_validation',
+                            type: 'input',
+                            templateOptions: {label: 'Exchange_validation : '}
+                        },
+                        {
+                            key: 'classloaders_isolated',
+                            type: 'input',
+                            templateOptions: {label: 'Classloaders_isolated : '}
+                        },
+                        {
+                            key: 'container_moves_lock_wait_time',
+                            type: 'input',
+                            templateOptions: {label: 'Container_moves_lock_wait_time : '}
                         }
                     ]
                 },
+                /* SSL Connections */
                 {
-                    span: {row: 1, col: 1},
-                    background: 'red',
-                    color: 'colorBlack',
-                    title: 'Security Connection',
-                    datas: [
-                        {title: 'Host :', value: vm.details.host},
-                        {title: 'Jmx_port :', value: vm.details.jmx_port},
-                        {title: 'Transport_port :', value: vm.details.transport_port},
-                        {title: 'User :', value: vm.details.user},
-                        {title: 'Password :', value: vm.details.password}
-                    ]
-                },
-                {
-                    span: {row: 1, col: 2},
+                    span: {row: 3, col: 1},
                     background: 'purple',
                     color: 'colorBlack',
                     title: 'SSL Connections',
-                    datas: [
-                        {title: 'Key_password :', value: vm.details.ssl.key_password},
-                        {titleSub: 'Keystore :'},
+                    model: {
+                        key_password: vm.details.ssl.key_password,
+                        keystore: '',
+                        keystore_file: vm.details.ssl.keystore.file,
+                        keystore_password: vm.details.ssl.keystore.password,
+                        truststore: '',
+                        truststore_file: vm.details.ssl.truststore.file,
+                        truststore_password: vm.details.ssl.truststore.password
+                    },
+                    fields: [
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'File :',
-                            value: vm.details.ssl.keystore.file
+                            key: 'key_password',
+                            type: 'details',
+                            templateOptions: {label: 'Key_password : '}
                         },
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Password :',
-                            value: vm.details.ssl.keystore.password
-                        },
-                        {titleSub: 'Truststore :'},
-                        {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'File :',
-                            value: vm.details.ssl.truststore.file
+                            key: 'keystore',
+                            type: 'details',
+                            templateOptions: {label: 'Keystore : '}
                         },
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Password :',
-                            value: vm.details.ssl.truststore.password
+                            key: 'keystore_file',
+                            type: 'details',
+                            templateOptions: {label: '--> File : '}
+                        },
+                        {
+                            key: 'keystore_password',
+                            type: 'details',
+                            templateOptions: {label: '--> Password : '}
+                        },
+                        {
+                            key: 'truststore',
+                            type: 'details',
+                            templateOptions: {label: 'Truststore : '}
+                        },
+                        {
+                            key: 'truststore_file',
+                            type: 'details',
+                            templateOptions: {label: '--> File : '}
+                        },
+                        {
+                            key: 'truststore_password',
+                            type: 'details',
+                            templateOptions: {label: '--> Password : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'key_password',
+                            type: 'input',
+                            templateOptions: {label: 'Key_password : '}
+                        },
+                        {
+                            key: 'keystore',
+                            type: 'details',
+                            templateOptions: {label: 'Keystore : '}
+                        },
+                        {
+                            key: 'keystore_file',
+                            type: 'input',
+                            templateOptions: {label: '--> File : '}
+                        },
+                        {
+                            key: 'keystore_password',
+                            type: 'input',
+                            templateOptions: {label: '--> Password : '}
+                        },
+                        {
+                            key: 'truststore',
+                            type: 'details',
+                            templateOptions: {label: 'Truststore : '}
+                        },
+                        {
+                            key: 'truststore_file',
+                            type: 'input',
+                            templateOptions: {label: '--> File : '}
+                        },
+                        {
+                            key: 'truststore_password',
+                            type: 'input',
+                            templateOptions: {label: '--> Password : '}
                         }
                     ]
                 },
+                /* Transporter Configuration */
                 {
-                    span: {row: 1, col: 1},
+                    span: {row: 4, col: 1},
+                    background: 'pink',
+                    color: 'colorBlack',
+                    title: 'Transporter Configuration',
+                    model: {
+                        queue: '',
+                        max_size: vm.details.transport.queue.max_size,
+                        offering_timeout: vm.details.transport.queue.offering_timeout,
+                        tcp: '',
+                        receivers: '',
+                        tcp_receivers_listening_interface: vm.details.transport.tcp.receivers.listening_interface,
+                        tcp_receivers_numbers: vm.details.transport.tcp.receivers.numbers,
+                        tcp_receivers_keep_alive: vm.details.transport.tcp.receivers.keep_alive,
+                        senders: '',
+                        tcp_senders_numbers: vm.details.transport.tcp.senders.numbers,
+                        tcp_senders_connection_timeout: vm.details.transport.tcp.senders.connection_timeout,
+                        tcp_senders_timeout: vm.details.transport.tcp.senders.timeout,
+                        tcp_senders_evictor_delay: vm.details.transport.tcp.senders.evictor_delay
+                    },
+                    fields: [
+                        {
+                            key: 'queue',
+                            type: 'details',
+                            templateOptions: {label: 'Queue : '}
+                        },
+                        {
+                            key: 'max_size',
+                            type: 'details',
+                            templateOptions: {label: '--> Max_size : '}
+                        },
+                        {
+                            key: 'offering_timeout',
+                            type: 'details',
+                            templateOptions: {label: '--> Offering_timeout : '}
+                        },
+                        {
+                            key: 'tcp',
+                            type: 'details',
+                            templateOptions: {label: 'Tcp : '}
+                        },
+                        {
+                            key: 'receivers',
+                            type: 'details',
+                            templateOptions: {label: '--> Receivers : '}
+                        },
+                        {
+                            key: 'tcp_receivers_listening_interface',
+                            type: 'details',
+                            templateOptions: {label: '-----> Listening_interface : '}
+                        },
+                        {
+                            key: 'tcp_receivers_numbers',
+                            type: 'details',
+                            templateOptions: {label: '-----> Numbers : '}
+                        },
+                        {
+                            key: 'tcp_receivers_keep_alive',
+                            type: 'details',
+                            templateOptions: {label: '-----> Keep_alive : '}
+                        },
+                        {
+                            key: 'senders',
+                            type: 'details',
+                            templateOptions: {label: '--> Senders : '}
+                        },
+                        {
+                            key: 'tcp_senders_numbers',
+                            type: 'details',
+                            templateOptions: {label: '-----> Numbers : '}
+                        },
+                        {
+                            key: 'tcp_senders_connection_timeout',
+                            type: 'details',
+                            templateOptions: {label: '-----> Connection_timeout : '}
+                        },
+                        {
+                            key: 'tcp_senders_timeout',
+                            type: 'details',
+                            templateOptions: {label: '-----> Timeout : '}
+                        },
+                        {
+                            key: 'tcp_senders_evictor_delay',
+                            type: 'details',
+                            templateOptions: {label: '-----> Evictor_delay : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'queue',
+                            type: 'details',
+                            templateOptions: {label: 'Queue : '}
+                        },
+                        {
+                            key: 'max_size',
+                            type: 'input',
+                            templateOptions: {label: 'Max_size : '}
+                        },
+                        {
+                            key: 'offering_timeout',
+                            type: 'input',
+                            templateOptions: {label: 'Offering_timeout : '}
+                        },
+                        {
+                            key: 'tcp',
+                            type: 'details',
+                            templateOptions: {label: 'Tcp : '}
+                        },
+                        {
+                            key: 'receivers',
+                            type: 'details',
+                            templateOptions: {label: '--> Receivers : '}
+                        },
+                        {
+                            key: 'tcp_receivers_listening_interface',
+                            type: 'input',
+                            templateOptions: {label: 'Listening_interface : '}
+                        },
+                        {
+                            key: 'tcp_receivers_numbers',
+                            type: 'input',
+                            templateOptions: {label: 'Numbers : '}
+                        },
+                        {
+                            key: 'tcp_receivers_keep_alive',
+                            type: 'input',
+                            templateOptions: {label: 'Keep_alive : '}
+                        },
+                        {
+                            key: 'senders',
+                            type: 'details',
+                            templateOptions: {label: '--> Senders : '}
+                        },
+                        {
+                            key: 'tcp_senders_numbers',
+                            type: 'input',
+                            templateOptions: {label: 'Numbers : '}
+                        },
+                        {
+                            key: 'tcp_senders_connection_timeout',
+                            type: 'input',
+                            templateOptions: {label: 'Connection_timeout : '}
+                        },
+                        {
+                            key: 'tcp_senders_timeout',
+                            type: 'input',
+                            templateOptions: {label: 'Timeout : '}
+                        },
+                        {
+                            key: 'tcp_senders_evictor_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Evictor_delay : '}
+                        }
+                    ]
+                },
+                /* Router */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'gray',
+                    title: 'Router',
+                    model: {
+                        strategy: vm.details.router.strategy,
+                        send_attempt: vm.details.router.send_attempt,
+                        send_delay: vm.details.router.send_delay,
+                        traffic_stop_delay: vm.details.router.traffic_stop_delay,
+                        traffic_pause_delay: vm.details.router.traffic_pause_delay
+                    },
+                    fields: [
+                        {
+                            key: 'strategy',
+                            type: 'details',
+                            templateOptions: {label: 'Strategy : '}
+                        },
+                        {
+                            key: 'send_attempt',
+                            type: 'details',
+                            templateOptions: {label: 'Send_attempt : '}
+                        },
+                        {
+                            key: 'send_delay',
+                            type: 'details',
+                            templateOptions: {label: 'Send_delay : '}
+                        },
+                        {
+                            key: 'traffic_stop_delay',
+                            type: 'details',
+                            templateOptions: {label: 'Traffic_stop_delay : '}
+                        },
+                        {
+                            key: 'traffic_pause_delay',
+                            type: 'details',
+                            templateOptions: {label: 'Traffic_pause_delay : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'strategy',
+                            type: 'input',
+                            templateOptions: {label: 'Strategy : '}
+                        },
+                        {
+                            key: 'send_attempt',
+                            type: 'input',
+                            templateOptions: {label: 'Send_attempt : ', type: 'integer'}
+                        },
+                        {
+                            key: 'send_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Send_delay : '}
+                        },
+                        {
+                            key: 'traffic_stop_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Traffic_stop_delay : '}
+                        },
+                        {
+                            key: 'traffic_pause_delay',
+                            type: 'input',
+                            templateOptions: {label: 'Traffic_pause_delay : '}
+                        }
+                    ]
+                },
+                /* Registry Client Configuration */
+                {
+                    span: {row: 2, col: 2},
+                    background: 'darkBlue',
+                    color: 'colorBlack',
+                    title: 'Registry Client Configuration',
+                    model: {
+                        registry_implementation: vm.details.registry.registry_implementation,
+                        registry_parameters: '',
+                        map_cache: '',
+                        max_size: vm.details.registry.registry_parameters.map_cache.max_size
+                    },
+                    fields: [
+                        {
+                            key: 'registry_implementation',
+                            type: 'details',
+                            templateOptions: {label: 'Registry_implementation : '}
+                        },
+                        {
+                            key: 'registry_parameters',
+                            type: 'details',
+                            templateOptions: {label: 'Registry_parameters : '}
+                        },
+                        {
+                            key: 'map_cache',
+                            type: 'details',
+                            templateOptions: {label: '--> Map_cache : '}
+                        },
+                        {
+                            key: 'max_size',
+                            type: 'details',
+                            templateOptions: {label: '-----> Max_size : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'registry_implementation',
+                            type: 'input',
+                            templateOptions: {label: 'Registry_implementation : '}
+                        },
+                        {
+                            key: 'registry_parameters',
+                            type: 'details',
+                            templateOptions: {label: 'Registry_parameters : '}
+                        },
+                        {
+                            key: 'map_cache',
+                            type: 'details',
+                            templateOptions: {label: '--> Map_cache : '}
+                        },
+                        {
+                            key: 'max_size',
+                            type: 'input',
+                            templateOptions: {label: 'Max_size : '}
+                        }
+                    ]
+                },
+                /* System Recovery Service */
+                {
+                    span: {row: 2, col: 1},
                     background: 'lightPurple',
                     color: 'colorBlack',
                     title: 'System Recovery Service',
-                    datas: [
-                        {title: 'Recovery :', value: vm.details.registry.registry_implementation},
+                    model: {
+                        corepoolsize: vm.details.recovery.corepoolsize,
+                        keepalivetime: vm.details.recovery.keepalivetime
+                    },
+                    fields: [
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Corepoolsize :',
-                            value: vm.details.recovery.corepoolsize
+                            key: 'corepoolsize',
+                            type: 'details',
+                            templateOptions: {label: 'Corepoolsize : '}
                         },
                         {
-                            iconSub: 'mdicons:subdirectory-arrow-right',
-                            sub: 'Keepalivetime :',
-                            value: vm.details.recovery.keepalivetime
+                            key: 'keepalivetime',
+                            type: 'details',
+                            templateOptions: {label: 'Keepalivetime : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'corepoolsize',
+                            type: 'input',
+                            templateOptions: {label: 'Corepoolsize : '}
+                        },
+                        {
+                            key: 'keepalivetime',
+                            type: 'input',
+                            templateOptions: {label: 'Keepalivetime : '}
+                        }
+                    ]
+                },
+                /* Embedded Registry Server Extension */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'lightGreen',
+                    color: 'colorBlack',
+                    title: 'Embedded Registry Server Extension',
+                    model: {
+                        activation: vm.details.embedded_registry_overlay.activation,
+                        port: vm.details.embedded_registry_overlay.port
+                    },
+                    fields: [
+                        {
+                            key: 'activation',
+                            type: 'details',
+                            templateOptions: {label: 'Activation : '}
+                        },
+                        {
+                            key: 'port',
+                            type: 'details',
+                            templateOptions: {label: 'Port : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'activation',
+                            type: 'input',
+                            templateOptions: {label: 'Activation : '}
+                        },
+                        {
+                            key: 'port',
+                            type: 'input',
+                            templateOptions: {label: 'Port : '}
+                        }
+                    ]
+                },
+                /* Autoloader Extension */
+                {
+                    span: {row: 2, col: 2},
+                    background: 'orange',
+                    color: 'colorBlack',
+                    title: 'Autoloader Extension',
+                    model: {
+                        activation: vm.details.autoloader.activation,
+                        scan_period: vm.details.autoloader.scan_period,
+                        path_install: vm.details.autoloader.path_install,
+                        path_installed: vm.details.autoloader.path_installed
+                    },
+                    fields: [
+                        {
+                            key: 'activation',
+                            type: 'details',
+                            templateOptions: {label: 'Activation : '}
+                        },
+                        {
+                            key: 'scan_period',
+                            type: 'details',
+                            templateOptions: {label: 'Scan_period : '}
+                        },
+                        {
+                            key: 'path_install',
+                            type: 'details',
+                            templateOptions: {label: 'Path_install : '}
+                        },
+                        {
+                            key: 'path_installed',
+                            type: 'details',
+                            templateOptions: {label: 'Path_installed : '}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            key: 'activation',
+                            type: 'input',
+                            templateOptions: {label: 'Activation : '}
+                        },
+                        {
+                            key: 'scan_period',
+                            type: 'input',
+                            templateOptions: {label: 'Scan_period : '}
+                        },
+                        {
+                            key: 'path_install',
+                            type: 'input',
+                            templateOptions: {label: 'Path_install : '}
+                        },
+                        {
+                            key: 'path_installed',
+                            type: 'input',
+                            templateOptions: {label: 'Path_installed : '}
                         }
                     ]
                 }
             ];
 
+
             vm.originalFields = angular.copy(vm.tiles.fieldsModal);
 
             // function definition
             function onSubmit() {
-                vm.tiles.options.updateInitialValue();
-                logger.info(JSON.stringify(vm.tiles.model), null, 2);
+                logger.info('************* TEST ******************');
+                logger.info(angular.toJson(vm.tiles.model), null, 2);
             }
         }
 
 
-    }
-
-    // ----- directiveFunction -----
-    inputClear.$inject = [];
-
-    /* @ngInject */
-    function inputClear() {
-        return {
-            restrict: 'A',
-            compile: function (element, attrs) {
-                var color = attrs.inputClear;
-                var style = color ? 'color:' + color + ';' : '';
-                var action = attrs.ngModel + ' = ';
-                element.after(
-                    '<md-button class="animate-show md-icon-button md-accent"' +
-                    'ng-show="' + attrs.ngModel + '" ng-click="' + action + '"' +
-                    'style="position: absolute; top: 0px; right: -6px; margin: 13px 0px;">' +
-                    '<div style="' + style + '">x</div>' +
-                    '</md-button>');
-            }
-        };
     }
 
 })();

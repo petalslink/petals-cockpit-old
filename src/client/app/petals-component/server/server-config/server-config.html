@@ -1,36 +1,34 @@
-<div class="gridListServer" flex md-theme="cardCustom-theme">
-    <form name="vmServerConfig.form" novalidate>
+<div class="gridListServer" layout-fill flex md-theme="cardCustom-theme">
     <md-grid-list
-        md-cols-sm="6" md-cols-md="6" md-cols-gt-md="6"
-        md-row-height="7:8"
+        layout-fill
+        md-cols-xs="2" md-cols-gt-xs="4"
+        md-row-height-xs="4:1" md-row-height-gt-xs="19:4"
         md-gutter="4px" md-gutter-gt-sm="4px">
-
+<!-- works with Firefox only
+        md-row-height-gt-xs="fit"
+-->
         <md-grid-tile ng-repeat="tile in vmServerConfig.tiles"
                       md-rowspan="{{tile.span.row}}"
                       md-colspan="{{tile.span.col}}"
-                      md-rowspan-sm="3"
-                      md-rowspan-xs="4"
-                      md-colspan-sm="2"
-                      md-colspan-xs="3"
                       ng-class="tile.background">
 
-            <md-button aria-label="Open Modal Server Config Details" class="fondGrid" layout-fill ng-click="vmServerConfig.openModalTile(tile)">
+            <md-button aria-label="Open Modal Server Config Details" class="fondGrid" layout-fill
+                       ng-click="vmServerConfig.openModalTile(tile)">
 
-                <formly-form model="tile.model" fields="tile.fields" options="tile.options" form="tile.form" layout-fill layout-align="center start"></formly-form>
+                <md-grid-tile-header layout-align="center center" class="gridTitleHeader">
+                    <span class="md-title">{{tile.title}}</span>
+                </md-grid-tile-header>
+
+                <formly-form
+                    model="tile.model"
+                    fields="tile.fields"
+                    options="tile.options"
+                    form="tile.form"
+                    layout-fill layout-align="center start">
+                </formly-form>
 
             </md-button>
 
         </md-grid-tile>
     </md-grid-list>
-    </form>
-
-
-
-<!--    <hr />
-    <h2>Model Value</h2>
-    <pre>{{vmServerConfig.model | json}}</pre>
-    <h2>Fields <small>(note, functions are not shown)</small></h2>
-    <pre>{{vmServerConfig.originalFields | json}}</pre>
-    <h2>Form</h2>
-    <pre>{{vmServerConfig.form | json}}</pre>-->
 </div>

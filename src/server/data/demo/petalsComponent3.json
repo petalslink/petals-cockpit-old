@@ -24,16 +24,17 @@
         "task_timeout": "120000",
         "exchange_validation": true,
         "classloaders_isolated": true,
-        "topology": {
-            "url": "",
-            "passphrase": "petals",
-            "dynamic_lock_wait_time": "30",
-            "pinger": {
-                "start_delay": "2000",
-                "period_delay": "5000"
-            }
-        },
         "container_moves_lock_wait_time": "30"
+    },
+    "topology": "*** Petals ESB - Topology ***",
+    "topology": {
+        "url": "",
+        "passphrase": "petals",
+        "dynamic_lock_wait_time": "30",
+        "pinger": {
+            "start_delay": "2000",
+            "period_delay": "5000"
+        }
     },
     "router": "*** Petals ESB - Router ***",
     "router": {

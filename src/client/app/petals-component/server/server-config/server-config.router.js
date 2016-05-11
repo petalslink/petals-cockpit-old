@@ -11,22 +11,37 @@
 
     /* @ngInject */
     function runFunction(formlyConfig) {
+/*
         formlyConfig.setType({
             name: 'input',
             template: '<input ng-model="model[options.key]">'
         });
-        formlyConfig.setType({
-            name: 'detailsTitle',
-            template: '<md-grid-tile-header layout-align="center stretch" class="gridTitleHeader">' +
-            '<span class="md-title">{{to.label}}</span>' +
-            '</md-grid-tile-header>'
-        });
+*/
         formlyConfig.setType({
             name: 'details',
+            template:
+            '<div layout="row" layout-align="center stretch" class="md-text-content">' +
+            '   <div style="text-align: start;white-space: nowrap;">{{to.label}}</div>' +
+            '   <div flex style="min-width: 15px;"></div>' +
+            '   <div style="text-align: right;white-space: nowrap;overflow: hidden;">' +
+            '       <div style="float:right;"><b>{{(model[options.key])}}</b></div>' +
+            '   </div>'+
+            '</div>'
+        });
+        formlyConfig.setType({
+            name: 'details2lines',
+            template: '<div layout="column" layout-align="center stretch" class="md-text-content">' +
+            '<div style="text-align: start">{{to.label}}</div>' +
+            '<div style="text-align: start"><b>{{(model[options.key])}}</b></div>' +
+            '</div>'
+        });
+        formlyConfig.setType({
+            name: 'detailsSub',
             template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
             '<div ng-model="model[options.key]">{{to.label}}</div>' +
             '<div ng-if="to.label && !to.labelSub" flex></div>' +
-            '<div><md-icon ng-if="to.labelSub" class="md-accent material-icons" md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>' +
+            '<div><md-icon ng-if="to.labelSub" class="md-accent material-icons" '+
+            'md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>' +
             '{{to.labelSub}}</div>' +
             '<div ng-if="to.labelSub" flex></div>' +
             '<div style="text-align: end"><b>{{to.labelValue}}</b></div>' +
@@ -34,12 +49,12 @@
         });
         formlyConfig.setType({
             name: 'detailsCenter',
-            template: '<div layout="row" layout-align="center center" class="md-text-content">' +
-            '<div ng-model="model[options.key]">{{to.label}}</div>' +
-            '<div style="text-align: center"><b>{{to.labelValue}}</b></div>' +
+            template: '<div layout-align="center center" class="md-text-content detailsCenter">' +
+            '<div style="text-align: center">{{to.label}}<b>{{(model[options.key])}}</b></div>' +
             '</div>'
         });
 
+/*
         formlyConfig.setWrapper({
             name: 'mdLabel',
             types: ['input'],
@@ -58,6 +73,7 @@
             }
             return '<md-icon class="step" md-font-icon="icon-' + options.data.icon + '"></md-icon>' + template;
         });
+*/
     }
 
     configServer.config(configFunction);

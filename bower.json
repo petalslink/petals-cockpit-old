@@ -39,6 +39,8 @@
     "angular-formly-material": "^0.14.1"
   },
   "resolutions": {
-    "angular": "~1.5.0"
+    "angular": "~1.5.0",
+    "angular-messages": "~1.5.0",
+    "angular-formly": "^8.2.0"
   }
 }
