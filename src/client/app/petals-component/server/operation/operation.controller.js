@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.operationServer')
+        .module('petalsComponent.server.operation')
         .controller('OperationServerController', ControllerFunction);
 
     // ----- ControllerFunction -----

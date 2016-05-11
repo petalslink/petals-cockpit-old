@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('app.server', [
-        'app.overviewServer',
-        'app.configServer',
-        'app.operationServer'
+    angular.module('petalsComponent.server', [
+        'petalsComponent.server.config',
+        'petalsComponent.server.operation',
+        'petalsComponent.server.overview'
     ]);
 })();

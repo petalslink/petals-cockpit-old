@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var overviewServer = angular.module('app.overviewServer');
+    var overviewServer = angular.module('petalsComponent.server.overview');
 
     overviewServer.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/server/server-overview/server-overview.html',
+                        templateUrl: 'src/client/app/petals-component/server/overview/overview.html',
                         controller: 'OverviewServerController',
                         controllerAs: 'vmServerOverview'
                     }
@@ -24,7 +24,7 @@
                     logger.debug('You are in WORKSPACE.PETALS.SERVER.OVERVIEW');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.SERVER.OVERVIEW');
+                    logger.debug('You reactivate WORKSPACE.PETALS.SERVER.OVERVIEW');
                 }]
             });
 

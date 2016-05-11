@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var operationServer = angular.module('app.operationServer');
+    var operationServer = angular.module('petalsComponent.server.operation');
 
     operationServer.config(configFunction);
 
@@ -15,7 +15,7 @@
                 url: '/operation',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/server/server-operation/server-operation.html',
+                        templateUrl: 'src/client/app/petals-component/server/operation/operation.html',
                         controller: 'OperationServerController',
                         controllerAs: 'vmServerOperation'
                     }
@@ -24,7 +24,7 @@
                     logger.debug('You are in WORKSPACE.PETALS.SERVER.OPERATION');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.SERVER.OPERATION');
+                    logger.debug('You reactivate WORKSPACE.PETALS.SERVER.OPERATION');
                 }]
             });
 

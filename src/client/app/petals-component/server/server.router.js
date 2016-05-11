@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var server = angular.module('app.server');
+    var server = angular.module('petalsComponent.server');
 
     server.config(configFunction);
 
@@ -33,7 +33,7 @@
                     logger.debug('You are in WORKSPACE.PETALS.SERVER');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.SERVER');
+                    logger.debug('You reactivate WORKSPACE.PETALS.SERVER');
                 }]
             });
 

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var configServer = angular.module('app.configServer');
+    var configServer = angular.module('petalsComponent.server.config');
 
     var runFuntion = runFunction;
 
@@ -89,7 +89,7 @@
                 views: {
                     'petals-console': {
                         controller: 'ConfigServerController',
-                        templateUrl: 'src/client/app/petals-component/server/server-config/server-config.html',
+                        templateUrl: 'src/client/app/petals-component/server/config/config.html',
                         controllerAs: 'vmServerConfig'
                     }
                 },
@@ -97,7 +97,7 @@
                     logger.debug('You are in WORKSPACE.PETALS.SERVER.CONFIG');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.SERVER.CONFIG');
+                    logger.debug('You reactivate WORKSPACE.PETALS.SERVER.CONFIG');
                 }]
             });
 

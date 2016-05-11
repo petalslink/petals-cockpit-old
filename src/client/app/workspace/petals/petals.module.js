@@ -4,7 +4,7 @@
     angular.module('app.petals', [
         'petalsComponent.fallback-component',
         'petalsComponent.bus',
-        'app.server',
+        'petalsComponent.server',
         'petalsComponent.bc-soap'
     ]);
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.configServer')
+        .module('petalsComponent.server.config')
         .controller('ConfigServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
