@@ -31,7 +31,7 @@
             }).then(function () {
                 // TODO save data
             }, function() {
-                // reset data when exit whitout update
+                // reset data when exit without update
                 tile.options.resetModel();
 
             });

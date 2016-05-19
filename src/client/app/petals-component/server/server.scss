@@ -159,6 +159,9 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
         height: 12px !important;
         width: 12px !important;
     }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 280px !important;
+    }
 }
 @media screen and (min-width: 960px) and (max-width: 1279px) {
     .gridTitleHeader {
@@ -187,6 +190,9 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
         height: 14px !important;
         width: 14px !important;
     }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 360px !important;
+    }
 }
 @media screen and (min-width: 1280px) {
     .gridTitleHeader {
@@ -197,23 +203,26 @@ a.md-button.md-navConsole-theme-theme.md-primary.md-raised, a.md-button.md-navCo
         white-space: normal !important;
     }
     .gridListServer .md-title {
-        font-size: 16px;
+        font-size: 15px;
         white-space: normal !important;
     }
     .gridListServer .md-text-content {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 18px;
         white-space: normal !important;
         text-transform: none !important;
     }
     .gridListServer .md-text-content.detailsCenter {
-        font-size: 24px !important;
+        font-size: 22px !important;
         line-height: 24px;
         text-align: center !important;
     }
     .gridListServer .material-icons {
         height: 16px !important;
         width: 16px !important;
+    }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 480px !important;
     }
 }
 

@@ -65,23 +65,39 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'state',
-                            type: 'detailsCenter',
-                            templateOptions: {}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'state',
+                                    type: 'detailsCenter',
+                                    templateOptions: {}
+                                }
+                            ]
                         },
                         {
-                            key: 'name',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Name : '
-                            }
-                        },
-                        {
-                            key: 'description',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Description : '
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Name : ', 'required': true}
+                                },
+                                {
+                                    key: 'description',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Description : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -112,16 +128,25 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'name',
-                            type: 'detailsCenter',
-                            templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsCenter',
+                                    templateOptions: {}
+                                },
+                                {
+                                    key: 'version',
+                                    className: 'flex-xs-100 flex-sm-100 flex-50',
+                                    type: 'detailsCenter',
+                                    templateOptions: {label: 'Version : '}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -177,39 +202,65 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'host',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Host : '
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'host',
+                                    className: 'flex-xs-100 flex-sm-100 flex-50',
+                                    type: 'ipAddress',
+                                    templateOptions: {
+                                        label: 'Host : ',
+                                        placeholder: 'xxx.xxx.xxx.xxx',
+                                        'required': true
+                                    }
+                                }
+                            ]
                         },
                         {
-                            key: 'jmx_port',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Jmx_port : '
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'jmx_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Jmx_port : ', placeholder: 'xxxx', 'required': true}
+                                },
+                                {
+                                    key: 'transport_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Transport_port : ', placeholder: 'xxxx', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'transport_port',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Transport_port : '
-                            }
-                        },
-                        {
-                            key: 'user',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'User : '
-                            }
-                        },
-                        {
-                            key: 'password',
-                            type: 'input',
-                            templateOptions: {
-                                label: 'Password : '
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'user',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'User : ', 'required': true}
+                                },
+                                {
+                                    key: 'password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Password : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -258,37 +309,68 @@
                             templateOptions: {label: '--> Period_delay : '}
                         }
                     ],
+                    elementAttributes: {
+                        'layout': 'column'
+                    },
                     fieldsModal: [
                         {
-                            key: 'url',
-                            type: 'input',
-                            templateOptions: {label: 'Url : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'url',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Url : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                },
+                                {
+                                    key: 'passphrase',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Passphrase : ', 'required': true}
+                                },
+                                {
+                                    key: 'dynamic_lock_wait_time',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Dynamic_lock_wait_time : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'passphrase',
-                            type: 'input',
-                            templateOptions: {label: 'Passphrase : '}
-                        },
-                        {
-                            key: 'dynamic_lock_wait_time',
-                            type: 'input',
-                            templateOptions: {label: 'Dynamic_lock_wait_time : '}
-                        },
-                        {
-                            key: 'pinger',
-                            type: 'details',
-                            templateOptions: {label: 'Pinger : '}
-                        },
-                        {
-                            key: 'start_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Start_delay : '}
-                        },
-                        {
-                            key: 'period_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Period_delay : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'pinger',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details2lines',
+                                    templateOptions: {label: 'Pinger : '}
+                                },
+                                {
+                                    key: 'start_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Start_delay : ', 'required': true}
+                                },
+                                {
+                                    key: 'period_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Period_delay : ', 'required': true}
+                                }
+                            ]
                         }
+
                     ]
                 },
                 /* General Properties */
@@ -351,44 +433,88 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'data_basedir',
-                            type: 'input',
-                            templateOptions: {label: 'Data_basedir : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'data_basedir',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Data_basedir : ', 'required': true}
+                                },
+                                {
+                                    key: 'repository_path',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Repository_path : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'repository_path',
-                            type: 'input',
-                            templateOptions: {label: 'Repository_path : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'work_path',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Work_path : ', 'required': true}
+                                },
+                                {
+                                    key: 'log_config_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Log_config_file : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'work_path',
-                            type: 'input',
-                            templateOptions: {label: 'Work_path : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'task_timeout',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Task_timeout : ', 'required': true}
+                                },
+                                {
+                                    key: 'container_moves_lock_wait_time',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Container_moves_lock_wait_time : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'log_config_file',
-                            type: 'input',
-                            templateOptions: {label: 'Log_config_file : '}
-                        },
-                        {
-                            key: 'task_timeout',
-                            type: 'input',
-                            templateOptions: {label: 'Task_timeout : '}
-                        },
-                        {
-                            key: 'exchange_validation',
-                            type: 'input',
-                            templateOptions: {label: 'Exchange_validation : '}
-                        },
-                        {
-                            key: 'classloaders_isolated',
-                            type: 'input',
-                            templateOptions: {label: 'Classloaders_isolated : '}
-                        },
-                        {
-                            key: 'container_moves_lock_wait_time',
-                            type: 'input',
-                            templateOptions: {label: 'Container_moves_lock_wait_time : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'exchange_validation',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    templateOptions: {label: 'Exchange_validation : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'classloaders_isolated',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    templateOptions: {label: 'Classloaders_isolated : ', theme: 'cardCustom-theme'}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -446,45 +572,97 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'key_password',
-                            type: 'input',
-                            templateOptions: {label: 'Key_password : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'key_password',
+                                    className: 'flex',
+                                    type: 'input',
+                                    templateOptions: {label: 'Key_password : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'keystore',
-                            type: 'details',
-                            templateOptions: {label: 'Keystore : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'keystore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Keystore : '}
+                                }
+                            ]
                         },
                         {
-                            key: 'keystore_file',
-                            type: 'input',
-                            templateOptions: {label: '--> File : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'keystore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsSub',
+                                    templateOptions: {labelSub: 'File : '}
+                                },
+                                {
+                                    key: 'keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Password : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'keystore_password',
-                            type: 'input',
-                            templateOptions: {label: '--> Password : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'truststore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Truststore : '}
+                                }
+                            ]
                         },
                         {
-                            key: 'truststore',
-                            type: 'details',
-                            templateOptions: {label: 'Truststore : '}
-                        },
-                        {
-                            key: 'truststore_file',
-                            type: 'input',
-                            templateOptions: {label: '--> File : '}
-                        },
-                        {
-                            key: 'truststore_password',
-                            type: 'input',
-                            templateOptions: {label: '--> Password : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'truststore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsSub',
+                                    templateOptions: {labelSub: 'File : '}
+                                },
+                                {
+                                    key: 'truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Password : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
                 /* Transporter Configuration */
                 {
-                    span: {row: 4, col: 1},
+                    span: {row: 5, col: 1},
                     background: 'pink',
                     color: 'colorBlack',
                     title: 'Transporter Configuration',
@@ -572,75 +750,161 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'queue',
-                            type: 'details',
-                            templateOptions: {label: 'Queue : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'queue',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Queue : '}
+                                }
+                            ]
                         },
                         {
-                            key: 'max_size',
-                            type: 'input',
-                            templateOptions: {label: 'Max_size : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'max_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Max_size : ', 'required': true}
+                                },
+                                {
+                                    key: 'offering_timeout',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Offering_timeout : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'offering_timeout',
-                            type: 'input',
-                            templateOptions: {label: 'Offering_timeout : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'tcp',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Tcp : '}
+                                }
+                            ]
                         },
                         {
-                            key: 'tcp',
-                            type: 'details',
-                            templateOptions: {label: 'Tcp : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'receivers',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'inputDetailsSub',
+                                    templateOptions: {label: 'Receivers : '}
+                                },
+                                {
+                                    key: 'tcp_receivers_listening_interface',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'ipAddress',
+                                    templateOptions: {label: 'Listening_interface : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'receivers',
-                            type: 'details',
-                            templateOptions: {label: '--> Receivers : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'tcp_receivers_numbers',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Numbers : ', 'required': true}
+                                },
+                                {
+                                    key: 'tcp_receivers_keep_alive',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Keep_alive : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'tcp_receivers_listening_interface',
-                            type: 'input',
-                            templateOptions: {label: 'Listening_interface : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'senders',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'inputDetailsSub',
+                                    templateOptions: {label: 'Senders : '}
+                                }
+                            ]
                         },
                         {
-                            key: 'tcp_receivers_numbers',
-                            type: 'input',
-                            templateOptions: {label: 'Numbers : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'tcp_senders_numbers',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Numbers : ', 'required': true}
+                                },
+                                {
+                                    key: 'tcp_senders_connection_timeout',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Connection_timeout : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'tcp_receivers_keep_alive',
-                            type: 'input',
-                            templateOptions: {label: 'Keep_alive : '}
-                        },
-                        {
-                            key: 'senders',
-                            type: 'details',
-                            templateOptions: {label: '--> Senders : '}
-                        },
-                        {
-                            key: 'tcp_senders_numbers',
-                            type: 'input',
-                            templateOptions: {label: 'Numbers : '}
-                        },
-                        {
-                            key: 'tcp_senders_connection_timeout',
-                            type: 'input',
-                            templateOptions: {label: 'Connection_timeout : '}
-                        },
-                        {
-                            key: 'tcp_senders_timeout',
-                            type: 'input',
-                            templateOptions: {label: 'Timeout : '}
-                        },
-                        {
-                            key: 'tcp_senders_evictor_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Evictor_delay : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'tcp_senders_timeout',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Timeout : ', 'required': true}
+                                },
+                                {
+                                    key: 'tcp_senders_evictor_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Evictor_delay : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
+
                 /* Router */
                 {
-                    span: {row: 2, col: 1},
+                    span: {row: 3, col: 1},
                     background: 'gray',
                     title: 'Router',
                     model: {
@@ -679,35 +943,68 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'strategy',
-                            type: 'input',
-                            templateOptions: {label: 'Strategy : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'strategy',
+                                    className: 'flex-xs-100 flex-sm-100 flex-50',
+                                    type: 'input',
+                                    templateOptions: {label: 'Strategy : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'send_attempt',
-                            type: 'input',
-                            templateOptions: {label: 'Send_attempt : ', type: 'integer'}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'send_attempt',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Send_attempt : ', 'required': true}
+                                },
+                                {
+                                    key: 'send_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Send_delay : ', 'required': true}
+                                }
+                            ]
                         },
                         {
-                            key: 'send_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Send_delay : '}
-                        },
-                        {
-                            key: 'traffic_stop_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Traffic_stop_delay : '}
-                        },
-                        {
-                            key: 'traffic_pause_delay',
-                            type: 'input',
-                            templateOptions: {label: 'Traffic_pause_delay : '}
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'traffic_stop_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Traffic_stop_delay : ', 'required': true}
+                                },
+                                {
+                                    key: 'traffic_pause_delay',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Traffic_pause_delay : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
+
                 /* Registry Client Configuration */
                 {
-                    span: {row: 2, col: 2},
+                    span: {row: 3, col: 2},
                     background: 'darkBlue',
                     color: 'colorBlack',
                     title: 'Registry Client Configuration',
@@ -741,24 +1038,37 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'registry_implementation',
-                            type: 'input',
-                            templateOptions: {label: 'Registry_implementation : '}
-                        },
-                        {
-                            key: 'registry_parameters',
-                            type: 'details',
-                            templateOptions: {label: 'Registry_parameters : '}
-                        },
-                        {
-                            key: 'map_cache',
-                            type: 'details',
-                            templateOptions: {label: '--> Map_cache : '}
-                        },
-                        {
-                            key: 'max_size',
-                            type: 'input',
-                            templateOptions: {label: 'Max_size : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'registry_implementation',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Registry_implementation : '}
+                                },
+                                {
+                                    key: 'registry_parameters',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'details',
+                                    templateOptions: {label: 'Registry_parameters : '}
+                                },
+                                {
+                                    key: 'map_cache',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsSub',
+                                    templateOptions: {labelSub: 'Map_cache : '}
+                                },
+                                {
+                                    key: 'max_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Max_size : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -786,14 +1096,23 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'corepoolsize',
-                            type: 'input',
-                            templateOptions: {label: 'Corepoolsize : '}
-                        },
-                        {
-                            key: 'keepalivetime',
-                            type: 'input',
-                            templateOptions: {label: 'Keepalivetime : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'corepoolsize',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Corepoolsize : ', 'required': true}
+                                },
+                                {
+                                    key: 'keepalivetime',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Keepalivetime : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -821,14 +1140,25 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'activation',
-                            type: 'input',
-                            templateOptions: {label: 'Activation : '}
-                        },
-                        {
-                            key: 'port',
-                            type: 'input',
-                            templateOptions: {label: 'Port : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'activation',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Port : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 },
@@ -868,24 +1198,37 @@
                     ],
                     fieldsModal: [
                         {
-                            key: 'activation',
-                            type: 'input',
-                            templateOptions: {label: 'Activation : '}
-                        },
-                        {
-                            key: 'scan_period',
-                            type: 'input',
-                            templateOptions: {label: 'Scan_period : '}
-                        },
-                        {
-                            key: 'path_install',
-                            type: 'input',
-                            templateOptions: {label: 'Path_install : '}
-                        },
-                        {
-                            key: 'path_installed',
-                            type: 'input',
-                            templateOptions: {label: 'Path_installed : '}
+                            elementAttributes: {
+                                layout: 'column',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'activation',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'scan_period',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Scan_period : ', 'required': true}
+                                },
+                                {
+                                    key: 'path_install',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Path_install : ', 'required': true}
+                                },
+                                {
+                                    key: 'path_installed',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Path_installed : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 }

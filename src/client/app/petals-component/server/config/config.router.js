@@ -11,47 +11,89 @@
 
     /* @ngInject */
     function runFunction(formlyConfig) {
-/*
         formlyConfig.setType({
             name: 'input',
-            template: '<input ng-model="model[options.key]">'
+            template: '<div layout-gt-sm="row">' +
+            '<md-input-container class="md-block" flex-gt-xs>' +
+            '<label>{{to.label}}</label>' +
+            '<input ng-model="model[options.key]" style="white-space: nowrap;">' +
+            '</md-input-container>'
         });
-*/
+        formlyConfig.setType({
+            name: 'inputDetailsSub',
+            template: '<div layout-align="center stretch" class="md-text-content">' +
+            '<div style="text-align: start"><md-icon class="md-accent material-icons" '+
+            'md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>' +
+            '{{to.label}}</div>' +
+            '<div style="text-align: start; white-space: nowrap;" flex><b>{{(model[options.key])}}</b></div>' +
+            '</div>' +
+            '</div>'
+        });
         formlyConfig.setType({
             name: 'details',
-            template:
-            '<div layout="row" layout-align="center stretch" class="md-text-content">' +
-            '   <div style="text-align: start;white-space: nowrap;">{{to.label}}</div>' +
-            '   <div flex style="min-width: 15px;"></div>' +
-            '   <div style="text-align: right;white-space: nowrap;overflow: hidden;">' +
-            '       <div style="float:right;"><b>{{(model[options.key])}}</b></div>' +
-            '   </div>'+
+            template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
+            '<div style="text-align: start;white-space: nowrap;">{{to.label}}</div>' +
+            '<div flex style="min-width: 15px;"></div>' +
+            '<div style="text-align: right;white-space: nowrap;overflow: hidden;">' +
+            '<div style="float:right; white-space: nowrap;"><b>{{(model[options.key])}}</b></div>' +
+            '</div>' +
             '</div>'
         });
         formlyConfig.setType({
             name: 'details2lines',
-            template: '<div layout="column" layout-align="center stretch" class="md-text-content">' +
+            template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
             '<div style="text-align: start">{{to.label}}</div>' +
             '<div style="text-align: start"><b>{{(model[options.key])}}</b></div>' +
             '</div>'
         });
         formlyConfig.setType({
             name: 'detailsSub',
-            template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
+            template: '<div layout-align="center stretch">' +
             '<div ng-model="model[options.key]">{{to.label}}</div>' +
-            '<div ng-if="to.label && !to.labelSub" flex></div>' +
-            '<div><md-icon ng-if="to.labelSub" class="md-accent material-icons" '+
+            '<div style="text-align: start"><md-icon ng-if="to.labelSub" class="md-accent material-icons" '+
             'md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>' +
             '{{to.labelSub}}</div>' +
-            '<div ng-if="to.labelSub" flex></div>' +
-            '<div style="text-align: end"><b>{{to.labelValue}}</b></div>' +
+            '<div style="text-align: start; white-space: nowrap;" flex><b>{{(model[options.key])}}</b></div>' +
             '</div>'
         });
         formlyConfig.setType({
             name: 'detailsCenter',
-            template: '<div layout-align="center center" class="md-text-content detailsCenter">' +
+            template: '<div layout="row" layout-align="center center" class="md-text-content detailsCenter">' +
             '<div style="text-align: center">{{to.label}}<b>{{(model[options.key])}}</b></div>' +
             '</div>'
+        });
+        formlyConfig.setType({
+            name: 'switchCustom',
+            'extends': 'switch',
+            template: '<md-switch ng-model="model[options.key]">' +
+            '<div style="text-align: center">{{to.label}}<br><b>{{(model[options.key])}}</b></div>' +
+            '</md-switch>'
+        });
+        /* For ipAddress */
+        formlyConfig.setType({
+            name: 'ipAddress',
+            'extends' : 'input',
+            defaultOptions: {
+                validators: {
+                    ipAddress: function(viewValue, modelValue) {
+                        var value = modelValue || viewValue;
+                        return /(\d{1,3}\.){3}\d{1,3}/.test(value);
+                    }
+                }
+            }
+        });
+        /* For input with numbers only */
+        formlyConfig.setType({
+            name: 'intInput',
+            'extends' : 'input',
+            defaultOptions: {
+                validators: {
+                    intInput: function(viewValue, modelValue) {
+                        var value = modelValue || viewValue;
+                        return /(^[0-9]*$)/.test(value);
+                    }
+                }
+            }
         });
 
 /*
