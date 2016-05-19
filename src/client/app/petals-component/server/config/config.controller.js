@@ -195,9 +195,7 @@
                         {
                             key: 'password',
                             type: 'details',
-                            templateOptions: {
-                                label: 'Password : '
-                            }
+                            templateOptions: {label: 'Password : '}
                         }
                     ],
                     fieldsModal: [
@@ -217,27 +215,12 @@
                                         placeholder: 'xxx.xxx.xxx.xxx',
                                         'required': true
                                     }
-                                }
-                            ]
-                        },
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
+                                },
                                 {
                                     key: 'jmx_port',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Jmx_port : ', placeholder: 'xxxx', 'required': true}
-                                },
-                                {
-                                    key: 'transport_port',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Transport_port : ', placeholder: 'xxxx', 'required': true}
                                 }
                             ]
                         },
@@ -249,16 +232,45 @@
                             },
                             fieldGroup: [
                                 {
+                                    key: 'transport_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Transport_port : ', placeholder: 'xxxx', 'required': true}
+                                },
+                                {
                                     key: 'user',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
                                     templateOptions: {label: 'User : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwd',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {show: 'Hide the User Password ?', hide: 'Show the User Password ?', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Password : ', 'required': true}
+                                    templateOptions: {label: 'Password : ', 'required': true},
+                                    hideExpression : '!model.checkPwd'
+                                },
+                                {
+                                    key: 'password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwd'
                                 }
                             ]
                         }
@@ -579,10 +591,24 @@
                             },
                             fieldGroup: [
                                 {
+                                    key: 'checkPwdKey',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {show: 'Hide the Key Password ?', hide: 'Show the Key Password ?', theme: 'cardCustom-theme'}
+                                },
+                                {
                                     key: 'key_password',
-                                    className: 'flex',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Key_password : ', 'required': true}
+                                    templateOptions: {label: 'Key_password : ', 'required': true},
+                                    hideExpression : '!model.checkPwdKey'
+                                },
+                                {
+                                    key: 'key_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Key_password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwdKey'
                                 }
                             ]
                         },
@@ -603,7 +629,7 @@
                         },
                         {
                             elementAttributes: {
-                                layout: 'row',
+                                layout: 'column',
                                 'layout-sm': 'column',
                                 'layout-xs': 'column'
                             },
@@ -611,14 +637,37 @@
                                 {
                                     key: 'keystore_file',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'detailsSub',
-                                    templateOptions: {labelSub: 'File : '}
+                                    type: 'details',
+                                    templateOptions: {label: 'File : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdKeystore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {show: 'Hide the Keystore Password ?', hide: 'Show the Keystore Password ?', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'keystore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Password : ', 'required': true}
+                                    templateOptions: {label: 'Keystore_password : ', 'required': true},
+                                    hideExpression : '!model.checkPwdKeystore'
+                                },
+                                {
+                                    key: 'keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Keystore_password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwdKeystore'
                                 }
                             ]
                         },
@@ -639,7 +688,7 @@
                         },
                         {
                             elementAttributes: {
-                                layout: 'row',
+                                layout: 'column',
                                 'layout-sm': 'column',
                                 'layout-xs': 'column'
                             },
@@ -647,14 +696,37 @@
                                 {
                                     key: 'truststore_file',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'detailsSub',
-                                    templateOptions: {labelSub: 'File : '}
+                                    type: 'details',
+                                    templateOptions: {label: 'File : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdTruststore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {show: 'Hide the Truststore Password ?', hide: 'Show the Truststore Password ?', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'truststore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Password : ', 'required': true}
+                                    templateOptions: {label: 'Truststore_password : ', 'required': true},
+                                    hideExpression : '!model.checkPwdTruststore'
+                                },
+                                {
+                                    key: 'truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Truststore_password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwdTruststore'
                                 }
                             ]
                         }

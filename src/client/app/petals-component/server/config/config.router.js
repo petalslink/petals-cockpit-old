@@ -34,7 +34,7 @@
             template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
             '<div style="text-align: start;white-space: nowrap;">{{to.label}}</div>' +
             '<div flex style="min-width: 15px;"></div>' +
-            '<div style="text-align: right;white-space: nowrap;overflow: hidden;">' +
+            '<div style="white-space: nowrap;overflow: hidden;">' +
             '<div style="float:right; white-space: nowrap;"><b>{{(model[options.key])}}</b></div>' +
             '</div>' +
             '</div>'
@@ -49,10 +49,10 @@
         formlyConfig.setType({
             name: 'detailsSub',
             template: '<div layout-align="center stretch">' +
-            '<div ng-model="model[options.key]">{{to.label}}</div>' +
             '<div style="text-align: start"><md-icon ng-if="to.labelSub" class="md-accent material-icons" '+
             'md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>' +
             '{{to.labelSub}}</div>' +
+            '<div ng-model="model[options.key]">{{to.label}}</div>' +
             '<div style="text-align: start; white-space: nowrap;" flex><b>{{(model[options.key])}}</b></div>' +
             '</div>'
         });
@@ -68,6 +68,16 @@
             template: '<md-switch ng-model="model[options.key]">' +
             '<div style="text-align: center">{{to.label}}<br><b>{{(model[options.key])}}</b></div>' +
             '</md-switch>'
+        });
+        formlyConfig.setType({
+            name: 'checkboxVisibility',
+            'extends': 'checkbox',
+            template: '<md-checkbox layout="row" ng-model="model[options.key]" layout-align="center stretch">' +
+            '<div style="text-align: start; white-space: nowrap;" flex>' +
+            '<p ng-if="model.checkPwd">{{to.show}}</p>' +
+            '<p ng-if="!model.checkPwd">{{to.hide}}</p>' +
+            '</div>' +
+            '</md-checkbox>'
         });
         /* For ipAddress */
         formlyConfig.setType({
@@ -95,27 +105,6 @@
                 }
             }
         });
-
-/*
-        formlyConfig.setWrapper({
-            name: 'mdLabel',
-            types: ['input'],
-            template: '<label>{{to.label}}</label><formly-transclude></formly-transclude>'
-        });
-
-        formlyConfig.setWrapper({
-            name: 'mdInputContainer',
-            types: ['input'],
-            template: '<md-input-container><formly-transclude></formly-transclude></md-input-container>'
-        });
-
-        formlyConfig.templateManipulators.preWrapper.push(function(template, options) {
-            if (!options.data.icon) {
-                return template;
-            }
-            return '<md-icon class="step" md-font-icon="icon-' + options.data.icon + '"></md-icon>' + template;
-        });
-*/
     }
 
     configServer.config(configFunction);

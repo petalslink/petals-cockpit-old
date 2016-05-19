@@ -1,4 +1,4 @@
-<md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak style="height: 600px; width: 1100px;">
+<md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak >
     <form name="serverConfigForm" ng-submit="vmModal.onSubmit()" name="vmModal.form" novalidate>
 
         <md-toolbar class="md-accent md-toolbar-tools gridTitleHeader">
@@ -10,8 +10,7 @@
             <span flex></span>
         </md-toolbar>
 
-        <md-card layout="row" layout-align="center center" style="text-align: end">
-            <md-content layout-padding>
+        <md-card layout="row" layout-align="center center" layout-padding style="text-align: end;">
 
             <formly-form model="vmModal.tile.model"
                          fields="vmModal.tile.fieldsModal"
@@ -27,7 +26,6 @@
                     Reset
                 </md-button>
             </formly-form>
-            </md-content>
 
         </md-card>
 
