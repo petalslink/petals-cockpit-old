@@ -1,4 +1,4 @@
-<div class="gridListServer" layout-fill flex md-theme="cardCustom-theme">
+<div class="gridListTile" layout-fill flex md-theme="cardCustom-theme">
     <md-grid-list
         layout-fill
         md-cols-xs="2" md-cols-gt-xs="4"
@@ -19,6 +19,7 @@
                     <span class="md-title">{{tile.title}}</span>
                 </md-grid-tile-header>
 
+                <!-- Inside Tile -->
                 <formly-form
                     model="tile.model"
                     fields="tile.fields"

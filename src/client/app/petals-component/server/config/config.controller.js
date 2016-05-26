@@ -28,7 +28,7 @@
 
         function buildTiles() {
 
-            // funcation assignment
+            // function assignment
             vm.onSubmit = onSubmit;
 
             vm.tiles = [
@@ -194,26 +194,22 @@
                         },
                         {
                             key: 'password',
-                            type: 'details',
+                            type: 'detailsPwd',
                             templateOptions: {label: 'Password : '}
                         }
                     ],
                     fieldsModal: [
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
+                                                        {
                                     key: 'host',
                                     className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'ipAddress',
+                                    type: 'input',
                                     templateOptions: {
                                         label: 'Host : ',
                                         placeholder: 'xxx.xxx.xxx.xxx',
-                                        'required': true
+                                        'required': true,
+                                        maxlength: 15,
+                                        minlength: 7,
+                                        type: 'ipAddress'
                                     }
                                 },
                                 {
@@ -221,9 +217,8 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Jmx_port : ', placeholder: 'xxxx', 'required': true}
-                                }
-                            ]
-                        },
+                                },
+
                         {
                             elementAttributes: {
                                 layout: 'row',
@@ -256,7 +251,11 @@
                                     key: 'checkPwd',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'checkboxVisibility',
-                                    templateOptions: {show: 'Hide the User Password ?', hide: 'Show the User Password ?', theme: 'cardCustom-theme'}
+                                    templateOptions: {
+                                        show: 'Hide the User Password ?',
+                                        hide: 'Show the User Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
                                 },
                                 {
                                     key: 'password',
@@ -548,7 +547,7 @@
                     fields: [
                         {
                             key: 'key_password',
-                            type: 'details',
+                            type: 'detailsPwd',
                             templateOptions: {label: 'Key_password : '}
                         },
                         {
@@ -563,7 +562,7 @@
                         },
                         {
                             key: 'keystore_password',
-                            type: 'details',
+                            type: 'detailsPwd',
                             templateOptions: {label: '--> Password : '}
                         },
                         {
@@ -578,7 +577,7 @@
                         },
                         {
                             key: 'truststore_password',
-                            type: 'details',
+                            type: 'detailsPwd',
                             templateOptions: {label: '--> Password : '}
                         }
                     ],
@@ -594,7 +593,11 @@
                                     key: 'checkPwdKey',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'checkboxVisibility',
-                                    templateOptions: {show: 'Hide the Key Password ?', hide: 'Show the Key Password ?', theme: 'cardCustom-theme'}
+                                    templateOptions: {
+                                        show: 'Hide the Key Password ?',
+                                        hide: 'Show the Key Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
                                 },
                                 {
                                     key: 'key_password',
@@ -653,7 +656,11 @@
                                     key: 'checkPwdKeystore',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'checkboxVisibility',
-                                    templateOptions: {show: 'Hide the Keystore Password ?', hide: 'Show the Keystore Password ?', theme: 'cardCustom-theme'}
+                                    templateOptions: {
+                                        show: 'Hide the Keystore Password ?',
+                                        hide: 'Show the Keystore Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
                                 },
                                 {
                                     key: 'keystore_password',
@@ -666,8 +673,12 @@
                                     key: 'keystore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Keystore_password : ', type: 'password', 'required': true},
-                                    hideExpression : 'model.checkPwdKeystore'
+                                    templateOptions: {
+                                        label: 'Keystore_password : ',
+                                        type: 'password',
+                                        'required': true
+                                    },
+                                    hideExpression: 'model.checkPwdKeystore'
                                 }
                             ]
                         },
@@ -712,7 +723,11 @@
                                     key: 'checkPwdTruststore',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'checkboxVisibility',
-                                    templateOptions: {show: 'Hide the Truststore Password ?', hide: 'Show the Truststore Password ?', theme: 'cardCustom-theme'}
+                                    templateOptions: {
+                                        show: 'Hide the Truststore Password ?',
+                                        hide: 'Show the Truststore Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
                                 },
                                 {
                                     key: 'truststore_password',
@@ -725,8 +740,12 @@
                                     key: 'truststore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Truststore_password : ', type: 'password', 'required': true},
-                                    hideExpression : 'model.checkPwdTruststore'
+                                    templateOptions: {
+                                        label: 'Truststore_password : ',
+                                        type: 'password',
+                                        'required': true
+                                    },
+                                    hideExpression: 'model.checkPwdTruststore'
                                 }
                             ]
                         }
@@ -1305,7 +1324,6 @@
                     ]
                 }
             ];
-
 
             vm.originalFields = angular.copy(vm.tiles.fieldsModal);
 
