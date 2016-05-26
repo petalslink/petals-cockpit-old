@@ -1,4 +1,4 @@
-<md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak >
+<md-dialog aria-label="Server Config Details" md-theme="cardCustom-theme" ng-cloak>
     <form name="serverConfigForm" ng-submit="vmModal.onSubmit()" name="vmModal.form" novalidate>
 
         <md-toolbar class="md-accent md-toolbar-tools gridTitleHeader">
@@ -30,4 +30,31 @@
         </md-card>
 
     </form>
+
+    <script type="text/ng-template" id="array-input.html">
+
+        <!-- Loop through each element in model array -->
+        <div ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
+                    <span style="float: right;" layout="row">
+                        <md-button class="md-fab md-mini md-warn" ng-click="model[options.key].splice($index, 1)">
+                            <md-icon class="material-icons md-accent" aria-label="Delete Overlay_members"
+                                     md-svg-icon="mdicons:close"></md-icon>
+                            </md-button>
+                        </span>
+            <formly-form fields="fields"
+                         model="element"
+                         form="form">
+                <hr>
+            </formly-form>
+        </div>
+        <div layout="row" layout-gt-xs="column">
+            <md-button class="md-accent md-raised" ng-click="addNew()">
+                <md-icon class="material-icons md-accent" aria-label="Add Overlay_members"
+                         md-svg-icon="mdicons:plus-circle-outline"></md-icon>
+                {{to.btnAdd}}
+            </md-button>
+        </div>
+
+    </script>
+
 </md-dialog>
