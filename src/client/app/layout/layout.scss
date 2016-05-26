@@ -67,12 +67,184 @@ md-sidenav.md-locked-open-remove.md-closed {
         background: rgba(229, 222, 249, 1) !important;
     }
 }
-.md-cardCustom-theme-theme md-input-container .md-errors-spacer {
+/*.md-cardCustom-theme-theme md-input-container .md-errors-spacer {
     float: right;
     min-height: 0 !important;
     min-width: 1px;
-}
+}*/
 md-dialog.md-cardCustom-theme-theme {
     border-radius: 4px;
     background-color: rgb(205,221,221);
+}
+
+.gridContent {
+    margin: 0;
+    overflow: hidden;
+    white-space: normal !important;
+}
+.gridListTile .imgGrid {
+    background: url("/src/client/images/img_server.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+.gridListTile .fondGrid {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden;
+    padding-top: 34px;
+}
+.gridListTile .gray {
+    background: #f5f5f5; }
+.gridListTile .green {
+    background: #b9f6ca; }
+.gridListTile .yellow {
+    background: #ffff8d; }
+.gridListTile .blue {
+    background: #84ffff; }
+.gridListTile .darkBlue {
+    background: #80d8ff; }
+.gridListTile .deepBlue {
+    background: #448aff; }
+.gridListTile .purple {
+    background: #b388ff; }
+.gridListTile .lightPurple {
+    background: #8c9eff; }
+.gridListTile .red {
+    background: #ff8a80; }
+.gridListTile .pink {
+    background: #ff80ab; }
+.gridListTile .orange {
+    background: #ffa91e; }
+.gridListTile .lightGreen {
+    background: #dfffc3; }
+
+.gridListTile md-grid-tile {
+    text-transform: uppercase;
+    transition: all 400ms ease-out 50ms;
+    border: black 10px;
+    border-radius: 6px;
+}
+.gridListTile .colorBlack {
+    color: black !important;
+    text-align: left !important;
+    text-transform: none !important;
+    margin: 0;
+    padding: 0;
+}
+.gridListTile .colorWhite {
+    color: white !important;
+    text-shadow: 1px 1px #555;
+    text-transform: none !important;
+    margin: 0;
+    padding: 0;
+}
+.gridListTile .md-text-content {
+    font-weight: 400;
+    letter-spacing: 0 !important;
+    line-height: 14px;
+    white-space: normal !important;
+    text-transform: none !important;
+}
+.gridListTile .md-title {
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    white-space: normal !important;
+}
+
+@media screen and (max-width: 960px) {
+    .gridTitleHeader {
+        background: rgba(0,0,0, 0.75);
+        margin: 0;
+        height: 30px;
+        line-height: 12px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-title {
+        font-size: 12px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-text-content {
+        font-size: 12px;
+        line-height: 14px;
+        white-space: normal !important;
+        text-transform: none !important;
+    }
+    .gridListTile .md-text-content.detailsCenter {
+        font-size: 16px !important;
+        line-height: 16px;
+        text-align: center !important;
+    }
+    .gridListTile .material-icons {
+        height: 12px !important;
+        width: 12px !important;
+    }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 280px !important;
+    }
+}
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+    .gridTitleHeader {
+        background: rgba(0,0,0, 0.75);
+        margin: 0;
+        height: 40px;
+        line-height: 14px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-title {
+        font-size: 14px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-text-content {
+        font-size: 14px;
+        line-height: 16px;
+        white-space: normal !important;
+        text-transform: none !important;
+    }
+    .gridListTile .md-text-content.detailsCenter {
+        font-size: 24px !important;
+        line-height: 24px;
+        text-align: center !important;
+    }
+    .gridListTile .material-icons {
+        height: 14px !important;
+        width: 14px !important;
+    }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 360px !important;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .gridTitleHeader {
+        background: rgba(0,0,0, 0.75);
+        margin: 0;
+        height: 40px;
+        line-height: 18px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-title {
+        font-size: 15px;
+        white-space: normal !important;
+    }
+    .gridListTile .md-text-content {
+        font-size: 15px;
+        line-height: 18px;
+        white-space: normal !important;
+        text-transform: none !important;
+    }
+    .gridListTile .md-text-content.detailsCenter {
+        font-size: 22px !important;
+        line-height: 24px;
+        text-align: center !important;
+    }
+    .gridListTile .material-icons {
+        height: 16px !important;
+        width: 16px !important;
+    }
+    md-input-container.md-cardCustom-theme-theme .md-input {
+        width: 480px !important;
+    }
 }
