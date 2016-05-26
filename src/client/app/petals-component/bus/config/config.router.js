@@ -15,8 +15,8 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bus/config/config.html',
                         controller: 'ConfigBusController',
+                        templateUrl: 'src/client/app/petals-component/bus/config/config.html',
                         controllerAs: 'vmBusConfig'
                     }
                 },

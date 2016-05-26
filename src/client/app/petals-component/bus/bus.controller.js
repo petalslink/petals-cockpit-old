@@ -10,7 +10,10 @@
 
     /* @ngInject */
     function ControllerFunction() {
+
         var vm = this;
+
+        activate();
 
         // TABS VIEWS CONSOLE
         vm.dataNavConsole = [
@@ -28,8 +31,6 @@
 
             }
         ];
-
-        activate();
 
         function activate() {
         }

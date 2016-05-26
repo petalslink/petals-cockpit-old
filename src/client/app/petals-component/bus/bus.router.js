@@ -15,13 +15,12 @@
                 url: '/bus/:id',
                 views: {
                     'petals-nav-console': {
-                        controller: 'BusController',
                         templateUrl: 'src/client/app/petals-component/bus/bus.html',
+                        controller: 'BusController',
                         controllerAs: 'vmBus'
-
                     },
                     'petals-console': {
-                        template: '<div ui-view="petals-console"></div>',
+                        template: '<div ui-view="petals-console" layout-fill></div>',
                         controller: ''
                     }
                 },

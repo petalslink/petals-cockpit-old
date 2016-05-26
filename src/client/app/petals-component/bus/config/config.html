@@ -1,84 +1,53 @@
-<div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
-     layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
+<div class="gridListTile" layout-fill flex md-theme="cardCustom-theme">
+    <md-grid-list
+        layout-fill
+        md-cols-xs="2" md-cols-gt-xs="4"
+        md-row-height-xs="2:1" md-row-height-gt-xs="19:4"
+        md-gutter="4px" md-gutter-gt-sm="4px">
+        <!-- works with Firefox only
+                md-row-height-gt-xs="fit"
+        -->
+        <md-grid-tile ng-repeat="tile in vmBusConfig.tiles"
+                      md-rowspan="{{tile.span.row}}"
+                      md-colspan="{{tile.span.col}}"
+                      ng-class="tile.background">
 
-    <div layout="row" layout-align="center stretch">
-        <h1><b>{{vmBusConfig.details.title}}</b></h1>
-    </div>
+            <md-button aria-label="Open Modal Bus Config Details" class="fondGrid" layout-fill
+                       ng-click="vmBusConfig.openModalTile(tile)">
 
-    <md-card layout="column" layout-align="start stretch" flex>
+                <md-grid-tile-header layout-align="center center" class="gridTitleHeader">
+                    <span class="md-title">{{tile.title}}</span>
+                </md-grid-tile-header>
 
-        <md-card-title layout-align="center center"><b>BUS Registry</b></md-card-title>
+                <!-- Inside Tile -->
+                <formly-form
+                    model="tile.model"
+                    fields="tile.fieldsDisplay"
+                    options="tile.options"
+                    form="tile.form"
+                    layout-fill layout-align="center start">
+                </formly-form>
 
-        <div layout="row" layout-align="start stretch" layout-xs="column">
-            <!---------------------------------------------------------------------------------------------------
-                Registry Client
-            ---------------------------------------------------------------------------------------------------->
-            <md-card flex class="md-whiteframe-2dp" layout-xs="column">
-                <md-card-title layout-align="center center"><b>Registry Client</b></md-card-title>
-                <md-divider class="sizeDividerCard" layout-margin
-                            ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-                <md-card-content layout-align="start center">
-                    Registry_implementation :
-                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_implementation}}</b>
-                </md-card-content>
-            </md-card>
-            <!---------------------------------------------------------------------------------------------------
-                Configuration
-            ---------------------------------------------------------------------------------------------------->
-            <md-card flex class="md-whiteframe-2dp" layout-xs="column">
-                <md-card-title layout-align="center center"><b>Configuration</b></md-card-title>
-                <md-divider class="sizeDividerCard" layout-margin
-                            ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-                <md-card-content layout-align="start center">
-                    Group_name :
-                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_configuration.group_name}}</b><br>
-                    Group_password :
-                    <b class="sizeSmall">{{vmBusConfig.details.topology.registry.registry_configuration.group_password}}{vmBusConfig.details.topology.registry.registry_implementation}}</b>
-                </md-card-content>
-            </md-card>
+            </md-button>
+
+        </md-grid-tile>
+    </md-grid-list>
+
+    <script type="text/ng-template" id="array-display.html">
+
+        <span class="md-text-content">{{to.lblOverlay}}</span>
+
+        <div ng-repeat="list in [model[options.key][0],model[options.key][1]]" ng-init="fieldsDisplay = copyFields(to.fields)">
+            <formly-form fields="fieldsDisplay"
+                         model="list"
+                         form="form"
+                         layout-fill layout-align="center start">
+                <hr>
+            </formly-form>
         </div>
 
-        <div layout="column" layout-align="center stretch">
-            <!---------------------------------------------------------------------------------------------------
-                Overlay_members
-            ---------------------------------------------------------------------------------------------------->
-            <md-card flex class="md-whiteframe-2dp" layout-xs="column"
-                     ng-repeat="member in vmBusConfig.details.topology.registry.registry_configuration.overlay_members">
-                <md-card-content>
-                    Overlay_members :<br>&nbsp;
-                    <md-icon class="material-icons md-icon-button md-accent"
-                             md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                    Host_name : <b class="sizeSmall">{{member.host_name}}</b><br>&nbsp;&nbsp;
-                    <md-icon class="material-icons md-icon-button md-accent"
-                             md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
-                    Port : <b class="sizeSmall">{{member.port}}</b>
-                </md-card-content>
-            </md-card>
-        </div>
+        <p><b>...</b></p>
 
-    </md-card>
-    <!---------------------------------------------------------------------------------------------------
-        Petals Containers
-    ---------------------------------------------------------------------------------------------------->
-    <md-card layout-margin layout="column" layout-align="start stretch" flex>
-
-        <md-card-title layout-align="center center"><b>Petals Containers</b></md-card-title>
-
-        <md-divider class="sizeDividerCard" layout-margin ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-        <div layout="row" layout-align="center stretch" layout-xs="column">
-            <md-card class="md-whiteframe-2dp" ng-repeat="container in vmBusConfig.details.topology.containers" flex layout-xs="column">
-                <md-card-content>
-                    Name : <b class="sizeSmall">{{container.name}}</b> <br>
-                    Description : <b class="sizeSmall">{{container.description}}</b> <br>
-                    Host : <b class="sizeSmall">{{container.host}}</b> <br>
-                    User : <b class="sizeSmall">{{container.user}}</b> <br>
-                    Password : <b class="sizeSmall">{{container.password}}</b> <br>
-                    Jmx_port : <b class="sizeSmall">{{container.jmx_port}}</b> <br>
-                    Transport_port : <b class="sizeSmall">{{container.transport_port}}</b><br>
-                </md-card-content>
-            </md-card>
-        </div>
-
-    </md-card>
+    </script>
 
 </div>
