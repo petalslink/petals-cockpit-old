@@ -8,12 +8,12 @@
     },
     "state": "UNDEPLOYED",
     "topology": {
-        "domain":{
+        "domain": {
             "name": "domain_0",
             "mode": "static",
             "description": "A sample domain configuration"
         },
-        "containers":[
+        "containers": [
             {
                 "id": 2,
                 "name": "server-1",
@@ -27,7 +27,7 @@
             {
                 "id": 3,
                 "name": "server-2",
-                "description": "description of the container 1",
+                "description": "description of the container 2",
                 "host": "192.18.1.002",
                 "user": "petals",
                 "password": "petals",
@@ -35,7 +35,7 @@
                 "transport_port": "7801"
             }
         ],
-        "registry":{
+        "registry": {
             "registry_implementation": "org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl",
             "registry_configuration": {
                 "group_name": "default-sample",
@@ -44,10 +44,17 @@
                     {
                         "host_name": "192.18.1.001",
                         "port": "7901"
+                    },
+                    {
+                        "host_name": "192.18.1.002",
+                        "port": "7902"
+                    },
+                    {
+                        "host_name": "192.18.1.003",
+                        "port": "7903"
                     }
                 ]
             }
         }
     }
-
 }

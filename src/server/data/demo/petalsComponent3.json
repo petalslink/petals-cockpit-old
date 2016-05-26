@@ -57,7 +57,7 @@
         }
     },
     "transport": "*** Petals ESB - Transporter Configuration ***",
-    "transport":{
+    "transport": {
         "queue": {
             "max_size": "10000",
             "offering_timeout": "2500"
@@ -71,13 +71,13 @@
             "senders": {
                 "numbers": "10",
                 "connection_timeout": "5000",
-                "timeout":"5000",
+                "timeout": "5000",
                 "evictor_delay": "60000"
             }
         }
     },
     "registry": "*** Petals ESB - Registry Client Configuration ***",
-    "registry":{
+    "registry": {
         "registry_implementation": "org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl",
         "registry_parameters": {
             "map_cache": {
@@ -108,10 +108,10 @@
         "path": "/var/lib/petals/server-2/artifacts"
     },
     "ws_api": "*** Petals ESB - WS API extension ***",
-    "ws_api":{
+    "ws_api": {
         "activation": true,
         "listening_interface": "localhost",
-        "http_port":"7600",
+        "http_port": "7600",
         "http_path": "petals/ws"
     }
 }
