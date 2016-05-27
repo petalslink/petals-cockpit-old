@@ -208,7 +208,7 @@
                 /* Registry Client */
                 {
                     span: {row: 3, col: 2},
-                    background: 'lightPurple',
+                    background: 'yellow',
                     title: 'Registry Client',
                     model: {
                         registry_implementation: vm.details.topology.registry.registry_implementation,
@@ -322,7 +322,7 @@
                 /* Petals Containers */
                 {
                     span: {row: 7, col: 2},
-                    background: 'pink',
+                    background: 'purple',
                     title: 'Petals Containers',
                     model: {
                         containers: vm.details.topology.containers,
@@ -596,7 +596,7 @@
                 /* Following Registry Client > Overlay_members */
                 {
                     span: {row: 4, col: 2},
-                    background: 'lightPurple',
+                    background: 'gray',
                     title: '. . .',
                     model: {
                         overlay_members: vm.details.topology.registry.registry_configuration.overlay_members,

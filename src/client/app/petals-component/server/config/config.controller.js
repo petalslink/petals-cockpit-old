@@ -35,7 +35,7 @@
                 /* State */
                 {
                     span: {row: 2, col: 1},
-                    background: 'yellow',
+                    background: 'orange',
                     title: 'State',
                     model: {
                         state: vm.details.state,
@@ -1256,7 +1256,7 @@
                 /* Autoloader Extension */
                 {
                     span: {row: 2, col: 2},
-                    background: 'orange',
+                    background: 'yellow',
                     color: 'colorBlack',
                     title: 'Autoloader Extension',
                     model: {

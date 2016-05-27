@@ -26,7 +26,8 @@ md-sidenav.md-locked-open.md-closed,
 md-sidenav.md-locked-open.md-closed.md-sidenav-right,
 md-sidenav.md-locked-open-remove.md-closed {
     padding-top: 0 !important;
-    background: rgba(229, 222, 249, 1) !important;
+    background: rgba(162, 185, 255, 1) !important;
+    border: solid 1px rgba(69, 39, 160, 0.5) !important;
 }
 
 
@@ -38,7 +39,8 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
-        background: rgba(229, 222, 249, 1) !important;
+        background: rgba(162, 185, 255, 1) !important;
+        border: solid 1px rgba(69, 39, 160, 0.5) !important;
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 108px;
@@ -52,7 +54,8 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
-        background: rgba(229, 222, 249, 1) !important;
+        background: rgba(162, 185, 255, 1) !important;
+        border: solid 1px rgba(69, 39, 160, 0.5) !important;
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 124px;
@@ -64,7 +67,8 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         margin-top: 0;
-        background: rgba(229, 222, 249, 1) !important;
+        background: rgba(162, 185, 255, 1) !important;
+        border: solid 1px rgba(69, 39, 160, 0.5) !important;
     }
 }
 /*.md-cardCustom-theme-theme md-input-container .md-errors-spacer {
@@ -76,7 +80,6 @@ md-dialog.md-cardCustom-theme-theme {
     border-radius: 4px;
     background-color: rgb(205,221,221);
 }
-
 .gridContent {
     margin: 0;
     overflow: hidden;
