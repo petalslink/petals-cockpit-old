@@ -1,44 +1,9 @@
-<div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
-     layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
+<div layout="row">
+    <md-card layout-align="center center" flex>
+        <h1>Bus Overview</h1>
+    </md-card>
 
-    <div layout="row" layout-align="start stretch" flex layout-xs="column">
-        <!---------------------------------------------------------------------------------------------------
-            Details Title Selection
-        ---------------------------------------------------------------------------------------------------->
-        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
-            <md-card-title layout-align="center center"><b>{{vmBusOverview.details.title}}</b></md-card-title>
-            <md-divider class="sizeDividerCard" layout-margin
-                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-            <md-card-content layout-align="start center">
-                State : <b class="sizeSmall">{{vmBusOverview.details.state}}</b><br>
-                Description : <b class="sizeSmall">{{vmBusOverview.details.description}}</b>
-            </md-card-content>
-        </md-card>
-        <!---------------------------------------------------------------------------------------------------
-            Typing
-        ---------------------------------------------------------------------------------------------------->
-        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
-            <md-card-title layout-align="center center"><b>Typing</b></md-card-title>
-            <md-divider class="sizeDividerCard" layout-margin
-                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-            <md-card-content layout-align="start center">
-                Type : <b class="sizeSmall">{{vmBusOverview.details.componentType.name}}</b><br>
-                Version : <b class="sizeSmall">{{vmBusOverview.details.componentType.version}}</b>
-            </md-card-content>
-        </md-card>
-        <!---------------------------------------------------------------------------------------------------
-            Topology
-        ---------------------------------------------------------------------------------------------------->
-        <md-card class="md-whiteframe-2dp" layout-xs="column" flex>
-            <md-card-title layout-align="center center"><b>Topology</b></md-card-title>
-            <md-divider class="sizeDividerCard" layout-margin
-                        ng-style="{'background': 'rgba(69, 39, 160, 0.7)'}"></md-divider>
-            <md-card-content layout-align="start center">
-                Name : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.name}}</b><br>
-                Mode : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.mode}}</b><br>
-                Description : <b class="sizeSmall">{{vmBusOverview.details.topology.domain.description}}</b>
-            </md-card-content>
-        </md-card>
-    </div>
-
+    <md-card layout-align="center center" flex>
+        <p>Ici, une deuxième balise md-card "Overview".</p>
+    </md-card>
 </div>

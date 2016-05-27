@@ -7,6 +7,7 @@
         "icon": "bus"
     },
     "state": "UNDEPLOYED",
+    "name": "bus-1",
     "topology": {
         "domain": {
             "name": "domain_0",

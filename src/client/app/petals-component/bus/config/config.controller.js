@@ -32,6 +32,179 @@
             vm.onSubmit = onSubmit;
 
             vm.tiles = [
+                /* State */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'orange',
+                    title: 'State',
+                    model: {
+                        state: vm.details.state,
+                        name: vm.details.name
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'state',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'name',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Name : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'state',
+                                    type: 'details',
+                                    templateOptions: {}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Name : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Type */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'imgGrid',
+                    title: 'Type',
+                    model: {
+                        name: vm.details.componentType.name,
+                        version: vm.details.componentType.version
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'name',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'version',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {
+                                label: 'Version : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsCenter',
+                                    templateOptions: {}
+                                },
+                                {
+                                    key: 'version',
+                                    className: 'flex-xs-100 flex-sm-100 flex-50',
+                                    type: 'detailsCenter',
+                                    templateOptions: {label: 'Version : '}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Topology */
+                {
+                    span: {row: 2, col: 2},
+                    background: 'green',
+                    title: 'Topology',
+                    model: {
+                        name: vm.details.topology.domain.name,
+                        mode: vm.details.topology.domain.mode,
+                        description: vm.details.topology.domain.description
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'name',
+                            type: 'details',
+                            templateOptions: {label: 'Name : '}
+                        },
+                        {
+                            key: 'mode',
+                            type: 'details',
+                            templateOptions: {label: 'Mode : '}
+                        },
+                        {
+                            key: 'description',
+                            type: 'details',
+                            templateOptions: {label: 'Description : '}
+                        }
+                    ],
+                    elementAttributes: {
+                        'layout': 'column'
+                    },
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Name : ', 'required': true}
+                                },
+                                {
+                                    key: 'mode',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Mode : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'description',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Description : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                },
                 /* Registry Client */
                 {
                     span: {row: 3, col: 2},
@@ -149,7 +322,7 @@
                 /* Petals Containers */
                 {
                     span: {row: 7, col: 2},
-                    background: 'gray',
+                    background: 'pink',
                     title: 'Petals Containers',
                     model: {
                         containers: vm.details.topology.containers,
