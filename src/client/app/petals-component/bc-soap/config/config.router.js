@@ -15,16 +15,16 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        templateUrl: 'src/client/app/petals-component/bc-soap/config/config.html',
                         controller: 'ConfigBcSoapController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/config/config.html',
                         controllerAs: 'vmBcSoapConfig'
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.CONFIG');
+                    logger.debug('You enter in WORKSPACE.PETALS.BC-SOAP.CONFIG');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.CONFIG');
+                    logger.debug('You reactivate WORKSPACE.PETALS.BC-SOAP.CONFIG');
                 }]
 
             });

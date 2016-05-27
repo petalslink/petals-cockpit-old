@@ -13,7 +13,7 @@
     "description": "description of the component 1",
     "cdk_part": "*** Configuration of the component, CDK part ***",
     "cdk_part": {
-        "acceptor_pool_size ": "1",
+        "acceptor_pool_size": "1",
         "acceptor_retry_number": "40",
         "acceptor_retry_wait": "250",
         "acceptor_stop_max_wait": "500",
@@ -21,7 +21,7 @@
         "processor_max_pool_size": "50",
         "processor_keep_alive_time": "300",
         "processor_stop_max_wait": "15000",
-        "time_beetween_async_cleaner_runs": "2000",
+        "time_between_async_cleaner_runs": "2000",
         "properties_file": "",
         "monitoring_sampling_period": "300"
     },

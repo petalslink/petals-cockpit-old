@@ -1,3 +1,40 @@
+<div class="gridListTile" layout-fill flex md-theme="cardCustom-theme">
+    <md-grid-list
+        layout-fill
+        md-cols-xs="2" md-cols-gt-xs="4"
+        md-row-height-xs="2:1" md-row-height-gt-xs="19:4"
+        md-gutter="4px" md-gutter-gt-sm="4px">
+        <!-- works with Firefox only
+                md-row-height-gt-xs="fit"
+        -->
+        <md-grid-tile ng-repeat="tile in vmBcSoapConfig.tiles"
+                      md-rowspan="{{tile.span.row}}"
+                      md-colspan="{{tile.span.col}}"
+                      ng-class="tile.background">
+
+            <md-button aria-label="Open Modal BcSoap Config Details" class="fondGrid" layout-fill
+                       ng-click="vmBcSoapConfig.openModalTile(tile)">
+
+                <md-grid-tile-header layout-align="center center" class="gridTitleHeader">
+                    <span class="md-title">{{tile.title}}</span>
+                </md-grid-tile-header>
+
+                <!-- Inside Tile -->
+                <formly-form
+                    model="tile.model"
+                    fields="tile.fieldsDisplay"
+                    options="tile.options"
+                    form="tile.form"
+                    layout-fill layout-align="center start">
+                </formly-form>
+
+            </md-button>
+
+        </md-grid-tile>
+    </md-grid-list>
+</div>
+
+<!--
 <div layout="column" flex-offset-sm="0" flex-offset-md="0" flex-offset-lg="0" flex-offset-gt-lg="0"
      layout-wrap ng-style="{'background': 'rgba(69, 39, 160, 0.05)'}" md-theme="cardCustom-theme">
 
@@ -10,9 +47,9 @@
         <md-card-title layout-align="center center"><b>COMPONENT Configuration</b></md-card-title>
 
         <div layout="row" layout-align="start stretch" layout-xs="column">
-            <!---------------------------------------------------------------------------------------------------
+            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;
                 CDK Part
-            ---------------------------------------------------------------------------------------------------->
+            &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
             <md-card flex class="md-whiteframe-2dp" layout-xs="column">
                 <md-card-title layout-align="center center"><b>CDK Part</b></md-card-title>
                 <md-divider class="sizeDividerCard" layout-margin
@@ -42,9 +79,9 @@
                     <b class="sizeSmall">{{vmBcSoapConfig.details.cdk_part.monitoring_sampling_period}}</b>
                 </md-card-content>
             </md-card>
-            <!---------------------------------------------------------------------------------------------------
+            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;
                 Component part
-            ---------------------------------------------------------------------------------------------------->
+            &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
             <md-card flex class="md-whiteframe-2dp" layout-xs="column">
                 <md-card-title layout-align="center center"><b>Component Part</b></md-card-title>
                 <md-divider class="sizeDividerCard" layout-margin
@@ -103,3 +140,4 @@
     </md-card>
 
 </div>
+-->

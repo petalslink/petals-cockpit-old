@@ -6,17 +6,532 @@
         .controller('ConfigBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails'];
+    ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails) {
+    function ControllerFunction(promiseDetails, configModalTile, logger) {
+
         var vm = this;
+
         vm.details = {};
+        vm.tiles = [];
+        vm.openModalTile = configModalTile.openModalTile;
 
         activate();
 
         function activate() {
+            // init data with resolve from router
             vm.details = promiseDetails;
+
+            buildTiles();
+        }
+
+        function buildTiles() {
+
+            // function assignment
+            vm.onSubmit = onSubmit;
+
+            vm.tiles = [
+                /* State */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'orange',
+                    title: 'State',
+                    model: {
+                        state: vm.details.state,
+                        name: vm.details.name,
+                        description: vm.details.description
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'state',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'name',
+                            type: 'details',
+                            templateOptions: {
+                                label: 'Name : '
+                            }
+                        },
+                        {
+                            key: 'description',
+                            type: 'details2lines',
+                            templateOptions: {
+                                label: 'Description : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'state',
+                                    type: 'detailsCenter',
+                                    templateOptions: {}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Name : ', 'required': true}
+                                },
+                                {
+                                    key: 'description',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Description : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Type */
+                {
+                    span: {row: 2, col: 1},
+                    background: 'imgGrid',
+                    title: 'Type',
+                    model: {
+                        name: vm.details.componentType.name,
+                        version: vm.details.componentType.version
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'name',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {}
+                        },
+                        {
+                            key: 'version',
+                            className: 'colorWhite',
+                            type: 'detailsCenter',
+                            templateOptions: {
+                                label: 'Version : '
+                            }
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'detailsCenter',
+                                    templateOptions: {}
+                                },
+                                {
+                                    key: 'version',
+                                    className: 'flex-xs-100 flex-sm-100 flex-50',
+                                    type: 'detailsCenter',
+                                    templateOptions: {label: 'Version : '}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Cdk_part */
+                {
+                    span: {row: 4, col:2},
+                    background: 'green',
+                    title: 'Cdk Part',
+                    model: {
+                        acceptor_pool_size: vm.details.cdk_part.acceptor_pool_size,
+                        acceptor_retry_number: vm.details.cdk_part.acceptor_retry_number,
+                        acceptor_retry_wait: vm.details.cdk_part.acceptor_retry_wait,
+                        acceptor_stop_max_wait: vm.details.cdk_part.acceptor_stop_max_wait,
+                        processor_pool_size: vm.details.cdk_part.processor_pool_size,
+                        processor_max_pool_size: vm.details.cdk_part.processor_max_pool_size,
+                        processor_keep_alive_time: vm.details.cdk_part.processor_keep_alive_time,
+                        processor_stop_max_wait: vm.details.cdk_part.processor_stop_max_wait,
+                        time_between_async_cleaner_runs: vm.details.cdk_part.time_between_async_cleaner_runs,
+                        properties_file: vm.details.cdk_part.properties_file,
+                        monitoring_sampling_period: vm.details.cdk_part.monitoring_sampling_period
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'acceptor_pool_size',
+                            type: 'details',
+                            templateOptions: {label: 'Acceptor_pool_size :'}
+                        },
+                        {
+                            key: 'acceptor_retry_number',
+                            type: 'details',
+                            templateOptions: {label: 'Acceptor_retry_number :'}
+                        },
+                        {
+                            key: 'acceptor_retry_wait',
+                            type: 'details',
+                            templateOptions: {label: 'Acceptor_retry_wait :'}
+                        },
+                        {
+                            key: 'acceptor_stop_max_wait',
+                            type: 'details',
+                            templateOptions: {label: 'Acceptor_stop_max_wait :'}
+                        },
+                        {
+                            key: 'processor_pool_size',
+                            type: 'details',
+                            templateOptions: {label: 'Processor_pool_size :'}
+                        },
+                        {
+                            key: 'processor_max_pool_size',
+                            type: 'details',
+                            templateOptions: {label: 'Processor_max_pool_size :'}
+                        },
+                        {
+                            key: 'processor_keep_alive_time',
+                            type: 'details',
+                            templateOptions: {label: 'Processor_keep_alive_time :'}
+                        },
+                        {
+                            key: 'processor_stop_max_wait',
+                            type: 'details',
+                            templateOptions: {label: 'Processor_stop_max_wait :'}
+                        },
+                        {
+                            key: 'time_between_async_cleaner_runs',
+                            type: 'details',
+                            templateOptions: {label: 'Time_between_async_cleaner_runs :'}
+                        },
+                        {
+                            key: 'properties_file',
+                            type: 'details',
+                            templateOptions: {label: 'Properties_file :'}
+                        },
+                        {
+                            key: 'monitoring_sampling_period',
+                            type: 'details',
+                            templateOptions: {label: 'Monitoring_sampling_period :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'acceptor_pool_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Acceptor_pool_size : ', 'required': true}
+                                },
+                                {
+                                    key: 'acceptor_retry_number',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Acceptor_retry_number : ', 'required': true}
+                                },
+                                {
+                                    key: 'acceptor_retry_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Acceptor_retry_wait : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'acceptor_stop_max_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Acceptor_stop_max_wait : ', 'required': true}
+                                },
+                                {
+                                    key: 'processor_pool_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Processor_pool_size : ', 'required': true}
+                                },
+                                {
+                                    key: 'processor_max_pool_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Processor_max_pool_size : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'processor_keep_alive_time',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Processor_keep_alive_time : ', 'required': true}
+                                },
+                                {
+                                    key: 'processor_stop_max_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Processor_stop_max_wait : ', 'required': true}
+                                },
+                                {
+                                    key: 'time_between_async_cleaner_runs',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Time_between_async_cleaner_runs : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'properties_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Properties_file : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                },
+                                {
+                                    key: 'monitoring_sampling_period',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Monitoring_sampling_period : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Component_part */
+                {
+                    span: {row: 4, col:2},
+                    background: 'yellow',
+                    title: 'Component Part : Http',
+                    model: {
+                        http_port: vm.details.component_part.http_port,
+                        http_host: vm.details.component_part.http_host,
+                        http_service_list: vm.details.component_part.http_service_list,
+                        http_service_context: vm.details.component_part.http_service_context,
+                        http_service_mapping: vm.details.component_part.http_service_mapping,
+                        http_thread_pool_size_min: vm.details.component_part.http_thread_pool_size_min,
+                        http_thread_pool_size_max: vm.details.component_part.http_thread_pool_size_max,
+                        http_acceptors: vm.details.component_part.http_acceptors,
+                        http_backlog_size: vm.details.component_part.http_backlog_size,
+                        max_http_connections_per_host: vm.details.component_part.max_http_connections_per_host
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'http_port',
+                            type: 'details',
+                            templateOptions: {label: 'Http_port :'}
+                        },
+                        {
+                            key: 'http_host',
+                            type: 'details',
+                            templateOptions: {label: 'Http_host :'}
+                        },
+                        {
+                            key: 'http_service_list',
+                            type: 'details',
+                            templateOptions: {label: 'Http_service_list :'}
+                        },
+                        {
+                            key: 'http_service_context',
+                            type: 'details',
+                            templateOptions: {label: 'Http_service_context :'}
+                        },
+                        {
+                            key: 'http_service_mapping',
+                            type: 'details',
+                            templateOptions: {label: 'Http_service_mapping :'}
+                        },
+                        {
+                            key: 'http_thread_pool_size_min',
+                            type: 'details',
+                            templateOptions: {label: 'Http_thread_pool_size_min :'}
+                        },
+                        {
+                            key: 'http_thread_pool_size_max',
+                            type: 'details',
+                            templateOptions: {label: 'Http_thread_pool_size_max :'}
+                        },
+                        {
+                            key: 'http_acceptors',
+                            type: 'details',
+                            templateOptions: {label: 'Http_acceptors :'}
+                        },
+                        {
+                            key: 'http_backlog_size',
+                            type: 'details',
+                            templateOptions: {label: 'Http_backlog_size :'}
+                        },
+                        {
+                            key: 'max_http_connections_per_host',
+                            type: 'details',
+                            templateOptions: {label: 'Max_http_connections_per_host :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'http_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_port : ', 'required': true}
+                                },
+                                {
+                                    key: 'http_host',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_host : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'acceptor_retry_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: true,
+                                    templateOptions: {label: 'Http_service_list : ', theme: 'cardCustom-theme'}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'http_service_context',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Http_service_context : ', 'required': true}
+                                },
+                                {
+                                    key: 'http_service_mapping',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Http_service_mapping : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'http_thread_pool_size_min',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_thread_pool_size_min : ', 'required': true}
+                                },
+                                {
+                                    key: 'http_thread_pool_size_max',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_thread_pool_size_max : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'http_acceptors',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_acceptors : ', 'required': true}
+                                },
+                                {
+                                    key: 'http_backlog_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Http_backlog_size : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'max_http_connections_per_host',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Max_http_connections_per_host : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
+
+            vm.originalFields = angular.copy(vm.tiles.fieldsModal);
+
+            // function definition
+            function onSubmit() {
+                logger.info('************* TEST ******************');
+                logger.info(angular.toJson(vm.tiles.model), null, 2);
+            }
         }
 
     }
