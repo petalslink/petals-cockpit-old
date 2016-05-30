@@ -1241,6 +1241,7 @@
                                     key: 'activation',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switchCustom',
+                                    defaultValue: true,
                                     templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
                                 },
                                 {
@@ -1299,6 +1300,7 @@
                                     key: 'activation',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switchCustom',
+                                    defaultValue: true,
                                     templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
                                 },
                                 {
