@@ -244,12 +244,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Acceptor_retry_number : ', 'required': true}
-                                },
-                                {
-                                    key: 'acceptor_retry_wait',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Acceptor_retry_wait : ', 'required': true}
                                 }
                             ]
                         },
@@ -261,11 +255,26 @@
                             },
                             fieldGroup: [
                                 {
+                                    key: 'acceptor_retry_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Acceptor_retry_wait : ', 'required': true}
+                                },
+                                {
                                     key: 'acceptor_stop_max_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Acceptor_stop_max_wait : ', 'required': true}
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
                                 {
                                     key: 'processor_pool_size',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
@@ -298,12 +307,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Processor_stop_max_wait : ', 'required': true}
-                                },
-                                {
-                                    key: 'time_between_async_cleaner_runs',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Time_between_async_cleaner_runs : ', 'required': true}
                                 }
                             ]
                         },
@@ -315,6 +318,12 @@
                             },
                             fieldGroup: [
                                 {
+                                    key: 'time_between_async_cleaner_runs',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Time_between_async_cleaner_runs : ', 'required': true}
+                                },
+                                {
                                     key: 'properties_file',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
@@ -322,7 +331,16 @@
                                     expressionProperties: {
                                         'templateOptions.disabled': 'true'
                                     }
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
                                 {
                                     key: 'monitoring_sampling_period',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
@@ -333,7 +351,7 @@
                         }
                     ]
                 },
-                /* Component_part */
+                /* Component_part : HTTP */
                 {
                     span: {row: 4, col:2},
                     background: 'yellow',
@@ -518,6 +536,358 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
                                     templateOptions: {label: 'Max_http_connections_per_host : ', 'required': true}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Component_part : HTTPS */
+                {
+                    span: {row: 4, col:2},
+                    background: 'purple',
+                    title: 'Component Part : Https',
+                    model: {
+                        https_enabled: vm.details.component_part.https_enabled,
+                        https_port: vm.details.component_part.https_port,
+                        https_acceptors: vm.details.component_part.https_acceptors,
+                        https_backlog_size: vm.details.component_part.https_backlog_size,
+                        https_keystore_type: vm.details.component_part.https_keystore_type,
+                        https_keystore_file: vm.details.component_part.https_keystore_file,
+                        https_keystore_password: vm.details.component_part.https_keystore_password,
+                        https_key_password: vm.details.component_part.https_key_password,
+                        https_truststore_type: vm.details.component_part.https_truststore_type,
+                        https_truststore_file: vm.details.component_part.https_truststore_file,
+                        https_truststore_password: vm.details.component_part.https_truststore_password
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'https_enabled',
+                            type: 'details',
+                            templateOptions: {label: 'Https_enabled :'}
+                        },
+                        {
+                            key: 'https_port',
+                            type: 'details',
+                            templateOptions: {label: 'Https_port :'}
+                        },
+                        {
+                            key: 'https_acceptors',
+                            type: 'details',
+                            templateOptions: {label: 'Https_acceptors :'}
+                        },
+                        {
+                            key: 'https_backlog_size',
+                            type: 'details',
+                            templateOptions: {label: 'Https_backlog_size :'}
+                        },
+                        {
+                            key: 'https_keystore_type',
+                            type: 'details',
+                            templateOptions: {label: 'Https_keystore_type :'}
+                        },
+                        {
+                            key: 'https_keystore_file',
+                            type: 'details',
+                            templateOptions: {label: 'Https_keystore_file :'}
+                        },
+                        {
+                            key: 'https_keystore_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Https_keystore_password :'}
+                        },
+                        {
+                            key: 'https_key_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Https_key_password :'}
+                        },
+                        {
+                            key: 'https_truststore_type',
+                            type: 'details',
+                            templateOptions: {label: 'Https_truststore_type :'}
+                        },
+                        {
+                            key: 'https_truststore_file',
+                            type: 'details',
+                            templateOptions: {label: 'Https_truststore_file :'}
+                        },
+                        {
+                            key: 'https_truststore_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Https_truststore_password :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_enabled',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: false,
+                                    templateOptions: {label: 'Https_enabled : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'https_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Https_port : ', required: true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_acceptors',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Https_acceptors : ', required: true}
+                                },
+                                {
+                                    key: 'https_backlog_size',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Https_backlog_size : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_keystore_type',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_type : ', 'required': true}
+                                },
+                                {
+                                    key: 'https_keystore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_file : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdKeyStore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
+                                },
+                                {
+                                    key: 'https_keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_password : ', 'required': true},
+                                    hideExpression : '!model.checkPwdKeyStore'
+                                },
+                                {
+                                    key: 'https_keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwdKeyStore'
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdKey',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
+                                },
+                                {
+                                    key: 'https_key_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_key_password : ', 'required': true},
+                                    hideExpression : '!model.checkPwdKey'
+                                },
+                                {
+                                    key: 'https_key_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_key_password : ', type: 'password', 'required': true},
+                                    hideExpression : 'model.checkPwdKey'
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_truststore_type',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_type : ', 'required': true}
+                                },
+                                {
+                                    key: 'https_truststore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_file : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdTrust',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    },
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                },
+                                {
+                                    key: 'https_truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_password : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    },
+                                    hideExpression : '!model.checkPwdTrust'
+                                },
+                                {
+                                    key: 'https_truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_password : ', type: 'password'},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    },
+                                    hideExpression : 'model.checkPwdTrust'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Component_part : ... */
+                {
+                    span: {row: 2, col:2},
+                    background: 'gray',
+                    title: '...',
+                    model: {
+                        java_naming_factory_initial: vm.details.component_part.java_naming_factory_initial,
+                        java_naming_provider_url: vm.details.component_part.java_naming_provider_url,
+                        jms_connection_factory_jndiname: vm.details.component_part.jms_connection_factory_jndiname
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'java_naming_factory_initial',
+                            type: 'details',
+                            templateOptions: {label: 'Java_naming_factory_initial :'}
+                        },
+                        {
+                            key: 'java_naming_provider_url',
+                            type: 'details',
+                            templateOptions: {label: 'Java_naming_provider_url :'}
+                        },
+                        {
+                            key: 'jms_connection_factory_jndiname',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Jms_connection_factory_jndiname :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'java_naming_factory_initial',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Java_naming_factory_initial : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                },
+                                {
+                                    key: 'java_naming_provider_url',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Java_naming_provider_url : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'jms_connection_factory_jndiname',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Jms_connection_factory_jndiname : '},
+                                    expressionProperties: {
+                                        'templateOptions.disabled': 'true'
+                                    }
                                 }
                             ]
                         }
