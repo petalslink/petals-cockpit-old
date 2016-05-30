@@ -1,0 +1,33 @@
+{
+    "id": 8,
+        "title": "SU-CONSUME 1",
+    "componentType": {
+        "name": "SU-CONSUME",
+        "version": "3-2-1",
+        "cat": "SU",
+        "subCat": "CONSUME",
+        "icon": "star"
+    },
+    "state": "UNDEPLOYED",
+    "name": "su-consume-1",
+    "description": "description of the su-consume 1",
+    "cdk_part": "*** Configuration of a Service Unit to consume a service, CDK part ***",
+    "cdk_part": {
+        "mep": "",
+        "operation": "",
+        "timeout": "30000"
+    },
+    "component_part": "*** Configuration of a Service Unit to consume a service, SOAP part ***",
+    "component_part": {
+        "wsdl": "",
+        "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
+        "soap_action": "",
+        "mode": "SOAP",
+        "enable-compatibility-for": "",
+        "enable-http-transport": true,
+        "enable-https-transport": false,
+        "enable-jms-transport": false,
+        "http-services-redirection": "",
+        "address": ""
+    }
+}
