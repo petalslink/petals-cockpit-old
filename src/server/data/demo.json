@@ -62,7 +62,30 @@
                             "state": "UNDEPLOYED",
                             "display": "empty",
                             "selectionChain": "BUS 1/server 2/BC-SOAP 1",
-                            "children": []
+                            "children": [
+                                {
+                                    "id": 8,
+                                    "title": "SU-CONSUME 1",
+                                    "componentType": {
+                                        "name": "SU-CONSUME",
+                                        "version": "3-2-1",
+                                        "cat": "SU",
+                                        "subCat": "CONSUME",
+                                        "icon": "star"
+                                    }
+                                },
+                                {
+                                    "id": 9,
+                                    "title": "SU-PROVIDE 1",
+                                    "componentType": {
+                                        "name": "SU-PROVIDE",
+                                        "version": "3-2-1",
+                                        "cat": "SU",
+                                        "subCat": "PROVIDE",
+                                        "icon": "star"
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }

@@ -28,7 +28,7 @@
     "component_part": "*** Configuration of the component, Component part ***",
     "component_part": {
         "http_port": "8084",
-        "http_host": "",
+        "http_host": "192.168.1.128",
         "http_service_list": true,
         "http_service_context": "petals",
         "http_service_mapping": "services",

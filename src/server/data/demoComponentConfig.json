@@ -43,7 +43,7 @@
                                         "subCat": "CONSUME",
                                         "icon": "star"
                                     },
-                                    "initState": "home.workspace.petals.bc-soap-su-consume.overview"
+                                    "initState": "home.workspace.petals.bc-soap.su-consume.config"
                                 },
                                 {
                                     "componentType": {
@@ -53,7 +53,7 @@
                                         "subCat": "PROVIDE",
                                         "icon": "star"
                                     },
-                                    "initState": "home.workspace.petals.bc-soap-su-provide.overview"
+                                    "initState": "home.workspace.petals.bc-soap.su-provide.config"
                                 }
                             ]
                         },

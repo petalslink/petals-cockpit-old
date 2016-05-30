@@ -23,11 +23,11 @@
         "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
         "soap_action": "",
         "mode": "SOAP",
-        "enable-compatibility-for": "",
-        "enable-http-transport": true,
-        "enable-https-transport": false,
-        "enable-jms-transport": false,
-        "http-services-redirection": "",
+        "enable_compatibility-for": "",
+        "enable_http-transport": true,
+        "enable_https-transport": false,
+        "enable_jms-transport": false,
+        "http_services-redirection": "",
         "address": ""
     }
 }
