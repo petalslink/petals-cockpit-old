@@ -27,6 +27,5 @@
                     logger.debug('You reactivate WORKSPACE.PETALS.SERVER.OVERVIEW');
                 }]
             });
-
     }
 })();
