@@ -149,6 +149,509 @@
                             ]
                         }
                     ]
+                },
+                /* Cdk_part */
+                {
+                    span: {row: 3, col:2},
+                    background: 'green',
+                    title: 'Cdk Part',
+                    model: {
+                        timeout: vm.details.cdk_part.timeout,
+                        exchange_properties: vm.details.cdk_part.exchange_properties,
+                        message_properties: vm.details.cdk_part.message_properties,
+                        validate_wsdl: vm.details.cdk_part.validate_wsdl,
+                        wsdl: vm.details.cdk_part.wsdl,
+                        forward_attachments: vm.details.cdk_part.forward_attachments,
+                        forward_message_properties: vm.details.cdk_part.forward_message_properties,
+                        forward_security_subject: vm.details.cdk_part.forward_security_subject
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'timeout',
+                            type: 'details',
+                            templateOptions: {label: 'Timeout :'}
+                        },
+                        {
+                            key: 'exchange_properties',
+                            type: 'details',
+                            templateOptions: {label: 'Exchange_properties :'}
+                        },
+                        {
+                            key: 'message_properties',
+                            type: 'details',
+                            templateOptions: {label: 'Message_properties :'}
+                        },
+                        {
+                            key: 'validate_wsdl',
+                            type: 'details',
+                            templateOptions: {label: 'Validate_wsdl :'}
+                        },
+                        {
+                            key: 'wsdl',
+                            type: 'details',
+                            templateOptions: {label: 'Wsdl :'}
+                        },
+                        {
+                            key: 'forward_attachments',
+                            type: 'details',
+                            templateOptions: {label: 'Forward_attachments :'}
+                        },
+                        {
+                            key: 'forward_message_properties',
+                            type: 'details',
+                            templateOptions: {label: 'Forward_message_properties :'}
+                        },
+                        {
+                            key: 'forward_security_subject',
+                            type: 'details',
+                            templateOptions: {label: 'Forward_security_subject :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'timeout',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Timeout : '}
+                                },
+                                {
+                                    key: 'exchange_properties',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Exchange_properties : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'message_properties',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Message_properties : '}
+                                },
+                                {
+                                    key: 'validate_wsdl',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: true,
+                                    templateOptions: {label: 'Validate_wsdl : ', theme: 'cardCustom-theme'}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'wsdl',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Wsdl : '}
+                                },
+                                {
+                                    key: 'forward_attachments',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: false,
+                                    templateOptions: {label: 'Forward_attachments : ', theme: 'cardCustom-theme'}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'forward_message_properties',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: false,
+                                    templateOptions: {label: 'Forward_message_properties : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'forward_security_subject',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: false,
+                                    templateOptions: {label: 'Forward_security_subject : ', theme: 'cardCustom-theme'}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Soap_part */
+                {
+                    span: {row: 3, col:2},
+                    background: 'red',
+                    title: 'Soap Part',
+                    model: {
+                        soap_version: vm.details.soap_part.soap_version,
+                        address: vm.details.soap_part.address,
+                        chunked_mode: vm.details.soap_part.chunked_mode,
+                        mode: vm.details.soap_part.mode,
+                        enable_compatibility_for: vm.details.soap_part.enable_compatibility_for,
+                        enable_wsa: vm.details.soap_part.enable_wsa
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'soap_version',
+                            type: 'details',
+                            templateOptions: {label: 'Soap_version :'}
+                        },
+                        {
+                            key: 'address',
+                            type: 'details',
+                            templateOptions: {label: 'Address :'}
+                        },
+                        {
+                            key: 'chunked_mode',
+                            type: 'details',
+                            templateOptions: {label: 'Chunked_mode :'}
+                        },
+                        {
+                            key: 'mode',
+                            type: 'details',
+                            templateOptions: {label: 'Mode :'}
+                        },
+                        {
+                            key: 'enable_compatibility_for',
+                            type: 'details',
+                            templateOptions: {label: 'Enable_compatibility_for :'}
+                        },
+                        {
+                            key: 'enable_wsa',
+                            type: 'details',
+                            templateOptions: {label: 'Enable_wsa :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'soap_version',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Soap_version : ', 'required': true}
+                                },
+                                {
+                                    key: 'address',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Address : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'chunked_mode',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'switchCustom',
+                                    defaultValue: false,
+                                    templateOptions: {label: 'Chunked_mode : ', theme: 'cardCustom-theme'}
+                                },
+                                {
+                                    key: 'mode',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Mode : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'enable_compatibility_for',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Enable_compatibility_for : '}
+                                },
+                                {
+                                    key: 'enable_wsa',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Enable_wsa : '}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Soap_part_proxy */
+                {
+                    span: {row: 2, col:2},
+                    background: 'purple',
+                    title: 'Soap Part : Proxy',
+                    model: {
+                        proxy_host: vm.details.soap_part.proxy_host,
+                        proxy_port: vm.details.soap_part.proxy_port,
+                        proxy_password: vm.details.soap_part.proxy_password,
+                        proxy_domain: vm.details.soap_part.proxy_domain
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'proxy_host',
+                            type: 'details',
+                            templateOptions: {label: 'Proxy_host :'}
+                        },
+                        {
+                            key: 'proxy_port',
+                            type: 'details',
+                            templateOptions: {label: 'Proxy_port :'}
+                        },
+                        {
+                            key: 'proxy_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Proxy_password :'}
+                        },
+                        {
+                            key: 'proxy_domain',
+                            type: 'details',
+                            templateOptions: {label: 'Proxy_domain :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'proxy_host',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Proxy_host : '}
+                                },
+                                {
+                                    key: 'proxy_port',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Proxy_port : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdProx',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
+                                },
+                                {
+                                    key: 'proxy_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Proxy_password : '},
+                                    hideExpression : '!model.checkPwdProx'
+                                },
+                                {
+                                    key: 'proxy_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Proxy_password : ', type: 'password'},
+                                    hideExpression : 'model.checkPwdProx'
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'proxy_domain',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Proxy_domain : '}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Soap_part_https */
+                {
+                    span: {row: 2, col:2},
+                    background: 'gray',
+                    title: 'Soap Part : Https',
+                    model: {
+                        https_truststore_file: vm.details.soap_part.https_truststore_file,
+                        https_truststore_password: vm.details.soap_part.https_truststore_password,
+                        https_keystore_file: vm.details.soap_part.https_keystore_file,
+                        https_keystore_password: vm.details.soap_part.https_keystore_password
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'https_truststore_file',
+                            type: 'details',
+                            templateOptions: {label: 'Https_truststore_file :'}
+                        },
+                        {
+                            key: 'https_truststore_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Https_truststore_password :'}
+                        },
+                        {
+                            key: 'https_keystore_file',
+                            type: 'details',
+                            templateOptions: {label: 'Https_keystore_file :'}
+                        },
+                        {
+                            key: 'https_keystore_password',
+                            type: 'detailsPwd',
+                            templateOptions: {label: 'Https_keystore_password :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_truststore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_file : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdTruststore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
+                                },
+                                {
+                                    key: 'https_truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_password : '},
+                                    hideExpression : '!model.checkPwdTruststore'
+                                },
+                                {
+                                    key: 'https_truststore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_password : ', type: 'password'},
+                                    hideExpression : 'model.checkPwdTruststore'
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'https_keystore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_file : '}
+                                },
+                                {
+                                    key: 'https_truststore_file',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_truststore_file : '}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'checkPwdKeystore',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'checkboxVisibility',
+                                    templateOptions: {
+                                        show: 'Hide the Password ?',
+                                        hide: 'Show the Password ?',
+                                        theme: 'cardCustom-theme'
+                                    }
+                                },
+                                {
+                                    key: 'https_keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_password : '},
+                                    hideExpression : '!model.checkPwdKeystore'
+                                },
+                                {
+                                    key: 'https_keystore_password',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Https_keystore_password : ', type: 'password'},
+                                    hideExpression : 'model.checkPwdKeystore'
+                                }
+                            ]
+                        }
+                    ]
                 }
             ];
 
