@@ -24,7 +24,7 @@
         <div layout="column" layout-fill flex>
             <!-- Multi named view for managing sticky state -->
             <!-- named view for state workspace.petals -->
-            <ui-view name="petals-nav-console" ng-show="$state.includes('home.workspace.petals')"></ui-view>
+            <ui-view name="petals-nav-console" class="navConsoleBackground" ng-show="$state.includes('home.workspace.petals')"></ui-view>
             <ui-view name="petals-console" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
             <!-- named view for state workspace.service -->
             <ui-view name="service-nav-console" ng-show="$state.includes('home.workspace.service')"></ui-view>
