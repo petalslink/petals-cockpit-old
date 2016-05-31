@@ -1,42 +1,33 @@
 {
     "id": 8,
-        "title": "SU-PROVIDE 1",
+    "title": "SU-CONSUME 1",
     "componentType": {
-        "name": "SU-PROVIDE",
+        "name": "SU-CONSUME",
         "version": "3-2-1",
         "cat": "SU",
-        "subCat": "PROVIDE",
+        "subCat": "CONSUME",
         "icon": "star"
     },
     "state": "UNDEPLOYED",
-    "name": "su-provide-1",
-    "description": "description of the su-provide 1",
-    "cdk_part": "*** Configuration of a Service Unit to provide a service, CDK part ***",
+    "name": "su-consume-1",
+    "description": "description of the su-consume 1",
+    "cdk_part": "*** Configuration of a Service Unit to consume a service, CDK part ***",
     "cdk_part": {
-        "timeout": "30000",
-        "exchange_properties": "",
-        "message_properties": "",
-        "validate_wsdl": true,
-        "wsdl": "IntegrationService.wsdl",
-        "forward_attachments": false,
-        "forward_message_properties": false,
-        "forward_security_subject": false
+        "mep": "",
+        "operation": "",
+        "timeout": "30000"
     },
-    "component_part": "*** Configuration of a Service Unit to provide a service, SOAP part ***",
+    "component_part": "*** Configuration of a Service Unit to consume a service, SOAP part ***",
     "component_part": {
-        "soap_version": "1.1",
-        "address": "https://localhost:8088/mockIntegrationServiceSOAP",
-        "chunked_mode": false,
+        "wsdl": "",
+        "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
+        "soap_action": "",
         "mode": "SOAP",
-        "enable_compatibility_for": "",
-        "enable_wsa": false,
-        "proxy_host": "",
-        "proxy_port": "",
-        "proxy_password": "",
-        "proxy_domain": "",
-        "https_truststore_file": "../https/clientTruststore.jks",
-        "https_truststore_password": "passwordClientTruststore",
-        "https_keystore_file": "../https/clientKeystore.jks",
-        "https_keystore_password": "passwordClientKeystore"
+        "enable_compatibility-for": "",
+        "enable_http-transport": true,
+        "enable_https-transport": false,
+        "enable_jms-transport": false,
+        "http_services-redirection": "",
+        "address": ""
     }
 }
