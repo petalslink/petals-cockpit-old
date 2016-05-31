@@ -14,7 +14,7 @@
                 "cat": "BUS",
                 "icon": "bus"
             },
-            "initState": "home.workspace.petals.bus.overview",
+            "initState": "home.workspace.petals.bus.config",
             "contains": [
                 {
                     "componentType": {
@@ -24,7 +24,7 @@
                         "icon": "server-network"
                     },
                     "initState": "home.workspace.petals.server.config",
-                    "contains" : [
+                    "contains": [
                         {
                             "componentType": {
                                 "name": "BC-SOAP",
@@ -34,7 +34,7 @@
                                 "icon": "puzzle"
                             },
                             "initState": "home.workspace.petals.bc-soap.config",
-                            "contains" : [
+                            "contains": [
                                 {
                                     "componentType": {
                                         "name": "SU-CONSUME",
@@ -43,7 +43,7 @@
                                         "subCat": "CONSUME",
                                         "icon": "star"
                                     },
-                                    "initState": "home.workspace.petals.bc-soap.su-consume.config"
+                                    "initState": "home.workspace.petals.bc-soap-su-consume.su-config"
                                 },
                                 {
                                     "componentType": {
@@ -53,37 +53,37 @@
                                         "subCat": "PROVIDE",
                                         "icon": "star"
                                     },
-                                    "initState": "home.workspace.petals.bc-soap.su-provide.config"
+                                    "initState": "home.workspace.petals.bc-soap-su-provide.su-config"
                                 }
                             ]
                         },
                         {
                             "componentType": {
                                 "name": "BC-REST",
-                            "version": "2-4",
-                            "cat": "COMPONENT",
-                            "subCat": "BC",
-                            "icon": "puzzle"
+                                "version": "2-4",
+                                "cat": "COMPONENT",
+                                "subCat": "BC",
+                                "icon": "puzzle"
                             },
                             "initState": "home.workspace.petals.bc-rest.overview",
-                            "contains" : [
+                            "contains": [
                                 {
                                     "componentType": {
                                         "name": "SU-CONSUME",
-                                    "version": "2-4-3",
-                                    "cat": "SU",
-                                    "subCat": "CONSUME",
-                                    "icon": "star"
+                                        "version": "2-4-3",
+                                        "cat": "SU",
+                                        "subCat": "CONSUME",
+                                        "icon": "star"
                                     },
                                     "initState": "home.workspace.petals.bc-rest-su-consume.overview"
                                 },
                                 {
                                     "componentType": {
                                         "name": "SU-PROVIDE",
-                                    "version": "2-4-3",
-                                    "cat": "SU",
-                                    "subCat": "PROVIDE",
-                                    "icon": "star"
+                                        "version": "2-4-3",
+                                        "cat": "SU",
+                                        "subCat": "PROVIDE",
+                                        "icon": "star"
                                     },
                                     "initState": "home.workspace.petals.bc-rest-su-provide.overview"
                                 }
@@ -92,20 +92,20 @@
                         {
                             "componentType": {
                                 "name": "BC-MAIL",
-                            "version": "2-5",
-                            "cat": "COMPONENT",
-                            "subCat": "BC",
-                            "icon": "puzzle"
+                                "version": "2-5",
+                                "cat": "COMPONENT",
+                                "subCat": "BC",
+                                "icon": "puzzle"
                             },
                             "initState": "home.workspace.petals.bc-mail.overview",
-                            "contains" : [
+                            "contains": [
                                 {
                                     "componentType": {
                                         "name": "SU-PROVIDE",
-                                    "version": "2-5-6",
-                                    "cat": "SU",
-                                    "subCat": "CONSUME",
-                                    "icon": "star"
+                                        "version": "2-5-6",
+                                        "cat": "SU",
+                                        "subCat": "CONSUME",
+                                        "icon": "star"
                                     },
                                     "initState": "home.workspace.petals.bc-soap-su-provide.overview"
                                 }
@@ -114,13 +114,13 @@
                         {
                             "componentType": {
                                 "name": "SE-QUARTZ",
-                            "version": "1-5",
-                            "cat": "COMPONENT",
-                            "subCat": "SE",
-                            "icon": "puzzle"
+                                "version": "1-5",
+                                "cat": "COMPONENT",
+                                "subCat": "SE",
+                                "icon": "puzzle"
                             },
                             "initState": "home.workspace.petals.se-quartz.overview",
-                            "contains" : [
+                            "contains": [
                                 {
                                     "componentType": {
                                         "name": "SU-CONSUME",

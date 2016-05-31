@@ -72,7 +72,10 @@
                                         "cat": "SU",
                                         "subCat": "CONSUME",
                                         "icon": "star"
-                                    }
+                                    },
+                                    "state": "UNDEPLOYED",
+                                    "display": "empty",
+                                    "selectionChain": "BUS 1/server 2/BC-SOAP 1/SU-CONSUME 1"
                                 },
                                 {
                                     "id": 9,
@@ -83,7 +86,10 @@
                                         "cat": "SU",
                                         "subCat": "PROVIDE",
                                         "icon": "star"
-                                    }
+                                    },
+                                    "state": "UNDEPLOYED",
+                                    "display": "empty",
+                                    "selectionChain": "BUS 1/server 2/BC-SOAP 1/SU-PROVIDE 1"
                                 }
                             ]
                         }
