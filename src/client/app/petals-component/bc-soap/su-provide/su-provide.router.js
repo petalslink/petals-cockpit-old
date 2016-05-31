@@ -20,21 +20,21 @@
                         controllerAs: 'vmSuProvide'
                     },
                     'petals-console': {
-                        template: '<div ui-view="petals-console"></div>',
+                        template: '<div ui-view="petals-console" layout-fill></div>',
                         controller: ''
-                    },
-                    resolve: {
-                        promiseSUDetails: function(dataservice, $stateParams) {
-                            return dataservice.getPetalsComponent($stateParams.id);
-                        }
-                    },
-                    onEnter: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
-                    }],
-                    onReactivate: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
+                    }
+                },
+                resolve: {
+                    promiseSUDetails: ['dataservice', '$stateParams', function (dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id);
                     }]
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-PROVIDE');
+                }]
             });
 
     }
