@@ -17,17 +17,16 @@
         "operation": "",
         "timeout": "30000"
     },
-    "component_part": "*** Configuration of a Service Unit to consume a service, SOAP part ***",
-    "component_part": {
+    "soap_part": "*** Configuration of a Service Unit to consume a service, SOAP part ***",
+    "soap_part": {
         "wsdl": "",
         "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
         "soap_action": "",
         "mode": "SOAP",
         "enable_compatibility-for": "",
-        "enable_http-transport": true,
-        "enable_https-transport": false,
-        "enable_jms-transport": false,
-        "http_services-redirection": "",
-        "address": ""
+        "enable_http_transport": true,
+        "enable_https_transport": false,
+        "enable_jms_transport": false,
+        "http_services_redirection": ""
     }
 }
