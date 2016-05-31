@@ -104,7 +104,7 @@
                 /* Type */
                 {
                     span: {row: 2, col: 1},
-                    background: 'imgGrid',
+                    background: 'imgGridServer',
                     title: 'Type',
                     model: {
                         name: vm.details.componentType.name,

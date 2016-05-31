@@ -90,7 +90,7 @@
                 /* Type */
                 {
                     span: {row: 2, col: 1},
-                    background: 'imgGrid',
+                    background: 'imgGridBus',
                     title: 'Type',
                     model: {
                         name: vm.details.componentType.name,
