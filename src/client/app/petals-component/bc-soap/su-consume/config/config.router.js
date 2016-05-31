@@ -15,8 +15,9 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        controller: 'ConfigSuConsumeController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/config/config.html'
+                        controller: 'ConfigBcSoapSuConsumeController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/config/config.html',
+                        controllerAs: 'vmBcSoapSuConsumeConfig'
                     }
                 },
                 onEnter: ['logger', function (logger) {

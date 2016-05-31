@@ -3,7 +3,7 @@
 
     angular
         .module('petalsComponent.bc-soap.su-consume.overview')
-        .controller('OverviewSuConsumeController', ControllerFunction);
+        .controller('OverviewBcSoapSuConsumeController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = [];

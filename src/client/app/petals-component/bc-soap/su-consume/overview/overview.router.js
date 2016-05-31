@@ -15,8 +15,9 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
-                        controller: 'OverviewSuConsumeController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/overview/overview.html'
+                        controller: 'OverviewBcSoapSuConsumeController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/overview/overview.html',
+                        controllerAs: 'vmBcSoapSuConsumeOverview'
                     }
                 },
                 onEnter: ['logger', function (logger) {

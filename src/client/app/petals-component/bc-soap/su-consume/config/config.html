@@ -1,9 +1,35 @@
-<div layout="row">
-    <md-card layout-align="center center" flex>
-        <h1>SU-CONSUME Config</h1>
-    </md-card>
+<div class="gridListTile" layout-fill flex md-theme="cardCustom-theme">
+    <md-grid-list
+        layout-fill
+        md-cols-xs="2" md-cols-gt-xs="4"
+        md-row-height-xs="2:1" md-row-height-gt-xs="19:4"
+        md-gutter="4px" md-gutter-gt-sm="4px">
+        <!-- works with Firefox only
+                md-row-height-gt-xs="fit"
+        -->
+        <md-grid-tile ng-repeat="tile in vmBcSoapSuConsumeConfig.tiles"
+                      md-rowspan="{{tile.span.row}}"
+                      md-colspan="{{tile.span.col}}"
+                      ng-class="tile.background">
 
-    <md-card layout-align="center center" flex>
-        <p>Ici, une deuxième balise md-card "Config".</p>
-    </md-card>
+            <md-button aria-label="Open Modal BcSoap SuConsume Config Details" class="fondGrid" layout-fill
+                       ng-click="vmBcSoapSuConsumeConfig.openModalTile(tile)">
+
+                <md-grid-tile-header layout-align="center center" class="gridTitleHeader">
+                    <span class="md-title">{{tile.title}}</span>
+                </md-grid-tile-header>
+
+                <!-- Inside Tile -->
+                <formly-form
+                    model="tile.model"
+                    fields="tile.fieldsDisplay"
+                    options="tile.options"
+                    form="tile.form"
+                    layout-fill layout-align="center start">
+                </formly-form>
+
+            </md-button>
+
+        </md-grid-tile>
+    </md-grid-list>
 </div>
