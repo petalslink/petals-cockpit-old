@@ -15,8 +15,9 @@
                 url: '/config',
                 views: {
                     'petals-console': {
-                        controller: 'ConfigSuProvideController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/config/config.html'
+                        controller: 'ConfigBcSoapSuProvideController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/config/config.html',
+                        controllerAs: 'vmBcSoapSuProvideConfig'
                     }
                 },
                 onEnter: ['logger', function (logger) {

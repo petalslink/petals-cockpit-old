@@ -15,7 +15,7 @@
                 url: '/overview',
                 views: {
                     'petals-console': {
-                        controller: 'OverviewSuProvideController',
+                        controller: 'OverviewBcSoapSuProvideController',
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/overview/overview.html'
                     }
                 },

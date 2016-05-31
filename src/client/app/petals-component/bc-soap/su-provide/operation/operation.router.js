@@ -15,8 +15,9 @@
                 url: '/operation',
                 views: {
                     'petals-console': {
-                        controller: 'OperationSuProvideController',
-                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/operation/operation.html'
+                        controller: 'OperationBcSoapSuProvideController',
+                        templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/operation/operation.html',
+                        controllerAs: 'vmBcSoapSuProvideOperation'
                     }
                 },
                 onEnter: ['logger', function (logger) {

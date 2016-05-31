@@ -3,7 +3,7 @@
 
     angular
         .module('petalsComponent.bc-soap.su-provide.overview')
-        .controller('OverviewSuProvideController', ControllerFunction);
+        .controller('OverviewBcSoapSuProvideController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = [];

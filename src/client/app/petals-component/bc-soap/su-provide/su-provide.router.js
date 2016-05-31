@@ -16,8 +16,8 @@
                 views: {
                     'petals-nav-console': {
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-provide/su-provide.html',
-                        controller: 'SuProvideController',
-                        controllerAs: 'vmSuProvide'
+                        controller: 'BcSoapSuProvideController',
+                        controllerAs: 'vmBcSoapSuProvide'
                     },
                     'petals-console': {
                         template: '<div ui-view="petals-console" layout-fill></div>',
