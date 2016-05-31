@@ -11,7 +11,7 @@
     function configFunction($stateProvider) {
 
         $stateProvider
-            .state('home.workspace.petals.bc-soap-su-consume.operation', {
+            .state('home.workspace.petals.bc-soap-su-consume.su-operation', {
                 url: '/operation',
                 views: {
                     'petals-console': {
@@ -20,10 +20,10 @@
                     }
                 },
                 onEnter: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
+                    logger.debug('You enter in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
                 }],
                 onReactivate: ['logger', function (logger) {
-                    logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
+                    logger.debug('You reactivate WORKSPACE.PETALS.BC-SOAP.SU-CONSUME.OPERATION');
                 }]
 
             });

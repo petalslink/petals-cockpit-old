@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    var suProvide = angular.module('petalsComponent.bc-soap.su-consume');
+    var suConsume = angular.module('petalsComponent.bc-soap.su-consume');
 
-    suProvide.config(configFunction);
+    suConsume.config(configFunction);
 
     configFunction.$inject = ['$stateProvider'];
 
@@ -14,27 +14,27 @@
             .state('home.workspace.petals.bc-soap-su-consume', {
                 url: '/bc-soap-su-consume/:id',
                 views: {
-                    'petals-nav-console@home.workspace.petals': {
+                    'petals-nav-console': {
                         templateUrl: 'src/client/app/petals-component/bc-soap/su-consume/su-consume.html',
                         controller: 'SuConsumeController',
                         controllerAs: 'vmSuConsume'
                     },
-                    'petals-console@home.workspace.petals': {
-                        template: '<div ui-view="petals-console"></div>',
+                    'petals-console': {
+                        template: '<div ui-view="petals-console" layout-fill></div>',
                         controller: ''
-                    },
-                    resolve: {
-                        promiseSUDetails: function(dataservice, $stateParams) {
-                            return dataservice.getPetalsComponent($stateParams.id);
-                        }
-                    },
-                    onEnter: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
-                    }],
-                    onReactivate: ['logger', function (logger) {
-                        logger.debug('You are in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
+                    }
+                },
+                resolve: {
+                    promiseSUDetails: ['dataservice', '$stateParams', function (dataservice, $stateParams) {
+                        return dataservice.getPetalsComponent($stateParams.id);
                     }]
-                }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You enter in WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
+                }],
+                onReactivate: ['logger', function (logger) {
+                    logger.debug('You reactivate WORKSPACE.PETALS.BC-SOAP.SU-CONSUME');
+                }]
             });
 
     }

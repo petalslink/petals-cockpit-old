@@ -18,19 +18,19 @@
                 Locked: false,
                 Label: 'Overview',
                 Icon: 'eye',
-                UiSref: '.overview'
+                UiSref: '.su-overview'
             },
             {
                 Locked: false,
                 Label: 'Operation',
                 Icon: 'details',
-                UiSref: '.operation'
+                UiSref: '.su-operation'
             },
             {
                 Locked: false,
                 Label: 'Config',
                 Icon: 'settings',
-                UiSref: '.config'
+                UiSref: '.su-config'
 
             }
         ];
