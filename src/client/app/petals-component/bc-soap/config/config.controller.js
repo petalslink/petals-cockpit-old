@@ -243,7 +243,7 @@
                                     key: 'acceptor_retry_number',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Acceptor_retry_number : ', 'required': true}
+                                    templateOptions: {label: 'Acceptor_retry_number : '}
                                 }
                             ]
                         },
@@ -258,13 +258,13 @@
                                     key: 'acceptor_retry_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Acceptor_retry_wait : ', 'required': true}
+                                    templateOptions: {label: 'Acceptor_retry_wait : '}
                                 },
                                 {
                                     key: 'acceptor_stop_max_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Acceptor_stop_max_wait : ', 'required': true}
+                                    templateOptions: {label: 'Acceptor_stop_max_wait : '}
                                 }
                             ]
                         },
@@ -285,7 +285,7 @@
                                     key: 'processor_max_pool_size',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Processor_max_pool_size : ', 'required': true}
+                                    templateOptions: {label: 'Processor_max_pool_size : '}
                                 }
                             ]
                         },
@@ -300,13 +300,13 @@
                                     key: 'processor_keep_alive_time',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Processor_keep_alive_time : ', 'required': true}
+                                    templateOptions: {label: 'Processor_keep_alive_time : '}
                                 },
                                 {
                                     key: 'processor_stop_max_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Processor_stop_max_wait : ', 'required': true}
+                                    templateOptions: {label: 'Processor_stop_max_wait : '}
                                 }
                             ]
                         },
@@ -345,7 +345,7 @@
                                     key: 'monitoring_sampling_period',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Monitoring_sampling_period : ', 'required': true}
+                                    templateOptions: {label: 'Monitoring_sampling_period : '}
                                 }
                             ]
                         }
@@ -432,16 +432,13 @@
                                     key: 'http_port',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Http_port : ', 'required': true}
+                                    templateOptions: {label: 'Http_port : '}
                                 },
                                 {
                                     key: 'http_host',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Http_host : '},
-                                    expressionProperties: {
-                                        'templateOptions.disabled': 'true'
-                                    }
+                                    type: 'ipAddress',
+                                    templateOptions: {label: 'Http_host : ', required : true}
                                 }
                             ]
                         },
@@ -472,13 +469,13 @@
                                     key: 'http_service_context',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Http_service_context : ', 'required': true}
+                                    templateOptions: {label: 'Http_service_context : '}
                                 },
                                 {
                                     key: 'http_service_mapping',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Http_service_mapping : ', 'required': true}
+                                    templateOptions: {label: 'Http_service_mapping : '}
                                 }
                             ]
                         },
@@ -493,13 +490,13 @@
                                     key: 'http_thread_pool_size_min',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Http_thread_pool_size_min : ', 'required': true}
+                                    templateOptions: {label: 'Http_thread_pool_size_min : '}
                                 },
                                 {
                                     key: 'http_thread_pool_size_max',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Http_thread_pool_size_max : ', 'required': true}
+                                    templateOptions: {label: 'Http_thread_pool_size_max : '}
                                 }
                             ]
                         },
@@ -514,13 +511,13 @@
                                     key: 'http_acceptors',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Http_acceptors : ', 'required': true}
+                                    templateOptions: {label: 'Http_acceptors : '}
                                 },
                                 {
                                     key: 'http_backlog_size',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Http_backlog_size : ', 'required': true}
+                                    templateOptions: {label: 'Http_backlog_size : '}
                                 }
                             ]
                         },
@@ -535,7 +532,7 @@
                                     key: 'max_http_connections_per_host',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Max_http_connections_per_host : ', 'required': true}
+                                    templateOptions: {label: 'Max_http_connections_per_host : '}
                                 }
                             ]
                         }
@@ -635,7 +632,7 @@
                                     key: 'https_port',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Https_port : ', required: true}
+                                    templateOptions: {label: 'Https_port : '}
                                 }
                             ]
                         },
@@ -650,13 +647,13 @@
                                     key: 'https_acceptors',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Https_acceptors : ', required: true}
+                                    templateOptions: {label: 'Https_acceptors : '}
                                 },
                                 {
                                     key: 'https_backlog_size',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'intInput',
-                                    templateOptions: {label: 'Https_backlog_size : ', 'required': true}
+                                    templateOptions: {label: 'Https_backlog_size : '}
                                 }
                             ]
                         },
@@ -671,7 +668,7 @@
                                     key: 'https_keystore_type',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_keystore_type : ', 'required': true}
+                                    templateOptions: {label: 'Https_keystore_type : '}
                                 },
                                 {
                                     key: 'https_keystore_file',
@@ -705,14 +702,14 @@
                                     key: 'https_keystore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_keystore_password : ', 'required': true},
+                                    templateOptions: {label: 'Https_keystore_password : '},
                                     hideExpression : '!model.checkPwdKeyStore'
                                 },
                                 {
                                     key: 'https_keystore_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_keystore_password : ', type: 'password', 'required': true},
+                                    templateOptions: {label: 'Https_keystore_password : ', type: 'password'},
                                     hideExpression : 'model.checkPwdKeyStore'
                                 }
                             ]
@@ -738,14 +735,14 @@
                                     key: 'https_key_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_key_password : ', 'required': true},
+                                    templateOptions: {label: 'Https_key_password : '},
                                     hideExpression : '!model.checkPwdKey'
                                 },
                                 {
                                     key: 'https_key_password',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_key_password : ', type: 'password', 'required': true},
+                                    templateOptions: {label: 'Https_key_password : ', type: 'password'},
                                     hideExpression : 'model.checkPwdKey'
                                 }
                             ]
@@ -761,7 +758,7 @@
                                     key: 'https_truststore_type',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Https_truststore_type : ', 'required': true}
+                                    templateOptions: {label: 'Https_truststore_type : '}
                                 },
                                 {
                                     key: 'https_truststore_file',
