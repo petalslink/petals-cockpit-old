@@ -516,14 +516,14 @@
                                 {
                                     key: 'exchange_validation',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
-                                    templateOptions: {label: 'Exchange_validation : ', theme: 'cardCustom-theme'}
+                                    type: 'switch',
+                                    templateOptions: {label: 'Exchange_validation', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'classloaders_isolated',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
-                                    templateOptions: {label: 'Classloaders_isolated : ', theme: 'cardCustom-theme'}
+                                    type: 'switch',
+                                    templateOptions: {label: 'Classloaders_isolated', theme: 'cardCustom-theme'}
                                 }
                             ]
                         }
@@ -1240,9 +1240,9 @@
                                 {
                                     key: 'activation',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: true,
-                                    templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Activation', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'port',
@@ -1299,9 +1299,9 @@
                                 {
                                     key: 'activation',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: true,
-                                    templateOptions: {label: 'Activation : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Activation', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'scan_period',

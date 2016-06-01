@@ -107,13 +107,6 @@
             '</div>'
         });
         formlyConfig.setType({
-            name: 'switchCustom',
-            'extends': 'switch',
-            template: '<md-switch ng-model="model[options.key]">' +
-            '<div style="text-align: center">{{to.label}}<br><b>{{(model[options.key])}}</b></div>' +
-            '</md-switch>'
-        });
-        formlyConfig.setType({
             name: 'checkboxVisibility',
             'extends': 'checkbox',
             template: '<md-checkbox layout="row" ng-model="model[options.key]" layout-align="center stretch">' +

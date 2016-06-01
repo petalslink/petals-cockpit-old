@@ -245,9 +245,9 @@
                                 {
                                     key: 'validate_wsdl',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: true,
-                                    templateOptions: {label: 'Validate_wsdl : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Validate_wsdl', theme: 'cardCustom-theme'}
                                 }
                             ]
                         },
@@ -267,9 +267,9 @@
                                 {
                                     key: 'forward_attachments',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Forward_attachments : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Forward_attachments', theme: 'cardCustom-theme'}
                                 }
                             ]
                         },
@@ -283,16 +283,16 @@
                                 {
                                     key: 'forward_message_properties',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Forward_message_properties : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Forward_message_properties', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'forward_security_subject',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Forward_security_subject : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Forward_security_subject', theme: 'cardCustom-theme'}
                                 }
                             ]
                         }
@@ -375,9 +375,9 @@
                                 {
                                     key: 'chunked_mode',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Chunked_mode : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Chunked_mode', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'mode',

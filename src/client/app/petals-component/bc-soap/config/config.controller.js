@@ -158,15 +158,15 @@
                     model: {
                         acceptor_pool_size: vm.details.cdk_part.acceptor_pool_size,
                         acceptor_retry_number: vm.details.cdk_part.acceptor_retry_number,
-                        acceptor_retry_wait: vm.details.cdk_part.acceptor_retry_wait,
-                        acceptor_stop_max_wait: vm.details.cdk_part.acceptor_stop_max_wait,
+                        acceptor_retry_wait: vm.details.cdk_part.acceptor_retry_wait + ' ms ',
+                        acceptor_stop_max_wait: vm.details.cdk_part.acceptor_stop_max_wait + ' ms ',
                         processor_pool_size: vm.details.cdk_part.processor_pool_size,
                         processor_max_pool_size: vm.details.cdk_part.processor_max_pool_size,
-                        processor_keep_alive_time: vm.details.cdk_part.processor_keep_alive_time,
-                        processor_stop_max_wait: vm.details.cdk_part.processor_stop_max_wait,
+                        processor_keep_alive_time: vm.details.cdk_part.processor_keep_alive_time + ' ms ',
+                        processor_stop_max_wait: vm.details.cdk_part.processor_stop_max_wait + ' ms ',
                         time_between_async_cleaner_runs: vm.details.cdk_part.time_between_async_cleaner_runs,
                         properties_file: vm.details.cdk_part.properties_file,
-                        monitoring_sampling_period: vm.details.cdk_part.monitoring_sampling_period
+                        monitoring_sampling_period: vm.details.cdk_part.monitoring_sampling_period + ' ms '
                     },
                     fieldsDisplay: [
                         {
@@ -257,14 +257,91 @@
                                 {
                                     key: 'acceptor_retry_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
+                                    type: 'input',
                                     templateOptions: {label: 'Acceptor_retry_wait : '}
+                                },
+                                {
+                                    key: 'acceptor_retry_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'select',
+                                    templateOptions: {
+                                        label: 'Time Unit : ',
+                                        theme: "cardCustom-theme",
+                                        multiple: false,
+                                        labelProp: "value",
+                                        valueProp: "valType",
+                                        defaultValue: ' milliseconds ',
+                                        options: [
+                                            {
+                                                value: 'milliseconds',
+                                                valType: vm.details.cdk_part.acceptor_retry_wait + ' ms '
+                                            },
+                                            {
+                                                value: 'seconds',
+                                                valType: vm.details.cdk_part.acceptor_retry_wait / (1000) + ' s '
+                                            },
+                                            {
+                                                value: 'minutes',
+                                                valType: vm.details.cdk_part.acceptor_retry_wait / (60000) + ' min '
+                                            }
+                                        ]
+                                    },
+                                    watcher: {
+                                        listener: function (field, newValue, oldValue, scope, stopWatching) {
+                                            if(newValue) {
+                                                console.log('Time: ' + newValue);
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'acceptor_stop_max_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Acceptor_stop_max_wait : '}
                                 },
                                 {
                                     key: 'acceptor_stop_max_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Acceptor_stop_max_wait : '}
+                                    type: 'select',
+                                    templateOptions: {
+                                        label: 'Time Unit : ',
+                                        theme: "cardCustom-theme",
+                                        multiple: false,
+                                        labelProp: "value",
+                                        valueProp: "valType",
+                                        defaultValue: ' milliseconds ',
+                                        options: [
+                                            {
+                                                value: 'milliseconds',
+                                                valType: vm.details.cdk_part.acceptor_stop_max_wait + ' ms '
+                                            },
+                                            {
+                                                value: 'seconds',
+                                                valType: vm.details.cdk_part.acceptor_stop_max_wait / (1000) + ' s '
+                                            },
+                                            {
+                                                value: 'minutes',
+                                                valType: vm.details.cdk_part.acceptor_stop_max_wait / (60000) + ' min '
+                                            }
+                                        ]
+                                    },
+                                    watcher: {
+                                        listener: function (field, newValue, oldValue, scope, stopWatching) {
+                                            if(newValue) {
+                                                console.log('Time: ' + newValue);
+                                            }
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -299,14 +376,91 @@
                                 {
                                     key: 'processor_keep_alive_time',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
+                                    type: 'input',
                                     templateOptions: {label: 'Processor_keep_alive_time : '}
+                                },
+                                {
+                                    key: 'processor_keep_alive_time',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'select',
+                                    templateOptions: {
+                                        label: 'Time Unit : ',
+                                        theme: "cardCustom-theme",
+                                        multiple: false,
+                                        labelProp: "value",
+                                        valueProp: "valType",
+                                        defaultValue: ' milliseconds ',
+                                        options: [
+                                            {
+                                                value: 'milliseconds',
+                                                valType: vm.details.cdk_part.processor_keep_alive_time + ' ms '
+                                            },
+                                            {
+                                                value: 'seconds',
+                                                valType: vm.details.cdk_part.processor_keep_alive_time / (1000) + ' s '
+                                            },
+                                            {
+                                                value: 'minutes',
+                                                valType: vm.details.cdk_part.processor_keep_alive_time / (60000) + ' min '
+                                            }
+                                        ]
+                                    },
+                                    watcher: {
+                                        listener: function (field, newValue, oldValue, scope, stopWatching) {
+                                            if(newValue) {
+                                                console.log('Time: ' + newValue);
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'processor_stop_max_wait',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Processor_stop_max_wait : '}
                                 },
                                 {
                                     key: 'processor_stop_max_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
-                                    templateOptions: {label: 'Processor_stop_max_wait : '}
+                                    type: 'select',
+                                    templateOptions: {
+                                        label: 'Time Unit : ',
+                                        theme: "cardCustom-theme",
+                                        multiple: false,
+                                        labelProp: "value",
+                                        valueProp: "valType",
+                                        defaultValue: ' milliseconds ',
+                                        options: [
+                                            {
+                                                value: 'milliseconds',
+                                                valType: vm.details.cdk_part.processor_stop_max_wait + ' ms '
+                                            },
+                                            {
+                                                value: 'seconds',
+                                                valType: vm.details.cdk_part.processor_stop_max_wait / (1000) + ' s '
+                                            },
+                                            {
+                                                value: 'minutes',
+                                                valType: vm.details.cdk_part.processor_stop_max_wait / (60000) + ' min '
+                                            }
+                                        ]
+                                    },
+                                    watcher: {
+                                        listener: function (field, newValue, oldValue, scope, stopWatching) {
+                                            if(newValue) {
+                                                console.log('Time: ' + newValue);
+                                            }
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -344,8 +498,42 @@
                                 {
                                     key: 'monitoring_sampling_period',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'intInput',
+                                    type: 'input',
                                     templateOptions: {label: 'Monitoring_sampling_period : '}
+                                },
+                                {
+                                    key: 'monitoring_sampling_period',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'select',
+                                    templateOptions: {
+                                        label: 'Time Unit : ',
+                                        theme: "cardCustom-theme",
+                                        multiple: false,
+                                        labelProp: "value",
+                                        valueProp: "valType",
+                                        defaultValue: ' milliseconds ',
+                                        options: [
+                                            {
+                                                value: 'milliseconds',
+                                                valType: vm.details.cdk_part.monitoring_sampling_period + ' ms '
+                                            },
+                                            {
+                                                value: 'seconds',
+                                                valType: vm.details.cdk_part.monitoring_sampling_period / (1000) + ' s '
+                                            },
+                                            {
+                                                value: 'minutes',
+                                                valType: vm.details.cdk_part.monitoring_sampling_period / (60000) + ' min '
+                                            }
+                                        ]
+                                    },
+                                    watcher: {
+                                        listener: function (field, newValue, oldValue, scope, stopWatching) {
+                                            if(newValue) {
+                                                console.log('Time: ' + newValue);
+                                            }
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -452,9 +640,9 @@
                                 {
                                     key: 'acceptor_retry_wait',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: true,
-                                    templateOptions: {label: 'Http_service_list : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Http_service_list', theme: 'cardCustom-theme'}
                                 }
                             ]
                         },
@@ -624,9 +812,9 @@
                                 {
                                     key: 'https_enabled',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Https_enabled : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Https_enabled', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'https_port',

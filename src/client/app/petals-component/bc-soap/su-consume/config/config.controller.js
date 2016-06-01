@@ -338,9 +338,9 @@
                                 {
                                     key: 'enable_http_transport',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: true,
-                                    templateOptions: {label: 'Enable_http_transport : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Enable_http_transport', theme: 'cardCustom-theme'}
                                 }
                             ]
                         },
@@ -354,16 +354,16 @@
                                 {
                                     key: 'enable_https_transport',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Enable_https_transport : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Enable_https_transport', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'enable_jms_transport',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'switchCustom',
+                                    type: 'switch',
                                     defaultValue: false,
-                                    templateOptions: {label: 'Enable_jms_transport : ', theme: 'cardCustom-theme'}
+                                    templateOptions: {label: 'Enable_jms_transport', theme: 'cardCustom-theme'}
                                 }
                             ]
                         },
