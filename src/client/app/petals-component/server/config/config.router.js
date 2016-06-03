@@ -25,15 +25,11 @@
     /* @ngInject */
     function runFunction(formlyConfig, formlyValidationMessages, conf) {
 
-        /*        console.log('*********************** TEST *******************');
-         console.log('CONF : ' + angular.toJson(conf));*/
-
-        // Set Types
-        var i, str = conf.validation.stringMessages;
-        // Generic Messages
-        angular.forEach(conf, function () {
-            formlyValidationMessages.addStringMessage(i, str[i]);
+        // generic messages
+        angular.forEach(conf.validation.stringMessages, function (value, key) {
+            formlyValidationMessages.addStringMessage(key, value);
         });
+
 
         formlyConfig.setType({
             name: 'detailsPwd',
@@ -86,8 +82,8 @@
         formlyConfig.setType({
             name: 'details2lines',
             template: '<div layout="row" layout-align="center stretch" class="md-text-content">' +
-            '<div style="text-align: start">{{to.label}}</div>' +
-            '<div style="text-align: start"><b>{{(model[options.key])}}</b></div>' +
+            '<div style="text-align: start;white-space: nowrap;">{{to.label}}</div>' +
+            '<div style="text-align: end"><b>{{(model[options.key])}}</b></div>' +
             '</div>'
         });
         formlyConfig.setType({

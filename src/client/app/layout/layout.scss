@@ -196,9 +196,15 @@ md-dialog.md-cardCustom-theme-theme {
     }
     md-input-container.md-cardCustom-theme-theme .md-input {
         width: 280px !important;
+        text-align: left;
+        height: 18px !important;
     }
     md-input-container.md-cardCustom-theme-theme .md-select-value {
         width: 280px !important;
+        text-align: left;
+        height: 18px !important;
+        padding: 0 2px 0;
+        min-height: 18px;
     }
 }
 @media screen and (min-width: 960px) and (max-width: 1279px) {
@@ -230,9 +236,15 @@ md-dialog.md-cardCustom-theme-theme {
     }
     md-input-container.md-cardCustom-theme-theme .md-input {
         width: 360px !important;
+        text-align: left;
+        height: 18px !important;
     }
     md-input-container.md-cardCustom-theme-theme .md-select-value {
         width: 360px !important;
+        text-align: left;
+        height: 20px !important;
+        padding: 0 2px 0;
+        min-height: 20px;
     }
 }
 @media screen and (min-width: 1280px) {
@@ -264,8 +276,14 @@ md-dialog.md-cardCustom-theme-theme {
     }
     md-input-container.md-cardCustom-theme-theme .md-input {
         width: 480px !important;
+        text-align: left;
+        height: 24px !important;
     }
     md-input-container.md-cardCustom-theme-theme .md-select-value {
         width: 480px !important;
+        text-align: left;
+        height: 24px !important;
+        padding: 0 2px 0;
+        min-height: 24px;
     }
 }

@@ -515,13 +515,11 @@
                             fieldGroup: [
                                 {
                                     key: 'exchange_validation',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     templateOptions: {label: 'Exchange_validation', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'classloaders_isolated',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     templateOptions: {label: 'Classloaders_isolated', theme: 'cardCustom-theme'}
                                 }
@@ -754,7 +752,7 @@
                 /* Transporter Configuration */
                 {
                     span: {row: 5, col: 1},
-                    background: 'pink',
+                    background: 'deepBlue',
                     color: 'colorBlack',
                     title: 'Transporter Configuration',
                     model: {
@@ -1166,7 +1164,7 @@
                 /* System Recovery Service */
                 {
                     span: {row: 2, col: 1},
-                    background: 'lightPurple',
+                    background: 'pink',
                     color: 'colorBlack',
                     title: 'System Recovery Service',
                     model: {
@@ -1239,7 +1237,6 @@
                             fieldGroup: [
                                 {
                                     key: 'activation',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: true,
                                     templateOptions: {label: 'Activation', theme: 'cardCustom-theme'}
@@ -1298,7 +1295,6 @@
                             fieldGroup: [
                                 {
                                     key: 'activation',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: true,
                                     templateOptions: {label: 'Activation', theme: 'cardCustom-theme'}

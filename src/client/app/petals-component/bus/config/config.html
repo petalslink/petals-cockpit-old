@@ -35,9 +35,7 @@
 
     <script type="text/ng-template" id="array-display.html">
 
-        <span class="md-text-content">{{to.lblOverlay}}</span>
-
-        <div ng-repeat="list in [model[options.key][0],model[options.key][1]]" ng-init="fieldsDisplay = copyFields(to.fields)">
+        <div ng-repeat="list in model[options.key]" ng-init="fieldsDisplay = copyFields(to.fields)">
             <formly-form fields="fieldsDisplay"
                          model="list"
                          form="form"
@@ -45,8 +43,6 @@
                 <hr>
             </formly-form>
         </div>
-
-        <p><b>...</b></p>
 
     </script>
 

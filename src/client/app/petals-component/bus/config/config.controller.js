@@ -136,80 +136,130 @@
                         }
                     ]
                 },
-                /* Topology */
+                /* Following Registry Server > Overlay_members */
                 {
-                    span: {row: 2, col: 2},
-                    background: 'green',
-                    title: 'Topology',
+                    span: {row: 7, col: 2},
+                    background: 'deepBlue',
+                    title: 'Registry Server : Overlay_members',
                     model: {
-                        name: vm.details.topology.domain.name,
-                        mode: vm.details.topology.domain.mode,
-                        description: vm.details.topology.domain.description
+                        overlay_members: vm.details.topology.registry.registry_configuration.overlay_members,
+                        host_name: vm.details.topology.registry.registry_configuration.overlay_members.host_name,
+                        port: vm.details.topology.registry.registry_configuration.overlay_members.port
                     },
                     fieldsDisplay: [
                         {
-                            key: 'name',
-                            type: 'details',
-                            templateOptions: {label: 'Name : '}
-                        },
-                        {
-                            key: 'mode',
-                            type: 'details',
-                            templateOptions: {label: 'Mode : '}
-                        },
-                        {
-                            key: 'description',
-                            type: 'details',
-                            templateOptions: {label: 'Description : '}
+                            type: 'arrayDisplay',
+                            key: 'overlay_members',
+                            templateOptions: {
+                                fields: [
+                                    {
+                                        elementAttributes: {
+                                            layout: 'row',
+                                            'layout-sm': 'row',
+                                            'layout-xs': 'row'
+                                        },
+                                        fieldGroup: [
+
+                                            {
+                                                elementAttributes: {
+                                                    layout: 'column',
+                                                    'layout-sm': 'column',
+                                                    'layout-xs': 'column'
+                                                },
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'details',
+                                                key: 'host_name',
+                                                templateOptions: {
+                                                    label: 'Host_name :'
+                                                }
+                                            },
+                                            {
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'details',
+                                                templateOptions: {
+                                                    label: ''
+                                                }
+                                            },
+                                            {
+                                                elementAttributes: {
+                                                    layout: 'column',
+                                                    'layout-sm': 'column',
+                                                    'layout-xs': 'column'
+                                                },
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'details',
+                                                key: 'port',
+                                                templateOptions: {
+                                                    label: 'Port :'
+                                                }
+                                            }
+                                        ]
+                                    }
+/*                                    {
+                                        elementAttributes: {
+                                            layout: 'row',
+                                            'layout-sm': 'row',
+                                            'layout-xs': 'column'
+                                        },
+                                        fieldGroup: [
+                                            {
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'details',
+                                                key: 'port',
+                                                templateOptions: {
+                                                    label: 'Port :'
+                                                }
+                                            }
+                                        ]
+                                    }*/
+                                ]
+                            }
                         }
                     ],
-                    elementAttributes: {
-                        'layout': 'column'
-                    },
                     fieldsModal: [
                         {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'name',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Name : ', 'required': true}
-                                },
-                                {
-                                    key: 'mode',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Mode : ', 'required': true}
-                                }
-                            ]
-                        },
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'description',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Description : ', 'required': true}
-                                }
-                            ]
+                            type: 'arrayInput',
+                            key: 'overlay_members',
+                            templateOptions: {
+                                btnAdd: 'Add New Overlay_members',
+                                fields: [
+                                    {
+                                        elementAttributes: {
+                                            layout: 'row',
+                                            'layout-sm': 'column',
+                                            'layout-xs': 'column'
+                                        },
+                                        fieldGroup: [
+                                            {
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'input',
+                                                key: 'host_name',
+                                                templateOptions: {
+                                                    label: 'Host_name :',
+                                                    required: true
+                                                }
+                                            },
+                                            {
+                                                className: 'flex-xs-100 flex-sm-100 flex-100',
+                                                type: 'input',
+                                                key: 'port',
+                                                templateOptions: {
+                                                    label: 'Port :',
+                                                    required: true
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
                         }
                     ]
                 },
-                /* Registry Client */
+                /* Registry Server */
                 {
                     span: {row: 3, col: 2},
                     background: 'yellow',
-                    title: 'Registry Client',
+                    title: 'Registry Server',
                     model: {
                         registry_implementation: vm.details.topology.registry.registry_implementation,
                         group_name: vm.details.topology.registry.registry_configuration.group_name,
@@ -319,371 +369,72 @@
                         }
                     ]
                 },
-                /* Petals Containers */
+                /* Topology */
                 {
-                    span: {row: 7, col: 2},
-                    background: 'purple',
-                    title: 'Petals Containers',
+                    span: {row: 2, col: 2},
+                    background: 'green',
+                    title: 'Topology',
                     model: {
-                        containers: vm.details.topology.containers,
-                        overlay_members: vm.details.topology.containers.name,
-                        host_name: vm.details.topology.containers.description,
-                        host: vm.details.topology.containers.host,
-                        user: vm.details.topology.containers.user,
-                        password: vm.details.topology.containers.password,
-                        jmx_port: vm.details.topology.containers.jmx_port,
-                        transport_port: vm.details.topology.containers.transport_port
+                        name: vm.details.topology.domain.name,
+                        mode: vm.details.topology.domain.mode,
+                        description: vm.details.topology.domain.description
                     },
                     fieldsDisplay: [
                         {
-                            type: 'arrayDisplay',
-                            key: 'containers',
-                            templateOptions: {
-                                fields: [
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'name',
-                                                templateOptions: {
-                                                    label: 'Name :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'description',
-                                                templateOptions: {
-                                                    label: 'Description :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'host',
-                                                templateOptions: {
-                                                    label: 'Host :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'user',
-                                                templateOptions: {
-                                                    label: 'User :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'detailsPwd',
-                                                key: 'password',
-                                                templateOptions: {
-                                                    label: 'Password :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'jmx_port',
-                                                templateOptions: {
-                                                    label: 'Jmx_port :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'transport_port',
-                                                templateOptions: {
-                                                    label: 'Transport_port :'
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
+                            key: 'name',
+                            type: 'details',
+                            templateOptions: {label: 'Name : '}
+                        },
+                        {
+                            key: 'mode',
+                            type: 'details',
+                            templateOptions: {label: 'Mode : '}
+                        },
+                        {
+                            key: 'description',
+                            type: 'details',
+                            templateOptions: {label: 'Description : '}
                         }
                     ],
-                    fieldsModal: [
-                        {
-                            type: 'arrayInput',
-                            key: 'containers',
-                            templateOptions: {
-                                btnAdd: 'Add New Containers',
-                                fields: [
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'name',
-                                                templateOptions: {
-                                                    label: 'Name :',
-                                                    required: true
-                                                }
-                                            },
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'description',
-                                                templateOptions: {
-                                                    label: 'Description :',
-                                                    required: true
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'host',
-                                                templateOptions: {
-                                                    label: 'Host :',
-                                                    required: true
-                                                }
-                                            },
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'user',
-                                                templateOptions: {
-                                                    label: 'User :',
-                                                    required: true
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                key: 'checkPwdKey',
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'checkboxVisibility',
-                                                templateOptions: {
-                                                    show: 'Hide the Password ?',
-                                                    hide: 'Show the Password ?',
-                                                    theme: 'cardCustom-theme'
-                                                }
-                                            },
-                                            {
-                                                key: 'password',
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                templateOptions: {label: 'Password : ', 'required': true},
-                                                hideExpression : '!model.checkPwdKey'
-                                            },
-                                            {
-                                                key: 'password',
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                templateOptions: {
-                                                    label: 'Password : ',
-                                                    type: 'password',
-                                                    'required': true
-                                                },
-                                                hideExpression : 'model.checkPwdKey'
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'jmx_port',
-                                                templateOptions: {
-                                                    label: 'Jmx_port :',
-                                                    required: true
-                                                }
-                                            },
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'transport_port',
-                                                templateOptions: {
-                                                    label: 'Transport_port :',
-                                                    required: true
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                },
-                /* Following Registry Client > Overlay_members */
-                {
-                    span: {row: 4, col: 2},
-                    background: 'gray',
-                    title: '. . .',
-                    model: {
-                        overlay_members: vm.details.topology.registry.registry_configuration.overlay_members,
-                        host_name: vm.details.topology.registry.registry_configuration.overlay_members.host_name,
-                        port: vm.details.topology.registry.registry_configuration.overlay_members.port
+                    elementAttributes: {
+                        'layout': 'column'
                     },
-                    fieldsDisplay: [
-                        {
-                            type: 'arrayDisplay',
-                            key: 'overlay_members',
-                            templateOptions: {
-                                lblOverlay: 'Overlay_members :',
-                                fields: [
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'host_name',
-                                                templateOptions: {
-                                                    label: 'Host_name :'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'row',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'details',
-                                                key: 'port',
-                                                templateOptions: {
-                                                    label: 'Port :'
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    ],
                     fieldsModal: [
                         {
-                            type: 'arrayInput',
-                            key: 'overlay_members',
-                            templateOptions: {
-                                btnAdd: 'Add New Overlay_members',
-                                fields: [
-                                    {
-                                        elementAttributes: {
-                                            layout: 'row',
-                                            'layout-sm': 'column',
-                                            'layout-xs': 'column'
-                                        },
-                                        fieldGroup: [
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'host_name',
-                                                templateOptions: {
-                                                    label: 'Host_name :',
-                                                    required: true
-                                                }
-                                            },
-                                            {
-                                                className: 'flex-xs-100 flex-sm-100 flex-100',
-                                                type: 'input',
-                                                key: 'port',
-                                                templateOptions: {
-                                                    label: 'Port :',
-                                                    required: true
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'name',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Name : ', 'required': true}
+                                },
+                                {
+                                    key: 'mode',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Mode : ', 'required': true}
+                                }
+                            ]
+                        },
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'description',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Description : ', 'required': true}
+                                }
+                            ]
                         }
                     ]
                 }

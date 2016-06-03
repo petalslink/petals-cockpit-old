@@ -157,8 +157,6 @@
                     title: 'Cdk Part',
                     model: {
                         timeout: vm.details.cdk_part.timeout,
-                        exchange_properties: vm.details.cdk_part.exchange_properties,
-                        message_properties: vm.details.cdk_part.message_properties,
                         validate_wsdl: vm.details.cdk_part.validate_wsdl,
                         wsdl: vm.details.cdk_part.wsdl,
                         forward_attachments: vm.details.cdk_part.forward_attachments,
@@ -170,16 +168,6 @@
                             key: 'timeout',
                             type: 'details',
                             templateOptions: {label: 'Timeout :'}
-                        },
-                        {
-                            key: 'exchange_properties',
-                            type: 'details',
-                            templateOptions: {label: 'Exchange_properties :'}
-                        },
-                        {
-                            key: 'message_properties',
-                            type: 'details',
-                            templateOptions: {label: 'Message_properties :'}
                         },
                         {
                             key: 'validate_wsdl',
@@ -222,29 +210,7 @@
                                     templateOptions: {label: 'Timeout : '}
                                 },
                                 {
-                                    key: 'exchange_properties',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Exchange_properties : '}
-                                }
-                            ]
-                        },
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'message_properties',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Message_properties : '}
-                                },
-                                {
                                     key: 'validate_wsdl',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: true,
                                     templateOptions: {label: 'Validate_wsdl', theme: 'cardCustom-theme'}
@@ -266,7 +232,6 @@
                                 },
                                 {
                                     key: 'forward_attachments',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Forward_attachments', theme: 'cardCustom-theme'}
@@ -282,14 +247,12 @@
                             fieldGroup: [
                                 {
                                     key: 'forward_message_properties',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Forward_message_properties', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'forward_security_subject',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Forward_security_subject', theme: 'cardCustom-theme'}
@@ -305,10 +268,8 @@
                     title: 'Soap Part',
                     model: {
                         soap_version: vm.details.soap_part.soap_version,
-                        address: vm.details.soap_part.address,
+                        wsa_to: vm.details.soap_part.wsa_to,
                         chunked_mode: vm.details.soap_part.chunked_mode,
-                        mode: vm.details.soap_part.mode,
-                        enable_compatibility_for: vm.details.soap_part.enable_compatibility_for,
                         enable_wsa: vm.details.soap_part.enable_wsa
                     },
                     fieldsDisplay: [
@@ -318,24 +279,14 @@
                             templateOptions: {label: 'Soap_version :'}
                         },
                         {
-                            key: 'address',
+                            key: 'wsa_to',
                             type: 'details',
-                            templateOptions: {label: 'Address :'}
+                            templateOptions: {label: 'Wsa_to :'}
                         },
                         {
                             key: 'chunked_mode',
                             type: 'details',
                             templateOptions: {label: 'Chunked_mode :'}
-                        },
-                        {
-                            key: 'mode',
-                            type: 'details',
-                            templateOptions: {label: 'Mode :'}
-                        },
-                        {
-                            key: 'enable_compatibility_for',
-                            type: 'details',
-                            templateOptions: {label: 'Enable_compatibility_for :'}
                         },
                         {
                             key: 'enable_wsa',
@@ -354,14 +305,32 @@
                                 {
                                     key: 'soap_version',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Soap_version : ', 'required': true}
+                                    type: 'select',
+                                    modelOptions: {debounce: {'default': 2000, blur: 0}, updateOn: 'default blur'},
+                                    templateOptions: {
+                                        label: 'Soap_version : ',
+                                        theme: 'cardCustom-theme',
+                                        multiple: false,
+                                        labelProp: 'value',
+                                        valueProp: 'valType',
+                                        defaultValue: '1.1',
+                                        options: [
+                                            {
+                                                value: '1.1',
+                                                valType: '1.1'
+                                            },
+                                            {
+                                                value: '1.2',
+                                                valType: '1.2'
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
-                                    key: 'address',
+                                    key: 'wsa_to',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
-                                    templateOptions: {label: 'Address : ', 'required': true}
+                                    templateOptions: {label: 'Wsa_to : ', 'required': true}
                                 }
                             ]
                         },
@@ -374,31 +343,9 @@
                             fieldGroup: [
                                 {
                                     key: 'chunked_mode',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Chunked_mode', theme: 'cardCustom-theme'}
-                                },
-                                {
-                                    key: 'mode',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Mode : ', 'required': true}
-                                }
-                            ]
-                        },
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'enable_compatibility_for',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Enable_compatibility_for : '}
                                 },
                                 {
                                     key: 'enable_wsa',

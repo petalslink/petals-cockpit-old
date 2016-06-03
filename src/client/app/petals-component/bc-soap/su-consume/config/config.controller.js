@@ -150,11 +150,11 @@
                         }
                     ]
                 },
-                /* Cdk_part */
+                /* Jbi_part */
                 {
-                    span: {row: 2, col:2},
-                    background: 'green',
-                    title: 'Cdk Part',
+                    span: {row: 3, col:2},
+                    background: 'red',
+                    title: 'Service',
                     model: {
                         mep: vm.details.cdk_part.mep,
                         operation: vm.details.cdk_part.operation,
@@ -225,12 +225,9 @@
                         wsdl: vm.details.soap_part.wsdl,
                         service_name: vm.details.soap_part.service_name,
                         soap_action: vm.details.soap_part.soap_action,
-                        mode: vm.details.soap_part.mode,
-                        enable_compatibility_for: vm.details.soap_part.enable_compatibility_for,
                         enable_http_transport: vm.details.soap_part.enable_http_transport,
                         enable_https_transport: vm.details.soap_part.enable_https_transport,
-                        enable_jms_transport: vm.details.soap_part.enable_jms_transport,
-                        http_services_redirection: vm.details.soap_part.http_services_redirection
+                        enable_jms_transport: vm.details.soap_part.enable_jms_transport
                     },
                     fieldsDisplay: [
                         {
@@ -247,11 +244,6 @@
                             key: 'soap_action',
                             type: 'details',
                             templateOptions: {label: 'Soap_action :'}
-                        },
-                        {
-                            key: 'mode',
-                            type: 'details',
-                            templateOptions: {label: 'Mode :'}
                         },
                         {
                             key: 'enable_compatibility_for',
@@ -315,29 +307,7 @@
                                     templateOptions: {label: 'Soap_action : '}
                                 },
                                 {
-                                    key: 'mode',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Mode : ', 'required': true}
-                                }
-                            ]
-                        },
-                        {
-                            elementAttributes: {
-                                layout: 'row',
-                                'layout-sm': 'column',
-                                'layout-xs': 'column'
-                            },
-                            fieldGroup: [
-                                {
-                                    key: 'enable_compatibility_for',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Enable_compatibility_for : '}
-                                },
-                                {
                                     key: 'enable_http_transport',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: true,
                                     templateOptions: {label: 'Enable_http_transport', theme: 'cardCustom-theme'}
@@ -353,17 +323,66 @@
                             fieldGroup: [
                                 {
                                     key: 'enable_https_transport',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Enable_https_transport', theme: 'cardCustom-theme'}
                                 },
                                 {
                                     key: 'enable_jms_transport',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'switch',
                                     defaultValue: false,
                                     templateOptions: {label: 'Enable_jms_transport', theme: 'cardCustom-theme'}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                /* Cdk_part */
+                {
+                    span: {row: 2, col:2},
+                    background: 'green',
+                    title: 'Cdk Part',
+                    model: {
+                        mep: vm.details.cdk_part.mep,
+                        operation: vm.details.cdk_part.operation,
+                        timeout: vm.details.cdk_part.timeout
+                    },
+                    fieldsDisplay: [
+                        {
+                            key: 'mep',
+                            type: 'details',
+                            templateOptions: {label: 'Mep :'}
+                        },
+                        {
+                            key: 'operation',
+                            type: 'details',
+                            templateOptions: {label: 'Operation :'}
+                        },
+                        {
+                            key: 'timeout',
+                            type: 'details',
+                            templateOptions: {label: 'Timeout :'}
+                        }
+                    ],
+                    fieldsModal: [
+                        {
+                            elementAttributes: {
+                                layout: 'row',
+                                'layout-sm': 'column',
+                                'layout-xs': 'column'
+                            },
+                            fieldGroup: [
+                                {
+                                    key: 'mep',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Mep : '}
+                                },
+                                {
+                                    key: 'operation',
+                                    className: 'flex-xs-100 flex-sm-100 flex-100',
+                                    type: 'input',
+                                    templateOptions: {label: 'Operation : '}
                                 }
                             ]
                         },
@@ -375,10 +394,10 @@
                             },
                             fieldGroup: [
                                 {
-                                    key: 'http_services_redirection',
+                                    key: 'timeout',
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Http_services_redirection : '}
+                                    type: 'intInput',
+                                    templateOptions: {label: 'Timeout : '}
                                 }
                             ]
                         }
