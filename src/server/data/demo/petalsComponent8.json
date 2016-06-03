@@ -11,6 +11,13 @@
     "state": "UNDEPLOYED",
     "name": "su-consume-1",
     "description": "description of the su-consume 1",
+    "jbi_part": "*** Configuration of a Service Unit to consume a service, JBI part ***",
+    "jbi_part": {
+        "wsdl": "",
+        "interface_name": "Interface Name Example",
+        "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
+        "endpoint_name": true
+    },
     "cdk_part": "*** Configuration of a Service Unit to consume a service, CDK part ***",
     "cdk_part": {
         "mep": "",
@@ -19,14 +26,9 @@
     },
     "soap_part": "*** Configuration of a Service Unit to consume a service, SOAP part ***",
     "soap_part": {
-        "wsdl": "",
-        "service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
         "soap_action": "",
-        "mode": "SOAP",
-        "enable_compatibility-for": "",
         "enable_http_transport": true,
         "enable_https_transport": false,
-        "enable_jms_transport": false,
-        "http_services_redirection": ""
+        "enable_jms_transport": false
     }
 }

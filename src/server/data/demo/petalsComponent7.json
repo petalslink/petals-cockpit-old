@@ -36,7 +36,7 @@
         "http_thread_pool_size_max": "255",
         "http_acceptors": "4",
         "http_backlog_size": "50",
-        "max_http_connections_per_host": "10",
+        "max_http_connections_per_host": "50",
         "https_enabled": false,
         "https_port": "8083",
         "https_acceptors": "4",
@@ -48,8 +48,6 @@
         "https_truststore_type": "JKS",
         "https_truststore_file": "",
         "https_truststore_password": "",
-        "java_naming_factory_initial": "",
-        "java_naming_provider_url": "",
-        "jms_connection_factory_jndiname": ""
+        "https_client_authentication_enabled": false
     }
 }
