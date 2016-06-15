@@ -1,54 +1,68 @@
-<md-dialog md-theme="core-theme" aria-label="Login">
+<md-content md-theme="core-theme" layout="column" layout-padding layout-align="end center"
+            id="backgroundLogin">
 
-    <form name="loginForm" data-ng-submit="vm.handleSubmit()">
+    <div id="box" class="md-shadow-bottom-z-2">
 
-        <md-toolbar class="md-accent">
-            <div class="md-toolbar-tools">
-                <md-icon class="material-icons md-icon-button md-accent" aria-label="Connexion User" md-svg-icon="mdicons:account-box"></md-icon>
-                <span flex></span>
-                <h2>Sign in {{vm.username}}</h2>
-                <span flex></span>
-            </div>
-        </md-toolbar>
+        <form name="loginForm" data-ng-submit="vm.handleSubmit()">
 
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-input-container class="md-block md-accent">
-                    <label>Username :</label>
-                    <input ng-model="vm.username" md-maxlength="20" required>
-                    <div ng-messages="myFormAddBranch.username.$error">
-                        <div ng-message="required">Username is required.</div>
-                        <div ng-message="md-maxlength">The name has to be less than 20 characters long.</div>
+            <md-card layout="column" layout-align="center center" style="background-color: #27282C; color: white;">
+
+                <md-card-title>
+                    <md-card-title-text layout-align="center center">
+                        <md-icon class="material-icons md-icon-button md-accent" aria-label="Connexion User"
+                                 md-svg-icon="mdicons:account-box"></md-icon>
+
+                        <span class="md-headline">Sign In</span>
+                        <span class="md-subhead">Sign in with your username & password :</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content style="background-color: #fff; color: black">
+
+                    <md-input-container class="md-block md-accent">
+                        <label>Username :</label>
+                        <input ng-model="vm.username" md-maxlength="20" required>
+                        <div ng-messages="myFormAddBranch.username.$error">
+                            <div ng-message="required">Username is required.</div>
+                            <div ng-message="md-maxlength">The username has to be less than 20 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block md-accent">
+                        <label>Password :</label>
+                        <input ng-model="vm.password" type="password" md-maxlength="20" required>
+                        <div ng-messages="myFormAddBranch.password.$error">
+                            <div ng-message="required">Password is required.</div>
+                            <div ng-message="md-maxlength">The password has to be less than 20 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <div class="md-block md-accent">
+                        <md-checkbox ng-model="vm.cbRemember" aria-label="Remember">
+                            Remember me
+                        </md-checkbox>
                     </div>
-                </md-input-container>
+                </md-card-content>
 
-                <md-input-container class="md-block md-accent">
-                    <label>Password :</label>
-                    <input ng-model="vm.password" type="password" md-maxlength="20" required>
-                    <div ng-messages="myFormAddBranch.password.$error">
-                        <div ng-message="required">Password is required.</div>
-                        <div ng-message="md-maxlength">The name has to be less than 20 characters long.</div>
+                <md-card-actions layout="column" layout-align="center center" layout-padding style="width: 100%">
+                    <div layout="row" layout-fill>
+                        <md-button type="submit" class="md-accent md-hue-2" flex
+                                   ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }">Sign In
+                        </md-button>
                     </div>
-                </md-input-container>
-                <div class="md-block md-accent">
-                    <md-checkbox ng-model="vm.cbRemember" aria-label="Remember">
-                        Remember me
-                    </md-checkbox>
-                </div>
+                    <div layout="row" class="label" ng-if="(loginForm.$dirty && loginForm.$valid)">Take the control !
+                    </div>
+                </md-card-actions>
+
+            </md-card>
+            <br><br>
+            <md-divider></md-divider>
+
+            <div layout="row" layout-align="center center">
+                <h1 class="md-title">WELCOME TO PETALS COCKPIT</h1>
             </div>
-        </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <span flex></span>
-            <md-button type="submit" class="md-primary"
-                       ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
-                       aria-label="OK">
-                Sign in
-            </md-button>
-            <md-button type="button" ng-click="vm.handleCancel(); $event.stopPropagation();" aria-label="Cancel">
-                Cancel
-            </md-button>
-        </md-dialog-actions>
-    </form>
+        </form>
 
-</md-dialog>
+    </div>
+</md-content>

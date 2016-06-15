@@ -1,32 +1,30 @@
+/*
 (function() {
-
     'use strict';
 
     angular.module('app.layout')
-        .controller('LoginDialogController', ControllerFunction);
+        .controller('LoginController', ControllerFunction);
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$mdDialog'];
+    ControllerFunction.$inject = [];
 
-    /* @ngInject */
-    function ControllerFunction($mdDialog) {
+    /!* @ngInject *!/
+    function ControllerFunction() {
 
         var vm = this;
         vm.username = null;
         vm.password = null;
         vm.cbRemember = true;
 
-        vm.handleSubmit = handleSubmit;
-        vm.handleCancel = handleCancel;
+/!*        vm.login = login;
+        vm.reloadWorkspace = reloadWorkspace;
 
-        function handleSubmit() {
-            return $mdDialog.hide();
-        }
+        function reloadWorkspace() {
+            $state.go('home.workspace',{},{reload: true} );
 
-        function handleCancel() {
-            return $mdDialog.hide();
-        }
+        }*!/
     }
 
 })();
+*/

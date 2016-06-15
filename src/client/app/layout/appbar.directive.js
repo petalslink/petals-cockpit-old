@@ -4,7 +4,7 @@
     angular
         .module('app.layout')
         .directive('tmplAppbar', directiveFunction)
-        .controller('AppbarController', ControllerFunction);
+        .controller('LoginController', ControllerFunction);
 
 
     // ----- directiveFunction -----
@@ -16,7 +16,7 @@
         var directive = {
             restrict: 'E',
             templateUrl: 'src/client/app/layout/appbar.html',
-            controller: 'AppbarController',
+            controller: 'LoginController',
             controllerAs: 'vm'
         };
 
@@ -25,21 +25,24 @@
 
     // ----- ControllerFunction -----
 
-    ControllerFunction.$inject = ['$state', '$mdDialog'];
+    ControllerFunction.$inject = ['$state'];
 
     /* @ngInject */
-    function ControllerFunction($state, $mdDialog) {
+    function ControllerFunction($state) {
         var vm = this;
-        vm.login = login;
+/*        vm.login = login;*/
         vm.reloadWorkspace = reloadWorkspace;
+        vm.username = null;
+        vm.password = null;
+        vm.cbRemember = true;
 
-        function login() {
+/*        function login() {
             $mdDialog.show({
-                templateUrl: 'src/client/app/layout/login-dialog.html',
-                controller: 'LoginDialogController',
+                templateUrl: 'src/client/app/layout/login.html',
+                controller: 'LoginController',
                 controllerAs: 'vm'
             });
-        }
+        }*/
 
         function reloadWorkspace() {
             $state.go('home.workspace',{},{reload: true} );
