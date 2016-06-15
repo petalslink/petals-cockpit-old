@@ -29,6 +29,7 @@ report
 *.1
 *.ns
 journal
+db/
 
 # Ignore Web Storm #
 .idea

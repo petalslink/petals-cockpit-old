@@ -6,6 +6,8 @@ var watch = require('gulp-watch');
 var modRewrite = require('connect-modrewrite');
 var args = require('yargs').argv;
 var $ = require('gulp-load-plugins')({lazy: true});
+var exec = require('child_process').exec;
+var mkdirs = require('mkdirs');
 //var config = require('./gulp.config')();
 //var port = process.env.PORT || config.defaultPort;
 
@@ -18,6 +20,16 @@ module.exports = function (config) {
     gulp.task('serve-build', ['build'], function () {
         serve(false /*isDev*/);
     });
+
+    var runCommand = function(command) {
+        exec(command, function (err, stdout, stderr) {
+            config.log(stdout);
+            config.log(stderr);
+            if (err !== null) {
+                config.log('exec error: ' + err);
+            }
+        });
+    };
 
     /**
      * Start BrowserSync
@@ -39,6 +51,10 @@ module.exports = function (config) {
             config.log(nodeOptions);
         }
 
+        if (isDev) {
+            startMongo(config.dbDir);
+        }
+
         return $.nodemon(nodeOptions)
             .on('restart', ['vet'], function(ev) {
                 config.log('*** nodemon restarted');
@@ -57,6 +73,7 @@ module.exports = function (config) {
             })
             .on('exit', function () {
                 config.log('*** nodemon exited cleanly');
+                stopMongo();
             });
 
         function getNodeOptions(isDev) {
@@ -150,10 +167,23 @@ module.exports = function (config) {
 
     }
 
+    function startMongo(dbDir) {
+        var command = 'mongod --fork --dbpath '+dbDir+'/data --logpath '+dbDir+'/mongo.log';
+        mkdirs(dbDir);
+        mkdirs(dbDir+'/data');
+        config.log('Starting mongodb');
+        runCommand(command);
+    }
+
+    function stopMongo() {
+        var command = 'mongo admin --eval "db.shutdownServer();"';
+        config.log('Stopping mongodb');
+        runCommand(command);
+    }
+
     function runNodeInspector() {
         config.log('Running node-inspector.');
         config.log('Browse to http://localhost:8080/debug?port=5858');
-        var exec = require('child_process').exec;
         exec('node-inspector');
     }
 };

@@ -18,6 +18,7 @@ module.exports = {
     testDir: './test/',
     buildDir: './build/',
     tempDir: './.tmp/',
+    dbDir: './db/',
     js: [
         // MODULE -- inject first --
         src + 'app/**/*.module.js',

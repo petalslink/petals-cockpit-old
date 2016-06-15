@@ -4,9 +4,8 @@
   "description": "Web Application for Petals Cockpit",
   "authors": "Linagora",
   "contributors": [
-    {
-      "name": "QantumLeap"
-    }
+    "CHEVALIER Christophe",
+    "ESCUDIE Bertrand"
   ],
   "repository": {
     "type": "git",
@@ -90,6 +89,7 @@
     "sinon": "^1.16.1",
     "sinon-chai": "^2.8.0",
     "ui-router-extras": "^0.1.2",
+    "mkdirs": "0.0.2",
     "yargs": "^3.27.0"
   }
 }
