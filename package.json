@@ -2,6 +2,7 @@
   "name": "Petals-Cockpit",
   "version": "0.4.0",
   "description": "Web Application for Petals Cockpit",
+  "main": "app.js",
   "authors": "Linagora",
   "contributors": [
     "CHEVALIER Christophe",
@@ -24,9 +25,14 @@
     "body-parser": "^1.13.1",
     "compression": "^1.6.0",
     "connect-modrewrite": "^0.8.1",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.7.1",
     "express": "^4.13.0",
-    "morgan": "^1.6.0"
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.20",
+    "morgan": "^1.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
   },
   "devDependencies": {
     "browser-sync": "^2.9.11",
@@ -83,6 +89,8 @@
     "minimist": "^1.2.0",
     "mocha": "^2.3.2",
     "node-notifier": "^4.2.3",
+    "node-restful": "^0.2.5",
+    "passport": "^0.3.2",
     "phantomjs": "^1.9.17",
     "plato": "^1.5.0",
     "q": "^1.4.1",
