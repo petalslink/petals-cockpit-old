@@ -5,11 +5,12 @@
         .controller('AuthController', AuthControllerFunction);
 
     // ----- AuthControllerFunction -----
-    AuthControllerFunction.$inject = ['$state', '$http', '$rootScope', '$location'];
+    AuthControllerFunction.$inject = ['$state', '$http', '$rootScope', '$location', 'logger'];
 
     /* @ngInject */
-    function AuthControllerFunction($state, $http, $rootScope, $location) {
+    function AuthControllerFunction($state, $http, $rootScope, $location, logger) {
         var vm = this;
+
         vm.user = {username: '', password: ''};
         vm.error_message = '';
 
@@ -18,10 +19,12 @@
                 function () {
                     $rootScope.authenticated = true;
                     $rootScope.current_user = credentials.username;
-                    $location.path('/');
+                    $location.path('/workspace/petals');
+                    logger.success('You are logged with ' + '"' + credentials.username + '"');
                 },
                 function (data) {
                     vm.error_message = data.message;
+                    logger.error('Login is refused !');
                 });
         };
 
@@ -29,7 +32,6 @@
 
         function reloadWorkspace() {
             $state.go('home.workspace', {}, {reload: true});
-
         }
     }
 
