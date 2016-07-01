@@ -1,6 +1,8 @@
 'use strict';
 
 var browserSync = require('browser-sync');
+var url = require('url');
+var proxy = require('proxy-middleware');
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 var modRewrite = require('connect-modrewrite');
@@ -8,6 +10,7 @@ var args = require('yargs').argv;
 var $ = require('gulp-load-plugins')({lazy: true});
 var exec = require('child_process').exec;
 var mkdirs = require('mkdirs');
+
 //var config = require('./gulp.config')();
 //var port = process.env.PORT || config.defaultPort;
 
@@ -114,27 +117,10 @@ module.exports = function (config) {
                     .on('change', changeEvent);
             }
 */
+            var proxyOpts = url.parse('http://localhost:' + port);
+            proxyOpts.route = '/api';
 
             var options = {
-/* todo  proxying the api server 7203 => 3000
-                proxy: 'localhost:' + port,
-                port: 3000,
-                files: isDev ? [
-/!*
-                    config.client + '**!/!*.*',
-                    '!' + config.less,
-                    config.temp + '**!/!*.css',
-*!/
-                    './src/client/!**!/!*.*',
-                    './bower_components',
-                    './bower_components/bootstrap-sass/assets/fonts',
-                    './.tmp/!**!/!*.css'
-/!*
-                    config.sourceDir + '/client**!/!*.*',
-                    config.tempDir+ '/!*.*'
-*!/
-                    ] : [],
-*/
                 server: {
                     baseDir: isDev ? config.tempDir : config.buildDir,
                     routes: isDev ? {
@@ -145,6 +131,7 @@ module.exports = function (config) {
                         '/.tmp': config.tempDir
                     } : {},
                     middleware: [
+                        proxy(proxyOpts),
                         modRewrite([ '!\\.\\w+$ /index.html [L]' ])
                     ]
                 },
