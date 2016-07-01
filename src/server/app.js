@@ -6,7 +6,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var errorHandler = require('./utils/errorHandler')();
-var four0four = require('./utils/404')();
 var logger = require('morgan');
 var port = process.env.PORT || 7203;
 var routes;
@@ -29,7 +28,6 @@ app.get('/ping', function(req, res, next) {
     console.log(req.body);
     res.send('pong');
 });
-
 
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
