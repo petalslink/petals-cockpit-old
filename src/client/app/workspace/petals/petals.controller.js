@@ -57,11 +57,11 @@
                 var selectedChild = getComponentById(id);
 
                 if (selectedChild) {
-                    // unselect previous sellected component
+                    // unselect previous selected component
                     if (vmPetals.selectedChild) {
                         vmPetals.selectedChild.selected = false;
                     }
-                    // set selected comonent
+                    // set selected component
                     vmPetals.selectedChild = selectedChild;
                     vmPetals.selectedChild.selected = true;
                     dataWkspceService.setInfoSelect(vmPetals.selectedChild.selectionChain);

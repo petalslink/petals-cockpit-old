@@ -1,9 +1,9 @@
 <md-content md-theme="core-theme" layout="column" layout-padding layout-align="end center"
-            id="backgroundLogin">
+            id="backgroundLogin" class="imgTag">
 
-    <div id="box" class="md-shadow-bottom-z-2">
+    <div id="box" class="dividerCube md-shadow-bottom-z-2">
 
-        <form name="loginForm" data-ng-submit="vm.handleSubmit()">
+        <form name="loginForm" role="form" ng-submit="vm.login(credentials)">
 
             <md-card layout="column" layout-align="center center" style="background-color: #27282C; color: white;">
 
@@ -21,8 +21,8 @@
 
                     <md-input-container class="md-block md-accent">
                         <label>Username :</label>
-                        <input ng-model="vm.username" md-maxlength="20" required>
-                        <div ng-messages="myFormAddBranch.username.$error">
+                        <input ng-model="credentials.username" md-maxlength="20" required>
+                        <div ng-messages="loginForm.username.$error">
                             <div ng-message="required">Username is required.</div>
                             <div ng-message="md-maxlength">The username has to be less than 20 characters long.</div>
                         </div>
@@ -30,15 +30,15 @@
 
                     <md-input-container class="md-block md-accent">
                         <label>Password :</label>
-                        <input ng-model="vm.password" type="password" md-maxlength="20" required>
-                        <div ng-messages="myFormAddBranch.password.$error">
+                        <input ng-model="credentials.password" type="password" md-maxlength="20" required>
+                        <div ng-messages="loginForm.password.$error">
                             <div ng-message="required">Password is required.</div>
                             <div ng-message="md-maxlength">The password has to be less than 20 characters long.</div>
                         </div>
                     </md-input-container>
 
                     <div class="md-block md-accent">
-                        <md-checkbox ng-model="vm.cbRemember" aria-label="Remember">
+                        <md-checkbox aria-label="Remember">
                             Remember me
                         </md-checkbox>
                     </div>

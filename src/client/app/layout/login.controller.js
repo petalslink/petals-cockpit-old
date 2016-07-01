@@ -1,30 +1,36 @@
-/*
-(function() {
+(function () {
     'use strict';
 
     angular.module('app.layout')
-        .controller('LoginController', ControllerFunction);
+        .controller('AuthController', AuthControllerFunction);
 
+    // ----- AuthControllerFunction -----
+    AuthControllerFunction.$inject = ['$state', '$http', '$rootScope', '$location'];
 
-    // ----- ControllerFunction -----
-    ControllerFunction.$inject = [];
-
-    /!* @ngInject *!/
-    function ControllerFunction() {
-
+    /* @ngInject */
+    function AuthControllerFunction($state, $http, $rootScope, $location) {
         var vm = this;
-        vm.username = null;
-        vm.password = null;
-        vm.cbRemember = true;
+        vm.user = {username: '', password: ''};
+        vm.error_message = '';
 
-/!*        vm.login = login;
+        vm.login = function (credentials) {
+            $http.post('/api/login', credentials).then(
+                function () {
+                    $rootScope.authenticated = true;
+                    $rootScope.current_user = credentials.username;
+                    $location.path('/');
+                },
+                function (data) {
+                    vm.error_message = data.message;
+                });
+        };
+
         vm.reloadWorkspace = reloadWorkspace;
 
         function reloadWorkspace() {
-            $state.go('home.workspace',{},{reload: true} );
+            $state.go('home.workspace', {}, {reload: true});
 
-        }*!/
+        }
     }
 
 })();
-*/

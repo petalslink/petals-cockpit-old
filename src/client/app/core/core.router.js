@@ -8,13 +8,22 @@
     core.config(configFunction);
     core.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger'];
+    runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger', '$http'];
 
     /* @ngInject */
-    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger) {
+    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger, $http) {
         $rootScope.$location = $location;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+        $rootScope.authenticated = false;
+        $rootScope.current_user = '';
+
+        $rootScope.signout = function(){
+            $http.get('/api/logout');
+            $rootScope.authenticated = false;
+            $rootScope.current_user = '';
+        };
 
         /* todo manage resolve error on state transition */
         $rootScope.$on('$stateChangeError', function (event) {
@@ -74,6 +83,21 @@
                 controller: '',
                 onEnter: ['logger', function (logger) {
                     logger.debug('You are in HOME');
+                }]
+            })
+            .state('login', {
+                url: '/login',
+                sticky: true,
+                dsr: true,
+                views: {
+                    '': {
+                        templateUrl: 'src/client/app/layout/login.html',
+                        controller: 'AuthController',
+                        controllerAs: 'vm'
+                    }
+                },
+                onEnter: ['logger', function (logger) {
+                    logger.debug('You are in Login Page');
                 }]
             });
     }

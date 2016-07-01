@@ -7,11 +7,17 @@
             </md-tooltip>
         </md-button>
         <span flex></span>
-        <md-button ng-click="vm.login()" aria-label="login" class="md-raised md-accent">
+        <md-button ng-hide="authenticated" ui-sref="login" aria-label="login" class="md-raised md-accent">
             <md-icon class="material-icons md-accent" aria-label="Connexion User" md-svg-icon="mdicons:account"></md-icon>
             <!-- <span flex></span> -->
             Sign in
             <md-tooltip md-direction="bottom">Connexion User</md-tooltip>
+        </md-button>
+        <md-button ng-show="authenticated" ng-click="signout()" aria-label="logout" class="md-raised md-accent">
+            <md-icon class="material-icons md-accent" aria-label="Sign out User" md-svg-icon="mdicons:account-outline"></md-icon>
+            <!-- <span flex></span> -->
+            Sign out
+            <md-tooltip md-direction="bottom">Sign out User</md-tooltip>
         </md-button>
         <md-button class="md-icon-button md-accent" ui-sref="404">
             <md-icon class="material-icons md-accent" aria-label="Open Menu" md-svg-icon="mdicons:dots-vertical"></md-icon>
