@@ -52,8 +52,8 @@
                 $mdToast.simple()
                     .content('Success: ' + message)
                     .theme('green')
-                    .hideDelay(6000)
-                    .position('top right')
+                    .hideDelay(3000)
+                    .position('bottom left')
             );
 
             $log.info('success: ' + message);

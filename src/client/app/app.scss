@@ -38,16 +38,9 @@ body {
     overflow-x: hidden !important;
 }
 
-md-toast.md-yellow-theme:hover, md-toast.md-red-theme:hover, md-toast.md-green-theme:hover,
-md-toast.md-orange-theme:hover, md-toast.md-blue-theme:hover {
-    background-color: white;
-    text-align: center;
-}
-
 md-toast.md-yellow-theme .md-toast-content {
     background-color: yellow;
     border: solid 2px whitesmoke;
-    cursor: pointer;
     padding: 10px;
     text-align: center;
     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -56,7 +49,6 @@ md-toast.md-yellow-theme .md-toast-content {
 md-toast.md-green-theme .md-toast-content {
     background-color: #62c462;
     border: solid 2px whitesmoke;
-    cursor: pointer;
     padding: 10px;
     text-align: center;
     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -65,7 +57,6 @@ md-toast.md-green-theme .md-toast-content {
  md-toast.md-red-theme .md-toast-content{
      background-color: #ee5f5b;
      border: solid 2px whitesmoke;
-     cursor: pointer;
      padding: 10px;
      text-align: center;
      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -74,7 +65,6 @@ md-toast.md-green-theme .md-toast-content {
  md-toast.md-orange-theme .md-toast-content{
      background-color: #fb921a;
      border: solid 2px whitesmoke;
-     cursor: pointer;
      padding: 10px;
      text-align: center;
      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -83,7 +73,6 @@ md-toast.md-green-theme .md-toast-content {
  md-toast.md-blue-theme .md-toast-content{
      background-color: #0088cc;
      border: solid 2px whitesmoke;
-     cursor: pointer;
      padding: 10px;
      text-align: center;
      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
