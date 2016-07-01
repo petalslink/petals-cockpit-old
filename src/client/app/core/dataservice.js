@@ -22,12 +22,7 @@
         return service;
 
         function getPetalsComponent(id) {
-            // todo remove url when proxy of API is OK
-            // return $http.get('/api/petalscomponent/demo/' + id)
-            return $http.get('http://localhost:7203/api/petalscomponent/demo/' + id)
-/*
-            return $http.get('http://10.31.0.121:7203/api/petalscomponent/demo/' + id)
-*/
+            return $http.get('/api/petalscomponent/demo/' + id)
                 .then(getPetalsComponentComplete,
                       getPetalsComponentFailed);
 
@@ -39,20 +34,13 @@
                 logger.info('****** getPetalsComponentFailed');
                 logger.info('****** '+ e.data.description);
                 //todo nothing !
-/*
                 $location.url('/');
-*/
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }
 
         function getPetalsComponents() {
-            // todo remove url when proxy of API is OK
-            // return $http.get('/api/petalscomponents/demo')
-            return $http.get('http://localhost:7203/api/petalscomponents/demo')
-/*
-            return $http.get('http://10.31.0.121:7203/api/petalscomponents/demo')
-*/
+            return $http.get('/api/petalscomponents/demo')
                 .then(getPetalsComponentsComplete,
                       getPetalsComponentsFailed);
 
@@ -76,12 +64,7 @@
         }
 
         function getPetalsComponentConfig() {
-            // todo remove url when proxy of API is OK
-            // return $http.get('/api/petalscomponentsconfig/demo')
-            return $http.get('http://localhost:7203/api/petalscomponentsconfig/demo')
-/*
-            return $http.get('http://10.31.0.121:7203/api/petalscomponentsconfig/demo')
-*/
+            return $http.get('/api/petalscomponentsconfig/demo')
                 .then(getPetalsComponentConfigComplete,
                       getPetalsComponentConfigFailed);
 

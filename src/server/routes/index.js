@@ -1,14 +1,12 @@
+'use strict';
+
 module.exports = function (app) {
-    var api = '/api/';
     var data = '/../data/';
     var jsonfileservice = require('../utils/jsonfileservice')();
-    var four0four = require('../utils/404')();
 
-    app.get(api + 'petalscomponent/:wkspce/:id', getPetalsComponent);
-    app.get(api + 'petalscomponents/:wkspce', getPetalsComponents);
-    app.get(api + 'petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
-
-    app.get(api + '*', four0four.notFoundMiddleware);
+    app.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
+    app.get('/petalscomponents/:wkspce', getPetalsComponents);
+    app.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
 
     function getPetalsComponent(req, res, next) {
         var wkspce = req.params.wkspce;
@@ -68,4 +66,6 @@ module.exports = function (app) {
             four0four.send404(req, res, msg + ex.message);
         }
     }
+
 };
+
