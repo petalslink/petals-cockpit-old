@@ -23,4 +23,4 @@ mongoose.connection.on('disconnected', function () {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./account');
+require('./models');
