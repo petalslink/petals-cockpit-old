@@ -56,7 +56,7 @@
 
         $locationProvider.html5Mode({enabled:true,requireBase:true});
 
-        $urlRouterProvider.when('/', '/workspace');
+        $urlRouterProvider.when('/', '/login');
 
         $urlRouterProvider.otherwise('/404');
 

@@ -56,6 +56,14 @@ app.post('/login', function(req, res, next) {
     })(req, res, next);
 });
 
+app.get('/status', function(req, res) {
+    if (req.user) {
+        res.json({ username: req.user.username});
+    } else {
+        res.sendStatus(401);
+    }
+});
+
 app.get('/logout', function(req, res){
     req.logout();
     res.sendStatus(200);
