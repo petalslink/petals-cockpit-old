@@ -64,9 +64,14 @@ app.get('/status', function(req, res) {
     }
 });
 
-app.get('/logout', function(req, res){
-    req.logout();
-    res.sendStatus(200);
+app.get('/logout', function(req, res, next){
+    passport.authenticate('logout', function(err, user) {
+        if (err) { return next(err); }
+        req.logOut(user, function(err) {
+            if (err) { return next(err); }
+            return res.sendStatus(200);
+        });
+    })(req, res, next);
 });
 
 app.listen(port, function() {
