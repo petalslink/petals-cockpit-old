@@ -1,28 +1,51 @@
 (function () {
     'use strict';
 
-    var core = angular.module('app.core');
+    var core = angular.module('app.core')
+        .factory('AuthInterceptor', AuthInterceptor);
 
     var runFuntion = runFunction;
 
     core.config(configFunction);
     core.run(runFuntion);
 
-    runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger', '$http'];
+    runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger',
+        '$http', 'AUTH_EVENTS', 'AuthService', 'USER_ROLES'];
 
     /* @ngInject */
-    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger, $http) {
+    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger, $http,
+                         AUTH_EVENTS, AuthService, USER_ROLES) {
         $rootScope.$location = $location;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
-        $rootScope.authenticated = false;
-        $rootScope.current_user = '';
+        // usable for checks in html
+        $rootScope.userRoles = USER_ROLES;
+        $rootScope.isAuthorized = AuthService.isAuthorized;
+        $rootScope.isAuthenticated = AuthService.isAuthenticated;
 
-        $rootScope.signout = function(){
+        $rootScope.current_user = null;
+        $rootScope.setCurrentUser = function (user) {
+            $rootScope.currentUser = user;
+        };
+
+        $rootScope.$on('$stateChangeStart', function (event, next) {
+            if (next.data !== undefined && !AuthService.isAuthorized(next.data.authorizedRoles)) {
+                event.preventDefault();
+                if (AuthService.isAuthenticated()) {
+                    // user is not allowed
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                } else {
+                    // user is not logged in
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                }
+            }
+        });
+
+        $rootScope.logout = function(){
             $http.get('/api/logout');
-            $rootScope.authenticated = false;
-            $rootScope.current_user = '';
+            $location.path('/login');
+            logger.success('Bye Bye ');
         };
 
         /* todo manage resolve error on state transition */
@@ -47,10 +70,10 @@
         $urlRouter.listen();
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 
         $urlRouterProvider.deferIntercept();
 
@@ -59,6 +82,13 @@
         $urlRouterProvider.when('/', '/login');
 
         $urlRouterProvider.otherwise('/404');
+
+        $httpProvider.interceptors.push([
+            '$injector',
+            function ($injector) {
+                return $injector.get('AuthInterceptor');
+            }
+        ]);
 
         $stateProvider
             .state('404', {
@@ -100,6 +130,25 @@
                     logger.debug('You are in Login Page');
                 }]
             });
+    }
+
+    // ----- AuthInterceptor -----
+    AuthInterceptor.$inject = ['$rootScope', '$q', 'AUTH_EVENTS'];
+
+    /* @ngInject */
+    function AuthInterceptor($rootScope, $q, AUTH_EVENTS) {
+
+        return {
+            responseError: function (response) {
+                $rootScope.$broadcast({
+                    401: AUTH_EVENTS.notAuthenticated,
+                    403: AUTH_EVENTS.notAuthorized,
+                    419: AUTH_EVENTS.sessionTimeout,
+                    440: AUTH_EVENTS.sessionTimeout
+                }[response.status], response);
+                return $q.reject(response);
+            }
+        };
     }
 
 })();
