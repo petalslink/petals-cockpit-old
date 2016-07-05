@@ -21,12 +21,11 @@
 
         function postLogin(credentials) {
             return $http.post('/api/login', credentials).then(
-                function (res) {
+                function () {
                     Session.create(credentials.username, []);
                     $rootScope.setCurrentUser(credentials.username);
                     $location.path('/workspace/petals');
                     logger.success('You are logged with ' + '"' + credentials.username + '"');
-                    return res.data.user;
                 },
                 function () {
                     logger.error('Login is refused !');
