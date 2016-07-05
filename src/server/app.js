@@ -13,7 +13,7 @@ var environment = process.env.NODE_ENV;
 var passport = require('passport');
 var database = require('./models/database');
 var routes = require('./routes/index');
-var auth = require('./users/auth')
+var auth = require('./users/auth');
 
 var app = express();
 
@@ -31,8 +31,8 @@ app.use(passport.session());
 
 require('./users/users-passport');
 
-app.use("/", routes);
-app.use("/auth", auth);
+app.use('/auth', auth);
+app.use('/', routes);
 
 database.addUser(null, 'admin', 'admin', function() {});
 
