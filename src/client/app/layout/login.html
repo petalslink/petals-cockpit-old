@@ -1,5 +1,5 @@
 <md-content md-theme="core-theme" layout="column" layout-padding layout-align="end center"
-            id="backgroundLogin" class="imgTag">
+            id="backgroundLogin" class="imgTag" flex>
 
     <div id="box" class="dividerCube md-shadow-bottom-z-2">
 
@@ -21,8 +21,8 @@
 
                     <md-input-container class="md-block md-accent">
                         <label>Username :</label>
-                        <input ng-model="credentials.username" md-maxlength="20" required>
-                        <div ng-messages="loginForm.username.$error">
+                        <input name="credUsername" ng-model="credentials.username" md-maxlength="20" required>
+                        <div ng-messages="loginForm.credUsername.$error">
                             <div ng-message="required">Username is required.</div>
                             <div ng-message="md-maxlength">The username has to be less than 20 characters long.</div>
                         </div>
@@ -30,18 +30,21 @@
 
                     <md-input-container class="md-block md-accent">
                         <label>Password :</label>
-                        <input ng-model="credentials.password" type="password" md-maxlength="20" required>
-                        <div ng-messages="loginForm.password.$error">
+                        <input name="credPassword" ng-model="credentials.password" type="password" md-maxlength="20"
+                               required>
+                        <div ng-messages="loginForm.credPassword.$error">
                             <div ng-message="required">Password is required.</div>
                             <div ng-message="md-maxlength">The password has to be less than 20 characters long.</div>
                         </div>
                     </md-input-container>
 
+                    <!-- TODO Create Checkbox Remember me for config session timeout -->
                     <div class="md-block md-accent">
                         <md-checkbox aria-label="Remember">
                             Remember me
                         </md-checkbox>
                     </div>
+
                 </md-card-content>
 
                 <md-card-actions layout="column" layout-align="center center" layout-padding style="width: 100%">
