@@ -20,9 +20,9 @@
         return AuthService;
 
         function postLogin(credentials) {
-            return $http.post('/api/login', credenti).then(
+            return $http.post('/api/login', credentials).then(
                 function (res) {
-                    Session.create(credentials.username, []); //res.data.id, res.data.user.id, res.data.user.role
+                    Session.create(credentials.username, []);
                     $rootScope.setCurrentUser(credentials.username);
                     $location.path('/workspace/petals');
                     logger.success('You are logged with ' + '"' + credentials.username + '"');
