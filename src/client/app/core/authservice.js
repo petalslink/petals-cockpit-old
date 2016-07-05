@@ -24,6 +24,7 @@
                 function () {
                     Session.create(credentials.username, []);
                     $rootScope.setCurrentUser(credentials.username);
+                    $rootScope.authenticated = true;
                     $location.path('/workspace/petals');
                     logger.success('You are logged with ' + '"' + credentials.username + '"');
                 },

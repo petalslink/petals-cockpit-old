@@ -23,6 +23,7 @@
         $rootScope.userRoles = USER_ROLES;
         $rootScope.isAuthorized = AuthService.isAuthorized;
         $rootScope.isAuthenticated = AuthService.isAuthenticated;
+        $rootScope.authenticated = false;
 
         $rootScope.current_user = null;
         $rootScope.setCurrentUser = function (user) {
@@ -44,6 +45,7 @@
 
         $rootScope.logout = function(){
             $http.get('/api/auth/logout');
+            $rootScope.authenticated = false;
             $location.path('/login');
             logger.success('Bye Bye ');
         };

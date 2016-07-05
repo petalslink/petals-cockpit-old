@@ -18,6 +18,8 @@
 
         vm.login = function (credentials) {
             AuthService.postLogin(credentials).then(function (user) {
+                $rootScope.authenticated = true;
+                $rootScope.current_user = credentials.username;
                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                 $rootScope.setCurrentUser(user);
             }, function () {
