@@ -127,6 +127,7 @@ module.exports = function (config) {
                         '/bower_components': './bower_components',
                         '/fonts': './bower_components/bootstrap-sass/assets/fonts',
                         '/src/client': config.sourceDir,
+                        '/src/server': config.serverDir,
                         '/images': config.sourceDir + 'images',
                         '/.tmp': config.tempDir
                     } : {},

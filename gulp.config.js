@@ -12,6 +12,7 @@ module.exports = {
     nodeServer: server + 'app.js',
     defaultPort: '7203',
     sourceDir: src,
+    serverDir: server,
     serverJs: [
         server + '**/*.js'
     ],
