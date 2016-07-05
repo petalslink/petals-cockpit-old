@@ -20,7 +20,7 @@
         return AuthService;
 
         function postLogin(credentials) {
-            return $http.post('/api/login', credentials).then(
+            return $http.post('/api/auth/login', credentials).then(
                 function () {
                     Session.create(credentials.username, []);
                     $rootScope.setCurrentUser(credentials.username);

@@ -43,7 +43,7 @@
         });
 
         $rootScope.logout = function(){
-            $http.get('/api/logout');
+            $http.get('/api/auth/logout');
             $location.path('/login');
             logger.success('Bye Bye ');
         };
