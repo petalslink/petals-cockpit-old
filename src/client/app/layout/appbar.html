@@ -1,4 +1,4 @@
-<md-toolbar md-scroll-shrink md-theme="core-theme" ng-cloak layout="row" ng-if="authenticated">
+<md-toolbar md-scroll-shrink md-theme="core-theme" ng-cloak layout="row" ng-if="isAuthenticated()">
     <div class="md-toolbar-tools md-accent">
         <md-button ng-click="vm.reloadWorkspace()">
             <img src="src/client/images/petals_cockpit.png" class="logoPetals"/>
@@ -8,13 +8,13 @@
         </md-button>
         <span flex></span>
         <div class="md-toolbar-tools md-primary" layout-align="end center" flex-gt-sm flex-lt-sm="100">
-            <md-button class="md-accent" aria-label="name user logged" ng-show="authenticated">
+            <md-button class="md-accent" aria-label="name user logged" ng-show="isAuthenticated()">
                 <md-icon class="material-icons md-accent" aria-label="Logout" md-svg-icon="mdicons:account-circle"></md-icon>
-                Hey {{ current_user  }} !
-                <md-tooltip md-direction="bottom">You are logged !</md-tooltip>
+                Hey {{ userData.userId  }} !
+                <md-tooltip md-direction="bottom">You are logged!</md-tooltip>
             </md-button>
         </div>
-        <md-button ng-show="authenticated" ng-click="logout()" class="md-fab md-mini md-accent">
+        <md-button ng-show="isAuthenticated()" ng-click="vm.logout()" class="md-fab md-mini md-accent">
             <md-icon class="material-icons md-accent" aria-label="Logout" md-svg-icon="mdicons:power"></md-icon>
             <md-tooltip md-direction="bottom">Logout</md-tooltip>
         </md-button>

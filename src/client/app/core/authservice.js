@@ -6,30 +6,41 @@
         .factory('AuthService', AuthService)
         .service('SessionService', SessionService);
 
-    AuthService.$inject = ['$http', 'logger', '$rootScope', '$location', 'SessionService'];
+    AuthService.$inject = ['$http', 'logger', 'SessionService'];
 
     /* @ngInject */
-    function AuthService($http, logger, $rootScope, $location, Session) {
+    function AuthService($http, logger, Session) {
 
         var AuthService = {
-            postLogin: postLogin,
+            login: login,
+            logout: logout,
             isAuthenticated: isAuthenticated,
             isAuthorized: isAuthorized
         };
 
+        $http.get('/api/auth/status').then(
+            function (res) {
+                Session.create(res.data.username, res.data.roles);
+            },
+            function () {
+                Session.destroy();
+            });
+
         return AuthService;
 
-        function postLogin(credentials) {
+        function login(credentials) {
             return $http.post('/api/auth/login', credentials).then(
+                function (res) {
+                    Session.create(res.data.username, res.data.roles);
+                    logger.success('You are logged with ' + '"' + res.data.username + '"');
+                });
+        }
+
+        function logout() {
+            return $http.get('/api/auth/logout').then(
                 function () {
-                    Session.create(credentials.username, []);
-                    $rootScope.setCurrentUser(credentials.username);
-                    $rootScope.authenticated = true;
-                    $location.path('/workspace/petals');
-                    logger.success('You are logged with ' + '"' + credentials.username + '"');
-                },
-                function () {
-                    logger.error('Login is refused !');
+                    Session.destroy();
+                    logger.success('You are logged out');
                 });
         }
 
@@ -54,13 +65,11 @@
 
         var vm = this;
 
-        vm.create = function (sessionId, userId, userRole) {
-            vm.id = sessionId;
+        vm.create = function (userId, userRole) {
             vm.userId = userId;
             vm.userRole = userRole;
         };
         vm.destroy = function () {
-            vm.id = null;
             vm.userId = null;
             vm.userRole = null;
         };

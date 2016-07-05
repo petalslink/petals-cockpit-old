@@ -5,10 +5,10 @@
         .controller('AuthController', AuthControllerFunction);
 
     // ----- AuthControllerFunction -----
-    AuthControllerFunction.$inject = ['$state', 'AUTH_EVENTS', 'AuthService', '$rootScope'];
+    AuthControllerFunction.$inject = ['$state', 'logger', 'AUTH_EVENTS', 'AuthService', '$rootScope', '$location'];
 
     /* @ngInject */
-    function AuthControllerFunction($state, AUTH_EVENTS, AuthService, $rootScope) {
+    function AuthControllerFunction($state, logger, AUTH_EVENTS, AuthService, $rootScope, $location) {
         var vm = this;
 
         vm.credentials = {
@@ -17,13 +17,21 @@
         };
 
         vm.login = function (credentials) {
-            AuthService.postLogin(credentials).then(function (user) {
-                $rootScope.authenticated = true;
-                $rootScope.current_user = credentials.username;
+            AuthService.login(credentials).then(function () {
                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                $rootScope.setCurrentUser(user);
+                $location.path('/workspace/petals');
             }, function () {
                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                logger.warn('Login is refused !');
+            });
+        };
+
+        vm.logout = function () {
+            AuthService.logout().then(function () {
+                $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                $location.path('/login');
+            }, function () {
+                logger.warn('Logout is refused !');
             });
         };
 

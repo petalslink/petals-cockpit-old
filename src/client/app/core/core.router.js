@@ -10,25 +10,20 @@
     core.run(runFuntion);
 
     runFunction.$inject = ['$rootScope', '$location', '$state', '$stateParams', '$urlRouter', 'logger',
-        '$http', 'AUTH_EVENTS', 'AuthService', 'USER_ROLES'];
+        'SessionService', 'AUTH_EVENTS', 'AuthService', 'USER_ROLES'];
 
     /* @ngInject */
-    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger, $http,
+    function runFunction($rootScope, $location, $state, $stateParams, $urlRouter, logger, Session,
                          AUTH_EVENTS, AuthService, USER_ROLES) {
         $rootScope.$location = $location;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
-        // usable for checks in html
+        // usable for checks in html everywhere
         $rootScope.userRoles = USER_ROLES;
         $rootScope.isAuthorized = AuthService.isAuthorized;
         $rootScope.isAuthenticated = AuthService.isAuthenticated;
-        $rootScope.authenticated = false;
-
-        $rootScope.current_user = null;
-        $rootScope.setCurrentUser = function (user) {
-            $rootScope.currentUser = user;
-        };
+        $rootScope.userData = Session;
 
         $rootScope.$on('$stateChangeStart', function (event, next) {
             if (next.data !== undefined && !AuthService.isAuthorized(next.data.authorizedRoles)) {
@@ -42,13 +37,6 @@
                 }
             }
         });
-
-        $rootScope.logout = function(){
-            $http.get('/api/auth/logout');
-            $rootScope.authenticated = false;
-            $location.path('/login');
-            logger.success('Bye Bye ');
-        };
 
         /* todo manage resolve error on state transition */
         $rootScope.$on('$stateChangeError', function (event) {
@@ -68,6 +56,12 @@
             // reverting the URL to the previous valid location
             event.preventDefault();
         });
+
+        $rootScope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+            event.preventDefault();
+            $location.path('/login');
+        });
+
         // Configures $urlRouter's listener *after* your custom listener
         $urlRouter.listen();
     }
@@ -81,7 +75,7 @@
 
         $locationProvider.html5Mode({enabled:true,requireBase:true});
 
-        $urlRouterProvider.when('/', '/login');
+        $urlRouterProvider.when('/', '/workspace/petals');
 
         $urlRouterProvider.otherwise('/404');
 

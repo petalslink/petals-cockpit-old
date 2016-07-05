@@ -16,14 +16,14 @@ router.post('/login', function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            return res.sendStatus(200);
+            return res.json({username: req.user.username, roles: []});
         });
     })(req, res, next);
 });
 
 router.get('/status', function(req, res) {
     if (req.user) {
-        res.json({ username: req.user.username});
+        res.json({ username: req.user.username, roles: []});
     } else {
         res.sendStatus(401);
     }
