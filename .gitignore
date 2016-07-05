@@ -34,6 +34,10 @@ db/
 # Ignore Web Storm #
 .idea
 
+# Ignore Eclipse #
+.project
+.settings/
+
 # Compiled source #
 ###################
 *.com

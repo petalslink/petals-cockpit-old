@@ -1,12 +1,16 @@
 'use strict';
 
-module.exports = function (app) {
+var express = require('express');
+
+module.exports = function () {
     var data = '/../data/';
     var jsonfileservice = require('../utils/jsonfileservice')();
 
-    app.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
-    app.get('/petalscomponents/:wkspce', getPetalsComponents);
-    app.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
+    var router = express.Router();
+    
+    router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
+    router.get('/petalscomponents/:wkspce', getPetalsComponents);
+    router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
 
     function getPetalsComponent(req, res, next) {
         var wkspce = req.params.wkspce;
@@ -56,6 +60,7 @@ module.exports = function (app) {
             res.status(500);
         }
     }
+    
+    return router;
 
 };
-

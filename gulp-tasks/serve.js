@@ -155,7 +155,7 @@ module.exports = function (config) {
     }
 
     function startMongo(dbDir) {
-        var command = 'mongod --fork --dbpath '+dbDir+'/data --logpath '+dbDir+'/mongo.log';
+        var command = 'mongod --dbpath '+dbDir+'/data &';
         mkdirs(dbDir);
         mkdirs(dbDir+'/data');
         config.log('Starting mongodb');

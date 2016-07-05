@@ -12,6 +12,8 @@ var port = process.env.PORT || 7203;
 var environment = process.env.NODE_ENV;
 var passport = require('passport');
 var database = require('./models/database');
+var routes = require('./routes/index');
+var auth = require('./users/auth')
 
 var app = express();
 
@@ -27,13 +29,12 @@ app.use(expressSession({ secret: 'mySecret' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/index')(app);
+require('./users/users-passport');
 
-//// Initialize Passport
-var initPassport = require('./passport-init');
-initPassport.init(passport);
+app.use("/", routes);
+app.use("/auth", auth);
 
-initPassport.addUser(null, 'admin', 'admin', function() {});
+database.addUser(null, 'admin', 'admin', function() {});
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
@@ -42,36 +43,6 @@ console.log('NODE_ENV=' + environment);
 app.get('/ping', function(req, res, next) {
     console.log(req.body);
     res.send('pong');
-});
-
-//log in
-app.post('/login', function(req, res, next) {
-    passport.authenticate('login', function(err, user) {
-        if (err) { return next(err); }
-        if (!user) { return res.sendStatus(401); }
-        req.logIn(user, function(err) {
-            if (err) { return next(err); }
-            return res.sendStatus(200);
-        });
-    })(req, res, next);
-});
-
-app.get('/status', function(req, res) {
-    if (req.user) {
-        res.json({ username: req.user.username});
-    } else {
-        res.sendStatus(401);
-    }
-});
-
-app.get('/logout', function(req, res, next){
-    passport.authenticate('logout', function(err, user) {
-        if (err) { return next(err); }
-        req.logOut(user, function(err) {
-            if (err) { return next(err); }
-            return res.sendStatus(200);
-        });
-    })(req, res, next);
 });
 
 app.listen(port, function() {
