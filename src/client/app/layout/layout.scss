@@ -288,6 +288,9 @@ md-dialog.md-cardCustom-theme-theme {
     }
 }
 
+/* ====================
+    Login Page
+====================*/
 .imgTag {
     background: url("/src/client/images/tagCloud9.png") no-repeat center center;
     width: 100%;
@@ -296,15 +299,11 @@ md-dialog.md-cardCustom-theme-theme {
     margin: 0;
 }
 #backgroundLogin {
-/*    background: url("/src/client/images/tagCloud9.png") no-repeat center center;*/
-    background-color: rgba(100, 150, 235, .5);
+    background-color: rgba(49, 26, 136, .8);
     height: 100%;
     padding: 0;
     margin: 0;
 }
-/*.backgroundColorLogin {
-    background-color: #95999B;
-}*/
 #backgroundEntry {
     background-color: rgba(190, 223, 255, 1);
     width: 100%;
@@ -314,11 +313,10 @@ md-dialog.md-cardCustom-theme-theme {
 }
 #box {
     position: relative;
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .7);
     -moz-border-radius: 4px;
     border-radius: 4px;
-    padding: 3em 2em;
-    color: rgba(0, 0, 0, .8);
+    padding: 2.5em 1.5em;
     margin: auto auto;
 }
 .colorPurple {
@@ -327,7 +325,6 @@ md-dialog.md-cardCustom-theme-theme {
 .colorOrange {
     color: #EF6C00;
 }
-
 .dividerTriangle {
     display:block;
     position:absolute;
@@ -344,7 +341,6 @@ md-dialog.md-cardCustom-theme-theme {
         linear-gradient( 45deg, #8534db 25%, transparent 25%);
     background-position: 50%;
 }
-
 .dividerCube::before {
     display:block;
     position:absolute;
@@ -352,17 +348,16 @@ md-dialog.md-cardCustom-theme-theme {
     top: -25px;
     background: inherit;
 /*    box-shadow: -50px 50px 0 #8534db, 50px -50px 0 #8534db;*/
-    box-shadow: 0px -70px 0 rgba(145, 72, 223, 0.1), -70px 0px 0 rgba(145, 72, 223, 0.1),
-    -70px 0px 0 rgba(145, 72, 223, 0.4), 0px -170px 0 rgba(145, 72, 223, 0.4),
-    -140px 0px 0 rgba(145, 72, 223, 0.6), 0px -140px 0 rgba(145, 72, 223, 0.6),
-    -280px 280px 0 rgba(145, 72, 223, 0.2), -280px -280px 0 rgba(145, 72, 223, 0.2);
+    box-shadow: 0px -70px 0 rgba(39, 40, 44, 0.2), -70px 0px 0 rgba(39, 40, 44, 0.2),
+    -70px 0px 0 rgba(39, 40, 44, 0.6), 0px -170px 0 rgba(39, 40, 44, 0.6),
+    -140px 0px 0 rgba(39, 40, 44, 0.8), 0px -140px 0 rgba(39, 40, 44, 0.8),
+    -280px 280px 0 rgba(39, 40, 44, 0.4), -280px -280px 0 rgba(39, 40, 44, 0.4);
     left: 50%;
     width: 50px;
     height: 50px;
     -webkit-transform: translateX(-50%) rotate(45deg);
     transform: translateX(-50%) rotate(45deg);
 }
-
 .dividerCube::after {
     display:block;
     position:absolute;
@@ -374,14 +369,12 @@ md-dialog.md-cardCustom-theme-theme {
     -140px 140px 0 rgba(239, 108, 0, 0.4), 140px -140px 0 rgba(239, 108, 0, 0.4),
     -280px 280px 0 rgba(239, 108, 0, 0.6), 280px -280px 0 rgba(239, 108, 0, 0.6),
     -560px 560px 0 rgba(239, 108, 0, 0.6), 560px -560px 0 rgba(239, 108, 0, 0.6);
-/*    box-shadow: -50px 50px 0 #8534db, 50px -50px 0 #8534db;*/
     left: 50%;
     width: 50px;
     height: 50px;
     -webkit-transform: translateX(-75%) rotate(75deg);
     transform: translateX(-75%) rotate(75deg);
 }
-
 .cornerPage::before {
     display:block;
     position:absolute;
@@ -404,4 +397,7 @@ md-dialog.md-cardCustom-theme-theme {
     right: 50px;
     background-image: -webkit-linear-gradient(top left, transparent 50%, #6023a1 50%);
     background-image: linear-gradient(315deg, #6023a1 50%, transparent 50%);
+}
+.inputMessageError {
+    max-width: 200px;
 }

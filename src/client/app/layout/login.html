@@ -5,7 +5,7 @@
 
         <form name="loginForm" role="form" ng-submit="vm.login(credentials)">
 
-            <md-card layout="column" layout-align="center center" style="background-color: #27282C; color: white;">
+            <md-card layout="column" class="cornerPage" layout-align="center center" style="background-color: #27282C; color: white;">
 
                 <md-card-title>
                     <md-card-title-text layout-align="center center">
@@ -22,7 +22,7 @@
                     <md-input-container class="md-block md-accent">
                         <label>Username :</label>
                         <input name="credUsername" ng-model="credentials.username" md-maxlength="20" required>
-                        <div ng-messages="loginForm.credUsername.$error">
+                        <div class="inputMessageError" ng-messages="loginForm.credUsername.$error">
                             <div ng-message="required">Username is required.</div>
                             <div ng-message="md-maxlength">The username has to be less than 20 characters long.</div>
                         </div>
@@ -32,7 +32,7 @@
                         <label>Password :</label>
                         <input name="credPassword" ng-model="credentials.password" type="password" md-maxlength="20"
                                required>
-                        <div ng-messages="loginForm.credPassword.$error">
+                        <div class="inputMessageError" ng-messages="loginForm.credPassword.$error">
                             <div ng-message="required">Password is required.</div>
                             <div ng-message="md-maxlength">The password has to be less than 20 characters long.</div>
                         </div>
@@ -58,11 +58,11 @@
                 </md-card-actions>
 
             </md-card>
-            <br><br>
+            <br>
             <md-divider></md-divider>
 
             <div layout="row" layout-align="center center">
-                <h1 class="md-title">WELCOME TO PETALS COCKPIT</h1>
+                <h1 class="md-subhead">WELCOME TO PETALS COCKPIT</h1>
             </div>
 
         </form>
