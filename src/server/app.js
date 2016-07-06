@@ -34,8 +34,6 @@ require('./users/users-passport');
 app.use('/auth', auth);
 app.use('/', routes);
 
-database.addUser(null, 'admin', 'admin', function() {});
-
 console.log('About to crank up node');
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);

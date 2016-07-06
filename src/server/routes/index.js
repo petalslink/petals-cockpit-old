@@ -7,6 +7,26 @@ var jsonfileservice = require('../utils/jsonfileservice')();
 
 var router = express.Router();
 
+router.get('/workspace/:id', function (req, res) {
+    models.Workspace.findOne({'name': req.params.id})
+        .populate({
+            path: 'buses',
+            populate: {
+                path: 'servers',
+                populate: {
+                    path: 'components',
+                    populate: {path: 'sus'}
+                }
+            }
+        }).then(function (ws) {
+        if (ws) {
+            res.json(ws);
+        } else {
+            res.sendStatus(404);
+        }
+    });
+});
+
 router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
 router.get('/petalscomponents/:wkspce', getPetalsComponents);
 router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);

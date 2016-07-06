@@ -1,16 +1,11 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('q').Promise;
+
 var environment = process.env.NODE_ENV;
 var configDB = require('../config/db'); // get db config file
 var dbURI = configDB.database;
 var bCrypt = require('bcrypt-nodejs');
-
-mongoose.connect(environment || dbURI, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Connected to the petals_cockpit_db');
-    }
-});
+var Q = require('q');
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function () {
@@ -23,8 +18,75 @@ mongoose.connection.on('disconnected', function () {
     console.log('Mongoose disconnected');
 });
 
+mongoose.connect(environment || dbURI, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Connected to '+dbURI);
+    }
+});
+
 // BRING IN YOUR SCHEMAS & MODELS
 var models = require('./models');
+
+addUser(null, 'admin', 'admin', function () {
+});
+
+models.Workspace.findOne({name: 'demo'}).then(function(ws) {
+    if (ws === null) {
+        populateDemo();
+    }
+});
+
+function populateDemo() {
+
+    var sp1 = new models.ServiceUnit({
+        name: 'SU-PROVIDE 1',
+        version: '3-2-1',
+        state: 'Undeployed',
+        type: 'PROVIDE'
+    }).save();
+    var sc1 = new models.ServiceUnit({
+        name: 'SU-CONSUME 1',
+        version: '3-2-1',
+        state: 'Undeployed',
+        type: 'CONSUME'
+    }).save();
+
+    Q.all([sp1, sc1]).then(function (sus) {
+        var su1 = sus[0];
+        var su2 = sus[1];
+        return new models.Component({
+            name: 'BC-SOAP 1',
+            version: '3-2',
+            state: 'Uninstalled',
+            type: 'BC-SOAP',
+            sus: [su1._id, su2._id]
+        }).save();
+    }).then(function (c) {
+        return new models.Server({
+            name: 'server 1',
+            version: '5-0-0',
+            ip: '10.10.10.1',
+            port: '4545',
+            state: 'Shutdown',
+            components: [c._id]
+        }).save();
+    }).then(function (s) {
+        return new models.Bus({
+            name: 'bus 1',
+            version: '5-0',
+            servers: [s._id]
+        }).save();
+    }).then(function (b) {
+        return new models.Workspace({
+            name: 'demo',
+            buses: [b._id]
+        }).save();
+    }).then(function (w) {
+        console.log('Saved workspace ' + w.name);
+    });
+}
 
 function addUser(req, username, password, done) {
 
