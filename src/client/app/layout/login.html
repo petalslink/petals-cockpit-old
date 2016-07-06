@@ -50,6 +50,7 @@
                 <md-card-actions layout="column" layout-align="center center" layout-padding style="width: 100%">
                     <div layout="row" layout-fill>
                         <md-button type="submit" class="md-accent md-hue-2" flex
+                                   ng-disabled="!(credentials.username && credentials.password)"
                                    ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }">Sign In
                         </md-button>
                     </div>
