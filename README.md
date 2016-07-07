@@ -26,6 +26,8 @@ WebStorm was used to develop it, but any IDE should work. Everything you need is
    
 2. Install [Git](https://git-scm.com/)
 
+3. Install [MongoDB](https://docs.mongodb.com/manual/installation/)
+
 ### Quick Start
 
 Clone this repo
@@ -50,3 +52,8 @@ Run Gulp's default task.
 ```
 $ gulp serve-dev
 ```
+Petals cockpit starts and displays an authentication page in your browser :
+
+![Authentication Popup](doc/authentication.png?raw=true)
+
+By default , we use 'admin', 'admin' to authenticate.
