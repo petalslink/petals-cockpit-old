@@ -31,16 +31,19 @@ WebStorm was used to develop it, but any IDE should work. Everything you need is
 ### Quick Start
 
 Clone this repo
-```bash
+```
+$ git clone https://github.com/petalslink/petals-cockpit.git
+```
 
 Open a terminal in your project's directory.
+```
+$ cd petals-cockpit
+```
+
 
 ```
-cd /wherever/you/want/petals-cockpit
-```
-
 $ npm install
-$ bower install
+```
 
 - `npm install` will install the required node libraries under `node_modules` and then call `bower install` which will install the required client-side libraries under `bower_components`.
 
@@ -52,6 +55,7 @@ Run Gulp's default task.
 ```
 $ gulp serve-dev
 ```
+
 Petals cockpit starts and displays an authentication page in your browser :
 
 ![Authentication Popup](doc/authentication.png?raw=true)
