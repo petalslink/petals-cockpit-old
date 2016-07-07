@@ -1,40 +1,39 @@
 var mongoose = require('mongoose');
 mongoose.Promise = require('q').Promise;
-
-var environment = process.env.NODE_ENV;
-var configDB = require('../config/db'); // get db config file
-var dbURI = configDB.database;
+var dbURI = 'mongodb://localhost/petals_cockpit_db';
 var bCrypt = require('bcrypt-nodejs');
 var Q = require('q');
 
-// CONNECTION EVENTS
-mongoose.connection.on('connected', function () {
+mongoose.connect(dbURI);
+
+// To start manually mongo use this line cmd on node : mongod --dbpath ./db/data
+var db = mongoose.connection;
+
+// Connection events
+db.on('connected', function () {
     console.log('Mongoose connected to ' + dbURI);
 });
-mongoose.connection.on('error', function (err) {
+db.on('error', function (err) {
     console.log('Mongoose connection error: ' + err);
 });
-mongoose.connection.on('disconnected', function () {
+db.on('disconnected', function () {
     console.log('Mongoose disconnected');
 });
-
-mongoose.connect(environment || dbURI, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Connected to '+dbURI);
-    }
+db.once('open', function () {
+    // we're connected!
 });
 
-// BRING IN YOUR SCHEMAS & MODELS
+// Bring in your schemas & models
 var models = require('./models');
 
 addUser(null, 'admin', 'admin', function () {
 });
 
-models.Workspace.findOne({name: 'demo'}).then(function(ws) {
+models.Workspace.findOne({name: 'demo'}).then(function (ws) {
     if (ws === null) {
         populateDemo();
+    } else {
+        console.log('Collections already exists !!')
     }
 });
 
