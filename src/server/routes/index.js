@@ -7,7 +7,7 @@ var jsonfileservice = require('../utils/jsonfileservice')();
 
 var router = express.Router();
 
-router.get('/workspace/:id', function (req, res) {
+function getWorkspacePetals(req, res) {
     models.Workspace.findOne({'name': req.params.id})
         .populate({
             path: 'buses',
@@ -25,13 +25,7 @@ router.get('/workspace/:id', function (req, res) {
             res.sendStatus(404);
         }
     });
-});
-
-router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
-router.get('/petalscomponents/:wkspce', getPetalsComponents);
-router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
-
-module.exports = router;
+}
 
 function getPetalsComponent(req, res, next) {
     var wkspce = req.params.wkspce;
@@ -81,3 +75,10 @@ function getPetalsComponentConfig(req, res, next) {
         res.status(500);
     }
 }
+
+router.get('/workspace/:id', getWorkspacePetals);
+router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
+router.get('/petalscomponents/:wkspce', getPetalsComponents);
+router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
+
+module.exports = router;
