@@ -11,25 +11,18 @@ var userSchema = new Schema({
 
 var wsSchema = new Schema({
     name: String,
-    version: String,
-    cat: String,
-    icon: String,
     buses: [{ type: Schema.Types.ObjectId, ref: 'Bus' }]
 });
 
 var busSchema = new Schema({
     name: String,
     version: String,
-    cat: String,
-    icon: String,
     servers: [{ type: Schema.Types.ObjectId, ref: 'Server' }]
 });
 
 var serverSchema = new Schema({
     name: String,
     version: String,
-    cat: String,
-    icon: String,
     ip: String,
     port: Number,
     state: {
@@ -46,9 +39,6 @@ var serverSchema = new Schema({
 var componentSchema = new Schema({
     name: String,
     version: String,
-    cat: String,
-    subcat: String,
-    icon: String,
     state: {
         type: String,
         enum: [
@@ -66,9 +56,6 @@ var componentSchema = new Schema({
 var suSchema = new Schema({
     name: String,
     version: String,
-    cat: String,
-    subcat: String,
-    icon: String,
     state: {
         type: String,
         enum: [
