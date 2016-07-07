@@ -42,14 +42,18 @@ function populateDemo() {
     var sp1 = new models.ServiceUnit({
         name: 'SU-PROVIDE 1',
         version: '3-2-1',
-        state: 'Undeployed',
-        type: 'PROVIDE'
+        cat: 'SU',
+        subcat: 'PROVIDE',
+        icon: 'star',
+        state: 'Undeployed'
     }).save();
     var sc1 = new models.ServiceUnit({
         name: 'SU-CONSUME 1',
         version: '3-2-1',
-        state: 'Undeployed',
-        type: 'CONSUME'
+        cat: 'SU',
+        subcat: 'CONSUME',
+        icon: 'star',
+        state: 'Undeployed'
     }).save();
 
     Q.all([sp1, sc1]).then(function (sus) {
@@ -58,6 +62,9 @@ function populateDemo() {
         return new models.Component({
             name: 'BC-SOAP 1',
             version: '3-2',
+            cat: 'COMPONENT',
+            subCat: 'BC',
+            icon: 'puzzle',
             state: 'Uninstalled',
             type: 'BC-SOAP',
             sus: [su1._id, su2._id]
@@ -66,6 +73,8 @@ function populateDemo() {
         return new models.Server({
             name: 'server 1',
             version: '5-0-0',
+            cat: 'SERVER',
+            icon: 'server-network',
             ip: '10.10.10.1',
             port: '4545',
             state: 'Shutdown',
@@ -75,11 +84,16 @@ function populateDemo() {
         return new models.Bus({
             name: 'bus 1',
             version: '5-0',
+            cat: 'BUS',
+            icon: 'bus',
             servers: [s._id]
         }).save();
     }).then(function (b) {
         return new models.Workspace({
             name: 'demo',
+            version: '1-0',
+            cat: 'WKSPCE',
+            icon: 'folder-multiple',
             buses: [b._id]
         }).save();
     }).then(function (w) {
