@@ -43,14 +43,40 @@
 
         function activate() {
             // init data with resolve from router
-            vmPetals.data = promiseData;
+            vmPetals.dbData = promiseData;
             vmPetals.configData = promiseConfig;
 
+/*            vmPetals.data = buildData(dbData,configData);*/
             // select component depending on url
             var id = petalsService.getSelectedComponentId();
             selectComponentById(id);
         }
 
+/*
+        function buildData(dbData,configData) {
+            var data = {};
+
+            walk(dbData);
+
+            function walk(branch) {
+                if (branch) {
+                        return componentData;
+                    } else {
+                        if (componentData.children) {
+                            for (var i = 0; i < componentData.children.length; i++) {
+                                var searchInChild = walk(componentData.children[i]);
+                                if (searchInChild) {
+                                    return searchInChild;
+                                }
+                            }
+                        }
+                }
+                return null;
+            }
+
+            return data
+        }
+*/
 
         function selectComponentById(id) {
             if (id > -1) {

@@ -9,77 +9,43 @@ var userSchema = new Schema({
     created_at: {type: Date, default: Date.now}
 });
 
-var wsSchema = new Schema({
+var petalsComponentSchema = new Schema({
     name: String,
-    buses: [{ type: Schema.Types.ObjectId, ref: 'Bus' }]
-});
-
-var busSchema = new Schema({
-    name: String,
-    version: String,
-    servers: [{ type: Schema.Types.ObjectId, ref: 'Server' }]
-});
-
-var serverSchema = new Schema({
-    name: String,
-    version: String,
-    ip: String,
-    port: Number,
-    state: {
-        type: String,
-        enum: [
-            'Shutdown',
-            'Started'
-        ],
-        default: 'Shutdown'
-    },
-    components: [{ type: Schema.Types.ObjectId, ref: 'Component' }]
-});
-
-var componentSchema = new Schema({
-    name: String,
-    version: String,
+    type: { type: Schema.Types.ObjectId, ref: 'PetalsComponentType' },
+    //config: { type: Schema.Types.ObjectId, ref: 'PetalsComponentConfig' },
     state: {
         type: String,
         enum: [
             'Uninstalled',
-            'Deployed',
-            'Stopped',
-            'Started'
-        ],
-        default: 'Uninstalled'
-    },
-    type: String,
-    sus: [{ type: Schema.Types.ObjectId, ref: 'ServiceUnit' }]
-});
-
-var suSchema = new Schema({
-    name: String,
-    version: String,
-    state: {
-        type: String,
-        enum: [
             'Undeployed',
             'Deployed',
+            'Shutdown',
             'Stopped',
             'Started'
         ],
         default: 'Undeployed'
     },
-    type: {
-        type: String,
-        enum: [
-            'CONSUME',
-            'PROVIDE'
-        ]
-    }
+    ip: String,
+    port: Number,
+    children: [{ type: Schema.Types.ObjectId, ref: 'PetalsComponent' }]
+});
+
+var petalsComponentTypeSchema = new Schema({
+    name: String,
+    version: String,
+    cat: String,
+    subCat: String,
+    //acceptedContent: Array,
+    contains: [{ type: Schema.Types.ObjectId, ref: 'petalsComponentTypeSchema' }]
+});
+
+var petalsComponentConfigSchema = new Schema({
+    content: Schema.Types.Mixed
 });
 
 module.exports = {
     User: mongoose.model('User', userSchema),
-    Workspace: mongoose.model('Workspace', wsSchema),
-    Bus: mongoose.model('Bus', busSchema),
-    Server: mongoose.model('Server', serverSchema),
-    Component: mongoose.model('Component', componentSchema),
-    ServiceUnit: mongoose.model('ServiceUnit', suSchema)
+    PetalsComponent: mongoose.model('PetalsComponent', petalsComponentSchema),
+    PetalsComponentType: mongoose.model('PetalsComponentType', petalsComponentTypeSchema),
+    PetalsComponentConfig: mongoose.model('PetalsComponentConfig', petalsComponentConfigSchema)
 };

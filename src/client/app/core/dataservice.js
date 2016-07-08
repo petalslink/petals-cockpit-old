@@ -40,7 +40,7 @@
         }
 
         function getPetalsComponents() {
-            return $http.get('/api/petalscomponents/demo')
+            return $http.get('/api/workspace/demo')
                 .then(getPetalsComponentsComplete,
                       getPetalsComponentsFailed);
 

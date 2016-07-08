@@ -7,18 +7,35 @@ var jsonfileservice = require('../utils/jsonfileservice')();
 
 var router = express.Router();
 
+//router.get('/workspace/:id', getWorkspacePetals);
+router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
+router.get('/petalscomponents/:wkspce', getWorkspacePetals);
+router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
+
+module.exports = router;
+
 function getWorkspacePetals(req, res) {
-    models.Workspace.findOne({'name': req.params.id})
-        .populate({
-            path: 'buses',
-            populate: {
-                path: 'servers',
-                populate: {
-                    path: 'components',
-                    populate: {path: 'sus'}
-                }
-            }
-        }).then(function (ws) {
+    function populate(e) {
+        // first populate the element itself (its type and its children)
+        return models.PetalsComponent.populate(e, {path: 'children type'})
+            // then populate his children (their type and children) by calling populate recursively
+            .then(function (e) {
+                var chain = Q.when();
+                e.children.forEach(function(c) {
+                    chain = chain.then(function() {
+                        return populate(c);
+                    })
+                });
+                return chain.then(function() {
+                    // in the end we don't care about the results for the children
+                    return Q.resolve(e);
+                });
+            });
+    }
+
+    models.PetalsComponentType.findOne({'name': 'WKSPCE'}).then(function (typeWs) {
+        models.PetalsComponent.findOne({'name': req.params.id, 'type': typeWs._id})
+    }).then(populate).then(function (ws) {
         if (ws) {
             res.json(ws);
         } else {
@@ -75,10 +92,3 @@ function getPetalsComponentConfig(req, res, next) {
         res.status(500);
     }
 }
-
-router.get('/workspace/:id', getWorkspacePetals);
-router.get('/petalscomponent/:wkspce/:id', getPetalsComponent);
-router.get('/petalscomponents/:wkspce', getPetalsComponents);
-router.get('/petalscomponentsconfig/:wkspce', getPetalsComponentConfig);
-
-module.exports = router;

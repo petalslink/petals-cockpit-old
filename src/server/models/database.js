@@ -29,61 +29,114 @@ var models = require('./models');
 addUser(null, 'admin', 'admin', function () {
 });
 
-models.Workspace.findOne({name: 'demo'}).then(function (ws) {
-    if (ws === null) {
+models.PetalsComponent.findOne({name: 'demo', cat: 'WKSPCE'}).then(function (wkpce, w) {
+    if (wkpce === null) {
+        populateType();
+    }
+    if (w === null) {
         populateDemo();
-    } else {
+    }
+    else {
         console.log('Collections already exists !!')
     }
 });
 
+function populateType() {
+    var cptSP = new models.PetalsComponentType({
+        name: 'SU-PROVIDE',
+        version: '2-5-6',
+        cat: 'SU',
+        subCat: 'PROVIDE'
+    }).save();
+    var cptSC = new models.PetalsComponentType({
+        name: 'SU-CONSUME',
+        version: '3-2-1',
+        cat: 'SU',
+        subCat: 'CONSUME'
+    }).save();
+
+    Q.all([cptSP, cptSC]).then(function (sus) {
+        var cptSP = sus[0];
+        var cptSC = sus[1];
+        return new models.PetalsComponentType({
+            name: 'BC-SOAP',
+            version: '3-2',
+            cat: 'COMPONENT',
+            subCat: 'BC',
+            contains: [cptSP._id, cptSC._id]
+        }).save();
+    }).then(function (compo) {
+        return new models.PetalsComponentType({
+            name: 'SERVER',
+            version: '5-0-0',
+            cat: 'SERVER',
+            contains: [compo._id]
+        }).save();
+    }).then(function (serv) {
+        return new models.PetalsComponentType({
+            name: 'PETALS ESB',
+            version: '5-0',
+            cat: 'BUS',
+            children: [serv._id]
+        }).save();
+    }).then(function (bus) {
+        return new models.PetalsComponentType({
+            name: 'WKSPCE',
+            version: '1-0',
+            cat: 'WKSPCE',
+            children: [bus._id]
+        }).save();
+    }).then(function (wkpce) {
+        console.log('Saved workspace type ' + wkpce.name);
+    });
+}
+
 function populateDemo() {
 
-    var sp1 = new models.ServiceUnit({
+    var sp1 = new models.PetalsComponent({
         name: 'SU-PROVIDE 1',
-        version: '3-2-1',
-        state: 'Undeployed',
-        type: 'PROVIDE'
+        type: '',
+        state: 'Undeployed'
     }).save();
-    var sc1 = new models.ServiceUnit({
+    var sc1 = new models.PetalsComponent({
         name: 'SU-CONSUME 1',
-        version: '3-2-1',
-        state: 'Undeployed',
-        type: 'CONSUME'
+        type: '',
+        state: 'Undeployed'
     }).save();
-
     Q.all([sp1, sc1]).then(function (sus) {
         var su1 = sus[0];
         var su2 = sus[1];
-        return new models.Component({
+        return new models.PetalsComponent({
             name: 'BC-SOAP 1',
-            version: '3-2',
+            type: '',
             state: 'Uninstalled',
-            type: 'BC-SOAP',
-            sus: [su1._id, su2._id]
+            children: [su1._id, su2._id]
         }).save();
     }).then(function (c) {
-        return new models.Server({
+        return new models.PetalsComponent({
             name: 'server 1',
-            version: '5-0-0',
             ip: '10.10.10.1',
             port: '4545',
+            type: '',
             state: 'Shutdown',
-            components: [c._id]
+            children: [c._id]
         }).save();
     }).then(function (s) {
-        return new models.Bus({
+        return new models.PetalsComponent({
             name: 'bus 1',
-            version: '5-0',
-            servers: [s._id]
+            type: '',
+            state: 'Undeployed',
+            children: [s._id]
         }).save();
     }).then(function (b) {
-        return new models.Workspace({
+        return new models.PetalsComponent({
             name: 'demo',
-            buses: [b._id]
+            type: '',
+            state: 'Undeployed',
+            children: [b._id]
         }).save();
     }).then(function (w) {
-        console.log('Saved workspace ' + w.name);
+        console.log('Saved workspace Demo ' + w.name);
     });
 }
 
