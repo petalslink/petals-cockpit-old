@@ -170,7 +170,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <configuration>
-                    <executable>java</executable>
+                    <executable>${java.home}/bin/java</executable>
                     <arguments>
                         <!-- Debug -->
                         <!-- argument>-Xdebug<argument -->
