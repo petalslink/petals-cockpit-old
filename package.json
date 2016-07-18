@@ -1,12 +1,13 @@
 {
-  "name": "Petals-Cockpit",
+  "name": "petals-cockpit",
   "version": "0.4.0",
   "description": "Web Application for Petals Cockpit",
-  "main": "app.js",
   "authors": "Linagora",
+  "license": "AGPL-3.0",
   "contributors": [
     "CHEVALIER Christophe",
-    "ESCUDIE Bertrand"
+    "ESCUDIE Bertrand",
+    "NOEL Victor"
   ],
   "repository": {
     "type": "git",
@@ -14,9 +15,7 @@
   },
   "scripts": {
     "init": "npm install",
-    "install": "bower install",
-    "start": "node mock-server/app.js",
-    "test": "gulp test"
+    "install": "bower install"
   },
   "dependencies": {
     "angular": "^1.5.6",

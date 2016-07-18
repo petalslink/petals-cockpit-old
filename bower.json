@@ -1,17 +1,17 @@
 {
-  "name": "Petals-Cockpit",
-  "version": "0.4.0",
+  "name": "petals-cockpit",
   "description": "Web Application for Petals Cockpit",
   "authors": "Linagora",
   "contributors": [
     "CHEVALIER Christophe",
-    "ESCUDIE Bertrand"
+    "ESCUDIE Bertrand",
+    "NOEL Victor"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/petalslink/petals-cockpit"
   },
-  "license": "GNU",
+  "license": "AGPL-3.0",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -21,8 +21,7 @@
   ],
   "devDependencies": {
     "angular-mocks": "~1.4.8",
-    "bardjs": "~0.1.8",
-    "ui-router-extras": "^0.1.2"
+    "bardjs": "~0.1.8"
   },
   "dependencies": {
     "angular": "~1.5.6",
