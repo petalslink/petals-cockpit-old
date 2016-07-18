@@ -20,6 +20,7 @@ package org.ow2.petals.cockpit.server.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -54,7 +55,7 @@ import co.paralleluniverse.fibers.Suspendable;
  */
 @Path("/workspace/{id}")
 @Produces(MediaType.APPLICATION_JSON)
-// @PermitAll
+@PermitAll
 public class Workspace {
 
     private static final Logger LOG = LoggerFactory.getLogger(Workspace.class);
