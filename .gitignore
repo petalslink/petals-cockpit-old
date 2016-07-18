@@ -37,6 +37,8 @@ db/
 # Ignore Eclipse #
 .project
 .settings/
+.classpath
+target/
 
 # Compiled source #
 ###################

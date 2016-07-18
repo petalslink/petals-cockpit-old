@@ -1,0 +1,45 @@
+#
+# Copyright (c) 2016 Linagora
+# 
+# This program/library is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or (at your
+# option) any later version.
+# 
+# This program/library is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+# for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program/library; If not, see http://www.gnu.org/licenses/
+# for the GNU Lesser General Public License version 2.1.
+#
+# TODO add compatibilities (for add in UI)
+# TODO extract the SUs and put them inside the configuration for a component stored elsewhere
+types:
+  workspace:
+    icon: folder-multiple
+  petals-bus-5.0:
+    icon: bus
+  petals-container-5.0:
+    icon: server-network
+  bc-soap-4.4.0:
+    icon: puzzle
+  su-provides-soap-4.4.0:
+    icon: star
+  su-consumes-soap-4.4.0:
+    icon: star
+
+configurations:
+  default:
+    - name: workspace
+      contains:
+        - name: petals-bus-5.0
+          contains:
+            - name: petals-container-5.0
+              contains:
+                - name: bc-soap-4.4.0
+                  contains:
+                    - name: su-provides-soap-4.4.0
+                    - name: su-consumes-soap-4.4.0

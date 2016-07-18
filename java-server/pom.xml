@@ -1,0 +1,376 @@
+<!--
+ Copyright (c) 2016 Linagora
+ 
+ This program/library is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation, either version 2.1 of the License, or (at your
+ option) any later version.
+
+ This program/library is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program/library; If not, see http://www.gnu.org/licenses/
+ for the GNU Lesser General Public License version 2.1.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.ow2.petals</groupId>
+    <artifactId>petals-cockpit-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <maven.compiler.source>${java-version}</maven.compiler.source>
+        <maven.compiler.target>${java-version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Provided by dependency:properties -->
+        <quasar.path>${co.paralleluniverse:quasar-core:jar:jdk8}</quasar.path>
+
+        <dropwizard.version>1.0.0-rc4</dropwizard.version>
+        <comsat.version>0.7.0</comsat.version>
+        <quasar.version>0.7.5</quasar.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-bom</artifactId>
+                <version>${dropwizard.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-auth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.paralleluniverse</groupId>
+            <artifactId>comsat-dropwizard</artifactId>
+            <version>${comsat.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.dropwizard</groupId>
+                    <artifactId>dropwizard-jdbi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>co.paralleluniverse</groupId>
+                    <artifactId>comsat-jdbi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.dropwizard</groupId>
+                    <artifactId>dropwizard-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>co.paralleluniverse</groupId>
+                    <artifactId>comsat-httpclient</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Note: some of its dependencies are in the repository declared below -->
+            <groupId>co.paralleluniverse</groupId>
+            <artifactId>comsat-mongodb-allanbank</artifactId>
+            <version>${comsat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>co.paralleluniverse</groupId>
+            <artifactId>quasar-core</artifactId>
+            <version>${quasar.version}</version>
+            <classifier>jdk8</classifier>
+        </dependency>
+        <dependency>
+            <groupId>de.svenkubiak</groupId>
+            <artifactId>jBCrypt</artifactId>
+            <version>0.4.1</version>
+        </dependency>
+        <!-- Code quality dependencies -->
+        <dependency>
+            <groupId>org.eclipse.jdt</groupId>
+            <artifactId>org.eclipse.jdt.annotation</artifactId>
+            <version>2.0.0</version>
+            <!-- Prevent the dependency from being included in distributions -->
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence />
+                                <banCircularDependencies />
+                                <requireUpperBoundDeps />
+                                <requireJavaVersion>
+                                    <version>[${java-version},)</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.basepom.maven</groupId>
+                <artifactId>duplicate-finder-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-no-duplicate-classes</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+                            <printEqualFiles>true</printEqualFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Needed for exec and surefire -->
+                            <goal>properties</goal>
+                            <!-- Only for information -->
+                            <goal>analyze-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <!-- Run with "mvn compile dependency:properties exec:exec" -->
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <executable>/usr/lib/jvm/java-8-openjdk/jre/bin/java</executable>
+                    <arguments>
+                        <!-- Debug -->
+                        <!-- argument>-Xdebug<argument -->
+                        <!-- argument>-agentlib:jdwp=transport=dt_socket,server=y,address=8000<argument -->
+
+                        <!-- Configure memory settings as needed -->
+                        <!-- argument>-Xmx1000m</argument -->
+
+                        <argument>-Dco.paralleluniverse.fibers.verifyInstrumentation=true</argument>
+
+                        <!-- Quasar Agent for JDK 8 -->
+                        <argument>-javaagent:${quasar.path}</argument> <!-- Add "=b" to force instrumenting blocking calls like Thread.sleep() -->
+
+                        <argument>-ea</argument>
+
+                        <!-- Classpath -->
+                        <argument>-classpath</argument>
+                        <classpath />
+
+                        <!-- Main class -->
+                        <argument>org.ow2.petals.cockpit.server.CockpitApplication</argument>
+                        <argument>server</argument>
+                        <argument>default.yml</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <argLine>-Dco.paralleluniverse.fibers.verifyInstrumentation=true</argLine>
+                    <argLine>-javaagent:${quasar.path}</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>sg.enixsoft</groupId>
+                <artifactId>capsule-maven-plugin</artifactId>
+                <version>1.3.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <appClass>org.ow2.petals.cockpit.server.CockpitApplication</appClass>
+                            <type>fat</type>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <manifest>
+                        <entry>
+                            <key>Min-Java-Version</key>
+                            <value>${java-version}</value>
+                        </entry>
+                        <entry>
+                            <key>Java-Agents</key>
+                            <value>co.paralleluniverse:quasar-core:${quasar.version}:jdk8</value>
+                        </entry>
+                    </manifest>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <executions>
+                    <execution>
+                        <id>check-header</id>
+                        <!-- let's do it at validate to prevent generated sources to be covered -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <configLocation>petals-checkstyle-rules.xml</configLocation>
+                            <headerLocation>petals-copyright-lgplv21-regexp-file.txt</headerLocation>
+
+                            <consoleOutput>true</consoleOutput>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+
+                            <includeResources>true</includeResources>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <includeTestResources>true</includeTestResources>
+                            <includes>**/*</includes>
+                            <resourceIncludes>**/*</resourceIncludes>
+                            <!--
+                                We exclude following resources:
+                                 - JAR, class, ZIP, other binary files and log files used for unit tests
+                                 - Licence and note files
+                                 - Man pages sources
+                                 - Keystores, certificate, keys
+                                 - Images
+                             -->
+                            <resourceExcludes>**/*.jar,**/*.class,**/*.zip,**/*.bin,**/LICENSE.txt,**/NOTE,**/*.log,**/*_provideFlowStepBegin.xml,**/*_provideFlowStepEnd.xml,**/*_provideFlowStepFailure.xml,**/man1/*.1,**/man5/*.5,**/man7/*.7,**/*.jks,**/id_rsa*,**/known_hosts,**/*.jpg,**/*.png,**/*.crt,**/*.pem,META-INF/**</resourceExcludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>check-other-source-files</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <configLocation>petals-checkstyle-rules.xml</configLocation>
+                            <headerLocation>petals-copyright-lgplv21-regexp-file.txt</headerLocation>
+
+                            <consoleOutput>true</consoleOutput>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+
+                            <sourceDirectory>${basedir}</sourceDirectory>
+                            <includes>/pom.xml</includes>
+                            <includeResources>false</includeResources>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                            <includeTestResources>false</includeTestResources>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.petals</groupId>
+                        <artifactId>petals-checkstyle-rules</artifactId>
+                        <version>1.0.3</version>
+                    </dependency>
+                    <dependency>
+                        <!-- Latest version -->
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>6.17</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[2.10,)</versionRange>
+                                        <goals>
+                                            <goal>properties</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-toolchains-plugin</artifactId>
+                                        <versionRange>[1.1,)</versionRange>
+                                        <goals>
+                                            <goal>toolchain</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-checkstyle-plugin</artifactId>
+                                        <versionRange>[2.17,)</versionRange>
+                                        <goals>
+                                            <goal>check</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <id>allanbank</id>
+            <name>Allanbank Releases</name>
+            <url>http://www.allanbank.com/repo/</url>
+        </repository>
+    </repositories>
+</project>

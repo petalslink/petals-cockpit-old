@@ -1,0 +1,16 @@
+# configuration for dropwizard
+---
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 7203
+
+# configuration to connect to mongo
+mongo:
+  database: petals_cockpit_db
+  servers:
+    - host: localhost
+      port: 27017

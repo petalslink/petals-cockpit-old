@@ -1,0 +1,2 @@
+org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch
+co.paralleluniverse.fibers.servlet.FiberHttpServlet.exec0
