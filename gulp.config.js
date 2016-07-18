@@ -4,18 +4,12 @@
 
 var $ = require('gulp-load-plugins')({lazy: true});
 var src = './src/client/';
-var server = './src/server/';
 
 module.exports = {
 
     // --- Configurables ---
-    nodeServer: server + 'app.js',
     defaultPort: '7203',
     sourceDir: src,
-    serverDir: server,
-    serverJs: [
-        server + '**/*.js'
-    ],
     testDir: './test/',
     buildDir: './build/',
     tempDir: './.tmp/',
@@ -114,10 +108,6 @@ module.exports = {
         } else {
             $.util.log($.util.colors.blue(msg));
         }
-    },
-    notify: function notify(options) {
-        var notifier = require('node-notifier');
-        notifier.notify(options);
     }
 
 };

@@ -6,13 +6,8 @@ var proxy = require('proxy-middleware');
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 var modRewrite = require('connect-modrewrite');
-var args = require('yargs').argv;
-var $ = require('gulp-load-plugins')({lazy: true});
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 var mkdirs = require('mkdirs');
-
-//var config = require('./gulp.config')();
-//var port = process.env.PORT || config.defaultPort;
 
 module.exports = function (config) {
 
@@ -24,14 +19,19 @@ module.exports = function (config) {
         serve(false /*isDev*/);
     });
 
-    var runCommand = function(command) {
-        exec(command, function (err, stdout, stderr) {
-            config.log(stdout);
-            config.log(stderr);
-            if (err !== null) {
-                config.log('exec error: ' + err);
-            }
+    var runCommand = function(command, args, name) {
+        config.log('Starting '+name+': '+command+' '+args);
+        var p = spawn(command, args);
+        p.stdout.on('data', function(data) {
+            config.log(name+': '+data);
         });
+        p.stderr.on('data', function(data) {
+            config.log(name+' (err): '+data);
+        });
+        p.on('close', function(code) {
+            config.log('child process exited with code '+code);
+        });
+        return p;
     };
 
     /**
@@ -41,62 +41,23 @@ module.exports = function (config) {
 
         var port = process.env.PORT || config.defaultPort;
 
-        var debug = args.debug || args.debugBrk;
-        var debugMode = args.debug ? '--debug' : args.debugBrk ? '--debug-brk' : '';
-        var nodeOptions = getNodeOptions(isDev);
-
-        if (debug) {
-            runNodeInspector();
-            nodeOptions.nodeArgs = [debugMode + '=5858'];
-        }
-
-        if (args.verbose) {
-            config.log(nodeOptions);
-        }
-
         if (isDev) {
-            startMongo(config.dbDir);
+            var dbDir = config.dbDir;
+            mkdirs(dbDir);
+            mkdirs(dbDir+'/data');
+            runCommand('mongod', ['--dbpath', dbDir+'/data'], 'mongo');
         }
+        
+        var p = runCommand('mvn', [ '-f', 'java-server', 'dependency:properties', 'exec:exec'], 'server');
 
-        return $.nodemon(nodeOptions)
-            .on('restart', ['vet'], function(ev) {
-                config.log('*** nodemon restarted');
-                config.log('files changed:\n' + ev);
-                setTimeout(function() {
-                    browserSync.notify('reloading now ...');
-                    browserSync.reload({stream: false});
-                }, config.browserReloadDelay);
-            })
-            .on('start', function () {
-                config.log('*** nodemon started');
+        // TODO remove listener once BS is started
+        p.stdout.on('data', function(data) {
+            if (data.indexOf('Started Petals Cockpit') > -1) {
                 startBrowserSync(isDev);
-            })
-            .on('crash', function () {
-                config.log('*** nodemon crashed: script crashed for some reason');
-            })
-            .on('exit', function () {
-                config.log('*** nodemon exited cleanly');
-                stopMongo();
-            });
-
-        function getNodeOptions(isDev) {
-            return {
-                script: config.nodeServer,
-                delayTime: 1,
-                env: {
-                    'PORT': port,
-                    'NODE_ENV': isDev ? 'dev' : 'build'
-                },
-                watch: [config.serverJs]
-            };
-        }
+            }
+        });
 
         function startBrowserSync(isDev) {
-/*
-            if (args.nosync || browserSync.active) {
-                return;
-            }
-*/
 
             config.log('Starting BrowserSync on port ' + port);
 
@@ -108,15 +69,7 @@ module.exports = function (config) {
             } else {
                 watch(files, function() { gulp.start('optimize', browserSync.reload); });
             }
-/*
-            if (isDev) {
-                gulp.watch([config.less], ['styles'])
-                    .on('change', changeEvent);
-            } else {
-                gulp.watch([config.less, config.js, config.html], ['browserSyncReload'])
-                    .on('change', changeEvent);
-            }
-*/
+
             var proxyOpts = url.parse('http://localhost:' + port);
             proxyOpts.route = '/api';
 
@@ -127,7 +80,6 @@ module.exports = function (config) {
                         '/bower_components': './bower_components',
                         '/fonts': './bower_components/bootstrap-sass/assets/fonts',
                         '/src/client': config.sourceDir,
-                        '/src/server': config.serverDir,
                         '/images': config.sourceDir + 'images',
                         '/.tmp': config.tempDir
                     } : {},
@@ -152,26 +104,5 @@ module.exports = function (config) {
 
             browserSync(options);
         }
-
-    }
-
-    function startMongo(dbDir) {
-        var command = 'mongod --dbpath '+dbDir+'/data &';
-        mkdirs(dbDir);
-        mkdirs(dbDir+'/data');
-        config.log('Starting mongodb');
-        runCommand(command);
-    }
-
-    function stopMongo() {
-        var command = 'mongo admin --eval "db.shutdownServer();"';
-        config.log('Stopping mongodb');
-        runCommand(command);
-    }
-
-    function runNodeInspector() {
-        config.log('Running node-inspector.');
-        config.log('Browse to http://localhost:8080/debug?port=5858');
-        exec('node-inspector');
     }
 };
