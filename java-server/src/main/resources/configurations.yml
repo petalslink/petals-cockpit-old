@@ -20,16 +20,22 @@
 types:
   workspace:
     icon: folder-multiple
+    state: home.workspace.petals.wkpsce
   petals-bus-5.0:
     icon: bus
+    state: home.workspace.petals.bus.config
   petals-container-5.0:
     icon: server-network
+    state: home.workspace.petals.server.config
   bc-soap-4.4.0:
     icon: puzzle
+    state: home.workspace.petals.bc-soap.config
   su-provides-soap-4.4.0:
     icon: star
+    state: home.workspace.petals.bc-soap-su-provide.su-config
   su-consumes-soap-4.4.0:
     icon: star
+    state: home.workspace.petals.bc-soap-su-consume.su-config
 
 configurations:
   default:

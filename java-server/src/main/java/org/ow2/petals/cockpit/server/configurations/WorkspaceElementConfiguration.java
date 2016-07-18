@@ -49,7 +49,16 @@ public class WorkspaceElementConfiguration {
             e.getValue().setName(e.getKey());
         }
         for (final Entry<String, List<Conf>> e : configurations.entrySet()) {
-            this.configurations.put(e.getKey(), new Conf(e.getKey(), e.getValue()));
+            final List<Conf> confs = e.getValue();
+            this.configurations.put(e.getKey(), new Conf(e.getKey(), confs));
+            populateType(confs);
+        }
+    }
+
+    private void populateType(List<Conf> confs) {
+        for (final Conf conf : confs) {
+            conf.setType(types.get(conf.getName()));
+            populateType(conf.getContains());
         }
     }
 
@@ -74,9 +83,13 @@ public class WorkspaceElementConfiguration {
         @NotEmpty
         private final String icon;
 
+        @NotEmpty
+        private final String state;
+
         @JsonCreator
-        public Type(@JsonProperty("icon") String icon) {
+        public Type(@JsonProperty("icon") String icon, @JsonProperty("state") String state) {
             this.icon = icon;
+            this.state = state;
         }
 
         void setName(String name) {
@@ -90,6 +103,10 @@ public class WorkspaceElementConfiguration {
         public String getIcon() {
             return icon;
         }
+
+        public String getState() {
+            return state;
+        }
     }
 
     public static class Conf {
@@ -98,6 +115,9 @@ public class WorkspaceElementConfiguration {
         private final String name;
 
         private final List<Conf> contains;
+
+        @Nullable
+        private Type type;
 
         @JsonCreator
         public Conf(@JsonProperty("name") String name, @JsonProperty("contains") List<Conf> contains) {
@@ -113,5 +133,13 @@ public class WorkspaceElementConfiguration {
             return contains;
         }
 
+        public void setType(Type type) {
+            this.type = type;
+        }
+
+        @Nullable
+        public Type getType() {
+            return type;
+        }
     }
 }
