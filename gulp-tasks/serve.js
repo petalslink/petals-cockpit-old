@@ -47,8 +47,8 @@ module.exports = function (config) {
             mkdirs(dbDir+'/data');
             runCommand('mongod', ['--dbpath', dbDir+'/data'], 'mongo');
         }
-        
-        var p = runCommand('mvn', [ '-f', 'java-server', 'dependency:properties', 'exec:exec'], 'server');
+
+        var p = runCommand('mvn', [ '-f', 'java-server', 'compile', 'dependency:properties', 'exec:exec'], 'server');
 
         // TODO remove listener once BS is started
         p.stdout.on('data', function(data) {
