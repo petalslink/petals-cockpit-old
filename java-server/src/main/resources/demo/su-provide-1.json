@@ -1,0 +1,24 @@
+{
+	"cdk_part": {
+		"timeout": "30000",
+		"validate_wsdl": true,
+		"wsdl": "IntegrationService.wsdl",
+		"forward_attachments": false,
+		"forward_message_properties": false,
+		"forward_security_subject": false
+	},
+	"soap_part": {
+		"soap_version": "1.1",
+		"wsa_to": "https://localhost:8088/mockIntegrationServiceSOAP",
+		"chunked_mode": false,
+		"enable_wsa": false,
+		"proxy_host": "",
+		"proxy_port": "",
+		"proxy_password": "",
+		"proxy_domain": "",
+		"https_truststore_file": "../https/clientTruststore.jks",
+		"https_truststore_password": "passwordClientTruststore",
+		"https_keystore_file": "../https/clientKeystore.jks",
+		"https_keystore_password": "passwordClientKeystore"
+	}
+}

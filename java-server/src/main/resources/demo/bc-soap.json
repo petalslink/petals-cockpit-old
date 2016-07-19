@@ -1,0 +1,39 @@
+{
+	"cdk_part": {
+		"acceptor_pool_size": "1",
+		"acceptor_retry_number": "40",
+		"acceptor_retry_wait": "250",
+		"acceptor_stop_max_wait": "500",
+		"processor_pool_size": "10",
+		"processor_max_pool_size": "50",
+		"processor_keep_alive_time": "300",
+		"processor_stop_max_wait": "15000",
+		"time_between_async_cleaner_runs": "2000",
+		"properties_file": "",
+		"monitoring_sampling_period": "300"
+	},
+	"component_part": {
+		"http_port": "8084",
+		"http_host": "192.168.1.128",
+		"http_service_list": true,
+		"http_service_context": "petals",
+		"http_service_mapping": "services",
+		"http_thread_pool_size_min": "2",
+		"http_thread_pool_size_max": "255",
+		"http_acceptors": "4",
+		"http_backlog_size": "50",
+		"max_http_connections_per_host": "50",
+		"https_enabled": false,
+		"https_port": "8083",
+		"https_acceptors": "4",
+		"https_backlog_size": "50",
+		"https_keystore_type": "JKS",
+		"https_keystore_file": "",
+		"https_keystore_password": "",
+		"https_key_password": "",
+		"https_truststore_type": "JKS",
+		"https_truststore_file": "",
+		"https_truststore_password": "",
+		"https_client_authentication_enabled": false
+	}
+}

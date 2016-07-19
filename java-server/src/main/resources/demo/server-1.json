@@ -1,0 +1,95 @@
+{
+	"host": "192.18.1.001",
+	"user": "petals",
+	"password": "petals",
+	"jmx_port": "7701",
+	"transport_port": "7801",
+	"general": {
+		"data_basedir": "/var/lib/petals/server-1",
+		"repository_path": "/var/lib/petals/server-1/repository",
+		"work_path": "/var/lib/petals/server-1/work",
+		"log_config_file": "/etc/petals-esb/container-available/server-1/logger.properties",
+		"task_timeout": "120000",
+		"exchange_validation": true,
+		"classloaders_isolated": true,
+		"container_moves_lock_wait_time": "30"
+	},
+	"topology": {
+		"url": "",
+		"passphrase": "petals",
+		"dynamic_lock_wait_time": "30",
+		"pinger": {
+			"start_delay": "2000",
+			"period_delay": "5000"
+		}
+	},
+	"router": {
+		"strategy": "highest,3,2,1",
+		"send_attempt": "2",
+		"send_delay": "1000",
+		"traffic_stop_delay": "30000",
+		"traffic_pause_delay": "10000"
+	},
+	"ssl": {
+		"key_password": "myKey",
+		"keystore": {
+			"file": "/var/lib/petals/server-1/keystore.file",
+			"password": "k3ystor3pwd"
+		},
+		"truststore": {
+			"file": "/var/lib/petals/server-1/truststore.file",
+			"password": "tr0ststor3pwd"
+		}
+	},
+	"transport": {
+		"queue": {
+			"max_size": "10000",
+			"offering_timeout": "2500"
+		},
+		"tcp": {
+			"receivers": {
+				"listening_interface": "0.0.0.0",
+				"numbers": "10",
+				"keep_alive": "60000"
+			},
+			"senders": {
+				"numbers": "10",
+				"connection_timeout": "5000",
+				"timeout": "5000",
+				"evictor_delay": "60000"
+			}
+		}
+	},
+	"registry": {
+		"registry_implementation": "org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl",
+		"registry_parameters": {
+			"map_cache": {
+				"max_size": "500"
+			}
+		}
+	},
+	"recovery": {
+		"corepoolsize": "5",
+		"keepalivetime": "60"
+	},
+	"autoloader": {
+		"activation": true,
+		"scan_period": "4000",
+		"path_install": "/var/lib/petals/server-1/install",
+		"path_installed": "/var/lib/petals/server-1/installed"
+	},
+	"embedded_registry_overlay": {
+		"activation": true,
+		"port": "7900"
+	},
+	"artifact_repository": {
+		"activation": true,
+		"path": "/var/lib/petals/server-1/artifacts"
+	},
+	"ws_api": {
+		"activation": true,
+		"listening_interface": "localhost",
+		"http_port": "7600",
+		"http_path": "petals/ws"
+	}
+}

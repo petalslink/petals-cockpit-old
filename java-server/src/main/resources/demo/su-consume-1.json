@@ -1,0 +1,19 @@
+{
+	"jbi_part": {
+		"wsdl": "",
+		"interface_name": "Interface Name Example",
+		"service_name": "https://localhost:8088/mockIntegrationServiceSOAP",
+		"endpoint_name": true
+	},
+	"cdk_part": {
+		"mep": "",
+		"operation": "",
+		"timeout": "30000"
+	},
+	"soap_part": {
+		"soap_action": "",
+		"enable_http_transport": true,
+		"enable_https_transport": false,
+		"enable_jms_transport": false
+	}
+}
