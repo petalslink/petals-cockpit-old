@@ -32,6 +32,7 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.jdt.annotation.Nullable;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration.Conf;
+import org.ow2.petals.cockpit.server.utils.StrictJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,6 +41,7 @@ import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.Element;
 import com.allanbank.mongodb.bson.element.ArrayElement;
+import com.allanbank.mongodb.bson.element.DocumentElement;
 import com.allanbank.mongodb.bson.element.ObjectId;
 import com.allanbank.mongodb.bson.element.ObjectIdElement;
 import com.allanbank.mongodb.builder.QueryBuilder;
@@ -88,6 +90,7 @@ public class Workspace {
 
         final Document element;
         try {
+            // TODO would we want to check the workspace validity?
             element = elements.findOne(QueryBuilder.where("_id").equals(new ObjectId(elementId)));
         } catch (final IllegalArgumentException e) {
             throw new WebApplicationException(Status.NOT_FOUND);
@@ -95,9 +98,10 @@ public class Workspace {
 
         if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
+        } else {
+            final DocumentElement config = element.get(DocumentElement.class, "config");
+            return Response.ok(StrictJson.serialize(config.getDocument())).build();
         }
-
-        return Response.ok().build();
     }
 
     @GET
