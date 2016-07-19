@@ -20,13 +20,13 @@ package org.ow2.petals.cockpit.server.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.jdt.annotation.Nullable;
@@ -41,6 +41,7 @@ import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.Element;
 import com.allanbank.mongodb.bson.element.ArrayElement;
 import com.allanbank.mongodb.bson.element.ObjectId;
+import com.allanbank.mongodb.bson.element.ObjectIdElement;
 import com.allanbank.mongodb.builder.QueryBuilder;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -55,7 +56,7 @@ import co.paralleluniverse.fibers.Suspendable;
  */
 @Path("/workspace/{id}")
 @Produces(MediaType.APPLICATION_JSON)
-@PermitAll
+// @PermitAll
 public class Workspace {
 
     private static final Logger LOG = LoggerFactory.getLogger(Workspace.class);
@@ -76,6 +77,22 @@ public class Workspace {
         final Conf conf = typeConf.getConfiguration("default");
         assert conf != null;
         return conf;
+    }
+
+    @GET
+    @Path("/element/{eid}")
+    @Suspendable
+    public Response getElementConfiguration(@PathParam("id") String wsId, @PathParam("eid") String elementId) {
+
+        final MongoCollection elements = db.getCollection("workspace-elements");
+
+        final Document element = elements.findOne(QueryBuilder.where("_id").equals(elementId));
+
+        if (element == null) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+
+        return Response.ok().build();
     }
 
     @GET
@@ -102,12 +119,14 @@ public class Workspace {
         assert name != null;
         final String type = ws.get("type").getValueAsString();
         assert type != null;
+        final String id = ws.get(ObjectIdElement.class, "_id").getId().toHexString();
+        assert id != null;
         if (!typeConf.existsType(type)) {
             LOG.warn("Workspace element {} has unknown type {}", name, type);
         }
         final List<WorkspaceElement> children = buildChildren(ws, elements);
         final Element state = ws.get("state");
-        return new WorkspaceElement(name, type,
+        return new WorkspaceElement(id, name, type,
                 state == null ? null : state.getValueAsString(), children);
     }
 
@@ -130,6 +149,8 @@ public class Workspace {
 @JsonInclude(Include.NON_NULL)
 class WorkspaceElement {
 
+    private final String id;
+
     private final String name;
 
     private final String type;
@@ -139,12 +160,17 @@ class WorkspaceElement {
 
     private final List<WorkspaceElement> children;
 
-    public WorkspaceElement(String name, String type, @Nullable String state,
+    public WorkspaceElement(String id, String name, String type, @Nullable String state,
             List<WorkspaceElement> children) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.state = state;
         this.children = children;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
