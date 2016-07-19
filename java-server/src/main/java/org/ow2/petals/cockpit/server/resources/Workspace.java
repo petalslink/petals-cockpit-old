@@ -86,7 +86,12 @@ public class Workspace {
 
         final MongoCollection elements = db.getCollection("workspace-elements");
 
-        final Document element = elements.findOne(QueryBuilder.where("_id").equals(elementId));
+        final Document element;
+        try {
+            element = elements.findOne(QueryBuilder.where("_id").equals(new ObjectId(elementId)));
+        } catch (final IllegalArgumentException e) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
 
         if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
