@@ -76,7 +76,7 @@ public class Workspace {
     @Path("/configuration")
     public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration() {
         // TODO shouldn't "default" be stored with the workspace?
-        final Conf conf = typeConf.getConfiguration("default");
+        final Conf conf = typeConf.getConfiguration("default-5.0");
         assert conf != null;
         return conf;
     }

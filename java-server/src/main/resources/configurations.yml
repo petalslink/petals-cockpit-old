@@ -15,8 +15,8 @@
 # along with this program/library; If not, see http://www.gnu.org/licenses/
 # for the GNU Lesser General Public License version 2.1.
 #
-# TODO add compatibilities (for add in UI)
-# TODO extract the SUs and put them inside the configuration for a component stored elsewhere
+# TODO extract the SUs and put them inside components configuration (stored elsewhere)
+# TODO move ui-specific informations to frontend
 types:
   workspace:
     icon: folder-multiple
@@ -38,7 +38,7 @@ types:
     state: home.workspace.petals.bc-soap-su-consume.su-config
 
 configurations:
-  default:
+  default-5.0:
     - name: workspace
       contains:
         - name: petals-bus-5.0
