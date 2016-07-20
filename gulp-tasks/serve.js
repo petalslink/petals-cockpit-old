@@ -12,16 +12,17 @@ var mkdirs = require('mkdirs');
 
 module.exports = function (config) {
 
-    gulp.task('populate-demo', [], function() {
-        exec('mvn -f java-server compile dependency:properties exec:exec -Dcockpit.exec.command=populate-demo', function(error, stdout, stderr) {
-            if (error) {
-                config.log('exec error: '+error);
-            }
-            console.log('stdout: ' +stdout);
-            console.log('stderr: ' + stderr);
-        });
+    gulp.task('populate-demo', [], function () {
+        exec('mvn -f java-server compile dependency:properties exec:exec -Dcockpit.exec.command=populate-demo',
+            function (error, stdout, stderr) {
+                if (error) {
+                    config.log('exec error: ' + error);
+                }
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+            });
     });
-    
+
     gulp.task('serve-dev', ['inject','vet'], function () {
         serve(true /*isDev*/);
     });
