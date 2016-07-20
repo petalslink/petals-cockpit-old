@@ -34,6 +34,8 @@
         <dropwizard.version>1.0.0-rc4</dropwizard.version>
         <comsat.version>0.7.0</comsat.version>
         <quasar.version>0.7.5</quasar.version>
+        
+        <cockpit.exec.command>server</cockpit.exec.command>
     </properties>
 
     <dependencyManagement>
@@ -192,7 +194,7 @@
 
                         <!-- Main class -->
                         <argument>org.ow2.petals.cockpit.server.CockpitApplication</argument>
-                        <argument>server</argument>
+                        <argument>${cockpit.exec.command}</argument>
                         <argument>default.yml</argument>
                     </arguments>
                 </configuration>
