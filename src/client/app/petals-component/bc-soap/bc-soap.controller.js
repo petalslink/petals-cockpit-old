@@ -34,11 +34,6 @@
 
             }
         ];
-
-        activate();
-
-        function activate() {
-        }
     }
 
 })();

@@ -6,10 +6,10 @@
         .controller('ConfigBcSoapSuConsumeController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseSUDetails', 'configModalTile', 'logger'];
+    ControllerFunction.$inject = ['suData', 'elementData', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseSUDetails, configModalTile, logger) {
+    function ControllerFunction(suData, elementData, configModalTile, logger) {
 
         var vm = this;
 
@@ -21,7 +21,8 @@
 
         function activate() {
             // init data with resolve from router
-            vm.details = promiseSUDetails;
+            vm.details = elementData;
+            vm.config = suData;
 
             buildTiles();
         }
@@ -39,8 +40,7 @@
                     title: 'State',
                     model: {
                         state: vm.details.state,
-                        name: vm.details.name,
-                        description: vm.details.description
+                        name: vm.details.name
                     },
                     fieldsDisplay: [
                         {
@@ -53,13 +53,6 @@
                             type: 'details',
                             templateOptions: {
                                 label: 'Name : '
-                            }
-                        },
-                        {
-                            key: 'description',
-                            type: 'details2lines',
-                            templateOptions: {
-                                label: 'Description : '
                             }
                         }
                     ],
@@ -90,12 +83,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
                                     templateOptions: {label: 'Name : ', 'required': true}
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Description : ', 'required': true}
                                 }
                             ]
                         }
@@ -107,8 +94,7 @@
                     background: 'imgGrid',
                     title: 'Type',
                     model: {
-                        name: vm.details.componentType.name,
-                        version: vm.details.componentType.version
+                        name: vm.details.type
                     },
                     fieldsDisplay: [
                         {
@@ -116,14 +102,6 @@
                             className: 'colorWhite',
                             type: 'detailsCenter',
                             templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            className: 'colorWhite',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
                         }
                     ],
                     fieldsModal: [
@@ -139,12 +117,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'detailsCenter',
                                     templateOptions: {}
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'detailsCenter',
-                                    templateOptions: {label: 'Version : '}
                                 }
                             ]
                         }
@@ -156,9 +128,9 @@
                     background: 'red',
                     title: 'Service',
                     model: {
-                        mep: vm.details.cdk_part.mep,
-                        operation: vm.details.cdk_part.operation,
-                        timeout: vm.details.cdk_part.timeout
+                        mep: vm.config.cdk_part.mep,
+                        operation: vm.config.cdk_part.operation,
+                        timeout: vm.config.cdk_part.timeout
                     },
                     fieldsDisplay: [
                         {
@@ -222,12 +194,12 @@
                     background: 'purple',
                     title: 'Soap Part',
                     model: {
-                        wsdl: vm.details.soap_part.wsdl,
-                        service_name: vm.details.soap_part.service_name,
-                        soap_action: vm.details.soap_part.soap_action,
-                        enable_http_transport: vm.details.soap_part.enable_http_transport,
-                        enable_https_transport: vm.details.soap_part.enable_https_transport,
-                        enable_jms_transport: vm.details.soap_part.enable_jms_transport
+                        wsdl: vm.config.soap_part.wsdl,
+                        service_name: vm.config.soap_part.service_name,
+                        soap_action: vm.config.soap_part.soap_action,
+                        enable_http_transport: vm.config.soap_part.enable_http_transport,
+                        enable_https_transport: vm.config.soap_part.enable_https_transport,
+                        enable_jms_transport: vm.config.soap_part.enable_jms_transport
                     },
                     fieldsDisplay: [
                         {
@@ -343,9 +315,9 @@
                     background: 'green',
                     title: 'Cdk Part',
                     model: {
-                        mep: vm.details.cdk_part.mep,
-                        operation: vm.details.cdk_part.operation,
-                        timeout: vm.details.cdk_part.timeout
+                        mep: vm.config.cdk_part.mep,
+                        operation: vm.config.cdk_part.operation,
+                        timeout: vm.config.cdk_part.timeout
                     },
                     fieldsDisplay: [
                         {

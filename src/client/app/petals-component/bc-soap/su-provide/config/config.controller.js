@@ -6,10 +6,10 @@
         .controller('ConfigBcSoapSuProvideController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseSUDetails', 'configModalTile', 'logger'];
+    ControllerFunction.$inject = ['suData', 'elementData', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseSUDetails, configModalTile, logger) {
+    function ControllerFunction(suData, elementData, configModalTile, logger) {
 
         var vm = this;
 
@@ -21,7 +21,8 @@
 
         function activate() {
             // init data with resolve from router
-            vm.details = promiseSUDetails;
+            vm.details = elementData;
+            vm.config = suData;
 
             buildTiles();
         }
@@ -36,12 +37,11 @@
                 {
                     span: {row: 2, col: 1},
                     background: 'orange',
-                    title: 'State',
                     model: {
                         state: vm.details.state,
-                        name: vm.details.name,
-                        description: vm.details.description
+                        name: vm.details.name
                     },
+                    title: 'State',
                     fieldsDisplay: [
                         {
                             key: 'state',
@@ -53,13 +53,6 @@
                             type: 'details',
                             templateOptions: {
                                 label: 'Name : '
-                            }
-                        },
-                        {
-                            key: 'description',
-                            type: 'details2lines',
-                            templateOptions: {
-                                label: 'Description : '
                             }
                         }
                     ],
@@ -90,12 +83,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
                                     templateOptions: {label: 'Name : ', 'required': true}
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Description : ', 'required': true}
                                 }
                             ]
                         }
@@ -107,8 +94,7 @@
                     background: 'imgGrid',
                     title: 'Type',
                     model: {
-                        name: vm.details.componentType.name,
-                        version: vm.details.componentType.version
+                        name: vm.details.type
                     },
                     fieldsDisplay: [
                         {
@@ -116,14 +102,6 @@
                             className: 'colorWhite',
                             type: 'detailsCenter',
                             templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            className: 'colorWhite',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
                         }
                     ],
                     fieldsModal: [
@@ -139,12 +117,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'detailsCenter',
                                     templateOptions: {}
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'detailsCenter',
-                                    templateOptions: {label: 'Version : '}
                                 }
                             ]
                         }
@@ -156,12 +128,12 @@
                     background: 'green',
                     title: 'Cdk Part',
                     model: {
-                        timeout: vm.details.cdk_part.timeout,
-                        validate_wsdl: vm.details.cdk_part.validate_wsdl,
-                        wsdl: vm.details.cdk_part.wsdl,
-                        forward_attachments: vm.details.cdk_part.forward_attachments,
-                        forward_message_properties: vm.details.cdk_part.forward_message_properties,
-                        forward_security_subject: vm.details.cdk_part.forward_security_subject
+                        timeout: vm.config.cdk_part.timeout,
+                        validate_wsdl: vm.config.cdk_part.validate_wsdl,
+                        wsdl: vm.config.cdk_part.wsdl,
+                        forward_attachments: vm.config.cdk_part.forward_attachments,
+                        forward_message_properties: vm.config.cdk_part.forward_message_properties,
+                        forward_security_subject: vm.config.cdk_part.forward_security_subject
                     },
                     fieldsDisplay: [
                         {
@@ -267,10 +239,10 @@
                     background: 'red',
                     title: 'Soap Part',
                     model: {
-                        soap_version: vm.details.soap_part.soap_version,
-                        wsa_to: vm.details.soap_part.wsa_to,
-                        chunked_mode: vm.details.soap_part.chunked_mode,
-                        enable_wsa: vm.details.soap_part.enable_wsa
+                        soap_version: vm.config.soap_part.soap_version,
+                        wsa_to: vm.config.soap_part.wsa_to,
+                        chunked_mode: vm.config.soap_part.chunked_mode,
+                        enable_wsa: vm.config.soap_part.enable_wsa
                     },
                     fieldsDisplay: [
                         {
@@ -363,10 +335,10 @@
                     background: 'purple',
                     title: 'Soap Part : Proxy',
                     model: {
-                        proxy_host: vm.details.soap_part.proxy_host,
-                        proxy_port: vm.details.soap_part.proxy_port,
-                        proxy_password: vm.details.soap_part.proxy_password,
-                        proxy_domain: vm.details.soap_part.proxy_domain
+                        proxy_host: vm.config.soap_part.proxy_host,
+                        proxy_port: vm.config.soap_part.proxy_port,
+                        proxy_password: vm.config.soap_part.proxy_password,
+                        proxy_domain: vm.config.soap_part.proxy_domain
                     },
                     fieldsDisplay: [
                         {
@@ -468,10 +440,10 @@
                     background: 'gray',
                     title: 'Soap Part : Https',
                     model: {
-                        https_truststore_file: vm.details.soap_part.https_truststore_file,
-                        https_truststore_password: vm.details.soap_part.https_truststore_password,
-                        https_keystore_file: vm.details.soap_part.https_keystore_file,
-                        https_keystore_password: vm.details.soap_part.https_keystore_password
+                        https_truststore_file: vm.config.soap_part.https_truststore_file,
+                        https_truststore_password: vm.config.soap_part.https_truststore_password,
+                        https_keystore_file: vm.config.soap_part.https_keystore_file,
+                        https_keystore_password: vm.config.soap_part.https_keystore_password
                     },
                     fieldsDisplay: [
                         {

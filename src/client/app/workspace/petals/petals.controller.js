@@ -8,15 +8,14 @@
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$rootScope', '$state', '$mdDialog', 'logger',
-        'promiseData', 'promiseConfig', 'dataWkspceService', 'petalsService'];
+        'workspaceData', 'dataWkspceService', 'petalsService'];
 
     /* @ngInject */
-    function ControllerFunction($rootScope, $state, $mdDialog, logger, promiseData,
-                                promiseConfig, dataWkspceService, petalsService) {
+    function ControllerFunction($rootScope, $state, $mdDialog, logger, workspaceData,
+                                dataWkspceService, petalsService) {
         var vmPetals = this;
 
         vmPetals.data = {};
-        vmPetals.configData = {};
         vmPetals.selectedChild = null;
         vmPetals.choiceList = [];
 
@@ -30,56 +29,21 @@
         vmPetals.gotoComponentState = function (component) {gotoComponentState(component);};
         vmPetals.toggleMinimized = function (component) {toggleMinimized(component);};
 
-        $rootScope.$on('$stateChangeSuccess', function () {
-            // select component depending on url
-            var id = petalsService.getSelectedComponentId();
-            selectComponentById(id);
-
-        });
-
         activate();
 
         // **** functions ****
 
         function activate() {
             // init data with resolve from router
-            vmPetals.dbData = promiseData;
-            vmPetals.configData = promiseConfig;
+            vmPetals.data = workspaceData;
 
-/*            vmPetals.data = buildData(dbData,configData);*/
             // select component depending on url
             var id = petalsService.getSelectedComponentId();
             selectComponentById(id);
         }
 
-/*
-        function buildData(dbData,configData) {
-            var data = {};
-
-            walk(dbData);
-
-            function walk(branch) {
-                if (branch) {
-                        return componentData;
-                    } else {
-                        if (componentData.children) {
-                            for (var i = 0; i < componentData.children.length; i++) {
-                                var searchInChild = walk(componentData.children[i]);
-                                if (searchInChild) {
-                                    return searchInChild;
-                                }
-                            }
-                        }
-                }
-                return null;
-            }
-
-            return data
-        }
-*/
-
         function selectComponentById(id) {
-            if (id > -1) {
+            if (id) {
                 var selectedChild = getComponentById(id);
 
                 if (selectedChild) {
@@ -90,7 +54,7 @@
                     // set selected component
                     vmPetals.selectedChild = selectedChild;
                     vmPetals.selectedChild.selected = true;
-                    dataWkspceService.setInfoSelect(vmPetals.selectedChild.selectionChain);
+                    //dataWkspceService.setInfoSelect(vmPetals.selectedChild.selectionChain);
                 } else {
                     var alert = $mdDialog.alert({
                         title: 'Attention',
@@ -112,44 +76,16 @@
             }
         }
 
-        function getConfigComponentType(component) {
-            return walk(vmPetals.configData);
-
-            function walk(componentConfigData) {
-                if (componentConfigData) {
-                    if ((componentConfigData.componentType.name === component.componentType.name) &&
-                        (componentConfigData.componentType.version === component.componentType.version) &&
-                        (componentConfigData.componentType.cat === component.componentType.cat)) {
-                        return componentConfigData;
-                    } else {
-                        if (componentConfigData.contains) {
-                            for (var i = 0; i < componentConfigData.contains.length; i++) {
-                                var searchInChild = walk(componentConfigData.contains[i]);
-                                if (searchInChild) {
-                                    return searchInChild;
-                                }
-                            }
-                        }
-                    }
-                }
-                return null;
-            }
-        }
-
         function addTreeComponent(component) {
             //todo add promise and mange error
-            var componentType = getConfigComponentType(component);
 
             // Get list of sub-component if exist
             var choiceList = [];
-            if (componentType) {
-                for (var i = 0; i < componentType.contains.length; i++) {
+            if (component.typeData) {
+                for (var i = 0; i < component.typeData.contains.length; i++) {
                     choiceList[i] = {
-                        'name': componentType.contains[i].componentType.name,
-                        'version': componentType.contains[i].componentType.version,
-                        'cat': componentType.contains[i].componentType.cat,
-                        'subCat': componentType.contains[i].componentType.subCat,
-                        'icon': componentType.contains[i].componentType.icon
+                        'name': component.typeData.contains[i].name,
+                        'icon': component.typeData.contains[i].type.icon
                     };
                 }
             } else {
@@ -158,9 +94,8 @@
                 return;
             }
             var newComponent = {};
-            newComponent.title = '';
-            newComponent.cat = choiceList[0].cat;
-            var parentTitle = component.title;
+            newComponent.name = '';
+            var parentName = component.name;
 
             $mdDialog.show({
                 parent: angular.element(document.body),
@@ -168,7 +103,7 @@
                 templateUrl: 'src/client/app/workspace/petals/modals/add-component.html',
                 locals: {
                     localNewComponent: newComponent,
-                    localParentTitle: parentTitle,
+                    localParentName: parentName,
                     localChoiceList: choiceList
                 },
                 controller: DialogController,
@@ -178,22 +113,22 @@
                 // todo call a addComponent function
                 component.children.push({
                     id: 999,
-                    title: newComponent.title,
-                    componentType: newComponent.componentType,
+                    name: newComponent.name,
+                    typeData: newComponent.component.typeData,
                     state: 'undeployed',
                     display: 'empty',
-                    selectionChain: component.selectionChain + '/' + newComponent.title,
+                    //selectionChain: component.selectionChain + '/' + newComponent.name,
                     children: []
                 });
                 component.display = 'open';
             });
 
-            DialogController.$inject = ['$mdDialog', 'localNewComponent', 'localParentTitle', 'localChoiceList'];
+            DialogController.$inject = ['$mdDialog', 'localNewComponent', 'localParentName', 'localChoiceList'];
             /* @ngInject */
-            function DialogController($mdDialog, localNewComponent, localParentTitle, localChoiceList) {
+            function DialogController($mdDialog, localNewComponent, localParentName, localChoiceList) {
                 var vmModal = this;
                 vmModal.newComponent = localNewComponent;
-                vmModal.parentTitle = localParentTitle;
+                vmModal.parentName = localParentName;
                 vmModal.choiceList = localChoiceList;
                 vmModal.myChoice = {};
                 vmModal.changeSelected = function () {
@@ -219,8 +154,8 @@
                 }
 
                 function changeSelected() {
-                    vmModal.newComponent.title = vmModal.myChoice.name + '-';
-                    vmModal.newComponent.componentType = vmModal.myChoice;
+                    vmModal.newComponent.name = vmModal.myChoice.name + '-';
+                    vmModal.newComponent.component.typeData = vmModal.myChoice;
                 }
             }
 
@@ -228,7 +163,7 @@
 
         function changeTitle(component) {
             var data = {};
-            data.title = component.title;
+            data.name = component.name;
 
             $mdDialog.show({
                 parent: angular.element(document.body),
@@ -238,7 +173,7 @@
                 controller: DialogController,
                 controllerAs: 'vmModal'
             }).then(function () {
-                component.title = data.title;
+                component.name = data.name;
             });
 
             DialogController.$inject = ['$mdDialog', 'localData'];
@@ -246,7 +181,7 @@
             function DialogController($mdDialog, localData) {
                 var vmModal = this;
                 vmModal.data = localData;
-                vmModal.modalTitle = localData.title;
+                vmModal.modalName = localData.name;
                 vmModal.closeDialog = function () {
                     $mdDialog.cancel();
                 };
@@ -263,7 +198,7 @@
 
         function deleteTreeComponent(component) {
             var data = {};
-            data.title = component.title;
+            data.name = component.name;
 
             $mdDialog.show({
                 parent: angular.element(document.body),
@@ -296,7 +231,7 @@
             /* @ngInject */
             function DialogController($mdDialog, localData) {
                 var vmModal = this;
-                vmModal.modalTitle = localData.title;
+                vmModal.modalName = localData.name;
                 vmModal.closeDialog = function () {
                     $mdDialog.cancel();
                 };
@@ -389,9 +324,7 @@
                 vmPetals.selectedChild.lastState = $state.current.name;
             }
 
-            var componentType = getConfigComponentType(component);
-
-            if (!componentType) {
+            if (!component.typeData) {
                 // component doesn't exist anymore due to configuration change
                 //todo unselect this component and select the first component available
                 component.mayAddSubComponent = false;
@@ -400,26 +333,26 @@
                  */
                 return;
             } else {
-                component.mayAddSubComponent = (!componentType.contains) ? false : true;
+                component.mayAddSubComponent = !!component.typeData.contains;
             }
             // goto his state
             var nextState = '';
             if (component.lastState) {
                 nextState = component.lastState;
             } else {
-                nextState = componentType.initState;
+                nextState = component.typeData.type.state;
             }
-            $state.go(nextState, {id: component.id}).then(function () {
-                    // if succes Set selection for Workspace
-                    /*
-                     petalsService.setSelectedComponentId(component.id);
-                     */
-                }, function () {
+            $state.go(nextState, {id: component.id, element: component}).then(function () {
+                    // if success Set selection for Workspace
+                    // TODO factor with petals.router.js on success selected component id
+                    selectComponentById(component.id);
+                    petalsService.setSelectedComponentId(component.id);
+                }, function (e) {
                     // if error
-                    logger.debug('petals.controller.js: failed go state !!!');
+                    logger.debug('petals.controller.js: failed go state !!!'+e);
                     component.selected = true;
                     vmPetals.selectedChild = component;
-                    dataWkspceService.setInfoSelect(component.selectionChain);
+                    //dataWkspceService.setInfoSelect(component.selectionChain);
                     //TODO manage plugin error
                     $state.go('home.workspace.petals.fallback-component', {id: component.id});
                 }

@@ -6,10 +6,10 @@
         .controller('ConfigBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
+    ControllerFunction.$inject = ['bcsoapData', 'elementData', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails, configModalTile, logger) {
+    function ControllerFunction(bcsoapData, elementData, configModalTile, logger) {
 
         var vm = this;
 
@@ -21,7 +21,8 @@
 
         function activate() {
             // init data with resolve from router
-            vm.details = promiseDetails;
+            vm.details = elementData;
+            vm.config = bcsoapData;
 
             buildTiles();
         }
@@ -39,8 +40,7 @@
                     title: 'State',
                     model: {
                         state: vm.details.state,
-                        name: vm.details.name,
-                        description: vm.details.description
+                        name: vm.details.name
                     },
                     fieldsDisplay: [
                         {
@@ -53,13 +53,6 @@
                             type: 'details',
                             templateOptions: {
                                 label: 'Name : '
-                            }
-                        },
-                        {
-                            key: 'description',
-                            type: 'details2lines',
-                            templateOptions: {
-                                label: 'Description : '
                             }
                         }
                     ],
@@ -90,12 +83,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
                                     templateOptions: {label: 'Name : ', 'required': true}
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Description : ', 'required': true}
                                 }
                             ]
                         }
@@ -107,8 +94,7 @@
                     background: 'imgGrid',
                     title: 'Type',
                     model: {
-                        name: vm.details.componentType.name,
-                        version: vm.details.componentType.version
+                        name: vm.details.type
                     },
                     fieldsDisplay: [
                         {
@@ -116,14 +102,6 @@
                             className: 'colorWhite',
                             type: 'detailsCenter',
                             templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            className: 'colorWhite',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
                         }
                     ],
                     fieldsModal: [
@@ -139,12 +117,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'detailsCenter',
                                     templateOptions: {}
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'detailsCenter',
-                                    templateOptions: {label: 'Version : '}
                                 }
                             ]
                         }
@@ -156,16 +128,16 @@
                     background: 'yellow',
                     title: 'Component Part : Http',
                     model: {
-                        http_port: vm.details.component_part.http_port,
-                        http_host: vm.details.component_part.http_host,
-                        http_service_list: vm.details.component_part.http_service_list,
-                        http_service_context: vm.details.component_part.http_service_context,
-                        http_service_mapping: vm.details.component_part.http_service_mapping,
-                        http_thread_pool_size_min: vm.details.component_part.http_thread_pool_size_min,
-                        http_thread_pool_size_max: vm.details.component_part.http_thread_pool_size_max,
-                        http_acceptors: vm.details.component_part.http_acceptors,
-                        http_backlog_size: vm.details.component_part.http_backlog_size,
-                        max_http_connections_per_host: vm.details.component_part.max_http_connections_per_host
+                        http_port: vm.config.component_part.http_port,
+                        http_host: vm.config.component_part.http_host,
+                        http_service_list: vm.config.component_part.http_service_list,
+                        http_service_context: vm.config.component_part.http_service_context,
+                        http_service_mapping: vm.config.component_part.http_service_mapping,
+                        http_thread_pool_size_min: vm.config.component_part.http_thread_pool_size_min,
+                        http_thread_pool_size_max: vm.config.component_part.http_thread_pool_size_max,
+                        http_acceptors: vm.config.component_part.http_acceptors,
+                        http_backlog_size: vm.config.component_part.http_backlog_size,
+                        max_http_connections_per_host: vm.config.component_part.max_http_connections_per_host
                     },
                     fieldsDisplay: [
                         {
@@ -361,17 +333,17 @@
                     background: 'green',
                     title: 'Cdk Part',
                     model: {
-                        acceptor_pool_size: vm.details.cdk_part.acceptor_pool_size,
-                        acceptor_retry_number: vm.details.cdk_part.acceptor_retry_number,
-                        acceptor_retry_wait: vm.details.cdk_part.acceptor_retry_wait + ' ms ',
-                        acceptor_stop_max_wait: vm.details.cdk_part.acceptor_stop_max_wait + ' ms ',
-                        processor_pool_size: vm.details.cdk_part.processor_pool_size,
-                        processor_max_pool_size: vm.details.cdk_part.processor_max_pool_size,
-                        processor_keep_alive_time: vm.details.cdk_part.processor_keep_alive_time + ' ms ',
-                        processor_stop_max_wait: vm.details.cdk_part.processor_stop_max_wait + ' ms ',
-                        time_between_async_cleaner_runs: vm.details.cdk_part.time_between_async_cleaner_runs,
-                        properties_file: vm.details.cdk_part.properties_file,
-                        monitoring_sampling_period: vm.details.cdk_part.monitoring_sampling_period + ' ms '
+                        acceptor_pool_size: vm.config.cdk_part.acceptor_pool_size,
+                        acceptor_retry_number: vm.config.cdk_part.acceptor_retry_number,
+                        acceptor_retry_wait: vm.config.cdk_part.acceptor_retry_wait + ' ms ',
+                        acceptor_stop_max_wait: vm.config.cdk_part.acceptor_stop_max_wait + ' ms ',
+                        processor_pool_size: vm.config.cdk_part.processor_pool_size,
+                        processor_max_pool_size: vm.config.cdk_part.processor_max_pool_size,
+                        processor_keep_alive_time: vm.config.cdk_part.processor_keep_alive_time + ' ms ',
+                        processor_stop_max_wait: vm.config.cdk_part.processor_stop_max_wait + ' ms ',
+                        time_between_async_cleaner_runs: vm.config.cdk_part.time_between_async_cleaner_runs,
+                        properties_file: vm.config.cdk_part.properties_file,
+                        monitoring_sampling_period: vm.config.cdk_part.monitoring_sampling_period + ' ms '
                     },
                     fieldsDisplay: [
                         {
@@ -482,15 +454,15 @@
                                         options: [
                                             {
                                                 value: 'milliseconds',
-                                                valType: vm.details.cdk_part.acceptor_retry_wait + ' ms '
+                                                valType: vm.config.cdk_part.acceptor_retry_wait + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
-                                                valType: vm.details.cdk_part.acceptor_retry_wait / (1000) + ' s '
+                                                valType: vm.config.cdk_part.acceptor_retry_wait / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
-                                                valType: vm.details.cdk_part.acceptor_retry_wait / (60000) + ' min '
+                                                valType: vm.config.cdk_part.acceptor_retry_wait / (60000) + ' min '
                                             }
                                         ]
                                     }
@@ -526,15 +498,15 @@
                                         options: [
                                             {
                                                 value: 'milliseconds',
-                                                valType: vm.details.cdk_part.acceptor_stop_max_wait + ' ms '
+                                                valType: vm.config.cdk_part.acceptor_stop_max_wait + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
-                                                valType: vm.details.cdk_part.acceptor_stop_max_wait / (1000) + ' s '
+                                                valType: vm.config.cdk_part.acceptor_stop_max_wait / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
-                                                valType: vm.details.cdk_part.acceptor_stop_max_wait / (60000) + ' min '
+                                                valType: vm.config.cdk_part.acceptor_stop_max_wait / (60000) + ' min '
                                             }
                                         ]
                                     }
@@ -594,17 +566,17 @@
                                             {
                                                 value: 'milliseconds',
                                                 valType:
-                                                vm.details.cdk_part.processor_keep_alive_time + ' ms '
+                                                vm.config.cdk_part.processor_keep_alive_time + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
                                                 valType:
-                                                vm.details.cdk_part.processor_keep_alive_time / (1000) + ' s '
+                                                vm.config.cdk_part.processor_keep_alive_time / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
                                                 valType:
-                                                vm.details.cdk_part.processor_keep_alive_time / (60000) + ' min '
+                                                vm.config.cdk_part.processor_keep_alive_time / (60000) + ' min '
                                             }
                                         ]
                                     }
@@ -640,15 +612,15 @@
                                         options: [
                                             {
                                                 value: 'milliseconds',
-                                                valType: vm.details.cdk_part.processor_stop_max_wait + ' ms '
+                                                valType: vm.config.cdk_part.processor_stop_max_wait + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
-                                                valType: vm.details.cdk_part.processor_stop_max_wait / (1000) + ' s '
+                                                valType: vm.config.cdk_part.processor_stop_max_wait / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
-                                                valType: vm.details.cdk_part.processor_stop_max_wait / (60000) + ' min '
+                                                valType: vm.config.cdk_part.processor_stop_max_wait / (60000) + ' min '
                                             }
                                         ]
 
@@ -686,17 +658,17 @@
                                             {
                                                 value: 'milliseconds',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period + ' ms '
+                                                vm.config.cdk_part.monitoring_sampling_period + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period / (1000) + ' s '
+                                                vm.config.cdk_part.monitoring_sampling_period / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period / (60000) + ' min '
+                                                vm.config.cdk_part.monitoring_sampling_period / (60000) + ' min '
                                             }
                                         ]
                                     }
@@ -752,17 +724,17 @@
                                             {
                                                 value: 'milliseconds',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period + ' ms '
+                                                vm.config.cdk_part.monitoring_sampling_period + ' ms '
                                             },
                                             {
                                                 value: 'seconds',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period / (1000) + ' s '
+                                                vm.config.cdk_part.monitoring_sampling_period / (1000) + ' s '
                                             },
                                             {
                                                 value: 'minutes',
                                                 valType:
-                                                vm.details.cdk_part.monitoring_sampling_period / (60000) + ' min '
+                                                vm.config.cdk_part.monitoring_sampling_period / (60000) + ' min '
                                             }
                                         ]
                                     }
@@ -777,19 +749,19 @@
                     background: 'purple',
                     title: 'Component Part : Https extensions',
                     model: {
-                        https_enabled: vm.details.component_part.https_enabled,
-                        https_port: vm.details.component_part.https_port,
-                        https_acceptors: vm.details.component_part.https_acceptors,
-                        https_backlog_size: vm.details.component_part.https_backlog_size,
-                        https_keystore_type: vm.details.component_part.https_keystore_type,
-                        https_keystore_file: vm.details.component_part.https_keystore_file,
-                        https_keystore_password: vm.details.component_part.https_keystore_password,
-                        https_key_password: vm.details.component_part.https_key_password,
-                        https_truststore_type: vm.details.component_part.https_truststore_type,
-                        https_truststore_file: vm.details.component_part.https_truststore_file,
-                        https_truststore_password: vm.details.component_part.https_truststore_password,
+                        https_enabled: vm.config.component_part.https_enabled,
+                        https_port: vm.config.component_part.https_port,
+                        https_acceptors: vm.config.component_part.https_acceptors,
+                        https_backlog_size: vm.config.component_part.https_backlog_size,
+                        https_keystore_type: vm.config.component_part.https_keystore_type,
+                        https_keystore_file: vm.config.component_part.https_keystore_file,
+                        https_keystore_password: vm.config.component_part.https_keystore_password,
+                        https_key_password: vm.config.component_part.https_key_password,
+                        https_truststore_type: vm.config.component_part.https_truststore_type,
+                        https_truststore_file: vm.config.component_part.https_truststore_file,
+                        https_truststore_password: vm.config.component_part.https_truststore_password,
                         https_client_authentication_enabled:
-                        vm.details.component_part.https_client_authentication_enabled
+                        vm.config.component_part.https_client_authentication_enabled
                     },
                     fieldsDisplay: [
                         {

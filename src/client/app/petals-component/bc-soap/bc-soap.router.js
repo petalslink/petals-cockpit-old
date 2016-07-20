@@ -13,6 +13,9 @@
         $stateProvider
             .state('home.workspace.petals.bc-soap', {
                 url: '/bc-soap/:id',
+                params: {
+                    element: null
+                },
                 views: {
                     'petals-nav-console': {
                         templateUrl: 'src/client/app/petals-component/bc-soap/bc-soap.html',
@@ -25,8 +28,11 @@
                     }
                 },
                 resolve: {
-                    promiseDetails: [ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
+                    bcsoapData: [ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
                         return dataservice.getPetalsComponent($stateParams.id);
+                    }],
+                    elementData: ['$stateParams', function($stateParams){
+                        return $stateParams.element;
                     }]
                 },
                 onEnter: ['logger', function (logger) {

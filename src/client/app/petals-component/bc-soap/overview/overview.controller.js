@@ -6,17 +6,17 @@
         .controller('OverviewBcSoapController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails'];
+    ControllerFunction.$inject = ['elementData'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails) {
+    function ControllerFunction(elementData) {
         var vm = this;
         vm.details = {};
 
         activate();
 
         function activate() {
-            vm.details = promiseDetails;
+            vm.details = elementData;
         }
 
     }

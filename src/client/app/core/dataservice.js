@@ -22,7 +22,7 @@
         return service;
 
         function getPetalsComponent(id) {
-            return $http.get('/api/petalscomponent/demo/' + id)
+            return $http.get('/api/workspace/Demo/element/' + id)
                 .then(getPetalsComponentComplete,
                       getPetalsComponentFailed);
 
@@ -31,8 +31,7 @@
             }
 
             function getPetalsComponentFailed(e) {
-                logger.info('****** getPetalsComponentFailed');
-                logger.info('****** '+ e.data.description);
+                logger.error('****** getPetalsComponentFailed' + e.data.description);
                 //todo nothing !
                 $location.url('/');
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
@@ -40,7 +39,7 @@
         }
 
         function getPetalsComponents() {
-            return $http.get('/api/workspace/demo')
+            return $http.get('/api/workspace/Demo/elements')
                 .then(getPetalsComponentsComplete,
                       getPetalsComponentsFailed);
 
@@ -49,8 +48,7 @@
             }
 
             function getPetalsComponentsFailed(e) {
-                logger.info('****** getPetalsComponentsFailed');
-                logger.info('****** '+ e.data.description);
+                logger.error('****** getPetalsComponentsFailed' + e.data.description);
                 //todo nothing !
 /*
                 $location.url('/');
@@ -64,7 +62,7 @@
         }
 
         function getPetalsComponentConfig() {
-            return $http.get('/api/petalscomponentsconfig/demo')
+            return $http.get('/api/workspace/Demo/configuration')
                 .then(getPetalsComponentConfigComplete,
                       getPetalsComponentConfigFailed);
 
@@ -73,12 +71,7 @@
             }
 
             function getPetalsComponentConfigFailed(e) {
-                logger.info('****** getPetalsComponentConfigFailed');
-                logger.info('****** '+ e.data.description);
-                //todo nothing ! let ui-router$on mange
-/*
-                $location.url('/');
-*/
+                logger.error('****** getPetalsComponentConfigFailed'+ e.data.description);
                 return exception.catcher('XHR Failed for getPetalsComponent')(e);
             }
         }

@@ -24,11 +24,13 @@
             logger.debug('*** petals.router.js $on $stateChangeSuccess:');
             logger.debug('  ------> event        : ' + angular.toJson(event));
             logger.debug('  ------> toState      : ' + angular.toJson(toState));
+
             // set selectedComponent depending on url
+            // TODO use ui router state instead
             var path = $rootScope.$location.path();
             var componentPath = path.split('/workspace/petals/');
             if (componentPath[1]) {
-                var id = parseInt(componentPath[1].split('/')[1],10);
+                var id = componentPath[1].split('/')[1];
                 petalsService.setSelectedComponentId(id);
             }
         });
@@ -60,12 +62,9 @@
                     }
                 },
                 resolve: {
-                    promiseData: function(dataservice) {
-                        return dataservice.getPetalsComponents();
-                    },
-                    promiseConfig: function(dataservice) {
-                        return dataservice.getPetalsComponentConfig();
-                    }
+                    workspaceData: ['workspaceservice', function(workspaceservice) {
+                        return workspaceservice.getWorkspaceData();
+                    }]
                 },
                 onEnter: ['logger', function (logger) {
                     logger.debug('You enter in WORKSPACE.PETALS');

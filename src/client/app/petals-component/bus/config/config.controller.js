@@ -6,10 +6,10 @@
         .controller('ConfigBusController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
+    ControllerFunction.$inject = ['busData', 'elementData', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails, configModalTile, logger) {
+    function ControllerFunction(busData, elementData, configModalTile, logger) {
 
         var vm = this;
 
@@ -21,7 +21,8 @@
 
         function activate() {
             // init data with resolve from router
-            vm.details = promiseDetails;
+            vm.details = elementData;
+            vm.config = busData;
 
             buildTiles();
         }
@@ -93,8 +94,7 @@
                     background: 'imgGridBus',
                     title: 'Type',
                     model: {
-                        name: vm.details.componentType.name,
-                        version: vm.details.componentType.version
+                        name: vm.details.type
                     },
                     fieldsDisplay: [
                         {
@@ -102,14 +102,6 @@
                             className: 'colorWhite',
                             type: 'detailsCenter',
                             templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            className: 'colorWhite',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
                         }
                     ],
                     fieldsModal: [
@@ -125,12 +117,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'detailsCenter',
                                     templateOptions: {}
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'detailsCenter',
-                                    templateOptions: {label: 'Version : '}
                                 }
                             ]
                         }
@@ -142,9 +128,9 @@
                     background: 'deepBlue',
                     title: 'Registry Server : Overlay_members',
                     model: {
-                        overlay_members: vm.details.topology.registry.registry_configuration.overlay_members,
-                        host_name: vm.details.topology.registry.registry_configuration.overlay_members.host_name,
-                        port: vm.details.topology.registry.registry_configuration.overlay_members.port
+                        overlay_members: vm.config.topology.registry.registry_configuration.overlay_members,
+                        host_name: vm.config.topology.registry.registry_configuration.overlay_members.host_name,
+                        port: vm.config.topology.registry.registry_configuration.overlay_members.port
                     },
                     fieldsDisplay: [
                         {
@@ -194,8 +180,8 @@
                                                 }
                                             }
                                         ]
-                                    }
-/*                                    {
+                                    },
+                                    {
                                         elementAttributes: {
                                             layout: 'row',
                                             'layout-sm': 'row',
@@ -211,7 +197,7 @@
                                                 }
                                             }
                                         ]
-                                    }*/
+                                    }
                                 ]
                             }
                         }
@@ -261,9 +247,9 @@
                     background: 'yellow',
                     title: 'Registry Server',
                     model: {
-                        registry_implementation: vm.details.topology.registry.registry_implementation,
-                        group_name: vm.details.topology.registry.registry_configuration.group_name,
-                        group_password: vm.details.topology.registry.registry_configuration.group_password
+                        registry_implementation: vm.config.topology.registry.registry_implementation,
+                        group_name: vm.config.topology.registry.registry_configuration.group_name,
+                        group_password: vm.config.topology.registry.registry_configuration.group_password
                     },
                     fieldsDisplay: [
                         {
@@ -375,9 +361,9 @@
                     background: 'green',
                     title: 'Topology',
                     model: {
-                        name: vm.details.topology.domain.name,
-                        mode: vm.details.topology.domain.mode,
-                        description: vm.details.topology.domain.description
+                        name: vm.config.topology.domain.name,
+                        mode: vm.config.topology.domain.mode,
+                        description: vm.config.topology.domain.description
                     },
                     fieldsDisplay: [
                         {

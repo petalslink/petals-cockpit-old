@@ -12,11 +12,10 @@
 
         var service = {
             setSelectedComponentId: setSelectedComponentId,
-            getSelectedComponentId: getSelectedComponentId,
-            test: test
+            getSelectedComponentId: getSelectedComponentId
         };
 
-        var selectedComponentId = -1;
+        var selectedComponentId = '';
 
         return service;
 
@@ -28,10 +27,6 @@
         function getSelectedComponentId() {
             logger.debug('--- petals.service.js   getSelectedComponentId() : '+ selectedComponentId);
             return selectedComponentId;
-        }
-
-        function test() {
-            logger.debug('--- petals.service.js   test()');
         }
 
     }

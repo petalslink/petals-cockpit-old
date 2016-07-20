@@ -6,10 +6,10 @@
         .controller('ConfigServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['promiseDetails', 'configModalTile', 'logger'];
+    ControllerFunction.$inject = ['serverData', 'elementData', 'configModalTile', 'logger'];
 
     /* @ngInject */
-    function ControllerFunction(promiseDetails, configModalTile, logger) {
+    function ControllerFunction(serverData, elementData, configModalTile, logger) {
 
         var vm = this;
 
@@ -21,7 +21,8 @@
 
         function activate() {
             // init data with resolve from router
-            vm.details = promiseDetails;
+            vm.details = elementData;
+            vm.config = serverData;
 
             buildTiles();
         }
@@ -39,8 +40,7 @@
                     title: 'State',
                     model: {
                         state: vm.details.state,
-                        name: vm.details.name,
-                        description: vm.details.description
+                        name: vm.details.name
                     },
                     fields: [
                         {
@@ -53,13 +53,6 @@
                             type: 'details',
                             templateOptions: {
                                 label: 'Name : '
-                            }
-                        },
-                        {
-                            key: 'description',
-                            type: 'details2lines',
-                            templateOptions: {
-                                label: 'Description : '
                             }
                         }
                     ],
@@ -90,12 +83,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'input',
                                     templateOptions: {label: 'Name : ', 'required': true}
-                                },
-                                {
-                                    key: 'description',
-                                    className: 'flex-xs-100 flex-sm-100 flex-100',
-                                    type: 'input',
-                                    templateOptions: {label: 'Description : ', 'required': true}
                                 }
                             ]
                         }
@@ -107,8 +94,7 @@
                     background: 'imgGridServer',
                     title: 'Type',
                     model: {
-                        name: vm.details.componentType.name,
-                        version: vm.details.componentType.version
+                        name: vm.details.type
                     },
                     fields: [
                         {
@@ -116,14 +102,6 @@
                             className: 'colorWhite',
                             type: 'detailsCenter',
                             templateOptions: {}
-                        },
-                        {
-                            key: 'version',
-                            className: 'colorWhite',
-                            type: 'detailsCenter',
-                            templateOptions: {
-                                label: 'Version : '
-                            }
                         }
                     ],
                     fieldsModal: [
@@ -139,12 +117,6 @@
                                     className: 'flex-xs-100 flex-sm-100 flex-100',
                                     type: 'detailsCenter',
                                     templateOptions: {}
-                                },
-                                {
-                                    key: 'version',
-                                    className: 'flex-xs-100 flex-sm-100 flex-50',
-                                    type: 'detailsCenter',
-                                    templateOptions: {label: 'Version : '}
                                 }
                             ]
                         }
@@ -157,11 +129,11 @@
                     color: 'colorBlack',
                     title: 'Host',
                     model: {
-                        host: vm.details.host,
-                        jmx_port: vm.details.jmx_port,
-                        transport_port: vm.details.transport_port,
-                        user: vm.details.user,
-                        password: vm.details.password
+                        host: vm.config.host,
+                        jmx_port: vm.config.jmx_port,
+                        transport_port: vm.config.transport_port,
+                        user: vm.config.user,
+                        password: vm.config.password
                     },
                     fields: [
                         {
@@ -281,12 +253,12 @@
                     background: 'blue',
                     title: 'Topology',
                     model: {
-                        url: vm.details.topology.url,
-                        passphrase: vm.details.topology.passphrase,
-                        dynamic_lock_wait_time: vm.details.topology.dynamic_lock_wait_time,
+                        url: vm.config.topology.url,
+                        passphrase: vm.config.topology.passphrase,
+                        dynamic_lock_wait_time: vm.config.topology.dynamic_lock_wait_time,
                         pinger: '',
-                        start_delay: vm.details.topology.pinger.start_delay,
-                        period_delay: vm.details.topology.pinger.period_delay
+                        start_delay: vm.config.topology.pinger.start_delay,
+                        period_delay: vm.config.topology.pinger.period_delay
                     },
                     fields: [
                         {
@@ -391,14 +363,14 @@
                     color: 'colorBlack',
                     title: 'General Properties',
                     model: {
-                        data_basedir: vm.details.general.data_basedir,
-                        repository_path: vm.details.general.repository_path,
-                        work_path: vm.details.general.work_path,
-                        log_config_file: vm.details.general.log_config_file,
-                        task_timeout: vm.details.general.task_timeout,
-                        exchange_validation: vm.details.general.exchange_validation,
-                        classloaders_isolated: vm.details.general.classloaders_isolated,
-                        container_moves_lock_wait_time: vm.details.general.container_moves_lock_wait_time
+                        data_basedir: vm.config.general.data_basedir,
+                        repository_path: vm.config.general.repository_path,
+                        work_path: vm.config.general.work_path,
+                        log_config_file: vm.config.general.log_config_file,
+                        task_timeout: vm.config.general.task_timeout,
+                        exchange_validation: vm.config.general.exchange_validation,
+                        classloaders_isolated: vm.config.general.classloaders_isolated,
+                        container_moves_lock_wait_time: vm.config.general.container_moves_lock_wait_time
                     },
                     fields: [
                         {
@@ -534,13 +506,13 @@
                     color: 'colorBlack',
                     title: 'SSL Connections',
                     model: {
-                        key_password: vm.details.ssl.key_password,
+                        key_password: vm.config.ssl.key_password,
                         keystore: '',
-                        keystore_file: vm.details.ssl.keystore.file,
-                        keystore_password: vm.details.ssl.keystore.password,
+                        keystore_file: vm.config.ssl.keystore.file,
+                        keystore_password: vm.config.ssl.keystore.password,
                         truststore: '',
-                        truststore_file: vm.details.ssl.truststore.file,
-                        truststore_password: vm.details.ssl.truststore.password
+                        truststore_file: vm.config.ssl.truststore.file,
+                        truststore_password: vm.config.ssl.truststore.password
                     },
                     fields: [
                         {
@@ -757,18 +729,18 @@
                     title: 'Transporter Configuration',
                     model: {
                         queue: '',
-                        max_size: vm.details.transport.queue.max_size,
-                        offering_timeout: vm.details.transport.queue.offering_timeout,
+                        max_size: vm.config.transport.queue.max_size,
+                        offering_timeout: vm.config.transport.queue.offering_timeout,
                         tcp: '',
                         receivers: '',
-                        tcp_receivers_listening_interface: vm.details.transport.tcp.receivers.listening_interface,
-                        tcp_receivers_numbers: vm.details.transport.tcp.receivers.numbers,
-                        tcp_receivers_keep_alive: vm.details.transport.tcp.receivers.keep_alive,
+                        tcp_receivers_listening_interface: vm.config.transport.tcp.receivers.listening_interface,
+                        tcp_receivers_numbers: vm.config.transport.tcp.receivers.numbers,
+                        tcp_receivers_keep_alive: vm.config.transport.tcp.receivers.keep_alive,
                         senders: '',
-                        tcp_senders_numbers: vm.details.transport.tcp.senders.numbers,
-                        tcp_senders_connection_timeout: vm.details.transport.tcp.senders.connection_timeout,
-                        tcp_senders_timeout: vm.details.transport.tcp.senders.timeout,
-                        tcp_senders_evictor_delay: vm.details.transport.tcp.senders.evictor_delay
+                        tcp_senders_numbers: vm.config.transport.tcp.senders.numbers,
+                        tcp_senders_connection_timeout: vm.config.transport.tcp.senders.connection_timeout,
+                        tcp_senders_timeout: vm.config.transport.tcp.senders.timeout,
+                        tcp_senders_evictor_delay: vm.config.transport.tcp.senders.evictor_delay
                     },
                     fields: [
                         {
@@ -997,11 +969,11 @@
                     background: 'gray',
                     title: 'Router',
                     model: {
-                        strategy: vm.details.router.strategy,
-                        send_attempt: vm.details.router.send_attempt,
-                        send_delay: vm.details.router.send_delay,
-                        traffic_stop_delay: vm.details.router.traffic_stop_delay,
-                        traffic_pause_delay: vm.details.router.traffic_pause_delay
+                        strategy: vm.config.router.strategy,
+                        send_attempt: vm.config.router.send_attempt,
+                        send_delay: vm.config.router.send_delay,
+                        traffic_stop_delay: vm.config.router.traffic_stop_delay,
+                        traffic_pause_delay: vm.config.router.traffic_pause_delay
                     },
                     fields: [
                         {
@@ -1098,10 +1070,10 @@
                     color: 'colorBlack',
                     title: 'Registry Client Configuration',
                     model: {
-                        registry_implementation: vm.details.registry.registry_implementation,
+                        registry_implementation: vm.config.registry.registry_implementation,
                         registry_parameters: '',
                         map_cache: '',
-                        max_size: vm.details.registry.registry_parameters.map_cache.max_size
+                        max_size: vm.config.registry.registry_parameters.map_cache.max_size
                     },
                     fields: [
                         {
@@ -1168,8 +1140,8 @@
                     color: 'colorBlack',
                     title: 'System Recovery Service',
                     model: {
-                        corepoolsize: vm.details.recovery.corepoolsize,
-                        keepalivetime: vm.details.recovery.keepalivetime
+                        corepoolsize: vm.config.recovery.corepoolsize,
+                        keepalivetime: vm.config.recovery.keepalivetime
                     },
                     fields: [
                         {
@@ -1212,8 +1184,8 @@
                     color: 'colorBlack',
                     title: 'Embedded Registry Server Extension',
                     model: {
-                        activation: vm.details.embedded_registry_overlay.activation,
-                        port: vm.details.embedded_registry_overlay.port
+                        activation: vm.config.embedded_registry_overlay.activation,
+                        port: vm.config.embedded_registry_overlay.port
                     },
                     fields: [
                         {
@@ -1258,10 +1230,10 @@
                     color: 'colorBlack',
                     title: 'Autoloader Extension',
                     model: {
-                        activation: vm.details.autoloader.activation,
-                        scan_period: vm.details.autoloader.scan_period,
-                        path_install: vm.details.autoloader.path_install,
-                        path_installed: vm.details.autoloader.path_installed
+                        activation: vm.config.autoloader.activation,
+                        scan_period: vm.config.autoloader.scan_period,
+                        path_install: vm.config.autoloader.path_install,
+                        path_installed: vm.config.autoloader.path_installed
                     },
                     fields: [
                         {

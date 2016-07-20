@@ -4,13 +4,16 @@
 
     angular.module('app.workspace')
         .controller('WorkspaceController', ControllerFunction)
-        .service('dataWkspceService', dataWkspceService);
+        .factory('dataWkspceService', dataWkspceService);
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['dataWkspceService'];
+    ControllerFunction.$inject = ['$stateParams'];
     /* @ngInject */
-    function ControllerFunction(dataWkspceService) {
+    function ControllerFunction($stateParams) {
         var vmWkspce = this;
+
+        vmWkspce.details = {};
+
         vmWkspce.dataNav = [
             {
                 Locked: false,
@@ -34,7 +37,8 @@
         activate();
 
         function activate() {
-            vmWkspce.infoSelected = dataWkspceService.getInfoSelect();
+            vmWkspce.details = $stateParams.element;
+            //vmWkspce.infoSelected = dataWkspceService.getInfoSelect();
 
         }
     }
