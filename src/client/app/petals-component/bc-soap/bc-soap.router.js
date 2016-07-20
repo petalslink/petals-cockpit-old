@@ -31,8 +31,8 @@
                     bcsoapData: [ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
                         return dataservice.getPetalsComponent($stateParams.id);
                     }],
-                    elementData: ['$stateParams', function($stateParams){
-                        return $stateParams.element;
+                    elementData: ['$stateParams', 'workspaceData', function($stateParams, wsData){
+                        return wsData.getComponentById($stateParams.id);
                     }]
                 },
                 onEnter: ['logger', function (logger) {

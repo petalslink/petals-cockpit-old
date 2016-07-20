@@ -13,9 +13,6 @@
         $stateProvider
             .state('home.workspace.petals.server', {
                 url: '/server/:id',
-                params: {
-                    element: null
-                },
                 views: {
                     'petals-nav-console': {
                         templateUrl: 'src/client/app/petals-component/server/server.html',
@@ -31,8 +28,8 @@
                     serverData:[ 'dataservice', '$stateParams', function(dataservice, $stateParams) {
                         return dataservice.getPetalsComponent($stateParams.id);
                     }],
-                    elementData: ['$stateParams', function($stateParams){
-                        return $stateParams.element;
+                    elementData: ['$stateParams', 'workspaceData', function($stateParams, wsData){
+                        return wsData.getComponentById($stateParams.id);
                     }]
                 },
                 onEnter: ['logger', function (logger) {

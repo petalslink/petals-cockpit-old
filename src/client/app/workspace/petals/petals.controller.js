@@ -22,7 +22,6 @@
         vmPetals.addTreeComponent = function (component) {addTreeComponent(component);};
         vmPetals.changeTitle = function (component) {changeTitle(component);};
         vmPetals.deleteTreeComponent = function (component) {deleteTreeComponent(component);};
-        vmPetals.getComponentById = function (id) {return getComponentById(id);};
         vmPetals.mayAddSubComponent = function (component) {return component.mayAddSubComponent;};
         vmPetals.moveDown = function (component) {moveDown(component);};
         vmPetals.moveUp = function (component) {moveUp(component);};
@@ -44,7 +43,7 @@
 
         function selectComponentById(id) {
             if (id) {
-                var selectedChild = getComponentById(id);
+                var selectedChild = vmPetals.data.getComponentById(id);
 
                 if (selectedChild) {
                     // unselect previous selected component
@@ -247,28 +246,6 @@
             }
         }
 
-        function getComponentById(id) {
-            return walk(vmPetals.data);
-
-            function walk(componentData) {
-                if (componentData) {
-                    if (componentData.id === id) {
-                        return componentData;
-                    } else {
-                        if (componentData.children) {
-                            for (var i = 0; i < componentData.children.length; i++) {
-                                var searchInChild = walk(componentData.children[i]);
-                                if (searchInChild) {
-                                    return searchInChild;
-                                }
-                            }
-                        }
-                    }
-                }
-                return null;
-            }
-        }
-
         function moveDown(component) {
             function walk(target) {
                 var children = target.children,
@@ -324,6 +301,7 @@
                 vmPetals.selectedChild.lastState = $state.current.name;
             }
 
+            // TODO what is this doing here?
             if (!component.typeData) {
                 // component doesn't exist anymore due to configuration change
                 //todo unselect this component and select the first component available
@@ -335,6 +313,7 @@
             } else {
                 component.mayAddSubComponent = !!component.typeData.contains;
             }
+
             // goto his state
             var nextState = '';
             if (component.lastState) {
@@ -342,7 +321,7 @@
             } else {
                 nextState = component.typeData.type.state;
             }
-            $state.go(nextState, {id: component.id, element: component}).then(function () {
+            $state.go(nextState, {id: component.id}).then(function () {
                     // if success Set selection for Workspace
                     // TODO factor with petals.router.js on success selected component id
                     selectComponentById(component.id);
