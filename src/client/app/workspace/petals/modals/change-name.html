@@ -5,16 +5,16 @@
                      md-svg-icon="mdicons:border-color">
             </md-icon>
             <span flex></span>
-            <h2>Change title of <b>'{{ vmModal.modalTitle }}'</b></h2>
+            <h2>Change title of <b>'{{ vmModal.modalName }}'</b></h2>
             <span flex></span>
         </md-toolbar>
         <md-card layout="column" layout-padding flex>
             <md-input-container aria-label="Enter title" class="md-block md-accent">
-                <label>New title :</label>
-                <input name="title" ng-model="vmModal.data.title"
+                <label>New name :</label>
+                <input name="name" ng-model="vmModal.data.name"
                        type="text"  md-maxlength="20" required>
-                <div ng-messages="componentChangeNameForm.title.$error"
-                     ng-show="componentChangeNameForm.title.$dirty">
+                <div ng-messages="componentChangeNameForm.name.$error"
+                     ng-show="componentChangeNameForm.name.$dirty">
                     <div ng-message="required">Title is required.</div>
                     <div ng-message="md-maxlength">The new title has to be less than 20 characters long.</div>
                 </div>
@@ -24,7 +24,7 @@
                 <md-button aria-label="Valid" ng-click="vmModal.validDialog();"
                            class="md-primary" ng-disabled="componentChangeNameForm.$invalid"
                            ng-class="{'md-raised md-hue-1': (componentChangeNameForm.$dirty && componentChangeNameForm.$valid) }">
-                    Change title
+                    Change name
                 </md-button>
                 <md-button aria-label="Cancel" ng-click="vmModal.closeDialog()">
                     Cancel
