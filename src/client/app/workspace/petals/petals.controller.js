@@ -7,12 +7,11 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$rootScope', '$state', '$mdDialog', 'logger',
-        'workspaceData', 'dataWkspceService', 'petalsService'];
+    ControllerFunction.$inject = ['$state', '$mdDialog', 'logger', 'workspaceData', 'petalsService', '$stateParams',
+        'dataservice'];
 
     /* @ngInject */
-    function ControllerFunction($rootScope, $state, $mdDialog, logger, workspaceData,
-                                dataWkspceService, petalsService) {
+    function ControllerFunction($state, $mdDialog, logger, workspaceData, petalsService, $stateParams, dataservice) {
         var vmPetals = this;
 
         vmPetals.data = {};
@@ -113,7 +112,7 @@
                 component.children.push({
                     id: 999,
                     name: newComponent.name,
-                    typeData: newComponent.component.typeData,
+                    componentType: newComponent.component.typeData,
                     state: 'undeployed',
                     display: 'empty',
                     //selectionChain: component.selectionChain + '/' + newComponent.name,
@@ -130,6 +129,7 @@
                 vmModal.parentName = localParentName;
                 vmModal.choiceList = localChoiceList;
                 vmModal.myChoice = {};
+
                 vmModal.changeSelected = function () {
                     changeSelected();
                 };
@@ -154,58 +154,52 @@
 
                 function changeSelected() {
                     vmModal.newComponent.name = vmModal.myChoice.name + '-';
-                    vmModal.newComponent.component.typeData = vmModal.myChoice;
+                    vmModal.newComponent.component = vmModal.myChoice;
                 }
             }
 
         }
 
         function changeTitle(component) {
-            var data = {};
-            data.name = component.name;
 
             $mdDialog.show({
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
                 templateUrl: 'src/client/app/workspace/petals/modals/change-name.html',
-                locals: {localData: data},
+                locals: {localData: component},
                 controller: DialogController,
                 controllerAs: 'vmModal'
             }).then(function () {
-                component.name = data.name;
+                $mdDialog.hide();
             });
 
-            DialogController.$inject = ['$mdDialog', 'localData'];
+            DialogController.$inject = ['$mdDialog', 'localData', 'dataservice'];
             /* @ngInject */
-            function DialogController($mdDialog, localData) {
+            function DialogController($mdDialog, localData, dataservice) {
                 var vmModal = this;
-                vmModal.data = localData;
                 vmModal.modalName = localData.name;
+
                 vmModal.closeDialog = function () {
                     $mdDialog.cancel();
                 };
                 vmModal.validDialog = function () {
-                    $mdDialog.hide();
+                    var element = {};
+                    element.name = localData.name;
+                    return dataservice.updateElement(element);
                 };
-
-                activate();
-
-                function activate() {
-                }
             }
         }
 
         function deleteTreeComponent(component) {
-            var data = {};
-            data.name = component.name;
-
             $mdDialog.show({
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
                 templateUrl: 'src/client/app/workspace/petals/modals/delete-component.html',
-                locals: {localData: data},
+                locals: {localData: component},
                 controller: DialogController,
                 controllerAs: 'vmModal'
+            }).then(function () {
+                $mdDialog.hide();
             }).then(function () {
                 function walk(target) {
                     var children = target.children;
@@ -231,18 +225,13 @@
             function DialogController($mdDialog, localData) {
                 var vmModal = this;
                 vmModal.modalName = localData.name;
+
                 vmModal.closeDialog = function () {
                     $mdDialog.cancel();
                 };
                 vmModal.validDialog = function () {
-                    $mdDialog.hide();
+                    return dataservice.deleteElement($stateParams.id);
                 };
-
-                activate();
-
-                function activate() {
-                }
-
             }
         }
 
@@ -266,7 +255,6 @@
                     }
                 }
             }
-
             walk(vmPetals.data);
         }
 
@@ -290,7 +278,6 @@
                     }
                 }
             }
-
             walk(vmPetals.data);
         }
 
@@ -351,7 +338,6 @@
                 }
             }
         }
-
 
     }
 

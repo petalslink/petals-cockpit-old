@@ -7,10 +7,10 @@
 
 
     // ----- directiveFunction -----
-    serviceFunction.$inject = ['$mdDialog'];
+    serviceFunction.$inject = ['$mdDialog', 'logger'];
 
     /* @ngInject */
-    function serviceFunction($mdDialog) {
+    function serviceFunction($mdDialog, logger) {
 
 
         var service = {
@@ -28,17 +28,14 @@
                 locals: {localData: tile},
                 controller: DialogController,
                 controllerAs: 'vmModal'
-            }).then(function () {
-                // TODO save data
-            }, function() {
+            }).catch(function() {
                 // reset data when exit without update
                 tile.options.resetModel();
-
             });
 
-            DialogController.$inject = ['$mdDialog', 'localData'];
+            DialogController.$inject = ['$mdDialog', 'localData', 'dataservice', '$stateParams'];
             /* @ngInject */
-            function DialogController($mdDialog, localData) {
+            function DialogController($mdDialog, localData, dataservice, $stateParams) {
                 var vmModal = this;
 
                 vmModal.tile = localData;
@@ -47,7 +44,15 @@
                     $mdDialog.cancel();
                 };
                 vmModal.validDialog = function () {
-                    $mdDialog.hide();
+                    var element = {};
+                    element.id = $stateParams.id;
+                    element.config = localData.model;
+                    return dataservice.updateElement(element)
+                        .then(function() {
+                            $mdDialog.hide();
+                        }, function(res) {
+                            logger.error('Impossible to update element: '+res);
+                        });
                 };
             }
 

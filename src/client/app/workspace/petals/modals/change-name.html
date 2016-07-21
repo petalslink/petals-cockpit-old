@@ -11,7 +11,7 @@
         <md-card layout="column" layout-padding flex>
             <md-input-container aria-label="Enter title" class="md-block md-accent">
                 <label>New name :</label>
-                <input name="name" ng-model="vmModal.data.name"
+                <input name="name" ng-model="vmModal.modalName"
                        type="text"  md-maxlength="20" required>
                 <div ng-messages="componentChangeNameForm.name.$error"
                      ng-show="componentChangeNameForm.name.$dirty">

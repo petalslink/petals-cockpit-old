@@ -5,10 +5,10 @@
         .module('app.core')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', '$location', '$q', 'exception', 'logger'];
+    dataservice.$inject = ['$http', '$q', 'exception', 'logger'];
 
     /* @ngInject */
-    function dataservice($http, $location, $q, exception, logger) {
+    function dataservice($http, $q, exception, logger) {
         /* jshint validthis:true */
         var readyPromise;
 
@@ -16,6 +16,8 @@
             getPetalsComponent: getPetalsComponent,
             getPetalsComponents: getPetalsComponents,
             getPetalsComponentConfig: getPetalsComponentConfig,
+            updateElement: updateElement,
+            deleteElement: deleteElement,
             ready: ready
         };
 
@@ -23,8 +25,7 @@
 
         function getPetalsComponent(id) {
             return $http.get('/api/workspace/Demo/element/' + id)
-                .then(getPetalsComponentComplete,
-                      getPetalsComponentFailed);
+                .then(getPetalsComponentComplete, getPetalsComponentFailed);
 
             function getPetalsComponentComplete(data) {
                 return data.data.config;
@@ -32,16 +33,61 @@
 
             function getPetalsComponentFailed(e) {
                 logger.error('****** getPetalsComponentFailed' + e.data.description);
-                //todo nothing !
-                $location.url('/');
-                return exception.catcher('XHR Failed for getPetalsComponent')(e);
+                exception.catcher('XHR Failed for getPetalsComponent')(e);
+                return $q.reject(e);
+            }
+        }
+        // Update name data element with PUT
+        function updateNameElement(element) {
+            return $http.put('/api/workspace/Demo/element/' + element.id, element)
+                .then(updateNameElementComplete, updateElementFailed);
+
+            function updateNameElementComplete(data) {
+                return data.data;
+            }
+
+            function updateElementFailed(e) {
+                logger.error('****** updateElementFailed' + e.data.description);
+                exception.catcher('Failed to updateElement')(e);
+                return $q.reject(e);
+            }
+        }
+        
+        // Update data element with PUT
+        function updateElement(element) {
+            return $http.put('/api/workspace/Demo/element/' + element.id, element)
+                .then(updateElementComplete, updateElementFailed);
+
+            function updateElementComplete(data) {
+                return data.data;
+            }
+
+            function updateElementFailed(e) {
+                logger.error('****** updateElementFailed' + e.data.description);
+                exception.catcher('Failed to updateElement')(e);
+                return $q.reject(e);
+            }
+        }
+
+        // Delete data element with DELETE
+        function deleteElement(id) {
+            return $http.put('/api/workspace/Demo/element/' + id)
+                .then(deleteElementComplete, deleteElementFailed);
+
+            function deleteElementComplete(data) {
+                return data.data;
+            }
+
+            function deleteElementFailed(e) {
+                logger.error('****** deleteElementFailed' + e.data.description);
+                exception.catcher('Failed to deleteElement')(e);
+                return $q.reject(e);
             }
         }
 
         function getPetalsComponents() {
             return $http.get('/api/workspace/Demo/elements')
-                .then(getPetalsComponentsComplete,
-                      getPetalsComponentsFailed);
+                .then(getPetalsComponentsComplete, getPetalsComponentsFailed);
 
             function getPetalsComponentsComplete(data) {
                 return data.data;
@@ -49,13 +95,6 @@
 
             function getPetalsComponentsFailed(e) {
                 logger.error('****** getPetalsComponentsFailed' + e.data.description);
-                //todo nothing !
-/*
-                $location.url('/');
-*/
-/*
-                return exception.catcher('XHR Failed for getPetalsComponent')(e);
-*/
                 exception.catcher('XHR Failed for getPetalsComponent')(e);
                 return $q.reject(e);
             }
@@ -72,7 +111,8 @@
 
             function getPetalsComponentConfigFailed(e) {
                 logger.error('****** getPetalsComponentConfigFailed'+ e.data.description);
-                return exception.catcher('XHR Failed for getPetalsComponent')(e);
+                exception.catcher('XHR Failed for getPetalsComponent')(e);
+                return $q.reject(e);
             }
         }
 
