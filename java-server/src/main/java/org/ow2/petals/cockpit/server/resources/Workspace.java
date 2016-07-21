@@ -40,6 +40,8 @@ import com.allanbank.mongodb.MongoCollection;
 import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.Element;
+import com.allanbank.mongodb.bson.builder.BuilderFactory;
+import com.allanbank.mongodb.bson.builder.DocumentBuilder;
 import com.allanbank.mongodb.bson.element.ArrayElement;
 import com.allanbank.mongodb.bson.element.DocumentElement;
 import com.allanbank.mongodb.bson.element.ObjectId;
@@ -100,7 +102,19 @@ public class Workspace {
             throw new WebApplicationException(Status.NOT_FOUND);
         } else {
             final DocumentElement config = element.get(DocumentElement.class, "config");
-            return Response.ok(StrictJson.serialize(config.getDocument())).build();
+
+            final DocumentBuilder result = BuilderFactory.start();
+
+            result.add("id", element.get(ObjectIdElement.class, "_id").getId().toHexString());
+            result.add("name", element.get("name"));
+
+            if (config != null) {
+                result.add(config);
+            } else {
+                result.push("config");
+            }
+
+            return Response.ok(StrictJson.serialize(result)).build();
         }
     }
 

@@ -27,7 +27,7 @@
                       getPetalsComponentFailed);
 
             function getPetalsComponentComplete(data) {
-                return data.data;
+                return data.data.config;
             }
 
             function getPetalsComponentFailed(e) {
