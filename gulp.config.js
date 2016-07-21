@@ -98,7 +98,7 @@ module.exports = {
     args: require('yargs').argv,
 
     // --- Utilities ---
-    log: function log(msg) {
+    log: function(msg) {
         if (typeof(msg) === 'object') {
             for (var item in msg) {
                 if (msg.hasOwnProperty(item)) {
@@ -107,6 +107,17 @@ module.exports = {
             }
         } else {
             $.util.log($.util.colors.blue(msg));
+        }
+    },
+    err: function(msg) {
+        if (typeof(msg) === 'object') {
+            for (var item in msg) {
+                if (msg.hasOwnProperty(item)) {
+                    $.util.log($.util.colors.red(msg[item]));
+                }
+            }
+        } else {
+            $.util.log($.util.colors.red(msg));
         }
     }
 

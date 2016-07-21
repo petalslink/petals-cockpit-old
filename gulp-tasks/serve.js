@@ -7,20 +7,28 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 var modRewrite = require('connect-modrewrite');
 var spawn = require('child_process').spawn;
-var exec = require('child_process').exec;
 var mkdirs = require('mkdirs');
+var os = require('os');
 
 module.exports = function (config) {
 
     gulp.task('populate-demo', [], function () {
-        exec('mvn -f java-server compile dependency:properties exec:exec -Dcockpit.exec.command=populate-demo',
-            function (error, stdout, stderr) {
-                if (error) {
-                    config.log('exec error: ' + error);
-                }
-                console.log('stdout: ' + stdout);
-                console.log('stderr: ' + stderr);
-            });
+        runCommand('mvn', 
+                ['-f',
+                 'java-server',
+                 'compile',
+                 'dependency:properties',
+                 'exec:exec',
+                 '-Dcockpit.exec.command=populate-demo'
+                 ]);
+    });
+    
+    gulp.task('serve-mongod', [], function() {
+        serveMongod();
+    });
+    
+    gulp.task('serve-java', [], function() {
+        serveJava();
     });
 
     gulp.task('serve-dev', ['inject','vet'], function () {
@@ -31,20 +39,51 @@ module.exports = function (config) {
         serve(false /*isDev*/);
     });
 
-    var runCommand = function(command, args, name) {
+    function runCommand(command, args, name) {
+        
         config.log('Starting '+name+': '+command+' '+args);
+        
         var p = spawn(command, args);
-        p.stdout.on('data', function(data) {
-            config.log(name+': '+data);
-        });
-        p.stderr.on('data', function(data) {
-            config.log(name+' (err): '+data);
-        });
+        
+        p.stdout.on('data', function(data) { log(data, config.log); });
+        p.stderr.on('data', function(data) { log(data, config.err); });
         p.on('close', function(code) {
-            config.log('child process exited with code '+code);
+            if (code > 0) {
+                throw new Error('child process exited with code '+code);
+            }
         });
+        
         return p;
-    };
+        
+        function log(data, logger) {
+            data.toString().split(os.EOL).forEach(function(l) {
+                if (l.trim().length > 0) {
+                    logger(name+': '+l);
+                }
+            });
+        }
+    }
+    
+    function serveMongod() {
+        var dbDir = config.dbDir;
+        mkdirs(dbDir);
+        mkdirs(dbDir+'/data');
+        runCommand('mongod', ['--dbpath', dbDir+'/data'], 'mongo');
+    }
+    
+    function serveJava(onStart) {
+        var p = runCommand('mvn', ['-f', 'java-server', 'compile', 'dependency:properties', 'exec:exec'], 'server');
+        
+        if (onStart) {
+            var cb = function(data) {
+                if (data.indexOf('Started Petals Cockpit') > -1) {
+                    p.stdout.removeListener('data', cb);
+                    onStart();
+                }
+            };
+            p.stdout.on('data', cb);
+        }
+    }
 
     /**
      * Start BrowserSync
@@ -54,19 +93,11 @@ module.exports = function (config) {
         var port = process.env.PORT || config.defaultPort;
 
         if (isDev) {
-            var dbDir = config.dbDir;
-            mkdirs(dbDir);
-            mkdirs(dbDir+'/data');
-            runCommand('mongod', ['--dbpath', dbDir+'/data'], 'mongo');
+            serveMongod();
         }
 
-        var p = runCommand('mvn', [ '-f', 'java-server', 'compile', 'dependency:properties', 'exec:exec'], 'server');
-
-        // TODO remove listener once BS is started
-        p.stdout.on('data', function(data) {
-            if (data.indexOf('Started Petals Cockpit') > -1) {
-                startBrowserSync(isDev);
-            }
+        serveJava(function() {
+            startBrowserSync(isDev);
         });
 
         function startBrowserSync(isDev) {
