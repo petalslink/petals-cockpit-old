@@ -31,15 +31,20 @@
         <!-- Provided by dependency:properties -->
         <quasar.path>${co.paralleluniverse:quasar-core:jar:jdk8}</quasar.path>
 
-        <dropwizard.version>1.0.0-rc4</dropwizard.version>
+        <dropwizard.version>0.9.3</dropwizard.version>
         <comsat.version>0.7.0</comsat.version>
         <quasar.version>0.7.5</quasar.version>
-        
+
         <cockpit.exec.command>server</cockpit.exec.command>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>19.0</version>
+            </dependency>
             <dependency>
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-bom</artifactId>
