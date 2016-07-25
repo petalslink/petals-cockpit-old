@@ -26,13 +26,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.jdt.annotation.Nullable;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration.Conf;
-import org.ow2.petals.cockpit.server.utils.StrictJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +84,7 @@ public class Workspace {
     @GET
     @Path("/element/{eid}")
     @Suspendable
-    public Response getElementConfiguration(@PathParam("id") String wsId, @PathParam("eid") String elementId) {
+    public DocumentBuilder getElementConfiguration(@PathParam("id") String wsId, @PathParam("eid") String elementId) {
 
         final MongoCollection elements = db.getCollection("workspace-elements");
 
@@ -114,7 +112,7 @@ public class Workspace {
                 result.push("config");
             }
 
-            return Response.ok(StrictJson.serialize(result)).build();
+            return result;
         }
     }
 

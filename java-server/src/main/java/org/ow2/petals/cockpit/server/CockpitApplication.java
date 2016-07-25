@@ -33,6 +33,7 @@ import org.ow2.petals.cockpit.server.datatypes.UserData;
 import org.ow2.petals.cockpit.server.filters.AuthenticationFilter;
 import org.ow2.petals.cockpit.server.resources.Sessions;
 import org.ow2.petals.cockpit.server.resources.Workspace;
+import org.ow2.petals.cockpit.server.utils.DocumentAssignableWriter;
 
 import com.allanbank.mongodb.MongoDatabase;
 import com.codahale.metrics.health.HealthCheck;
@@ -99,6 +100,7 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
 
         // see below
         environment.jersey().register(new AuthFeature());
+        environment.jersey().register(new DocumentAssignableWriter());
 
         assert factory != null;
         final WorkspaceElementConfiguration types = factory.build(new ResourceConfigurationSourceProvider(),
