@@ -40,6 +40,10 @@ db/
 .classpath
 target/
 
+# Ignore Visual Studio Code
+.vscode/
+jsconfig.json
+
 # Compiled source #
 ###################
 *.com
