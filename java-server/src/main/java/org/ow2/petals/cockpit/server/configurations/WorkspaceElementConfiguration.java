@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.validation.Valid;
+
 import org.eclipse.jdt.annotation.Nullable;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -81,16 +83,12 @@ public class WorkspaceElementConfiguration {
         private String name = "";
 
         @NotEmpty
-        private final String icon;
+        @JsonProperty
+        private String icon = "";
 
         @NotEmpty
-        private final String state;
-
-        @JsonCreator
-        public Type(@JsonProperty("icon") String icon, @JsonProperty("state") String state) {
-            this.icon = icon;
-            this.state = state;
-        }
+        @JsonProperty
+        private String state = "";
 
         void setName(String name) {
             this.name = name;
@@ -112,17 +110,23 @@ public class WorkspaceElementConfiguration {
     public static class Conf {
 
         @NotEmpty
-        private final String name;
+        @JsonProperty
+        private String name = "";
 
-        private final List<Conf> contains;
+        @Valid
+        @JsonProperty
+        private List<Conf> contains = Collections.emptyList();
 
         @Nullable
         private Type type;
 
-        @JsonCreator
-        public Conf(@JsonProperty("name") String name, @JsonProperty("contains") List<Conf> contains) {
+        public Conf() {
+            // used by jackson
+        }
+
+        Conf(String name, List<Conf> contains) {
             this.name = name;
-            this.contains = contains == null ? Collections.emptyList() : contains;
+            this.contains = contains;
         }
 
         public String getName() {

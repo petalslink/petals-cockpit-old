@@ -49,45 +49,30 @@ public class CockpitConfiguration extends Configuration {
 
     @Valid
     @NotNull
+    @JsonProperty("mongo")
     private MongoDatabaseFactory database = new MongoDatabaseFactory();
 
-    @JsonProperty("mongo")
     public MongoDatabaseFactory getDatabaseFactory() {
         return database;
-    }
-
-    @JsonProperty("mongo")
-    public void setDatabaseFactory(MongoDatabaseFactory database) {
-        this.database = database;
     }
 
     public static class MongoDatabaseFactory {
 
         @Valid
         @NotNull
+        @JsonProperty
         private List<MongoServer> servers = new ArrayList<>();
 
         @NotEmpty
+        @JsonProperty
         private String database = "";
 
-        @JsonProperty
         public String getDatabase() {
             return database;
         }
 
-        @JsonProperty
-        public void setDatabase(String database) {
-            this.database = database;
-        }
-
-        @JsonProperty
         public List<MongoServer> getServers() {
             return servers;
-        }
-
-        @JsonProperty
-        public void setServers(List<MongoServer> connections) {
-            this.servers = connections;
         }
 
         @SuppressWarnings("resource")
@@ -131,30 +116,20 @@ public class CockpitConfiguration extends Configuration {
         public static class MongoServer {
 
             @NotEmpty
+            @JsonProperty
             private String host = "";
 
             @Min(1)
             @Max(65535)
+            @JsonProperty
             private int port = 27017;
 
-            @JsonProperty
             public String getHost() {
                 return host;
             }
 
-            @JsonProperty
-            public void setHost(String host) {
-                this.host = host;
-            }
-
-            @JsonProperty
             public int getPort() {
                 return port;
-            }
-
-            @JsonProperty
-            public void setPort(int port) {
-                this.port = port;
             }
         }
     }

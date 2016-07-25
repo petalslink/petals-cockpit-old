@@ -47,6 +47,7 @@ import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.Element;
 import com.allanbank.mongodb.bson.element.ArrayElement;
 import com.allanbank.mongodb.builder.QueryBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import co.paralleluniverse.fibers.Suspendable;
 import io.dropwizard.auth.Auth;
@@ -137,24 +138,18 @@ public class Sessions {
 class Authentication {
 
     @NotEmpty
+    @JsonProperty
     private String username = "";
 
     @NotEmpty
+    @JsonProperty
     private String password = "";
 
     public String getUsername() {
         return username;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
