@@ -53,6 +53,10 @@ module.exports = function (config) {
             }
         });
         
+        process.on('exit', function() {
+            p.kill();
+        });
+        
         return p;
         
         function log(data, logger) {
