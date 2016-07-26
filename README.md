@@ -3,7 +3,9 @@
 - This is a web application prototype to drive Petals ESB servers.
 - This app provides a starter project that implements best practices in coding, building and testing AngularJS applications using Material design. 
 
-Features include:
+## Technologies
+
+### Frontend
 
 - A well-organized component hierarchy starting from `approot`. Components are implemented using directives (no dangling controllers). This provides a good architectural direction until Angular 2.0 becomes available.
 - Follows [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide).
@@ -12,6 +14,12 @@ Features include:
 - Provides logging and exception handling frameworks with toaster notifications.
 - Provides a Gulp based build system – code changes are reflected in the browser immediately.
 - Uses Karma, Mocha and Chai for testing.
+
+### Backend
+
+- Uses Java 8
+- Uses [Dropwizard](http://www.dropwizard.io/) (Jetty/Jersey) for serving APIs.
+- Uses [Quasar/Comsat](http://docs.paralleluniverse.co/comsat/) for improved performances.
 
 ## Requirements
 
@@ -22,13 +30,15 @@ WebStorm was used to develop it, but any IDE should work. Everything you need is
        - on Windows, use the installer available at [nodejs.org](http://nodejs.org/)
        - On OSX you can alleviate the need to run as sudo by [following John Papa's instructions](http://jpapa.me/nomoresudo)
    - Open terminal
-   - Type `npm install -g node-inspector bower gulp`
+   - Type `npm install -g bower gulp`
    
 2. Install [Git](https://git-scm.com/)
 
 3. Install [MongoDB](https://docs.mongodb.com/manual/installation/)
 
-### Quick Start
+4. Install Java 8 and Maven
+
+## Quick Start
 
 Clone this repo
 ```
@@ -61,3 +71,18 @@ Petals cockpit starts and displays an authentication page in your browser :
 ![Authentication Popup](doc/authentication.png?raw=true)
 
 By default , we use 'admin', 'admin' to authenticate.
+
+### Running only the backend
+
+During tests, it can be needed to only run the backend (mongod and the API server):
+
+```
+$ gulp serve-mongod serve-java
+```
+
+### Populating the database with demo data
+
+A dataset is available for testing, it is easy to populate the database suing:
+```
+$ gulp serve-mongod populate-demo
+```
