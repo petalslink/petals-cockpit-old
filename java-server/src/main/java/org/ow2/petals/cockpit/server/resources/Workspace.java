@@ -20,6 +20,7 @@ package org.ow2.petals.cockpit.server.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -63,20 +64,17 @@ public class Workspace {
 
     private static final Logger LOG = LoggerFactory.getLogger(Workspace.class);
 
-    private final MongoDatabase db;
+    @Inject
+    private MongoDatabase db;
 
-    private WorkspaceElementConfiguration typeConf;
-
-    public Workspace(MongoDatabase db, WorkspaceElementConfiguration typeConf) {
-        this.db = db;
-        this.typeConf = typeConf;
-    }
+    @Inject
+    private WorkspaceElementConfiguration elementsConf;
 
     @GET
     @Path("/configuration")
     public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration() {
         // TODO shouldn't "default" be stored with the workspace?
-        final Conf conf = typeConf.getConfiguration("default-5.0");
+        final Conf conf = elementsConf.getConfiguration("default-5.0");
         assert conf != null;
         return conf;
     }
@@ -142,7 +140,7 @@ public class Workspace {
         assert type != null;
         final String id = ws.get(ObjectIdElement.class, "_id").getId().toHexString();
         assert id != null;
-        if (!typeConf.existsType(type)) {
+        if (!elementsConf.existsType(type)) {
             LOG.warn("Workspace element {} has unknown type {}", name, type);
         }
         final List<WorkspaceElement> children = buildChildren(ws, elements);

@@ -30,7 +30,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.ext.Provider;
 
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jetty.security.SecurityHandler;
@@ -49,12 +48,9 @@ import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
  * 
  * TODO or by using jetty's {@link SecurityHandler} (see {@link CockpitApplication})?
  * 
- * We need the {@link Provider} annotation for the {@link HttpServletRequest} to be injected.
- * 
  * @author vnoel
  *
  */
-@Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
 

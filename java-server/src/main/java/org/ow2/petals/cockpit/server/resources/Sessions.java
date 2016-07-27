@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -65,11 +66,8 @@ public class Sessions {
 
     private static final Logger LOG = LoggerFactory.getLogger(Sessions.class);
 
-    private final MongoDatabase db;
-
-    public Sessions(final MongoDatabase db) {
-        this.db = db;
-    }
+    @Inject
+    private MongoDatabase db;
 
     @POST
     @Path("/login")

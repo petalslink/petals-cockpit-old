@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jetty.security.SecurityHandler;
 import org.eclipse.jetty.server.session.SessionHandler;
 import org.glassfish.hk2.api.ServiceLocator;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.ServiceLocatorProvider;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.ow2.petals.cockpit.server.commands.PopulateDbCommand;
@@ -59,9 +60,6 @@ import io.dropwizard.setup.Environment;
  */
 public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
 
-    @Nullable
-    private ConfigurationFactory<WorkspaceElementConfiguration> factory;
-
     public static void main(String[] args) throws Exception {
         new CockpitApplication().run(args);
     }
@@ -76,16 +74,10 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
         assert bootstrap != null;
 
         bootstrap.addCommand(new PopulateDbCommand());
-
-        // setup a factory used to read yml (the prefix is needed but we of course don't use it)
-        factory = new DefaultConfigurationFactoryFactory<WorkspaceElementConfiguration>().create(
-                WorkspaceElementConfiguration.class, bootstrap.getValidatorFactory().getValidator(),
-                bootstrap.getObjectMapper(), "dw");
     }
 
     @Override
     public void fiberRun(CockpitConfiguration configuration, @Nullable Environment environment) throws Exception {
-
         assert environment != null;
 
         final MongoDatabase db = configuration.getDatabaseFactory().build(environment, true);
@@ -97,20 +89,30 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
 
         // activate session management in jetty
         environment.servlets().setSessionHandler(new SessionHandler());
+        
+        // setup a factory used to read yml (the prefix is needed but we of course don't use it)
+        final ConfigurationFactory<WorkspaceElementConfiguration> factory = new DefaultConfigurationFactoryFactory<WorkspaceElementConfiguration>()
+                .create(WorkspaceElementConfiguration.class, environment.getValidator(), environment.getObjectMapper(),
+                        "dw");
+        final WorkspaceElementConfiguration types = factory.build(new ResourceConfigurationSourceProvider(),
+                "configurations.yml");
 
+        environment.jersey().register(new AbstractBinder() {
+            @Override
+            protected void configure() {
+                bind(configuration).to(CockpitConfiguration.class);
+                bind(environment).to(Environment.class);
+                bind(types).to(WorkspaceElementConfiguration.class);
+                bind(db).to(MongoDatabase.class);
+            }
+        });
+        
         // see below
         environment.jersey().register(new AuthFeature());
         environment.jersey().register(new DocumentAssignableWriter());
 
-        assert factory != null;
-        final WorkspaceElementConfiguration types = factory.build(new ResourceConfigurationSourceProvider(),
-                "configurations.yml");
-
-        final Sessions sessResource = new Sessions(db);
-        final Workspace wsResource = new Workspace(db, types);
-
-        environment.jersey().register(sessResource);
-        environment.jersey().register(wsResource);
+        environment.jersey().register(new Sessions());
+        environment.jersey().register(new Workspace());
     }
 }
 
