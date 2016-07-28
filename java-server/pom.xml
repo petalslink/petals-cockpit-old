@@ -180,8 +180,8 @@
                     <executable>${java.home}/bin/java</executable>
                     <arguments>
                         <!-- Debug -->
-                        <!-- argument>-Xdebug<argument -->
-                        <!-- argument>-agentlib:jdwp=transport=dt_socket,server=y,address=8000<argument -->
+                        <!-- argument>-Xdebug</argument -->
+                        <!-- argument>-agentlib:jdwp=transport=dt_socket,server=y,address=8000</argument-->
 
                         <!-- Configure memory settings as needed -->
                         <!-- argument>-Xmx1000m</argument -->
