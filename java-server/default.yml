@@ -14,3 +14,8 @@ mongo:
   servers:
     - host: localhost
       port: 27017
+
+logging:
+  level: INFO
+  loggers:
+    org.ow2.petals.cockpit: DEBUG
