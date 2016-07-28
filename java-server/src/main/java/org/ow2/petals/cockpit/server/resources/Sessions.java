@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -55,12 +56,9 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.jersey.sessions.Session;
 
 /**
- * TODO why not have a session URL where we can post/delete and co for managing the session?
- * 
  * @author vnoel
- *
  */
-@Path("/auth")
+@Path("/session")
 @Produces(MediaType.APPLICATION_JSON)
 public class Sessions {
 
@@ -70,7 +68,6 @@ public class Sessions {
     private MongoDatabase db;
 
     @POST
-    @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Suspendable
     public Response login(@Valid Authentication auth, @Context HttpServletRequest request) {
@@ -87,8 +84,7 @@ public class Sessions {
         return Response.status(Status.UNAUTHORIZED).build();
     }
 
-    @GET
-    @Path("/logout")
+    @DELETE
     @PermitAll
     public Response logout(@Session(doNotCreate = true) HttpSession session, @Auth UserData user) {
         LOG.info("Invalidating {}", user.getUsername());
@@ -97,7 +93,6 @@ public class Sessions {
     }
 
     @GET
-    @Path("/status")
     @PermitAll
     public Response status(@Auth UserData user) {
         LOG.info("Returning infos for {}", user.getUsername());

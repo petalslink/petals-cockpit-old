@@ -18,7 +18,7 @@
             isAuthorized: isAuthorized
         };
 
-        $http.get('/api/auth/status').then(
+        $http.get('/api/session').then(
             function (res) {
                 Session.create(res.data.username, res.data.roles);
             },
@@ -29,7 +29,7 @@
         return AuthService;
 
         function login(credentials) {
-            return $http.post('/api/auth/login', credentials).then(
+            return $http.post('/api/session', credentials).then(
                 function (res) {
                     Session.create(res.data.username, res.data.roles);
                     logger.success('You are logged with ' + '"' + res.data.username + '"');
@@ -37,7 +37,7 @@
         }
 
         function logout() {
-            return $http.get('/api/auth/logout').then(
+            return $http.delete('/api/session').then(
                 function () {
                     Session.destroy();
                     logger.success('You are logged out');
