@@ -1,11 +1,10 @@
-<md-toolbar md-theme="navConsole-theme" ng-cloak>
-    <md-card class="md-toolbar-tools navConsoleBackground" layout-align="start center">
-        <md-button class="selectionCmdDefault" ng-repeat="button in vmBus.dataNavConsole"
+<md-toolbar md-scroll-shrink md-theme="navConsole-theme" layout-align="start center" layout="row" ng-cloak>
+    <div class="md-toolbar-tools">
+        <md-button ng-repeat="button in vmBus.dataNavConsole"
                    aria-label="{{ button.Label }}"
                    ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
-            <md-icon class="material-icons selectionCmdDefault" md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
-            <span flex></span>
+            <md-icon md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
             <span hide-xs>{{ button.Label }}</span>
         </md-button>
-    </md-card>
+    </div>
 </md-toolbar>
