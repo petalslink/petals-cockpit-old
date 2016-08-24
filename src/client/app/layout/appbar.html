@@ -1,25 +1,30 @@
-<md-toolbar md-scroll-shrink md-theme="core-theme" ng-cloak layout="row" ng-if="isAuthenticated()">
-    <div class="md-toolbar-tools md-accent">
+<md-toolbar md-theme="core-theme" layout="row" ng-if="isAuthenticated()" flex ng-cloak>
+    <div class="md-toolbar-tools">
         <md-button ng-click="vm.reloadWorkspace()">
             <img src="src/client/images/petals_cockpit.png" class="logoPetals"/>
             <md-tooltip md-direction="right">
                 Take The Control !
             </md-tooltip>
         </md-button>
-        <span flex></span>
-        <div class="md-toolbar-tools md-primary" layout-align="end center" flex-gt-sm flex-lt-sm="100">
-            <md-button class="md-accent" aria-label="name user logged" ng-show="isAuthenticated()">
-                <md-icon class="material-icons md-accent" aria-label="Logout" md-svg-icon="mdicons:account-circle"></md-icon>
-                Hey {{ userData.userId  }} !
-                <md-tooltip md-direction="bottom">You are logged!</md-tooltip>
-            </md-button>
-        </div>
-        <md-button ng-show="isAuthenticated()" ng-click="vm.logout()" class="md-fab md-mini md-accent">
-            <md-icon class="material-icons md-accent" aria-label="Logout" md-svg-icon="mdicons:power"></md-icon>
+    </div>
+
+    <div md-theme="sidenav-theme" class=" md-toolbar-tools" layout-align="end center" flex-gt-sm flex-lt-md="100">
+        <md-button class="md-primary customBtn" aria-label="name user logged" ng-show="isAuthenticated()">
+            <md-icon class="material-icons md-primary" aria-label="Logout"
+                     md-svg-icon="mdicons:account-circle"></md-icon>
+            {{ userData.userId }}
+            <md-tooltip md-direction="bottom">You are logged!</md-tooltip>
+        </md-button>
+
+        <md-button class="md-primary md-fab md-mini" ng-show="isAuthenticated()" ng-click="vm.logout()">
+            <md-icon class="material-icons iconMenuColorWhite" aria-label="Logout"
+                     md-svg-icon="mdicons:power"></md-icon>
             <md-tooltip md-direction="bottom">Logout</md-tooltip>
         </md-button>
-        <md-button class="md-icon-button md-accent" ui-sref="404">
-            <md-icon class="material-icons md-accent" aria-label="Open Menu" md-svg-icon="mdicons:dots-vertical"></md-icon>
+
+        <md-button class="md-primary md-fab md-mini" ui-sref="404">
+            <md-icon class="material-icons iconMenuColorWhite" aria-label="Open Menu"
+                     md-svg-icon="mdicons:dots-vertical"></md-icon>
             <md-tooltip md-direction="bottom">Menu</md-tooltip>
         </md-button>
     </div>
