@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -37,22 +37,7 @@
                 return $q.reject(e);
             }
         }
-        // Update name data element with PUT
-        function updateNameElement(element) {
-            return $http.put('/api/workspace/Demo/element/' + element.id, element)
-                .then(updateNameElementComplete, updateElementFailed);
 
-            function updateNameElementComplete(data) {
-                return data.data;
-            }
-
-            function updateElementFailed(e) {
-                logger.error('****** updateElementFailed' + e.data.description);
-                exception.catcher('Failed to updateElement')(e);
-                return $q.reject(e);
-            }
-        }
-        
         // Update data element with PUT
         function updateElement(element) {
             return $http.put('/api/workspace/Demo/element/' + element.id, element)
@@ -103,14 +88,14 @@
         function getPetalsComponentConfig() {
             return $http.get('/api/workspace/Demo/configuration')
                 .then(getPetalsComponentConfigComplete,
-                      getPetalsComponentConfigFailed);
+                    getPetalsComponentConfigFailed);
 
             function getPetalsComponentConfigComplete(data) {
                 return data.data;
             }
 
             function getPetalsComponentConfigFailed(e) {
-                logger.error('****** getPetalsComponentConfigFailed'+ e.data.description);
+                logger.error('****** getPetalsComponentConfigFailed' + e.data.description);
                 exception.catcher('XHR Failed for getPetalsComponent')(e);
                 return $q.reject(e);
             }
@@ -130,8 +115,12 @@
 
         function ready(promisesArray) {
             return getReady().then(
-                function() { return promisesArray ? $q.all(promisesArray) : readyPromise; },
-                function() { exception.catcher('"ready" function failed');}
+                function () {
+                    return promisesArray ? $q.all(promisesArray) : readyPromise;
+                },
+                function () {
+                    exception.catcher('"ready" function failed');
+                }
             );
         }
     }
