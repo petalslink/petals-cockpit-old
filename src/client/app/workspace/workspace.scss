@@ -6,31 +6,25 @@
     background-color: #222;
 }
 
-.toolbarCustom {
+md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) md-icon {
+    color: rgba(69, 39, 160, 1);
+    fill: rgba(69, 39, 160, 1);
+}
+
+md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) md-icon.iconMenuColorWhite {
+    color: rgba(255, 255, 255, 1);
+    fill: rgba(255, 255, 255, 1);
+}
+
+.navBar {
     z-index: 10;
     padding-top: 60px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.12);
 }
 
-.selectionDefault {
-    color: white !important;
-}
-
-.buttonMenu {
-    width: 20px;
-    margin-right: 8px;
-}
-
-.md-button.selection {
-    margin: 10px 0 !important;
-    padding: 3px 15px 3px 15px;
-    min-width: 100px;
-    color: #ff5e3e !important;
-    font-weight: bold ;
-    background-color: rgba(255, 255, 255, 0.88);
-    text-transform: uppercase !important;
-}
-
-a.md-button.md-menu-theme-theme.md-primary.md-raised, a.md-button.md-menu-theme-theme.md-primary.md-fab, .md-button.md-menu-theme-theme.md-primary.md-raised, .md-button.md-menu-theme-theme.md-primary.md-fab {
-    min-width: 150px;
-    max-width: 150px;
+.md-nav-bar.md-nav-item.md-menu-theme-theme.customBtnMenu {
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+    margin: 0;
 }

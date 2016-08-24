@@ -20,7 +20,8 @@
                     '': {
                         templateUrl: 'src/client/app/workspace/workspace.html',
                         controller: 'WorkspaceController',
-                        controllerAs: 'vmWkspce'
+                        controllerAs: 'vmWkspce',
+                        bindToController: true
                     }
                 },
                 onEnter: ['logger', function (logger) {

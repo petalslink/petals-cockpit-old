@@ -1,30 +1,25 @@
-<div layout="column" flex md-theme="core-theme" class="backgroundWrkspce">
-        <md-toolbar layout="row" layout-wrap class="md-accent toolbarCustom" md-theme="menu-theme">
-            <div class="md-toolbar-tools md-primary" layout="row" layout-align="start center" id="menu" flex-gt-sm flex-lt-sm="100">
-                <md-button class="md-primary selectionDefault buttonMenu" ng-click="toggleSidenav('left')"
-                           aria-label="Show" ng-controller="SidenavController" hide-gt-md>
-                    <md-icon class="material-icons md-accent" aria-label="Open Menu" md-svg-icon="mdicons:menu"></md-icon>
-                </md-button>
+<div md-theme="navConsole-theme" layout="column" flex class="backgroundWrkspce" ng-cloak>
 
-                </md-button>
-                <md-button class="selectionDefault" ng-repeat="btn in vmWkspce.dataNav"
-                           ui-sref="{{btn.UiSref}}" ui-sref-active="selection">
-                    {{ btn.Label }}
-                </md-button>
-            </div>
-            <div class="md-toolbar-tools md-primary" layout-align="end center" flex-gt-sm flex-lt-sm="100">
-                <md-button class="md-primary selectionDefault" aria-label="Selection">
-                    Selection: {{vmWkspce.infoSelected.value}}
-                </md-button>
-            </div>
-        </md-toolbar>
+    <md-toolbar class="navBar" layout="row" ng-if="isAuthenticated()" flex ng-cloak>
+        <div class="" layout-align="center center" flex>
+            <md-button flex layout-align="center center" class="" ng-click="toggleSidenav('left')"
+                       aria-label="Show" ng-controller="SidenavController" hide-gt-md>
+                <md-icon class="md-accent" aria-label="Open Menu" md-svg-icon="mdicons:menu"></md-icon>
+            </md-button>
+            <md-button class="" ng-repeat="btn in vmWkspce.dataNav" ui-sref="{{btn.UiSref}}"
+                       ui-sref-active="currentNavItem">
+                {{ btn.Label }}
+            </md-button>
+        </div>
+    </md-toolbar>
 
     <div layout="row" layout-fill flex>
         <tmpl-sidenav layout="column" layout-align="space-around stretch"></tmpl-sidenav>
         <div layout="column" layout-fill flex>
             <!-- Multi named view for managing sticky state -->
             <!-- named view for state workspace.petals -->
-            <ui-view name="petals-nav-console" class="navConsoleBackground" ng-show="$state.includes('home.workspace.petals')"></ui-view>
+            <ui-view name="petals-nav-console" class="navConsoleBackground"
+                     ng-show="$state.includes('home.workspace.petals')"></ui-view>
             <ui-view name="petals-console" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
             <!-- named view for state workspace.service -->
             <ui-view name="service-nav-console" ng-show="$state.includes('home.workspace.service')"></ui-view>

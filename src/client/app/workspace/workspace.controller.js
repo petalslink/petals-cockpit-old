@@ -40,6 +40,10 @@
             vmWkspce.details = $stateParams.element;
             //vmWkspce.infoSelected = dataWkspceService.getInfoSelect();
 
+            vmWkspce.$onInit = function() {
+                vmWkspce.currentNavItem = vmWkspce.dataNav[0];
+            };
+
         }
     }
 
