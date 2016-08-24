@@ -12,7 +12,7 @@
 .treeIcon {
     min-height: 18px;
     line-height: 18px;
-    margin: 0px 1px;
+    margin: 0 1px;
     min-width: 10px;
     font-size: 18px;
     cursor: pointer;
@@ -24,14 +24,14 @@
 * {
     box-sizing: border-box
 }
-ol {
+.tree ol {
     border: 0 none transparent;
-    margin: 0px 0px;
+    margin: 0 0;
     padding: 0;
 }
-li {
+.tree li {
     list-style:none;
-    margin: 5px 0px;
+    margin: 5px 0;
     padding: 0 0 0 12px;
 }
 .ui-sortable li {
@@ -53,12 +53,14 @@ li {
     background-color: #f3f6fe;
 }
 .petalsBackground {
-    background: rgba(0,0,0,0.27) !important;
-    border: solid 1px rgba(69, 39, 160, 0.5) !important;
     margin-top: -16px;
     margin-bottom: 8px;
-    padding: 10px;
+    padding: 2px;
 }
-.navConsoleBackground {
-    background: rgba(162, 185, 255, 1) !important;
+
+.md-button.md-sidenav-theme-theme.customBtnSidenav {
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+    margin: 0;
 }

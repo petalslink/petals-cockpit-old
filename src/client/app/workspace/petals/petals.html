@@ -1,21 +1,15 @@
-<div layout-fill md-theme="navTree-theme" ng-cloak style="padding-top: 8px;">
+<div layout-fill md-theme="sidenav-theme" ng-cloak style="padding-top: 16px;">
 
-    <md-content class="petalsBackground">
-
-        <md-button class="md-accent md-raised md-shadow-bottom-z-2"
-                   aria-label="add"
+    <div class="petalsBackground ">
+        <md-button class="md-accent md-raised customBtnSidenav md-shadow-bottom-z-2" aria-label="add new bus"
                    ng-click="vmPetals.addTreeComponent(vmPetals.data)">
-            <md-icon class="material-icons" md-svg-icon="mdicons:plus-box"></md-icon>
-            <span> Add </span>
-            <md-icon class="material-icons" md-svg-icon="mdicons:bus"></md-icon>
-            <md-tooltip md-direction="right">
-                Add New Bus
-            </md-tooltip>
+            <md-icon class="material-icons md-accent" aria-label="Add" md-svg-icon="mdicons:plus"></md-icon>
+            ADD NEW BUS
+            <md-tooltip md-direction="bottom">Add New Bus</md-tooltip>
         </md-button>
+    </div>
 
-    </md-content>
-
-    <div>
+    <div class="tree">
         <ol>
             <li tmpl-tree="child in vmPetals.data.children at ol" ng-class="{minimized:(child.display=='minimized')}">
 
