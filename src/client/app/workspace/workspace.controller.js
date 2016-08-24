@@ -41,7 +41,7 @@
             //vmWkspce.infoSelected = dataWkspceService.getInfoSelect();
 
             vmWkspce.$onInit = function() {
-                vmWkspce.currentNavItem = vmWkspce.dataNav[0];
+                vmWkspce.selectionMenu = vmWkspce.dataNav[0];
             };
 
         }

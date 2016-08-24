@@ -1,13 +1,14 @@
 <div md-theme="navConsole-theme" layout="column" flex class="backgroundWrkspce" ng-cloak>
 
-    <md-toolbar class="navBar" layout="row" ng-if="isAuthenticated()" flex ng-cloak>
-        <div class="" layout-align="center center" flex>
-            <md-button flex layout-align="center center" class="" ng-click="toggleSidenav('left')"
+    <md-toolbar class="navBar" layout="row" ng-if="isAuthenticated()" flex>
+        <div layout="row" flex>
+            <md-button layout-align="center center" class="btnLargeMenu" ng-click="toggleSidenav('left')"
                        aria-label="Show" ng-controller="SidenavController" hide-gt-md>
                 <md-icon class="md-accent" aria-label="Open Menu" md-svg-icon="mdicons:menu"></md-icon>
             </md-button>
-            <md-button class="" ng-repeat="btn in vmWkspce.dataNav" ui-sref="{{btn.UiSref}}"
-                       ui-sref-active="currentNavItem">
+
+            <md-button class="btnLargeMenu" ng-repeat="btn in vmWkspce.dataNav" ui-sref="{{btn.UiSref}}"
+                       ui-sref-active="selectionMenu">
                 {{ btn.Label }}
             </md-button>
         </div>
@@ -15,6 +16,7 @@
 
     <div layout="row" layout-fill flex>
         <tmpl-sidenav layout="column" layout-align="space-around stretch"></tmpl-sidenav>
+
         <div layout="column" layout-fill flex>
             <!-- Multi named view for managing sticky state -->
             <!-- named view for state workspace.petals -->
@@ -28,7 +30,6 @@
             <ui-view name="api-nav-console" ng-show="$state.includes('home.workspace.api')"></ui-view>
             <ui-view name="api-console" ng-show="$state.includes('home.workspace.api')" flex></ui-view>
         </div>
-
     </div>
 
 </div>

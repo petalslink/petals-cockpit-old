@@ -1,8 +1,7 @@
-<md-toolbar md-scroll-shrink md-theme="navConsole-theme" layout-align="start center" layout="row" ng-cloak>
-    <div class="md-toolbar-tools">
-        <md-button ng-repeat="button in vmBcSoapSuConsume.dataNavConsole"
-                   aria-label="{{ button.Label }}"
-                   ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
+<md-toolbar md-theme="navConsole-theme" class="md-primary md-hue-1" layout-align="start center" flex layout="row" ng-cloak>
+    <div layout="row" flex>
+        <md-button ng-repeat="button in vmBcSoapSuConsume.dataNavConsole" class="btnLargeConsole"
+                   aria-label="{{ button.Label }}" ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
             <md-icon md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
             <span hide-xs>{{ button.Label }}</span>
         </md-button>

@@ -7,15 +7,20 @@ md-toolbar.md-navConsole-theme-theme:not(.md-menu-toolbar):focus md-icon {
 }
 
 a.md-button.md-navConsole-theme-theme.selectionCmd {
-    margin: 20px 0 !important;
-    min-width: 100px;
+    width: 100%;
+    height: 100%;
     color: #FF6D00 !important;
     text-transform: uppercase !important;
-    border-left: 1px solid rgba(230, 230, 230, 0.96);
-    border-right: 1px solid rgba(230, 230, 230, 0.96);
+    border-bottom: 1px solid rgba(253, 109, 1, 0.96);
 }
 
 .sizeSmall {
     font-size: small !important;
 }
 
+.btnLargeConsole {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    margin: 0;
+}
