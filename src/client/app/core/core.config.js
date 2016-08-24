@@ -49,9 +49,9 @@
             //.defaultIconSet('mdicon', 'images/mdi.svg',48);
 
         $mdThemingProvider.theme('core-theme', 'default')
-            .primaryPalette('orange', {
-                'default': '800',
-                'hue-1': '800',
+            .primaryPalette('grey', {
+                'default': '300',
+                'hue-1': '700',
                 'hue-2': '300',
                 'hue-3': '100'
             })
@@ -64,12 +64,26 @@
 
         $mdThemingProvider.theme('menu-theme', 'default')
             .primaryPalette('grey', {
-                'default': '100',
+                'default': '50',
                 'hue-1': '100',
                 'hue-2': '50',
                 'hue-3': '50'
             })
             .accentPalette('deep-purple', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '200'
+            });
+
+        $mdThemingProvider.theme('sidenav-theme', 'default')
+            .primaryPalette('deep-purple', {
+                'default': '800',
+                'hue-1': '800',
+                'hue-2': '300',
+                'hue-3': '100'
+            })
+            .accentPalette('orange', {
                 'default': '800',
                 'hue-1': '800',
                 'hue-2': '300',
@@ -106,13 +120,13 @@
 
         $mdThemingProvider.theme('iconTree-theme', 'default')
             .primaryPalette('green', {
-                'default': '600',
+                'default': '800',
                 'hue-1': '800',
                 'hue-2': '300',
                 'hue-3': '100'
             })
             .accentPalette('red', {
-                'default': '600',
+                'default': '800',
                 'hue-1': '800',
                 'hue-2': '300',
                 'hue-3': '200'
