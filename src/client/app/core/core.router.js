@@ -1,8 +1,7 @@
 (function () {
     'use strict';
 
-    var core = angular.module('app.core')
-        .factory('AuthInterceptor', AuthInterceptor);
+    var core = angular.module('app.core');
 
     var runFuntion = runFunction;
 
@@ -25,16 +24,19 @@
         $rootScope.isAuthenticated = AuthService.isAuthenticated;
         $rootScope.userData = Session;
 
-        $rootScope.$on('$stateChangeStart', function (event, next) {
-            if (next.data !== undefined && !AuthService.isAuthorized(next.data.authorizedRoles)) {
-                event.preventDefault();
-                if (AuthService.isAuthenticated()) {
-                    // user is not allowed
-                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-                } else {
-                    // user is not logged in
-                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-                }
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+            if (toState.name !== 'login') {
+                // TODO prevent default can't be interpreted if run inside the promise...
+                AuthService.ready.then(function () {
+                    if (!AuthService.isAuthenticated()) {
+                        event.preventDefault();
+                        // user is not logged in
+                        $state.go('login');
+                    } else if (toState.data !== undefined && !AuthService.isAuthorized(toState.data.authorizedRoles)) {
+                        event.preventDefault();
+                        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                    }
+                });
             }
         });
 
@@ -57,19 +59,14 @@
             event.preventDefault();
         });
 
-        $rootScope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
-            event.preventDefault();
-            $location.path('/login');
-        });
-
         // Configures $urlRouter's listener *after* your custom listener
         $urlRouter.listen();
     }
 
-    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider'];
+    configFunction.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
     /* @ngInject */
-    function configFunction($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+    function configFunction($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.deferIntercept();
 
@@ -78,13 +75,6 @@
         $urlRouterProvider.when('/', '/workspace/petals');
 
         $urlRouterProvider.otherwise('/404');
-
-        $httpProvider.interceptors.push([
-            '$injector',
-            function ($injector) {
-                return $injector.get('AuthInterceptor');
-            }
-        ]);
 
         $stateProvider
             .state('404', {
@@ -126,25 +116,6 @@
                     logger.debug('You are in Login Page');
                 }]
             });
-    }
-
-    // ----- AuthInterceptor -----
-    AuthInterceptor.$inject = ['$rootScope', '$q', 'AUTH_EVENTS'];
-
-    /* @ngInject */
-    function AuthInterceptor($rootScope, $q, AUTH_EVENTS) {
-
-        return {
-            responseError: function (response) {
-                $rootScope.$broadcast({
-                    401: AUTH_EVENTS.notAuthenticated,
-                    403: AUTH_EVENTS.notAuthorized,
-                    419: AUTH_EVENTS.sessionTimeout,
-                    440: AUTH_EVENTS.sessionTimeout
-                }[response.status], response);
-                return $q.reject(response);
-            }
-        };
     }
 
 })();

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -20,11 +20,11 @@
             var elements = dataservice.getPetalsComponents();
             var config = dataservice.getPetalsComponentConfig();
 
-            return $q.all([elements, config]).then(function(ps) {
+            return $q.all([elements, config]).then(function (ps) {
                 populateTypes(ps[0], ps[1]);
 
                 // we directly add a method to it to find an element by id in it
-                ps[0].getComponentById = function(id) {
+                ps[0].getComponentById = function (id) {
                     return getComponentById(ps[0], id);
                 };
 
@@ -56,7 +56,7 @@
 
         function populateTypes(data, config) {
             data.typeData = getConfigComponentType(data, config);
-            data.children.forEach(function(child) {
+            data.children.forEach(function (child) {
                 populateTypes(child, config);
             });
         }

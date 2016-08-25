@@ -11,20 +11,21 @@
     /* @ngInject */
     function AuthService($http, logger, Session) {
 
-        var AuthService = {
-            login: login,
-            logout: logout,
-            isAuthenticated: isAuthenticated,
-            isAuthorized: isAuthorized
-        };
-
-        $http.get('/api/session').then(
+        var auth = $http.get('/api/session').then(
             function (res) {
                 Session.create(res.data.username, res.data.roles);
             },
             function () {
                 Session.destroy();
             });
+
+        var AuthService = {
+            ready: auth,
+            login: login,
+            logout: logout,
+            isAuthenticated: isAuthenticated,
+            isAuthorized: isAuthorized
+        };
 
         return AuthService;
 

@@ -71,8 +71,8 @@
         }
 
         function getPetalsComponents() {
-            return $http.get('/api/workspace/Demo/elements')
-                .then(getPetalsComponentsComplete, getPetalsComponentsFailed);
+                return $http.get('/api/workspace/Demo/elements')
+                    .then(getPetalsComponentsComplete, getPetalsComponentsFailed);
 
             function getPetalsComponentsComplete(data) {
                 return data.data;
@@ -86,9 +86,8 @@
         }
 
         function getPetalsComponentConfig() {
-            return $http.get('/api/workspace/Demo/configuration')
-                .then(getPetalsComponentConfigComplete,
-                    getPetalsComponentConfigFailed);
+                return $http.get('/api/workspace/Demo/configuration')
+                    .then(getPetalsComponentConfigComplete, getPetalsComponentConfigFailed);
 
             function getPetalsComponentConfigComplete(data) {
                 return data.data;
