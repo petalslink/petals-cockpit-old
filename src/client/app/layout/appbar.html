@@ -1,4 +1,4 @@
-<md-toolbar md-theme="core-theme" layout="row" ng-if="isAuthenticated()" flex ng-cloak>
+<md-toolbar md-theme="core-theme" class="md-shadow-bottom-z-2" layout="row" ng-if="isAuthenticated()" flex ng-cloak>
     <div class="md-toolbar-tools">
         <md-button ng-click="vm.reloadWorkspace()">
             <img src="src/client/images/petals_cockpit.png" class="logoPetals"/>
@@ -8,7 +8,7 @@
         </md-button>
     </div>
 
-    <div md-theme="sidenav-theme" class=" md-toolbar-tools" layout-align="end center" flex-gt-sm flex-lt-md="100">
+    <div md-theme="sidenav-theme" class="md-toolbar-tools" layout-align="end center" flex-gt-sm flex-lt-md="100">
         <md-button class="md-primary customBtn" aria-label="name user logged" ng-show="isAuthenticated()">
             <md-icon class="material-icons md-primary" aria-label="Logout"
                      md-svg-icon="mdicons:account-circle"></md-icon>

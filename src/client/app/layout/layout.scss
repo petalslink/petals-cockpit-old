@@ -34,38 +34,38 @@ md-sidenav.md-locked-open.md-closed.md-sidenav-right,
 md-sidenav.md-locked-open-remove.md-closed {
     padding-top: 0 !important;
     background: rgba(224, 224, 224, 1) !important;
-    border: solid 1px rgba(69, 39, 160, 0.5) !important;
+/*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
 }
 
 @media screen and (max-width: 960px) {
     md-sidenav {
-        padding-top: 5px;
-        margin-top: 108px;
+        padding-top: 0;
+        margin-top: 102px;
         width: 350px !important;
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
         background: rgba(224, 224, 224, 1) !important;
-        border: solid 1px rgba(69, 39, 160, 0.5) !important;
+/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
     md-backdrop.md-sidenav-backdrop {
-        margin-top: 108px;
+        margin-top: 101px;
     }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1279px) {
     md-sidenav {
-        padding-top: 5px;
-        margin-top: 124px;
+        padding-top: 0;
+        margin-top: 102px;
         width: 350px !important;
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
         background: rgba(224, 224, 224, 1) !important;
-        border: solid 1px rgba(69, 39, 160, 0.5) !important;
+/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
     md-backdrop.md-sidenav-backdrop {
-        margin-top: 124px;
+        margin-top: 101px;
     }
 }
 
@@ -76,7 +76,7 @@ md-sidenav.md-locked-open-remove.md-closed {
         max-width: 350px !important;
         margin-top: 0;
         background: rgba(224, 224, 224, 1) !important;
-        border: solid 1px rgba(69, 39, 160, 0.5) !important;
+/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
 }
 
@@ -345,7 +345,7 @@ md-dialog.md-cardCustom-theme-theme {
 #backgroundLogin {
     background-color: rgba(49, 26, 136, .8);
     height: 100%;
-    padding: 0;
+    padding: 100px;
     margin: 0;
 }
 
@@ -359,98 +359,29 @@ md-dialog.md-cardCustom-theme-theme {
 
 #box {
     position: relative;
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .1);
     -moz-border-radius: 4px;
     border-radius: 4px;
-    padding: 2.5em 1.5em;
-    margin: auto auto;
-}
-
-.colorPurple {
-    color: #7F428C;
-}
-
-.colorOrange {
-    color: #EF6C00;
-}
-
-.dividerTriangle {
-    display: block;
-    position: absolute;
-    content: '';
-    right: 0;
-    left: 0;
-    z-index: 10;
-    height: 90px;
-    background-size: 50px 100%;
-    top: -60px;
-    background-image: -webkit-gradient(linear, 0 0, 300% 100%, color-stop(0.25, transparent), color-stop(0.25, #8534db));
-    background-image: linear-gradient(315deg, #6023a1 25%, transparent 25%),
-    linear-gradient(45deg, #8534db 25%, transparent 25%);
-    background-position: 50%;
-}
-
-.dividerCube::before {
-    display: block;
-    position: absolute;
-    content: '';
-    top: -25px;
-    background: inherit;
-    /*    box-shadow: -50px 50px 0 #8534db, 50px -50px 0 #8534db;*/
-    box-shadow: 0px -70px 0 rgba(39, 40, 44, 0.2), -70px 0px 0 rgba(39, 40, 44, 0.2),
-    -70px 0px 0 rgba(39, 40, 44, 0.6), 0px -170px 0 rgba(39, 40, 44, 0.6),
-    -140px 0px 0 rgba(39, 40, 44, 0.8), 0px -140px 0 rgba(39, 40, 44, 0.8),
-    -280px 280px 0 rgba(39, 40, 44, 0.4), -280px -280px 0 rgba(39, 40, 44, 0.4);
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    -webkit-transform: translateX(-50%) rotate(45deg);
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.dividerCube::after {
-    display: block;
-    position: absolute;
-    content: '';
-    top: -25px;
-    background: inherit;
-    box-shadow: -70px 70px 0 rgba(239, 108, 0, 0.2), 70px -70px 0 rgba(239, 108, 0, 0.2),
-    70px -70px 0 rgba(239, 108, 0, 0.1), -70px 70px 0 rgba(239, 108, 0, 0.1),
-    -140px 140px 0 rgba(239, 108, 0, 0.4), 140px -140px 0 rgba(239, 108, 0, 0.4),
-    -280px 280px 0 rgba(239, 108, 0, 0.6), 280px -280px 0 rgba(239, 108, 0, 0.6),
-    -560px 560px 0 rgba(239, 108, 0, 0.6), 560px -560px 0 rgba(239, 108, 0, 0.6);
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    -webkit-transform: translateX(-75%) rotate(75deg);
-    transform: translateX(-75%) rotate(75deg);
-}
-
-.cornerPage::before {
-    display: block;
-    position: absolute;
-    content: '';
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    right: 0;
-    opacity: .9;
-    background-image: -webkit-linear-gradient(top left, #8534db 50%, #9437ea 50%);
-    background-image: linear-gradient(315deg, #9437ea 50%, #8534db 50%);
-}
-
-.cornerPage::after {
-    display: block;
-    position: absolute;
-    content: '';
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    right: 50px;
-    background-image: -webkit-linear-gradient(top left, transparent 50%, #6023a1 50%);
-    background-image: linear-gradient(315deg, #6023a1 50%, transparent 50%);
+    margin: 1em 1em;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgb(255, 109, 0);
 }
 
 .inputMessageError {
     max-width: 200px;
+}
+
+#slides_control > div{
+    height: 200px;
+}
+img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
 }

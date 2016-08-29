@@ -1,12 +1,21 @@
-<div layout-fill md-theme="sidenav-theme" ng-cloak style="padding-top: 16px;">
+<div layout-fill md-theme="sidenav-theme" ng-cloak>
+    <md-toolbar md-theme="core-theme" class="md-primary" layout="row" ng-if="isAuthenticated()" flex>
+        <div md-theme="sidenav-theme" class="" layout="row" flex layout-align="center center">
+<!--            <md-button class="md-accent md-raised md-shadow-bottom-z-2" aria-label="add new bus"
+                       ng-click="vmPetals.addTreeComponent(vmPetals.data)">
+                <md-icon class="material-icons md-accent" aria-label="Add" md-svg-icon="mdicons:plus"></md-icon>
+                ADD NEW
+                <md-icon class="material-icons md-accent" aria-label="bus" md-svg-icon="mdicons:bus"></md-icon>
+            </md-button>-->
 
-    <div class="petalsBackground ">
-        <md-button class="md-accent md-raised customBtnSidenav md-shadow-bottom-z-2" aria-label="add new bus"
-                   ng-click="vmPetals.addTreeComponent(vmPetals.data)">
-            <md-icon class="material-icons md-accent" aria-label="Add" md-svg-icon="mdicons:plus"></md-icon>
-            ADD NEW BUS
-        </md-button>
-    </div>
+            <md-button class="md-primary customBtnSidenav md-shadow-bottom-z-2" aria-label="name user logged"
+                       ng-click="vmPetals.addTreeComponent(vmPetals.data)">
+                <md-icon class="material-icons iconMenuColorPurple" aria-label="Add" md-svg-icon="mdicons:library-plus"></md-icon>
+                ADD NEW
+                <md-icon class="material-icons iconMenuColorPurple" aria-label="Bus" md-svg-icon="mdicons:bus"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
 
     <div class="tree">
         <ol>

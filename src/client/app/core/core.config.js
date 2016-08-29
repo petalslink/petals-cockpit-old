@@ -51,8 +51,8 @@
         $mdThemingProvider.theme('core-theme', 'default')
             .primaryPalette('grey', {
                 'default': '300',
-                'hue-1': '700',
-                'hue-2': '300',
+                'hue-1': '400',
+                'hue-2': '200',
                 'hue-3': '100'
             })
             .accentPalette('deep-purple', {
