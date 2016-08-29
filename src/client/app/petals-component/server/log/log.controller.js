@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('petalsComponent.server.overview')
-        .controller('OverviewServerController', ControllerFunction);
+        .module('petalsComponent.server.log')
+        .controller('LogServerController', ControllerFunction);
 
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['elementData'];
