@@ -31,10 +31,33 @@
             },
             {
                 Locked: false,
+                Label: 'Monitor',
+                Icon: 'shuffle',
+                UiSref: '.monitor'
+            },
+            {
+                Locked: false,
                 Label: 'Config',
                 Icon: 'settings',
                 UiSref: '.config'
-
+            },
+            {
+                Locked: false,
+                Label: 'Log',
+                Icon: 'security',
+                UiSref: '.log'
+            },
+            {
+                Locked: false,
+                Label: 'Flow',
+                Icon: 'trending-up',
+                UiSref: '.flow'
+            },
+            {
+                Locked: false,
+                Label: 'User',
+                Icon: 'account-network',
+                UiSref: '.user'
             }
         ];
 
