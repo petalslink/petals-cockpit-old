@@ -41,9 +41,7 @@ import com.codahale.metrics.health.HealthCheck;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 
 import co.paralleluniverse.fibers.Fiber;
-import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.dropwizard.FiberApplication;
-import co.paralleluniverse.strands.SuspendableRunnable;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.configuration.ConfigurationFactory;
@@ -158,18 +156,7 @@ class MongoHealthCheck extends HealthCheck {
 
     @Override
     protected Result check() throws Exception {
-
-        // doesn't work, see https://groups.google.com/d/msg/comsat-user/acFl7yBOBFM/LYxiVZ4WAQAJ
-        // new Fiber<>(() -> db.stats()).start().get();
-
-        new Fiber<>(new SuspendableRunnable() {
-            private static final long serialVersionUID = -2308313348173416441L;
-
-            @Override
-            public void run() throws SuspendExecution, InterruptedException {
-                db.stats();
-            }
-        }).start().get();
+        new Fiber<>(db::stats).start().get();
 
         return Result.healthy();
     }
