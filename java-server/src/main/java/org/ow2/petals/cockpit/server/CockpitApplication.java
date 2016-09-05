@@ -36,6 +36,7 @@ import org.ow2.petals.cockpit.server.resources.Sessions;
 import org.ow2.petals.cockpit.server.resources.Workspace;
 import org.ow2.petals.cockpit.server.utils.DocumentAssignableWriter;
 
+import com.allanbank.mongodb.MongoClient;
 import com.allanbank.mongodb.MongoDatabase;
 import com.codahale.metrics.health.HealthCheck;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
@@ -78,12 +79,13 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
     public void fiberRun(CockpitConfiguration configuration, @Nullable Environment environment) throws Exception {
         assert environment != null;
 
-        final MongoDatabase db = configuration.getDatabaseFactory().build(environment, true);
+        final MongoClient client = configuration.getDatabaseFactory().buildClient(environment, true);
+        final MongoDatabase db = client.getDatabase(configuration.getDatabaseFactory().getDatabase());
 
         // use bytecode instrumentation to improve performance of json serialization/deserialization
         environment.getObjectMapper().registerModule(new AfterburnerModule());
 
-        environment.healthChecks().register("mongo", new MongoHealthCheck(db));
+        environment.healthChecks().register("mongo", new MongoHealthCheck(client));
 
         // activate session management in jetty
         environment.servlets().setSessionHandler(new SessionHandler());
@@ -101,6 +103,7 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
                 bind(configuration).to(CockpitConfiguration.class);
                 bind(environment).to(Environment.class);
                 bind(types).to(WorkspaceElementConfiguration.class);
+                bind(client).to(MongoClient.class);
                 bind(db).to(MongoDatabase.class);
             }
         });
@@ -148,15 +151,15 @@ class AuthFeature implements Feature {
 
 class MongoHealthCheck extends HealthCheck {
 
-    private final MongoDatabase db;
+    private final MongoClient client;
 
-    public MongoHealthCheck(MongoDatabase db) {
-        this.db = db;
+    public MongoHealthCheck(MongoClient client) {
+        this.client = client;
     }
 
     @Override
     protected Result check() throws Exception {
-        new Fiber<>(db::stats).start().get();
+        new Fiber<>(client::listDatabaseNames).start().get();
 
         return Result.healthy();
     }

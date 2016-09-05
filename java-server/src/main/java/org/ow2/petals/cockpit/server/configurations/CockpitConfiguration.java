@@ -30,7 +30,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.allanbank.mongodb.MongoClient;
 import com.allanbank.mongodb.MongoClientConfiguration;
-import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.MongoFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -76,7 +75,7 @@ public class CockpitConfiguration extends Configuration {
         }
 
         @SuppressWarnings("resource")
-        public MongoDatabase build(@Nullable Environment env, boolean fiber) {
+        public MongoClient buildClient(@Nullable Environment env, boolean fiber) {
 
             final MongoClientConfiguration mcc = new MongoClientConfiguration();
 
@@ -110,7 +109,7 @@ public class CockpitConfiguration extends Configuration {
                 });
             }
 
-            return client.getDatabase(getDatabase());
+            return client;
         }
 
         public static class MongoServer {

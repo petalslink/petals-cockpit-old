@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.mindrot.jbcrypt.BCrypt;
 import org.ow2.petals.cockpit.server.configurations.CockpitConfiguration;
 
+import com.allanbank.mongodb.MongoClient;
 import com.allanbank.mongodb.MongoCollection;
 import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
@@ -66,7 +67,8 @@ public class PopulateDbCommand extends ConfiguredCommand<CockpitConfiguration> {
     @Override
     protected void run(@Nullable Bootstrap<CockpitConfiguration> bootstrap, @Nullable Namespace namespace,
             CockpitConfiguration configuration) throws Exception {
-        final MongoDatabase db = configuration.getDatabaseFactory().build(null, false);
+        final MongoClient client = configuration.getDatabaseFactory().buildClient(null, false);
+        final MongoDatabase db = client.getDatabase(configuration.getDatabaseFactory().getDatabase());
 
         final MongoCollection users = db.getCollection("users");
         final Document user = users.findOne(QueryBuilder.where("username").equals("admin"));
