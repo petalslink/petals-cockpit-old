@@ -4,7 +4,7 @@
         <md-button ng-repeat="button in vmBcSoapSuProvide.dataNavConsole" class="btnLargeConsole" md-whiteframe="1"
                    aria-label="{{ button.Label }}" ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
             <md-icon md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
-            <span hide-xs>{{ button.Label }}</span>
+            <span hide-xs hide-sm>{{ button.Label }}</span>
         </md-button>
     </div>
 </md-toolbar>

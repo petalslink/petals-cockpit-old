@@ -24,3 +24,30 @@ a.md-button.md-navConsole-theme-theme.selectionCmd {
     padding: 12px;
     margin: 0;
 }
+
+@media screen and (max-width: 640px) {
+    .btnLargeConsole {
+        width: 55px !important;
+        min-width: 55px !important;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .btnLargeConsole {
+        width: 100% !important;
+
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+    .btnLargeConsole {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .btnLargeConsole {
+        width: 100% !important;
+    }
+}
+
