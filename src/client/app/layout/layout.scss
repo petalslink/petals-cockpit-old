@@ -33,8 +33,7 @@ md-sidenav.md-locked-open.md-closed,
 md-sidenav.md-locked-open.md-closed.md-sidenav-right,
 md-sidenav.md-locked-open-remove.md-closed {
     padding-top: 0 !important;
-    background: rgba(224, 224, 224, 1) !important;
-/*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
+    /*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
 }
 
 @media screen and (max-width: 960px) {
@@ -45,8 +44,6 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
-        background: rgba(224, 224, 224, 1) !important;
-/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 101px;
@@ -61,8 +58,6 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
-        background: rgba(224, 224, 224, 1) !important;
-/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
     md-backdrop.md-sidenav-backdrop {
         margin-top: 101px;
@@ -75,16 +70,9 @@ md-sidenav.md-locked-open-remove.md-closed {
         min-width: 350px !important;
         max-width: 350px !important;
         margin-top: 0;
-        background: rgba(224, 224, 224, 1) !important;
-/*        border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
     }
 }
 
-/*.md-cardCustom-theme-theme md-input-container .md-errors-spacer {
-    float: right;
-    min-height: 0 !important;
-    min-width: 1px;
-}*/
 md-dialog.md-cardCustom-theme-theme {
     border-radius: 4px;
     background-color: rgb(205, 221, 221);
@@ -371,17 +359,19 @@ md-dialog.md-cardCustom-theme-theme {
     max-width: 200px;
 }
 
-#slides_control > div{
+#slides_control > div {
     height: 200px;
 }
-img{
-    margin:auto;
+
+img {
+    margin: auto;
     width: 400px;
 }
+
 #slides_control {
-    position:absolute;
+    position: absolute;
     width: 400px;
-    left:50%;
-    top:20px;
-    margin-left:-200px;
+    left: 50%;
+    top: 20px;
+    margin-left: -200px;
 }
