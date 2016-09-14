@@ -67,31 +67,34 @@ public class PopulateDbCommand extends ConfiguredCommand<CockpitConfiguration> {
     @Override
     protected void run(@Nullable Bootstrap<CockpitConfiguration> bootstrap, @Nullable Namespace namespace,
             CockpitConfiguration configuration) throws Exception {
-        final MongoClient client = configuration.getDatabaseFactory().buildClient(null, false);
-        final MongoDatabase db = client.getDatabase(configuration.getDatabaseFactory().getDatabase());
+        try (final MongoClient client = configuration.getDatabaseFactory().buildClient(null, false)) {
+            final MongoDatabase db = client.getDatabase(configuration.getDatabaseFactory().getDatabase());
 
-        final MongoCollection users = db.getCollection("users");
-        final Document user = users.findOne(QueryBuilder.where("username").equals("admin"));
-        if (user == null) {
-            final DocumentBuilder builder = BuilderFactory.start();
-            builder.add("username", "admin");
-            builder.add("password", BCrypt.hashpw("admin", BCrypt.gensalt()));
-            builder.pushArray("roles").add("USER").add("ADMIN");
-            users.insert(builder.build());
+            final MongoCollection users = db.getCollection("users");
+            final Document user = users.findOne(QueryBuilder.where("username").equals("admin"));
+            if (user == null) {
+                final DocumentBuilder builder = BuilderFactory.start();
+                builder.add("username", "admin");
+                builder.add("password", BCrypt.hashpw("admin", BCrypt.gensalt()));
+                builder.pushArray("roles").add("USER").add("ADMIN");
+                users.insert(builder.build());
+            }
+
+            final MongoCollection elements = db.getCollection("workspace-elements");
+            assert elements != null;
+
+            final ObjectId su1 = insertSU(elements, "SU-CONSUME 1", SUState.UNDEPLOYED, false, "su-consume-1.json");
+            final ObjectId su2 = insertSU(elements, "SU-PROVIDE 1", SUState.UNDEPLOYED, true, "su-provide-1.json");
+            final ObjectId compo = insertComponent(elements, "BC-SOAP 1", CompState.UNINSTALLED, "bc-soap.json", su1,
+                    su2);
+            final ObjectId server2 = insertServer(elements, "server 2", ServerState.UNINSTALLED, "server-2.json",
+                    compo);
+            final ObjectId server1 = insertServer(elements, "server 1", ServerState.UNINSTALLED, "server-1.json");
+            final ObjectId bus = insertBus(elements, "BUS 1", "bus-1.json", server1, server2);
+            final ObjectId ws = insertWorkspace(elements, "Demo", "default-5.0", bus);
+
+            System.out.println("Created workspace demo with id " + ws);
         }
-
-        final MongoCollection elements = db.getCollection("workspace-elements");
-        assert elements != null;
-
-        final ObjectId su1 = insertSU(elements, "SU-CONSUME 1", SUState.UNDEPLOYED, false, "su-consume-1.json");
-        final ObjectId su2 = insertSU(elements, "SU-PROVIDE 1", SUState.UNDEPLOYED, true, "su-provide-1.json");
-        final ObjectId compo = insertComponent(elements, "BC-SOAP 1", CompState.UNINSTALLED, "bc-soap.json", su1, su2);
-        final ObjectId server2 = insertServer(elements, "server 2", ServerState.UNINSTALLED, "server-2.json", compo);
-        final ObjectId server1 = insertServer(elements, "server 1", ServerState.UNINSTALLED, "server-1.json");
-        final ObjectId bus = insertBus(elements, "BUS 1", "bus-1.json", server1, server2);
-        final ObjectId ws = insertWorkspace(elements, "Demo", "default-5.0", bus);
-
-        System.out.println("Created workspace demo with id " + ws);
     }
 
     private ObjectId insertElement(MongoCollection elements, String name, Optional<Enum<?>> state, String type,
