@@ -35,6 +35,8 @@
             // init data with resolve from router
             vmPetals.data = workspaceData;
 
+            console.log(vmPetals.data)
+
             // select component depending on url
             var id = petalsService.getSelectedComponentId();
             selectComponentById(id);
