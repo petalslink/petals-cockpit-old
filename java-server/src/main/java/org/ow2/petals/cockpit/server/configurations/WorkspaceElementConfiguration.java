@@ -29,6 +29,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -107,6 +109,7 @@ public class WorkspaceElementConfiguration {
         }
     }
 
+    @JsonInclude(Include.NON_NULL)
     public static class Conf {
 
         @NotEmpty
