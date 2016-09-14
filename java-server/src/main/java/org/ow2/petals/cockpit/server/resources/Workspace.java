@@ -113,20 +113,7 @@ public class Workspace {
         if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
         } else {
-            final DocumentElement config = element.get(DocumentElement.class, "config");
-
-            final DocumentBuilder result = BuilderFactory.start();
-
-            result.add("id", element.get(ObjectIdElement.class, "_id").getId().toHexString());
-            result.add("name", element.get("name"));
-
-            if (config != null) {
-                result.add(config);
-            } else {
-                result.push("config");
-            }
-
-            return result;
+            return buildDocument(element);
         }
     }
 
@@ -138,18 +125,36 @@ public class Workspace {
         final MongoCollection elements = db.getCollection("workspace-elements");
 
         // TODO should we work we indexed field instead?
-        final Document ws = elements
-                .findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
+        final Document ws = elements.findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
 
         if (ws != null) {
-            return buildElement(ws, elements);
+            return buildWorkspaceElement(ws, elements);
         } else {
             throw new WebApplicationException(Status.NOT_FOUND);
         }
     }
 
+    private DocumentBuilder buildDocument(final Document element) {
+
+        final DocumentElement config = element.get(DocumentElement.class, "config");
+
+        final DocumentBuilder result = BuilderFactory.start();
+
+        result.add("id", element.get(ObjectIdElement.class, "_id").getId().toHexString());
+        result.add("name", element.get("name"));
+
+        if (config != null) {
+            result.add(config);
+        } else {
+            // empty config element
+            result.push("config");
+        }
+
+        return result;
+    }
+
     @Suspendable
-    private WorkspaceElement buildElement(Document ws, MongoCollection elements) {
+    private WorkspaceElement buildWorkspaceElement(Document ws, MongoCollection elements) {
         final String name = ws.get("name").getValueAsString();
         assert name != null;
         final String type = ws.get("type").getValueAsString();
@@ -171,7 +176,7 @@ public class Workspace {
         final List<WorkspaceElement> children = new ArrayList<>(els.getEntries().size());
         for(Element el: els.getEntries()) {
             final Document d = elements.findOne(QueryBuilder.where("_id").equals((ObjectId) el.getValueAsObject()));
-            children.add(buildElement(d, elements));
+            children.add(buildWorkspaceElement(d, elements));
         }
         return children;
     }
