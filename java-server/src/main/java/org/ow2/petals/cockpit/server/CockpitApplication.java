@@ -101,7 +101,6 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
             @Override
             protected void configure() {
                 bind(configuration).to(CockpitConfiguration.class);
-                bind(environment).to(Environment.class);
                 bind(types).to(WorkspaceElementConfiguration.class);
                 bind(client).to(MongoClient.class);
                 bind(db).to(MongoDatabase.class);
