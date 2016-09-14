@@ -40,6 +40,7 @@ import com.allanbank.mongodb.MongoCollection;
 import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.Element;
+import com.allanbank.mongodb.bson.builder.ArrayBuilder;
 import com.allanbank.mongodb.bson.builder.BuilderFactory;
 import com.allanbank.mongodb.bson.builder.DocumentBuilder;
 import com.allanbank.mongodb.bson.element.ArrayElement;
@@ -58,7 +59,7 @@ import co.paralleluniverse.fibers.Suspendable;
  * @author vnoel
  *
  */
-@Path("/workspace/{id}")
+@Path("/workspaces")
 @Produces(MediaType.APPLICATION_JSON)
 @PermitAll
 public class Workspace {
@@ -76,7 +77,22 @@ public class Workspace {
     }
 
     @GET
-    @Path("/configuration")
+    @Suspendable
+    public DocumentBuilder getWorkspaces() {
+
+        final MongoCollection elements = db.getCollection("workspace-elements");
+
+        final ArrayBuilder res = BuilderFactory.startArray();
+
+        for (Document e : elements.find(QueryBuilder.where("type").equals("workspace"))) {
+            res.add(buildDocument(e));
+        }
+
+        return BuilderFactory.d(res.build());
+    }
+
+    @GET
+    @Path("/{id}/configuration")
     @Suspendable
     public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration(@PathParam("id") String wsId) {
         final MongoCollection elements = db.getCollection("workspace-elements");
@@ -96,9 +112,9 @@ public class Workspace {
     }
 
     @GET
-    @Path("/element/{eid}")
+    @Path("/{id}/elements/{eid}")
     @Suspendable
-    public DocumentBuilder getElementConfiguration(@PathParam("id") String wsId, @PathParam("eid") String elementId) {
+    public DocumentBuilder getElementConfiguration(@PathParam("eid") String elementId) {
 
         final MongoCollection elements = db.getCollection("workspace-elements");
 
@@ -118,7 +134,7 @@ public class Workspace {
     }
 
     @GET
-    @Path("/elements")
+    @Path("/{id}/elements")
     @Suspendable
     public WorkspaceElement getWorkspace(@PathParam("id") String wsId) {
 

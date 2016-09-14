@@ -24,7 +24,7 @@
         return service;
 
         function getPetalsComponent(id) {
-            return $http.get('/api/workspace/Demo/element/' + id)
+            return $http.get('/api/workspaces/Demo/elements/' + id)
                 .then(getPetalsComponentComplete, getPetalsComponentFailed);
 
             function getPetalsComponentComplete(data) {
@@ -40,7 +40,7 @@
 
         // Update data element with PUT
         function updateElement(element) {
-            return $http.put('/api/workspace/Demo/element/' + element.id, element)
+            return $http.put('/api/workspaces/Demo/elements/' + element.id, element)
                 .then(updateElementComplete, updateElementFailed);
 
             function updateElementComplete(data) {
@@ -56,7 +56,7 @@
 
         // Delete data element with DELETE
         function deleteElement(id) {
-            return $http.put('/api/workspace/Demo/element/' + id)
+            return $http.put('/api/workspaces/Demo/elements/' + id)
                 .then(deleteElementComplete, deleteElementFailed);
 
             function deleteElementComplete(data) {
@@ -71,7 +71,7 @@
         }
 
         function getPetalsComponents() {
-                return $http.get('/api/workspace/Demo/elements')
+                return $http.get('/api/workspaces/Demo/elements')
                     .then(getPetalsComponentsComplete, getPetalsComponentsFailed);
 
             function getPetalsComponentsComplete(data) {
@@ -86,7 +86,7 @@
         }
 
         function getPetalsComponentConfig() {
-                return $http.get('/api/workspace/Demo/configuration')
+                return $http.get('/api/workspaces/Demo/configuration')
                     .then(getPetalsComponentConfigComplete, getPetalsComponentConfigFailed);
 
             function getPetalsComponentConfigComplete(data) {
