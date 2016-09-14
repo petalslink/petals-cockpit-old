@@ -65,11 +65,15 @@ public class Workspace {
 
     private static final Logger LOG = LoggerFactory.getLogger(Workspace.class);
 
-    @Inject
-    private MongoDatabase db;
+    private final MongoDatabase db;
+
+    private final WorkspaceElementConfiguration elementsConf;
 
     @Inject
-    private WorkspaceElementConfiguration elementsConf;
+    public Workspace(MongoDatabase db, WorkspaceElementConfiguration elementsConf) {
+        this.db = db;
+        this.elementsConf = elementsConf;
+    }
 
     @GET
     @Path("/configuration")

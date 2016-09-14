@@ -108,11 +108,11 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
         });
         
         // see below
-        environment.jersey().register(new AuthFeature());
-        environment.jersey().register(new DocumentAssignableWriter());
+        environment.jersey().register(AuthFeature.class);
+        environment.jersey().register(DocumentAssignableWriter.class);
 
-        environment.jersey().register(new Sessions());
-        environment.jersey().register(new Workspace());
+        environment.jersey().register(Sessions.class);
+        environment.jersey().register(Workspace.class);
     }
 }
 

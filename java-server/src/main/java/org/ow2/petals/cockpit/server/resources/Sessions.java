@@ -64,8 +64,12 @@ public class Sessions {
 
     private static final Logger LOG = LoggerFactory.getLogger(Sessions.class);
 
+    private final MongoDatabase db;
+
     @Inject
-    private MongoDatabase db;
+    public Sessions(MongoDatabase db) {
+        this.db = db;
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
