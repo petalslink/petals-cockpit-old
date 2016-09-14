@@ -77,9 +77,20 @@ public class Workspace {
 
     @GET
     @Path("/configuration")
-    public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration() {
-        // TODO shouldn't "default" be stored with the workspace?
-        final Conf conf = elementsConf.getConfiguration("default-5.0");
+    @Suspendable
+    public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration(@PathParam("id") String wsId) {
+        final MongoCollection elements = db.getCollection("workspace-elements");
+
+        final Document element;
+        try {
+            // TODO should we work we indexed field instead?
+            element = elements
+                    .findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
+        } catch (final IllegalArgumentException e) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+
+        final Conf conf = elementsConf.getConfiguration(element.get("config").getValueAsString());
         assert conf != null;
         return conf;
     }

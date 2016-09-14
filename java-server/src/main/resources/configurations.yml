@@ -39,13 +39,11 @@ types:
 
 configurations:
   default-5.0:
-    - name: workspace
+    - name: petals-bus-5.0
       contains:
-        - name: petals-bus-5.0
+        - name: petals-container-5.0
           contains:
-            - name: petals-container-5.0
+            - name: bc-soap-4.4.0
               contains:
-                - name: bc-soap-4.4.0
-                  contains:
-                    - name: su-provides-soap-4.4.0
-                    - name: su-consumes-soap-4.4.0
+                - name: su-provides-soap-4.4.0
+                - name: su-consumes-soap-4.4.0
