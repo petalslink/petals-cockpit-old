@@ -21,12 +21,13 @@
     z-index: 20;
     position: fixed;
     width: 100%;
-    border: solid 1px rgba(69, 39, 160, 0.5) !important;
+/*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
 }
 
 /* ====================
     Sidenav
 ====================*/
+
 md-sidenav.md-locked-open, md-sidenav.md-locked-open.md-closed,
 md-sidenav.md-locked-open.md-closed.md-sidenav-left,
 md-sidenav.md-locked-open.md-closed,
@@ -36,31 +37,60 @@ md-sidenav.md-locked-open-remove.md-closed {
     /*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 0px) and (max-width: 640px) {
     md-sidenav {
         padding-top: 0;
-        margin-top: 102px;
+        margin-top: 49px;
         width: 350px !important;
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
     }
     md-backdrop.md-sidenav-backdrop {
-        margin-top: 101px;
+        margin-top: 49px;
     }
 }
 
-@media screen and (min-width: 960px) and (max-width: 1279px) {
+@media screen and (max-width: 640px) {
     md-sidenav {
         padding-top: 0;
-        margin-top: 102px;
+        margin-top: 49px;
+        width: 350px !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
+        z-index: 59;
+        position: fixed;
+    }
+    md-backdrop.md-sidenav-backdrop {
+        margin-top: 49px;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    md-sidenav {
+        padding-top: 0;
+        margin-top: 57px;
         width: 350px !important;
         min-width: 350px !important;
         max-width: 350px !important;
         z-index: 59;
     }
     md-backdrop.md-sidenav-backdrop {
-        margin-top: 101px;
+        margin-top: 57px;
+    }
+}
+
+@media screen and (min-width: 959px) and (max-width: 1279px) {
+    md-sidenav {
+        padding-top: 0;
+        margin-top: 65px;
+        width: 350px !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
+        z-index: 59;
+    }
+    md-backdrop.md-sidenav-backdrop {
+        margin-top: 65px;
     }
 }
 

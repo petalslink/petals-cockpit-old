@@ -2,16 +2,10 @@
 
     <md-toolbar class="navBar" layout="row" ng-if="isAuthenticated()">
         <div layout="row" flex>
-            <md-button class="btnMediumMenu" md-whiteframe="1" layout-align="center center"
+            <md-button class="md-primary btnMediumMenu" md-whiteframe="1" layout-align="center center"
                        ng-click="toggleSidenav('left')"
                        aria-label="Show" ng-controller="SidenavController" hide-gt-md>
                 <md-icon class="md-accent" aria-label="Open Menu" md-svg-icon="mdicons:menu"></md-icon>
-            </md-button>
-
-            <md-button class="btnLargeMenu" md-whiteframe="1" ng-repeat="btn in vmWkspce.dataNav"
-                       ui-sref="{{btn.UiSref}}"
-                       ui-sref-active="selectionMenu">
-                {{ btn.Label }}
             </md-button>
         </div>
     </md-toolbar>

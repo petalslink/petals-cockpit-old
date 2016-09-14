@@ -1,6 +1,18 @@
 <md-sidenav flex="100" class="md-whiteframe-z2 md-sidenav-left" md-component-id="left"
-            md-is-locked-open="$mdMedia('gt-md')" md-theme="core-theme">
-    <ui-view name="petals-sidenav" ng-show="$state.includes('home.workspace.petals')" flex></ui-view>
-    <ui-view name="service-sidenav" ng-show="$state.includes('home.workspace.service')" flex></ui-view>
-    <ui-view name="api-sidenav" ng-show="$state.includes('home.workspace.api')" flex></ui-view>
+            md-is-locked-open="$mdMedia('gt-md')">
+
+
+    <md-toolbar md-theme="navConsole-theme" class="md-accent md-hue-3" layout-align="start center" layout="row"
+                ng-if="isAuthenticated()">
+        <div layout="row" flex>
+            <md-button class="md-accent btnLargeMenu" md-whiteframe="1" ng-repeat="btn in vmWkspce.dataNav"
+                       ui-sref="{{btn.UiSref}}" ui-sref-active="selectionMenu">
+                {{ btn.Label }}
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <ui-view name="petals-sidenav" ng-show="$state.includes('home.workspace.petals')" layout="column" flex></ui-view>
+    <ui-view name="service-sidenav" ng-show="$state.includes('home.workspace.service')" layout="column" flex></ui-view>
+    <ui-view name="api-sidenav" ng-show="$state.includes('home.workspace.api')" layout="column" flex></ui-view>
 </md-sidenav>

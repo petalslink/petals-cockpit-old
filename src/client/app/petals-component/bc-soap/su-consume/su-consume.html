@@ -1,6 +1,6 @@
-<md-toolbar md-theme="navConsole-theme" class="md-primary md-hue-1" layout-align="start center" flex layout="row"
+<md-toolbar md-theme="navConsole-theme" class="md-accent md-hue-3" layout-align="start center" flex layout="row"
             ng-cloak>
-    <div layout="row" flex>
+    <div layout="row" flex class="navBar">
         <md-button ng-repeat="button in vmBcSoapSuConsume.dataNavConsole" class="btnLargeConsole" md-whiteframe="1"
                    aria-label="{{ button.Label }}" ui-sref="{{button.UiSref}}" ui-sref-active="selectionCmd">
             <md-icon md-svg-icon="mdicons:{{ button.Icon }}"></md-icon>
