@@ -27,7 +27,6 @@ import com.allanbank.mongodb.MongoClient;
 import com.allanbank.mongodb.MongoCollection;
 import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
-import com.allanbank.mongodb.bson.builder.ArrayBuilder;
 import com.allanbank.mongodb.bson.builder.BuilderFactory;
 import com.allanbank.mongodb.bson.builder.DocumentBuilder;
 import com.allanbank.mongodb.bson.element.ObjectId;
@@ -94,19 +93,19 @@ public class PopulateDbCommand extends ConfiguredCommand<CockpitConfiguration> {
     }
 
     private ObjectId addDemoWorkspace(MongoCollection elements) {
-        final ObjectId su1 = insertSU(elements, "SU-CONSUME 1", SUState.UNDEPLOYED, false, "su-consume-1.json");
-        final ObjectId su2 = insertSU(elements, "SU-PROVIDE 1", SUState.UNDEPLOYED, true, "su-provide-1.json");
-        final ObjectId compo = insertComponent(elements, "BC-SOAP 1", CompState.UNINSTALLED, "bc-soap.json", su1, su2);
-        final ObjectId server2 = insertServer(elements, "server 2", ServerState.UNINSTALLED, "server-2.json", compo);
-        final ObjectId server1 = insertServer(elements, "server 1", ServerState.UNINSTALLED, "server-1.json");
-        final ObjectId bus = insertBus(elements, "BUS 1", "bus-1.json", server1, server2);
-        final ObjectId ws = insertWorkspace(elements, "Demo", "default-5.0", bus);
+        final ObjectId ws = insertWorkspace(elements, "Demo", "default-5.0");
+        final ObjectId bus = insertBus(elements, "BUS 1", "bus-1.json", ws);
+        final ObjectId server2 = insertServer(elements, "server 2", ServerState.UNINSTALLED, "server-2.json", bus);
+        insertServer(elements, "server 1", ServerState.UNINSTALLED, "server-1.json", bus);
+        final ObjectId compo = insertComponent(elements, "BC-SOAP 1", CompState.UNINSTALLED, "bc-soap.json", server2);
+        insertSU(elements, "SU-CONSUME 1", SUState.UNDEPLOYED, false, "su-consume-1.json", compo);
+        insertSU(elements, "SU-PROVIDE 1", SUState.UNDEPLOYED, true, "su-provide-1.json", compo);
+
         return ws;
     }
 
     private ObjectId insertElement(MongoCollection elements, String name, Optional<Enum<?>> state, String type,
-            @Nullable String configFile, @Nullable String config, ObjectId... children) {
-
+            @Nullable String configFile, @Nullable String config, @Nullable ObjectId parent) {
 
         final DocumentBuilder builder = BuilderFactory.start();
         builder.add("name", name);
@@ -114,10 +113,6 @@ public class PopulateDbCommand extends ConfiguredCommand<CockpitConfiguration> {
             builder.add("state", state.get().name());
         }
         builder.add("type", type);
-        final ArrayBuilder cs = builder.pushArray("children");
-        for (final ObjectId c : children) {
-            cs.add(c);
-        }
 
         if (configFile != null) {
             assert config == null;
@@ -129,33 +124,49 @@ public class PopulateDbCommand extends ConfiguredCommand<CockpitConfiguration> {
             builder.add("config", config);
         }
 
+        if (parent != null) {
+            builder.add("parent", parent);
+        }
+
+        builder.pushArray("children");
+
         final Document element = builder.build();
 
         elements.insert(element);
 
-        return element.get(ObjectIdElement.class, "_id").getId();
+        final ObjectId id = element.get(ObjectIdElement.class, "_id").getId();
+        assert id != null;
+
+        if (parent != null) {
+            DocumentBuilder update = BuilderFactory.start();
+            update.push("$push").add("children", id);
+            elements.update(QueryBuilder.where("_id").equals(parent), update);
+        }
+
+        return id;
     }
 
-    private ObjectId insertWorkspace(MongoCollection elements, String name, String config, ObjectId... buses) {
-        return insertElement(elements, name, Optional.absent(), "workspace", null, config, buses);
+    private ObjectId insertWorkspace(MongoCollection elements, String name, String config) {
+        return insertElement(elements, name, Optional.absent(), "workspace", null, config, null);
     }
 
-    private ObjectId insertBus(MongoCollection elements, String name, String config, ObjectId... servers) {
-        return insertElement(elements, name, Optional.absent(), "petals-bus-5.0", config, null, servers);
+    private ObjectId insertBus(MongoCollection elements, String name, String config, ObjectId ws) {
+        return insertElement(elements, name, Optional.absent(), "petals-bus-5.0", config, null, ws);
     }
 
     private ObjectId insertServer(MongoCollection elements, String name, ServerState state, String config,
-            ObjectId... compos) {
-        return insertElement(elements, name, Optional.of(state), "petals-container-5.0", config, null, compos);
+            ObjectId bus) {
+        return insertElement(elements, name, Optional.of(state), "petals-container-5.0", config, null, bus);
     }
 
     private ObjectId insertComponent(MongoCollection elements, String name, CompState state, String config,
-            ObjectId... sus) {
-        return insertElement(elements, name, Optional.of(state), "bc-soap-4.4.0", config, null, sus);
+            ObjectId server) {
+        return insertElement(elements, name, Optional.of(state), "bc-soap-4.4.0", config, null, server);
     }
 
-    private ObjectId insertSU(MongoCollection elements, String name, SUState state, boolean provides, String config) {
+    private ObjectId insertSU(MongoCollection elements, String name, SUState state, boolean provides, String config,
+            ObjectId component) {
         return insertElement(elements, name, Optional.of(state),
-                provides ? "su-provides-soap-4.4.0" : "su-consumes-soap-4.4.0", config, null);
+                provides ? "su-provides-soap-4.4.0" : "su-consumes-soap-4.4.0", config, null, component);
     }
 }

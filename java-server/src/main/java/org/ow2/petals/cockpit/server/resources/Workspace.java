@@ -150,6 +150,9 @@ public class Workspace {
         final String id = ws.get(ObjectIdElement.class, "_id").getId().toHexString();
         assert id != null;
 
+        final ObjectIdElement parentE = ws.get(ObjectIdElement.class, "parent");
+        final String parent = parentE != null ? parentE.getId().toHexString() : null;
+
         final List<WorkspaceElement> children = withChildren ? buildChildren(ws) : null;
 
         final Element state = ws.get("state");
@@ -167,7 +170,7 @@ public class Workspace {
         }
 
         return new WorkspaceElement(id, name, type,
-                state == null ? null : state.getValueAsString(), children, config);
+                state == null ? null : state.getValueAsString(), children, parent, config);
     }
 
     @Suspendable
@@ -205,15 +208,19 @@ class WorkspaceElement {
     private final List<WorkspaceElement> children;
 
     @Nullable
+    private final String parent;
+
+    @Nullable
     private final DocumentAssignable config;
 
     public WorkspaceElement(String id, String name, String type, @Nullable String state,
-            @Nullable List<WorkspaceElement> children, @Nullable DocumentAssignable config) {
+            @Nullable List<WorkspaceElement> children, @Nullable String parent, @Nullable DocumentAssignable config) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.state = state;
         this.children = children;
+        this.parent = parent;
         this.config = config;
     }
 
@@ -235,6 +242,11 @@ class WorkspaceElement {
     @Nullable
     public String getState() {
         return state;
+    }
+
+    @Nullable
+    public String getParent() {
+        return parent;
     }
 
     @Nullable
