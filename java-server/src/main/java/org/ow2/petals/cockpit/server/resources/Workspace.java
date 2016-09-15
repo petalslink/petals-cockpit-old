@@ -49,6 +49,7 @@ import com.allanbank.mongodb.bson.element.ObjectIdElement;
 import com.allanbank.mongodb.builder.QueryBuilder;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import co.paralleluniverse.fibers.Suspendable;
 
@@ -213,6 +214,18 @@ class WorkspaceElement {
     @Nullable
     private final DocumentAssignable config;
 
+    public WorkspaceElement(@JsonProperty("name") String name, @JsonProperty("type") String type,
+            @JsonProperty("state") @Nullable String state, @JsonProperty("parent") @Nullable String parent,
+            @JsonProperty("config") @Nullable DocumentAssignable config) {
+        this.id = null;
+        this.name = name;
+        this.type = type;
+        this.state = state;
+        this.children = null;
+        this.parent = parent;
+        this.config = config;
+    }
+
     public WorkspaceElement(String id, String name, String type, @Nullable String state,
             @Nullable List<WorkspaceElement> children, @Nullable String parent, @Nullable DocumentAssignable config) {
         this.id = id;
@@ -257,5 +270,11 @@ class WorkspaceElement {
     @Nullable
     public List<WorkspaceElement> getChildren() {
         return children;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkspaceElement [id=" + id + ", name=" + name + ", type=" + type + ", state=" + state + ", children="
+                + children + ", parent=" + parent + ", config=" + config + "]";
     }
 }

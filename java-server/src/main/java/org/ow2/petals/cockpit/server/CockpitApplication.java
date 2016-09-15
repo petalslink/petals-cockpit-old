@@ -34,6 +34,7 @@ import org.ow2.petals.cockpit.server.datatypes.UserData;
 import org.ow2.petals.cockpit.server.filters.AuthenticationFilter;
 import org.ow2.petals.cockpit.server.resources.Sessions;
 import org.ow2.petals.cockpit.server.resources.Workspace;
+import org.ow2.petals.cockpit.server.utils.DocumentAssignableDeserializer;
 import org.ow2.petals.cockpit.server.utils.DocumentAssignableSerializer;
 import org.ow2.petals.cockpit.server.utils.DocumentAssignableWriter;
 
@@ -89,7 +90,8 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
         environment.getObjectMapper().registerModule(new AfterburnerModule());
         // support DocumentAssignable in object serialized by jackson
         environment.getObjectMapper().registerModule(
-                new SimpleModule().addSerializer(DocumentAssignable.class, new DocumentAssignableSerializer()));
+                new SimpleModule().addSerializer(DocumentAssignable.class, new DocumentAssignableSerializer())
+                        .addDeserializer(DocumentAssignable.class, new DocumentAssignableDeserializer()));
 
         environment.healthChecks().register("mongo", new MongoHealthCheck(client));
 
