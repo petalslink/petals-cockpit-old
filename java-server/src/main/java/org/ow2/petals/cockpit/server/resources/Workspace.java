@@ -22,7 +22,11 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,10 +46,12 @@ import com.allanbank.mongodb.bson.Document;
 import com.allanbank.mongodb.bson.DocumentAssignable;
 import com.allanbank.mongodb.bson.Element;
 import com.allanbank.mongodb.bson.builder.BuilderFactory;
+import com.allanbank.mongodb.bson.builder.DocumentBuilder;
 import com.allanbank.mongodb.bson.element.ArrayElement;
 import com.allanbank.mongodb.bson.element.DocumentElement;
 import com.allanbank.mongodb.bson.element.ObjectId;
 import com.allanbank.mongodb.bson.element.ObjectIdElement;
+import com.allanbank.mongodb.builder.BatchedWrite;
 import com.allanbank.mongodb.builder.QueryBuilder;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -120,6 +126,81 @@ public class Workspace {
         }
 
         return buildWorkspaceElement(element, true, false);
+    }
+
+    @POST
+    @Path("/{id}/elements")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Suspendable
+    public WorkspaceElement addElement(@Valid WorkspaceElement element) {
+
+        if (element.getName() == null || element.getParent() == null || element.getType() == null) {
+            throw new WebApplicationException(Status.BAD_REQUEST);
+        }
+
+        // TODO validate parent exists
+        final ObjectId parent = buildObjectId(element.getParent(), Status.BAD_REQUEST);
+        final ObjectId id = new ObjectId();
+
+        final BatchedWrite.Builder writes = BatchedWrite.builder();
+
+        final DocumentBuilder doc = BuilderFactory.start();
+        doc.add("_id", id);
+        doc.add("name", element.getName());
+        if (element.getState() != null) {
+            doc.add("state", element.getState());
+        }
+        doc.add("type", element.getType());
+        doc.add("parent", parent);
+        doc.pushArray("children");
+        doc.add("config", element.getConfig());
+
+        final Document newElement = doc.build();
+
+        writes.insert(newElement);
+
+        final DocumentBuilder update = BuilderFactory.start();
+        update.push("$push").add("children", id);
+        writes.update(QueryBuilder.where("_id").equals(parent), update);
+
+        elements.write(writes);
+
+        return buildWorkspaceElement(newElement, false, false);
+    }
+
+    @DELETE
+    @Path("/{id}/elements/{eid}")
+    @Suspendable
+    public void deleteElement(@PathParam("eid") String elementId) {
+
+        final ObjectId id = buildObjectId(elementId, Status.NOT_FOUND);
+
+        final Document element = elements.findOne(QueryBuilder.where("_id").equals(id));
+
+        if (element == null) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+
+        final ArrayElement children = element.get(ArrayElement.class, "children");
+
+        if (children != null && !children.getEntries().isEmpty()) {
+            // TODO this is not the correct return code?
+            throw new WebApplicationException(Status.BAD_REQUEST);
+        }
+
+        final ObjectIdElement parent = element.get(ObjectIdElement.class, "parent");
+
+        final BatchedWrite.Builder writes = BatchedWrite.builder();
+
+        if (parent != null) {
+            final DocumentBuilder update = BuilderFactory.start();
+            update.push("$pullAll").add("children", BuilderFactory.a(id));
+            writes.update(QueryBuilder.where("_id").equals(parent.getId()), update);
+        }
+
+        writes.delete(QueryBuilder.where("_id").equals(id));
+
+        elements.write(writes);
     }
 
     @GET
