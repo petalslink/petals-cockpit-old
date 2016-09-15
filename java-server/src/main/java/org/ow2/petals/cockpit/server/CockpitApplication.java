@@ -31,6 +31,7 @@ import org.ow2.petals.cockpit.server.commands.PopulateDbCommand;
 import org.ow2.petals.cockpit.server.configurations.CockpitConfiguration;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration;
 import org.ow2.petals.cockpit.server.datatypes.UserData;
+import org.ow2.petals.cockpit.server.dw.FiberApplication;
 import org.ow2.petals.cockpit.server.filters.AuthenticationFilter;
 import org.ow2.petals.cockpit.server.resources.Sessions;
 import org.ow2.petals.cockpit.server.resources.Workspace;
@@ -43,7 +44,6 @@ import com.codahale.metrics.health.HealthCheck;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 
 import co.paralleluniverse.fibers.Fiber;
-import co.paralleluniverse.fibers.dropwizard.FiberApplication;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.configuration.ConfigurationFactory;
