@@ -18,7 +18,7 @@
                     </md-option>
                 </md-select>
                 <div ng-messages="componentAddForm.myChoice.$error"
-                     ng-if="!componentAddForm.$dirty && vmModal.hasChoice()">
+                     ng-if="vmModal.hasChoice()">
                     <div ng-message="required">Select a Petals Component Type.</div>
                 </div>
             </md-input-container>
@@ -26,11 +26,11 @@
                 <label>Component Name :</label>
                 <input name="title" ng-model="vmModal.newComponent.name"
                        type="text" md-maxlength="25" required>
-                <div ng-messages="componentAddForm.name.$error"
-                     ng-show="componentAddForm.name.$dirty">
+                <div class="inputMessageError" ng-messages="componentAddForm.title.$error">
                     <div ng-message="required">Name is required.</div>
                     <div ng-message="md-maxlength">The title has to be less than 25 characters long.</div>
                 </div>
+
             </md-input-container>
             <md-dialog-actions layout="row" layout-align="space-between center">
                 <span flex></span>

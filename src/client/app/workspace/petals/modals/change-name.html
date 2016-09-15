@@ -13,8 +13,7 @@
                 <label>New name :</label>
                 <input name="name" ng-model="vmModal.modalName"
                        type="text"  md-maxlength="20" required>
-                <div ng-messages="componentChangeNameForm.name.$error"
-                     ng-show="componentChangeNameForm.name.$dirty">
+                <div class="inputMessageError" ng-messages="componentChangeNameForm.name.$error">
                     <div ng-message="required">Title is required.</div>
                     <div ng-message="md-maxlength">The new title has to be less than 20 characters long.</div>
                 </div>
@@ -23,7 +22,7 @@
                 <span flex></span>
                 <md-button aria-label="Valid" ng-click="vmModal.validDialog();"
                            class="md-primary" ng-disabled="componentChangeNameForm.$invalid"
-                           ng-class="{'md-raised md-hue-1': (componentChangeNameForm.$dirty && componentChangeNameForm.$valid) }">
+                           ng-class="{'md-accent md-raised md-hue-1': (componentChangeNameForm.$valid) }">
                     Change name
                 </md-button>
                 <md-button aria-label="Cancel" ng-click="vmModal.closeDialog()">
