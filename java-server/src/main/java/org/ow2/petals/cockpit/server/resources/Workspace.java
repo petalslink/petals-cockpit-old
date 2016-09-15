@@ -39,10 +39,9 @@ import org.slf4j.LoggerFactory;
 import com.allanbank.mongodb.MongoCollection;
 import com.allanbank.mongodb.MongoDatabase;
 import com.allanbank.mongodb.bson.Document;
+import com.allanbank.mongodb.bson.DocumentAssignable;
 import com.allanbank.mongodb.bson.Element;
-import com.allanbank.mongodb.bson.builder.ArrayBuilder;
 import com.allanbank.mongodb.bson.builder.BuilderFactory;
-import com.allanbank.mongodb.bson.builder.DocumentBuilder;
 import com.allanbank.mongodb.bson.element.ArrayElement;
 import com.allanbank.mongodb.bson.element.DocumentElement;
 import com.allanbank.mongodb.bson.element.ObjectId;
@@ -78,14 +77,14 @@ public class Workspace {
 
     @GET
     @Suspendable
-    public DocumentBuilder getWorkspaces() {
-        final ArrayBuilder res = BuilderFactory.startArray();
+    public List<WorkspaceElement> getWorkspaces() {
+        final List<WorkspaceElement> res = new ArrayList<>();
 
         for (Document e : elements.find(QueryBuilder.where("type").equals("workspace"))) {
-            res.add(buildDocument(e));
+            res.add(buildWorkspaceElement(e, false, false));
         }
 
-        return BuilderFactory.d(res.build());
+        return res;
     }
 
     @GET
@@ -109,7 +108,7 @@ public class Workspace {
     @GET
     @Path("/{id}/elements/{eid}")
     @Suspendable
-    public DocumentBuilder getElementConfiguration(@PathParam("eid") String elementId) {
+    public WorkspaceElement getElement(@PathParam("eid") String elementId) {
         final Document element;
         try {
             // TODO would we want to check the workspace validity?
@@ -121,7 +120,7 @@ public class Workspace {
         if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
         } else {
-            return buildDocument(element);
+            return buildWorkspaceElement(element, true, false);
         }
     }
 
@@ -133,46 +132,42 @@ public class Workspace {
         final Document ws = elements.findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
 
         if (ws != null) {
-            return buildWorkspaceElement(ws);
+            return buildWorkspaceElement(ws, false, true);
         } else {
             throw new WebApplicationException(Status.NOT_FOUND);
         }
     }
 
-    private DocumentBuilder buildDocument(final Document element) {
-
-        final DocumentElement config = element.get(DocumentElement.class, "config");
-
-        final DocumentBuilder result = BuilderFactory.start();
-
-        result.add("id", element.get(ObjectIdElement.class, "_id").getId().toHexString());
-        result.add("name", element.get("name"));
-
-        if (config != null) {
-            result.add(config);
-        } else {
-            // empty config element
-            result.push("config");
-        }
-
-        return result;
-    }
-
     @Suspendable
-    private WorkspaceElement buildWorkspaceElement(Document ws) {
+    private WorkspaceElement buildWorkspaceElement(Document ws, boolean withConfig, boolean withChildren) {
+
         final String name = ws.get("name").getValueAsString();
         assert name != null;
+
         final String type = ws.get("type").getValueAsString();
         assert type != null;
+
         final String id = ws.get(ObjectIdElement.class, "_id").getId().toHexString();
         assert id != null;
+
+        final List<WorkspaceElement> children = withChildren ? buildChildren(ws) : null;
+
+        final Element state = ws.get("state");
+
+        final DocumentAssignable config;
+        if (withConfig) {
+            DocumentElement configElement = ws.get(DocumentElement.class, "config");
+            config = configElement == null ? BuilderFactory.d() : configElement.getValueAsObject();
+        } else {
+            config = null;
+        }
+
         if (!elementsConf.existsType(type)) {
             LOG.warn("Workspace element {} has unknown type {}", name, type);
         }
-        final List<WorkspaceElement> children = buildChildren(ws);
-        final Element state = ws.get("state");
+
         return new WorkspaceElement(id, name, type,
-                state == null ? null : state.getValueAsString(), children);
+                state == null ? null : state.getValueAsString(), children, config);
     }
 
     @Suspendable
@@ -181,7 +176,7 @@ public class Workspace {
         final List<WorkspaceElement> children = new ArrayList<>(els.getEntries().size());
         for(Element el: els.getEntries()) {
             final Document d = elements.findOne(QueryBuilder.where("_id").equals((ObjectId) el.getValueAsObject()));
-            children.add(buildWorkspaceElement(d));
+            children.add(buildWorkspaceElement(d, false, true));
         }
         return children;
     }
@@ -194,34 +189,45 @@ public class Workspace {
 @JsonInclude(Include.NON_NULL)
 class WorkspaceElement {
 
+    @Nullable
     private final String id;
 
+    @Nullable
     private final String name;
 
+    @Nullable
     private final String type;
 
     @Nullable
     private final String state;
 
+    @Nullable
     private final List<WorkspaceElement> children;
 
+    @Nullable
+    private final DocumentAssignable config;
+
     public WorkspaceElement(String id, String name, String type, @Nullable String state,
-            List<WorkspaceElement> children) {
+            @Nullable List<WorkspaceElement> children, @Nullable DocumentAssignable config) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.state = state;
         this.children = children;
+        this.config = config;
     }
 
+    @Nullable
     public String getId() {
         return id;
     }
 
+    @Nullable
     public String getName() {
         return name;
     }
 
+    @Nullable
     public String getType() {
         return type;
     }
@@ -231,6 +237,12 @@ class WorkspaceElement {
         return state;
     }
 
+    @Nullable
+    public DocumentAssignable getConfig() {
+        return config;
+    }
+
+    @Nullable
     public List<WorkspaceElement> getChildren() {
         return children;
     }

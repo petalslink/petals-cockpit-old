@@ -34,11 +34,14 @@ import org.ow2.petals.cockpit.server.datatypes.UserData;
 import org.ow2.petals.cockpit.server.filters.AuthenticationFilter;
 import org.ow2.petals.cockpit.server.resources.Sessions;
 import org.ow2.petals.cockpit.server.resources.Workspace;
+import org.ow2.petals.cockpit.server.utils.DocumentAssignableSerializer;
 import org.ow2.petals.cockpit.server.utils.DocumentAssignableWriter;
 
 import com.allanbank.mongodb.MongoClient;
 import com.allanbank.mongodb.MongoDatabase;
+import com.allanbank.mongodb.bson.DocumentAssignable;
 import com.codahale.metrics.health.HealthCheck;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 
 import co.paralleluniverse.fibers.Fiber;
@@ -84,6 +87,9 @@ public class CockpitApplication extends FiberApplication<CockpitConfiguration> {
 
         // use bytecode instrumentation to improve performance of json serialization/deserialization
         environment.getObjectMapper().registerModule(new AfterburnerModule());
+        // support DocumentAssignable in object serialized by jackson
+        environment.getObjectMapper().registerModule(
+                new SimpleModule().addSerializer(DocumentAssignable.class, new DocumentAssignableSerializer()));
 
         environment.healthChecks().register("mongo", new MongoHealthCheck(client));
 
