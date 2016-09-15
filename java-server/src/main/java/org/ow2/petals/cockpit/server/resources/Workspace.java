@@ -92,12 +92,11 @@ public class Workspace {
     @Path("/{id}/configuration")
     @Suspendable
     public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration(@PathParam("id") String wsId) {
-        final Document element;
-        try {
-            // TODO should we work we indexed field instead?
-            element = elements
-                    .findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
-        } catch (final IllegalArgumentException e) {
+        // TODO should we work we indexed field instead?
+        final Document element = elements
+                .findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
+
+        if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
         }
 
@@ -110,19 +109,17 @@ public class Workspace {
     @Path("/{id}/elements/{eid}")
     @Suspendable
     public WorkspaceElement getElement(@PathParam("eid") String elementId) {
-        final Document element;
-        try {
-            // TODO would we want to check the workspace validity?
-            element = elements.findOne(QueryBuilder.where("_id").equals(new ObjectId(elementId)));
-        } catch (final IllegalArgumentException e) {
-            throw new WebApplicationException(Status.NOT_FOUND);
-        }
+
+        final ObjectId id = buildObjectId(elementId, Status.NOT_FOUND);
+
+        // TODO would we want to check the workspace validity?
+        final Document element = elements.findOne(QueryBuilder.where("_id").equals(id));
 
         if (element == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
-        } else {
-            return buildWorkspaceElement(element, true, false);
         }
+
+        return buildWorkspaceElement(element, true, false);
     }
 
     @GET
@@ -132,10 +129,19 @@ public class Workspace {
         // TODO should we work we indexed field instead?
         final Document ws = elements.findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
 
-        if (ws != null) {
-            return buildWorkspaceElement(ws, false, true);
-        } else {
+        if (ws == null) {
             throw new WebApplicationException(Status.NOT_FOUND);
+        }
+
+        return buildWorkspaceElement(ws, false, true);
+    }
+
+    private ObjectId buildObjectId(@Nullable String id, Status s) {
+        try {
+            return new ObjectId(id);
+        } catch (IllegalArgumentException e) {
+            LOG.debug("Bad Request", e);
+            throw new WebApplicationException(s);
         }
     }
 
@@ -167,7 +173,7 @@ public class Workspace {
         }
 
         if (!elementsConf.existsType(type)) {
-            LOG.warn("Workspace element {} has unknown type {}", name, type);
+            LOG.warn("Workspace element {}/{} has unknown type {}", name, id, type);
         }
 
         return new WorkspaceElement(id, name, type,
