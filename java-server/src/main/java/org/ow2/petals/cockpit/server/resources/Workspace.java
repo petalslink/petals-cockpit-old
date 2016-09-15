@@ -66,22 +66,19 @@ public class Workspace {
 
     private static final Logger LOG = LoggerFactory.getLogger(Workspace.class);
 
-    private final MongoDatabase db;
+    private final MongoCollection elements;
 
     private final WorkspaceElementConfiguration elementsConf;
 
     @Inject
     public Workspace(MongoDatabase db, WorkspaceElementConfiguration elementsConf) {
-        this.db = db;
+        this.elements = db.getCollection("workspace-elements");
         this.elementsConf = elementsConf;
     }
 
     @GET
     @Suspendable
     public DocumentBuilder getWorkspaces() {
-
-        final MongoCollection elements = db.getCollection("workspace-elements");
-
         final ArrayBuilder res = BuilderFactory.startArray();
 
         for (Document e : elements.find(QueryBuilder.where("type").equals("workspace"))) {
@@ -95,8 +92,6 @@ public class Workspace {
     @Path("/{id}/configuration")
     @Suspendable
     public WorkspaceElementConfiguration.Conf getWorkspaceConfiguration(@PathParam("id") String wsId) {
-        final MongoCollection elements = db.getCollection("workspace-elements");
-
         final Document element;
         try {
             // TODO should we work we indexed field instead?
@@ -115,9 +110,6 @@ public class Workspace {
     @Path("/{id}/elements/{eid}")
     @Suspendable
     public DocumentBuilder getElementConfiguration(@PathParam("eid") String elementId) {
-
-        final MongoCollection elements = db.getCollection("workspace-elements");
-
         final Document element;
         try {
             // TODO would we want to check the workspace validity?
@@ -137,14 +129,11 @@ public class Workspace {
     @Path("/{id}/elements")
     @Suspendable
     public WorkspaceElement getWorkspace(@PathParam("id") String wsId) {
-
-        final MongoCollection elements = db.getCollection("workspace-elements");
-
         // TODO should we work we indexed field instead?
         final Document ws = elements.findOne(QueryBuilder.where("name").equals(wsId).and("type").equals("workspace"));
 
         if (ws != null) {
-            return buildWorkspaceElement(ws, elements);
+            return buildWorkspaceElement(ws);
         } else {
             throw new WebApplicationException(Status.NOT_FOUND);
         }
@@ -170,7 +159,7 @@ public class Workspace {
     }
 
     @Suspendable
-    private WorkspaceElement buildWorkspaceElement(Document ws, MongoCollection elements) {
+    private WorkspaceElement buildWorkspaceElement(Document ws) {
         final String name = ws.get("name").getValueAsString();
         assert name != null;
         final String type = ws.get("type").getValueAsString();
@@ -180,19 +169,19 @@ public class Workspace {
         if (!elementsConf.existsType(type)) {
             LOG.warn("Workspace element {} has unknown type {}", name, type);
         }
-        final List<WorkspaceElement> children = buildChildren(ws, elements);
+        final List<WorkspaceElement> children = buildChildren(ws);
         final Element state = ws.get("state");
         return new WorkspaceElement(id, name, type,
                 state == null ? null : state.getValueAsString(), children);
     }
 
     @Suspendable
-    private List<WorkspaceElement> buildChildren(Document ws, MongoCollection elements) {
+    private List<WorkspaceElement> buildChildren(Document ws) {
         final ArrayElement els = ws.get(ArrayElement.class, "children");
         final List<WorkspaceElement> children = new ArrayList<>(els.getEntries().size());
         for(Element el: els.getEntries()) {
             final Document d = elements.findOne(QueryBuilder.where("_id").equals((ObjectId) el.getValueAsObject()));
-            children.add(buildWorkspaceElement(d, elements));
+            children.add(buildWorkspaceElement(d));
         }
         return children;
     }
