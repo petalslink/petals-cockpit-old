@@ -64,10 +64,14 @@ md-toolbar.md-sidenav-theme-theme:not(.md-menu-toolbar) {
     height: 100%;
     padding: 2px;
     margin: 0;
+    background-color: #ceceff;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: rgba(69, 39, 160, 0.5) !important;
 }
 
 md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) {
-    background-color: rgb(195,215,240);
+    background-color: #ceceff;
     color: rgba(0,0,0,0.87);
 }
 

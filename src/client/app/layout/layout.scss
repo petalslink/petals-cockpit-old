@@ -21,7 +21,9 @@
     z-index: 20;
     position: fixed;
     width: 100%;
-/*    border: solid 1px rgba(69, 39, 160, 0.5) !important;*/
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: rgba(69, 39, 160, 0.5) !important;
 }
 
 /* ====================
@@ -192,7 +194,7 @@ md-dialog.md-cardCustom-theme-theme {
 .gridListTile md-grid-tile {
     text-transform: uppercase;
     transition: all 400ms ease-out 50ms;
-    border: black 10px;
+/*    border: black solid 10px;*/
     border-radius: 6px;
 }
 
@@ -368,7 +370,7 @@ md-dialog.md-cardCustom-theme-theme {
 }
 
 #backgroundEntry {
-    background-color: rgba(190, 223, 255, 1);
+    background-color: #ceceff;
     width: 100%;
     height: 100%;
     padding: 0;

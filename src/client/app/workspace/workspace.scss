@@ -16,9 +16,9 @@ md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) md-icon.iconMenuColorWhite 
     fill: rgba(255, 255, 255, 1);
 }
 
-.sidenavBtnLarge {
-    background-color: #c3d7f0;
-    z-index: 10;
+md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) md-icon.iconMenuColorOrange {
+    color: rgba(253, 109, 1, 0.96);
+    fill: rgba(253, 109, 1, 0.96);
 }
 
 a.md-button.md-navConsole-theme-theme.selectionMenu {
@@ -42,8 +42,8 @@ a.md-button.md-navConsole-theme-theme.selectionMenu {
     width: 100%;
     height: 100%;
     background-color: rgba(69, 39, 160, 1) !important;
-    color: #FF6D00 !important;
-    font-weight: bold;
+    /*color: #FF6D00 !important;*/
+    color: #fff !important;
     border-bottom: 2px solid rgba(253, 109, 1, 0.96);
 }
 
@@ -63,7 +63,11 @@ a.md-button.md-navConsole-theme-theme.selectionMenu {
     height: 100%;
     padding: 12px;
     margin: 0;
-    color: rgba(69, 39, 160, 1) !important;
+    color: #fff !important;
+    background-color: rgba(255, 183, 56, 0.9);
+    text-shadow: 0 0 9px #222;
+    /*color: rgba(69, 39, 160, 1) !important;*/
+    /*color: rgba(253, 109, 1, 0.96) !important;*/
 }
 
 .btnMediumMenu {

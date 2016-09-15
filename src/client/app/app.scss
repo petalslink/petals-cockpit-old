@@ -88,5 +88,8 @@ md-toast.md-blue-theme .md-toast-content {
     height: 60px;
     padding: 0;
     margin: 0;
-    background-color: #c3d7f0;
+    background-color: #ceceff;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    border-color: rgba(69, 39, 160, 0.5) !important;
 }
