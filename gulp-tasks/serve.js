@@ -13,8 +13,9 @@ var os = require('os');
 module.exports = function (config) {
 
     gulp.task('populate-demo', [], function () {
-        runCommand('mvn', 
+        runCommand('mvn',
                 ['-f',
+                 '-B',
                  'java-server',
                  'compile',
                  'dependency:properties',
@@ -22,11 +23,11 @@ module.exports = function (config) {
                  '-Dcockpit.exec.command=populate-demo'
                  ]);
     });
-    
+
     gulp.task('serve-mongod', [], function() {
         serveMongod();
     });
-    
+
     gulp.task('serve-java', [], function() {
         serveJava();
     });
@@ -40,11 +41,11 @@ module.exports = function (config) {
     });
 
     function runCommand(command, args, name) {
-        
+
         config.log('Starting '+name+': '+command+' '+args);
-        
+
         var p = spawn(command, args);
-        
+
         p.stdout.on('data', function(data) { log(data, config.log); });
         p.stderr.on('data', function(data) { log(data, config.err); });
         p.on('close', function(code) {
@@ -52,13 +53,13 @@ module.exports = function (config) {
                 throw new Error('child process exited with code '+code);
             }
         });
-        
+
         process.on('exit', function() {
             p.kill();
         });
-        
+
         return p;
-        
+
         function log(data, logger) {
             data.toString().split(os.EOL).forEach(function(l) {
                 if (l.trim().length > 0) {
@@ -67,17 +68,17 @@ module.exports = function (config) {
             });
         }
     }
-    
+
     function serveMongod() {
         var dbDir = config.dbDir;
         mkdirs(dbDir);
         mkdirs(dbDir+'/data');
         runCommand('mongod', ['--dbpath', dbDir+'/data'], 'mongo');
     }
-    
+
     function serveJava(onStart) {
         var p = runCommand('mvn', ['-f', 'java-server', 'compile', 'dependency:properties', 'exec:exec'], 'server');
-        
+
         if (onStart) {
             var cb = function(data) {
                 if (data.indexOf('Started Petals Cockpit') > -1) {
