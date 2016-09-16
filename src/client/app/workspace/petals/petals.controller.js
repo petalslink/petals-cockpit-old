@@ -18,14 +18,30 @@
         vmPetals.selectedChild = null;
         vmPetals.choiceList = [];
 
-        vmPetals.addTreeComponent = function (component) {addTreeComponent(component);};
-        vmPetals.changeTitle = function (component) {changeTitle(component);};
-        vmPetals.deleteTreeComponent = function (component) {deleteTreeComponent(component);};
-        vmPetals.mayAddSubComponent = function (component) {return component.mayAddSubComponent;};
-        vmPetals.moveDown = function (component) {moveDown(component);};
-        vmPetals.moveUp = function (component) {moveUp(component);};
-        vmPetals.gotoComponentState = function (component) {gotoComponentState(component);};
-        vmPetals.toggleMinimized = function (component) {toggleMinimized(component);};
+        vmPetals.addTreeComponent = function (component) {
+            addTreeComponent(component);
+        };
+        vmPetals.changeTitle = function (component) {
+            changeTitle(component);
+        };
+        vmPetals.deleteTreeComponent = function (component) {
+            deleteTreeComponent(component);
+        };
+        vmPetals.mayAddSubComponent = function (component) {
+            return component.mayAddSubComponent;
+        };
+        vmPetals.moveDown = function (component) {
+            moveDown(component);
+        };
+        vmPetals.moveUp = function (component) {
+            moveUp(component);
+        };
+        vmPetals.gotoComponentState = function (component) {
+            gotoComponentState(component);
+        };
+        vmPetals.toggleMinimized = function (component) {
+            toggleMinimized(component);
+        };
 
         activate();
 
@@ -191,6 +207,7 @@
         }
 
         function deleteTreeComponent(component) {
+
             $mdDialog.show({
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
@@ -255,6 +272,7 @@
                     }
                 }
             }
+
             walk(vmPetals.data);
         }
 
@@ -278,6 +296,7 @@
                     }
                 }
             }
+
             walk(vmPetals.data);
         }
 
@@ -315,7 +334,7 @@
                     petalsService.setSelectedComponentId(component.id);
                 }, function (e) {
                     // if error
-                    logger.debug('petals.controller.js: failed go state !!!'+e);
+                    logger.debug('petals.controller.js: failed go state !!!' + e);
                     component.selected = true;
                     vmPetals.selectedChild = component;
                     //dataWkspceService.setInfoSelect(component.selectionChain);
