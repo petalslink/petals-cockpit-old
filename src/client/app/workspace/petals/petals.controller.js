@@ -237,9 +237,9 @@
                 walk(vmPetals.data);
             });
 
-            DialogController.$inject = ['$mdDialog', 'localData'];
+            DialogController.$inject = ['$mdDialog', 'localData', 'dataservice'];
             /* @ngInject */
-            function DialogController($mdDialog, localData) {
+            function DialogController($mdDialog, localData, dataservice) {
                 var vmModal = this;
                 vmModal.modalName = localData.name;
 
@@ -247,7 +247,11 @@
                     $mdDialog.cancel();
                 };
                 vmModal.validDialog = function () {
-                    return dataservice.deleteElement($stateParams.id);
+                    dataservice.deleteElement(localData).then(function() {
+                        $mdDialog.hide();
+                    }, function () {
+                        // TODO show error
+                    });
                 };
             }
         }

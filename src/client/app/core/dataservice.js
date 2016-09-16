@@ -55,11 +55,12 @@
         }
 
         // Delete data element with DELETE
-        function deleteElement(id) {
-            return $http.put('/api/workspaces/Demo/elements/' + id)
+        function deleteElement(element) {
+            return $http.delete('/api/workspaces/Demo/elements/' + element.id)
                 .then(deleteElementComplete, deleteElementFailed);
 
             function deleteElementComplete(data) {
+                logger.success('Component is deleted !');
                 return data.data;
             }
 
