@@ -18,6 +18,7 @@
 package org.ow2.petals.cockpit.server.resources;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -241,7 +242,7 @@ public class Workspace {
         final ObjectIdElement parentE = ws.get(ObjectIdElement.class, "parent");
         final String parent = parentE != null ? parentE.getId().toHexString() : null;
 
-        final List<WorkspaceElement> children = withChildren ? buildChildren(ws) : null;
+        final List<WorkspaceElement> children = withChildren ? buildChildren(ws) : Collections.emptyList();
 
         final Element state = ws.get("state");
 
