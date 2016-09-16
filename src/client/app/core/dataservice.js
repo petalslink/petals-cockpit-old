@@ -16,6 +16,7 @@
             getPetalsComponent: getPetalsComponent,
             getPetalsComponents: getPetalsComponents,
             getPetalsComponentConfig: getPetalsComponentConfig,
+            addElement: addElement,
             updateElement: updateElement,
             deleteElement: deleteElement,
             ready: ready
@@ -34,6 +35,22 @@
             function getPetalsComponentFailed(e) {
                 logger.error('****** getPetalsComponentFailed' + e.data.description);
                 exception.catcher('XHR Failed for getPetalsComponent')(e);
+                return $q.reject(e);
+            }
+        }
+
+        // Add data element with POST
+        function addElement(element) {
+            return $http.post('/api/workspaces/Demo/elements', element)
+                .then(addElementComplete, addElementFailed);
+
+            function addElementComplete(data) {
+                logger.success('New Component is added !');
+                return data.data;
+            }
+            function addElementFailed(e) {
+                logger.error('****** addElementFailed' + e.data.description);
+                exception.catcher('Failed to add new Element')(e);
                 return $q.reject(e);
             }
         }

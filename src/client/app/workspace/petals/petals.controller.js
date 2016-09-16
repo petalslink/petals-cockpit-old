@@ -97,52 +97,37 @@
             var choiceList = [];
             if (component.typeData) {
                 for (var i = 0; i < component.typeData.contains.length; i++) {
-                    choiceList[i] = {
-                        'name': component.typeData.contains[i].name,
-                        'icon': component.typeData.contains[i].type.icon
-                    };
+                    choiceList[i] = component.typeData.contains[i].type;
                 }
             } else {
                 // componentType does'nt exist anymore due to configuration change
                 // todo ?
                 return;
             }
-            var newComponent = {};
-            newComponent.name = '';
-            var parentName = component.name;
 
             $mdDialog.show({
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
                 templateUrl: 'src/client/app/workspace/petals/modals/add-component.html',
                 locals: {
-                    localNewComponent: newComponent,
-                    localParentName: parentName,
+                    localParent: component,
                     localChoiceList: choiceList
                 },
                 controller: DialogController,
                 controllerAs: 'vmModal'
 
-            }).then(function () {
-                // todo call a addComponent function
-                component.children.push({
-                    id: 999,
-                    name: newComponent.name,
-                    componentType: newComponent.component.typeData,
-                    state: 'undeployed',
-                    display: 'empty',
-                    //selectionChain: component.selectionChain + '/' + newComponent.name,
-                    children: []
-                });
+            }).then(function (data) {
+                component.children.push(data);
                 component.display = 'open';
+
+
             });
 
-            DialogController.$inject = ['$mdDialog', 'localNewComponent', 'localParentName', 'localChoiceList'];
+            DialogController.$inject = ['$mdDialog', 'localParent', 'localChoiceList', 'workspaceservice'];
             /* @ngInject */
-            function DialogController($mdDialog, localNewComponent, localParentName, localChoiceList) {
+            function DialogController($mdDialog, localParent, localChoiceList, workspaceservice) {
                 var vmModal = this;
-                vmModal.newComponent = localNewComponent;
-                vmModal.parentName = localParentName;
+                vmModal.parent = localParent;
                 vmModal.choiceList = localChoiceList;
                 vmModal.myChoice = {};
 
@@ -156,7 +141,17 @@
                     return (vmModal.choiceList.length > 1);
                 };
                 vmModal.validDialog = function () {
-                    $mdDialog.hide();
+                    var element = {};
+                    element.name = vmModal.name;
+                    element.type = vmModal.myChoice.name;
+                    element.state = 'UNDEPLOYED';
+                    element.parent = localParent.id;
+
+                    workspaceservice.addWorkspaceElement(element).then(function (data) {
+                        $mdDialog.hide(data);
+                    }, function (err) {
+                        // TODO show the error
+                    });
                 };
 
                 activate();
@@ -169,8 +164,7 @@
                 }
 
                 function changeSelected() {
-                    vmModal.newComponent.name = vmModal.myChoice.name + '-';
-                    vmModal.newComponent.component = vmModal.myChoice;
+                    vmModal.name = vmModal.myChoice.name + '-';
                 }
             }
 

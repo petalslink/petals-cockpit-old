@@ -11,10 +11,22 @@
     function workspaceservice(dataservice, $q) {
 
         var service = {
-            getWorkspaceData: getWorkspaceData
+            getWorkspaceData: getWorkspaceData,
+            addWorkspaceElement: addWorkspaceElement
         };
 
         return service;
+
+        function addWorkspaceElement(element) {
+            // TODO reuse previously retrieved workspace config
+            var config = dataservice.getPetalsComponentConfig();
+            var newEl = dataservice.addElement(element);
+
+            return $q.all([newEl, config]).then(function (ps) {
+                populateTypes(ps[0], ps[1]);
+                return ps[0];
+            });
+        }
 
         function getWorkspaceData() {
             var elements = dataservice.getPetalsComponents();
