@@ -195,7 +195,12 @@
                 vmModal.validDialog = function () {
                     var element = {};
                     element.name = localData.name;
-                    return dataservice.updateElement(element);
+
+                    dataservice.updateElement(element).then(function() {
+                        $mdDialog.hide();
+                    }, function () {
+                        // TODO show error
+                    });
                 };
             }
         }
@@ -305,17 +310,14 @@
                 vmPetals.selectedChild.lastState = $state.current.name;
             }
 
-            // TODO what is this doing here?
             if (!component.typeData) {
                 // component doesn't exist anymore due to configuration change
                 //todo unselect this component and select the first component available
                 component.mayAddSubComponent = false;
-                /*
-                 select(vmPetals.selectedChild);
-                 */
                 return;
             } else {
-                component.mayAddSubComponent = !!component.typeData.contains;
+                // if branch have no contains, never see btn add
+                component.mayAddSubComponent = component.typeData.contains.length > 0;
             }
 
             // goto his state
@@ -335,7 +337,7 @@
                     logger.debug('petals.controller.js: failed go state !!!' + e);
                     component.selected = true;
                     vmPetals.selectedChild = component;
-                    //dataWkspceService.setInfoSelect(component.selectionChain);
+
                     //TODO manage plugin error
                     $state.go('home.workspace.petals.fallback-component', {id: component.id});
                 }
