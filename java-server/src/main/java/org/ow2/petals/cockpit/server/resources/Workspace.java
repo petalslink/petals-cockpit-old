@@ -36,6 +36,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.jdt.annotation.Nullable;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration.Conf;
 import org.slf4j.Logger;
@@ -54,6 +55,7 @@ import com.allanbank.mongodb.bson.element.ObjectId;
 import com.allanbank.mongodb.bson.element.ObjectIdElement;
 import com.allanbank.mongodb.builder.BatchedWrite;
 import com.allanbank.mongodb.builder.QueryBuilder;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -135,28 +137,31 @@ public class Workspace {
     @Suspendable
     public WorkspaceElement addElement(@Valid WorkspaceElement element) {
 
-        if (element.getName() == null || element.getParent() == null || element.getType() == null) {
-            throw new WebApplicationException(Status.BAD_REQUEST);
-        }
+        final String name = element.getName();
+        final String parentId = element.getParent();
+        final String type = element.getType();
+        // other cases are covered by jackson deserialization
+        final ObjectId parent = buildObjectId(parentId, Status.BAD_REQUEST);
 
         // TODO validate parent exists
-        final ObjectId parent = buildObjectId(element.getParent(), Status.BAD_REQUEST);
+
         final ObjectId id = new ObjectId();
 
         final BatchedWrite.Builder writes = BatchedWrite.builder();
 
         final DocumentBuilder doc = BuilderFactory.start();
         doc.add("_id", id);
-        doc.add("name", element.getName());
+        doc.add("name", name);
         if (element.getState() != null) {
             doc.add("state", element.getState());
         }
-        doc.add("type", element.getType());
+        doc.add("type", type);
         doc.add("parent", parent);
         doc.pushArray("children");
         doc.add("config", element.getConfig());
 
         final Document newElement = doc.build();
+        assert newElement != null;
 
         writes.insert(newElement);
 
@@ -284,10 +289,8 @@ class WorkspaceElement {
     @Nullable
     private final String id;
 
-    @Nullable
     private final String name;
 
-    @Nullable
     private final String type;
 
     @Nullable
@@ -302,18 +305,24 @@ class WorkspaceElement {
     @Nullable
     private final DocumentAssignable config;
 
+    /**
+     * Used to add a new element
+     */
+    @JsonCreator
     public WorkspaceElement(@JsonProperty("name") String name, @JsonProperty("type") String type,
-            @JsonProperty("state") @Nullable String state, @JsonProperty("parent") @Nullable String parent,
-            @JsonProperty("config") @Nullable DocumentAssignable config) {
+            @JsonProperty("state") @Nullable String state, @JsonProperty("parent") @Nullable String parent) {
         this.id = null;
         this.name = name;
         this.type = type;
         this.state = state;
         this.children = null;
         this.parent = parent;
-        this.config = config;
+        this.config = null;
     }
 
+    /**
+     * Used by our code to send an element
+     */
     public WorkspaceElement(String id, String name, String type, @Nullable String state,
             @Nullable List<WorkspaceElement> children, @Nullable String parent, @Nullable DocumentAssignable config) {
         this.id = id;
@@ -330,12 +339,12 @@ class WorkspaceElement {
         return id;
     }
 
-    @Nullable
+    @NotEmpty
     public String getName() {
         return name;
     }
 
-    @Nullable
+    @NotEmpty
     public String getType() {
         return type;
     }
