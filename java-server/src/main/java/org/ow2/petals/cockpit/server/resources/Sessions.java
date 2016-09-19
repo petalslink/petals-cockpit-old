@@ -91,7 +91,7 @@ public class Sessions {
     @DELETE
     @PermitAll
     public Response logout(@Session(doNotCreate = true) HttpSession session, @Auth UserData user) {
-        LOG.info("Invalidating {}", user.getUsername());
+        LOG.debug("Invalidating {}", user.getUsername());
         session.invalidate();
         return Response.ok().build();
     }
@@ -99,21 +99,21 @@ public class Sessions {
     @GET
     @PermitAll
     public Response status(@Auth UserData user) {
-        LOG.info("Returning infos for {}", user.getUsername());
+        LOG.debug("Returning infos for {}", user.getUsername());
         return Response.ok(user).build();
     }
 
     @Suspendable
     @Nullable
     private UserData authenticate(String username, String password) {
-        LOG.info("Loading {}", username);
+        LOG.debug("Loading {}", username);
         final MongoCollection users = db.getCollection("users");
         final Document user = users.findOne(QueryBuilder.where("username").equals(username));
         if (user == null) {
-            LOG.info("No user found for {}", username);
+            LOG.debug("No user found for {}", username);
             return null;
         } else {
-            LOG.info("Found {}", user);
+            LOG.debug("Found {}", user);
             final String hashed = user.get("password").getValueAsString();
             if (BCrypt.checkpw(password, hashed)) {
                 final List<Element> entries = user.get(ArrayElement.class, "roles").getEntries();
