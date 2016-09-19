@@ -77,19 +77,5 @@
 		"scan_period": "4000",
 		"path_install": "/var/lib/petals/server-1/install",
 		"path_installed": "/var/lib/petals/server-1/installed"
-	},
-	"embedded_registry_overlay": {
-		"activation": true,
-		"port": "7900"
-	},
-	"artifact_repository": {
-		"activation": true,
-		"path": "/var/lib/petals/server-1/artifacts"
-	},
-	"ws_api": {
-		"activation": true,
-		"listening_interface": "localhost",
-		"http_port": "7600",
-		"http_path": "petals/ws"
 	}
 }
