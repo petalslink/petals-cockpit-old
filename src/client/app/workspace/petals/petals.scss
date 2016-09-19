@@ -9,12 +9,16 @@
     font-size: 16px;
 }
 
+.md-18 {
+    width: 18px;
+}
+
 .treeIcon {
     min-height: 18px;
     line-height: 18px;
     margin: 0 1px;
     min-width: 10px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -52,12 +56,6 @@
     padding: 10px;
     background-color: #f3f6fe;
 }
-/*
-md-toolbar.md-sidenav-theme-theme:not(.md-menu-toolbar) {
-    background-color: rgb(69,39,160);
-    color: rgba(255,255,255,0.87);
-    margin-top: -16px;
-}*/
 
 .md-button.md-sidenav-theme-theme.customBtnSidenav {
     width: 100%;
@@ -70,9 +68,8 @@ md-toolbar.md-sidenav-theme-theme:not(.md-menu-toolbar) {
     border-color: rgba(69, 39, 160, 0.5) !important;
 }
 
-md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) {
+md-toolbar.md-sidenav-theme-theme:not(.md-menu-toolbar) {
     background-color: #a6a6f4;
-    color: rgba(0,0,0,0.87);
 }
 
 md-toolbar.md-core-theme-theme:not(.md-menu-toolbar) md-icon {

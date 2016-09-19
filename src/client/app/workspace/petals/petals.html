@@ -18,15 +18,15 @@
                     <span ng-click="vmPetals.toggleMinimized(child)"
                              ng-switch on="child.display">
                         <span ng-switch-when="empty">
-                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                            <md-icon class="material-icons md-accent md-raised treeIcon"
                                      md-svg-icon="mdicons:subdirectory-arrow-right"></md-icon>
                         </span>
                         <span ng-switch-when="minimized">
-                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                            <md-icon class="material-icons md-accent md-raised treeIcon"
                                      md-svg-icon="mdicons:folder-plus"></md-icon>
                         </span>
                         <span ng-switch-default>
-                            <md-icon class="material-icons md-18 md-accent md-raised treeIcon"
+                            <md-icon class="material-icons md-accent md-raised treeIcon"
                                      md-svg-icon="mdicons:folder-outline"></md-icon>
                         </span>
                     </span>
@@ -36,15 +36,19 @@
 
 
                     <md-button class="md-primary menuBtnTree" ng-click="vmPetals.gotoComponentState(child)"
-                               ng-class="{'md-raised': child.selected}"> {{ child.name }}
+                               ng-class="{'md-raised': child.selected}">
+                        <md-tooltip class="tolowercase" md-autohide="1" md-direction="right">
+                            {{ child.name }}
+                        </md-tooltip>
+                        {{ child.name }}
                     </md-button>
-
+                    <md-divider></md-divider>
                     <span flex></span>
                     <div>
                         <md-icon title="Add" class="material-icons md-accent md-raised treeIcon"
                                  ng-click="vmPetals.addTreeComponent(child)"
                                  ng-hide="!(child.mayAddSubComponent) || !(child.selected === true)
-                                          || (child.display==='minimized')"
+                                          || (child.display==='minimized') "
                                  md-svg-icon="mdicons:plus-box">
                         </md-icon>
                     </div>
