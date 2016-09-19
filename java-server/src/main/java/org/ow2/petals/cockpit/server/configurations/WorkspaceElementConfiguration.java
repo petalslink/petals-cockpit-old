@@ -28,10 +28,13 @@ import javax.validation.Valid;
 import org.eclipse.jdt.annotation.Nullable;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.allanbank.mongodb.bson.Document;
+import com.allanbank.mongodb.bson.json.Json;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Read from modules (for now there is none but the main one provided in resources) configuration YAML
@@ -92,6 +95,14 @@ public class WorkspaceElementConfiguration {
         @JsonProperty
         private String state = "";
 
+        @Nullable
+        private Document defaultConfig;
+
+        @JsonProperty("default-config")
+        void setDefaultConfig(JsonNode defaultConfig) {
+            this.defaultConfig = Json.parse(defaultConfig.toString());
+        }
+
         void setName(String name) {
             this.name = name;
         }
@@ -106,6 +117,11 @@ public class WorkspaceElementConfiguration {
 
         public String getState() {
             return state;
+        }
+
+        @Nullable
+        public Document getDefaultConfig() {
+            return defaultConfig;
         }
     }
 

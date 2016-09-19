@@ -24,18 +24,167 @@ types:
   petals-bus-5.0:
     icon: bus
     state: home.workspace.petals.bus.config
+    default-config:
+      topology:
+        domain:
+          name: ""
+          mode: dynamic
+          description: ""
+        registry:
+          registry_implementation: org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl
+          registry_configuration:
+            group_name: ""
+            group_password: ""
+            overlay_members:
+              - host_name: ""
+                port: 7900
   petals-container-5.0:
     icon: server-network
     state: home.workspace.petals.server.config
+    default-config:
+      host: ""
+      user: petals
+      password: petals
+      jmx_port: 7700
+      transport_port: 7800
+      general:
+        data_basedir: ""
+        repository_path: ""
+        work_path: ""
+        log_config_file: ""
+        task_timeout: 120000
+        exchange_validation: false
+        classloaders_isolated: true
+        container_moves_lock_wait_time: 30
+      topology:
+        url: ""
+        passphrase: ""
+        dynamic_lock_wait_time: 30
+        ping:
+          start_delay: 2000
+          period_delay: 5000
+      router:
+        strategy: highest,3,2,1
+        send_attempt: 2
+        send_delay: 1000
+        traffic_stop_delay: 30000
+        traffic_pause_delay: 10000
+      ssl:
+        key_password: ""
+        keystore:
+          file: ""
+          password: ""
+        truststore:
+          file: ""
+          password: ""
+      transport:
+        queue:
+          max_size: 10000
+          offering_timeout: 2500
+        tcp:
+          receivers:
+            listening_interface: 0.0.0.0
+            numbers: 10
+            keep_alive: 60000
+          senders:
+            numbers: 10
+            connection_timeout: 5000
+            timeout: 5000
+            evictor_delay: 60000
+      registry:
+        registry_implementation: org.ow2.petals.microkernel.registry.overlay.RegistryOverlayImpl
+        registry_parameters:
+          map_cache:
+            max_size: 500
+      recovery:
+        corepoolsize: 5
+        keepalivetime: 60
+      autoloader:
+        activation: true
+        scan_period: 4000
+        path_install: ""
+        path_installed: ""
   bc-soap-4.4.0:
     icon: puzzle
     state: home.workspace.petals.bc-soap.config
+    default-config:
+      cdk_part:
+        acceptor_pool_size: 1
+        acceptor_retry_number: 40
+        acceptor_retry_wait: 250
+        acceptor_stop_max_wait: 500
+        processor_pool_size: 10
+        rocessor_max_pool_size: 50
+        processor_keep_alive_time: 300
+        processor_stop_max_wait: 15000
+        time_between_async_cleaner_runs: 2000
+        properties_file: ""
+        monitoring_sampling_period: 300
+      component_part:
+        http_port: 8084
+        http_host: 192.168.1.128
+        http_service_list: true
+        http_service_context: petals
+        http_service_mapping: services
+        http_thread_pool_size_min: 2
+        http_thread_pool_size_max: 255
+        http_acceptors: 4
+        http_backlog_size: 50
+        max_http_connections_per_host: 50
+        https_enabled: false
+        https_port: 8083
+        https_acceptors: 4
+        https_backlog_size: 50
+        https_keystore_type: JKS
+        https_keystore_file: ""
+        https_keystore_password: ""
+        https_key_password: ""
+        https_truststore_type: JKS
+        https_truststore_file: ""
+        https_truststore_password: ""
+        https_client_authentication_enabled: false
   su-provides-soap-4.4.0:
     icon: star
     state: home.workspace.petals.bc-soap-su-provide.su-config
+    default-config:
+      cdk_part:
+        timeout: 30000
+        validate_wsdl: true
+        wsdl: ""
+        forward_attachments: false
+        forward_message_properties: false
+        forward_security_subject: false
+      soap_part:
+        soap_version: 1.1
+        wsa_to: ""
+        chunked_mode: false
+        enable_wsa: false
+        proxy_host: ""
+        proxy_port: ""
+        proxy_password: ""
+        proxy_domain: ""
+        https_truststore_file: ""
+        https_truststore_password: ""
+        https_keystore_file: ""
+        https_keystore_password: ""
   su-consumes-soap-4.4.0:
     icon: star
     state: home.workspace.petals.bc-soap-su-consume.su-config
+    default-config:
+      jbi_part:
+        wsdl: ""
+        interface_name: ""
+        service_name: ""
+        endpoint_name: ""
+      cdk_part:
+        mep: ""
+        operation: ""
+        timeout: 30000
+      soap_part:
+        soap_action: ""
+        enable_http_transport: true
+        enable_https_transport: false
+        enable_jms_transport: false
 
 configurations:
   default-5.0:

@@ -39,6 +39,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration;
 import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration.Conf;
+import org.ow2.petals.cockpit.server.configurations.WorkspaceElementConfiguration.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -158,7 +159,9 @@ public class Workspace {
         doc.add("type", type);
         doc.add("parent", parent);
         doc.pushArray("children");
-        doc.add("config", element.getConfig());
+
+        final Type typeConf = elementsConf.getType(type);
+        doc.add("config", typeConf == null ? null : typeConf.getDefaultConfig());
 
         final Document newElement = doc.build();
         assert newElement != null;
