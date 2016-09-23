@@ -14,8 +14,8 @@ module.exports = function (config) {
 
     gulp.task('populate-demo', [], function () {
         runCommand('mvn',
-                ['-f',
-                 '-B',
+                ['-B',
+                 '-f',
                  'java-server',
                  'compile',
                  'dependency:properties',
