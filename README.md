@@ -1,3 +1,6 @@
+**Warning** This project is discontinued, the current ongoing development repository of Petals Cockpit is located here: [https://gitlab.com/linagora/petals-cockpit](https://gitlab.com/linagora/petals-cockpit) 
+
+
 # Petals COCKPIT
 
 - This is a web application prototype to drive Petals ESB servers.
